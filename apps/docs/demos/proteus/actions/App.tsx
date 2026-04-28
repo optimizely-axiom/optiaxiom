@@ -16,7 +16,7 @@ export function App() {
               children: "Delete project",
               onClick: { interaction: "delete_project" },
             },
-            { $type: "CancelAction", children: "Keep project" },
+            { $type: "Action", children: "Keep project" },
           ],
           body: [],
           subtitle:

@@ -11,7 +11,7 @@ export function App() {
           $type: "Document",
           actions: [
             { $type: "Action", appearance: "primary", children: "Submit" },
-            { $type: "CancelAction", children: "Cancel" },
+            { $type: "Action", children: "Cancel" },
           ],
           appName: "Issue Tracker",
           blocking: true,

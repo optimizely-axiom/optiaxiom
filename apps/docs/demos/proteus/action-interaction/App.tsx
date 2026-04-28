@@ -16,7 +16,7 @@ export function App() {
               children: "Approve",
               onClick: { interaction: "approve_deploy" },
             },
-            { $type: "CancelAction", children: "Cancel" },
+            { $type: "Action", children: "Cancel" },
           ],
           body: [],
           subtitle:

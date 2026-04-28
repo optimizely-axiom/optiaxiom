@@ -1,8 +1,6 @@
+import { schema } from "@optiaxiom/proteus/spec";
 import { Box, Group, Text } from "@optiaxiom/react";
 import { Fragment, type ReactNode } from "react";
-
-import schema from "../../../../packages/proteus/src/schema/public-schema.json";
-import { Table, Td, Th, Thead, Tr } from "../table";
 
 type SchemaDefinition = {
   properties: Record<string, SchemaProperty>;
@@ -52,47 +50,44 @@ export function ProteusElementRef({ type }: { type: string }) {
   }
 
   return (
-    <Table>
-      <Thead>
-        <tr>
-          <Th>Prop</Th>
-        </tr>
-      </Thead>
-      <tbody>
-        {entries.map(([name, prop]) => (
-          <Tr key={name}>
-            <Td>
-              <Group
-                alignItems="start"
-                flexDirection={["column", "row"]}
-                gap="12"
-              >
-                <Box
-                  fontFamily="mono"
-                  style={{ color: "var(--shiki-token-function)" }}
-                  w="1/4"
-                  whiteSpace="nowrap"
-                >
-                  <code>{required.has(name) ? `${name}*` : name}</code>
-                </Box>
-                <Group flex="1" flexDirection="column" gap="8">
-                  {prop.description && (
-                    <Text>{renderDescription(prop.description)}</Text>
-                  )}
-                  <Text>
-                    <Box asChild fontFamily="mono">
-                      <code style={{ color: "var(--shiki-token-function)" }}>
-                        {renderType(prop)}
-                      </code>
-                    </Box>
-                  </Text>
-                </Group>
-              </Group>
-            </Td>
-          </Tr>
-        ))}
-      </tbody>
-    </Table>
+    <Box
+      bg="bg.default"
+      border="1"
+      borderColor="border.tertiary"
+      mt="24"
+      rounded="lg"
+    >
+      {entries.map(([name, prop], index) => (
+        <Group
+          alignItems="start"
+          borderColor="border.tertiary"
+          borderT={index === 0 ? undefined : "1"}
+          flexDirection={["column", "row"]}
+          gap="12"
+          key={name}
+          p="12"
+        >
+          <Box
+            fontFamily="mono"
+            style={{ color: "var(--shiki-token-function)" }}
+            w={["full", "1/4"]}
+            whiteSpace="nowrap"
+          >
+            <code>{required.has(name) ? `${name}*` : name}</code>
+          </Box>
+          <Group flex="1" flexDirection="column" gap="8">
+            {prop.description && (
+              <Text>{renderDescription(prop.description)}</Text>
+            )}
+            <Box asChild fontFamily="mono">
+              <code style={{ color: "var(--shiki-token-function)" }}>
+                {renderType(prop)}
+              </code>
+            </Box>
+          </Group>
+        </Group>
+      ))}
+    </Box>
   );
 }
 

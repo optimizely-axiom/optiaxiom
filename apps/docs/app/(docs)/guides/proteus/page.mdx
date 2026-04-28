@@ -46,7 +46,7 @@ Wrap inputs with `Field` to add a label. Available inputs include `Input`, `Text
 
 ### Actions
 
-`Action` renders a button with an `onClick` handler (see [Interactions](#interactions) below). `CancelAction` renders a cancel button that abandons the current interaction.
+`Action` renders a button with an `onClick` handler (see [Interactions](#interactions) below). Use `appearance` (`primary`, `danger`, `subtle`, etc.) to style the button.
 
 <Demo component="proteus/actions" scrollable />
 
@@ -134,7 +134,7 @@ Triggers a file download:
 
 ### Blocking mode
 
-When `blocking` is set to `true` on the Document, the chat input is hidden and the user must click an `Action` or `CancelAction` to continue. Use this for forms that require explicit user input before proceeding.
+When `blocking` is set to `true` on the Document, the chat input is hidden and the user must click an `Action` to continue. Use this for forms that require explicit user input before proceeding.
 
 ## Proteus Designer
 
