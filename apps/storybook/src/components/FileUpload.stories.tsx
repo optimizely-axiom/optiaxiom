@@ -14,6 +14,7 @@ import {
   Menu,
   MenuContent,
   MenuTrigger,
+  Switch,
   Textarea,
   toaster,
   Tooltip,
@@ -22,6 +23,7 @@ import {
   FileUpload,
   FileUploadDropzone,
   FileUploadList,
+  type FileUploadListProps,
   FileUploadTrigger,
   useFileUploadTrigger,
 } from "@optiaxiom/react/unstable";
@@ -173,48 +175,57 @@ export const Disabled: Story = {
   },
 };
 
-function FilePreviewContent({
-  files,
-  onRemove,
-}: {
-  files: File[];
-  onRemove: (index: number) => void;
-}) {
-  return (
-    <>
-      {files.length === 0 ? (
-        <FileUploadDropzone />
-      ) : (
-        <Group flexDirection="column" gap="16">
-          <FileUploadTrigger alignSelf="end" icon={<IconPlus />}>
-            Add File
-          </FileUploadTrigger>
-          <FileUploadList files={files} onRemove={onRemove} />
-          <FileUploadDropzone overlay />
-        </Group>
-      )}
-    </>
-  );
-}
-
-function FilePreviewExample() {
-  const [files, setFiles] = useState<File[]>([]);
-
-  const handleRemove = (index: number) => {
-    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
-  };
-
-  const handleAdd = (newFiles: File[]) => {
-    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-  };
-
-  return (
-    <FileUpload onFilesDrop={handleAdd} w="384">
-      <FilePreviewContent files={files} onRemove={handleRemove} />
-    </FileUpload>
-  );
-}
-
 export const FilePreview: Story = {
-  render: () => <FilePreviewExample />,
+  render: function FilePreviewExample() {
+    const [items, setItems] = useState<FileUploadListProps["items"]>([]);
+    const [simulateFailure, setSimulateFailure] = useState(false);
+
+    return (
+      <Group flexDirection="column" gap="16">
+        <Switch checked={simulateFailure} onCheckedChange={setSimulateFailure}>
+          Test upload failure
+        </Switch>
+        <FileUpload
+          onFilesDrop={async (newFiles) => {
+            const newItems: FileUploadListProps["items"] = newFiles.map(
+              (file) => ({
+                file,
+                status: "uploading" as const,
+              }),
+            );
+            setItems((prev) => [...prev, ...newItems]);
+
+            await new Promise((resolve) => setTimeout(resolve, 1500));
+
+            const finalStatus = simulateFailure ? "error" : "complete";
+            setItems((prev) =>
+              prev.map((item) =>
+                newItems.includes(item)
+                  ? { ...item, status: finalStatus }
+                  : item,
+              ),
+            );
+          }}
+          w="384"
+        >
+          {items.length === 0 ? (
+            <FileUploadDropzone />
+          ) : (
+            <Group flexDirection="column" gap="16">
+              <FileUploadTrigger alignSelf="end" icon={<IconPlus />}>
+                Add File
+              </FileUploadTrigger>
+              <FileUploadList
+                items={items}
+                onRemove={(index) =>
+                  setItems((prev) => prev.filter((_, i) => i !== index))
+                }
+              />
+              <FileUploadDropzone overlay />
+            </Group>
+          )}
+        </FileUpload>
+      </Group>
+    );
+  },
 };

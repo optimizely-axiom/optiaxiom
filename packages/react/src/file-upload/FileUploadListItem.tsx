@@ -4,17 +4,29 @@ import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { Cover } from "../cover";
 import { Flex } from "../flex";
+import { Group } from "../group";
 import { Icon } from "../icon";
+import { IconCircleExclamationSolid } from "../icons/IconCircleExclamationSolid";
 import { IconFileSolid } from "../icons/IconFileSolid";
 import { IconTrashCan } from "../icons/IconTrashCan";
+import { Spinner } from "../spinner";
 import { Text } from "../text";
 import * as styles from "./FileUploadListItem.css";
 
 export type FileUploadListItemProps = BoxProps<"div"> & {
   /**
-   * The file object to be previewed in the list item.
+   * The file item to be previewed in the list item.
    */
-  file: File;
+  item: {
+    /**
+     * The file object to be previewed.
+     */
+    file: File;
+    /**
+     * The current upload status of the file.
+     */
+    status: "complete" | "error" | "uploading";
+  };
   /**
    * Callback function called when the remove button is clicked
    */
@@ -63,10 +75,18 @@ function formatFileType(file: File) {
 export const FileUploadListItem = forwardRef<
   HTMLDivElement,
   FileUploadListItemProps
->(({ className, file, onRemove, ...props }, ref) => {
+>(({ className, item, onRemove, ...props }, ref) => {
+  const { file, status } = item;
+
   return (
     <Flex ref={ref} {...styles.item({}, className)} {...props}>
-      {file.type.startsWith("image/") ? (
+      {status === "uploading" ? (
+        <Spinner size="sm" />
+      ) : status === "error" ? (
+        <Icon asChild color="fg.error" h="auto" w="24">
+          <IconCircleExclamationSolid />
+        </Icon>
+      ) : file.type.startsWith("image/") ? (
         <Box overflow="hidden" rounded="sm" size="24">
           <Box asChild h="full" objectFit="cover" w="full">
             <img alt={file.name} src={URL.createObjectURL(file)} />
@@ -85,14 +105,18 @@ export const FileUploadListItem = forwardRef<
             </button>
           </Text>
         </Cover>
-        <Text color="fg.tertiary" fontSize="sm" textAlign="start">
-          {formatFileType(file)} • {formatFileSize(file.size)}
-        </Text>
+        <Group fontSize="sm" gap="4">
+          <Text color="fg.tertiary">
+            {formatFileType(file)} • {formatFileSize(file.size)}
+          </Text>
+          {status === "error" && <Text color="fg.error">Upload failed</Text>}
+        </Group>
       </Flex>
       {onRemove && (
         <Button
           appearance="subtle"
           aria-label="Remove file"
+          disabled={status === "uploading"}
           icon={<IconTrashCan />}
           onClick={onRemove}
         />

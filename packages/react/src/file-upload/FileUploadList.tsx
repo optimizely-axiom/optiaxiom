@@ -3,13 +3,16 @@ import { forwardRef } from "react";
 import type { BoxProps } from "../box";
 
 import { Flex } from "../flex";
-import { FileUploadListItem } from "./FileUploadListItem";
+import {
+  FileUploadListItem,
+  type FileUploadListItemProps,
+} from "./FileUploadListItem";
 
 export type FileUploadListProps = BoxProps<"div"> & {
   /**
-   * The list of file objects to be previewed.
+   * The list of file items to be previewed.
    */
-  files: File[];
+  items: FileUploadListItemProps["item"][];
   /**
    * Callback function called when a file is removed
    */
@@ -17,16 +20,14 @@ export type FileUploadListProps = BoxProps<"div"> & {
 };
 
 export const FileUploadList = forwardRef<HTMLDivElement, FileUploadListProps>(
-  ({ files, onRemove, ...props }) => {
+  ({ items, onRemove, ...props }) => {
     return (
       <Flex gap="12" {...props}>
-        {files.map((file: File, idx: number) => (
+        {items.map((item, idx) => (
           <FileUploadListItem
-            file={file}
+            item={item}
             key={idx}
-            onRemove={
-              onRemove ? () => onRemove(files.indexOf(file)) : undefined
-            }
+            onRemove={onRemove ? () => onRemove(idx) : undefined}
           />
         ))}
       </Flex>
