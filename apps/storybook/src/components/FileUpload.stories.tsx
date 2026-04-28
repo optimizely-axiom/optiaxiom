@@ -19,9 +19,9 @@ import {
   Tooltip,
 } from "@optiaxiom/react";
 import {
-  FileList,
   FileUpload,
   FileUploadDropzone,
+  FileUploadList,
   FileUploadTrigger,
   useFileUploadTrigger,
 } from "@optiaxiom/react/unstable";
@@ -185,10 +185,13 @@ function FilePreviewContent({
       {files.length === 0 ? (
         <FileUploadDropzone />
       ) : (
-        <>
-          <FileList files={files} onRemove={onRemove} />
+        <Group flexDirection="column" gap="16">
+          <FileUploadTrigger alignSelf="end" icon={<IconPlus />}>
+            Add File
+          </FileUploadTrigger>
+          <FileUploadList files={files} onRemove={onRemove} />
           <FileUploadDropzone overlay />
-        </>
+        </Group>
       )}
     </>
   );
