@@ -15,21 +15,16 @@ export function App() {
           body: {
             $type: "Map",
             children: {
-              $type: "Group",
-              children: [
-                {
-                  $type: "Text",
-                  children: { $type: "MapIndex" },
-                  color: "fg.tertiary",
-                },
-                {
-                  $type: "Text",
-                  children: { $type: "Value", path: "name" },
-                  fontWeight: "600",
-                },
-              ],
-              flexDirection: "row",
-              gap: "8",
+              $type: "Text",
+              children: {
+                $type: "Concat",
+                children: [
+                  "#",
+                  { $type: "MapIndex" },
+                  " — ",
+                  { $type: "Value", path: "name" },
+                ],
+              },
             },
             path: "/items",
           },

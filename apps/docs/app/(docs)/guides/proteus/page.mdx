@@ -68,7 +68,7 @@ Available props are grouped by category:
 | Typography | `fontSize`, `fontWeight`, `fontFamily`, `textAlign`, `textTransform`, `whiteSpace`                        |
 | Other      | `overflow`, `overflowX`, `overflowY`, `objectFit`, `cursor`, `pointerEvents`, `transition`, `z`           |
 
-These accept either a token (e.g. `"sm"`, `"fg.error"`) or a responsive array (`["sm", "md"]`). Every element type accepts the full set.
+These accept either a token (e.g. `"sm"`, `"fg.error"`) or a responsive array (`["sm", "md"]`). Every rendering component accepts the full set; expression and control-flow elements (`Value`, `MapIndex`, `Concat`, `Zip`, `Show`, `Map`, `Bridge`, `Question`) do not, since they don't render their own DOM node.
 
 ## Data binding
 
@@ -86,11 +86,9 @@ Iterates over an array, rendering `children` once per item. Inside a `Map`, rela
 
 ### Other expressions
 
-`MapIndex` gives you the current iteration index inside a `Map`. `Concat` joins multiple values into a single string. `Zip` combines parallel arrays into an array of objects.
+`MapIndex` gives you the current iteration index inside a `Map`. `Concat` takes a `children` array and joins each resolved value into a single string. `Zip` takes a `sources` object — each key becomes a property name, and the values (arrays or expressions resolving to arrays) are zipped row-wise into an array of objects, useful as `Chart.data` or `DataTable.data`.
 
 <Demo component="proteus/concat" scrollable />
-
-`Concat` and `Zip` follow the same shape — they take a `children`/`sources` array and produce a value you can use anywhere a `Value` would work.
 
 ### Putting it together
 
@@ -144,7 +142,7 @@ The [Proteus Designer](/guides/proteus-designer) is a visual editor for building
 
 ## Element reference
 
-The tables below list element-specific props for each `$type`. Every element also accepts the full set of [styling props](#styling-props), so those are omitted from the per-element tables.
+The sections below list element-specific props for each `$type`. Rendering elements also accept the full set of [styling props](#styling-props), so those are omitted here.
 
 ### Document
 
@@ -288,14 +286,14 @@ The root element of every Proteus document.
 
 <ProteusElementRef type="Zip" />
 
-### Conditional
-
-#### Show
+### Show
 
 <ProteusElementRef type="Show" />
 
-### Bridge
+### IconCalendar
 
-#### Bridge
+<ProteusElementRef type="IconCalendar" />
+
+### Bridge
 
 <ProteusElementRef type="Bridge" />
