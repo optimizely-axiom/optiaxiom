@@ -4,4 +4,5 @@ export * from "./icon-gallery";
 export * from "./keyboard-table";
 export * from "./links";
 export * from "./props-table";
+export * from "./proteus-element-ref";
 export * from "./scale";
