@@ -759,40 +759,6 @@ function generateSpec(additionalProperties = false) {
           description:
             "A dynamic Proteus expression that resolves to a value at render time.",
         },
-        ProteusStructuredMessage: {
-          ...(additionalProperties ? {} : { additionalProperties: false }),
-          description:
-            "Structured message payload that lets file URLs travel as a typed list alongside the text parts, instead of being joined into the text.",
-          properties: {
-            files: {
-              anyOf: [
-                { items: { type: "string" }, type: "array" },
-                { $ref: "#/definitions/ProteusExpression" },
-              ],
-              description:
-                "List of file URLs (typically signed URLs from a host upload).",
-            },
-            parts: {
-              items: {
-                ...(additionalProperties ? {} : { additionalProperties: false }),
-                properties: {
-                  content: {
-                    anyOf: [
-                      { type: "string" },
-                      { $ref: "#/definitions/ProteusExpression" },
-                    ],
-                  },
-                  type: { const: "text" },
-                },
-                required: ["type", "content"],
-                type: "object",
-              },
-              type: "array",
-            },
-          },
-          required: ["parts"],
-          type: "object",
-        },
         ProteusNode: {
           anyOf: [
             {
@@ -815,6 +781,42 @@ function generateSpec(additionalProperties = false) {
           ],
           description:
             "A Proteus node can be a string, number, boolean, null, a single element, or an array of these types (similar to ReactNode)",
+        },
+        ProteusStructuredMessage: {
+          ...(additionalProperties ? {} : { additionalProperties: false }),
+          description:
+            "Structured message payload that lets file URLs travel as a typed list alongside the text parts, instead of being joined into the text.",
+          properties: {
+            files: {
+              anyOf: [
+                { items: { type: "string" }, type: "array" },
+                { $ref: "#/definitions/ProteusExpression" },
+              ],
+              description:
+                "List of file URLs (typically signed URLs from a host upload).",
+            },
+            parts: {
+              items: {
+                ...(additionalProperties
+                  ? {}
+                  : { additionalProperties: false }),
+                properties: {
+                  content: {
+                    anyOf: [
+                      { type: "string" },
+                      { $ref: "#/definitions/ProteusExpression" },
+                    ],
+                  },
+                  type: { const: "text" },
+                },
+                required: ["type", "content"],
+                type: "object",
+              },
+              type: "array",
+            },
+          },
+          required: ["parts"],
+          type: "object",
         },
         ProteusZip: {
           ...(additionalProperties ? {} : { additionalProperties: false }),
@@ -949,29 +951,6 @@ function getPropTypeOverrides(additionalProperties = false) {
         type: "array",
       },
     },
-    FileUpload: {
-      accept: {
-        description:
-          "File types to accept; array of MIME types or extensions.",
-        items: { type: "string" },
-        type: "array",
-      },
-      name: {
-        anyOf: [
-          { type: "string" },
-          { $ref: "#/definitions/ProteusExpression" },
-        ],
-        description:
-          "The name of the form control element. The resolved URL is written at parentPath/name in form data.",
-      },
-      required: {
-        anyOf: [
-          { type: "boolean" },
-          { $ref: "#/definitions/ProteusExpression" },
-        ],
-        description: "Whether a file is required.",
-      },
-    },
     DataTable: {
       columns: {
         anyOf: [
@@ -1030,6 +1009,28 @@ function getPropTypeOverrides(additionalProperties = false) {
           { $ref: "#/definitions/ProteusExpression" },
           { $ref: "#/definitions/ProteusZip" },
         ],
+      },
+    },
+    FileUpload: {
+      accept: {
+        description: "File types to accept; array of MIME types or extensions.",
+        items: { type: "string" },
+        type: "array",
+      },
+      name: {
+        anyOf: [
+          { type: "string" },
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
+        description:
+          "The name of the form control element. The resolved URL is written at parentPath/name in form data.",
+      },
+      required: {
+        anyOf: [
+          { type: "boolean" },
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
+        description: "Whether a file is required.",
       },
     },
     Image: {
