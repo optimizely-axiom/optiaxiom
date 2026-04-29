@@ -25,6 +25,7 @@ import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentCo
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
 import { resolveProteusProp } from "../proteus-document/resolveProteusProp";
 import { safeParseElement } from "../proteus-document/schemas";
+import { ProteusFileUpload } from "../proteus-file-upload/ProteusFileUpload";
 import { ProteusImageCarousel } from "../proteus-image-carousel/ProteusImageCarousel";
 import { ProteusImage } from "../proteus-image/ProteusImage";
 import { ProteusInput } from "../proteus-input/ProteusInput";
@@ -136,6 +137,8 @@ export const ProteusElement = ({
       );
     case "Field":
       return <Field {...resolve(element)} />;
+    case "FileUpload":
+      return <ProteusFileUpload {...resolve(element)} />;
     case "Group":
       return <Group {...resolve(element)} />;
     case "Heading":

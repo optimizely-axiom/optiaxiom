@@ -3,6 +3,7 @@ export * from "./proteus-bridge";
 export * from "./proteus-chart";
 export * from "./proteus-data-table";
 export * from "./proteus-document";
+export * from "./proteus-file-upload";
 export * from "./proteus-image";
 export * from "./proteus-image-carousel";
 export * from "./proteus-input";
