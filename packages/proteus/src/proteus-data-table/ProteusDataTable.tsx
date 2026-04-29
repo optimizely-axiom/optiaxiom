@@ -12,7 +12,7 @@ export type ProteusDataTableProps = {
   /**
    * Column definitions
    */
-  columns: ColumnDef[];
+  columns?: ColumnDef[];
   /**
    * Column data
    */
@@ -30,7 +30,7 @@ export const ProteusDataTable = ({ columns, data }: ProteusDataTableProps) => {
   const tableData = data as Record<string, unknown>[];
 
   const columnHelper = createColumnHelper<Record<string, unknown>>();
-  const columnDefs = columns.map((col) => {
+  const columnDefs = (columns || []).map((col) => {
     return columnHelper.accessor(
       (row) => {
         const value = get(row, "/" + col.accessorKey);
