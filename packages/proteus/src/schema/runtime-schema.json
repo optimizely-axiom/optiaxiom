@@ -1387,6 +1387,28 @@
       ],
       "description": "A dynamic Proteus expression that resolves to a value at render time."
     },
+    "ProteusNode": {
+      "anyOf": [
+        {
+          "items": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "number" },
+              { "type": "boolean" },
+              { "type": "null" },
+              { "$ref": "#/definitions/ProteusElement" }
+            ]
+          },
+          "type": "array"
+        },
+        { "type": "string" },
+        { "type": "number" },
+        { "type": "boolean" },
+        { "type": "null" },
+        { "$ref": "#/definitions/ProteusElement" }
+      ],
+      "description": "A Proteus node can be a string, number, boolean, null, a single element, or an array of these types (similar to ReactNode)"
+    },
     "ProteusStructuredMessage": {
       "description": "Structured message payload that lets file URLs travel as a typed list alongside the text parts, instead of being joined into the text.",
       "properties": {
@@ -1416,28 +1438,6 @@
       },
       "required": ["parts"],
       "type": "object"
-    },
-    "ProteusNode": {
-      "anyOf": [
-        {
-          "items": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "number" },
-              { "type": "boolean" },
-              { "type": "null" },
-              { "$ref": "#/definitions/ProteusElement" }
-            ]
-          },
-          "type": "array"
-        },
-        { "type": "string" },
-        { "type": "number" },
-        { "type": "boolean" },
-        { "type": "null" },
-        { "$ref": "#/definitions/ProteusElement" }
-      ],
-      "description": "A Proteus node can be a string, number, boolean, null, a single element, or an array of these types (similar to ReactNode)"
     },
     "ProteusZip": {
       "description": "Zips multiple parallel arrays into an array of objects. Each key in 'sources' becomes a property in the resulting row objects.",
