@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.30
+
+### Patch Changes
+
+- df00f36: add file list component to FileUpload
+
 ## 1.9.29
 
 ### Patch Changes
