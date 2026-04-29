@@ -83,14 +83,16 @@ export function ProteusFileUpload({ accept, name }: ProteusFileUploadProps) {
       disabled={!onUpload || readOnly}
       onFilesDrop={handleFilesDrop}
     >
-      <Flex flexDirection="column" gap="8">
-        {item ? (
+      {item ? (
+        <Flex flexDirection="column" gap="8">
           <FileUploadList items={[item]} onRemove={handleRemove} />
-        ) : (
-          <FileUploadTrigger alignSelf="start" />
-        )}
-      </Flex>
-      <FileUploadDropzone overlay />
+          <FileUploadDropzone overlay />
+        </Flex>
+      ) : (
+        <FileUploadDropzone>
+          <FileUploadTrigger />
+        </FileUploadDropzone>
+      )}
     </FileUpload>
   );
 }
