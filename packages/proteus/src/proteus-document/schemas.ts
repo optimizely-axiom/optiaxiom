@@ -71,11 +71,6 @@ export type ProteusElement =
   | (TextProps & { $type: "Text" })
   | (TimeProps & { $type: "Time" });
 
-export type StructuredMessage = {
-  files?: string[];
-  parts: Array<{ content: string; type: "text" }>;
-};
-
 export type ProteusEventHandler =
   | {
       action: "download";
@@ -83,6 +78,11 @@ export type ProteusEventHandler =
     }
   | { interaction: string; params?: Record<string, unknown> }
   | { message: string | StructuredMessage };
+
+export type StructuredMessage = {
+  files?: string[];
+  parts: Array<{ content: string; type: "text" }>;
+};
 
 type ProteusDocument = ProteusDocumentShellProps["element"] & {
   $type: "Document";

@@ -591,6 +591,159 @@ export const AskAgentInput: Story = {
   },
 };
 
+export const AskAgentInputWithFileParam: Story = {
+  args: {
+    data: {
+      agent: {
+        description: "Summarizes uploaded source documents.",
+        name: "Doc Summarizer",
+      },
+      parameters: [
+        {
+          description: "What to call the run",
+          name: "Run Name",
+          required: true,
+          type: "string",
+        },
+        {
+          description: "PDF or text file to summarize",
+          name: "Source Document",
+          required: true,
+          type: "file",
+        },
+      ],
+    },
+    element: {
+      $type: "Document",
+      actions: [
+        {
+          $type: "Action",
+          appearance: "subtle",
+          children: "Cancel",
+          onClick: { message: "[User declined to run the agent]" },
+        },
+        {
+          $type: "Action",
+          appearance: "primary-opal",
+          children: "Run agent",
+          onClick: {
+            message: {
+              files: {
+                $type: "Map",
+                children: {
+                  $type: "Show",
+                  children: { $type: "Value", path: "value" },
+                  when: {
+                    and: [
+                      { "==": [{ $type: "Value", path: "type" }, "file"] },
+                      { "!!": { $type: "Value", path: "value" } },
+                    ],
+                  },
+                },
+                path: "/parameters",
+              },
+              parts: [
+                {
+                  content: {
+                    $type: "Map",
+                    children: {
+                      $type: "Show",
+                      children: {
+                        $type: "Concat",
+                        children: [
+                          { $type: "Value", path: "name" },
+                          ": ",
+                          {
+                            $type: "Show",
+                            children: "[Not specified]",
+                            when: { "!": { $type: "Value", path: "value" } },
+                          },
+                          {
+                            $type: "Show",
+                            children: { $type: "Value", path: "value" },
+                            when: { "!!": { $type: "Value", path: "value" } },
+                          },
+                        ],
+                      },
+                      when: {
+                        "!=": [{ $type: "Value", path: "type" }, "file"],
+                      },
+                    },
+                    path: "/parameters",
+                    separator: "\n",
+                  },
+                  type: "text",
+                },
+              ],
+            },
+          },
+          type: "submit",
+        },
+      ],
+      appName: "Opal",
+      body: {
+        $type: "Group",
+        children: {
+          $type: "Map",
+          children: [
+            {
+              $type: "Show",
+              children: {
+                $type: "Field",
+                children: {
+                  $type: "Input",
+                  name: "value",
+                  placeholder: { $type: "Value", path: "placeholder" },
+                  required: { $type: "Value", path: "required" },
+                },
+                description: { $type: "Value", path: "description" },
+                label: { $type: "Value", path: "name" },
+                required: { $type: "Value", path: "required" },
+              },
+              when: { "==": [{ $type: "Value", path: "type" }, "string"] },
+            },
+            {
+              $type: "Show",
+              children: {
+                $type: "Field",
+                children: {
+                  $type: "FileUpload",
+                  accept: ["application/pdf", "text/*"],
+                  name: "value",
+                  required: { $type: "Value", path: "required" },
+                },
+                description: { $type: "Value", path: "description" },
+                label: { $type: "Value", path: "name" },
+                required: { $type: "Value", path: "required" },
+              },
+              when: { "==": [{ $type: "Value", path: "type" }, "file"] },
+            },
+          ],
+          path: "/parameters",
+        },
+        flexDirection: "column",
+        gap: "24",
+      },
+      subtitle: { $type: "Value", path: "/agent/description" },
+      title: { $type: "Value", path: "/agent/name" },
+    },
+    onUpload: async (file) => {
+      action("onUpload (mocked)")(file);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const fileId = Math.random().toString(36).slice(2, 10);
+      return `https://opal-localdev.optimizely.com/file-server/files/${fileId}/${encodeURIComponent(
+        file.name,
+      )}?signed=mock`;
+    },
+  },
+  render: function AskAgentInputWithFileParamRender(args) {
+    const [data, setData] = useState(args.data);
+    return (
+      <ProteusDocumentRenderer {...args} data={data} onDataChange={setData} />
+    );
+  },
+};
+
 export const AskAgentInputTruncate: Story = {
   args: {
     ...AskAgentInput.args,
@@ -1489,167 +1642,5 @@ export const PartialRendering: Story = {
       title: "Invalid Document Example",
     },
     strict: false,
-  },
-};
-
-/**
- * Reproduces Opal's `ask_agent_input` action card with a `file` parameter.
- * The host's `onUpload` callback is mocked: it accepts any File, simulates a
- * 1.5s upload, and returns a fake signed URL. The form data carries a single
- * URL string per file param. On submit, the `onMessage` action log shows the
- * structured payload `{ parts, files }`.
- */
-export const AskAgentInputWithFileParam: Story = {
-  render: function AskAgentInputWithFileParamRender(args) {
-    const [data, setData] = useState(args.data);
-    return (
-      <ProteusDocumentRenderer
-        {...args}
-        data={data}
-        onDataChange={setData}
-      />
-    );
-  },
-  args: {
-    data: {
-      agent: {
-        description: "Summarizes uploaded source documents.",
-        name: "Doc Summarizer",
-      },
-      parameters: [
-        {
-          description: "What to call the run",
-          name: "Run Name",
-          required: true,
-          type: "string",
-        },
-        {
-          description: "PDF or text file to summarize",
-          name: "Source Document",
-          required: true,
-          type: "file",
-        },
-      ],
-    },
-    element: {
-      $type: "Document",
-      actions: [
-        {
-          $type: "Action",
-          appearance: "subtle",
-          children: "Cancel",
-          onClick: { message: "[User declined to run the agent]" },
-        },
-        {
-          $type: "Action",
-          appearance: "primary-opal",
-          children: "Run agent",
-          onClick: {
-            message: {
-              files: {
-                $type: "Map",
-                children: {
-                  $type: "Show",
-                  children: { $type: "Value", path: "value" },
-                  when: {
-                    and: [
-                      { "==": [{ $type: "Value", path: "type" }, "file"] },
-                      { "!!": { $type: "Value", path: "value" } },
-                    ],
-                  },
-                },
-                path: "/parameters",
-              },
-              parts: [
-                {
-                  content: {
-                    $type: "Map",
-                    children: {
-                      $type: "Show",
-                      children: {
-                        $type: "Concat",
-                        children: [
-                          { $type: "Value", path: "name" },
-                          ": ",
-                          {
-                            $type: "Show",
-                            children: "[Not specified]",
-                            when: { "!": { $type: "Value", path: "value" } },
-                          },
-                          {
-                            $type: "Show",
-                            children: { $type: "Value", path: "value" },
-                            when: { "!!": { $type: "Value", path: "value" } },
-                          },
-                        ],
-                      },
-                      when: { "!=": [{ $type: "Value", path: "type" }, "file"] },
-                    },
-                    path: "/parameters",
-                    separator: "\n",
-                  },
-                  type: "text",
-                },
-              ],
-            },
-          },
-          type: "submit",
-        },
-      ],
-      appName: "Opal",
-      body: {
-        $type: "Group",
-        children: {
-          $type: "Map",
-          children: [
-            {
-              $type: "Show",
-              children: {
-                $type: "Field",
-                children: {
-                  $type: "Input",
-                  name: "value",
-                  placeholder: { $type: "Value", path: "placeholder" },
-                  required: { $type: "Value", path: "required" },
-                },
-                description: { $type: "Value", path: "description" },
-                label: { $type: "Value", path: "name" },
-                required: { $type: "Value", path: "required" },
-              },
-              when: { "==": [{ $type: "Value", path: "type" }, "string"] },
-            },
-            {
-              $type: "Show",
-              children: {
-                $type: "Field",
-                children: {
-                  $type: "FileUpload",
-                  accept: ["application/pdf", "text/*"],
-                  name: "value",
-                  required: { $type: "Value", path: "required" },
-                },
-                description: { $type: "Value", path: "description" },
-                label: { $type: "Value", path: "name" },
-                required: { $type: "Value", path: "required" },
-              },
-              when: { "==": [{ $type: "Value", path: "type" }, "file"] },
-            },
-          ],
-          path: "/parameters",
-        },
-        flexDirection: "column",
-        gap: "24",
-      },
-      subtitle: { $type: "Value", path: "/agent/description" },
-      title: { $type: "Value", path: "/agent/name" },
-    },
-    onUpload: async (file) => {
-      action("onUpload (mocked)")(file);
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      const fileId = Math.random().toString(36).slice(2, 10);
-      return `https://opal-localdev.optimizely.com/file-server/files/${fileId}/${encodeURIComponent(
-        file.name,
-      )}?signed=mock`;
-    },
   },
 };
