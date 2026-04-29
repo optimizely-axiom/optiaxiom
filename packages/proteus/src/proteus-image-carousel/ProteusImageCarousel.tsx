@@ -47,7 +47,10 @@ export function ProteusImageCarousel({
   const { onEvent } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusImageCarousel",
   );
-  const [emblaMainRef, emblaMainApi] = useEmblaCarousel({ loop: false });
+  const [emblaMainRef, emblaMainApi] = useEmblaCarousel({
+    loop: false,
+    watchDrag: false,
+  });
   const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
     containScroll: "keepSnaps",
     dragFree: true,
