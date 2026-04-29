@@ -40,7 +40,7 @@ export type ProteusChartProps = {
   /**
    * Data series configuration
    */
-  series: Series[];
+  series?: Series[];
   /**
    * Chart type
    */
@@ -108,7 +108,7 @@ export const ProteusChart = ({
               cursor={false}
               portal={document.body}
             />
-            {series.map((s, i) => (
+            {series?.map((s, i) => (
               <Chart
                 dataKey={(row: Record<string, unknown>) =>
                   get(row, "/" + s.dataKey) as number
