@@ -30,11 +30,6 @@ export type ProteusFileUploadProps = {
 };
 
 type Item = FileUploadListProps["items"][number];
-type Entry = {
-  id: string;
-  item: Item;
-  url?: string;
-};
 
 export function ProteusFileUpload({ accept, name }: ProteusFileUploadProps) {
   const { onDataChange, onUpload, readOnly } = useProteusDocumentContext(
@@ -44,7 +39,7 @@ export function ProteusFileUpload({ accept, name }: ProteusFileUploadProps) {
     "@optiaxiom/proteus/ProteusFileUpload",
   );
 
-  const [entry, setEntry] = useState<Entry | null>(null);
+  const [item, setItem] = useState<Item | null>(null);
 
   const writeUrl = useCallback(
     (url: null | string) => {
@@ -60,25 +55,17 @@ export function ProteusFileUpload({ accept, name }: ProteusFileUploadProps) {
         return;
       }
       const file = incoming[0];
-      const id =
-        typeof crypto !== "undefined" && "randomUUID" in crypto
-          ? crypto.randomUUID()
-          : `${Date.now()}-${Math.random()}`;
-      setEntry({ id, item: { file, status: "uploading" } });
+      setItem({ file, status: "uploading" });
       writeUrl(null);
       try {
         const url = await onUpload(file);
-        setEntry((curr) =>
-          curr?.id === id
-            ? { ...curr, item: { file, status: "complete" }, url }
-            : curr,
+        setItem((curr) =>
+          curr?.file === file ? { file, status: "complete" } : curr,
         );
         writeUrl(url);
       } catch {
-        setEntry((curr) =>
-          curr?.id === id
-            ? { ...curr, item: { file, status: "error" } }
-            : curr,
+        setItem((curr) =>
+          curr?.file === file ? { file, status: "error" } : curr,
         );
       }
     },
@@ -86,7 +73,7 @@ export function ProteusFileUpload({ accept, name }: ProteusFileUploadProps) {
   );
 
   const handleRemove = useCallback(() => {
-    setEntry(null);
+    setItem(null);
     writeUrl(null);
   }, [writeUrl]);
 
@@ -97,8 +84,8 @@ export function ProteusFileUpload({ accept, name }: ProteusFileUploadProps) {
       onFilesDrop={handleFilesDrop}
     >
       <Flex flexDirection="column" gap="8">
-        {entry ? (
-          <FileUploadList items={[entry.item]} onRemove={handleRemove} />
+        {item ? (
+          <FileUploadList items={[item]} onRemove={handleRemove} />
         ) : (
           <FileUploadTrigger alignSelf="start" />
         )}

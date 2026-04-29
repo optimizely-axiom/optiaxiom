@@ -159,16 +159,18 @@ export function resolveProteusValue(
       const resolvedPath = (value.path as string).startsWith("/")
         ? (value.path as string)
         : `${parentPath}/${value.path as string}`;
-      const items = array
-        .map((_, index) =>
-          resolveProteusValue(
-            value.children,
-            data,
-            `${resolvedPath}/${index}`,
-            [...mapIndices, index],
-          ),
-        )
-        .filter((v: unknown) => v !== undefined);
+      const items: unknown[] = [];
+      for (let index = 0; index < array.length; index++) {
+        const r = resolveProteusValue(
+          value.children,
+          data,
+          `${resolvedPath}/${index}`,
+          [...mapIndices, index],
+        );
+        if (r !== undefined) {
+          items.push(r);
+        }
+      }
       if ("separator" in value) {
         const sep = resolveProteusValue(
           value.separator,
@@ -209,17 +211,30 @@ export function resolveProteusValue(
   }
 
   if (Array.isArray(value)) {
-    return value
-      .map((v) => resolveProteusValue(v, data, parentPath, mapIndices))
-      .filter((v) => v !== undefined);
+    let changed = false;
+    const out: unknown[] = [];
+    for (const v of value) {
+      const r = resolveProteusValue(v, data, parentPath, mapIndices);
+      if (r === undefined) {
+        changed = true;
+        continue;
+      }
+      if (r !== v) changed = true;
+      out.push(r);
+    }
+    return changed ? out : value;
   }
 
+  let changed = false;
   const resolved: Record<string, unknown> = {};
   for (const [k, v] of Object.entries(value)) {
     const r = resolveProteusValue(v, data, parentPath, mapIndices);
-    if (r !== undefined) {
-      resolved[k] = r;
+    if (r === undefined) {
+      changed = true;
+      continue;
     }
+    if (r !== v) changed = true;
+    resolved[k] = r;
   }
-  return resolved;
+  return changed ? resolved : value;
 }
