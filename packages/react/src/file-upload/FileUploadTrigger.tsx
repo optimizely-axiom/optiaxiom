@@ -39,6 +39,7 @@ export const FileUploadTrigger = forwardRef<
           open();
         }}
         ref={ref}
+        {...(asChild ? {} : { type: "button" })}
         {...restProps}
       >
         {children || "Select files"}
