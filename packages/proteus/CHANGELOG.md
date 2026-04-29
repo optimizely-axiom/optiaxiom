@@ -1,5 +1,15 @@
 # @optiaxiom/proteus
 
+## 0.2.5
+
+### Patch Changes
+
+- c43afe1: allow dynamic expressions for chart series
+- 2e6b649: disable dragging of image slides
+- 925bf58: fix bridge API
+- Updated dependencies [df00f36]
+  - @optiaxiom/react@1.9.30
+
 ## 0.2.4
 
 ### Patch Changes
