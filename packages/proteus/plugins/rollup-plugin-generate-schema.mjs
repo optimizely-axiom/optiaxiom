@@ -114,6 +114,11 @@ const PROTEUS_COMPONENT_CONFIG = {
       label: "Field Label",
     },
   },
+  FileUpload: {
+    allowedProps: ["accept", "name", "required"],
+    example: { name: "value" },
+    extends: "Fragment",
+  },
   Group: {
     allowedProps: ["alignItems", "children", "flexDirection"],
     example: { children: [], flexDirection: "column", gap: "16" },
@@ -709,9 +714,10 @@ function generateSpec(additionalProperties = false) {
                   anyOf: [
                     { $ref: "#/definitions/ProteusExpression" },
                     { type: "string" },
+                    { $ref: "#/definitions/ProteusStructuredMessage" },
                   ],
                   description:
-                    "Message to send to LLM via sendNewMessage(). Can be a string, a Value reference, or a Map expression.",
+                    "Message to send to LLM via sendNewMessage(). Can be a string, a Value reference, a Map expression, or a structured payload with parts and files.",
                 },
               },
               required: ["message"],
@@ -752,6 +758,40 @@ function generateSpec(additionalProperties = false) {
           ],
           description:
             "A dynamic Proteus expression that resolves to a value at render time.",
+        },
+        ProteusStructuredMessage: {
+          ...(additionalProperties ? {} : { additionalProperties: false }),
+          description:
+            "Structured message payload that lets file URLs travel as a typed list alongside the text parts, instead of being joined into the text.",
+          properties: {
+            files: {
+              anyOf: [
+                { items: { type: "string" }, type: "array" },
+                { $ref: "#/definitions/ProteusExpression" },
+              ],
+              description:
+                "List of file URLs (typically signed URLs from a host upload).",
+            },
+            parts: {
+              items: {
+                ...(additionalProperties ? {} : { additionalProperties: false }),
+                properties: {
+                  content: {
+                    anyOf: [
+                      { type: "string" },
+                      { $ref: "#/definitions/ProteusExpression" },
+                    ],
+                  },
+                  type: { const: "text" },
+                },
+                required: ["type", "content"],
+                type: "object",
+              },
+              type: "array",
+            },
+          },
+          required: ["parts"],
+          type: "object",
         },
         ProteusNode: {
           anyOf: [
@@ -907,6 +947,29 @@ function getPropTypeOverrides(additionalProperties = false) {
           anyOf: [{ $ref: "#/definitions/ProteusNode" }, { type: "string" }],
         },
         type: "array",
+      },
+    },
+    FileUpload: {
+      accept: {
+        description:
+          "File types to accept; array of MIME types or extensions.",
+        items: { type: "string" },
+        type: "array",
+      },
+      name: {
+        anyOf: [
+          { type: "string" },
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
+        description:
+          "The name of the form control element. The resolved URL is written at parentPath/name in form data.",
+      },
+      required: {
+        anyOf: [
+          { type: "boolean" },
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
+        description: "Whether a file is required.",
       },
     },
     DataTable: {

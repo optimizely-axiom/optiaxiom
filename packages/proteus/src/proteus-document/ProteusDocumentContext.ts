@@ -9,12 +9,15 @@ export type UseResource = (resource: string) => {
   isError: boolean;
 };
 
+export type UploadFile = (file: File) => Promise<string>;
+
 export const [ProteusDocumentProvider, useProteusDocumentContext] =
   createContext<{
     data: Record<string, unknown>;
     onDataChange: (path: string, value: unknown) => void;
     onEvent: (event: ProteusEventHandler) => Promise<unknown>;
     onTrack?: (event: string, properties: Record<string, string>) => void;
+    onUpload?: UploadFile;
     readOnly: boolean | undefined;
     strict: boolean | undefined;
     useResource?: UseResource;

@@ -25,6 +25,7 @@ import type { ProteusActionProps } from "../proteus-action/ProteusAction";
 import type { ProteusBridgeProps } from "../proteus-bridge/ProteusBridge";
 import type { ProteusChartProps } from "../proteus-chart/ProteusChart";
 import type { ProteusDataTableProps } from "../proteus-data-table/ProteusDataTable";
+import type { ProteusFileUploadProps } from "../proteus-file-upload/ProteusFileUpload";
 import type { ProteusImageCarouselProps } from "../proteus-image-carousel/ProteusImageCarousel";
 import type { ProteusImageProps } from "../proteus-image/ProteusImage";
 import type { ProteusMapProps } from "../proteus-map/ProteusMap";
@@ -53,6 +54,7 @@ export type ProteusElement =
   | (ProteusBridgeProps & { $type: "Bridge" })
   | (ProteusChartProps & { $type: "Chart" })
   | (ProteusDataTableProps & { $type: "DataTable" })
+  | (ProteusFileUploadProps & { $type: "FileUpload" })
   | (ProteusImageCarouselProps & { $type: "ImageCarousel" })
   | (ProteusImageProps & { $type: "Image" })
   | (ProteusMapProps & { $type: "Map" })
@@ -69,13 +71,18 @@ export type ProteusElement =
   | (TextProps & { $type: "Text" })
   | (TimeProps & { $type: "Time" });
 
+export type StructuredMessage = {
+  files?: string[];
+  parts: Array<{ content: string; type: "text" }>;
+};
+
 export type ProteusEventHandler =
   | {
       action: "download";
       url: (ProteusValueProps & { $type: "Value" }) | string | string[];
     }
   | { interaction: string; params?: Record<string, unknown> }
-  | { message: string };
+  | { message: string | StructuredMessage };
 
 type ProteusDocument = ProteusDocumentShellProps["element"] & {
   $type: "Document";

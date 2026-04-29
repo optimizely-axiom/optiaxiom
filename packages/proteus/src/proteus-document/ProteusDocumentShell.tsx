@@ -19,12 +19,13 @@ import {
   useState,
 } from "react";
 
-import type { ProteusEventHandler } from "./schemas";
+import type { ProteusEventHandler, StructuredMessage } from "./schemas";
 
 import { useEffectEvent } from "../hooks";
 import { downloadFile } from "../proteus-image/downloadFile";
 import {
   ProteusDocumentProvider,
+  type UploadFile,
   type UseResource,
 } from "./ProteusDocumentContext";
 import * as styles from "./ProteusDocumentShell.css";
@@ -63,13 +64,20 @@ export type ProteusDocumentShellProps = Pick<
     params?: Record<string, unknown>,
   ) => Promise<unknown> | unknown;
   /**
-   * Callback when user sends a message action
+   * Callback when user sends a message action. The payload may be a plain
+   * string or a structured object (parts + optional files), depending on
+   * what the document declares for `Action.onClick.message`.
    */
-  onMessage?: (message: string) => Promise<void> | void;
+  onMessage?: (message: string | StructuredMessage) => Promise<void> | void;
   /**
    * Callback when an analytics event is fired
    */
   onTrack?: (event: string, properties: Record<string, string>) => void;
+  /**
+   * Async upload callback used by FileUpload elements. Receives a File and
+   * resolves to a URL string the document writes into form data.
+   */
+  onUpload?: UploadFile;
   /**
    * Whether form is readonly
    */
@@ -107,6 +115,7 @@ export function ProteusDocumentShell({
   onMessage,
   onOpenChange,
   onTrack,
+  onUpload,
   open: openProp,
   readOnly = false,
   strict,
@@ -191,6 +200,7 @@ export function ProteusDocumentShell({
           onTrack?.(event, properties);
         },
       )}
+      onUpload={onUpload}
       readOnly={readOnly}
       strict={strict}
       useResource={useResource}
