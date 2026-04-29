@@ -867,23 +867,28 @@ function getPropTypeOverrides(additionalProperties = false) {
         description: "Chart layout direction",
       },
       series: {
-        description: "Data series configuration",
-        items: {
-          ...(additionalProperties ? {} : { additionalProperties: false }),
-          properties: {
-            dataKey: {
-              description: "Key in data records for this series",
-              type: "string",
+        anyOf: [
+          {
+            description: "Data series configuration",
+            items: {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                dataKey: {
+                  description: "Key in data records for this series",
+                  type: "string",
+                },
+                name: {
+                  description: "Display name for legend",
+                  type: "string",
+                },
+              },
+              required: ["dataKey"],
+              type: "object",
             },
-            name: {
-              description: "Display name for legend",
-              type: "string",
-            },
+            type: "array",
           },
-          required: ["dataKey"],
-          type: "object",
-        },
-        type: "array",
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
       },
       type: {
         anyOf: [{ const: "bar" }, { const: "line" }],
