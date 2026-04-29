@@ -1565,51 +1565,25 @@ export const AskAgentInputWithFileParam: Story = {
                   content: {
                     $type: "Map",
                     children: {
-                      $type: "Concat",
-                      children: [
-                        { $type: "Value", path: "name" },
-                        ": ",
-                        {
-                          $type: "Show",
-                          children: "[Not specified]",
-                          when: {
-                            and: [
-                              { "==": [{ $type: "Value", path: "type" }, "string"] },
-                              { "!": { $type: "Value", path: "value" } },
-                            ],
+                      $type: "Show",
+                      children: {
+                        $type: "Concat",
+                        children: [
+                          { $type: "Value", path: "name" },
+                          ": ",
+                          {
+                            $type: "Show",
+                            children: "[Not specified]",
+                            when: { "!": { $type: "Value", path: "value" } },
                           },
-                        },
-                        {
-                          $type: "Show",
-                          children: "[No file uploaded]",
-                          when: {
-                            and: [
-                              { "==": [{ $type: "Value", path: "type" }, "file"] },
-                              { "!": { $type: "Value", path: "value" } },
-                            ],
+                          {
+                            $type: "Show",
+                            children: { $type: "Value", path: "value" },
+                            when: { "!!": { $type: "Value", path: "value" } },
                           },
-                        },
-                        {
-                          $type: "Show",
-                          children: "[file attached]",
-                          when: {
-                            and: [
-                              { "==": [{ $type: "Value", path: "type" }, "file"] },
-                              { "!!": { $type: "Value", path: "value" } },
-                            ],
-                          },
-                        },
-                        {
-                          $type: "Show",
-                          children: { $type: "Value", path: "value" },
-                          when: {
-                            and: [
-                              { "!=": [{ $type: "Value", path: "type" }, "file"] },
-                              { "!!": { $type: "Value", path: "value" } },
-                            ],
-                          },
-                        },
-                      ],
+                        ],
+                      },
+                      when: { "!=": [{ $type: "Value", path: "type" }, "file"] },
                     },
                     path: "/parameters",
                     separator: "\n",
