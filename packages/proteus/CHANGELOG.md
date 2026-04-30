@@ -1,5 +1,14 @@
 # @optiaxiom/proteus
 
+## 0.2.6
+
+### Patch Changes
+
+- 2e52b79: safeguard against null props
+- 9f90338: adds ProteusFileUpload element
+- Updated dependencies [8aa5788]
+  - @optiaxiom/react@1.9.31
+
 ## 0.2.5
 
 ### Patch Changes
