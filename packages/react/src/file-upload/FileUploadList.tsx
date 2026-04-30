@@ -20,9 +20,9 @@ export type FileUploadListProps = BoxProps<"div"> & {
 };
 
 export const FileUploadList = forwardRef<HTMLDivElement, FileUploadListProps>(
-  ({ items, onRemove, ...props }) => {
+  ({ items, onRemove, ...props }, ref) => {
     return (
-      <Flex gap="12" {...props}>
+      <Flex gap="12" ref={ref} {...props}>
         {items.map((item, idx) => (
           <FileUploadListItem
             item={item}
