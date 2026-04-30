@@ -5,9 +5,11 @@ import {
   FileUploadList,
   type FileUploadListProps,
   FileUploadTrigger,
+  VisuallyHidden,
 } from "@optiaxiom/react/unstable";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
+import { useObserveValue } from "../hooks";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
 
@@ -31,7 +33,11 @@ export type ProteusFileUploadProps = {
 
 type Item = FileUploadListProps["items"][number];
 
-export function ProteusFileUpload({ accept, name }: ProteusFileUploadProps) {
+export function ProteusFileUpload({
+  accept,
+  name,
+  required,
+}: ProteusFileUploadProps) {
   const { onDataChange, onUpload, readOnly } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusFileUpload",
   );
@@ -39,7 +45,9 @@ export function ProteusFileUpload({ accept, name }: ProteusFileUploadProps) {
     "@optiaxiom/proteus/ProteusFileUpload",
   );
 
+  const inputRef = useRef<HTMLInputElement>(null);
   const [item, setItem] = useState<Item | null>(null);
+  const forceValueChange = useObserveValue(inputRef);
 
   const writeUrl = useCallback(
     (url: null | string) => {
@@ -57,25 +65,34 @@ export function ProteusFileUpload({ accept, name }: ProteusFileUploadProps) {
       const file = incoming[0];
       setItem({ file, status: "uploading" });
       writeUrl(null);
+      if (inputRef.current) {
+        forceValueChange("");
+      }
       try {
         const url = await onUpload(file);
         setItem((curr) =>
           curr?.file === file ? { file, status: "complete" } : curr,
         );
         writeUrl(url);
+        if (inputRef.current) {
+          forceValueChange("1");
+        }
       } catch {
         setItem((curr) =>
           curr?.file === file ? { file, status: "error" } : curr,
         );
       }
     },
-    [onUpload, readOnly, writeUrl],
+    [forceValueChange, onUpload, readOnly, writeUrl],
   );
 
   const handleRemove = useCallback(() => {
     setItem(null);
     writeUrl(null);
-  }, [writeUrl]);
+    if (inputRef.current) {
+      forceValueChange("");
+    }
+  }, [forceValueChange, writeUrl]);
 
   return (
     <FileUpload
@@ -83,6 +100,15 @@ export function ProteusFileUpload({ accept, name }: ProteusFileUploadProps) {
       disabled={!onUpload || readOnly}
       onFilesDrop={handleFilesDrop}
     >
+      <VisuallyHidden asChild>
+        <input
+          aria-hidden
+          name={name}
+          ref={inputRef}
+          required={required}
+          tabIndex={-1}
+        />
+      </VisuallyHidden>
       {item ? (
         <Flex flexDirection="column" gap="8">
           <FileUploadList items={[item]} onRemove={handleRemove} />
