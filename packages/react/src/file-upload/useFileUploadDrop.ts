@@ -1,3 +1,5 @@
+import { toaster } from "@optiaxiom/globals";
+
 import type { BoxProps } from "../box";
 
 import { useAuthContext } from "../auth-provider";
@@ -37,7 +39,13 @@ export const useFileUploadDrop = ({
                 Array.from(event.dataTransfer.items).map(async (item) => {
                   if (item.kind === "file") {
                     const file = item.getAsFile();
-                    return file && isValidFile(file, accept) ? file : null;
+                    const valid = file && isValidFile(file, accept);
+                    if (!valid) {
+                      toaster.create(invalidFileTypeMessage(file), {
+                        intent: "danger",
+                      });
+                    }
+                    return valid ? file : null;
                   } else if (
                     item.type === "opal-chat-dnd-data" ||
                     item.type === "opal-host-dnd-data"
@@ -73,9 +81,15 @@ export const useFileUploadDrop = ({
                 }),
               )
             ).filter((file) => !!file)
-          : Array.from(event.dataTransfer.files).filter((file) =>
-              isValidFile(file, accept),
-            ),
+          : Array.from(event.dataTransfer.files).filter((file) => {
+              const valid = isValidFile(file, accept);
+              if (!valid) {
+                toaster.create(invalidFileTypeMessage(file), {
+                  intent: "danger",
+                });
+              }
+              return valid;
+            }),
       );
     },
   };
@@ -127,6 +141,14 @@ async function getRemoteFile(
       type: response.headers.get("Content-Type") || "application/octet-stream",
     });
   }
+}
+
+function invalidFileTypeMessage(file: File | null): string {
+  const ext = file?.name.includes(".")
+    ? `.${file.name.split(".").pop()}`
+    : undefined;
+  const label = ext || file?.type || "Unknown";
+  return `${label} is not an accepted file type`;
 }
 
 /**
