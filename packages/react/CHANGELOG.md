@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.31
+
+### Patch Changes
+
+- 8aa5788: fix button type for file upload button
+
 ## 1.9.30
 
 ### Patch Changes
