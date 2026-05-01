@@ -24,6 +24,7 @@
       "import": "./dist/esm/css-runtime.js",
       "require": "./dist/cjs/css-runtime.cjs"
     },
+    "./package.json": "./package.json",
     "./unstable": {
       "types": "./dist/unstable.d.ts",
       "import": "./dist/esm/unstable.js",

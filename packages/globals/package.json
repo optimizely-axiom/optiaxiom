@@ -22,7 +22,8 @@
     "./fonts": {
       "import": "./dist/esm/fonts.js",
       "require": "./dist/cjs/fonts.js"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "sideEffects": [
     "./dist/cjs/fonts.js",

@@ -78,30 +78,32 @@ async function measure() {
 
     const imports = (
       await Promise.all(
-        Object.keys(pkg.exports).map(async (exportPath) => {
-          const exportedItems = Object.values(
-            (
-              await esbuild.build({
-                ...config,
-                entryPoints: [exportPath.replace(".", pkg.name)],
-                format: "esm",
-                metafile: true,
-              })
-            ).metafile.outputs,
-          )[0]
-            .exports.sort()
-            .filter((name) => name !== "default")
-            .map((name) => [name, `fixture/${exportPath}/${name}.js`]);
-          return exportedItems.length === 1
-            ? exportedItems
-            : [
-                [
-                  exportPath === "." ? "*" : exportPath,
-                  `fixture/${exportPath}/*.js`,
-                ],
-                ...exportedItems,
-              ];
-        }),
+        Object.keys(pkg.exports)
+          .filter((exportPath) => exportPath !== "./package.json")
+          .map(async (exportPath) => {
+            const exportedItems = Object.values(
+              (
+                await esbuild.build({
+                  ...config,
+                  entryPoints: [exportPath.replace(".", pkg.name)],
+                  format: "esm",
+                  metafile: true,
+                })
+              ).metafile.outputs,
+            )[0]
+              .exports.sort()
+              .filter((name) => name !== "default")
+              .map((name) => [name, `fixture/${exportPath}/${name}.js`]);
+            return exportedItems.length === 1
+              ? exportedItems
+              : [
+                  [
+                    exportPath === "." ? "*" : exportPath,
+                    `fixture/${exportPath}/*.js`,
+                  ],
+                  ...exportedItems,
+                ];
+          }),
       )
     ).flat();
 
