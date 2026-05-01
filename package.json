@@ -28,7 +28,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",
-    "@typescript/native-preview": "7.0.0-dev.20260416.1",
+    "@typescript/native-preview": "7.0.0-dev.20260421.2",
     "@vanilla-extract/integration": "^8.0.10",
     "@vanilla-extract/rollup-plugin": "^1.5.3",
     "@vanilla-extract/vite-plugin": "^5.2.2",
