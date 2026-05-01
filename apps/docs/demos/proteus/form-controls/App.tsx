@@ -2,24 +2,17 @@
 
 import { ProteusDocumentRenderer } from "@optiaxiom/proteus";
 import { Box } from "@optiaxiom/react";
+import { useState } from "react";
 
 export function App() {
+  const [data, setData] = useState<Record<string, unknown>>({});
   return (
     <Box maxW="md" w="full">
       <ProteusDocumentRenderer
+        data={data}
         element={{
           $type: "Document",
           body: [
-            {
-              $type: "Field",
-              children: {
-                $type: "Input",
-                name: "email",
-                placeholder: "you@example.com",
-                required: true,
-              },
-              label: "Email",
-            },
             {
               $type: "Field",
               children: {
@@ -28,31 +21,41 @@ export function App() {
                   { $type: "SelectTrigger", w: "full" },
                   { $type: "SelectContent" },
                 ],
-                name: "plan",
+                name: "target_by",
                 options: [
-                  { label: "Starter", value: "starter" },
-                  { label: "Pro", value: "pro" },
-                  { label: "Enterprise", value: "enterprise" },
+                  { label: "URL", value: "url" },
+                  { label: "Saved Pages", value: "page" },
                 ],
               },
-              label: "Plan",
+              label: "Target by",
+            },
+            {
+              $type: "Field",
+              children: {
+                $type: "Input",
+                name: "url",
+                placeholder: "Add a URL",
+              },
+              label: "URL",
             },
             {
               $type: "Field",
               children: {
                 $type: "Textarea",
-                name: "notes",
-                placeholder: "Anything we should know?",
+                name: "test_idea",
+                placeholder:
+                  "e.g., Add quantity badges to product thumbnails to show how many of each item they're buying",
               },
-              label: "Notes",
+              label: "Test Idea",
             },
             {
               $type: "Field",
-              children: { $type: "Switch", name: "notifications" },
-              label: "Email me product updates",
+              children: { $type: "Switch", name: "include_metadata" },
+              label: "Include Metadata",
             },
           ],
         }}
+        onDataChange={setData}
       />
     </Box>
   );

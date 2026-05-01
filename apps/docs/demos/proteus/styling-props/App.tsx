@@ -11,26 +11,33 @@ export function App() {
           $type: "Document",
           body: {
             $type: "Group",
-            bg: "bg.error.subtle",
+            border: "1",
+            borderColor: "border.tertiary",
             children: [
               {
                 $type: "Text",
-                children: "Build failed",
-                color: "fg.error",
-                fontWeight: "600",
+                children: "TOTAL REVENUE",
+                color: "fg.tertiary",
+                fontSize: "xs",
+                textTransform: "uppercase",
               },
               {
                 $type: "Text",
-                children:
-                  "TypeScript reported 3 errors in apps/web. See the run output for details.",
-                color: "fg.error",
+                children: "$204M",
+                fontSize: "2xl",
+                fontWeight: "700",
+              },
+              {
+                $type: "Text",
+                children: "+12% vs last quarter",
+                color: "fg.success.strong",
                 fontSize: "sm",
               },
             ],
             flexDirection: "column",
-            gap: "8",
-            p: "16",
-            rounded: "md",
+            gap: "4",
+            p: "12",
+            rounded: "xl",
           },
         }}
       />

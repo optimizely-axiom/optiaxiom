@@ -56,20 +56,6 @@ All components accept Axiom styling props for spacing, colors, layout, and typog
 
 <Demo component="proteus/styling-props" />
 
-Available props are grouped by category:
-
-| Category   | Props                                                                                                     |
-| ---------- | --------------------------------------------------------------------------------------------------------- |
-| Spacing    | `p`, `px`, `py`, `pt`, `pr`, `pb`, `pl`, `m`, `mx`, `my`, `mt`, `mr`, `mb`, `ml`, `gap`                   |
-| Sizing     | `w`, `h`, `maxW`, `maxH`, `size`                                                                          |
-| Layout     | `display`, `flexDirection`, `flexWrap`, `flex`, `alignItems`, `alignSelf`, `justifyContent`, `placeItems` |
-| Color      | `bg`, `color`, `borderColor`                                                                              |
-| Border     | `border`, `borderT`, `borderR`, `borderB`, `borderL`, `rounded`, `shadow`                                 |
-| Typography | `fontSize`, `fontWeight`, `fontFamily`, `textAlign`, `textTransform`, `whiteSpace`                        |
-| Other      | `overflow`, `overflowX`, `overflowY`, `objectFit`, `cursor`, `pointerEvents`, `transition`, `z`           |
-
-These accept either a token (e.g. `"sm"`, `"fg.error"`) or a responsive array (`["sm", "md"]`). Every rendering component accepts the full set; expression and control-flow elements (`Value`, `MapIndex`, `Concat`, `Zip`, `Show`, `Map`, `Bridge`, `Question`) do not, since they don't render their own DOM node.
-
 ## Data binding
 
 ### Value
@@ -138,11 +124,7 @@ The [Proteus Designer](/guides/proteus-designer) is a visual editor for building
 
 ## Element reference
 
-The sections below list element-specific props for each `$type`. Rendering elements also accept the full set of [styling props](#styling-props), so those are omitted here.
-
 ### Document
-
-The root element of every Proteus document.
 
 <ProteusElementRef type="Document" />
 

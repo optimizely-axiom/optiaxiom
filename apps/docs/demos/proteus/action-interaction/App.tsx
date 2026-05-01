@@ -12,16 +12,26 @@ export function App() {
           actions: [
             {
               $type: "Action",
-              appearance: "primary",
-              children: "Approve",
-              onClick: { interaction: "approve_deploy" },
+              children: "Comment",
+              onClick: { interaction: "comment_on_task" },
             },
-            { $type: "Action", children: "Cancel" },
+            {
+              $type: "Action",
+              appearance: "primary",
+              children: "View task",
+              onClick: { interaction: "view_task" },
+            },
           ],
-          body: [],
-          subtitle:
-            "Submitting will run the deploy pipeline against production.",
-          title: "Approve deploy?",
+          appName: "Content Marketing Platform",
+          body: [
+            {
+              $type: "Text",
+              children:
+                "Initial performance metrics reveal a 12% drop in user retention post-update.",
+            },
+          ],
+          subtitle: "Android Scrum Campaign / TSK-98",
+          title: "Version 2.2 Performance Optimization",
         }}
       />
     </Box>
