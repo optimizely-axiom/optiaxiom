@@ -14,7 +14,7 @@ A Proteus document is a JSON object with `$type: "Document"`. At minimum it need
 
 ### Document properties
 
-Documents also support `title`, `subtitle`, `appName`, `appIcon`, and `actions` (buttons rendered at the bottom). Set `blocking` to `true` to hide the chat input and force the user to interact with the UI before continuing.
+Documents also support `title`, `subtitle`, `appName`, `appIcon`, and `actions` (buttons rendered at the bottom).
 
 <Demo component="proteus/document-properties" scrollable />
 
@@ -129,10 +129,6 @@ Sends a text message back to the LLM:
 Triggers a file download:
 
 <Demo component="proteus/action-download" scrollable />
-
-### Blocking mode
-
-When `blocking` is set to `true` on the Document, the chat input is hidden and the user must click an `Action` to continue. Use this for forms that require explicit user input before proceeding.
 
 ## Proteus Designer
 
