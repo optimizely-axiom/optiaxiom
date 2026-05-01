@@ -118,6 +118,7 @@ export const ProteusChart = ({
                 key={i}
                 name={s.name ?? s.dataKey}
                 radius={type === "bar" ? 4 : undefined}
+                stroke={getColor(i)}
                 type="natural"
               />
             ))}
