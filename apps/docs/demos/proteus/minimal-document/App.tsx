@@ -10,13 +10,13 @@ export function App() {
         element={{
           $type: "Document",
           body: [
-            { $type: "Heading", children: "Welcome to your dashboard" },
             {
               $type: "Text",
               children:
                 "Proteus turns a JSON description into a fully interactive Axiom UI.",
             },
           ],
+          title: "Welcome to your dashboard",
         }}
       />
     </Box>
