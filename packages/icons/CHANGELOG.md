@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.1.2
+
+### Patch Changes
+
+- a9357b8: add package.json self-reference exports to packages
+
 ## 1.1.1
 
 ### Patch Changes

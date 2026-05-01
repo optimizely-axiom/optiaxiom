@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.9.32
+
+### Patch Changes
+
+- a9357b8: add package.json self-reference exports to packages
+- Updated dependencies [a9357b8]
+  - @optiaxiom/globals@1.1.11
+
 ## 1.9.31
 
 ### Patch Changes

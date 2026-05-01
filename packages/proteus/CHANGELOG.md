@@ -1,5 +1,15 @@
 # @optiaxiom/proteus
 
+## 0.2.7
+
+### Patch Changes
+
+- ce70d32: fixes ProteusFileUploads required tag
+- a9357b8: add package.json self-reference exports to packages
+- Updated dependencies [a9357b8]
+  - @optiaxiom/icons@1.1.2
+  - @optiaxiom/react@1.9.32
+
 ## 0.2.6
 
 ### Patch Changes
