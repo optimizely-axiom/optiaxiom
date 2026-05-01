@@ -10,13 +10,13 @@ Proteus is a JSON-based UI specification for building interactive tool interface
 
 A Proteus document is a JSON object with `$type: "Document"`. At minimum it needs a `body`. Every element has a `$type` that identifies the component. The `children` property holds nested content: a string, number, another element, or an array of elements.
 
-<Demo component="proteus/minimal-document" scrollable />
+<Demo component="proteus/minimal-document" />
 
 ### Document properties
 
 Documents also support `title`, `subtitle`, `appName`, `appIcon`, and `actions` (buttons rendered at the bottom).
 
-<Demo component="proteus/document-properties" scrollable />
+<Demo component="proteus/document-properties" />
 
 ## Components
 
@@ -24,37 +24,37 @@ Documents also support `title`, `subtitle`, `appName`, `appIcon`, and `actions` 
 
 Use `Group` as a flexbox container to arrange child elements. It supports `flexDirection`, `gap`, `alignItems`, and `justifyContent`. `Card`, `CardHeader`, and `CardLink` provide card-based layouts. `Separator` adds a visual divider.
 
-<Demo component="proteus/layout" scrollable />
+<Demo component="proteus/layout" />
 
 ### Typography
 
 `Heading` renders section headings, `Text` renders inline or block text, and `Link` renders a hyperlink with an `href` prop.
 
-<Demo component="proteus/typography" scrollable />
+<Demo component="proteus/typography" />
 
 ### Data display
 
 `DataTable` renders structured data with columns, sorting, and pagination. `Chart` renders bar or line charts. `Image` and `ImageCarousel` display images. `Avatar`, `Badge`, and `Time` handle user avatars, status tags, and formatted timestamps.
 
-<Demo component="proteus/data-display" scrollable />
+<Demo component="proteus/data-display" />
 
 ### Form controls
 
 Wrap inputs with `Field` to add a label. Available inputs include `Input`, `Textarea`, `Select` (composed from `SelectTrigger` and `SelectContent`), `Switch`, `Range`, and `Question` (a multi-question dynamic form).
 
-<Demo component="proteus/form-controls" scrollable />
+<Demo component="proteus/form-controls" />
 
 ### Actions
 
 `Action` renders a button with an `onClick` handler (see [Interactions](#interactions) below). Use `appearance` (`primary`, `danger`, `subtle`, etc.) to style the button.
 
-<Demo component="proteus/actions" scrollable />
+<Demo component="proteus/actions" />
 
 ### Styling props
 
 All components accept Axiom styling props for spacing, colors, layout, and typography:
 
-<Demo component="proteus/styling-props" scrollable />
+<Demo component="proteus/styling-props" />
 
 Available props are grouped by category:
 
@@ -76,25 +76,25 @@ These accept either a token (e.g. `"sm"`, `"fg.error"`) or a responsive array (`
 
 Reads a field from the tool response using a JSON Pointer path. Paths starting with `/` are absolute (from the root of the tool response). Paths without a leading `/` are relative (resolved from the current context, like inside a `Map`).
 
-<Demo component="proteus/value" scrollable />
+<Demo component="proteus/value" />
 
 ### Map
 
 Iterates over an array, rendering `children` once per item. Inside a `Map`, relative paths resolve against the current item:
 
-<Demo component="proteus/map" scrollable />
+<Demo component="proteus/map" />
 
 ### Other expressions
 
 `MapIndex` gives you the current iteration index inside a `Map`. `Concat` takes a `children` array and joins each resolved value into a single string. `Zip` takes a `sources` object — each key becomes a property name, and the values (arrays or expressions resolving to arrays) are zipped row-wise into an array of objects, useful as `Chart.data` or `DataTable.data`.
 
-<Demo component="proteus/concat" scrollable />
+<Demo component="proteus/concat" />
 
 ### Putting it together
 
 This template renders a list of search results dynamically from a tool response:
 
-<Demo component="proteus/data-binding" scrollable />
+<Demo component="proteus/data-binding" />
 
 ## Conditional rendering
 
@@ -102,13 +102,13 @@ This template renders a list of search results dynamically from a tool response:
 
 Use `Show` to render content only when a condition is met:
 
-<Demo component="proteus/show" scrollable />
+<Demo component="proteus/show" />
 
 ### Operators
 
 Supported operators: `==`, `!=`, `<`, `<=`, `>`, `>=`, `!!` (truthy), `!` (falsy). Combine conditions with `and` and `or`:
 
-<Demo component="proteus/show-operators" scrollable />
+<Demo component="proteus/show-operators" />
 
 ## Interactions
 
@@ -116,19 +116,19 @@ Supported operators: `==`, `!=`, `<`, `<=`, `>`, `>=`, `!!` (truthy), `!` (falsy
 
 Sends the named interaction back to your server, where it can be handled and responded to:
 
-<Demo component="proteus/action-interaction" scrollable />
+<Demo component="proteus/action-interaction" />
 
 ### Message handler
 
 Sends a text message back to the LLM:
 
-<Demo component="proteus/action-message" scrollable />
+<Demo component="proteus/action-message" />
 
 ### Download handler
 
 Triggers a file download:
 
-<Demo component="proteus/action-download" scrollable />
+<Demo component="proteus/action-download" />
 
 ## Proteus Designer
 
