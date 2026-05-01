@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.2.8
+
+### Patch Changes
+
+- 0aacf42: fix chart series colors
+
 ## 0.2.7
 
 ### Patch Changes
