@@ -12,22 +12,30 @@ export function App() {
           actions: [
             {
               $type: "Action",
-              children: "Yes, proceed",
-              onClick: { message: "Yes, proceed with the migration." },
+              children: "Comment",
+              onClick: {
+                message: "I'd like to leave a comment on this task.",
+              },
             },
             {
               $type: "Action",
-              children: "No, hold off",
-              onClick: { message: "Hold off on the migration for now." },
+              appearance: "primary",
+              children: "View task",
+              onClick: {
+                message: "Show me the full details for TSK-98.",
+              },
             },
           ],
+          appName: "Content Marketing Platform",
           body: [
             {
               $type: "Text",
               children:
-                "Pick an option and we'll continue the conversation in chat.",
+                "Initial performance metrics reveal a 12% drop in user retention post-update.",
             },
           ],
+          subtitle: "Android Scrum Campaign / TSK-98",
+          title: "Version 2.2 Performance Optimization",
         }}
       />
     </Box>

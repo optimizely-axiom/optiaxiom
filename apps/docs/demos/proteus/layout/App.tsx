@@ -11,31 +11,51 @@ export function App() {
           $type: "Document",
           body: {
             $type: "Group",
+            border: "1",
+            borderColor: "border.tertiary",
             children: [
               {
-                $type: "Card",
+                $type: "Group",
                 children: [
-                  { $type: "CardHeader", children: "Notifications" },
                   {
                     $type: "Text",
-                    children: "We'll email you when a deploy finishes.",
+                    children: "Add quantity badges to product thumbnails",
+                    fontWeight: "600",
+                  },
+                  {
+                    $type: "Text",
+                    children: "TSK-8526",
+                    color: "fg.tertiary",
+                    fontSize: "sm",
                   },
                 ],
+                flexDirection: "column",
+                gap: "4",
+                p: "12",
               },
-              { $type: "Separator" },
+              { $type: "Separator", borderColor: "border.tertiary" },
               {
-                $type: "Card",
+                $type: "Group",
                 children: [
-                  { $type: "CardHeader", children: "Workspace" },
                   {
                     $type: "Text",
-                    children: "Acme Inc. — 12 members",
+                    children: "D-Congress 2026 - Digital screen content",
+                    fontWeight: "600",
+                  },
+                  {
+                    $type: "Text",
+                    children: "TSK-9102",
+                    color: "fg.tertiary",
+                    fontSize: "sm",
                   },
                 ],
+                flexDirection: "column",
+                gap: "4",
+                p: "12",
               },
             ],
             flexDirection: "column",
-            gap: "12",
+            rounded: "md",
           },
         }}
       />

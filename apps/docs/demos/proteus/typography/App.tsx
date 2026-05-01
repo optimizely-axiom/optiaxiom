@@ -10,18 +10,18 @@ export function App() {
         element={{
           $type: "Document",
           body: [
-            { $type: "Heading", children: "Deployment paused" },
+            { $type: "Heading", children: "Key Insight", level: "4" },
             {
               $type: "Text",
               children:
-                "Your last deploy was rolled back due to a failed health check. Review the logs for the full trace before retrying.",
+                "Initial performance metrics reveal a 12% drop in user retention post-update. Immediate deep-dive into Android Scrum Project's V2.2 onboarding flow is critical to reverse the trend and secure Q3 engagement goals.",
               color: "fg.secondary",
               fontSize: "sm",
             },
             {
               $type: "Link",
-              children: "Open run #482",
-              href: "https://example.com/runs/482",
+              children: "View task TSK-98",
+              href: "https://example.com/task/tsk-98",
             },
           ],
         }}

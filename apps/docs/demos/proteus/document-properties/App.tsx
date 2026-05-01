@@ -2,43 +2,50 @@
 
 import { ProteusDocumentRenderer } from "@optiaxiom/proteus";
 import { Box } from "@optiaxiom/react";
+import { useState } from "react";
 
 export function App() {
+  const [data, setData] = useState<Record<string, unknown>>({});
   return (
     <Box maxW="md" w="full">
       <ProteusDocumentRenderer
+        data={data}
         element={{
           $type: "Document",
           actions: [
-            { $type: "Action", appearance: "primary", children: "Submit" },
-            { $type: "Action", children: "Cancel" },
+            {
+              $type: "Action",
+              appearance: "primary-opal",
+              children: "Create Test Plan",
+            },
           ],
-          appName: "Issue Tracker",
+          appName: "Opal",
           blocking: true,
           body: [
             {
               $type: "Field",
               children: {
                 $type: "Input",
-                name: "title",
-                placeholder: "Login button doesn't work on mobile",
-                required: true,
+                name: "url",
+                placeholder: "Add a URL",
               },
-              label: "Title",
+              label: "URL",
             },
             {
               $type: "Field",
               children: {
                 $type: "Textarea",
-                name: "steps",
-                placeholder: "1. Open the app on iOS\n2. Tap Sign in\n3. ...",
+                name: "test_idea",
+                placeholder:
+                  "e.g., Add quantity badges to product thumbnails to show how many of each item they're buying",
               },
-              label: "Steps to reproduce",
+              label: "Test Idea",
             },
           ],
-          subtitle: "Tell us what went wrong and we'll take a look.",
-          title: "Report an issue",
+          subtitle: "Select how you'd like to define the page or experience.",
+          title: "Create your test plan",
         }}
+        onDataChange={setData}
       />
     </Box>
   );

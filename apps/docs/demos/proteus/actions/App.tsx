@@ -10,18 +10,23 @@ export function App() {
         element={{
           $type: "Document",
           actions: [
+            { $type: "Action", children: "Comment" },
             {
               $type: "Action",
-              appearance: "danger",
-              children: "Delete project",
-              onClick: { interaction: "delete_project" },
+              appearance: "primary",
+              children: "View task",
             },
-            { $type: "Action", children: "Keep project" },
           ],
-          body: [],
-          subtitle:
-            "This permanently removes the project and all of its experiments. This cannot be undone.",
-          title: "Delete project?",
+          appName: "Content Marketing Platform",
+          body: [
+            {
+              $type: "Text",
+              children:
+                "Initial performance metrics reveal a 12% drop in user retention post-update.",
+            },
+          ],
+          subtitle: "Android Scrum Campaign / TSK-98",
+          title: "Version 2.2 Performance Optimization",
         }}
       />
     </Box>
