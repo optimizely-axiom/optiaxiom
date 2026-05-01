@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.1.11
+
+### Patch Changes
+
+- a9357b8: add package.json self-reference exports to packages
+
 ## 1.1.10
 
 ### Patch Changes
