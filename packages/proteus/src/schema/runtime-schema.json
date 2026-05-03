@@ -1297,6 +1297,7 @@
         { "$ref": "#/definitions/ProteusChart" },
         { "$ref": "#/definitions/ProteusConcat" },
         { "$ref": "#/definitions/ProteusDataTable" },
+        { "$ref": "#/definitions/ProteusFederated" },
         { "$ref": "#/definitions/ProteusField" },
         { "$ref": "#/definitions/ProteusFileUpload" },
         { "$ref": "#/definitions/ProteusGroup" },
@@ -2310,6 +2311,32 @@
         }
       },
       "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusFederated": {
+      "examples": [
+        {
+          "$type": "Federated",
+          "entry": "https://widgets.example.com/remoteEntry.js"
+        }
+      ],
+      "properties": {
+        "$type": { "const": "Federated" },
+        "entry": {
+          "description": "URL to the remote application's remoteEntry.js or mf-manifest.json",
+          "type": "string"
+        },
+        "exposeKey": {
+          "default": ".",
+          "description": "The key from the remote's ModuleFederationPlugin exposes config (e.g. './App'). Defaults to '.' (root export)",
+          "type": "string"
+        },
+        "fallback": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Content rendered when the federated component fails to load"
+        }
+      },
+      "required": ["$type", "entry"],
       "type": "object"
     },
     "ProteusField": {
