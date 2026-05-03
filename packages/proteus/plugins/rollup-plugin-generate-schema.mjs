@@ -107,6 +107,12 @@ const PROTEUS_COMPONENT_CONFIG = {
     },
     extends: "Fragment",
   },
+  Federated: {
+    allowedProps: ["entry", "exposeKey", "fallback"],
+    example: { entry: "https://widgets.example.com/remoteEntry.js" },
+    extends: "Fragment",
+    requiredProps: ["entry"],
+  },
   Field: {
     allowedProps: ["children", "description", "info", "label", "required"],
     example: {
@@ -1009,6 +1015,24 @@ function getPropTypeOverrides(additionalProperties = false) {
           { $ref: "#/definitions/ProteusExpression" },
           { $ref: "#/definitions/ProteusZip" },
         ],
+      },
+    },
+    Federated: {
+      entry: {
+        description:
+          "URL to the remote application's remoteEntry.js or mf-manifest.json",
+        type: "string",
+      },
+      exposeKey: {
+        default: ".",
+        description:
+          "The key from the remote's ModuleFederationPlugin exposes config (e.g. './App'). Defaults to '.' (root export)",
+        type: "string",
+      },
+      fallback: {
+        $ref: "#/definitions/ProteusNode",
+        description:
+          "Content rendered when the federated component fails to load",
       },
     },
     FileUpload: {
