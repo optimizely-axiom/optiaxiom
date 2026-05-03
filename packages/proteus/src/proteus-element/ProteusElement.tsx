@@ -25,6 +25,7 @@ import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentCo
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
 import { resolveProteusProp } from "../proteus-document/resolveProteusProp";
 import { safeParseElement } from "../proteus-document/schemas";
+import { ProteusFederated } from "../proteus-federated/ProteusFederated";
 import { ProteusFileUpload } from "../proteus-file-upload/ProteusFileUpload";
 import { ProteusImageCarousel } from "../proteus-image-carousel/ProteusImageCarousel";
 import { ProteusImage } from "../proteus-image/ProteusImage";
@@ -132,6 +133,14 @@ export const ProteusElement = ({
         <ProteusDataTable
           {...(resolve(element) as ComponentPropsWithoutRef<
             typeof ProteusDataTable
+          >)}
+        />
+      );
+    case "Federated":
+      return (
+        <ProteusFederated
+          {...(resolve(element) as ComponentPropsWithoutRef<
+            typeof ProteusFederated
           >)}
         />
       );
