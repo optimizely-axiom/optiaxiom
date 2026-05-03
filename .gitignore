@@ -27,6 +27,8 @@ storybook-static
 .next
 _pagefind/
 
+/apps/storybook/public/federated-widget/
+
 # generated files
 /apps/docs/components/demo/demos.ts
 /apps/docs/components/props-table/components.ts

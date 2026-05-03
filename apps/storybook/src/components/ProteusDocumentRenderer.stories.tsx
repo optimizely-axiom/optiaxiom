@@ -1613,6 +1613,103 @@ export const WithBridge: Story = {
   },
 };
 
+export const Federated: Story = {
+  args: {
+    data: {
+      experimentName: "Product Page Redesign",
+      status: "running",
+    },
+    element: {
+      $type: "Document",
+      appName: "Experiment Results",
+      body: [
+        {
+          $type: "Heading",
+          children: "Experiment Overview",
+          level: "2",
+        },
+        {
+          $type: "Text",
+          children: [
+            "Experiment: ",
+            {
+              $type: "Badge",
+              children: {
+                $type: "Value",
+                path: "/experimentName",
+              },
+              intent: "information",
+            },
+          ],
+        },
+        {
+          $type: "Separator",
+        },
+        {
+          $type: "Text",
+          children: "Results widget (loaded via Module Federation):",
+        },
+        {
+          $type: "Federated",
+          entry: "/federated-widget/remoteEntry.js",
+          exposeKey: "./App",
+        },
+      ],
+      title: "Mixed Layout",
+    },
+  },
+};
+
+export const FederatedWithExposeKey: Story = {
+  args: {
+    data: {
+      experimentName: "Checkout Flow Experiment",
+      variant: "B",
+    },
+    element: {
+      $type: "Document",
+      appName: "Federated Widget",
+      body: [
+        {
+          $type: "Federated",
+          entry: "/federated-widget/remoteEntry.js",
+          exposeKey: "./Dashboard",
+        },
+      ],
+      title: "Federated with exposeKey",
+    },
+  },
+};
+
+export const FederatedWithFallback: Story = {
+  args: {
+    data: {},
+    element: {
+      $type: "Document",
+      appName: "Federated Widget",
+      body: [
+        {
+          $type: "Text",
+          children:
+            "The federated component below will fail to load and show the fallback:",
+        },
+        {
+          $type: "Federated",
+          entry: "https://invalid.example.com/remoteEntry.js",
+          fallback: [
+            {
+              $type: "Text",
+              children: "Failed to load the remote component.",
+              color: "fg.error",
+            },
+          ],
+        },
+      ],
+      title: "Federated with Fallback",
+    },
+  },
+};
+
 export const PartialRendering: Story = {
   args: {
     element: {
