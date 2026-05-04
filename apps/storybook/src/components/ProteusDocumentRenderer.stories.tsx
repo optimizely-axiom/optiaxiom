@@ -740,7 +740,7 @@ export const AskAgentInputWithFileParam: Story = {
                 $type: "Field",
                 children: {
                   $type: "Input",
-                  name: { $type: "Value", path: "name" },
+                  name: "value",
                   placeholder: { $type: "Value", path: "placeholder" },
                   required: { $type: "Value", path: "required" },
                 },
@@ -757,7 +757,7 @@ export const AskAgentInputWithFileParam: Story = {
                 children: {
                   $type: "FileUpload",
                   accept: ["application/pdf", "text/*"],
-                  name: { $type: "Value", path: "name" },
+                  name: "value",
                   required: { $type: "Value", path: "required" },
                 },
                 description: { $type: "Value", path: "description" },
