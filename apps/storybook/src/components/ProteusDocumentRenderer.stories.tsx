@@ -228,6 +228,54 @@ export const FormWithInputs: Story = {
   },
 };
 
+export const WithExternalLink: Story = {
+  args: {
+    data: {
+      link: "https://example.com",
+    },
+    element: {
+      $type: "Document",
+      actions: [
+        {
+          $type: "Action",
+          appearance: "primary",
+          children: "View",
+          onClick: {
+            action: "openLink",
+            url: { $type: "Value", path: "/link" },
+          },
+        },
+      ],
+      appName: "Opal",
+      body: [
+        {
+          $type: "Group",
+          children: [
+            {
+              $type: "Heading",
+              children: "Key Insight",
+              fontSize: "md",
+              fontWeight: "600",
+              level: "3",
+            },
+            {
+              $type: "Text",
+              children:
+                "Initial performance metrics reveal a 12% drop in user retention post-update. Immediate deep-dive into Android Scrum Project's V2.2 onboarding flow is critical to reverse the trend and secure Q3 engagement goals.",
+              fontSize: "md",
+            },
+          ],
+          flexDirection: "column",
+          gap: "16",
+          p: "16",
+        },
+      ],
+      title:
+        "Version 2.2 Performance Optimization | StellarEdge Outdoor Equipment",
+    },
+  },
+};
+
 export const WithImage: Story = {
   args: {
     element: {

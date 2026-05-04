@@ -1374,6 +1374,25 @@
           },
           "required": ["action", "url"],
           "type": "object"
+        },
+        {
+          "description": "Client-side component action - for opening a link in a new tab",
+          "properties": {
+            "action": {
+              "const": "openLink",
+              "description": "The action type",
+              "type": "string"
+            },
+            "url": {
+              "anyOf": [
+                { "$ref": "#/definitions/ProteusExpression" },
+                { "type": "string" }
+              ],
+              "description": "URL to open in a new tab"
+            }
+          },
+          "required": ["action", "url"],
+          "type": "object"
         }
       ],
       "description": "Handler for user interactions - a server-side interaction call, client-side message, or client-side component action"

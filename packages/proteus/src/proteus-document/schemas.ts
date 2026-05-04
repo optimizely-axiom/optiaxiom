@@ -76,6 +76,10 @@ export type ProteusEventHandler =
       action: "download";
       url: (ProteusValueProps & { $type: "Value" }) | string | string[];
     }
+  | {
+      action: "openLink";
+      url: (ProteusValueProps & { $type: "Value" }) | string;
+    }
   | { interaction: string; params?: Record<string, unknown> }
   | { message: string | StructuredMessage };
 
