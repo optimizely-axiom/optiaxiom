@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.2.9
+
+### Patch Changes
+
+- 53208bf: allow opening external links in proteus
+
 ## 0.2.8
 
 ### Patch Changes
