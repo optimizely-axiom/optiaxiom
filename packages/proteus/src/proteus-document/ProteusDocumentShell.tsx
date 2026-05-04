@@ -192,6 +192,10 @@ export function ProteusDocumentShell({
           } else {
             await Promise.all(urls.map((u) => downloadFile(u)));
           }
+        } else if (event.action === "openLink") {
+          if (typeof event.url === "string") {
+            window.open(event.url, "_blank", "noopener,noreferrer");
+          }
         }
         return;
       })}
