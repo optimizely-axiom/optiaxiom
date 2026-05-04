@@ -779,9 +779,12 @@ export const AskAgentInputWithFileParam: Story = {
       action("onUpload (mocked)")(file);
       await new Promise((resolve) => setTimeout(resolve, 1500));
       const fileId = Math.random().toString(36).slice(2, 10);
-      return `https://opal-localdev.optimizely.com/file-server/files/${fileId}/${encodeURIComponent(
-        file.name,
-      )}?signed=mock`;
+      return {
+        name: file.name,
+        url: `https://opal-localdev.optimizely.com/file-server/files/${fileId}/${encodeURIComponent(
+          file.name,
+        )}?signed=mock`,
+      };
     },
   },
   render: function AskAgentInputWithFileParamRender(args) {
