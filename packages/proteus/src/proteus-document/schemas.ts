@@ -34,6 +34,7 @@ import type { ProteusQuestionProps } from "../proteus-question/ProteusQuestion";
 import type { ProteusSelectProps } from "../proteus-select/ProteusSelect";
 import type { ProteusShowProps } from "../proteus-show/ProteusShow";
 import type { ProteusValueProps } from "../proteus-value/ProteusValue";
+import type { FileUploadMetadata } from "./ProteusDocumentContext";
 import type { ProteusDocumentShellProps } from "./ProteusDocumentShell";
 
 import proteusDocumentSpec from "../schema/runtime-schema.json";
@@ -86,7 +87,7 @@ export type ProteusEventHandler =
   | { message: string | StructuredMessage };
 
 export type StructuredMessage = {
-  files?: string[];
+  files?: FileUploadMetadata[];
   parts: Array<{ content: string; type: "text" }>;
 };
 

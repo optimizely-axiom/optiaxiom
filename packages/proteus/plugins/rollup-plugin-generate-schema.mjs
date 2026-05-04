@@ -812,15 +812,28 @@ function generateSpec(additionalProperties = false) {
         ProteusStructuredMessage: {
           ...(additionalProperties ? {} : { additionalProperties: false }),
           description:
-            "Structured message payload that lets file URLs travel as a typed list alongside the text parts, instead of being joined into the text.",
+            "Structured message payload that lets file metadata travel as a typed list alongside the text parts, instead of being joined into the text.",
           properties: {
             files: {
               anyOf: [
-                { items: { type: "string" }, type: "array" },
+                {
+                  items: {
+                    ...(additionalProperties
+                      ? {}
+                      : { additionalProperties: false }),
+                    properties: {
+                      name: { type: "string" },
+                      url: { type: "string" },
+                    },
+                    required: ["name", "url"],
+                    type: "object",
+                  },
+                  type: "array",
+                },
                 { $ref: "#/definitions/ProteusExpression" },
               ],
               description:
-                "List of file URLs (typically signed URLs from a host upload).",
+                "List of uploaded file metadata objects (typically the host's onUpload return value).",
             },
             parts: {
               items: {

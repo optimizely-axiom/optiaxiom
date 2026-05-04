@@ -10,7 +10,10 @@ import {
 import { useCallback, useRef, useState } from "react";
 
 import { useObserveValue } from "../hooks";
-import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
+import {
+  type FileUploadMetadata,
+  useProteusDocumentContext,
+} from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
 
 export type ProteusFileUploadProps = {
@@ -21,8 +24,9 @@ export type ProteusFileUploadProps = {
    */
   accept?: string[];
   /**
-   * The name of the form control element. The resolved URL is written at
-   * `parentPath/name` in form data once the host's `onUpload` resolves.
+   * The name of the form control element. The resolved metadata object is
+   * written at `parentPath/name` in form data once the host's `onUpload`
+   * resolves.
    */
   name?: string;
   /**
@@ -49,10 +53,10 @@ export function ProteusFileUpload({
   const [item, setItem] = useState<Item | null>(null);
   const forceValueChange = useObserveValue(inputRef);
 
-  const writeUrl = useCallback(
-    (url: null | string) => {
+  const writeValue = useCallback(
+    (value: FileUploadMetadata | null) => {
       if (!name) return;
-      onDataChange?.(`${parentPath}/${name}`, url);
+      onDataChange?.(`${parentPath}/${name}`, value);
     },
     [name, onDataChange, parentPath],
   );
@@ -64,16 +68,16 @@ export function ProteusFileUpload({
       }
       const file = incoming[0];
       setItem({ file, status: "uploading" });
-      writeUrl(null);
+      writeValue(null);
       if (inputRef.current) {
         forceValueChange("");
       }
       try {
-        const url = await onUpload(file);
+        const metadata = await onUpload(file);
         setItem((curr) =>
           curr?.file === file ? { file, status: "complete" } : curr,
         );
-        writeUrl(url);
+        writeValue(metadata);
         if (inputRef.current) {
           forceValueChange("1");
         }
@@ -83,16 +87,16 @@ export function ProteusFileUpload({
         );
       }
     },
-    [forceValueChange, onUpload, readOnly, writeUrl],
+    [forceValueChange, onUpload, readOnly, writeValue],
   );
 
   const handleRemove = useCallback(() => {
     setItem(null);
-    writeUrl(null);
+    writeValue(null);
     if (inputRef.current) {
       forceValueChange("");
     }
-  }, [forceValueChange, writeUrl]);
+  }, [forceValueChange, writeValue]);
 
   return (
     <FileUpload
