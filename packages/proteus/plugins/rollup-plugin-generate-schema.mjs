@@ -818,14 +818,11 @@ function generateSpec(additionalProperties = false) {
               anyOf: [
                 {
                   items: {
-                    ...(additionalProperties
-                      ? {}
-                      : { additionalProperties: false }),
                     properties: {
+                      link: { type: "string" },
                       name: { type: "string" },
-                      url: { type: "string" },
                     },
-                    required: ["name", "url"],
+                    required: ["name", "link"],
                     type: "object",
                   },
                   type: "array",
@@ -833,7 +830,7 @@ function generateSpec(additionalProperties = false) {
                 { $ref: "#/definitions/ProteusExpression" },
               ],
               description:
-                "List of uploaded file metadata objects (typically the host's onUpload return value).",
+                "List of uploaded file metadata objects (typically the host's onUpload return value). Hosts may attach additional fields beyond `name` and `link`.",
             },
             parts: {
               items: {

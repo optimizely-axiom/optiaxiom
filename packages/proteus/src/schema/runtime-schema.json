@@ -1437,17 +1437,17 @@
             {
               "items": {
                 "properties": {
-                  "name": { "type": "string" },
-                  "url": { "type": "string" }
+                  "link": { "type": "string" },
+                  "name": { "type": "string" }
                 },
-                "required": ["name", "url"],
+                "required": ["name", "link"],
                 "type": "object"
               },
               "type": "array"
             },
             { "$ref": "#/definitions/ProteusExpression" }
           ],
-          "description": "List of uploaded file metadata objects (typically the host's onUpload return value)."
+          "description": "List of uploaded file metadata objects (typically the host's onUpload return value). Hosts may attach additional fields beyond `name` and `link`."
         },
         "parts": {
           "items": {

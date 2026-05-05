@@ -780,10 +780,10 @@ export const AskAgentInputWithFileParam: Story = {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       const fileId = Math.random().toString(36).slice(2, 10);
       return {
-        name: file.name,
-        url: `https://opal-localdev.optimizely.com/file-server/files/${fileId}/${encodeURIComponent(
+        link: `https://opal-localdev.optimizely.com/file-server/files/${fileId}/${encodeURIComponent(
           file.name,
         )}?signed=mock`,
+        name: file.name,
       };
     },
   },
