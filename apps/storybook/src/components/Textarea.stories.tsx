@@ -166,3 +166,89 @@ export const WithSuggestion: Story = {
     );
   },
 };
+
+export const WithManualSuggestion: Story = {
+  render: function WithManualSuggestion() {
+    const [value, setValue] = useState("");
+    const [suggestions, setSuggestions] = useState<
+      Array<{
+        createdAt: string;
+        id: string;
+        page: string;
+        reason: string;
+        surface: string;
+        type: "value";
+        value: string;
+      }>
+    >([]);
+
+    return (
+      <SurfaceProvider
+        accept={(suggestionId: string) => {
+          action("accept")(suggestionId);
+          setValue(
+            String(suggestions.find((s) => s.id === suggestionId)?.value),
+          );
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        executeTool={action("execute")}
+        manualSuggestion
+        metadata={{}}
+        name="description"
+        pageViewId=""
+        path="product<storybook>/page<demo>/resource<form>/property<description>"
+        reject={(suggestionId: string) => {
+          action("reject")(suggestionId);
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        suggestionAlert={{ register: () => () => {}, registered: true }}
+        suggestionPopover={{ register: () => () => {}, registered: false }}
+        suggestions={suggestions}
+        track={(interaction) => {
+          action("track")(interaction);
+          if (interaction.name === "changed") {
+            setTimeout(() => {
+              setSuggestions([
+                {
+                  createdAt: new Date().toISOString(),
+                  id: `sug-${Date.now()}`,
+                  page: "product<storybook>/page<demo>",
+                  reason: "Based on similar entries",
+                  surface: "property<description>",
+                  type: "value",
+                  value:
+                    "This feature will improve user experience by providing real-time feedback and reducing the number of steps required to complete the workflow.",
+                },
+              ]);
+            }, 1200);
+          }
+        }}
+        type="property"
+        value={value}
+      >
+        <Group alignItems="start" flexDirection="column" gap="16">
+          <Textarea
+            onValueChange={setValue}
+            placeholder="Enter description, then click the Opal icon"
+            value={value}
+          />
+
+          <Group gap="8">
+            <Text fontSize="sm">Value: {value || "(empty)"}</Text>
+          </Group>
+
+          <Button
+            disabled={value === ""}
+            onClick={() => {
+              setValue("");
+              setSuggestions([]);
+            }}
+            size="sm"
+          >
+            Reset
+          </Button>
+        </Group>
+      </SurfaceProvider>
+    );
+  },
+};
