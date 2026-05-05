@@ -133,7 +133,9 @@ export const InputControl = forwardRef<
               const newValue = event.target.value;
               onValueChange?.(newValue);
 
-              debouncedTrack?.(newValue);
+              if (!surface?.manualSuggestion) {
+                debouncedTrack?.(newValue);
+              }
             }
           }}
           onFocus={(event) => {

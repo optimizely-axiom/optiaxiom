@@ -37,6 +37,7 @@ type Surface = {
 type SurfaceContextValue<V = unknown> = {
   accept: (suggestionId: string) => void;
   executeTool: (name: string, parameters: unknown) => Promise<void> | void;
+  manualSuggestion?: boolean;
   metadata: Record<string, Omit<Surface, "name">>;
   name: string;
   pageViewId: string | undefined;
