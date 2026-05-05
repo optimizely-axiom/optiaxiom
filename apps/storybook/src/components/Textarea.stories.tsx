@@ -206,7 +206,7 @@ export const WithManualSuggestion: Story = {
         suggestions={suggestions}
         track={(interaction) => {
           action("track")(interaction);
-          if (interaction.name === "changed") {
+          if (interaction.name === "requested") {
             setTimeout(() => {
               setSuggestions([
                 {

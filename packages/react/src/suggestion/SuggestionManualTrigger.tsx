@@ -24,7 +24,6 @@ export const SuggestionManualTrigger = forwardRef<
   }, []);
 
   const [pending, setPending] = useState(false);
-  const [acceptedValue, setAcceptedValue] = useState<unknown>(undefined);
   const suggestions = useSuggestions("property", "value");
   const suggestion = suggestions?.find((s) => s.value !== surface?.value);
 
@@ -32,7 +31,6 @@ export const SuggestionManualTrigger = forwardRef<
     if (!suggestion) {
       return;
     }
-    setAcceptedValue(suggestion.value);
     surface?.accept(suggestion.id);
     setPending(false);
   });
@@ -40,7 +38,7 @@ export const SuggestionManualTrigger = forwardRef<
     acceptSuggestion();
   }, [suggestion?.id]);
 
-  if (!surface || surface.value === acceptedValue) {
+  if (!surface) {
     return null;
   }
 
@@ -58,7 +56,7 @@ export const SuggestionManualTrigger = forwardRef<
       }
       onClick={() => {
         setPending(true);
-        surface.track({ name: "changed", value: surface.value });
+        surface.track({ name: "requested", value: surface.value });
       }}
       ref={ref}
       size="sm"

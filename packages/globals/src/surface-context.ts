@@ -66,6 +66,7 @@ type SurfaceInteraction = { id?: string } & (
   | { name: "focused" }
   | { name: "invoked" }
   | { name: "removed"; value: unknown }
+  | { name: "requested"; value: unknown }
   | { name: "viewed" }
 );
 
