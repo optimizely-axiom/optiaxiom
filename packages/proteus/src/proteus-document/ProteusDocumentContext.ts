@@ -5,8 +5,9 @@ import { createContext } from "@radix-ui/react-context";
 import type { ProteusEventHandler } from "./schemas";
 
 export type FileUploadMetadata = {
+  [key: string]: unknown;
+  link: string;
   name: string;
-  url: string;
 };
 
 export type UploadFile = (file: File) => Promise<FileUploadMetadata>;
