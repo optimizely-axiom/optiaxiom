@@ -21,18 +21,9 @@ export function App() {
               entry: "https://invalid.example.com/remoteEntry.js",
               fallback: [
                 {
-                  $type: "Card",
-                  children: [
-                    {
-                      $type: "CardHeader",
-                      children: "Remote unavailable",
-                    },
-                    {
-                      $type: "Text",
-                      children:
-                        "The federated remote could not be loaded. This fallback content keeps the document usable.",
-                    },
-                  ],
+                  $type: "Text",
+                  children:
+                    "Remote widget unavailable — fallback content keeps the document usable.",
                 },
               ],
             },
