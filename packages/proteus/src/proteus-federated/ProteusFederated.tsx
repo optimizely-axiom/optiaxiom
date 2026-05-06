@@ -4,7 +4,7 @@ import {
   loadRemote,
   registerRemotes,
 } from "@module-federation/enhanced/runtime";
-import {
+import React, {
   type ComponentType,
   type ReactNode,
   Suspense,
@@ -12,6 +12,7 @@ import {
   useId,
   useState,
 } from "react";
+import * as ReactJsxRuntime from "react/jsx-runtime";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 
@@ -93,7 +94,22 @@ export function ProteusFederated({
 
 function ensureInstance() {
   if (!getInstance()) {
-    init({ name: "proteus-federated", remotes: [] });
+    init({
+      name: "proteus-federated",
+      remotes: [],
+      shared: {
+        react: {
+          lib: () => React,
+          shareConfig: { requiredVersion: false, singleton: true },
+          version: React.version,
+        },
+        "react/jsx-runtime": {
+          lib: () => ReactJsxRuntime,
+          shareConfig: { requiredVersion: false, singleton: true },
+          version: React.version,
+        },
+      },
+    });
   }
 }
 
