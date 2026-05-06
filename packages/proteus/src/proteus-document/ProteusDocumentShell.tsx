@@ -75,7 +75,7 @@ export type ProteusDocumentShellProps = Pick<
   onTrack?: (event: string, properties: Record<string, string>) => void;
   /**
    * Async upload callback used by FileUpload elements. Receives a File and
-   * resolves to a URL string the document writes into form data.
+   * resolves to a metadata object the document writes into form data.
    */
   onUpload?: UploadFile;
   /**

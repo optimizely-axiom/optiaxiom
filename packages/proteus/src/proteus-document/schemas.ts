@@ -86,8 +86,10 @@ export type ProteusEventHandler =
   | { interaction: string; params?: Record<string, unknown> }
   | { message: string | StructuredMessage };
 
-export type StructuredMessage = {
-  files?: FileUploadMetadata[];
+export type StructuredMessage<
+  F extends FileUploadMetadata = FileUploadMetadata,
+> = {
+  files?: F[];
   parts: Array<{ content: string; type: "text" }>;
 };
 
