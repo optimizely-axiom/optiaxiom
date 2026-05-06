@@ -4,6 +4,12 @@ import { Demo, ProteusElementRef } from "@/components";
 
 Proteus is a JSON-based UI specification for building interactive tool interfaces. You define your UI as a JSON document, and the Proteus renderer (`@optiaxiom/proteus`) turns it into interactive Axiom components.
 
+## Proteus Designer
+
+### Visual editor
+
+The [Proteus Designer](/guides/proteus-designer) is a visual editor for building Proteus documents. You can build a component tree, edit properties in the inspector, see a live preview of how the document renders, and copy the final JSON into your resource handler. You can also provide sample data to test how dynamic values resolve.
+
 ## Document structure
 
 ### Minimal document
@@ -116,11 +122,19 @@ Triggers a file download:
 
 <Demo component="proteus/action-download" />
 
-## Proteus Designer
+## Embedding external content
 
-### Visual editor
+### Bridge
 
-The [Proteus Designer](/guides/proteus-designer) is a visual editor for building Proteus documents. You can build a component tree, edit properties in the inspector, see a live preview of how the document renders, and copy the final JSON into your resource handler. You can also provide sample data to test how dynamic values resolve.
+`Bridge` embeds an MCP app widget inside the Proteus document by rendering it in a sandboxed iframe. Provide a `resource` URI; the document's `useResource` callback resolves it to an HTML payload that the iframe loads. Bridge wires up the [MCP App Bridge](https://modelcontextprotocol.io) so the embedded widget can call tools, send messages, open links, and request resize — with each event flowing through the document's existing event handlers.
+
+<Demo component="proteus/bridge" />
+
+### Federated
+
+`Federated` loads a remote React component at runtime via [Module Federation](https://module-federation.io) and renders it inline. The `entry` prop points to a `remoteEntry.js` (or `mf-manifest.json`) URL, and the optional `exposeKey` selects which exposed module to mount (defaults to the root export `"."`). The remote component receives the document `data` and `onEvent` so it can read context and trigger interactions like a native Proteus element. Use `fallback` to render content when the remote fails to load:
+
+<Demo component="proteus/federated" />
 
 ## Element reference
 
@@ -275,3 +289,7 @@ The [Proteus Designer](/guides/proteus-designer) is a visual editor for building
 ### Bridge
 
 <ProteusElementRef type="Bridge" />
+
+### Federated
+
+<ProteusElementRef type="Federated" />
