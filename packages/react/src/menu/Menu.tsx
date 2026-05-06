@@ -170,7 +170,8 @@ export function Menu({
 
   const hasSelectableItem = useMemo(
     () =>
-      options.filter((item) => "selected" in item).length > options.length / 2,
+      options.filter((item) => "selected" in item).length >
+        options.length / 2 && options.length >= 10,
     [options],
   );
   const inputDefaultVisibleRef = useRef(hasSelectableItem);
