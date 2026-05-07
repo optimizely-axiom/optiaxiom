@@ -25,7 +25,7 @@ export const SuggestionManualTrigger = forwardRef<
 
   const [pending, setPending] = useState(false);
   const suggestions = useSuggestions("property", "value");
-  const suggestion = suggestions?.find((s) => s.value !== surface?.value);
+  const suggestion = suggestions?.[0];
 
   const acceptSuggestion = useEffectEvent(() => {
     if (!suggestion) {
@@ -47,13 +47,8 @@ export const SuggestionManualTrigger = forwardRef<
       appearance="subtle"
       aria-label="Opal suggestion"
       disabled={pending}
-      icon={
-        <Avatar
-          animation={pending ? "pulse" : undefined}
-          fallback="opal"
-          size="2xs"
-        />
-      }
+      icon={<Avatar fallback="opal" size="2xs" />}
+      loading={pending}
       onClick={() => {
         setPending(true);
         surface.track({ name: "requested", value: surface.value });
