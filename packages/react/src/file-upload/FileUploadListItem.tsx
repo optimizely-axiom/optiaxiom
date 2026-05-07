@@ -1,3 +1,8 @@
+import {
+  IconCircleExclamation,
+  IconFile,
+  IconTrashCan,
+} from "@optiaxiom/icons";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -6,9 +11,6 @@ import { Cover } from "../cover";
 import { Flex } from "../flex";
 import { Group } from "../group";
 import { Icon } from "../icon";
-import { IconCircleExclamationSolid } from "../icons/IconCircleExclamationSolid";
-import { IconFileSolid } from "../icons/IconFileSolid";
-import { IconTrashCan } from "../icons/IconTrashCan";
 import { Spinner } from "../spinner";
 import { Text } from "../text";
 import * as styles from "./FileUploadListItem.css";
@@ -84,7 +86,7 @@ export const FileUploadListItem = forwardRef<
         <Spinner size="sm" />
       ) : status === "error" ? (
         <Icon asChild color="fg.error" h="auto" w="24">
-          <IconCircleExclamationSolid />
+          <IconCircleExclamation filled />
         </Icon>
       ) : file.type.startsWith("image/") ? (
         <Box overflow="hidden" rounded="sm" size="24">
@@ -94,7 +96,7 @@ export const FileUploadListItem = forwardRef<
         </Box>
       ) : (
         <Icon asChild color="fg.tertiary" h="auto" w="24">
-          <IconFileSolid />
+          <IconFile filled />
         </Icon>
       )}
       <Flex flex="1" gap="2" overflow="hidden">
