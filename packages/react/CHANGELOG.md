@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.9.33
+
+### Patch Changes
+
+- 73bf7d0: more intelligent default menu alignment
+- 3bae10a: only show search by default if more than 6 selectable items
+
 ## 1.9.32
 
 ### Patch Changes
