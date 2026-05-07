@@ -2,7 +2,12 @@ import { useModalContext } from "@optiaxiom/globals";
 import { useId } from "@radix-ui/react-id";
 import { createSlot } from "@radix-ui/react-slot";
 import clsx from "clsx";
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  forwardRef,
+  useLayoutEffect,
+  useState,
+} from "react";
 import { RemoveScroll } from "react-remove-scroll";
 
 import type { MenuContent } from "./MenuContent";
@@ -21,7 +26,7 @@ export type MenuPopoverContentProps = ComponentPropsWithoutRef<
 export const MenuPopoverContent = forwardRef<
   HTMLDivElement,
   MenuPopoverContentProps
->(({ "aria-label": ariaLabel, children, ...props }, ref) => {
+>(({ align, "aria-label": ariaLabel, children, ...props }, ref) => {
   const { shardRef } = useModalContext("@optiaxiom/react/MenuPopoverContent");
   const { labelId: fieldLabelId } = useFieldContext(
     "@optiaxiom/react/MenuPopoverContent",
@@ -29,8 +34,18 @@ export const MenuPopoverContent = forwardRef<
   const { triggerRef } = useMenuContext("@optiaxiom/react/MenuPopoverContent");
   const labelId = useId();
 
+  const [resolvedAlign, setResolvedAlign] = useState(align);
+  useLayoutEffect(() => {
+    const rect = triggerRef.current?.getBoundingClientRect();
+    if (rect) {
+      const center = rect.left + rect.width / 2;
+      setResolvedAlign(center > window.innerWidth / 2 ? "end" : "start");
+    }
+  }, [align, triggerRef]);
+
   const content = (
     <PopoverContent
+      align={align ?? resolvedAlign}
       aria-labelledby={clsx(fieldLabelId ?? triggerRef.current?.id, labelId)}
       ref={ref}
       {...props}

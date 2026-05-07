@@ -19,6 +19,7 @@ import {
   DialogFooter,
   DialogHeader,
   Field,
+  Grid,
   Group,
   Input,
   Menu,
@@ -39,11 +40,14 @@ export default {
     defaultOpen: true,
   },
   component: Menu,
-  decorators: (Story) => (
-    <Box w="224">
+  decorators: (Story, context) =>
+    context.parameters.fullWidth ? (
       <Story />
-    </Box>
-  ),
+    ) : (
+      <Box w="224">
+        <Story />
+      </Box>
+    ),
 } as Meta<typeof Menu>;
 
 const languages = [
@@ -502,6 +506,100 @@ export const WithGroup: Story = {
         <MenuTrigger>Select an item</MenuTrigger>
         <MenuContent />
       </Menu>
+    );
+  },
+};
+
+export const Placement: Story = {
+  parameters: {
+    fullWidth: true,
+    layout: "fullscreen",
+  },
+  render: function Placement(args) {
+    const [value, setValue] = useState("Bangla");
+
+    return (
+      <Grid gridTemplateColumns="2" p="80" style={{ height: "100vh" }} w="full">
+        <Box w="224">
+          <Menu
+            options={useMemo(
+              () =>
+                languages.map<MenuOption>((language) => ({
+                  execute: () => setValue(language),
+                  label: language,
+                  selected: value === language,
+                })),
+              [value],
+            )}
+          >
+            <MenuTrigger>{value || "Set language"}</MenuTrigger>
+            <MenuContent maxH="sm" />
+          </Menu>
+        </Box>
+
+        <Box
+          display="flex"
+          justifyContent="end"
+          style={{ justifySelf: "end" }}
+          w="224"
+        >
+          <Menu
+            {...args}
+            options={useMemo(
+              () =>
+                languages.map<MenuOption>((language) => ({
+                  execute: () => setValue(language),
+                  label: language,
+                  selected: value === language,
+                })),
+              [value],
+            )}
+          >
+            <MenuTrigger>{value || "Set language"}</MenuTrigger>
+            <MenuContent maxH="sm" />
+          </Menu>
+        </Box>
+
+        <Box alignSelf="end" w="224">
+          <Menu
+            options={useMemo(
+              () =>
+                languages.map<MenuOption>((language) => ({
+                  execute: () => setValue(language),
+                  label: language,
+                  selected: value === language,
+                })),
+              [value],
+            )}
+          >
+            <MenuTrigger>{value || "Set language"}</MenuTrigger>
+            <MenuContent maxH="sm" />
+          </Menu>
+        </Box>
+
+        <Box
+          alignSelf="end"
+          display="flex"
+          justifyContent="end"
+          style={{ justifySelf: "end" }}
+          w="224"
+        >
+          <Menu
+            options={useMemo(
+              () =>
+                languages.map<MenuOption>((language) => ({
+                  execute: () => setValue(language),
+                  label: language,
+                  selected: value === language,
+                })),
+              [value],
+            )}
+          >
+            <MenuTrigger>{value || "Set language"}</MenuTrigger>
+            <MenuContent maxH="sm" />
+          </Menu>
+        </Box>
+      </Grid>
     );
   },
 };
