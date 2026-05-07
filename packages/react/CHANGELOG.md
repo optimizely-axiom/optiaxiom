@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 3.0.0-next.3
+
+### Patch Changes
+
+- 2712b1d: replace with material icons
+
 ## 3.0.0-next.2
 
 ### Patch Changes

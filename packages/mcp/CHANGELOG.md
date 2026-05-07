@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 3.0.0-next.0
+
+### Major Changes
+
+- ef01124: update tokens to v3
+
 ## 0.2.7
 
 ### Patch Changes
