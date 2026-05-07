@@ -1,5 +1,14 @@
 # @optiaxiom/proteus
 
+## 0.2.10
+
+### Patch Changes
+
+- 090c4a8: Add Proteus Federated Component
+- Updated dependencies [73bf7d0]
+- Updated dependencies [3bae10a]
+  - @optiaxiom/react@1.9.33
+
 ## 0.2.9
 
 ### Patch Changes
