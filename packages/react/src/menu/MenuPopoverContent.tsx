@@ -39,7 +39,7 @@ export const MenuPopoverContent = forwardRef<
     const rect = triggerRef.current?.getBoundingClientRect();
     if (rect) {
       const center = rect.left + rect.width / 2;
-      setResolvedAlign(center > window.innerWidth / 2 ? "end" : "start");
+      setResolvedAlign(center > window.innerWidth * 0.75 ? "end" : "start");
     }
   }, [align, triggerRef]);
 
