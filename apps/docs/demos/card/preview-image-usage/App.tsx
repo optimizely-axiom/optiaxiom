@@ -5,22 +5,16 @@ import {
   CardImage,
   CardPreview,
 } from "@optiaxiom/react";
-import Image from "next/image";
-
-import beach from "./beach.jpg";
 
 export function App() {
   return (
     <Box maxW="xs" w="full">
       <Card>
         <CardPreview>
-          <CardImage asChild>
-            <Image
-              alt="brown glass bottle beside white book on blue and white textile"
-              priority
-              src={beach}
-            />
-          </CardImage>
+          <CardImage
+            alt="brown glass bottle beside white book on blue and white textile"
+            src="https://picsum.photos/seed/optiaxiom/640/427"
+          />
         </CardPreview>
         <CardHeader>The majestic world of turtles</CardHeader>
       </Card>
