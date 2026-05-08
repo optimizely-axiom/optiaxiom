@@ -13,13 +13,22 @@ Depending on your bundler you might require additional configuration to enable C
 
 ## Next.js
 
-### App Router
+### Turbopack
 
-If you are using the [App Router](https://nextjs.org/docs/app) then you do not need any additional configuration.
+If you are using [Turbopack](https://nextjs.org/docs/app/api-reference/turbopack) then you need to add our packages to the [optimizePackageImports](https://nextjs.org/docs/app/api-reference/next-config-js/optimizePackageImports) option:
 
-### Pages Router
+```js filename="next.config.js"
+export default {
+  // ...
+  experimental: {
+    optimizePackageImports: ["@optiaxiom/globals", "@optiaxiom/react"],
+  },
+};
+```
 
-If you are using the [Pages Router](https://nextjs.org/docs/pages) then you need to add our packages to the [transpilePackages](https://nextjs.org/docs/app/api-reference/next-config-js/transpilePackages) option:
+### Webpack
+
+If you are using Webpack then you need to add our packages to the [transpilePackages](https://nextjs.org/docs/app/api-reference/next-config-js/transpilePackages) option:
 
 ```js filename="next.config.js"
 export default {
