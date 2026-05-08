@@ -3,9 +3,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
 import { Box, Group, theme } from "@optiaxiom/react";
-import Image from "next/image";
-
-import beach from "./beach.jpg";
 
 export function App({
   objectFit = "cover",
@@ -19,9 +16,9 @@ export function App({
       w="full"
     >
       <Box asChild objectFit={objectFit} rounded="inherit" size="full">
-        <Image
+        <img
           alt="brown glass bottle beside white book on blue and white textile"
-          src={beach}
+          src="https://picsum.photos/seed/optiaxiom/640/427"
         />
       </Box>
     </Group>

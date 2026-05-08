@@ -1,7 +1,4 @@
 import { Box, Group, Text } from "@optiaxiom/react";
-import Image from "next/image";
-
-import beach from "./beach.jpg";
 
 export function App() {
   return (
@@ -16,9 +13,9 @@ export function App() {
     >
       <Group alignItems="start" flexDirection={["column", "row"]} gap="0">
         <Box asChild h="auto" maxW="full">
-          <Image
+          <img
             alt="brown glass bottle beside white book on blue and white textile"
-            src={beach}
+            src="https://picsum.photos/seed/optiaxiom/640/427"
             style={{ minWidth: "0" }}
           />
         </Box>
