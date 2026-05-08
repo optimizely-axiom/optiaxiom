@@ -1,5 +1,13 @@
 # @optiaxiom/proteus
 
+## 0.2.11
+
+### Patch Changes
+
+- 1fba745: add meta and data fields to document
+- Updated dependencies [68388a3]
+  - @optiaxiom/react@1.9.34
+
 ## 0.2.10
 
 ### Patch Changes

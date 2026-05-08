@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.34
+
+### Patch Changes
+
+- 68388a3: fix auto menu alignment limit
+
 ## 1.9.33
 
 ### Patch Changes
