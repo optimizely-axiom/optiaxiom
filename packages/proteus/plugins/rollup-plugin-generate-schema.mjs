@@ -669,6 +669,16 @@ function generateSpec(additionalProperties = false) {
                 "If true, constrains the body to a max height and makes it scrollable when content overflows.",
               type: "boolean",
             },
+            data: {
+              additionalProperties: {},
+              description:
+                "Initial data for the document. Not used by the renderer directly — intended for the outer component managing state to use as the starting data.",
+              type: "object",
+            },
+            meta: {
+              description:
+                "Additional metadata not directly consumed by Proteus. Use this to pass along any extra data.",
+            },
             subtitle: {
               $ref: "#/definitions/ProteusNode",
               description:
