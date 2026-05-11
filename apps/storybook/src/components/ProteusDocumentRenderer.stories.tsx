@@ -688,6 +688,7 @@ export const AskAgentInputWithFileParam: Story = {
                     ],
                   },
                 },
+                flat: true,
                 path: "/parameters",
               },
               parts: [
@@ -695,27 +696,97 @@ export const AskAgentInputWithFileParam: Story = {
                   content: {
                     $type: "Map",
                     children: {
-                      $type: "Show",
-                      children: {
-                        $type: "Concat",
-                        children: [
-                          { $type: "Value", path: "name" },
-                          ": ",
-                          {
-                            $type: "Show",
-                            children: "[Not specified]",
-                            when: { "!": { $type: "Value", path: "value" } },
+                      $type: "Concat",
+                      children: [
+                        { $type: "Value", path: "name" },
+                        ": ",
+                        {
+                          $type: "Show",
+                          children: "[Not specified]",
+                          when: {
+                            and: [
+                              {
+                                "!=": [
+                                  { $type: "Value", path: "type" },
+                                  "boolean",
+                                ],
+                              },
+                              {
+                                "!=": [
+                                  { $type: "Value", path: "type" },
+                                  "file",
+                                ],
+                              },
+                              { "!": { $type: "Value", path: "value" } },
+                            ],
                           },
-                          {
-                            $type: "Show",
-                            children: { $type: "Value", path: "value" },
-                            when: { "!!": { $type: "Value", path: "value" } },
+                        },
+                        {
+                          $type: "Show",
+                          children: { $type: "Value", path: "value" },
+                          when: {
+                            and: [
+                              {
+                                "!=": [
+                                  { $type: "Value", path: "type" },
+                                  "file",
+                                ],
+                              },
+                              { "!!": { $type: "Value", path: "value" } },
+                            ],
                           },
-                        ],
-                      },
-                      when: {
-                        "!=": [{ $type: "Value", path: "type" }, "file"],
-                      },
+                        },
+                        {
+                          $type: "Show",
+                          children: {
+                            $type: "Map",
+                            children: { $type: "Value", path: "name" },
+                            path: "value",
+                            separator: ", ",
+                          },
+                          when: {
+                            and: [
+                              {
+                                "==": [
+                                  { $type: "Value", path: "type" },
+                                  "file",
+                                ],
+                              },
+                              { "!!": { $type: "Value", path: "value" } },
+                            ],
+                          },
+                        },
+                        {
+                          $type: "Show",
+                          children: "[Not specified]",
+                          when: {
+                            and: [
+                              {
+                                "==": [
+                                  { $type: "Value", path: "type" },
+                                  "file",
+                                ],
+                              },
+                              { "!": { $type: "Value", path: "value" } },
+                            ],
+                          },
+                        },
+                        {
+                          $type: "Show",
+                          children: { $type: "Value", path: "value" },
+                          when: {
+                            and: [
+                              {
+                                "==": [
+                                  { $type: "Value", path: "type" },
+                                  "boolean",
+                                ],
+                              },
+                              { "!": { $type: "Value", path: "value" } },
+                            ],
+                          },
+                        },
+                      ],
                     },
                     path: "/parameters",
                     separator: "\n",
@@ -757,8 +828,9 @@ export const AskAgentInputWithFileParam: Story = {
                 children: {
                   $type: "FileUpload",
                   accept: ["application/pdf", "text/*"],
+                  maxFiles: 1,
+                  minFiles: 1,
                   name: "value",
-                  required: { $type: "Value", path: "required" },
                 },
                 description: { $type: "Value", path: "description" },
                 label: { $type: "Value", path: "name" },

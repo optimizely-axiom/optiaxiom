@@ -1,3 +1,4 @@
+import { IconPlus } from "@optiaxiom/icons";
 import { Flex } from "@optiaxiom/react";
 import {
   FileUpload,
@@ -24,23 +25,31 @@ export type ProteusFileUploadProps = {
    */
   accept?: string[];
   /**
-   * The name of the form control element. The resolved metadata object is
+   * Maximum number of files allowed. When set to `1` the field is in
+   * single-file mode; any other value (or omitted) allows multiple uploads.
+   */
+  maxFiles?: number;
+  /**
+   * Minimum number of files required.
+   */
+  minFiles?: number;
+  /**
+   * The name of the form control element. The resolved metadata array is
    * written at `parentPath/name` in form data once the host's `onUpload`
    * resolves.
    */
   name?: string;
-  /**
-   * Whether a file is required.
-   */
-  required?: boolean;
 };
 
-type Item = FileUploadListProps["items"][number];
+type Item = FileUploadListProps["items"][number] & {
+  metadata?: FileUploadMetadata;
+};
 
 export function ProteusFileUpload({
   accept,
+  maxFiles,
+  minFiles = 0,
   name,
-  required,
 }: ProteusFileUploadProps) {
   const { onDataChange, onUpload, readOnly } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusFileUpload",
@@ -50,73 +59,122 @@ export function ProteusFileUpload({
   );
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const [item, setItem] = useState<Item | null>(null);
+  const itemsRef = useRef<Item[]>([]);
+  const [items, setItems] = useState<Item[]>([]);
   const forceValueChange = useObserveValue(inputRef);
 
-  const writeValue = useCallback(
-    (value: FileUploadMetadata | null) => {
-      if (!name) return;
+  const multiple = maxFiles !== 1;
+  const atMax = multiple && maxFiles !== undefined && items.length >= maxFiles;
+
+  const writeValue = useCallback(() => {
+    setItems(itemsRef.current);
+    if (inputRef.current) {
+      forceValueChange(
+        itemsRef.current
+          .filter((item) => item.status === "complete")
+          .length.toString(),
+      );
+    }
+    if (name) {
+      const value = itemsRef.current
+        .filter((item) => item.status === "complete")
+        .map((item) => item.metadata)
+        .filter((metadata) => !!metadata);
       onDataChange?.(`${parentPath}/${name}`, value);
-    },
-    [name, onDataChange, parentPath],
-  );
+    }
+  }, [forceValueChange, name, onDataChange, parentPath]);
 
   const handleFilesDrop = useCallback(
     async (incoming: File[]) => {
+      if (multiple) {
+        incoming =
+          maxFiles !== undefined
+            ? incoming.slice(0, Math.max(0, maxFiles - itemsRef.current.length))
+            : incoming;
+      } else {
+        incoming = incoming.slice(0, 1);
+      }
       if (!onUpload || readOnly || incoming.length === 0) {
         return;
       }
-      const file = incoming[0];
-      setItem({ file, status: "uploading" });
-      writeValue(null);
-      if (inputRef.current) {
-        forceValueChange("");
-      }
-      try {
-        const metadata = await onUpload(file);
-        setItem((curr) =>
-          curr?.file === file ? { file, status: "complete" } : curr,
-        );
-        writeValue(metadata);
-        if (inputRef.current) {
-          forceValueChange("1");
-        }
-      } catch {
-        setItem((curr) =>
-          curr?.file === file ? { file, status: "error" } : curr,
-        );
-      }
+
+      itemsRef.current = [
+        ...(multiple ? itemsRef.current : []),
+        ...incoming.map((file) => ({ file, status: "uploading" as const })),
+      ];
+      writeValue();
+
+      const result = new Map<File, Item>(
+        await Promise.all(
+          incoming.map((file) =>
+            onUpload(file)
+              .then(
+                (metadata) =>
+                  [
+                    file,
+                    {
+                      file,
+                      metadata,
+                      status: "complete",
+                    },
+                  ] as const,
+              )
+              .catch(
+                () =>
+                  [
+                    file,
+                    {
+                      file,
+                      status: "error",
+                    },
+                  ] as const,
+              ),
+          ),
+        ),
+      );
+      itemsRef.current = itemsRef.current.map(
+        (item) => result.get(item.file) ?? item,
+      );
+      writeValue();
     },
-    [forceValueChange, onUpload, readOnly, writeValue],
+    [maxFiles, multiple, onUpload, readOnly, writeValue],
   );
 
-  const handleRemove = useCallback(() => {
-    setItem(null);
-    writeValue(null);
-    if (inputRef.current) {
-      forceValueChange("");
-    }
-  }, [forceValueChange, writeValue]);
+  const handleRemove = useCallback(
+    (item: Item) => {
+      itemsRef.current = itemsRef.current.filter((i) => i !== item);
+      writeValue();
+    },
+    [writeValue],
+  );
 
   return (
     <FileUpload
       accept={accept}
-      disabled={!onUpload || readOnly}
+      disabled={!onUpload || readOnly || atMax}
       onFilesDrop={handleFilesDrop}
     >
       <VisuallyHidden asChild>
         <input
           aria-hidden
+          defaultValue={0}
+          max={maxFiles !== undefined ? String(maxFiles) : undefined}
+          min={String(minFiles)}
           name={name}
           ref={inputRef}
-          required={required}
           tabIndex={-1}
+          type="number"
         />
       </VisuallyHidden>
-      {item ? (
+      {items.length > 0 ? (
         <Flex flexDirection="column" gap="8">
-          <FileUploadList items={[item]} onRemove={handleRemove} />
-          <FileUploadDropzone overlay />
+          {multiple && !atMax && (
+            <FileUploadTrigger alignSelf="end" icon={<IconPlus />}>
+              Add File
+            </FileUploadTrigger>
+          )}
+          <FileUploadList items={items} onRemove={handleRemove} />
+          {!atMax && <FileUploadDropzone overlay />}
         </Flex>
       ) : (
         <FileUploadDropzone>

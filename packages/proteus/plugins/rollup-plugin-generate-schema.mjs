@@ -121,7 +121,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     },
   },
   FileUpload: {
-    allowedProps: ["accept", "name", "required"],
+    allowedProps: ["accept", "maxFiles", "minFiles", "name"],
     example: { name: "value" },
     extends: "Fragment",
   },
@@ -171,7 +171,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { children: "Link text", href: "https://example.com" },
   },
   Map: {
-    allowedProps: ["path", "children", "separator"],
+    allowedProps: ["path", "children", "flat", "separator"],
     example: {
       children: { $type: "Text", children: "Item" },
       path: "/items",
@@ -434,8 +434,8 @@ function generateSpec(additionalProperties = false) {
               [op]: {
                 description,
                 items: { anyOf: comparisonValueTypes },
-                maxItems: 2,
-                minItems: 2,
+                maxFiles: 2,
+                minFiles: 2,
                 type: "array",
               },
             },
@@ -480,7 +480,7 @@ function generateSpec(additionalProperties = false) {
                     items: {
                       $ref: "#/definitions/ProteusCondition",
                     },
-                    minItems: 1,
+                    minFiles: 1,
                     type: "array",
                   },
                 },
@@ -498,7 +498,7 @@ function generateSpec(additionalProperties = false) {
                     items: {
                       anyOf: [{ $ref: "#/definitions/ProteusCondition" }],
                     },
-                    minItems: 1,
+                    minFiles: 1,
                     type: "array",
                   },
                 },
@@ -1082,20 +1082,28 @@ function getPropTypeOverrides(additionalProperties = false) {
         items: { type: "string" },
         type: "array",
       },
+      maxFiles: {
+        anyOf: [
+          { type: "number" },
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
+        description:
+          "Maximum number of files allowed. When set to 1 the field is in single-file mode; any other value (or omitted) allows multiple uploads.",
+      },
+      minFiles: {
+        anyOf: [
+          { type: "number" },
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
+        description: "Minimum number of files required.",
+      },
       name: {
         anyOf: [
           { type: "string" },
           { $ref: "#/definitions/ProteusExpression" },
         ],
         description:
-          "The name of the form control element. The resolved URL is written at parentPath/name in form data.",
-      },
-      required: {
-        anyOf: [
-          { type: "boolean" },
-          { $ref: "#/definitions/ProteusExpression" },
-        ],
-        description: "Whether a file is required.",
+          "The name of the form control element. The resolved metadata array is written at parentPath/name in form data.",
       },
     },
     Image: {
@@ -1166,6 +1174,11 @@ function getPropTypeOverrides(additionalProperties = false) {
         $ref: "#/definitions/ProteusNode",
         description:
           "Template object to render for each item in the array. Value paths inside this template are relative to the current item (e.g., path='title' resolves to each item's 'title' field). Use a leading '/' to reference top-level data (e.g., path='/title' resolves to the root data's 'title').",
+      },
+      flat: {
+        description:
+          "When true, flattens the result array by one level. Useful when each mapped item resolves to an array and you want a single flat list.",
+        type: "boolean",
       },
       path: {
         description:

@@ -217,8 +217,8 @@ export const FilePreview: Story = {
               </FileUploadTrigger>
               <FileUploadList
                 items={items}
-                onRemove={(index) =>
-                  setItems((prev) => prev.filter((_, i) => i !== index))
+                onRemove={(item) =>
+                  setItems((prev) => prev.filter((i) => i !== item))
                 }
               />
               <FileUploadDropzone overlay />
