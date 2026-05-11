@@ -169,6 +169,7 @@ export function resolveProteusValue(
           ),
         )
         .filter((v: unknown) => v !== undefined);
+      const result = "flat" in value && value.flat ? items.flat() : items;
       if ("separator" in value) {
         const sep = resolveProteusValue(
           value.separator,
@@ -176,9 +177,9 @@ export function resolveProteusValue(
           parentPath,
           mapIndices,
         );
-        return items.join(typeof sep === "string" ? sep : "");
+        return result.join(typeof sep === "string" ? sep : "");
       }
-      return items;
+      return result;
     }
 
     if (value.$type === "Show" && "when" in value && "children" in value) {

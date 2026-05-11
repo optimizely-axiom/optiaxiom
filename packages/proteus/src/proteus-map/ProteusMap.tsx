@@ -10,6 +10,11 @@ import { useProteusValue } from "../use-proteus-value";
 export type ProteusMapProps = {
   children?: ReactNode;
   /**
+   * When true, flattens the result array by one level. Only used during
+   * value resolution (e.g., onClick message); ignored during rendering.
+   */
+  flat?: boolean;
+  /**
    * JSON pointer path to the source array in the data (e.g., '/results')
    */
   path: string;

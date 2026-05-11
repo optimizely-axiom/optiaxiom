@@ -16,7 +16,7 @@ export type FileUploadListProps = BoxProps<"div"> & {
   /**
    * Callback function called when a file is removed
    */
-  onRemove?: (index: number) => void;
+  onRemove?: (index: FileUploadListItemProps["item"]) => void;
 };
 
 export const FileUploadList = forwardRef<HTMLDivElement, FileUploadListProps>(
@@ -27,7 +27,7 @@ export const FileUploadList = forwardRef<HTMLDivElement, FileUploadListProps>(
           <FileUploadListItem
             item={item}
             key={idx}
-            onRemove={onRemove ? () => onRemove(idx) : undefined}
+            onRemove={onRemove ? () => onRemove(item) : undefined}
           />
         ))}
       </Flex>
