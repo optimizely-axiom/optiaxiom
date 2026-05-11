@@ -128,7 +128,7 @@ Get design token mappings for the Axiom Design System.
 
 ### `search_icons`
 
-Search for icons from the `@optimizely/axiom-icons` package.
+Search for icons from the `@optiaxiom/icons` package.
 
 **Parameters:**
 
