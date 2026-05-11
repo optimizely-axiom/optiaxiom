@@ -1,5 +1,14 @@
 # @optiaxiom/react
 
+## 1.9.35
+
+### Patch Changes
+
+- d6cf2ba: Add multi-file upload support to the file upload component, replace the required flag with minimum and maximum file count, let map flatten nested results, and have the file list remove handler pass the file item instead of its index.
+- 2c372f4: Add `manualSuggestion` flag to `unstable_SurfaceProvider`. When set, `Input` and `Textarea` skip the keystroke-debounced `track({ changed })` and instead render an Opal trigger button that fires `track({ requested, value })` on click and shows a loading spinner while pending. The next value-suggestion that arrives is auto-accepted silently.
+- Updated dependencies [2c372f4]
+  - @optiaxiom/globals@1.1.12
+
 ## 1.9.34
 
 ### Patch Changes
