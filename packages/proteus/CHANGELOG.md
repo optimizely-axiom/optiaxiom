@@ -1,5 +1,15 @@
 # @optiaxiom/proteus
 
+## 0.2.12
+
+### Patch Changes
+
+- d6cf2ba: Add multi-file upload support to the file upload component, replace the required flag with minimum and maximum file count, let map flatten nested results, and have the file list remove handler pass the file item instead of its index.
+- 66fc393: retuns file upload metadata object instead of string
+- Updated dependencies [d6cf2ba]
+- Updated dependencies [2c372f4]
+  - @optiaxiom/react@1.9.35
+
 ## 0.2.11
 
 ### Patch Changes
