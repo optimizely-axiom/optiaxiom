@@ -46,6 +46,8 @@ interface RelevanceScoreOptions {
   deprecated?: boolean;
   /** Optional description to search against */
   description?: string;
+  /** Optional keyword tags to search against (exact match scores higher than description) */
+  keywords?: string[];
   /** Name to search against */
   name: string;
   /** Optional prefix to strip from name for better matching (e.g., "icon" for icon components) */
@@ -149,6 +151,7 @@ export function searchIcons({
     .map((icon) => ({
       icon,
       score: calculateRelevanceScore({
+        keywords: icon.keywords,
         name: icon.name,
         namePrefix: "icon",
         query,
@@ -228,6 +231,7 @@ function calculateExampleScore(
 function calculateRelevanceScore({
   deprecated,
   description,
+  keywords,
   name,
   namePrefix,
   query,
@@ -272,6 +276,10 @@ function calculateRelevanceScore({
       nameWithoutPrefix.includes(term)
     ) {
       termScore = 50;
+    } else if (keywords?.some((kw) => kw === term)) {
+      termScore = 40;
+    } else if (keywords?.some((kw) => kw.includes(term))) {
+      termScore = 30;
     } else if (normalizedDescription?.includes(term)) {
       termScore = 25;
     } else if (

@@ -95,6 +95,8 @@ export interface Guide {
 export interface IconInfo {
   /** Import statement example */
   import: string;
+  /** Search keywords/tags for this icon */
+  keywords: string[];
   /** Icon component name (e.g., "IconMessages") */
   name: string;
 }

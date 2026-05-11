@@ -241,7 +241,7 @@ server.registerTool(
 server.registerTool(
   "search_icons",
   {
-    description: `Search for icons from the @optimizely/axiom-icons package. Returns matching icon component names. Search by keywords (e.g., 'message', 'arrow', 'user').`,
+    description: `Search for icons from the @optiaxiom/icons package. Returns matching icon component names. Search by keywords (e.g., 'message', 'arrow', 'user').`,
     inputSchema: {
       limit: z
         .number()
