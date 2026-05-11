@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 3.0.0-next.1
+
+### Patch Changes
+
+- 93e880a: replace with material icons
+
 ## 3.0.0-next.0
 
 ### Major Changes
