@@ -16,7 +16,7 @@ export type FileUploadListProps = BoxProps<"div"> & {
   /**
    * Callback function called when a file is removed
    */
-  onRemove?: (index: FileUploadListItemProps["item"]) => void;
+  onRemove?: (item: FileUploadListItemProps["item"]) => void;
 };
 
 export const FileUploadList = forwardRef<HTMLDivElement, FileUploadListProps>(
