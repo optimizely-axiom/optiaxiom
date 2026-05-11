@@ -292,8 +292,10 @@
   "vital_signs": ["WavePulse"],
   "vpn_key": ["KeySkeletonLeftRight"],
   "vrpano": ["Panorama"],
+  "wand_shine": ["Sparkles"],
   "warning": ["TriangleExclamation"],
   "water_drop": ["Droplet"],
+  "web_traffic": ["Agent", "SubAgent"],
   "west": ["ArrowLeftLong"],
   "zoom_in": ["MagnifyingGlassPlus"],
   "zoom_out": ["MagnifyingGlassMinus"]
