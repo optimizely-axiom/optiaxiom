@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.1.3
+
+### Patch Changes
+
+- 6a45aca: add new icons
+
 ## 1.1.2
 
 ### Patch Changes
