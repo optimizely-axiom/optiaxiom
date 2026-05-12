@@ -1,5 +1,14 @@
 # @optiaxiom/proteus
 
+## 0.2.13
+
+### Patch Changes
+
+- 77f6726: Bump module federation version to 0.19.1
+- be00a09: Remove unused @modelcontextprotocol/sdk dependency
+- Updated dependencies [6a45aca]
+  - @optiaxiom/icons@1.1.3
+
 ## 0.2.12
 
 ### Patch Changes
