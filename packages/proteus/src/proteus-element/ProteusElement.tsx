@@ -4,7 +4,6 @@ import {
   Box,
   Card,
   CardHeader,
-  CardLink,
   Field,
   Group,
   Heading,
@@ -20,12 +19,14 @@ import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 import { IconCalendar } from "../icons/IconCalendar";
 import { ProteusAction } from "../proteus-action/ProteusAction";
 import { ProteusBridge } from "../proteus-bridge/ProteusBridge";
+import { ProteusCardLink } from "../proteus-card-link/ProteusCardLink";
 import { ProteusDataTable } from "../proteus-data-table/ProteusDataTable";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
 import { resolveProteusProp } from "../proteus-document/resolveProteusProp";
 import { safeParseElement } from "../proteus-document/schemas";
 import { ProteusFederated } from "../proteus-federated/ProteusFederated";
+import { ProteusFileIcon } from "../proteus-file-icon/ProteusFileIcon";
 import { ProteusFileUpload } from "../proteus-file-upload/ProteusFileUpload";
 import { ProteusImageCarousel } from "../proteus-image-carousel/ProteusImageCarousel";
 import { ProteusImage } from "../proteus-image/ProteusImage";
@@ -117,7 +118,7 @@ export const ProteusElement = ({
     case "CardHeader":
       return <CardHeader {...resolve(element)} />;
     case "CardLink":
-      return <CardLink target="_blank" {...resolve(element)} />;
+      return <ProteusCardLink {...resolve(element)} />;
     case "Chart":
       return (
         <Suspense fallback={null}>
@@ -146,6 +147,8 @@ export const ProteusElement = ({
       );
     case "Field":
       return <Field {...resolve(element)} />;
+    case "FileIcon":
+      return <ProteusFileIcon {...resolve(element)} />;
     case "FileUpload":
       return <ProteusFileUpload {...resolve(element)} />;
     case "Group":
