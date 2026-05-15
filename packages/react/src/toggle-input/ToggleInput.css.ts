@@ -20,7 +20,7 @@ export const toggleInput = recipe({
     style({
       vars: {
         [controlAccentVar]: theme.colors["border.control"],
-        [controlColorVar]: theme.colors["fg.default.inverse"],
+        [controlColorVar]: theme.colors["border.control"],
       },
 
       color: theme.colors["fg.default"],
@@ -57,6 +57,7 @@ export const toggleInput = recipe({
         [`&:has(${input}:disabled)`]: {
           vars: {
             [controlAccentVar]: theme.colors["fg.disabled"],
+            [controlColorVar]: theme.colors["fg.default.inverse"],
           },
 
           color: theme.colors["fg.disabled"],

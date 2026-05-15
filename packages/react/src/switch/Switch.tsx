@@ -41,8 +41,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
           {...restProps}
         />
 
-        <ToggleInputControl {...styles.control()}>
-          <Box {...styles.thumb({ size })}></Box>
+        <ToggleInputControl {...styles.control({ size })}>
+          <Box {...styles.thumb()}></Box>
         </ToggleInputControl>
 
         {(children || description) && (

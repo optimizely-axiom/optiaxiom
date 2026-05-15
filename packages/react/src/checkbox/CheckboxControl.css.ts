@@ -37,7 +37,7 @@ export const control = recipe({
       color: rootStyles.controlColorVar,
       placeContent: "center",
       transitionDuration: theme.duration.sm,
-      transitionProperty: "border-width",
+      transitionProperty: "border-color, border-width",
       transitionTimingFunction: "ease",
 
       selectors: {
