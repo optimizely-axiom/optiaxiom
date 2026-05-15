@@ -3,7 +3,6 @@ import type {
   BadgeProps,
   BoxProps,
   CardHeaderProps,
-  CardLinkProps,
   CardProps,
   FieldProps,
   GroupProps,
@@ -23,9 +22,11 @@ import { Validator } from "@cfworker/json-schema";
 
 import type { ProteusActionProps } from "../proteus-action/ProteusAction";
 import type { ProteusBridgeProps } from "../proteus-bridge/ProteusBridge";
+import type { ProteusCardLinkProps } from "../proteus-card-link/ProteusCardLink";
 import type { ProteusChartProps } from "../proteus-chart/ProteusChart";
 import type { ProteusDataTableProps } from "../proteus-data-table/ProteusDataTable";
 import type { ProteusFederatedProps } from "../proteus-federated/ProteusFederated";
+import type { ProteusFileIconProps } from "../proteus-file-icon/ProteusFileIcon";
 import type { ProteusFileUploadProps } from "../proteus-file-upload/ProteusFileUpload";
 import type { ProteusImageCarouselProps } from "../proteus-image-carousel/ProteusImageCarousel";
 import type { ProteusImageProps } from "../proteus-image/ProteusImage";
@@ -44,7 +45,6 @@ export type ProteusElement =
   | (BadgeProps & { $type: "Badge" })
   | (BoxProps & { $type: "IconCalendar" })
   | (CardHeaderProps & { $type: "CardHeader" })
-  | (CardLinkProps & { $type: "CardLink" })
   | (CardProps & { $type: "Card" })
   | (FieldProps & { $type: "Field" })
   | (GroupProps & { $type: "Group" })
@@ -54,9 +54,11 @@ export type ProteusElement =
   | (ProteusActionProps & { $type: "Action" })
   | (ProteusActionProps & { $type: "Button" })
   | (ProteusBridgeProps & { $type: "Bridge" })
+  | (ProteusCardLinkProps & { $type: "CardLink" })
   | (ProteusChartProps & { $type: "Chart" })
   | (ProteusDataTableProps & { $type: "DataTable" })
   | (ProteusFederatedProps & { $type: "Federated" })
+  | (ProteusFileIconProps & { $type: "FileIcon" })
   | (ProteusFileUploadProps & { $type: "FileUpload" })
   | (ProteusImageCarouselProps & { $type: "ImageCarousel" })
   | (ProteusImageProps & { $type: "Image" })
@@ -82,6 +84,10 @@ export type ProteusEventHandler =
   | {
       action: "openLink";
       url: (ProteusValueProps & { $type: "Value" }) | string;
+    }
+  | {
+      action: "preview";
+      file: unknown;
     }
   | { interaction: string; params?: Record<string, unknown> }
   | { message: string | StructuredMessage };

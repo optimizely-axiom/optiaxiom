@@ -70,6 +70,11 @@ export type ProteusDocumentShellProps = Pick<
    */
   onMessage?: (message: string | StructuredMessage) => Promise<void> | void;
   /**
+   * Callback when user triggers a preview action.
+   * Receives the file object to preview.
+   */
+  onPreview?: (file: unknown) => Promise<void> | void;
+  /**
    * Callback when an analytics event is fired
    */
   onTrack?: (event: string, properties: Record<string, string>) => void;
@@ -114,6 +119,7 @@ export function ProteusDocumentShell({
   onInteraction,
   onMessage,
   onOpenChange,
+  onPreview,
   onTrack,
   onUpload,
   open: openProp,
@@ -159,6 +165,7 @@ export function ProteusDocumentShell({
 
   const collapsible = collapsibleProp && element.appName;
   const Trigger = collapsible ? DisclosureTrigger : Box;
+  const inline = !element.title && !element.appName && !element.blocking;
 
   return (
     <ProteusDocumentProvider
@@ -196,6 +203,8 @@ export function ProteusDocumentShell({
           if (typeof event.url === "string") {
             window.open(event.url, "_blank", "noopener,noreferrer");
           }
+        } else if (event.action === "preview") {
+          await onPreview?.(event.file);
         }
         return;
       })}
@@ -211,13 +220,13 @@ export function ProteusDocumentShell({
       valid={valid}
     >
       <Disclosure
-        bg="bg.default"
-        border="1"
-        borderColor="border.tertiary"
+        bg={inline ? undefined : "bg.default"}
+        border={inline ? undefined : "1"}
+        borderColor={inline ? undefined : "border.tertiary"}
         onOpenChange={setOpen}
         open={open}
-        p="20"
-        rounded="xl"
+        p={inline ? undefined : "20"}
+        rounded={inline ? undefined : "xl"}
       >
         {element.appName && (
           <Trigger py="0" {...(collapsible ? { chevronPosition: "end" } : {})}>

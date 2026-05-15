@@ -78,7 +78,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { children: "Header", description: "Subtitle" },
   },
   CardLink: {
-    allowedProps: ["children", "href"],
+    allowedProps: ["children", "href", "onClick"],
     example: { children: "Link text", href: "https://example.com" },
     extends: "Link",
   },
@@ -119,6 +119,11 @@ const PROTEUS_COMPONENT_CONFIG = {
       children: { $type: "Input", name: "field_name" },
       label: "Field Label",
     },
+  },
+  FileIcon: {
+    allowedProps: ["mimeType"],
+    example: { mimeType: "application/pdf" },
+    extends: "Box",
   },
   FileUpload: {
     allowedProps: ["accept", "maxFiles", "minFiles", "name"],
@@ -782,6 +787,28 @@ function generateSpec(additionalProperties = false) {
               required: ["action", "url"],
               type: "object",
             },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              description:
+                "Client-side component action - for previewing a file inline",
+              properties: {
+                action: {
+                  const: "preview",
+                  description: "The action type",
+                  type: "string",
+                },
+                file: {
+                  anyOf: [
+                    { $ref: "#/definitions/ProteusExpression" },
+                    { type: "object" },
+                    { type: "string" },
+                  ],
+                  description: "The file object to preview",
+                },
+              },
+              required: ["action", "file"],
+              type: "object",
+            },
           ],
           description:
             "Handler for user interactions - a server-side interaction call, client-side message, or client-side component action",
@@ -937,6 +964,12 @@ function getPropTypeOverrides(additionalProperties = false) {
         description: "Action triggered when button is clicked",
       },
     },
+    CardLink: {
+      onClick: {
+        $ref: "#/definitions/ProteusEventHandler",
+        description: "Action triggered when link is clicked",
+      },
+    },
     Chart: {
       data: {
         anyOf: [
@@ -1074,6 +1107,15 @@ function getPropTypeOverrides(additionalProperties = false) {
         $ref: "#/definitions/ProteusNode",
         description:
           "Content rendered when the federated component fails to load",
+      },
+    },
+    FileIcon: {
+      mimeType: {
+        anyOf: [
+          { type: "string" },
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
+        description: "MIME type of the file to determine which icon to display",
       },
     },
     FileUpload: {

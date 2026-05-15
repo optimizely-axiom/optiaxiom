@@ -28,6 +28,10 @@ export type LinkProps = BoxProps<
      * The link href.
      */
     href?: ComponentPropsWithoutRef<"a">["href"];
+    /**
+     * The link onClick handler.
+     */
+    onClick?: ComponentPropsWithoutRef<"a">["onClick"];
   }
 >;
 

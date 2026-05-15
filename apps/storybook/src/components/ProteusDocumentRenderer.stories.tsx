@@ -7,8 +7,10 @@ import { action } from "storybook/actions";
 
 export default {
   args: {
+    onDownload: action("onDownload"),
     onInteraction: action("onInteraction"),
     onMessage: action("onMessage"),
+    onPreview: action("onPreview"),
     strict: true,
   },
   component: ProteusDocumentRenderer,
@@ -369,6 +371,107 @@ export const WithImageCarousel: Story = {
       ],
       subtitle: "Created Jan 15, 2025",
       title: "Images created",
+    },
+  },
+};
+
+export const WithFiles: Story = {
+  args: {
+    data: {
+      files: [
+        {
+          mimeType:
+            "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+          name: "Q1 Sales Deck",
+          type: "PPTX",
+          url: "https://example.com/files/q1-sales-deck.pptx",
+        },
+        {
+          mimeType: "application/pdf",
+          name: "Project Brief",
+          type: "PDF",
+          url: "https://example.com/files/project-brief.pdf",
+        },
+        {
+          mimeType: "text/csv",
+          name: "summary",
+          type: "CSV",
+          url: "https://example.com/files/summary.csv",
+        },
+      ],
+    },
+    element: {
+      $type: "Document",
+      body: [
+        {
+          $type: "Group",
+          children: [
+            {
+              $type: "Group",
+              children: {
+                $type: "Map",
+                children: {
+                  $type: "Card",
+                  children: {
+                    $type: "CardHeader",
+                    addonAfter: {
+                      $type: "Button",
+                      children: "Download",
+                      onClick: {
+                        action: "download",
+                        url: { $type: "Value", path: "url" },
+                      },
+                    },
+                    addonBefore: {
+                      $type: "FileIcon",
+                      mimeType: { $type: "Value", path: "mimeType" },
+                      size: "40",
+                    },
+                    children: {
+                      $type: "CardLink",
+                      children: { $type: "Value", path: "name" },
+                      href: { $type: "Value", path: "url" },
+                      onClick: {
+                        action: "preview",
+                        file: { $type: "Value", path: "" },
+                      },
+                    },
+                    description: { $type: "Value", path: "type" },
+                  },
+                  p: "12",
+                },
+                path: "/files",
+              },
+              flexDirection: "column",
+              gap: "16",
+            },
+          ],
+          flexDirection: "column",
+          rounded: "md",
+        },
+        {
+          $type: "Show",
+          children: {
+            $type: "Group",
+            children: {
+              $type: "Action",
+              children: "Download All",
+              onClick: {
+                action: "download",
+                url: {
+                  $type: "Map",
+                  children: { $type: "Value", path: "url" },
+                  path: "/files",
+                },
+              },
+            },
+            justifyContent: "flex-end",
+          },
+          when: {
+            "!!": { $type: "Value", path: "/files/1" },
+          },
+        },
+      ],
     },
   },
 };
