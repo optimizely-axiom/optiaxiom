@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 3.0.0-next.4
+
+### Patch Changes
+
+- 841e0d7: update input control styles to v3
+
 ## 3.0.0-next.3
 
 ### Patch Changes
