@@ -1,5 +1,13 @@
 # @optiaxiom/proteus
 
+## 0.2.14
+
+### Patch Changes
+
+- ba73551: add present_files story for proteus
+- Updated dependencies [ba73551]
+  - @optiaxiom/react@1.9.36
+
 ## 0.2.13
 
 ### Patch Changes
