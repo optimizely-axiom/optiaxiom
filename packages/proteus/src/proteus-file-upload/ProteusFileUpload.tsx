@@ -1,5 +1,5 @@
 import { IconPlus } from "@optiaxiom/icons";
-import { Flex } from "@optiaxiom/react";
+import { Flex, toaster } from "@optiaxiom/react";
 import {
   FileUpload,
   FileUploadDropzone,
@@ -86,13 +86,24 @@ export function ProteusFileUpload({
 
   const handleFilesDrop = useCallback(
     async (incoming: File[]) => {
-      if (multiple) {
-        incoming =
-          maxFiles !== undefined
-            ? incoming.slice(0, Math.max(0, maxFiles - itemsRef.current.length))
-            : incoming;
-      } else {
-        incoming = incoming.slice(0, 1);
+      let skipped = 0;
+      if (maxFiles !== undefined) {
+        const existing = multiple ? itemsRef.current.length : 0;
+        const remaining = Math.max(0, maxFiles - existing);
+        if (incoming.length > remaining) {
+          skipped = incoming.length - remaining;
+          incoming = incoming.slice(0, remaining);
+        }
+      }
+      if (skipped > 0) {
+        const accepted = incoming.length;
+        const skippedWord = skipped === 1 ? "was" : "were";
+        toaster.create(
+          accepted > 0
+            ? `Added ${accepted} file${accepted === 1 ? "" : "s"}. ${skipped} ${skippedWord} skipped because the limit is ${maxFiles}.`
+            : `${skipped} file${skipped === 1 ? "" : "s"} ${skippedWord} skipped because the limit is ${maxFiles}.`,
+          { type: "warning" },
+        );
       }
       if (!onUpload || readOnly || incoming.length === 0) {
         return;
