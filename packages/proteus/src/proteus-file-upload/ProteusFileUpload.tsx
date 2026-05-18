@@ -1,5 +1,5 @@
 import { IconPlus } from "@optiaxiom/icons";
-import { Flex } from "@optiaxiom/react";
+import { Flex, toaster } from "@optiaxiom/react";
 import {
   FileUpload,
   FileUploadDropzone,
@@ -86,13 +86,16 @@ export function ProteusFileUpload({
 
   const handleFilesDrop = useCallback(
     async (incoming: File[]) => {
-      if (multiple) {
-        incoming =
-          maxFiles !== undefined
-            ? incoming.slice(0, Math.max(0, maxFiles - itemsRef.current.length))
-            : incoming;
-      } else {
-        incoming = incoming.slice(0, 1);
+      if (maxFiles !== undefined) {
+        const existing = multiple ? itemsRef.current.length : 0;
+        const remaining = Math.max(0, maxFiles - existing);
+        if (incoming.length > remaining) {
+          toaster.create(
+            `Too many files selected. You can add up to ${remaining} more file${remaining !== 1 ? "s" : ""} (maximum ${maxFiles}).`,
+            { type: "danger" },
+          );
+          return;
+        }
       }
       if (!onUpload || readOnly || incoming.length === 0) {
         return;
