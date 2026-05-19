@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.2.16
+
+### Patch Changes
+
+- f39c335: hide shell for inline appearance
+
 ## 0.2.15
 
 ### Patch Changes
