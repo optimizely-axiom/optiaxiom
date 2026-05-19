@@ -11,6 +11,8 @@ import { resolveItemProperty } from "../command/CommandContext";
 import { Menu, type MenuOption } from "../menu";
 import { PillMenuProvider } from "./PillMenuContext";
 
+const EMPTY_LIST: unknown[] = [];
+
 export type PillMenuProps = BoxProps<
   "div",
   Pick<
@@ -23,9 +25,17 @@ export type PillMenuProps = BoxProps<
     | "onInputValueChange"
     | "onOpenChange"
     | "open"
-    | "options"
     | "placeholder"
-  >
+  > & {
+    /**
+     * The candidate options shown in the popup. Defaults to `value` when omitted.
+     */
+    options?: MenuOption[];
+    /**
+     * The currently selected options rendered as pills in the trigger.
+     */
+    value: MenuOption[];
+  }
 >;
 
 /**
@@ -49,8 +59,9 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
       onInputValueChange,
       onOpenChange,
       open: openProp,
-      options,
+      options: optionsProp,
       placeholder,
+      value: valueProp,
       ...props
     },
     ref,
@@ -61,10 +72,19 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
       onChange: onOpenChange,
       prop: openProp,
     });
-    const [optionIndexes, setOptionIndexes] = useState(() =>
-      groupOptions(options),
+    const options = optionsProp ?? valueProp ?? EMPTY_LIST;
+    const value =
+      valueProp ??
+      (optionsProp
+        ? optionsProp.filter((item) => resolveItemProperty(item.selected))
+        : EMPTY_LIST);
+    const [selectedKeys, setSelectedKeys] = useState(() =>
+      collectSelectedKeys(value),
     );
-    const value = options.filter((item) => resolveItemProperty(item.selected));
+    const optionIndexes = useMemo(
+      () => groupOptions(options, selectedKeys),
+      [options, selectedKeys],
+    );
 
     return (
       <PillMenuProvider value={value}>
@@ -77,23 +97,24 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
           onOpenChange={(open) => {
             setOpen(open);
             if (open) {
-              setOptionIndexes(groupOptions(options));
+              setSelectedKeys(collectSelectedKeys(value));
             }
           }}
           open={open}
           options={useMemo(
             () =>
               optionIndexes.map<MenuOption>(({ group, index }) => ({
-                ...options[index],
+                ...(optionsProp ?? valueProp ?? EMPTY_LIST)[index],
                 ...(group && {
                   group: {
                     hidden: true,
                     label: group,
+                    priority: 1000,
                     separator: true,
                   },
                 }),
               })),
-            [optionIndexes, options],
+            [optionIndexes, optionsProp, valueProp],
           )}
           placeholder={placeholder}
         >
@@ -114,24 +135,38 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
 
 PillMenu.displayName = "@optiaxiom/react/PillMenu";
 
+const optionKey = (option: MenuOption) =>
+  option.key ?? resolveItemProperty(option.label, { inputValue: undefined });
+
+const collectSelectedKeys = (
+  options: ComponentPropsWithoutRef<typeof Menu>["options"],
+) => new Set(options.map(optionKey));
+
 const groupOptions = (
   options: ComponentPropsWithoutRef<typeof Menu>["options"],
+  selectedKeys: Set<string>,
 ) =>
   options
     .map((option, index) => ({
       index,
       option,
+      selected: selectedKeys.has(optionKey(option)),
     }))
-    .sort(({ index: aIndex, option: a }, { index: bIndex, option: b }) => {
-      if (resolveItemProperty(a.selected) === resolveItemProperty(b.selected)) {
-        return aIndex - bIndex;
-      } else if (resolveItemProperty(a.selected)) {
-        return -1;
-      } else {
-        return 1;
-      }
-    })
-    .map(({ index, option }) => ({
-      group: resolveItemProperty(option.selected) ? "selected" : undefined,
+    .sort(
+      (
+        { index: aIndex, selected: aSel },
+        { index: bIndex, selected: bSel },
+      ) => {
+        if (aSel === bSel) {
+          return aIndex - bIndex;
+        } else if (aSel) {
+          return -1;
+        } else {
+          return 1;
+        }
+      },
+    )
+    .map(({ index, selected }) => ({
+      group: selected ? "selected" : undefined,
       index,
     }));
