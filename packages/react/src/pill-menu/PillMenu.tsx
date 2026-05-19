@@ -54,7 +54,7 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
       defaultOpen = false,
       empty,
       inputValue,
-      inputVisible,
+      inputVisible = "always",
       loading,
       onInputValueChange,
       onOpenChange,
