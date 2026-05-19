@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.37
+
+### Patch Changes
+
+- 36e49a8: add value prop to PillMenu for independent control of selected pills
+
 ## 1.9.36
 
 ### Patch Changes
