@@ -1,5 +1,13 @@
 # @optiaxiom/proteus
 
+## 0.2.15
+
+### Patch Changes
+
+- e9bf554: explicit inline appearance for cards
+- c7801df: `ProteusFileUpload`: surface a warning toast naming the number of dropped files when the selection would exceed `maxFiles`, instead of silently discarding them. The allowed files still upload as before.
+- 3d0b1de: fix handling text mime type better
+
 ## 0.2.14
 
 ### Patch Changes
