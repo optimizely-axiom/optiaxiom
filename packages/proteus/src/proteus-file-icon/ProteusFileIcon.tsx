@@ -19,13 +19,14 @@ const mimeIconMap: Array<[RegExp, ComponentType]> = [
   [/^video\//, IconFileVideo],
   [/^audio\//, IconMusic],
   [/presentation|powerpoint|keynote|slides/, IconPresentationScreen],
-  [/spreadsheet|excel|csv|tsv|parquet/, IconTableLayout],
+  [/spreadsheet|excel|csv|tab-separated-values|tsv|parquet/, IconTableLayout],
   [/zip|tar|compress|archive|x-7z|x-rar/, IconFileZipper],
-  [/pdf|word|wordprocessing|opendocument\.text|^text\//, IconFileLines],
+  [/pdf|wordprocessing|opendocument\.text/, IconFileLines],
   [
     /json|xml|yaml|javascript|typescript|html|css|x-sh|x-python|code|script/,
     IconCode,
   ],
+  [/^text\/|word|rtf/, IconFileLines],
 ];
 
 export type ProteusFileIconProps = BoxProps & {
