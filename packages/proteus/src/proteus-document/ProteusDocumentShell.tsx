@@ -29,6 +29,7 @@ import {
   type UseResource,
 } from "./ProteusDocumentContext";
 import * as styles from "./ProteusDocumentShell.css";
+import { resolveProteusValue } from "./resolveProteusValue";
 
 export type ProteusDocumentShellProps = Pick<
   ComponentPropsWithoutRef<typeof Disclosure>,
@@ -99,6 +100,7 @@ export type ProteusDocumentShellProps = Pick<
 
 type ProteusDocument = {
   actions?: ReactNode;
+  appearance?: "default" | "inline" | Record<string, unknown>;
   appIcon?: string;
   appName?: string;
   blocking?: boolean;
@@ -165,7 +167,8 @@ export function ProteusDocumentShell({
 
   const collapsible = collapsibleProp && element.appName;
   const Trigger = collapsible ? DisclosureTrigger : Box;
-  const inline = !element.title && !element.appName && !element.blocking;
+  const appearance = resolveProteusValue(element.appearance, data, "", []);
+  const inline = appearance === "inline";
 
   return (
     <ProteusDocumentProvider

@@ -21,6 +21,7 @@ export type ProteusDocumentRendererProps = Omit<
 type ProteusDocument = {
   $type: "Document";
   actions?: unknown;
+  appearance?: "default" | "inline" | Record<string, unknown>;
   appIcon?: string;
   appName?: string;
   blocking?: boolean;

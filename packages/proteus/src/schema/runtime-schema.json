@@ -1248,6 +1248,14 @@
           "$ref": "#/definitions/ProteusNode",
           "description": "Actions available for this document"
         },
+        "appearance": {
+          "anyOf": [
+            { "const": "default" },
+            { "const": "inline" },
+            { "$ref": "#/definitions/ProteusExpression" }
+          ],
+          "description": "Visual treatment of the document shell. 'default' renders the document as a card with background, border, and padding. 'inline' strips the surrounding chrome so the document blends into its host container."
+        },
         "appIcon": {
           "description": "URL or data URI for the application icon (e.g., 'https://example.com/icon.png' or 'data:image/svg+xml,...'). Rendered as an <img> element.",
           "type": "string"

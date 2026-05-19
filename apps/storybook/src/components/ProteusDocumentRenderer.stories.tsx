@@ -378,6 +378,7 @@ export const WithImageCarousel: Story = {
 export const WithFiles: Story = {
   args: {
     data: {
+      appearance: "inline",
       files: [
         {
           mimeType:
@@ -402,6 +403,7 @@ export const WithFiles: Story = {
     },
     element: {
       $type: "Document",
+      appearance: { $type: "Value", path: "/appearance" },
       body: [
         {
           $type: "Group",
@@ -465,7 +467,6 @@ export const WithFiles: Story = {
                 },
               },
             },
-            justifyContent: "flex-end",
           },
           when: {
             "!!": { $type: "Value", path: "/files/1" },
