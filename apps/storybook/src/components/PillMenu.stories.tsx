@@ -6,7 +6,12 @@ import {
   PillMenuContent,
   PillMenuTrigger,
 } from "@optiaxiom/react/unstable";
-import { type ComponentPropsWithoutRef, useMemo, useState } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 const languages = [
   "Afrikaans",
@@ -86,32 +91,98 @@ export default {
     },
   },
   render: function Render(args) {
-    const [value, setValue] = useState(args.defaultValue);
-
-    return (
-      <PillMenu
-        {...args}
-        options={useMemo(
-          () =>
-            languages.map<MenuOption>((language) => ({
-              execute: () =>
-                setValue((values) =>
-                  values.includes(language)
-                    ? values.filter((v) => v !== language)
-                    : [...values, language],
-                ),
-              label: language,
-              multi: true,
-              selected: () => value.includes(language),
-            })),
-          [value],
-        )}
-      />
+    const [selected, setSelected] = useState(args.defaultValue);
+    const options = useMemo(
+      () =>
+        languages.map<MenuOption>((language) => ({
+          execute: () =>
+            setSelected((values) =>
+              values.includes(language)
+                ? values.filter((v) => v !== language)
+                : [...values, language],
+            ),
+          label: language,
+          multi: true,
+          selected: () => selected.includes(language),
+        })),
+      [selected],
     );
+    const value = useMemo(
+      () =>
+        options.filter((option) => selected.includes(option.label as string)),
+      [options, selected],
+    );
+
+    return <PillMenu {...args} options={options} value={value} />;
   },
 } as Meta<PillMenuStoryProps>;
 
 export const Basic: Story = {};
+
+export const AsyncLoading: Story = {
+  args: {
+    defaultValue: ["Bangla"],
+  },
+  render: function Render(args) {
+    const [items, setItems] = useState<string[]>();
+    const [selected, setSelected] = useState(args.defaultValue);
+
+    const [isLoading, setIsLoading] = useState<"spinner">();
+    const timerRef = useRef(0);
+    const fetchData = (query: string) => {
+      setIsLoading("spinner");
+      clearTimeout(timerRef.current);
+      timerRef.current = window.setTimeout(() => {
+        const filteredLanguages = languages.filter((lang) =>
+          lang.toLowerCase().includes(query.toLowerCase()),
+        );
+        setItems(filteredLanguages);
+        setIsLoading(undefined);
+      }, 3000);
+    };
+
+    const options = useMemo(
+      () =>
+        (items ?? []).map<MenuOption>((language) => ({
+          execute: () =>
+            setSelected((values) =>
+              values.includes(language)
+                ? values.filter((v) => v !== language)
+                : [...values, language],
+            ),
+          label: language,
+          multi: true,
+          selected: () => selected.includes(language),
+          skipFilterScoring: true,
+          visible: true,
+        })),
+      [items, selected],
+    );
+    const value = useMemo<MenuOption[]>(
+      () =>
+        selected.map((language) => ({
+          execute: () =>
+            setSelected((values) => values.filter((v) => v !== language)),
+          label: language,
+          multi: true,
+          skipFilterScoring: true,
+        })),
+      [selected],
+    );
+
+    return (
+      <PillMenu
+        {...args}
+        empty={items ? undefined : "Start typing to search..."}
+        inputVisible="always"
+        loading={isLoading}
+        onInputValueChange={fetchData}
+        options={options}
+        value={value}
+      />
+    );
+  },
+};
 
 export const Sizes: Story = {
   parameters: {
@@ -175,28 +246,29 @@ export const Readonly: Story = {
     defaultOpen: false,
   },
   render: function Render(args) {
-    const [value, setValue] = useState(args.defaultValue);
-
-    return (
-      <PillMenu
-        {...args}
-        options={useMemo(
-          () =>
-            languages.map<MenuOption>((language) => ({
-              execute: () =>
-                setValue((values) =>
-                  values.includes(language)
-                    ? values.filter((v) => v !== language)
-                    : [...values, language],
-                ),
-              label: language,
-              multi: true,
-              selected: () => value.includes(language),
-            })),
-          [value],
-        )}
-      />
+    const [selected, setSelected] = useState(args.defaultValue);
+    const options = useMemo(
+      () =>
+        languages.map<MenuOption>((language) => ({
+          execute: () =>
+            setSelected((values) =>
+              values.includes(language)
+                ? values.filter((v) => v !== language)
+                : [...values, language],
+            ),
+          label: language,
+          multi: true,
+          selected: () => selected.includes(language),
+        })),
+      [selected],
     );
+    const value = useMemo(
+      () =>
+        options.filter((option) => selected.includes(option.label as string)),
+      [options, selected],
+    );
+
+    return <PillMenu {...args} options={options} value={value} />;
   },
 };
 
@@ -233,28 +305,29 @@ export const DisabledItems: Story = {
   // },
 
   render: function Disabled(args) {
-    const [value, setValue] = useState(args.defaultValue);
-
-    return (
-      <PillMenu
-        {...args}
-        options={useMemo(
-          () =>
-            languages.map<MenuOption>((language) => ({
-              disabledReason: language === "Afrikaans" ? "Required" : undefined,
-              execute: () =>
-                setValue((values) =>
-                  values.includes(language)
-                    ? values.filter((v) => v !== language)
-                    : [...values, language],
-                ),
-              label: language,
-              multi: true,
-              selected: () => value.includes(language),
-            })),
-          [value],
-        )}
-      />
+    const [selected, setSelected] = useState(args.defaultValue);
+    const options = useMemo(
+      () =>
+        languages.map<MenuOption>((language) => ({
+          disabledReason: language === "Afrikaans" ? "Required" : undefined,
+          execute: () =>
+            setSelected((values) =>
+              values.includes(language)
+                ? values.filter((v) => v !== language)
+                : [...values, language],
+            ),
+          label: language,
+          multi: true,
+          selected: () => selected.includes(language),
+        })),
+      [selected],
     );
+    const value = useMemo(
+      () =>
+        options.filter((option) => selected.includes(option.label as string)),
+      [options, selected],
+    );
+
+    return <PillMenu {...args} options={options} value={value} />;
   },
 };
