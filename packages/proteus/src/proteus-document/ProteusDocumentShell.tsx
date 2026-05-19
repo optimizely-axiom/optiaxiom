@@ -231,7 +231,7 @@ export function ProteusDocumentShell({
         p={inline ? undefined : "20"}
         rounded={inline ? undefined : "xl"}
       >
-        {element.appName && (
+        {!inline && element.appName && (
           <Trigger py="0" {...(collapsible ? { chevronPosition: "end" } : {})}>
             <Group fontSize="sm" gap="8">
               <Box
@@ -264,7 +264,7 @@ export function ProteusDocumentShell({
           pb="0"
           pt={element.appName ? "16" : "0"}
         >
-          {element.title && (
+          {!inline && element.title && (
             <Group
               alignItems={element.titleIcon ? "start" : undefined}
               bg={element.titleIcon ? "bg.page" : "transparent"}
