@@ -1,5 +1,15 @@
 # @optiaxiom/mcp
 
+## 3.0.0
+
+### Major Changes
+
+- ee1ccc2: Update design tokens to v3 for the rebrand — colors, border radius, fonts, and pill tokens.
+
+### Patch Changes
+
+- f597c7d: Replace icon usage with Material/Google icons; support Font Awesome icons in Button.
+
 ## 0.2.7
 
 ### Patch Changes
