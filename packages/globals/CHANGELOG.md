@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 3.0.0
+
+### Major Changes
+
+- ee1ccc2: Update design tokens to v3 for the rebrand — colors, border radius, fonts, and pill tokens.
+
 ## 1.1.12
 
 ### Patch Changes

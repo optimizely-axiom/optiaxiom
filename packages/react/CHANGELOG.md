@@ -1,5 +1,21 @@
 # @optiaxiom/react
 
+## 3.0.0
+
+### Major Changes
+
+- 9657e42: Migrate component styles to v3: button, input controls, typography, calendar, tab, badge, sidebar, table, headings, and layout. Alpha components now use warning badges.
+- ee1ccc2: Update design tokens to v3 for the rebrand — colors, border radius, fonts, and pill tokens.
+
+### Minor Changes
+
+- f597c7d: Replace icon usage with Material/Google icons; support Font Awesome icons in Button.
+
+### Patch Changes
+
+- Updated dependencies [ee1ccc2]
+  - @optiaxiom/globals@3.0.0
+
 ## 1.9.37
 
 ### Patch Changes

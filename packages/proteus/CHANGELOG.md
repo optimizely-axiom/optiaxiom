@@ -1,5 +1,18 @@
 # @optiaxiom/proteus
 
+## 0.3.0
+
+### Minor Changes
+
+- 05cb2e0: Add v3 tokens to schema (additive): new bg.pill.\*, fg.black, heading font family, 900 font weight.
+
+### Patch Changes
+
+- Updated dependencies [9657e42]
+- Updated dependencies [f597c7d]
+- Updated dependencies [ee1ccc2]
+  - @optiaxiom/react@3.0.0
+
 ## 0.2.16
 
 ### Patch Changes
