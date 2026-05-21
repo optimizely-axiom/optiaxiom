@@ -24,17 +24,17 @@ MCP (Model Context Protocol) server for Axiom Design System. This server enables
 ### Global Installation
 
 ```bash
-npm install -g @optiaxiom/mcp
+npm install -g @optiaxiom/mcp@^1
 # or
-pnpm add -g @optiaxiom/mcp
+pnpm add -g @optiaxiom/mcp@^1
 ```
 
 ### Project Installation
 
 ```bash
-npm install --save-dev @optiaxiom/mcp
+npm install --save-dev @optiaxiom/mcp@^1
 # or
-pnpm add -D @optiaxiom/mcp
+pnpm add -D @optiaxiom/mcp@^1
 ```
 
 ## Usage
@@ -48,7 +48,7 @@ Add the MCP server to your workspace configuration file at `.vscode/mcp.json`:
   "servers": {
     "axiom": {
       "command": "npx",
-      "args": ["-y", "@optiaxiom/mcp"]
+      "args": ["-y", "@optiaxiom/mcp@^1"]
     }
   }
 }
@@ -63,7 +63,7 @@ Add to your Cursor MCP configuration:
   "mcpServers": {
     "axiom": {
       "command": "npx",
-      "args": ["-y", "@optiaxiom/mcp"]
+      "args": ["-y", "@optiaxiom/mcp@^1"]
     }
   }
 }
@@ -74,7 +74,7 @@ Add to your Cursor MCP configuration:
 You can also run the server directly:
 
 ```bash
-npx @optiaxiom/mcp
+npx @optiaxiom/mcp@^1
 ```
 
 ## Available Tools

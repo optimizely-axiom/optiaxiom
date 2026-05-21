@@ -7,7 +7,7 @@ A React implementation of Optimizely's Axiom Design System.
 Install the package using your package manager of choice:
 
 ```sh
-npm install @optiaxiom/react
+npm install @optiaxiom/react@^1
 ```
 
 ## AI Assistant Integration
@@ -15,7 +15,7 @@ npm install @optiaxiom/react
 We provide an MCP server that enables AI assistants like Claude Code and Cursor to access accurate Axiom component metadata, design tokens, and usage examples:
 
 ```sh
-npm install -g @optiaxiom/mcp
+npm install -g @optiaxiom/mcp@^1
 ```
 
 See the [MCP guide](https://optimizely-axiom.github.io/optiaxiom/guides/mcp) for setup instructions.

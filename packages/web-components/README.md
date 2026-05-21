@@ -11,7 +11,7 @@ Please read the full [documentation](https://optimizely-axiom.github.io/optiaxio
 Use your favorite package manager to install the package:
 
 ```sh
-npm install @optiaxiom/web-components
+npm install @optiaxiom/web-components@^1
 ```
 
 Wrap your application with `AxiomProvider` and simply import and use the components:
@@ -35,7 +35,7 @@ Use your favorite CDN to import the package:
 ```html
 <script
   <!-- Make sure to replace `latest` with a fixed version number. -->
-  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/index.js"
+  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@1/dist/index.js"
   type="module"
 ></script>
 ```
@@ -54,7 +54,7 @@ By default the index entry of the library lazy loads components to avoid loading
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/index.js" <!-- `index.js` entry -->
+  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@1/dist/index.js" <!-- `index.js` entry -->
   type="module"
 ></script>
 
@@ -85,7 +85,7 @@ function App() {
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/components/Button.js" <!-- `Button.js` entry -->
+  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@1/dist/components/Button.js" <!-- `Button.js` entry -->
   type="module"
 ></script>
 
