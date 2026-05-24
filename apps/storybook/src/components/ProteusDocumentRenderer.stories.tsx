@@ -2184,6 +2184,9 @@ export const CreateMeetingEvent: Story = {
                   $type: "Action",
                   appearance: "subtle",
                   children: "Add to another calendar",
+                  onClick: {
+                    interaction: "add_to_another_calendar",
+                  },
                   type: "button",
                 },
                 {
@@ -2280,6 +2283,7 @@ export const CreateMeetingEvent: Story = {
         data={data}
         onDataChange={setData}
         onInteraction={(name): Promise<void> | void => {
+          action(name)();
           if (name === "search_people") {
             if (searchTimerRef.current) {
               clearTimeout(searchTimerRef.current.timer);
