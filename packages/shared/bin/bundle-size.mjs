@@ -166,7 +166,10 @@ void yargs(hideBin(process.argv))
     },
     command: "compare <file>",
     handler: async ({ file, output }) => {
-      const report = await compare({ file });
+      const report = (await compare({ file })).filter(
+        (entry) =>
+          entry.diff.empty || Math.abs(entry.diff.minified.delta) >= 50,
+      );
       const reporter =
         output === "cli"
           ? (await import("monosize/src/reporters/cliReporter.mjs")).cliReporter
