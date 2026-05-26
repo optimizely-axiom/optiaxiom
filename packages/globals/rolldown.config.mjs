@@ -7,6 +7,7 @@ import { defineConfig } from "rolldown";
 import { dts } from "rolldown-plugin-dts";
 
 const env = process.env.NODE_ENV ?? "development";
+const watch = process.env.ROLLDOWN_WATCH === "true";
 const pkg = JSON.parse(readFileSync("./package.json"));
 const bannerFilter = createFilter([
   "**/context.ts",
@@ -90,6 +91,7 @@ export default defineConfig([
         emitDtsOnly: true,
         sourcemap: false,
         tsconfig: "tsconfig.build.json",
+        tsgo: !watch,
       }),
     ],
   },

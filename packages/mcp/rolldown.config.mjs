@@ -37,6 +37,7 @@ export default defineConfig([
         emitDtsOnly: true,
         sourcemap: false,
         tsconfig: "tsconfig.build.json",
+        tsgo: true,
       }),
     ],
   },
