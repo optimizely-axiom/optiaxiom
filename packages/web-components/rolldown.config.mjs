@@ -16,6 +16,7 @@ const external = new RegExp(
 );
 const require = createRequire(import.meta.url);
 const env = process.env.NODE_ENV ?? "development";
+const watch = process.env.ROLLDOWN_WATCH === "true";
 const pkg = JSON.parse(readFileSync("./package.json"));
 
 const input = Object.fromEntries(
@@ -428,6 +429,7 @@ export { Portal, Portal as Root };`;
         emitDtsOnly: true,
         sourcemap: false,
         tsconfig: "tsconfig.build.json",
+        tsgo: !watch,
       }),
     ],
   },

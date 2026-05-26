@@ -16,6 +16,7 @@ import { generateSpecPlugin } from "./plugins/rollup-plugin-generate-schema.mjs"
 import { openaiShimPlugin } from "./plugins/rollup-plugin-openai-shim.mjs";
 
 const env = process.env.NODE_ENV ?? "development";
+const watch = process.env.ROLLDOWN_WATCH === "true";
 const pkg = JSON.parse(readFileSync("./package.json"));
 const external = new RegExp(
   "^(?:" +
@@ -120,6 +121,7 @@ export default defineConfig([
         emitDtsOnly: true,
         sourcemap: false,
         tsconfig: "tsconfig.build.json",
+        tsgo: !watch,
       }),
     ],
   },

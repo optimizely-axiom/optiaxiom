@@ -13,6 +13,7 @@ import { defineConfig } from "rolldown";
 import { dts } from "rolldown-plugin-dts";
 
 const env = process.env.NODE_ENV ?? "development";
+const watch = process.env.ROLLDOWN_WATCH === "true";
 const pkg = JSON.parse(readFileSync("./package.json"));
 const external = new RegExp(
   "^(?:" +
@@ -180,6 +181,7 @@ function getConfig({ input, plugins = [] }) {
           emitDtsOnly: true,
           sourcemap: false,
           tsconfig: "tsconfig.build.json",
+          tsgo: !watch,
         }),
       ],
     },
