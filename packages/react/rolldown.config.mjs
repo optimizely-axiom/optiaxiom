@@ -1,6 +1,4 @@
 import hash from "@emotion/hash";
-import json from "@rollup/plugin-json";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
 import {
   getSourceFromVirtualCssFile,
   virtualCssFileFilter,
@@ -11,9 +9,8 @@ import { readFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import postcss from "postcss";
-import { defineConfig } from "rollup";
-import dts from "rollup-plugin-dts";
-import esbuild from "rollup-plugin-esbuild";
+import { defineConfig } from "rolldown";
+import { dts } from "rolldown-plugin-dts";
 
 const env = process.env.NODE_ENV ?? "development";
 const pkg = JSON.parse(readFileSync("./package.json"));
@@ -60,8 +57,8 @@ export default defineConfig([
 ]);
 
 /**
- * @param {import("rollup").RollupOptions} overrides
- * @return {import("rollup").RollupOptions[]}
+ * @param {{ input: Record<string, string>, plugins?: import('rolldown').Plugin[] }} overrides
+ * @return {import('rolldown').RolldownOptions[]}
  */
 function getConfig({ input, plugins = [] }) {
   return [
@@ -96,7 +93,7 @@ function getConfig({ input, plugins = [] }) {
           name: "preserve-directives",
           renderChunk(code, chunk) {
             const directives = chunk.moduleIds.some(
-              (id) => this.getModuleInfo(id).meta.preserveDirectives,
+              (id) => this.getModuleInfo(id)?.meta.preserveDirectives,
             );
             return directives ? '"use client";\n' + code : code;
           },
@@ -134,16 +131,6 @@ function getConfig({ input, plugins = [] }) {
             return code.replace(search, replace);
           },
         },
-        nodeResolve({
-          preferBuiltins: false,
-        }),
-        esbuild({
-          define: {
-            "process.env.NODE_ENV": JSON.stringify(env),
-          },
-          target: "esnext",
-        }),
-        json(),
         env === "production" && stylePlugin(),
         vanillaExtractPlugin(
           env === "production"
@@ -174,6 +161,12 @@ function getConfig({ input, plugins = [] }) {
           name: "optimize-generate-bundle",
         },
       ],
+      transform: {
+        define: {
+          "process.env.NODE_ENV": JSON.stringify(env),
+        },
+        target: "esnext",
+      },
     },
     {
       external,
@@ -184,7 +177,8 @@ function getConfig({ input, plugins = [] }) {
       },
       plugins: [
         dts({
-          respectExternal: true,
+          emitDtsOnly: true,
+          sourcemap: false,
           tsconfig: "tsconfig.build.json",
         }),
       ],
@@ -196,10 +190,10 @@ function normalizeIdentifier(identifier) {
   return identifier.match(/^[0-9]/) ? "_".concat(identifier) : identifier;
 }
 
-/** @returns {import('rollup').Plugin} */
+/** @returns {import('rolldown').Plugin} */
 function stylePlugin() {
   return {
-    name: "rollup-plugin-style",
+    name: "rolldown-plugin-style",
     async resolveId(id) {
       if (!virtualCssFileFilter.test(id)) {
         return null;

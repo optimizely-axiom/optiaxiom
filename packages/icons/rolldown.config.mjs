@@ -1,9 +1,8 @@
 import { readFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { basename, dirname, resolve } from "node:path";
-import { defineConfig } from "rollup";
-import dts from "rollup-plugin-dts";
-import esbuild from "rollup-plugin-esbuild";
+import { defineConfig } from "rolldown";
+import { dts } from "rolldown-plugin-dts";
 
 const env = process.env.NODE_ENV ?? "development";
 const pkg = JSON.parse(readFileSync("./package.json"));
@@ -16,7 +15,7 @@ const external = new RegExp(
     ")(?:/.+)?$",
 );
 
-/** @returns {import('rollup').Plugin} */
+/** @returns {import('rolldown').Plugin} */
 function materialSymbolsPlugin() {
   const prefix = "\0material-symbol:";
   const materialIconId = "\0material-icon:";
@@ -48,7 +47,6 @@ function materialSymbolsPlugin() {
       const componentName = svgToComponentName(basename(filePath));
       const unfilledPath = parseSvgPath(svgContent);
 
-      // Read the corresponding filled SVG
       const fillFilePath = filePath.replace(/(-fill)?\.svg$/, "-fill.svg");
       const fillSvgContent = readFileSync(fillFilePath, "utf-8");
       const filledPath = parseSvgPath(fillSvgContent);
@@ -88,9 +86,6 @@ function parseSvgPath(svgContent) {
   throw new Error("Could not find path");
 }
 
-/**
- * Map from SVG file base name to exported component name.
- */
 function svgToComponentName(svgFileName) {
   const name = svgFileName.replace(/\.svg$/, "").replace(/-fill$/, "_fill");
 
@@ -137,10 +132,6 @@ export default defineConfig([
           return { external: true, id: `./${basename(id)}` };
         },
       },
-      esbuild({
-        jsx: "automatic",
-        target: "esnext",
-      }),
       env !== "production" && {
         async generateBundle(options, bundle) {
           for (const [fileName, chunk] of Object.entries(bundle)) {
@@ -159,6 +150,9 @@ export default defineConfig([
         name: "optimize-generate-bundle",
       },
     ],
+    transform: {
+      target: "esnext",
+    },
   },
   {
     external,
@@ -179,7 +173,18 @@ export default defineConfig([
           return null;
         },
       },
+      {
+        name: "svg-dts",
+        resolveId(source, importer) {
+          if (!source.endsWith(".svg") || !importer) {
+            return null;
+          }
+          return { id: resolve(dirname(importer), source + ".d.ts") };
+        },
+      },
       dts({
+        emitDtsOnly: true,
+        sourcemap: false,
         tsconfig: "tsconfig.build.json",
       }),
     ],

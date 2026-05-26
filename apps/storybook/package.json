@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "scripts": {
     "build": "pnpm run build:federated-widget && storybook build --docs",
-    "build:federated-widget": "rollup -c src/fixtures/federated-widget/rollup.config.mjs",
+    "build:federated-widget": "rolldown -c src/fixtures/federated-widget/rolldown.config.mjs",
     "dev": "pnpm run build:federated-widget && wait-on ../../packages/proteus/dist/index.d.ts ../../packages/react/dist/index.d.ts ../../packages/react/dist/unstable.d.ts ../../packages/shared/data/docs.json && storybook dev -p 6006",
     "test": "vitest"
   },
@@ -24,8 +24,6 @@
     "@vitejs/plugin-react": "^5.2.0",
     "@vitest/browser": "^3.2.4",
     "chromatic": "^13.3.5",
-    "@rollup/plugin-commonjs": "^28.0.0",
-    "@rollup/plugin-replace": "^6.0.0",
     "raw-loader": "^4.0.2",
     "react": "^18.3.1",
     "react-docgen": "^8.0.3",
