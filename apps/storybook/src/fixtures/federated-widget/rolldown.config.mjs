@@ -1,13 +1,10 @@
-import commonjs from "@rollup/plugin-commonjs";
-import nodeResolve from "@rollup/plugin-node-resolve";
-import replace from "@rollup/plugin-replace";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import esbuild from "rollup-plugin-esbuild";
+import { defineConfig } from "rolldown";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export default {
+export default defineConfig({
   input: path.resolve(__dirname, "container.tsx"),
   output: {
     file: path.resolve(
@@ -16,13 +13,12 @@ export default {
     ),
     format: "esm",
   },
-  plugins: [
-    replace({
-      preventAssignment: true,
+  transform: {
+    define: {
       "process.env.NODE_ENV": JSON.stringify("production"),
-    }),
-    nodeResolve({ extensions: [".tsx", ".ts", ".js"] }),
-    commonjs(),
-    esbuild(),
-  ],
-};
+    },
+    jsx: {
+      runtime: "automatic",
+    },
+  },
+});

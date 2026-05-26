@@ -26,8 +26,8 @@
   ],
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "node scripts/download.mjs && rm -rf dist && NODE_ENV=production rollup -c",
-    "dev": "node scripts/download.mjs && rm -rf dist && rollup -cw"
+    "build": "node scripts/download.mjs && rm -rf dist && NODE_ENV=production rolldown -c",
+    "dev": "node scripts/download.mjs && rm -rf dist && rolldown -wc"
   },
   "dependencies": {},
   "devDependencies": {
