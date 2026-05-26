@@ -5,7 +5,7 @@ import {
   generateTokens,
 } from "./generators.mjs";
 
-/** @returns {import('rollup').Plugin} */
+/** @returns {import('rolldown').Plugin} */
 export function generateDataPlugin() {
   const prefix = "\0virtual:mcp-data/";
 
