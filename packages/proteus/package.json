@@ -30,7 +30,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rolldown -c",
-    "dev": "rm -rf dist && wait-on ../../packages/react/dist/index.d.ts ../../packages/react/dist/unstable.d.ts && rolldown -wc"
+    "dev": "rm -rf dist && wait-on ../../packages/react/dist/index.d.ts ../../packages/react/dist/unstable.d.ts ../../packages/shared/data/docs.json && rolldown -wc"
   },
   "dependencies": {
     "@cfworker/json-schema": "^4.1.1",
