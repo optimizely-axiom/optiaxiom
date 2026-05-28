@@ -7,7 +7,7 @@ import { useState } from "react";
 import { DocumentTree } from "./DocumentTree";
 import { JsonEditor } from "./JsonEditor";
 import { PropertyInspector } from "./PropertyInspector/PropertyInspector";
-import { documentExamples } from "./schemaUtils";
+import { documentExamples, type ValidationIssue } from "./schemaUtils";
 import { useDesignerState } from "./useDesignerState";
 
 const templates = Object.fromEntries(
@@ -30,7 +30,9 @@ export function ProteusDesigner() {
     updateNode,
   } = useDesignerState();
 
-  const [docError, setDocError] = useState<null | string>(null);
+  const [docError, setDocError] = useState<null | string | ValidationIssue[]>(
+    null,
+  );
 
   const selectedNode =
     state.selectedPath !== null ? getNodeAtPath(state.selectedPath) : null;
@@ -107,12 +109,26 @@ export function ProteusDesigner() {
             />
           </Box>
           {docError && (
-            <Alert
-              intent="danger"
+            <Box
+              maxH="sm"
+              overflow="auto"
               style={{ bottom: 8, insetInline: 8, position: "absolute" }}
             >
-              {docError}
-            </Alert>
+              {typeof docError === "string" ? (
+                <Alert intent="danger">docError</Alert>
+              ) : (
+                <Box display="flex" flexDirection="column" gap="4">
+                  {docError.map((issue, i) => (
+                    <Alert fontSize="sm" intent="danger" key={i}>
+                      {issue.message}{" "}
+                      <Text asChild color="fg.secondary" fontSize="xs">
+                        <span>at {issue.path}</span>
+                      </Text>
+                    </Alert>
+                  ))}
+                </Box>
+              )}
+            </Box>
           )}
         </Box>
 
