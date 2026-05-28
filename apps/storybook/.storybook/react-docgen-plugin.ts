@@ -1,7 +1,6 @@
 import { createFilter } from "@rollup/pluginutils";
 import { basename, relative } from "node:path";
-import { ERROR_CODES, parse } from "react-docgen";
-import { builtinHandlers } from "react-docgen";
+import { builtinHandlers, ERROR_CODES, parse } from "react-docgen";
 
 export function reactDocgenPlugin() {
   const filter = createFilter(
@@ -28,14 +27,37 @@ export function reactDocgenPlugin() {
 
       try {
         const docgenResults = parse(code, {
-          handlers: [builtinHandlers.displayNameHandler],
+          handlers: [
+            builtinHandlers.displayNameHandler,
+            (documentation, path) => {
+              const parent = path.findParent(
+                (node) =>
+                  node.isVariableDeclarator() ||
+                  node.isFunctionDeclaration() ||
+                  node.isClassDeclaration(),
+              );
+              const name =
+                parent?.node.type &&
+                "id" in parent.node &&
+                parent.node.id &&
+                "name" in parent.node.id
+                  ? parent.node.id.name
+                  : null;
+              if (name) {
+                documentation.set("localName", name);
+              }
+            },
+          ],
         });
         if (!docgenResults.length) {
           return;
         }
 
         docgenResults.forEach((info) => {
-          const { displayName } = info;
+          const { displayName, localName } = info as {
+            displayName?: string;
+            localName?: string;
+          };
           const docgenInfo = docs?.find(
             (doc: { displayName: string }) => doc.displayName === displayName,
           );
@@ -45,7 +67,7 @@ export function reactDocgenPlugin() {
               ...docgenInfo,
               props: docgenInfo.props.filter((prop) => isBox || !prop.sprinkle),
             });
-            code += `;${basename(displayName)}.__docgenInfo=${docNode}`;
+            code += `;${localName ?? basename(displayName)}.__docgenInfo=${docNode}`;
           }
         });
 
