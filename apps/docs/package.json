@@ -8,6 +8,7 @@
     "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind"
   },
   "devDependencies": {
+    "@cfworker/json-schema": "^4.1.1",
     "@dnd-kit/react": "^0.3.2",
     "@faker-js/faker": "^9.9.0",
     "@monaco-editor/react": "^4.7.0",
@@ -23,6 +24,7 @@
     "better-opn": "^3.0.2",
     "cssesc": "^3.0.0",
     "fast-glob": "^3.3.3",
+    "jsonc-parser": "^3.3.1",
     "mdast-util-from-markdown": "^2.0.3",
     "mdast-util-mdx": "^3.0.0",
     "micromark-extension-mdxjs": "^3.0.0",
