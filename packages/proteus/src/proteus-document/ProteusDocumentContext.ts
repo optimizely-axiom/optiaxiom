@@ -11,7 +11,7 @@ export type FileUploadMetadata = {
   name: string;
 };
 
-export type ProteusIconMap = Record<string, ComponentType>;
+export type ProteusIconMap = Record<string, ComponentType<{ filled?: boolean }>>;
 
 export type UploadFile<F extends FileUploadMetadata = FileUploadMetadata> = (
   file: File,
