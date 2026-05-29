@@ -78,9 +78,12 @@ export function useDesignerState() {
     });
   }, []);
 
-  const setData = useCallback((data: Record<string, unknown>) => {
-    setState((s) => ({ ...s, data }));
-  }, []);
+  const setData = useCallback(
+    (updater: (prev: Record<string, unknown>) => Record<string, unknown>) => {
+      setState((s) => ({ ...s, data: updater(s.data) }));
+    },
+    [],
+  );
 
   const getNodeAtPath = useCallback(
     (path: string) => {
