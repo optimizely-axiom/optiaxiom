@@ -17,6 +17,7 @@ type ComparisonValue =
   | null
   | number
   | string
+  | { $type: "Length"; path: string }
   | { $type: "MapIndex" }
   | { $type: "Value"; path: string };
 
@@ -140,6 +141,15 @@ export function resolveProteusValue(
         value as Parameters<typeof getProteusValue>[1],
         parentPath,
       );
+    }
+
+    if (
+      value.$type === "Length" &&
+      "path" in value &&
+      typeof value.path === "string"
+    ) {
+      const arr = getProteusValue(data, { path: value.path }, parentPath);
+      return Array.isArray(arr) ? arr.length : 0;
     }
 
     if (

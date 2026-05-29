@@ -36,6 +36,8 @@ import { ProteusFileUpload } from "../proteus-file-upload/ProteusFileUpload";
 import { ProteusImageCarousel } from "../proteus-image-carousel/ProteusImageCarousel";
 import { ProteusImage } from "../proteus-image/ProteusImage";
 import { ProteusInput } from "../proteus-input/ProteusInput";
+import { ProteusLength } from "../proteus-length/ProteusLength";
+import { ProteusMapIndex } from "../proteus-map-index/ProteusMapIndex";
 import { ProteusMap } from "../proteus-map/ProteusMap";
 import { ProteusPillMenu } from "../proteus-pill-menu/ProteusPillMenu";
 import { ProteusQuestion } from "../proteus-question/ProteusQuestion";
@@ -202,6 +204,8 @@ export const ProteusElement = ({
       );
     case "Input":
       return <ProteusInput {...resolve(element)} />;
+    case "Length":
+      return <ProteusLength {...resolve(element)} />;
     case "Link":
       return <Link target="_blank" {...resolve(element)} />;
     case "Map":
@@ -210,6 +214,8 @@ export const ProteusElement = ({
           {...(resolve(element) as ComponentPropsWithoutRef<typeof ProteusMap>)}
         />
       );
+    case "MapIndex":
+      return <ProteusMapIndex {...resolve(element)} />;
     case "PillMenu":
       return <ProteusPillMenu {...resolve(element)} />;
     case "Question":

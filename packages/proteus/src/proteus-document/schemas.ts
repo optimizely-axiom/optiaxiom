@@ -36,6 +36,8 @@ import type { ProteusFileIconProps } from "../proteus-file-icon/ProteusFileIcon"
 import type { ProteusFileUploadProps } from "../proteus-file-upload/ProteusFileUpload";
 import type { ProteusImageCarouselProps } from "../proteus-image-carousel/ProteusImageCarousel";
 import type { ProteusImageProps } from "../proteus-image/ProteusImage";
+import type { ProteusLengthProps } from "../proteus-length/ProteusLength";
+import type { ProteusMapIndexProps } from "../proteus-map-index/ProteusMapIndex";
 import type { ProteusMapProps } from "../proteus-map/ProteusMap";
 import type { ProteusPillMenuProps } from "../proteus-pill-menu/ProteusPillMenu";
 import type { ProteusQuestionProps } from "../proteus-question/ProteusQuestion";
@@ -75,6 +77,8 @@ export type ProteusElement =
   | (ProteusFileUploadProps & { $type: "FileUpload" })
   | (ProteusImageCarouselProps & { $type: "ImageCarousel" })
   | (ProteusImageProps & { $type: "Image" })
+  | (ProteusLengthProps & { $type: "Length" })
+  | (ProteusMapIndexProps & { $type: "MapIndex" })
   | (ProteusMapProps & { $type: "Map" })
   | (ProteusPillMenuProps & { $type: "PillMenu" })
   | (ProteusQuestionProps & { $type: "Question" })
@@ -102,6 +106,15 @@ export type ProteusEventHandler =
   | {
       action: "preview";
       file: unknown;
+    }
+  | {
+      action: "pushValue";
+      path: string;
+      value?: unknown;
+    }
+  | {
+      action: "removeValue";
+      path: string;
     }
   | { interaction: string; params?: Record<string, unknown> }
   | { message: string | StructuredMessage };

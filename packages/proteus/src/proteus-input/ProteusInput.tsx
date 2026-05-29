@@ -13,17 +13,18 @@ export function ProteusInput(props: InputProps) {
   );
 
   const value = useProteusValue({ path: props.name ?? "" });
+  const writePath = props.name ? `${parentPath}/${props.name}` : parentPath;
 
   return (
     <Input
       {...props}
       onValueChange={(value) => {
-        if (props.name) {
-          onDataChange?.(`${parentPath}/${props.name}`, value);
+        if (writePath) {
+          onDataChange?.(writePath, value);
         }
       }}
       readOnly={readOnly}
-      value={props.name ? String(value ?? "") : ""}
+      value={String(value ?? "")}
     />
   );
 }

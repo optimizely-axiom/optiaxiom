@@ -6,6 +6,7 @@ import { useState } from "react";
 import type { ProteusEventHandler } from "../proteus-document/schemas";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
+import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
 import { useResolveProteusValues } from "../proteus-document/useResolveProteusValues";
 
 export type ProteusActionProps = Omit<ButtonProps, "onClick"> & {
@@ -22,6 +23,9 @@ export function ProteusAction({
   ...props
 }: ProteusActionProps) {
   const { onEvent, valid } = useProteusDocumentContext(
+    "@optiaxiom/proteus/ProteusAction",
+  );
+  const { path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/proteus/ProteusAction",
   );
   const resolvedOnClick = useResolveProteusValues(
@@ -41,7 +45,7 @@ export function ProteusAction({
         }
 
         setLoading(true);
-        await onEvent(resolvedOnClick);
+        await onEvent(resolveEventPath(resolvedOnClick, parentPath));
         setLoading(false);
       }}
       type={type}
@@ -50,6 +54,34 @@ export function ProteusAction({
       {children}
     </Button>
   );
+}
+
+/**
+ * Runtime data ops (`pushValue` / `removeValue`) carry a `path` that is
+ * relative to the firing component's position in the document. Resolve it to
+ * an absolute JSON pointer here — where the positional `Map` context is
+ * available — so the document-root event handler can apply it unambiguously.
+ */
+function resolveEventPath(
+  event: ProteusEventHandler,
+  parentPath: string,
+): ProteusEventHandler {
+  if (
+    event &&
+    typeof event === "object" &&
+    "action" in event &&
+    (event.action === "pushValue" || event.action === "removeValue")
+  ) {
+    const { path } = event;
+    const resolved =
+      path === ""
+        ? parentPath
+        : path.startsWith("/")
+          ? path
+          : `${parentPath}/${path}`;
+    return { ...event, path: resolved };
+  }
+  return event;
 }
 
 ProteusAction.displayName = "@optiaxiom/proteus/ProteusAction";

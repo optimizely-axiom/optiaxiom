@@ -4,6 +4,8 @@ import {
   IconCalendar,
   IconClock,
   IconLocationDot,
+  IconPlus,
+  IconTrashCan,
   IconUserGroup,
 } from "@optiaxiom/icons";
 import { ProteusDocumentRenderer } from "@optiaxiom/proteus";
@@ -124,9 +126,54 @@ export const FormWithInputs: Story = {
               children: {
                 $type: "Field",
                 children: {
-                  $type: "Input",
-                  name: "url",
-                  placeholder: "Add a URL",
+                  $type: "Group",
+                  children: [
+                    {
+                      $type: "Map",
+                      children: {
+                        $type: "Group",
+                        children: [
+                          {
+                            $type: "Input",
+                            flex: "1",
+                            name: "",
+                            placeholder: "Add a URL",
+                          },
+                          {
+                            $type: "Show",
+                            children: {
+                              $type: "Action",
+                              "aria-label": "Remove URL",
+                              icon: { $type: "Icon", name: "TrashCan" },
+                              onClick: {
+                                action: "removeValue",
+                                path: "",
+                              },
+                            },
+                            when: {
+                              ">": [{ $type: "Length", path: "/urls" }, 1],
+                            },
+                          },
+                        ],
+                        flexDirection: "row",
+                        gap: "8",
+                      },
+                      path: "/urls",
+                    },
+                    {
+                      $type: "Action",
+                      alignSelf: "start",
+                      "aria-label": "Add URL",
+                      icon: { $type: "Icon", name: "Plus" },
+                      onClick: {
+                        action: "pushValue",
+                        path: "/urls",
+                        value: "",
+                      },
+                    },
+                  ],
+                  flexDirection: "column",
+                  gap: "8",
                 },
                 label: "URL",
               },
@@ -208,7 +255,7 @@ export const FormWithInputs: Story = {
                   {
                     "==": [{ $type: "Value", path: "/target_by" }, "url"],
                   },
-                  { "!!": { $type: "Value", path: "/url" } },
+                  { "!!": { $type: "Value", path: "/urls/0" } },
                 ],
               },
               {
@@ -225,10 +272,15 @@ export const FormWithInputs: Story = {
       ],
       title: "Create a test plan",
     },
+    icons: {
+      Plus: IconPlus,
+      TrashCan: IconTrashCan,
+    },
   },
   render: function Render(args) {
     const [data, setData] = useState<Record<string, unknown>>({
       target_by: "url",
+      urls: [""],
     });
     return (
       <ProteusDocumentRenderer {...args} data={data} onDataChange={setData} />
@@ -970,7 +1022,7 @@ export const AskAgentInputWithFileParam: Story = {
     },
   },
   render: function AskAgentInputWithFileParamRender(args) {
-    const [data, setData] = useState(args.data);
+    const [data, setData] = useState<Record<string, unknown>>(args.data ?? {});
     return (
       <ProteusDocumentRenderer {...args} data={data} onDataChange={setData} />
     );
