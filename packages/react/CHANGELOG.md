@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 3.0.1
+
+### Patch Changes
+
+- 5a2c623: default input to always be visible for PillMenu
+
 ## 3.0.0
 
 ### Major Changes
