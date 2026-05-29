@@ -156,7 +156,9 @@ pnpm dev:storybook
 
 ### Testing
 
-Run `lint` and `test` to run the linter and unit tests respectively:
+Run `lint` and `test` to check the codebase and run unit tests respectively.
+`pnpm lint` type-checks, formats, and lints in one step (see
+[CONTRIBUTING.md](CONTRIBUTING.md#code-style) for details):
 
 ```sh
 pnpm lint
