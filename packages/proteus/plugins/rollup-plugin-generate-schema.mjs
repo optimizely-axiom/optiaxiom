@@ -215,6 +215,12 @@ const PROTEUS_COMPONENT_CONFIG = {
     ],
     example: { name: "field_name", placeholder: "Enter value" },
   },
+  Length: {
+    allowedProps: ["path"],
+    example: { path: "/items" },
+    extends: "Fragment",
+    requiredProps: ["path"],
+  },
   Link: {
     allowedProps: ["children", "href"],
     example: { children: "Link text", href: "https://example.com" },
@@ -485,6 +491,7 @@ function generateSpec(additionalProperties = false) {
             { type: "number" },
             { type: "boolean" },
             { type: "null" },
+            { $ref: "#/definitions/ProteusLength" },
             { $ref: "#/definitions/ProteusMapIndex" },
             { $ref: "#/definitions/ProteusValue" },
           ];
@@ -874,12 +881,53 @@ function generateSpec(additionalProperties = false) {
               required: ["action", "file"],
               type: "object",
             },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              description:
+                "Runtime data operation - appends `value` to the array at `path` in form data. Path resolves like `Value` (absolute `/x`, relative to current parentPath, or `''` for parentPath itself).",
+              properties: {
+                action: {
+                  const: "pushValue",
+                  description: "The action type",
+                  type: "string",
+                },
+                path: {
+                  description: "JSON pointer path to the array to push onto",
+                  type: "string",
+                },
+                value: {
+                  description: "The value to append; primitives or objects",
+                },
+              },
+              required: ["action", "path"],
+              type: "object",
+            },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              description:
+                "Runtime data operation - removes the array element at `path` in form data. `path` must resolve to an array index (e.g. `/urls/2`, or `''` inside a `Map` row).",
+              properties: {
+                action: {
+                  const: "removeValue",
+                  description: "The action type",
+                  type: "string",
+                },
+                path: {
+                  description:
+                    "JSON pointer path to the array element to remove",
+                  type: "string",
+                },
+              },
+              required: ["action", "path"],
+              type: "object",
+            },
           ],
           description:
             "Handler for user interactions - a server-side interaction call, client-side message, or client-side component action",
         },
         ProteusExpression: {
           anyOf: [
+            { $ref: "#/definitions/ProteusLength" },
             { $ref: "#/definitions/ProteusMap" },
             { $ref: "#/definitions/ProteusMapIndex" },
             { $ref: "#/definitions/ProteusShow" },
@@ -1291,6 +1339,13 @@ function getPropTypeOverrides(additionalProperties = false) {
           { type: "string" },
         ],
         description: "Accessible label for the carousel region.",
+      },
+    },
+    Length: {
+      path: {
+        description:
+          "JSON pointer path to the array whose length should be returned (e.g. '/urls'). Resolves to 0 when the value is missing or not an array.",
+        type: "string",
       },
     },
     Map: {
