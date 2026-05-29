@@ -10,7 +10,7 @@ import {
   Tooltip,
 } from "@optiaxiom/react";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { set } from "jsonpointer";
+import { get, set } from "jsonpointer";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,
@@ -222,6 +222,49 @@ export function ProteusDocumentShell({
           }
         } else if (event.action === "preview") {
           await onPreview?.(event.file);
+        } else if (event.action === "pushValue") {
+          // `path` arrives already resolved to an absolute pointer by the
+          // firing component (which owns the positional Map context).
+          const { path, value } = event;
+          onDataChange?.((prev) => {
+            const next = structuredClone(prev);
+            const current = get(next, path);
+            if (current !== undefined && !Array.isArray(current)) {
+              if (strict) {
+                throw new Error(`pushValue: expected array at "${path}"`);
+              }
+              return prev;
+            }
+            set(next, path, [...((current as unknown[]) ?? []), value]);
+            return next;
+          });
+        } else if (event.action === "removeValue") {
+          const { path } = event;
+          const slash = path.lastIndexOf("/");
+          const parent = slash > 0 ? path.slice(0, slash) : "";
+          const index = Number(path.slice(slash + 1));
+          if (!parent || !Number.isInteger(index)) {
+            if (strict) {
+              throw new Error(`removeValue: "${path}" is not an array index`);
+            }
+            return;
+          }
+          onDataChange?.((prev) => {
+            const next = structuredClone(prev);
+            const arr = get(next, parent);
+            if (!Array.isArray(arr)) {
+              if (strict) {
+                throw new Error(`removeValue: "${parent}" is not an array`);
+              }
+              return prev;
+            }
+            set(
+              next,
+              parent,
+              arr.filter((_, i) => i !== index),
+            );
+            return next;
+          });
         }
         return;
       })}
