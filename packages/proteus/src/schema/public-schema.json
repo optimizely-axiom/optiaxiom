@@ -1599,6 +1599,13 @@
         "children": { "$ref": "#/definitions/ProteusNode" },
         "color": { "$ref": "#/definitions/SprinkleProp_color" },
         "cursor": { "$ref": "#/definitions/SprinkleProp_cursor" },
+        "disabled": {
+          "anyOf": [
+            { "type": "boolean" },
+            { "$ref": "#/definitions/ProteusExpression" }
+          ],
+          "description": "Whether the button is disabled."
+        },
         "display": { "$ref": "#/definitions/SprinkleProp_display" },
         "flex": { "$ref": "#/definitions/SprinkleProp_flex" },
         "flexDirection": { "$ref": "#/definitions/SprinkleProp_flexDirection" },
@@ -1613,6 +1620,10 @@
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
         },
         "h": { "$ref": "#/definitions/SprinkleProp_h" },
+        "icon": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Display an icon before or after the button content or omit `children` to only show the icon."
+        },
         "justifyContent": {
           "$ref": "#/definitions/SprinkleProp_justifyContent"
         },
@@ -1656,6 +1667,10 @@
         "w": { "$ref": "#/definitions/SprinkleProp_w" },
         "whiteSpace": { "$ref": "#/definitions/SprinkleProp_whiteSpace" },
         "z": { "$ref": "#/definitions/SprinkleProp_z" },
+        "aria-label": {
+          "description": "Accessible label for screen readers. Required when the button renders an icon with no text children.",
+          "type": "string"
+        },
         "onClick": {
           "$ref": "#/definitions/ProteusEventHandler",
           "description": "Action triggered when button is clicked"
@@ -2105,6 +2120,13 @@
         "children": { "$ref": "#/definitions/ProteusNode" },
         "color": { "$ref": "#/definitions/SprinkleProp_color" },
         "cursor": { "$ref": "#/definitions/SprinkleProp_cursor" },
+        "disabled": {
+          "anyOf": [
+            { "type": "boolean" },
+            { "$ref": "#/definitions/ProteusExpression" }
+          ],
+          "description": "Whether the button is disabled."
+        },
         "display": { "$ref": "#/definitions/SprinkleProp_display" },
         "flex": { "$ref": "#/definitions/SprinkleProp_flex" },
         "flexDirection": { "$ref": "#/definitions/SprinkleProp_flexDirection" },
@@ -2119,6 +2141,10 @@
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
         },
         "h": { "$ref": "#/definitions/SprinkleProp_h" },
+        "icon": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Display an icon before or after the button content or omit `children` to only show the icon."
+        },
         "justifyContent": {
           "$ref": "#/definitions/SprinkleProp_justifyContent"
         },
@@ -2162,6 +2188,10 @@
         "w": { "$ref": "#/definitions/SprinkleProp_w" },
         "whiteSpace": { "$ref": "#/definitions/SprinkleProp_whiteSpace" },
         "z": { "$ref": "#/definitions/SprinkleProp_z" },
+        "aria-label": {
+          "description": "Accessible label for screen readers. Required when the button renders an icon with no text children.",
+          "type": "string"
+        },
         "onClick": {
           "$ref": "#/definitions/ProteusEventHandler",
           "description": "Action triggered when button is clicked"

@@ -27,7 +27,15 @@ import { fileURLToPath } from "url";
  */
 const PROTEUS_COMPONENT_CONFIG = {
   Action: {
-    allowedProps: ["appearance", "children", "onClick", "type"],
+    allowedProps: [
+      "appearance",
+      "aria-label",
+      "children",
+      "disabled",
+      "icon",
+      "onClick",
+      "type",
+    ],
     example: { appearance: "primary", children: "Action" },
     extends: "Button",
   },
@@ -59,7 +67,15 @@ const PROTEUS_COMPONENT_CONFIG = {
     requiredProps: ["resource"],
   },
   Button: {
-    allowedProps: ["appearance", "children", "onClick", "type"],
+    allowedProps: [
+      "appearance",
+      "aria-label",
+      "children",
+      "disabled",
+      "icon",
+      "onClick",
+      "type",
+    ],
     example: { appearance: "primary", children: "Action" },
   },
   Card: {
@@ -986,6 +1002,11 @@ function generateSpec(additionalProperties = false) {
 function getPropTypeOverrides(additionalProperties = false) {
   return {
     Action: {
+      "aria-label": {
+        description:
+          "Accessible label for screen readers. Required when the button renders an icon with no text children.",
+        type: "string",
+      },
       onClick: {
         $ref: "#/definitions/ProteusEventHandler",
         description: "Action triggered when button is clicked",
@@ -1008,6 +1029,11 @@ function getPropTypeOverrides(additionalProperties = false) {
       },
     },
     Button: {
+      "aria-label": {
+        description:
+          "Accessible label for screen readers. Required when the button renders an icon with no text children.",
+        type: "string",
+      },
       onClick: {
         $ref: "#/definitions/ProteusEventHandler",
         description: "Action triggered when button is clicked",
