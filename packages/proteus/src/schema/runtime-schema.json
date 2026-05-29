@@ -928,6 +928,7 @@
                   { "type": "number" },
                   { "type": "boolean" },
                   { "type": "null" },
+                  { "$ref": "#/definitions/ProteusLength" },
                   { "$ref": "#/definitions/ProteusMapIndex" },
                   { "$ref": "#/definitions/ProteusValue" }
                 ]
@@ -950,6 +951,7 @@
                   { "type": "number" },
                   { "type": "boolean" },
                   { "type": "null" },
+                  { "$ref": "#/definitions/ProteusLength" },
                   { "$ref": "#/definitions/ProteusMapIndex" },
                   { "$ref": "#/definitions/ProteusValue" }
                 ]
@@ -972,6 +974,7 @@
                   { "type": "number" },
                   { "type": "boolean" },
                   { "type": "null" },
+                  { "$ref": "#/definitions/ProteusLength" },
                   { "$ref": "#/definitions/ProteusMapIndex" },
                   { "$ref": "#/definitions/ProteusValue" }
                 ]
@@ -994,6 +997,7 @@
                   { "type": "number" },
                   { "type": "boolean" },
                   { "type": "null" },
+                  { "$ref": "#/definitions/ProteusLength" },
                   { "$ref": "#/definitions/ProteusMapIndex" },
                   { "$ref": "#/definitions/ProteusValue" }
                 ]
@@ -1016,6 +1020,7 @@
                   { "type": "number" },
                   { "type": "boolean" },
                   { "type": "null" },
+                  { "$ref": "#/definitions/ProteusLength" },
                   { "$ref": "#/definitions/ProteusMapIndex" },
                   { "$ref": "#/definitions/ProteusValue" }
                 ]
@@ -1038,6 +1043,7 @@
                   { "type": "number" },
                   { "type": "boolean" },
                   { "type": "null" },
+                  { "$ref": "#/definitions/ProteusLength" },
                   { "$ref": "#/definitions/ProteusMapIndex" },
                   { "$ref": "#/definitions/ProteusValue" }
                 ]
@@ -1058,6 +1064,7 @@
                 { "type": "number" },
                 { "type": "boolean" },
                 { "type": "null" },
+                { "$ref": "#/definitions/ProteusLength" },
                 { "$ref": "#/definitions/ProteusMapIndex" },
                 { "$ref": "#/definitions/ProteusValue" }
               ],
@@ -1075,6 +1082,7 @@
                 { "type": "number" },
                 { "type": "boolean" },
                 { "type": "null" },
+                { "$ref": "#/definitions/ProteusLength" },
                 { "$ref": "#/definitions/ProteusMapIndex" },
                 { "$ref": "#/definitions/ProteusValue" }
               ],
@@ -1329,6 +1337,7 @@
         { "$ref": "#/definitions/ProteusImage" },
         { "$ref": "#/definitions/ProteusImageCarousel" },
         { "$ref": "#/definitions/ProteusInput" },
+        { "$ref": "#/definitions/ProteusLength" },
         { "$ref": "#/definitions/ProteusLink" },
         { "$ref": "#/definitions/ProteusMap" },
         { "$ref": "#/definitions/ProteusMapIndex" },
@@ -1438,12 +1447,48 @@
           },
           "required": ["action", "file"],
           "type": "object"
+        },
+        {
+          "description": "Runtime data operation - appends `value` to the array at `path` in form data. Path resolves like `Value` (absolute `/x`, relative to current parentPath, or `''` for parentPath itself).",
+          "properties": {
+            "action": {
+              "const": "pushValue",
+              "description": "The action type",
+              "type": "string"
+            },
+            "path": {
+              "description": "JSON pointer path to the array to push onto",
+              "type": "string"
+            },
+            "value": {
+              "description": "The value to append; primitives or objects"
+            }
+          },
+          "required": ["action", "path"],
+          "type": "object"
+        },
+        {
+          "description": "Runtime data operation - removes the array element at `path` in form data. `path` must resolve to an array index (e.g. `/urls/2`, or `''` inside a `Map` row).",
+          "properties": {
+            "action": {
+              "const": "removeValue",
+              "description": "The action type",
+              "type": "string"
+            },
+            "path": {
+              "description": "JSON pointer path to the array element to remove",
+              "type": "string"
+            }
+          },
+          "required": ["action", "path"],
+          "type": "object"
         }
       ],
       "description": "Handler for user interactions - a server-side interaction call, client-side message, or client-side component action"
     },
     "ProteusExpression": {
       "anyOf": [
+        { "$ref": "#/definitions/ProteusLength" },
         { "$ref": "#/definitions/ProteusMap" },
         { "$ref": "#/definitions/ProteusMapIndex" },
         { "$ref": "#/definitions/ProteusShow" },
@@ -3721,6 +3766,18 @@
         "z": { "$ref": "#/definitions/SprinkleProp_z" }
       },
       "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusLength": {
+      "examples": [{ "$type": "Length", "path": "/items" }],
+      "properties": {
+        "$type": { "const": "Length" },
+        "path": {
+          "description": "JSON pointer path to the array whose length should be returned (e.g. '/urls'). Resolves to 0 when the value is missing or not an array.",
+          "type": "string"
+        }
+      },
+      "required": ["$type", "path"],
       "type": "object"
     },
     "ProteusLink": {
