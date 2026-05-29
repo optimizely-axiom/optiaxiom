@@ -1,5 +1,36 @@
 # @optiaxiom/proteus
 
+## 1.1.0
+
+### Minor Changes
+
+- 4da8836: Add first-class list mutation primitives:
+
+  - `pushValue` / `removeValue` event handler actions, interpreted by the
+    runtime, for appending to and removing from arrays in form data.
+  - `Length` value expression (`{ $type: "Length", path }`) for reading array
+    length in conditions and values.
+  - `MapIndex` and `Length` are now renderable elements (not just value
+    expressions), consistent with `Value`.
+  - `Input` with an empty `name` now binds to the current `parentPath`, enabling
+    rows inside a `Map` to read/write the current array element.
+
+- 8e8e3ae: Change `onDataChange` to receive a functional updater `(prev) => next` (the
+  shape React's `setState` accepts) instead of the full next data object. This
+  lets rapid successive form mutations compose without losing writes.
+
+  Migration: hosts that pass a `useState` setter directly
+  (`onDataChange={setData}`) need no change. Hosts that wrap it
+  (`onDataChange={(data) => …}`) must accept an updater instead:
+  `onDataChange={(updater) => setData(prev => updater(prev))}`.
+
+### Patch Changes
+
+- c95c1a5: add more form controls to proteus
+- c6280c8: add icon, disabled, and aria-label props to Action/Button (and filled prop to Icon)
+- Updated dependencies [9c305bc]
+  - @optiaxiom/react@1.9.38
+
 ## 1.0.0
 
 ### Major Changes
