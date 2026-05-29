@@ -155,7 +155,7 @@ export function ProteusDesigner() {
         <JsonEditor
           data={state.data}
           document={state.document}
-          onDataChange={setData}
+          onDataChange={(data) => setData(() => data)}
           onDocumentChange={setDocument}
           onDocumentError={setDocError}
         />
