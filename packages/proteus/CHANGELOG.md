@@ -1,5 +1,40 @@
 # @optiaxiom/proteus
 
+## 3.0.0
+
+### Major Changes
+
+- 5a7bc62: Promote packages to v3 to align major version numbers across the Axiom ecosystem. No code changes — this release exists solely to give every public package a stable `^3` install range alongside `@optiaxiom/react@^3`.
+
+### Minor Changes
+
+- 61612f6: Add first-class list mutation primitives:
+
+  - `pushValue` / `removeValue` event handler actions, interpreted by the
+    runtime, for appending to and removing from arrays in form data.
+  - `Length` value expression (`{ $type: "Length", path }`) for reading array
+    length in conditions and values.
+  - `MapIndex` and `Length` are now renderable elements (not just value
+    expressions), consistent with `Value`.
+  - `Input` with an empty `name` now binds to the current `parentPath`, enabling
+    rows inside a `Map` to read/write the current array element.
+
+- 1f06d43: Change `onDataChange` to receive a functional updater `(prev) => next` (the
+  shape React's `setState` accepts) instead of the full next data object. This
+  lets rapid successive form mutations compose without losing writes.
+
+  Migration: hosts that pass a `useState` setter directly
+  (`onDataChange={setData}`) need no change. Hosts that wrap it
+  (`onDataChange={(data) => …}`) must accept an updater instead:
+  `onDataChange={(updater) => setData(prev => updater(prev))}`.
+
+### Patch Changes
+
+- d482376: add more form controls to proteus
+- 3a5d588: add icon, disabled, and aria-label props to Action/Button (and filled prop to Icon)
+- Updated dependencies [5a2c623]
+  - @optiaxiom/react@3.0.1
+
 ## 0.3.0
 
 ### Minor Changes
