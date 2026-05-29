@@ -53,9 +53,14 @@ export type ProteusDocumentShellProps = Pick<
    */
   icons?: ProteusIconMap;
   /**
-   * Callback when form fields change
+   * Callback when form fields change. Receives a functional updater
+   * `(prev) => next` (the same shape React's `setState` accepts) so that
+   * rapid successive mutations compose without losing writes. Pass a
+   * `useState` setter directly, e.g. `onDataChange={setData}`.
    */
-  onDataChange?: (data: Record<string, unknown>) => void;
+  onDataChange?: (
+    updater: (prev: Record<string, unknown>) => Record<string, unknown>,
+  ) => void;
   /**
    * Callback when user triggers a download action; receives the resolved URL(s).
    * When provided, the host is responsible for the actual download/zip.
@@ -181,9 +186,11 @@ export function ProteusDocumentShell({
       data={data}
       icons={icons}
       onDataChange={useEffectEvent((path: string, value: unknown) => {
-        const next = structuredClone(data);
-        set(next, path, value);
-        onDataChange?.(next);
+        onDataChange?.((prev) => {
+          const next = structuredClone(prev);
+          set(next, path, value);
+          return next;
+        });
       })}
       onEvent={useEffectEvent(async (event: ProteusEventHandler) => {
         if ("interaction" in event) {
