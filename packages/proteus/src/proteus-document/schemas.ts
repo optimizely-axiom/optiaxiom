@@ -52,7 +52,7 @@ export type ProteusElement =
   | (AvatarGroupProps & { $type: "AvatarGroup" })
   | (AvatarProps & { $type: "Avatar" })
   | (BadgeProps & { $type: "Badge" })
-  | (BoxProps & { $type: "Icon"; name: string })
+  | (BoxProps & { $type: "Icon"; filled?: boolean; name: string })
   | (CardHeaderProps & { $type: "CardHeader" })
   | (CardProps & { $type: "Card" })
   | (DateInputProps & { $type: "DateInput" })

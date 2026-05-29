@@ -174,7 +174,7 @@ export const ProteusElement = ({
     case "Heading":
       return <Heading {...resolve(element)} />;
     case "Icon": {
-      const { name, ...rest } = resolve(element);
+      const { filled, name, ...rest } = resolve(element);
       const IconComp = icons?.[name as string];
       if (!IconComp) {
         if (strict) {
@@ -186,7 +186,7 @@ export const ProteusElement = ({
       }
       return (
         <Box asChild {...rest}>
-          <IconComp />
+          <IconComp filled={filled} />
         </Box>
       );
     }
