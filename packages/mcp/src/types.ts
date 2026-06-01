@@ -116,3 +116,16 @@ export interface PropDefinition {
   /** For enum types, possible values */
   values?: Array<number | string>;
 }
+
+/**
+ * Vetted test file for a component, used as a reference pattern for AI-generated
+ * tests.
+ */
+export interface TestInfo {
+  /** Axiom component names imported in this test */
+  components: string[];
+  /** Component name this test belongs to (e.g., "Alert") */
+  name: string;
+  /** Test file source code */
+  source: string;
+}
