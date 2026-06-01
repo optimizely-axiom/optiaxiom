@@ -225,7 +225,7 @@
         { "const": "1" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
-      "description": "Set the element's `flex` CSS property"
+      "description": "Set the element's `flex` CSS property. `1` grows to fill available\nspace; `auto` grows and shrinks to fit content; `initial` shrinks but\ndoes not grow; `none` neither grows nor shrinks (use this instead of\n`flex-shrink: 0`)."
     },
     "SprinkleProp_flexDirection": {
       "anyOf": [
@@ -305,7 +305,7 @@
         { "const": "fr" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
-      "description": "Set the element's `grid-auto-rows` CSS property"
+      "description": "Set the element's `grid-auto-rows` CSS property. The only value `fr`\nsizes implicit rows to `minmax(0, 1fr)` (equal-height rows that can\nshrink below their content)."
     },
     "SprinkleProp_gridColumn": {
       "anyOf": [
@@ -315,7 +315,7 @@
         { "const": "3" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
-      "description": "Set the element's size across grid columns"
+      "description": "Set how many columns the element spans in a grid (`grid-column`). The\nvalue is the span count, e.g. `2` spans 2 columns — NOT the column it\nstarts at."
     },
     "SprinkleProp_gridTemplateColumns": {
       "anyOf": [
@@ -325,7 +325,7 @@
         { "const": "3" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
-      "description": "Control number of columns in a grid layout"
+      "description": "Control number of columns in a grid layout (`grid-template-columns`).\nThe value is the number of equal columns, e.g. `2` creates two equal\ncolumns (`repeat(2, minmax(0, 1fr))`) — use this instead of a raw\n`style={{ gridTemplateColumns: \"1fr 1fr\" }}`."
     },
     "SprinkleProp_h": {
       "anyOf": [
@@ -856,7 +856,7 @@
         { "const": "colors" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
-      "description": "Control which CSS properties should transition"
+      "description": "Control which CSS properties should transition. Each value is a preset:\n`colors` transitions color-related properties (background, border,\ncolor, fill, stroke, text-decoration); `opacity` and `transform`\ntransition just that property; `all` transitions everything; `none`\ndisables transitions."
     },
     "SprinkleProp_w": {
       "anyOf": [
