@@ -70,6 +70,11 @@ export type MenuProps = ExcludeProps<
  * Use Select instead when: you need a simple single-select form input
  * with `value`/`onChange` and form submission support.
  *
+ * Note: Menu is not a form control - it has no `value`/`onChange` and does
+ * not integrate with `Field`. For a single-select form field, use Select
+ * (which does not support filtering). There is currently no built-in
+ * filterable single-select form input.
+ *
  * @category overlay
  * @group Menu
  * @since 1.6.0
