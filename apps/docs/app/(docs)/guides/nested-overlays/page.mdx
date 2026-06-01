@@ -1,0 +1,91 @@
+# Nested Overlays
+
+Third-party overlays (menus, dialogs, popovers from other libraries) render in their own portals. When opened from **inside** an Axiom `Dialog` or `Popover`, they are not coordinated with Axiom's modal layer, which causes two problems:
+
+1. **Stacking** — the third-party overlay renders _behind_ the Axiom dialog because it does not share Axiom's z-index band.
+2. **Focus, scroll, and dismissal** — the Axiom dialog traps focus, locks scroll, and owns the dismiss stack, so the nested overlay can be unusable.
+
+The fix has two parts: wrap the portalled content in [ModalLayer](/components/modal-layer/) (to join Axiom's focus/scroll/dismiss handling) and set its `z-index` to Axiom's `popover` token (to lift it into Axiom's stacking band). See [Z-Index](/styling/z-index/) for the available tokens.
+
+## React Select
+
+### Rendering menus inside dialogs
+
+Most functionalities of [react-select](https://github.com/JedWatson/react-select) work out of the box. The edge case is rendering its menu inside an Axiom `Dialog`.
+
+1. Set `menuPortalTarget` to `document.body` to render the menu inside a portal.
+
+   ```jsx
+   <Select menuPortalTarget={document.body} />
+   ```
+
+2. Wrap the `MenuPortal` children in `ModalLayer` so focus trapping is handled correctly inside the portal.
+
+   ```jsx
+   import { ModalLayer } from "@optiaxiom/react";
+   import Select, { components } from "react-select";
+
+   const MenuPortal = ({ children, ...props }) => {
+     return (
+       <components.MenuPortal {...props}>
+         {props.appendTo ? <ModalLayer>{children}</ModalLayer> : children}
+       </components.MenuPortal>
+     );
+   };
+
+   <Select components={{ MenuPortal }} />;
+   ```
+
+3. Set the `zIndex` of the `MenuPortal` to our `popover` token so the menu is visible on top of the dialog.
+
+   ```jsx
+   import { theme } from "@optiaxiom/react";
+
+   <Select
+     styles={{
+       menuPortal: (styles) => ({
+         ...styles,
+         zIndex: theme.zIndex.popover,
+       }),
+     }}
+   />;
+   ```
+
+## Material UI
+
+### Rendering dialogs inside dialogs
+
+A Material UI `Dialog` opened from inside an Axiom `Dialog` renders behind it by default. Wrap it in `ModalLayer` and align its `z-index` with Axiom's `popover` token.
+
+1. Wrap the MUI dialog's `Paper` in `ModalLayer` via the `PaperComponent` prop so it joins Axiom's focus trapping. Define it as a stable module-level component, not inline.
+
+   ```jsx
+   import { ModalLayer } from "@optiaxiom/react";
+   import { Dialog, Paper } from "@mui/material";
+   import { forwardRef } from "react";
+
+   const ModalLayerPaper = forwardRef((paperProps, ref) => (
+     <ModalLayer asChild>
+       <Paper {...paperProps} ref={ref} />
+     </ModalLayer>
+   ));
+
+   function App() {
+     return (
+       <Dialog PaperComponent={ModalLayerPaper}>{/* dialog content */}</Dialog>
+     );
+   }
+   ```
+
+2. Set MUI's theme `zIndex.modal` to the `popover` token so the dialog stacks above Axiom's overlays. Use the raw value from `tokens` since MUI expects a `number`.
+
+   ```jsx
+   import { tokens } from "@optiaxiom/react";
+   import { createTheme } from "@mui/material/styles";
+
+   const muiTheme = createTheme({
+     zIndex: {
+       modal: Number(tokens.zIndex.popover), // 3000 — matches Axiom's popover band
+     },
+   });
+   ```
