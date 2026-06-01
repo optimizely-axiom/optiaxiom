@@ -2,6 +2,7 @@ import {
   generateComponents,
   generateGuides,
   generateIcons,
+  generateTests,
   generateTokens,
 } from "./generators.mjs";
 
@@ -27,6 +28,7 @@ export function generateDataPlugin() {
       return `export const components = ${JSON.stringify(await generateComponents())};
 export const guides = ${JSON.stringify(await generateGuides())};
 export const icons = ${JSON.stringify(await generateIcons())};
+export const tests = ${JSON.stringify(await generateTests())};
 export const tokens = ${JSON.stringify(await generateTokens())};
 `;
     },
