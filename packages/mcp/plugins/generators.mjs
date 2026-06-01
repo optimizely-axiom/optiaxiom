@@ -1,10 +1,11 @@
 import { tokens } from "@optiaxiom/globals";
 import { getDocs } from "@optiaxiom/shared";
-import { readFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { readdir, readFile } from "node:fs/promises";
+import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import {
+  extractAxiomImports,
   parseDemosFromFiles,
   parseLightDark,
   parsePropDefinition,
@@ -21,6 +22,7 @@ const __dirname = dirname(__filename);
  * @typedef {import('../src/types.js').DesignTokens} DesignTokens
  * @typedef {import('../src/types.js').Guide} Guide
  * @typedef {import('../src/types.js').IconInfo} IconInfo
+ * @typedef {import('../src/types.js').TestInfo} TestInfo
  */
 
 /**
@@ -223,6 +225,46 @@ export async function generateIcons() {
 }
 
 /**
+ * Discover vetted `.spec.tsx` test files under packages/react/src and bundle
+ * their source as reference patterns for AI-generated tests.
+ *
+ * The component name is derived from the spec filename (e.g. `Alert.spec.tsx` ->
+ * `Alert`), so no per-component configuration is needed — drop a spec next to a
+ * component and it shows up here automatically.
+ *
+ * @returns {Promise<Record<string, TestInfo>>}
+ */
+export async function generateTests() {
+  const srcDir = join(__dirname, "..", "..", "..", "packages", "react", "src");
+
+  /** @type {Record<string, TestInfo>} */
+  const tests = {};
+
+  /** @param {string} dir */
+  async function walk(dir) {
+    const entries = await readdir(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        await walk(fullPath);
+      } else if (entry.isFile() && entry.name.endsWith(".spec.tsx")) {
+        const name = basename(entry.name, ".spec.tsx");
+        const source = await readFile(fullPath, "utf-8");
+        tests[name] = {
+          components: extractTestComponents(name, source),
+          name,
+          source,
+        };
+      }
+    }
+  }
+
+  await walk(srcDir);
+
+  return tests;
+}
+
+/**
  * @returns {Promise<DesignTokens>}
  */
 export async function generateTokens() {
@@ -269,6 +311,21 @@ export async function generateTokens() {
     ),
     zIndex: tokens.zIndex,
   };
+}
+
+/**
+ * Determine which Axiom components a spec file exercises. Specs import the
+ * component under test via a relative path (e.g. `./Alert`), so that is always
+ * included; any `@optiaxiom/react` imports are merged in for specs that compose
+ * multiple components.
+ *
+ * @param {string} name - Component name derived from the spec filename
+ * @param {string} source - Spec file source
+ * @returns {string[]}
+ */
+function extractTestComponents(name, source) {
+  const components = new Set([name, ...extractAxiomImports({ source })]);
+  return [...components].sort();
 }
 
 /**
