@@ -99,6 +99,7 @@ export default {
       },
       alert: "Alert",
       "alert-dialog": "AlertDialog",
+      "angle-menu-button": "AngleMenuButton",
       avatar: "Avatar",
       badge: "Badge",
       banner: "Banner",
@@ -123,6 +124,7 @@ export default {
       "dropdown-menu": {
         title: <LegacyItem>DropdownMenu</LegacyItem>,
       },
+      "ellipsis-menu-button": "EllipsisMenuButton",
       field: "Field",
       "file-upload": {
         title: <AlphaItem>FileUpload</AlphaItem>,
@@ -138,6 +140,7 @@ export default {
       kbd: {
         display: "hidden",
       },
+      "label-menu-button": "LabelMenuButton",
       layout: {
         title: <AlphaItem>Layout</AlphaItem>,
       },
