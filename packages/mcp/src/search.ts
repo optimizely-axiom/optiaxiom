@@ -5,6 +5,7 @@ import type {
   Example,
   IconInfo,
   PropDefinition,
+  TestInfo,
 } from "./types.js";
 
 export interface ExampleSearchOptions {
@@ -39,6 +40,15 @@ export interface SearchOptions {
   components: ComponentInfo[];
   limit?: number;
   query: string;
+}
+
+export interface TestSearchOptions {
+  /** Space-separated component names to match (omit to return all tests) */
+  components?: string;
+  /** All tests to search through */
+  data: TestInfo[];
+  /** Maximum number of tests to return */
+  limit?: number;
 }
 
 interface RelevanceScoreOptions {
@@ -189,6 +199,39 @@ export function searchProps({
   return Object.fromEntries(
     results.map(({ definition, name }) => [name, definition]),
   );
+}
+
+export function searchTests({
+  components,
+  data,
+  limit = 5,
+}: TestSearchOptions): TestInfo[] {
+  // Listing all tests is a discovery call — return every test, ignoring
+  // `limit`, so the advertised "list all available reference test files"
+  // contract holds. `limit` only bounds ranked search results below.
+  if (!components?.trim()) {
+    return data;
+  }
+
+  const requested = components.trim().split(/\s+/);
+
+  return data
+    .map((test) => {
+      const matches = requested.filter((c) =>
+        test.components.includes(c),
+      ).length;
+      // More matched components first; bonus when the test is owned by a
+      // requested component; penalize tests pulling in unrelated components.
+      const score =
+        matches * 20 +
+        (requested.includes(test.name) ? 15 : 0) -
+        test.components.length;
+      return { matches, score, test };
+    })
+    .filter((entry) => entry.matches > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((entry) => entry.test);
 }
 
 function calculateExampleScore(

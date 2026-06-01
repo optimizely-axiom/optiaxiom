@@ -1,6 +1,12 @@
-import { components, guides, icons, tokens } from "#mcp/data";
+import { components, guides, icons, tests, tokens } from "#mcp/data";
 
-import type { ComponentInfo, DesignTokens, Guide, IconInfo } from "./types.js";
+import type {
+  ComponentInfo,
+  DesignTokens,
+  Guide,
+  IconInfo,
+  TestInfo,
+} from "./types.js";
 
 export function getAllComponents(): ComponentInfo[] {
   return Object.values(components) as ComponentInfo[];
@@ -12,6 +18,10 @@ export function getAllGuides(): Guide[] {
 
 export function getAllIcons(): IconInfo[] {
   return Object.values(icons) as IconInfo[];
+}
+
+export function getAllTests(): TestInfo[] {
+  return Object.values(tests) as TestInfo[];
 }
 
 export function getComponent(name: string): ComponentInfo | null {

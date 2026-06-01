@@ -8,6 +8,7 @@ import pkg from "../package.json";
 import {
   getAllComponents,
   getAllIcons,
+  getAllTests,
   getComponent,
   getGuide,
   getTokens,
@@ -17,6 +18,7 @@ import {
   searchExamples,
   searchIcons,
   searchProps,
+  searchTests,
 } from "./search.js";
 
 /**
@@ -146,7 +148,9 @@ server.registerTool(
 server.registerTool(
   "get_patterns",
   {
-    description: `Find usage examples showing how Axiom components work together. Returns real working examples from the docs that demonstrate component composition patterns.
+    description: `Find usage examples showing how Axiom components work together. When you are about to write or compose JSX that uses one or more Axiom components together, refer to this to follow real, working patterns from the docs instead of guessing the API.
+
+Returns real examples that demonstrate component composition (which sub-components to use, required props, and how pieces wire together).
 
 Examples:
   get_patterns({ components: "Field Input Button" }) → examples showing forms with fields and buttons
@@ -186,6 +190,65 @@ Examples:
               query,
             }),
           ),
+          type: "text" as const,
+        },
+      ],
+    };
+  },
+);
+
+// Tool: get_tests
+const testHelperNote = `These tests use the repo's custom render helper, imported as \`../../vitest.rtl\` (packages/react/vitest.rtl.ts). It differs from stock @testing-library/react in two ways you must preserve when writing new tests:
+1. \`render()\` automatically wraps the tree in \`AxiomProvider\` — Axiom components rely on this context, so never wrap them yourself.
+2. \`render()\` returns \`{ user }\` (a configured \`userEvent\` instance) in addition to the usual RTL result — use \`const { user } = render(...)\` for interactions instead of calling \`userEvent.setup()\`.
+Everything else (\`screen\`, \`waitFor\`, queries, matchers) is re-exported from @testing-library/react. Prefer role/name queries (getByRole("alert"), getByRole("button", { name: "close" })) to assert accessibility, mirroring these examples.`;
+
+server.registerTool(
+  "get_tests",
+  {
+    description: `Get vetted reference test files for Axiom components. When the user asks to write, generate, add, or fix a test / spec / *.spec.tsx / *.test.tsx for any Axiom component, refer to this to follow the repo's established conventions instead of generic React Testing Library habits.
+
+These reference tests show how this repo renders components, queries them by role and accessible name, and asserts accessibility (ARIA roles, labels) and interactions. The response also includes a note explaining the custom \`vitest.rtl\` render helper the tests rely on (auto-wraps in AxiomProvider and returns a \`user\` for interactions) — match it when writing new tests.
+
+Examples:
+  get_tests({ components: "Alert" }) → the Alert spec showing role="alert" and dismiss-button assertions
+  get_tests({ components: "Button" }) → role/name queries, click + disabled + loading interactions
+  get_tests({ components: "Tooltip" }) → hover/focus interactions and accessible-name assertions
+  get_tests() → list all available reference test files (and the helper note)`,
+    inputSchema: {
+      components: z
+        .string()
+        .optional()
+        .describe(
+          'Space-separated component names to find reference tests for (e.g., "Alert Button"). Returns tests that use these components. Omit to list all available reference tests.',
+        ),
+      limit: z
+        .number()
+        .min(1)
+        .max(10)
+        .optional()
+        .default(5)
+        .describe(
+          "Maximum number of reference tests to return when searching by component (default: 5). Ignored when listing all tests.",
+        ),
+    },
+    title: "Get Tests",
+  },
+  async ({ components, limit }) => {
+    // Listing all tests is a discovery call — omit source to keep it light.
+    const listing = !components?.trim();
+    return {
+      content: [
+        {
+          text: JSON.stringify({
+            helper: testHelperNote,
+            tests: searchTests({ components, data: getAllTests(), limit }).map(
+              (test) =>
+                listing
+                  ? { components: test.components, name: test.name }
+                  : test,
+            ),
+          }),
           type: "text" as const,
         },
       ],
