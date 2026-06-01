@@ -137,6 +137,17 @@ Search for icons from the `@optiaxiom/icons` package.
 
 **Returns:** List of matching icon components with names and import statements.
 
+### `get_tests`
+
+Get vetted reference test files showing the repo's testing conventions (the custom `vitest.rtl` render helper, role/name queries, accessibility assertions).
+
+**Parameters:**
+
+- `components` (string, optional): Space-separated component names to find reference tests for (e.g., `"Alert Button"`). Omit to list all available reference tests.
+- `limit` (number, optional): Maximum number of reference tests to return when searching by component (default: 5). Ignored when listing all tests.
+
+**Returns:** The matching reference tests (with source) plus a `helper` note describing the `vitest.rtl` render helper. Listing (no `components`) returns every test, names only.
+
 ### `get_guides`
 
 Get setup, configuration, and integration guides for the Axiom Design System.
@@ -147,12 +158,7 @@ Get setup, configuration, and integration guides for the Axiom Design System.
 
 **Returns:** When `names` is omitted, the list of available guides (name + title). When `names` is provided, the markdown content for each requested guide, plus the full list of available guide names so an invalid name self-corrects.
 
-Available guides:
-
-- `getting-started` - Installation and setup
-- `css-imports` - CSS import configuration
-- `css-layers` - CSS cascade layers setup
-- `icons` - Icon usage and configuration
+The available guides are derived at build time from the docs nav manifest (`apps/docs/app/_meta.global.tsx`) — every guide page listed there is surfaced automatically (separators, hidden pages, and a small exclusion list are skipped). At time of writing: `getting-started`, `test-environments`, `css-imports`, `css-layers`, `icons`, `module-federation`, `nested-overlays`, `group-migration`. Run `get_guides()` for the current list.
 
 ## Example Interactions
 
