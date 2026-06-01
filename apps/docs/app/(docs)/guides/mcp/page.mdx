@@ -5,6 +5,7 @@ The Axiom [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server
 - Component documentation, props, and usage patterns
 - Design tokens for colors, spacing, typography, and more
 - Icon search capabilities
+- Reference test files showing the repo's testing conventions
 - Setup guides and best practices
 
 ## Installation
@@ -96,6 +97,19 @@ Search for icons from the `@optiaxiom/icons` package by keyword.
 
 - `query` (string, required): Search query (e.g., "message", "arrow", "user")
 - `limit` (number, optional): Maximum results to return (default: 10)
+
+### `get_tests`
+
+Get vetted reference test files showing the repo's testing conventions (custom `vitest.rtl` render helper, role/name queries, accessibility assertions). Use when writing or fixing a spec for an Axiom component.
+
+- `components` (string, optional): Space-separated component names to find reference tests for (e.g., "Alert Button"). Omit to list all available reference tests.
+- `limit` (number, optional): Maximum number of reference tests to return when searching by component (default: 5). Ignored when listing all tests.
+
+### `get_guides`
+
+Get setup, configuration, and integration guides for the Axiom Design System (including this one).
+
+- `names` (string, optional): Space-separated guide names to fetch (e.g., "css-imports css-layers"). Omit to list all available guides.
 
 ## Usage
 

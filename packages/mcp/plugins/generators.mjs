@@ -1,5 +1,6 @@
 import { tokens } from "@optiaxiom/globals";
 import { getDocs } from "@optiaxiom/shared";
+import { transform } from "esbuild";
 import { readdir, readFile } from "node:fs/promises";
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -148,54 +149,45 @@ export async function generateComponents() {
   return components;
 }
 
+// Guides that exist as docs pages but should not be surfaced via the MCP.
+// `mcp` is self-referential — it documents this very server's tools, which an
+// AI client already has — so fetching it adds noise rather than capability.
+const EXCLUDED_GUIDES = new Set(["mcp", "proteus", "proteus-designer"]);
+
 /**
  * @returns {Promise<Record<string, Guide>>}
  */
 export async function generateGuides() {
-  const guidesDir = join(
-    __dirname,
-    "..",
-    "..",
-    "..",
-    "apps",
-    "docs",
-    "app",
-    "(docs)",
-    "guides",
-  );
+  const docsAppDir = join(__dirname, "..", "..", "..", "apps", "docs", "app");
+  const guidesDir = join(docsAppDir, "(docs)", "guides");
 
-  const guides = [
-    {
-      name: "getting-started",
-      path: join(guidesDir, "page.mdx"),
-      title: "Getting Started",
-    },
-    {
-      name: "css-imports",
-      path: join(guidesDir, "css-imports", "page.mdx"),
-      title: "CSS Imports",
-    },
-    {
-      name: "css-layers",
-      path: join(guidesDir, "css-layers", "page.mdx"),
-      title: "CSS Layers",
-    },
-    {
-      name: "icons",
-      path: join(guidesDir, "icons", "page.mdx"),
-      title: "Icons",
-    },
-  ];
+  // The docs nav manifest is the source of truth for which guides exist and
+  // their titles.
+  const guides = await parseGuidesFromMeta(
+    join(docsAppDir, "_meta.global.tsx"),
+  );
 
   /** @type {Record<string, Guide>} */
   const result = {};
 
-  for (const guide of guides) {
-    const content = await readFile(guide.path, "utf-8");
-    result[guide.name] = {
+  for (const { name, title } of guides) {
+    // `index` is the guides landing page (apps/.../guides/page.mdx); every
+    // other key maps to its own folder's page.mdx.
+    const path =
+      name === "index"
+        ? join(guidesDir, "page.mdx")
+        : join(guidesDir, name, "page.mdx");
+    const key = name === "index" ? "getting-started" : name;
+
+    const content = await readFile(path, "utf-8").catch(() => null);
+    if (content === null) {
+      continue;
+    }
+
+    result[key] = {
       content: stripMDXComponents(content),
-      name: guide.name,
-      title: guide.title,
+      name: key,
+      title,
     };
   }
 
@@ -346,6 +338,70 @@ function parseDeprecation(deprecatedTag) {
     replacement: replacementMatch ? replacementMatch[1] : undefined,
     since: sinceMatch ? sinceMatch[1] : deprecatedTag,
   };
+}
+
+/**
+ * Read the guide entries from the docs nav manifest (`_meta.global.tsx`).
+ *
+ * Skips separators, hidden pages, and {@link EXCLUDED_GUIDES}; throws on a
+ * non-string title (it can't be surfaced via the MCP).
+ *
+ * @param {string} metaPath
+ * @returns {Promise<Array<{ name: string, title: string }>>}
+ */
+async function parseGuidesFromMeta(metaPath) {
+  const source = await readFile(metaPath, "utf-8");
+
+  // The manifest is TSX importing React/@optiaxiom/react. Transform it and route
+  // JSX through a sentinel factory so JSX titles become non-strings instead of
+  // executing real components.
+  const { code } = await transform(source, {
+    format: "esm",
+    jsx: "transform",
+    jsxFactory: "__jsx",
+    jsxFragment: "__jsx",
+    loader: "tsx",
+  });
+
+  // Strip imports and stub their bindings (only used inside the neutralized JSX)
+  // so the module evaluates to a plain object with no runtime deps.
+  const stub = `const __jsx = () => ({ __jsx: true }); const Badge = __jsx, Group = __jsx;`;
+  const stripped = code.replace(/^\s*import\s.+$/gm, "");
+  const mod = await import(
+    "data:text/javascript," + encodeURIComponent(`${stub}\n${stripped}`)
+  );
+
+  /** @type {Record<string, unknown>} */
+  const items = mod.default?.guides?.items ?? {};
+
+  /** @type {Array<{ name: string, title: string }>} */
+  const guides = [];
+  for (const [name, value] of Object.entries(items)) {
+    if (name.startsWith("--") || EXCLUDED_GUIDES.has(name)) {
+      continue;
+    }
+
+    if (typeof value === "object" && value !== null) {
+      const entry = /** @type {Record<string, unknown>} */ (value);
+      if (entry.type === "separator" || entry.display === "hidden") {
+        continue;
+      }
+      if (typeof entry.title !== "string") {
+        throw new Error(
+          `Guide "${name}" in ${metaPath} has a non-string title; give it a plain-text title or add it to EXCLUDED_GUIDES.`,
+        );
+      }
+      guides.push({ name, title: entry.title });
+    } else if (typeof value === "string") {
+      guides.push({ name, title: value });
+    } else {
+      throw new Error(
+        `Guide "${name}" in ${metaPath} has a non-string title; give it a plain-text title or add it to EXCLUDED_GUIDES.`,
+      );
+    }
+  }
+
+  return guides;
 }
 
 /**
