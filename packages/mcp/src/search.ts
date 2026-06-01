@@ -2,6 +2,7 @@ import fuzzysearch from "fuzzysearch";
 
 import type {
   ComponentInfo,
+  DeprecationInfo,
   Example,
   IconInfo,
   PropDefinition,
@@ -108,12 +109,24 @@ export function searchExamples({
   data,
   limit = 5,
   query,
-}: ExampleSearchOptions): Array<Pick<Example, "code" | "title">> {
+}: ExampleSearchOptions): Array<
+  Pick<Example, "code" | "title"> & {
+    deprecated?: Array<DeprecationInfo & { name: string }>;
+  }
+> {
   const requested = components.trim().split(/\s+/);
   const queryTerms = query
     ?.toLowerCase()
     .split(/\s+/)
     .filter((t) => t.length > 0);
+
+  // Deprecated component name -> deprecation info, so we can flag when an
+  // example composes one (e.g. DropdownMenu) and point at its replacement.
+  const deprecations = new Map(
+    data
+      .filter((component) => component.deprecated)
+      .map((c) => [c.name, c.deprecated as DeprecationInfo]),
+  );
 
   return data
     .flatMap((component) =>
@@ -142,10 +155,19 @@ export function searchExamples({
     }))
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
-    .map(({ component, example }) => ({
-      code: example.code,
-      title: `${component}/${example.title}`,
-    }));
+    .map(({ component, example }) => {
+      const deprecated = example.components
+        .filter((name) => deprecations.has(name))
+        .map((name) => ({
+          name,
+          ...(deprecations.get(name) as DeprecationInfo),
+        }));
+      return {
+        code: example.code,
+        ...(deprecated.length ? { deprecated } : {}),
+        title: `${component}/${example.title}`,
+      };
+    });
 }
 
 export function searchIcons({

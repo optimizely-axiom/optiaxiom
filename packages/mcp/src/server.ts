@@ -130,6 +130,7 @@ server.registerTool(
               limit,
               query,
             }).map((result) => ({
+              ...(result.deprecated ? { deprecated: result.deprecated } : {}),
               description: result.description,
               import: result.import,
               name: result.name,
