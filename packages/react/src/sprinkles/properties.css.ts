@@ -224,7 +224,11 @@ export const unresponsiveProps = defineProperties({
      */
     textTransform: ["capitalize", "none", "uppercase"] as const,
     /**
-     * Control which CSS properties should transition
+     * Control which CSS properties should transition. Each value is a preset:
+     * `colors` transitions color-related properties (background, border,
+     * color, fill, stroke, text-decoration); `opacity` and `transform`
+     * transition just that property; `all` transitions everything; `none`
+     * disables transitions.
      */
     transition: {
       all: {
@@ -396,7 +400,10 @@ export const responsiveProps = defineProperties({
       "table-row",
     ] as const,
     /**
-     * Set the element's `flex` CSS property
+     * Set the element's `flex` CSS property. `1` grows to fill available
+     * space; `auto` grows and shrinks to fit content; `initial` shrinks but
+     * does not grow; `none` neither grows nor shrinks (use this instead of
+     * `flex-shrink: 0`).
      */
     flex: {
       "1": "1 1 0%",
@@ -417,13 +424,17 @@ export const responsiveProps = defineProperties({
      */
     gap: spacing,
     /**
-     * Set the element's `grid-auto-rows` CSS property
+     * Set the element's `grid-auto-rows` CSS property. The only value `fr`
+     * sizes implicit rows to `minmax(0, 1fr)` (equal-height rows that can
+     * shrink below their content).
      */
     gridAutoRows: {
       fr: "minmax(0, 1fr)",
     },
     /**
-     * Set the element's size across grid columns
+     * Set how many columns the element spans in a grid (`grid-column`). The
+     * value is the span count, e.g. `2` spans 2 columns — NOT the column it
+     * starts at.
      */
     gridColumn: mapValues(
       {
@@ -435,7 +446,10 @@ export const responsiveProps = defineProperties({
       (span) => `span ${span} / span ${span}`,
     ),
     /**
-     * Control number of columns in a grid layout
+     * Control number of columns in a grid layout (`grid-template-columns`).
+     * The value is the number of equal columns, e.g. `2` creates two equal
+     * columns (`repeat(2, minmax(0, 1fr))`) — use this instead of a raw
+     * `style={{ gridTemplateColumns: "1fr 1fr" }}`.
      */
     gridTemplateColumns: mapValues(
       {
