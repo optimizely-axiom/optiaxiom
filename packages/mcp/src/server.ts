@@ -1,12 +1,10 @@
-import {
-  McpServer,
-  ResourceTemplate,
-} from "@modelcontextprotocol/sdk/server/mcp.js";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
 import pkg from "../package.json";
 import {
   getAllComponents,
+  getAllGuides,
   getAllIcons,
   getAllTests,
   getComponent,
@@ -340,58 +338,61 @@ server.registerTool(
   },
 );
 
-// Register component resources
-server.registerResource(
-  "component",
-  new ResourceTemplate("axiom://component/{name}", { list: undefined }),
+// Tool: get_guides
+server.registerTool(
+  "get_guides",
   {
-    description: "Metadata for Axiom component",
-    mimeType: "application/json",
-    title: "Component: {name}",
-  },
-  async (uri, variables) => {
-    const name = variables.name as string;
-    const component = getComponent(name);
+    description: `Get setup, configuration, and integration guides for the Axiom Design System. Refer to these when setting up Axiom, importing its CSS, configuring CSS layers, using icons, or integrating Axiom into a host app — instead of guessing the setup steps.
 
-    if (!component) {
-      throw new Error(`Component not found: ${name}`);
+Examples:
+  get_guides({ names: "getting-started" }) → the getting-started guide content
+  get_guides({ names: "css-imports css-layers" }) → both CSS setup guides
+  get_guides() → list all available guides (names + titles)`,
+    inputSchema: {
+      names: z
+        .string()
+        .optional()
+        .describe(
+          'Space-separated guide names to fetch (e.g., "css-imports css-layers"). Omit to list all available guides.',
+        ),
+    },
+    title: "Get Guides",
+  },
+  async ({ names }) => {
+    const requested = names?.trim().split(/\s+/);
+
+    // Listing all guides is a discovery call — omit content to keep it light.
+    if (!requested?.length) {
+      return {
+        content: [
+          {
+            text: JSON.stringify(
+              getAllGuides().map((guide) => ({
+                name: guide.name,
+                title: guide.title,
+              })),
+            ),
+            type: "text" as const,
+          },
+        ],
+      };
     }
 
-    return {
-      contents: [
-        {
-          mimeType: "application/json",
-          text: JSON.stringify(component),
-          uri: uri.href,
-        },
-      ],
-    };
-  },
-);
-
-// Register guide resources
-server.registerResource(
-  "guide",
-  new ResourceTemplate("axiom://guide/{name}", { list: undefined }),
-  {
-    description: "Setup and configuration guides for Axiom Design System",
-    mimeType: "text/markdown",
-    title: "Guide: {name}",
-  },
-  async (uri, variables) => {
-    const name = variables.name as string;
-    const guide = getGuide(name);
-
-    if (!guide) {
-      throw new Error(`Guide not found: ${name}`);
-    }
+    const guides = requested.map((name) => {
+      const guide = getGuide(name);
+      return guide
+        ? { content: guide.content, name: guide.name, title: guide.title }
+        : { error: `Guide not found: ${name}`, name };
+    });
 
     return {
-      contents: [
+      content: [
         {
-          mimeType: "text/markdown",
-          text: guide.content,
-          uri: uri.href,
+          text: JSON.stringify({
+            available: getAllGuides().map((guide) => guide.name),
+            guides,
+          }),
+          type: "text" as const,
         },
       ],
     };
