@@ -137,30 +137,22 @@ Search for icons from the `@optiaxiom/icons` package.
 
 **Returns:** List of matching icon components with names and import statements.
 
-## Available Resources
+### `get_guides`
 
-The MCP server exposes resources that can be accessed via URI patterns:
+Get setup, configuration, and integration guides for the Axiom Design System.
 
-### Component Resources
+**Parameters:**
 
-- **URI Pattern:** `axiom://component/{name}`
-- **MIME Type:** `application/json`
-- **Description:** Metadata for individual Axiom components
+- `names` (string, optional): Space-separated guide names to fetch (e.g., `"css-imports css-layers"`). Omit to list all available guides (names + titles).
 
-Example: `axiom://component/Button` returns the complete metadata for the Button component.
-
-### Guide Resources
-
-- **URI Pattern:** `axiom://guide/{name}`
-- **MIME Type:** `text/markdown`
-- **Description:** Setup and configuration guides for Axiom Design System
+**Returns:** When `names` is omitted, the list of available guides (name + title). When `names` is provided, the markdown content for each requested guide, plus the full list of available guide names so an invalid name self-corrects.
 
 Available guides:
 
-- `axiom://guide/getting-started` - Installation and setup
-- `axiom://guide/css-imports` - CSS import configuration
-- `axiom://guide/css-layers` - CSS cascade layers setup
-- `axiom://guide/icons` - Icon usage and configuration
+- `getting-started` - Installation and setup
+- `css-imports` - CSS import configuration
+- `css-layers` - CSS cascade layers setup
+- `icons` - Icon usage and configuration
 
 ## Example Interactions
 
@@ -215,6 +207,7 @@ Use these tags in component JSDoc comments:
 - **`@group`**: Groups related components together (e.g., `@group Table` groups Table, TableRow, TableCell, etc.)
 - **`@since`**: Documents the version when the component was introduced (e.g., `@since 1.4.0`)
 - **`@experimental`**: Marks components as experimental/unstable
+- **`@deprecated`**: Marks a component as deprecated and points to its replacement. Follow the pattern `@deprecated since <version> use {@link Replacement} instead` — the version and the `{@link}` replacement are parsed out and surfaced by `get_component` (and should steer the AI away from the deprecated component). Pair with `@see Replacement`.
 
 Example:
 
@@ -226,6 +219,19 @@ Example:
  * @since 1.4.0
  */
 export const Table = ...
+```
+
+Deprecation example:
+
+```tsx
+/**
+ * Display a dropdown menu.
+ *
+ * @since 0.1.0
+ * @deprecated since 1.6.0 use {@link Menu} instead
+ * @see Menu
+ */
+export function DropdownMenu(...) { ... }
 ```
 
 ## Resources
