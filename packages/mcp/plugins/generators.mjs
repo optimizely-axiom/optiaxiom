@@ -405,12 +405,44 @@ async function parseGuidesFromMeta(metaPath) {
 }
 
 /**
- * Clean MDX content for better AI consumption
+ * Clean MDX content for better AI consumption.
+ *
+ * Stripping is applied only to prose *outside* fenced code blocks, so example
+ * code (including its `import` lines) survives intact and stays copy-pasteable.
+ *
  * @param {string} content
  * @returns {string}
  */
 function stripMDXComponents(content) {
-  // Remove import statements
+  // Split on fenced code blocks, keeping the fences. Even indices are prose,
+  // odd indices are code fences (left untouched).
+  content = content
+    .split(/(```[\s\S]*?```)/g)
+    .map((segment, index) =>
+      index % 2 === 0 ? stripProseSegment(segment) : segment,
+    )
+    .join("");
+
+  // Clean up multiple newlines across the whole document (whitespace-only, so
+  // safe to run over code fences too).
+  content = content.replace(/\n{3,}/g, "\n\n");
+
+  return content.trim();
+}
+
+/**
+ * Strip MDX/JSX page machinery from a single prose segment.
+ *
+ * Only runs on content *outside* fenced code blocks — see {@link stripMDXComponents}.
+ * Notably, removing `import` lines here is intentional (it kills the MDX page's
+ * `import { Cards } from "nextra/components"` noise) but must never touch
+ * illustrative imports inside code samples, which are meaningful content.
+ *
+ * @param {string} content
+ * @returns {string}
+ */
+function stripProseSegment(content) {
+  // Remove import statements (MDX page machinery)
   content = content.replace(/^import .+$/gm, "");
 
   // Remove JSX components that won't make sense to AI
@@ -431,8 +463,5 @@ function stripMDXComponents(content) {
   // Remove style attributes
   content = content.replace(/style=\{[^}]+\}/g, "");
 
-  // Clean up multiple newlines
-  content = content.replace(/\n{3,}/g, "\n\n");
-
-  return content.trim();
+  return content;
 }
