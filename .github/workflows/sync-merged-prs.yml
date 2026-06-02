@@ -52,6 +52,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_TITLE: ${{ github.event.pull_request.title }}
+          MERGE_SHA: ${{ github.event.pull_request.merge_commit_sha }}
           TARGET: ${{ env.TARGET_BRANCH }}
         run: |
           set -euo pipefail
@@ -59,59 +60,51 @@ jobs:
           SYNC_BRANCH="sync/${TARGET}/pr-${PR_NUMBER}"
           echo "sync_branch=${SYNC_BRANCH}" >> "$GITHUB_OUTPUT"
 
-          # ----- Resolve the PR's commits (oldest -> newest) ---------------
-          # The repo is rebase-merge only, so a merged PR's commits land on
-          # `main` linearly. We read the exact commit list from the PR via the
-          # API rather than guessing the range, then replay [first..last].
-          mapfile -t COMMITS < <(gh pr view "$PR_NUMBER" --json commits \
-            --jq '.commits | sort_by(.committedDate) | .[].oid')
-
-          if [ "${#COMMITS[@]}" -eq 0 ]; then
-            echo "No commits found on PR #${PR_NUMBER}; nothing to sync."
+          # ----- Resolve the commits as they landed on main ----------------
+          # The repo is rebase-merge only, so the PR's commits are rewritten
+          # onto `main` as NEW SHAs ending at merge_commit_sha. The PR API
+          # returns the pre-merge head-branch SHAs, which don't exist on the
+          # upstream repo this runner checked out — so we must use the merge
+          # commit and walk back N commits, where N is the PR's commit count.
+          N=$(gh pr view "$PR_NUMBER" --json commits --jq '.commits | length')
+          if [ "${N:-0}" -eq 0 ]; then
+            echo "No commits on PR #${PR_NUMBER}; nothing to sync."
             echo "status=skipped" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          FIRST="${COMMITS[0]}"
-          LAST="${COMMITS[-1]}"
-          echo "Replaying ${#COMMITS[@]} commit(s): ${FIRST}..${LAST}"
+          git fetch origin "$MERGE_SHA" "$TARGET"
+          RANGE="${MERGE_SHA}~${N}..${MERGE_SHA}"
+          echo "Replaying ${N} commit(s) landed on ${TARGET}: ${RANGE}"
+          git --no-pager log --oneline "$RANGE"
 
-          git fetch origin "$TARGET"
           git checkout -b "$SYNC_BRANCH" "origin/${TARGET}"
 
-          # ----- Replay the PR's commits onto the sync branch --------------
-          # `git rebase --onto <newbase> <upstream> <branch>` replays exactly
-          # the commits in (upstream..branch] = (FIRST^..LAST] onto the sync
-          # branch. On conflict we don't abort — we keep the conflicted tree
-          # (markers included) so the draft PR shows what needs resolving.
+          # ----- Cherry-pick the landed commit range onto the sync branch --
+          # Cherry-pick keeps us on the sync branch (no detached HEAD, no
+          # force-update of the current branch). On conflict we don't abort —
+          # we commit the conflicted tree WITH markers so the draft PR shows
+          # exactly what needs resolving.
           CONFLICT=0
-          if git rebase --committer-date-is-author-date \
-               --onto "$SYNC_BRANCH" "${FIRST}^" "$LAST"; then
-            # Success leaves HEAD detached at the replayed tip; move the branch
-            # to it and check it back out.
-            git branch -f "$SYNC_BRANCH" HEAD
-            git checkout "$SYNC_BRANCH"
-          else
+          if ! git cherry-pick "${MERGE_SHA}~${N}..${MERGE_SHA}"; then
             CONFLICT=1
-            echo "::warning::Rebase onto ${TARGET} hit conflicts for PR #${PR_NUMBER}; capturing markers."
-            # Drive the rebase to completion, committing each conflicted step
-            # with markers in place instead of stopping.
-            until git rebase --skip >/dev/null 2>&1 && [ ! -d .git/rebase-merge ] && [ ! -d .git/rebase-apply ]; do
-              if [ ! -d .git/rebase-merge ] && [ ! -d .git/rebase-apply ]; then
-                break
-              fi
+            echo "::warning::Cherry-pick onto ${TARGET} hit conflicts for PR #${PR_NUMBER}; capturing markers."
+            # Resolve each stuck step by committing the conflicted tree as-is,
+            # then continue until the whole range is applied.
+            while [ -d .git/sequencer ] || git status --porcelain | grep -q '^\(U\|.U\|U.\|AA\|DD\)'; do
               git add -A
-              GIT_EDITOR=true git rebase --continue || true
+              if ! GIT_EDITOR=true git cherry-pick --continue; then
+                # No staged changes to continue with -> skip this empty step.
+                git cherry-pick --skip || break
+              fi
             done
-            git branch -f "$SYNC_BRANCH" HEAD
-            git checkout "$SYNC_BRANCH"
           fi
 
           echo "conflict=${CONFLICT}" >> "$GITHUB_OUTPUT"
 
-          # Nothing changed relative to target (e.g. already synced) -> stop.
-          if git diff --quiet "origin/${TARGET}" -- ; then
-            echo "No diff against ${TARGET}; skipping PR."
+          # Nothing to contribute relative to target (e.g. already synced).
+          if [ -z "$(git rev-list "origin/${TARGET}..HEAD")" ]; then
+            echo "No new commits vs ${TARGET}; skipping PR."
             echo "status=skipped" >> "$GITHUB_OUTPUT"
             exit 0
           fi
