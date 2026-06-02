@@ -1,0 +1,171 @@
+name: Sync merged PRs
+
+# When a PR is merged into `main`, replay its commits onto the target branch and
+# open a PR against it — mirroring the manual "sync #<N>" PRs.
+#
+# We are mid-way through the next major version: `main` holds the current major
+# and `next` holds the upcoming one. After the swap (`main` becomes the next
+# major, the old major moves to a `v1`-style branch) this workflow keeps working
+# by pointing `TARGET_BRANCH` at whatever branch should receive the syncs — no
+# file rename needed, which is why this is named for the action, not the target.
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+env:
+  TARGET_BRANCH: next
+
+jobs:
+  sync:
+    # Only merged PRs, only on the upstream repo, and never the changesets
+    # "Version Packages" PR (head branch is always `changeset-release/<base>`).
+    if: >-
+      github.repository_owner == 'optimizely-axiom' &&
+      github.event.pull_request.merged == true &&
+      !startsWith(github.event.pull_request.head.ref, 'changeset-release/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # Full history so we can address the PR's individual commits, and
+          # fetch all branches so `next` is available locally.
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Sync merged PR onto ${{ env.TARGET_BRANCH }}
+        id: sync
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          TARGET: ${{ env.TARGET_BRANCH }}
+        run: |
+          set -euo pipefail
+
+          SYNC_BRANCH="sync/${TARGET}/pr-${PR_NUMBER}"
+          echo "sync_branch=${SYNC_BRANCH}" >> "$GITHUB_OUTPUT"
+
+          # ----- Resolve the PR's commits (oldest -> newest) ---------------
+          # The repo is rebase-merge only, so a merged PR's commits land on
+          # `main` linearly. We read the exact commit list from the PR via the
+          # API rather than guessing the range, then replay [first..last].
+          mapfile -t COMMITS < <(gh pr view "$PR_NUMBER" --json commits \
+            --jq '.commits | sort_by(.committedDate) | .[].oid')
+
+          if [ "${#COMMITS[@]}" -eq 0 ]; then
+            echo "No commits found on PR #${PR_NUMBER}; nothing to sync."
+            echo "status=skipped" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          FIRST="${COMMITS[0]}"
+          LAST="${COMMITS[-1]}"
+          echo "Replaying ${#COMMITS[@]} commit(s): ${FIRST}..${LAST}"
+
+          git fetch origin "$TARGET"
+          git checkout -b "$SYNC_BRANCH" "origin/${TARGET}"
+
+          # ----- Replay the PR's commits onto the sync branch --------------
+          # `git rebase --onto <newbase> <upstream> <branch>` replays exactly
+          # the commits in (upstream..branch] = (FIRST^..LAST] onto the sync
+          # branch. On conflict we don't abort — we keep the conflicted tree
+          # (markers included) so the draft PR shows what needs resolving.
+          CONFLICT=0
+          if git rebase --committer-date-is-author-date \
+               --onto "$SYNC_BRANCH" "${FIRST}^" "$LAST"; then
+            # Success leaves HEAD detached at the replayed tip; move the branch
+            # to it and check it back out.
+            git branch -f "$SYNC_BRANCH" HEAD
+            git checkout "$SYNC_BRANCH"
+          else
+            CONFLICT=1
+            echo "::warning::Rebase onto ${TARGET} hit conflicts for PR #${PR_NUMBER}; capturing markers."
+            # Drive the rebase to completion, committing each conflicted step
+            # with markers in place instead of stopping.
+            until git rebase --skip >/dev/null 2>&1 && [ ! -d .git/rebase-merge ] && [ ! -d .git/rebase-apply ]; do
+              if [ ! -d .git/rebase-merge ] && [ ! -d .git/rebase-apply ]; then
+                break
+              fi
+              git add -A
+              GIT_EDITOR=true git rebase --continue || true
+            done
+            git branch -f "$SYNC_BRANCH" HEAD
+            git checkout "$SYNC_BRANCH"
+          fi
+
+          echo "conflict=${CONFLICT}" >> "$GITHUB_OUTPUT"
+
+          # Nothing changed relative to target (e.g. already synced) -> stop.
+          if git diff --quiet "origin/${TARGET}" -- ; then
+            echo "No diff against ${TARGET}; skipping PR."
+            echo "status=skipped" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git push --force-with-lease origin "$SYNC_BRANCH"
+          echo "status=pushed" >> "$GITHUB_OUTPUT"
+
+      - name: Open sync PR
+        if: steps.sync.outputs.status == 'pushed'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          TARGET: ${{ env.TARGET_BRANCH }}
+          SYNC_BRANCH: ${{ steps.sync.outputs.sync_branch }}
+          CONFLICT: ${{ steps.sync.outputs.conflict }}
+        run: |
+          set -euo pipefail
+
+          TITLE="${PR_TITLE} (${TARGET})"
+          DRAFT_FLAG=""
+          LABEL_FLAG=""
+
+          # Build the body in a file so no line has to break the YAML block.
+          {
+            printf 'sync #%s\n\n' "$PR_NUMBER"
+            if [ "$CONFLICT" = "1" ]; then
+              printf '%s\n' '⚠️ **This sync hit merge conflicts.** Commits were applied with conflict markers left in place. Resolve them, then mark this PR ready for review.'
+              printf '\n'
+            fi
+            printf '%s\n' '> Automated by `.github/workflows/sync-merged-prs.yml`.'
+          } > pr-body.md
+
+          if [ "$CONFLICT" = "1" ]; then
+            DRAFT_FLAG="--draft"
+            # Create the label if it does not exist yet (ignore failure if it does).
+            gh label create sync-conflict --color B60205 \
+              --description "Automated sync to next needs manual conflict resolution" || true
+            LABEL_FLAG="--label sync-conflict"
+          fi
+
+          # If a sync PR for this branch already exists, just update it.
+          EXISTING=$(gh pr list --head "$SYNC_BRANCH" --base "$TARGET" \
+            --state open --json number --jq '.[0].number // empty')
+
+          if [ -n "$EXISTING" ]; then
+            echo "Updating existing PR #${EXISTING}"
+            gh pr edit "$EXISTING" --title "$TITLE" --body-file pr-body.md
+          else
+            # shellcheck disable=SC2086
+            gh pr create \
+              --base "$TARGET" \
+              --head "$SYNC_BRANCH" \
+              --title "$TITLE" \
+              --body-file pr-body.md \
+              $DRAFT_FLAG $LABEL_FLAG
+          fi
