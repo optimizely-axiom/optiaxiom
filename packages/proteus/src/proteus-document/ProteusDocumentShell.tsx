@@ -19,7 +19,11 @@ import {
   useState,
 } from "react";
 
-import type { ProteusEventHandler, StructuredMessage } from "./schemas";
+import type {
+  ProteusEventHandler,
+  ProteusPreviewFile,
+  StructuredMessage,
+} from "./schemas";
 
 import { useEffectEvent } from "../hooks";
 import { downloadFile } from "../proteus-image/downloadFile";
@@ -84,7 +88,7 @@ export type ProteusDocumentShellProps = Pick<
    * Callback when user triggers a preview action.
    * Receives the file object to preview.
    */
-  onPreview?: (file: unknown) => Promise<void> | void;
+  onPreview?: (file: ProteusPreviewFile) => Promise<void> | void;
   /**
    * Callback when an analytics event is fired
    */

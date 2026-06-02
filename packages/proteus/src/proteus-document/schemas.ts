@@ -105,7 +105,7 @@ export type ProteusEventHandler =
     }
   | {
       action: "preview";
-      file: unknown;
+      file: ProteusPreviewFile;
     }
   | {
       action: "pushValue";
@@ -118,6 +118,14 @@ export type ProteusEventHandler =
     }
   | { interaction: string; params?: Record<string, unknown> }
   | { message: string | StructuredMessage };
+
+export type ProteusPreviewFile = {
+  extension: string;
+  file_link: string;
+  full_name: string;
+  mime_type: string;
+  name: string;
+};
 
 export type StructuredMessage<
   F extends FileUploadMetadata = FileUploadMetadata,

@@ -1,28 +1,9 @@
-import {
-  Box,
-  type BoxProps,
-  Button,
-  Dialog,
-  DialogBody,
-  DialogClose,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTrigger,
-  Spinner,
-} from "@optiaxiom/react";
+import { Box, type BoxProps, Spinner } from "@optiaxiom/react";
 import { useState } from "react";
-
-import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 
 export type ProteusImageProps = BoxProps<"img">;
 
-export function ProteusImage(props: ProteusImageProps) {
-  const { onEvent } = useProteusDocumentContext(
-    "@optiaxiom/proteus/ProteusImage",
-  );
-  const [open, setOpen] = useState(false);
-  const [isDownloading, setIsDownloading] = useState(false);
+export function ProteusImage({ ...props }: ProteusImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
@@ -42,82 +23,34 @@ export function ProteusImage(props: ProteusImageProps) {
           <Spinner />
         </Box>
       )}
-      <Dialog onOpenChange={setOpen} open={open}>
-        <DialogTrigger aria-label="Expand" asChild>
-          <Box
-            asChild
-            cursor="pointer"
-            display={isLoaded ? "flex" : "none"}
-            objectFit="contain"
-            overflow="hidden"
-            rounded="inherit"
-            size="full"
-            {...props}
-          >
-            <img
-              alt={props.alt}
-              draggable
-              onDragStart={(event) => {
-                event.stopPropagation();
-                event.dataTransfer.effectAllowed = "copy";
-                event.dataTransfer.setData(
-                  "opal-chat-dnd-data",
-                  JSON.stringify({
-                    link: props.src,
-                    mime_type: "image/*",
-                    name: props.src?.split("/").pop(),
-                  }),
-                );
-              }}
-              onLoad={() => setIsLoaded(true)}
-              src={props.src}
-            />
-          </Box>
-        </DialogTrigger>
-        <DialogContent size="fullscreen">
-          <DialogHeader lineClamp="1">{props.alt}</DialogHeader>
-          <DialogBody overflow="hidden">
-            <Box
-              asChild
-              display="block"
-              maxH="full"
-              maxW="full"
-              objectFit="contain"
-            >
-              <img alt={props.alt} src={props.src} />
-            </Box>
-          </DialogBody>
-          <DialogFooter>
-            <DialogClose>Close</DialogClose>
-            <Button
-              appearance="primary"
-              asChild
-              loading={isDownloading}
-              onClick={async (event) => {
-                event.preventDefault();
-
-                if (isDownloading) {
-                  return;
-                }
-
-                setIsDownloading(true);
-                try {
-                  await onEvent({
-                    action: "download",
-                    url: String(props.src),
-                  });
-                } finally {
-                  setIsDownloading(false);
-                }
-              }}
-            >
-              <a download href={props.src}>
-                Download
-              </a>
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <Box
+        asChild
+        display={isLoaded ? "flex" : "none"}
+        objectFit="contain"
+        overflow="hidden"
+        rounded="inherit"
+        size="full"
+        {...props}
+      >
+        <img
+          alt={props.alt}
+          draggable
+          onDragStart={(event) => {
+            event.stopPropagation();
+            event.dataTransfer.effectAllowed = "copy";
+            event.dataTransfer.setData(
+              "opal-chat-dnd-data",
+              JSON.stringify({
+                link: props.src,
+                mime_type: "image/*",
+                name: props.src?.split("/").pop(),
+              }),
+            );
+          }}
+          onLoad={() => setIsLoaded(true)}
+          src={props.src}
+        />
+      </Box>
     </>
   );
 }
