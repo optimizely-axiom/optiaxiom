@@ -1,5 +1,14 @@
 # @optiaxiom/proteus
 
+## 1.1.1
+
+### Patch Changes
+
+- e8b0ffa: re-generate schema
+- Updated dependencies [07e208c]
+- Updated dependencies [9a94689]
+  - @optiaxiom/react@1.9.39
+
 ## 1.1.0
 
 ### Minor Changes
