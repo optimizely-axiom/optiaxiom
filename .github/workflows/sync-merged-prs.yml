@@ -10,8 +10,11 @@ name: Sync merged PRs
 # file rename needed, which is why this is named for the action, not the target.
 
 on:
-  pull_request:
-    types: [closed]
+  # Trigger on push, NOT pull_request: a PR merged from a fork gets a
+  # read-only GITHUB_TOKEN that the `permissions:` block cannot raise, so
+  # `git push` is denied (403). The push event always gets the repo's full
+  # read/write token — this is the same trigger the release workflow uses.
+  push:
     branches: [main]
 
 permissions:
@@ -19,7 +22,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.sha }}
   cancel-in-progress: false
 
 env:
@@ -27,18 +30,13 @@ env:
 
 jobs:
   sync:
-    # Only merged PRs, only on the upstream repo, and never the changesets
-    # "Version Packages" PR (head branch is always `changeset-release/<base>`).
-    if: >-
-      github.repository_owner == 'optimizely-axiom' &&
-      github.event.pull_request.merged == true &&
-      !startsWith(github.event.pull_request.head.ref, 'changeset-release/')
+    if: ${{ github.repository_owner == 'optimizely-axiom' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
         with:
-          # Full history so we can address the PR's individual commits, and
-          # fetch all branches so `next` is available locally.
+          # Full history so we can address the merged commits, and so `next`
+          # is available locally for the replay.
           fetch-depth: 0
 
       - name: Configure git
@@ -50,22 +48,46 @@ jobs:
         id: sync
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          PR_TITLE: ${{ github.event.pull_request.title }}
-          MERGE_SHA: ${{ github.event.pull_request.merge_commit_sha }}
+          MERGE_SHA: ${{ github.sha }}
           TARGET: ${{ env.TARGET_BRANCH }}
         run: |
           set -euo pipefail
+
+          # ----- Resolve the PR this push landed -------------------------
+          # On a push we don't have a PR payload, so look up the PR that owns
+          # the pushed tip commit. Fields are read individually because titles
+          # contain spaces.
+          PR_NUMBER=$(gh pr list --search "${MERGE_SHA}" --state merged --json number --jq '.[0].number // empty')
+          PR_TITLE=$(gh pr list --search "${MERGE_SHA}" --state merged --json title --jq '.[0].title // empty')
+          PR_HEAD=$(gh pr list --search "${MERGE_SHA}" --state merged --json headRefName --jq '.[0].headRefName // empty')
+
+          if [ -z "$PR_NUMBER" ]; then
+            echo "No merged PR found for ${MERGE_SHA} (direct push?); nothing to sync."
+            echo "status=skipped" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Never sync the changesets "Version Packages" PR.
+          case "$PR_HEAD" in
+            changeset-release/*)
+              echo "PR #${PR_NUMBER} is a changesets release PR; skipping."
+              echo "status=skipped" >> "$GITHUB_OUTPUT"
+              exit 0
+              ;;
+          esac
+
+          echo "Resolved PR #${PR_NUMBER}: ${PR_TITLE}"
+          echo "pr_number=${PR_NUMBER}" >> "$GITHUB_OUTPUT"
+          echo "pr_title=${PR_TITLE}" >> "$GITHUB_OUTPUT"
 
           SYNC_BRANCH="sync/${TARGET}/pr-${PR_NUMBER}"
           echo "sync_branch=${SYNC_BRANCH}" >> "$GITHUB_OUTPUT"
 
           # ----- Resolve the commits as they landed on main ----------------
           # The repo is rebase-merge only, so the PR's commits are rewritten
-          # onto `main` as NEW SHAs ending at merge_commit_sha. The PR API
-          # returns the pre-merge head-branch SHAs, which don't exist on the
-          # upstream repo this runner checked out — so we must use the merge
-          # commit and walk back N commits, where N is the PR's commit count.
+          # onto `main` as NEW SHAs ending at the pushed tip. The PR API
+          # returns the pre-merge head-branch SHAs, which don't exist here —
+          # so we walk back N commits from the tip, N = PR commit count.
           N=$(gh pr view "$PR_NUMBER" --json commits --jq '.commits | length')
           if [ "${N:-0}" -eq 0 ]; then
             echo "No commits on PR #${PR_NUMBER}; nothing to sync."
@@ -73,42 +95,43 @@ jobs:
             exit 0
           fi
 
-          git fetch origin "$MERGE_SHA" "$TARGET"
+          git fetch origin "$TARGET"
           RANGE="${MERGE_SHA}~${N}..${MERGE_SHA}"
           echo "Replaying ${N} commit(s) landed on ${TARGET}: ${RANGE}"
           git --no-pager log --oneline "$RANGE"
 
           git checkout -b "$SYNC_BRANCH" "origin/${TARGET}"
 
-          # ----- Cherry-pick the landed commit range onto the sync branch --
-          # Cherry-pick keeps us on the sync branch (no detached HEAD, no
-          # force-update of the current branch). On conflict we don't abort —
-          # we commit the conflicted tree WITH markers so the draft PR shows
-          # exactly what needs resolving.
+          # ----- Try to cherry-pick the landed range onto the sync branch --
+          # Clean apply -> the sync branch is `next` + the PR's commits, an
+          # isolated, reviewable diff. We do NOT auto-resolve conflicts:
+          # committing markers and continuing corrupts multi-commit PRs (a
+          # later commit can apply *into* an earlier commit's marker block,
+          # mislabelling content). Instead, on conflict we hand off cleanly —
+          # see below.
           CONFLICT=0
-          if ! git cherry-pick "${MERGE_SHA}~${N}..${MERGE_SHA}"; then
+          RANGE="${MERGE_SHA}~${N}..${MERGE_SHA}"
+          if git cherry-pick "$RANGE"; then
+            if [ -z "$(git rev-list "origin/${TARGET}..HEAD")" ]; then
+              echo "No new commits vs ${TARGET} (already synced); skipping PR."
+              echo "status=skipped" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          else
+            # Conflict: abort the half-done cherry-pick and instead point the
+            # sync branch at the merged commit on main. The human resolves it
+            # by cherry-picking the range onto a fresh branch off the target
+            # (the instructions go in the PR body). The diff against the target
+            # will be large/noisy (main has diverged from the target), so this
+            # PR is a tracked TODO, not something to merge as-is.
             CONFLICT=1
-            echo "::warning::Cherry-pick onto ${TARGET} hit conflicts for PR #${PR_NUMBER}; capturing markers."
-            # Resolve each stuck step by committing the conflicted tree as-is,
-            # then continue until the whole range is applied.
-            while [ -d .git/sequencer ] || git status --porcelain | grep -q '^\(U\|.U\|U.\|AA\|DD\)'; do
-              git add -A
-              if ! GIT_EDITOR=true git cherry-pick --continue; then
-                # No staged changes to continue with -> skip this empty step.
-                git cherry-pick --skip || break
-              fi
-            done
+            echo "::warning::Cherry-pick onto ${TARGET} conflicted for PR #${PR_NUMBER}; handing off for manual resolution."
+            git cherry-pick --abort
+            git reset --hard "$MERGE_SHA"
+            echo "range=${RANGE}" >> "$GITHUB_OUTPUT"
           fi
 
           echo "conflict=${CONFLICT}" >> "$GITHUB_OUTPUT"
-
-          # Nothing to contribute relative to target (e.g. already synced).
-          if [ -z "$(git rev-list "origin/${TARGET}..HEAD")" ]; then
-            echo "No new commits vs ${TARGET}; skipping PR."
-            echo "status=skipped" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
           git push --force-with-lease origin "$SYNC_BRANCH"
           echo "status=pushed" >> "$GITHUB_OUTPUT"
 
@@ -116,11 +139,12 @@ jobs:
         if: steps.sync.outputs.status == 'pushed'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_NUMBER: ${{ steps.sync.outputs.pr_number }}
+          PR_TITLE: ${{ steps.sync.outputs.pr_title }}
           TARGET: ${{ env.TARGET_BRANCH }}
           SYNC_BRANCH: ${{ steps.sync.outputs.sync_branch }}
           CONFLICT: ${{ steps.sync.outputs.conflict }}
+          RANGE: ${{ steps.sync.outputs.range }}
         run: |
           set -euo pipefail
 
@@ -132,8 +156,16 @@ jobs:
           {
             printf 'sync #%s\n\n' "$PR_NUMBER"
             if [ "$CONFLICT" = "1" ]; then
-              printf '%s\n' '⚠️ **This sync hit merge conflicts.** Commits were applied with conflict markers left in place. Resolve them, then mark this PR ready for review.'
-              printf '\n'
+              printf '%s\n' '⚠️ **This sync conflicted and could not be applied automatically.**'
+              printf '%s\n\n' "This branch points at the merged commit on \`main\`, so the diff below is **not** reviewable (it shows everything \`main\` has that \`${TARGET}\` does not). Don't merge it as-is — resolve the cherry-pick locally:"
+              printf '```sh\n'
+              printf 'git fetch origin\n'
+              printf 'git checkout -B %s origin/%s\n' "$SYNC_BRANCH" "$TARGET"
+              printf 'git cherry-pick %s\n' "$RANGE"
+              printf '# resolve conflicts, then: git add -A && git cherry-pick --continue\n'
+              printf 'git push --force-with-lease origin %s\n' "$SYNC_BRANCH"
+              printf '```\n\n'
+              printf '%s\n\n' "Then mark this PR ready for review."
             fi
             printf '%s\n' '> Automated by `.github/workflows/sync-merged-prs.yml`.'
           } > pr-body.md
