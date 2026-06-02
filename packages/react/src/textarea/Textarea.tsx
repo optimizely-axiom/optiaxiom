@@ -90,7 +90,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         <InputAddon {...styles.addon()}>
           {props.value !== undefined && (
             <Group justifyContent="end">
-              <SuggestionPopover />
+              <SuggestionPopover disabled={props.disabled} />
             </Group>
           )}
           {addonAfter}
