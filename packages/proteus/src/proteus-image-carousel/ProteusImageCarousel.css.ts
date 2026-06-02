@@ -58,6 +58,7 @@ export const slideContainer = recipe({
 export const slide = recipe({
   base: [
     {
+      cursor: "pointer",
       objectFit: "cover",
       size: "full",
     },
