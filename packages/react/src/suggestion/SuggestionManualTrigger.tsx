@@ -46,7 +46,6 @@ export const SuggestionManualTrigger = forwardRef<
     <Button
       appearance="subtle"
       aria-label="Opal suggestion"
-      disabled={pending}
       icon={<Avatar fallback="opal" size="2xs" />}
       loading={pending}
       onClick={() => {
@@ -56,6 +55,7 @@ export const SuggestionManualTrigger = forwardRef<
       ref={ref}
       size="sm"
       {...props}
+      disabled={pending || props.disabled}
     />
   );
 });
