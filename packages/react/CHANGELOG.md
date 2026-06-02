@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 3.0.2
+
+### Patch Changes
+
+- 9625e6f: Clarify in `Menu`'s documentation that it is not a form control (no `value`/`onChange` or `Field` integration) and that there is currently no built-in filterable single-select form input. This helps when choosing between `Menu` (filterable) and `Select` (form control) for a single-select field.
+- bc01b23: Clarify the descriptions of the `flex`, `gridTemplateColumns`, `gridColumn`, `gridAutoRows`, and `transition` style props, where the accepted value does not obviously map to its CSS intent. For example, `flex="none"` now documents that it neither grows nor shrinks (the replacement for `flex-shrink: 0`), and `gridTemplateColumns` documents that the value is the number of equal columns. These flow to IDE hovers, generated docs, and the MCP.
+
 ## 3.0.1
 
 ### Patch Changes
