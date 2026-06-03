@@ -25,6 +25,10 @@ export type RichTextEditorProps = BoxProps<
      */
     defaultValue?: string;
     /**
+     * Name of the form control element. Used by form-data integrations.
+     */
+    name?: string;
+    /**
      * Called when the editor content changes. Receives the new HTML string.
      */
     onValueChange?: (value: string) => void;
@@ -36,6 +40,10 @@ export type RichTextEditorProps = BoxProps<
      * Whether the editor is read-only.
      */
     readOnly?: boolean;
+    /**
+     * Whether the field is required for form submission.
+     */
+    required?: boolean;
     /**
      * Controlled HTML content. Pair with `onValueChange`.
      */

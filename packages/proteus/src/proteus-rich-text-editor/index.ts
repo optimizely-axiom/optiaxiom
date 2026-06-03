@@ -1,0 +1,1 @@
+export { ProteusRichTextEditor } from "./ProteusRichTextEditor";
