@@ -15,6 +15,7 @@ import type {
   HeadingProps,
   InputProps,
   LinkProps,
+  RichTextEditorProps,
   SelectContentProps,
   SelectTriggerProps,
   SeparatorProps,
@@ -86,6 +87,7 @@ export type ProteusElement =
   | (ProteusShowProps & { $type: "Show" })
   | (ProteusValueProps & { $type: "Value" })
   | (RangeProps & { $type: "Range" })
+  | (RichTextEditorProps & { $type: "RichTextEditor" })
   | (SelectContentProps & { $type: "SelectContent" })
   | (SelectTriggerProps & { $type: "SelectTrigger" })
   | (SeparatorProps & { $type: "Separator" })

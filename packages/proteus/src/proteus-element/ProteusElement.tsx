@@ -41,6 +41,7 @@ import { ProteusMapIndex } from "../proteus-map-index/ProteusMapIndex";
 import { ProteusMap } from "../proteus-map/ProteusMap";
 import { ProteusPillMenu } from "../proteus-pill-menu/ProteusPillMenu";
 import { ProteusQuestion } from "../proteus-question/ProteusQuestion";
+import { ProteusRichTextEditor } from "../proteus-rich-text-editor/ProteusRichTextEditor";
 import { ProteusSelect } from "../proteus-select/ProteusSelect";
 import { ProteusShow } from "../proteus-show/ProteusShow";
 import { ProteusSwitch } from "../proteus-switch/ProteusSwitch";
@@ -222,6 +223,8 @@ export const ProteusElement = ({
       return <ProteusQuestion {...resolve(element)} />;
     case "Range":
       return <Range {...resolve(element)} />;
+    case "RichTextEditor":
+      return <ProteusRichTextEditor {...resolve(element)} />;
     case "Select":
       return <ProteusSelect {...resolve(element)} />;
     case "SelectContent":
