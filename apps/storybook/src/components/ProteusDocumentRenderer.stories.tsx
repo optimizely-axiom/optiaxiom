@@ -244,6 +244,16 @@ export const FormWithInputs: Story = {
                 },
                 label: "Test Idea",
               },
+              {
+                $type: "Field",
+                children: {
+                  $type: "RichTextEditor",
+                  name: "test_notes",
+                  placeholder:
+                    "Add rich-text notes — e.g., hypotheses, success metrics, edge cases…",
+                },
+                label: "Notes",
+              },
             ],
             flexDirection: "column",
             gap: "16",
