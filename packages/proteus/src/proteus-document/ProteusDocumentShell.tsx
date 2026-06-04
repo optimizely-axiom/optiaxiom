@@ -99,10 +99,6 @@ export type ProteusDocumentShellProps = Pick<
    */
   onUpload?: UploadFile;
   /**
-   * File currently open in the host's preview surface, or null when nothing is being previewed.
-   */
-  previewFile?: null | ProteusPreviewFile;
-  /**
    * Whether form is readonly
    */
   readOnly?: boolean;
@@ -144,7 +140,6 @@ export function ProteusDocumentShell({
   onTrack,
   onUpload,
   open: openProp,
-  previewFile,
   readOnly = false,
   strict,
   useResource,
@@ -283,7 +278,6 @@ export function ProteusDocumentShell({
         },
       )}
       onUpload={onUpload}
-      previewFile={previewFile}
       readOnly={readOnly}
       strict={strict}
       useResource={useResource}
