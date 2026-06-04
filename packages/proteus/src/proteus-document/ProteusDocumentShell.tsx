@@ -99,9 +99,7 @@ export type ProteusDocumentShellProps = Pick<
    */
   onUpload?: UploadFile;
   /**
-   * The file currently open in the host's preview surface, or null when
-   * nothing is being previewed. Lets components keep an already-open preview
-   * in sync with their selection without reopening it after the host closes it.
+   * File currently open in the host's preview surface, or null when nothing is being previewed.
    */
   previewFile?: null | ProteusPreviewFile;
   /**
