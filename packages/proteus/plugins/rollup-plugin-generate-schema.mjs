@@ -260,7 +260,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { max: 100, min: 0, step: 1 },
   },
   RichTextEditor: {
-    allowedProps: ["name", "placeholder", "readOnly", "required"],
+    allowedProps: ["name", "placeholder", "readOnly"],
     example: { name: "field_name", placeholder: "Write here..." },
   },
   Select: {
