@@ -41,10 +41,6 @@ export type RichTextEditorProps = BoxProps<
      */
     readOnly?: boolean;
     /**
-     * Whether the field is required for form submission.
-     */
-    required?: boolean;
-    /**
      * Controlled HTML content. Pair with `onValueChange`.
      */
     value?: string;
@@ -55,6 +51,7 @@ export type RichTextEditorProps = BoxProps<
  * Rich text editor with a toolbar for basic formatting (bold, italic, lists, links).
  *
  * @category form
+ * @experimental
  * @since 1.10.0
  */
 export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(
