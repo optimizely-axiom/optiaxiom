@@ -10,53 +10,37 @@ import {
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 
+import type { ProteusPreviewFile } from "../proteus-document/schemas";
+
 import { useEffectEvent } from "../hooks";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { ProteusImage } from "../proteus-image/ProteusImage";
-import { buildPreviewFile } from "./buildPreviewFile";
 import * as styles from "./ProteusImageCarousel.css";
 
 export type ProteusImageCarouselProps = {
   /**
-   * Array of image data to display in the carousel.
+   * Array of image data to display in the carousel. The host is responsible for
+   * supplying the preview metadata on each item.
    */
-  images: Array<{
-    [key: string]: unknown;
-    /**
-     * Alternative text for the image.
-     */
-    alt?: string;
-    /**
-     * Uppercased file extension label (e.g. "PNG"), when known.
-     */
-    extension?: string;
-    /**
-     * Resolvable download URL for the full image, when known.
-     */
-    file_link?: string;
-    /**
-     * Original filename including extension, when known.
-     */
-    full_name?: string;
-    /**
-     * MIME type of the image (e.g. "image/png"), when known.
-     */
-    mime_type?: string;
-    /**
-     * Display label for the image, when known.
-     */
-    name?: string;
-    /**
-     * The URL to the full image.
-     */
-    src: string;
-    /**
-     * The URL to the image thumbnail.
-     */
-    thumb?: string;
-  }>;
+  images: Array<
+    ProteusPreviewFile & {
+      [key: string]: unknown;
+      /**
+       * Alternative text for the image.
+       */
+      alt?: string;
+      /**
+       * The URL to the full image.
+       */
+      src: string;
+      /**
+       * The URL to the image thumbnail.
+       */
+      thumb?: string;
+    }
+  >;
   /**
    * Accessible label for the carousel region.
    */
@@ -86,11 +70,9 @@ export function ProteusImageCarousel({
     const openLink = previewFile?.file_link;
     if (
       openLink != null &&
-      images.some((image) => (image.file_link ?? image.src) === openLink)
+      images.some((image) => image.file_link === openLink)
     ) {
-      void buildPreviewFile(images[index]).then((file) =>
-        onEvent({ action: "preview", file }),
-      );
+      void onEvent({ action: "preview", file: toPreviewFile(images[index]) });
     }
   });
 
@@ -139,11 +121,9 @@ export function ProteusImageCarousel({
               <ProteusImage
                 alt={image.alt}
                 key={index}
-                onClick={() => {
-                  void buildPreviewFile(image).then((file) =>
-                    onEvent({ action: "preview", file }),
-                  );
-                }}
+                onClick={() =>
+                  onEvent({ action: "preview", file: toPreviewFile(image) })
+                }
                 src={image.src}
                 {...styles.slide()}
               />
@@ -250,6 +230,16 @@ export function ProteusImageCarousel({
       </Group>
     </Group>
   );
+}
+
+function toPreviewFile({
+  extension,
+  file_link,
+  full_name,
+  mime_type,
+  name,
+}: ProteusPreviewFile): ProteusPreviewFile {
+  return { extension, file_link, full_name, mime_type, name };
 }
 
 ProteusImageCarousel.displayName = "@optiaxiom/proteus/ProteusImageCarousel";
