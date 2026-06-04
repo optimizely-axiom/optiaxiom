@@ -14,7 +14,7 @@
     "dev:storybook": "pnpm -F storybook... --parallel dev",
     "lint": "oas-lint",
     "release": "pnpm build && changeset publish",
-    "test": "vitest run --project=@optiaxiom/globals --project=@optiaxiom/proteus --project=@optiaxiom/react"
+    "test": "vitest run --project=@optiaxiom/globals --project=@optiaxiom/react"
   },
   "devDependencies": {
     "@changesets/cli": "^2.30.0",
