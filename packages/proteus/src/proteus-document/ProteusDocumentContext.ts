@@ -4,7 +4,7 @@ import type { ComponentType } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
-import type { ProteusEventHandler, ProteusPreviewFile } from "./schemas";
+import type { ProteusEventHandler } from "./schemas";
 
 export type FileUploadMetadata = {
   link: string;
@@ -33,7 +33,6 @@ export const [ProteusDocumentProvider, useProteusDocumentContext] =
     onEvent: (event: ProteusEventHandler) => Promise<unknown>;
     onTrack?: (event: string, properties: Record<string, string>) => void;
     onUpload?: UploadFile;
-    previewFile?: null | ProteusPreviewFile;
     readOnly: boolean | undefined;
     strict: boolean | undefined;
     useResource?: UseResource;

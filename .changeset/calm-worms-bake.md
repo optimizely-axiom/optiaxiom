@@ -2,4 +2,4 @@
 "@optiaxiom/proteus": patch
 ---
 
-Image carousel uses the shared `onPreview` interaction instead of a fullscreen dialog, and keeps an open preview in sync with the selection (without reopening it after the host closes it). Adds the exported `ProteusPreviewFile` type (required on carousel items) and an optional `previewFile` input on `ProteusDocumentShell`/`ProteusDocumentRenderer`.
+Image carousel uses the shared `onPreview` interaction instead of a fullscreen dialog, building each preview file from the metadata the host supplies. Adds the exported `ProteusPreviewFile` type and requires it on carousel items.

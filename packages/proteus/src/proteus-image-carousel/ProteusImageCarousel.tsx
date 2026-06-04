@@ -12,7 +12,6 @@ import { useCallback, useEffect, useState } from "react";
 
 import type { ProteusPreviewFile } from "../proteus-document/schemas";
 
-import { useEffectEvent } from "../hooks";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
@@ -51,7 +50,7 @@ export function ProteusImageCarousel({
   images,
   title,
 }: ProteusImageCarouselProps) {
-  const { onEvent, previewFile } = useProteusDocumentContext(
+  const { onEvent } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusImageCarousel",
   );
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel({
@@ -66,16 +65,6 @@ export function ProteusImageCarousel({
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
-  const syncOpenPreview = useEffectEvent((index: number) => {
-    const openLink = previewFile?.file_link;
-    if (
-      openLink != null &&
-      images.some((image) => image.file_link === openLink)
-    ) {
-      void onEvent({ action: "preview", file: toPreviewFile(images[index]) });
-    }
-  });
-
   const onSelect = useCallback(() => {
     if (!emblaMainApi || !emblaThumbsApi) return;
     const index = emblaMainApi.selectedScrollSnap();
@@ -83,7 +72,6 @@ export function ProteusImageCarousel({
     emblaThumbsApi.scrollTo(index);
     setCanScrollPrev(emblaMainApi.canScrollPrev());
     setCanScrollNext(emblaMainApi.canScrollNext());
-    syncOpenPreview(index);
   }, [emblaMainApi, emblaThumbsApi]);
 
   useEffect(() => {
