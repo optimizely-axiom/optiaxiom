@@ -1,5 +1,16 @@
 # @optiaxiom/proteus
 
+## 1.1.2
+
+### Patch Changes
+
+- 2d41529: add ProteusRichTextEditor wrapper that binds the RichTextEditor into the Proteus document form-data context, renderable via `$type: "RichTextEditor"`
+- Updated dependencies [e0a550a]
+- Updated dependencies [2d41529]
+- Updated dependencies [20438fd]
+- Updated dependencies [1a1d7ff]
+  - @optiaxiom/react@1.9.40
+
 ## 1.1.1
 
 ### Patch Changes
