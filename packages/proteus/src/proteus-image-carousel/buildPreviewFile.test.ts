@@ -69,8 +69,6 @@ describe("buildPreviewFile", () => {
     });
 
     expect(fetchMock).toHaveBeenCalledOnce();
-    // MIME is recovered from the URL extension; name/full_name fall back to alt
-    // (the URL has no reliable filename for legacy cards).
     expect(file).toEqual({
       extension: "PNG",
       file_link: "https://opal.example.com/assets/hero.png?token=xyz",
