@@ -2,6 +2,7 @@ import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const kbd = recipe({
   base: {
+    color: "fg.secondary",
     display: "inline-flex",
     gap: "2",
     whiteSpace: "nowrap",
@@ -11,7 +12,6 @@ export const kbd = recipe({
 export const key = recipe({
   base: {
     alignItems: "center",
-    color: "fg.secondary",
     display: "inline-flex",
     fontFamily: "sans",
     gap: "2",
