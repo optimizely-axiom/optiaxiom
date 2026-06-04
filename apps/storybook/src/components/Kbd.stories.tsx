@@ -66,7 +66,7 @@ export const WithButton: Story = {
       <Group flexDirection="column" gap="16">
         {appearances.map((appearance) => (
           <Button
-            addonAfter={<Kbd {...args} variant="subtle" />}
+            addonAfter={<Kbd {...args} color="current" variant="subtle" />}
             appearance={appearance}
             key={appearance}
           >
