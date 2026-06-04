@@ -4,7 +4,7 @@ import type { ComponentType } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
-import type { ProteusEventHandler } from "./schemas";
+import type { ProteusEventHandler, ProteusPreviewFile } from "./schemas";
 
 export type FileUploadMetadata = {
   link: string;
@@ -33,6 +33,13 @@ export const [ProteusDocumentProvider, useProteusDocumentContext] =
     onEvent: (event: ProteusEventHandler) => Promise<unknown>;
     onTrack?: (event: string, properties: Record<string, string>) => void;
     onUpload?: UploadFile;
+    /**
+     * The file currently open in the host's preview surface, or null when
+     * nothing is being previewed. Lets components (e.g. the image carousel)
+     * keep an already-open preview in sync as the selection changes, without
+     * reopening it once the host has closed it.
+     */
+    previewFile?: null | ProteusPreviewFile;
     readOnly: boolean | undefined;
     strict: boolean | undefined;
     useResource?: UseResource;

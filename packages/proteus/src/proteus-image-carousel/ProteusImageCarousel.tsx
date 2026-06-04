@@ -10,6 +10,7 @@ import {
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 
+import { useEffectEvent } from "../hooks";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
@@ -66,7 +67,7 @@ export function ProteusImageCarousel({
   images,
   title,
 }: ProteusImageCarouselProps) {
-  const { onEvent } = useProteusDocumentContext(
+  const { onEvent, previewFile } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusImageCarousel",
   );
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel({
@@ -81,12 +82,29 @@ export function ProteusImageCarousel({
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
+  // Keep an already-open preview in sync as the carousel selection changes.
+  // Only fires while the host is previewing one of this carousel's images, so
+  // navigating after the preview has been closed does not reopen it.
+  const syncOpenPreview = useEffectEvent((index: number) => {
+    const openLink = previewFile?.file_link;
+    if (
+      openLink != null &&
+      images.some((image) => (image.file_link ?? image.src) === openLink)
+    ) {
+      void buildPreviewFile(images[index]).then((file) =>
+        onEvent({ action: "preview", file }),
+      );
+    }
+  });
+
   const onSelect = useCallback(() => {
     if (!emblaMainApi || !emblaThumbsApi) return;
-    setSelectedIndex(emblaMainApi.selectedScrollSnap());
-    emblaThumbsApi.scrollTo(emblaMainApi.selectedScrollSnap());
+    const index = emblaMainApi.selectedScrollSnap();
+    setSelectedIndex(index);
+    emblaThumbsApi.scrollTo(index);
     setCanScrollPrev(emblaMainApi.canScrollPrev());
     setCanScrollNext(emblaMainApi.canScrollNext());
+    syncOpenPreview(index);
   }, [emblaMainApi, emblaThumbsApi]);
 
   useEffect(() => {
