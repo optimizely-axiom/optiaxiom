@@ -1,10 +1,6 @@
 import type { ProteusPreviewFile } from "../proteus-document/schemas";
 
-/**
- * One image entry as it arrives from the `present_images` tool. The backend
- * enriches each item ({src, alt, name, full_name, extension, mime_type,
- * file_link, kind}); legacy already-rendered cards only carry {src, alt}.
- */
+/** One image entry from the `present_images` tool; legacy cards carry only `{src, alt}`. */
 export type PreviewSource = {
   alt?: string;
   extension?: string;
@@ -27,16 +23,7 @@ const MIME_MAP: Record<string, string> = {
 
 type HeadMetadata = { filename?: string; mime_type?: string };
 
-/**
- * Build the {@link ProteusPreviewFile} the preview panel consumes from a
- * carousel image.
- *
- * - Enriched cards already carry `mime_type` (and friends) from the backend, so
- *   we use them directly with no network call.
- * - Legacy `{src, alt}`-only cards trigger a `HEAD` request to recover the real
- *   `Content-Type` and filename. The URL-extension guess is only a last resort
- *   if the HEAD request fails or omits headers.
- */
+/** Build a preview file from a carousel image, falling back to a `HEAD` request then URL guessing for legacy cards. */
 export async function buildPreviewFile(
   image: PreviewSource,
 ): Promise<ProteusPreviewFile> {
@@ -89,7 +76,6 @@ function extensionFromMime(mime: string): string {
   return (sub === "jpeg" ? "jpg" : sub).toUpperCase();
 }
 
-/** Uppercased extension label (matches the backend's `_extension_label`). */
 function extensionFromName(name: string): string | undefined {
   const dot = name.lastIndexOf(".");
   return dot > 0 && dot < name.length - 1
@@ -97,7 +83,6 @@ function extensionFromName(name: string): string | undefined {
     : undefined;
 }
 
-/** HEAD the URL to recover the real Content-Type and filename. */
 async function fetchHeadMetadata(url: string): Promise<HeadMetadata> {
   try {
     const response = await fetch(url, {
@@ -117,7 +102,6 @@ async function fetchHeadMetadata(url: string): Promise<HeadMetadata> {
   }
 }
 
-/** Parse `filename` from a Content-Disposition header (RFC 5987 + plain). */
 function filenameFromContentDisposition(
   header: null | string,
 ): string | undefined {
@@ -139,7 +123,6 @@ function filenameFromUrl(src: string): string | undefined {
   return last ? decodeURIComponent(last) : undefined;
 }
 
-/** Last-resort MIME guess from a URL's extension when no metadata is available. */
 function getMimeFromUrl(src: string): string {
   const ext = src.split("?")[0].split(".").pop()?.toLowerCase() ?? "";
   return MIME_MAP[ext] ?? "image/jpeg";

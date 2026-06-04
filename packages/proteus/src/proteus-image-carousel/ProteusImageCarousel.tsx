@@ -82,9 +82,6 @@ export function ProteusImageCarousel({
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
-  // Keep an already-open preview in sync as the carousel selection changes.
-  // Only fires while the host is previewing one of this carousel's images, so
-  // navigating after the preview has been closed does not reopen it.
   const syncOpenPreview = useEffectEvent((index: number) => {
     const openLink = previewFile?.file_link;
     if (
