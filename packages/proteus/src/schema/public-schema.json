@@ -4242,13 +4242,6 @@
           ],
           "description": "Whether the editor is read-only."
         },
-        "required": {
-          "anyOf": [
-            { "type": "boolean" },
-            { "$ref": "#/definitions/ProteusExpression" }
-          ],
-          "description": "Whether the field is required for form submission."
-        },
         "rounded": { "$ref": "#/definitions/SprinkleProp_rounded" },
         "shadow": { "$ref": "#/definitions/SprinkleProp_shadow" },
         "size": { "$ref": "#/definitions/SprinkleProp_size" },
