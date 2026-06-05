@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 1.1.4
+
+### Patch Changes
+
+- bf6c066: allow interaction to be an expression
+
 ## 1.1.3
 
 ### Patch Changes
