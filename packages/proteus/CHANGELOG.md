@@ -1,5 +1,16 @@
 # @optiaxiom/proteus
 
+## 3.0.2
+
+### Patch Changes
+
+- 25dc00c: allow interaction to be an expression
+- 245282a: allow interaction to be both literal and expression
+- de43ed0: add an `interaction` prop to ProteusQuestion. When set, submit and cancel report a structured `{ questions, answers }` payload via the named interaction instead of a text message, so a calling tool can read the answers programmatically. On cancel the payload also flags that the user declined. When omitted, the existing `message` (text transcript) behaviour is used.
+- Updated dependencies [992917f]
+- Updated dependencies [fa0e6f0]
+  - @optiaxiom/react@3.0.3
+
 ## 3.0.1
 
 ### Patch Changes
