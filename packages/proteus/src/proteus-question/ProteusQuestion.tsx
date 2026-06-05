@@ -12,6 +12,15 @@ import * as styles from "./ProteusQuestion.css";
 
 export type ProteusQuestionProps = {
   /**
+   * Name of the interaction to fire when the user finishes or cancels.
+   *
+   * When set, submit and cancel send a structured `{ questions, answers }`
+   * payload via the `interaction` event (under this name) so the host can hand
+   * it back to the calling tool. When omitted, a human-readable transcript is
+   * sent via the `message` event instead (the default behaviour).
+   */
+  interaction?: string;
+  /**
    * Array of the questions data.
    */
   questions: QuestionData[];
@@ -23,7 +32,10 @@ type QuestionData = {
   type: "multi_select" | "single_select";
 };
 
-export function ProteusQuestion({ questions }: ProteusQuestionProps) {
+export function ProteusQuestion({
+  interaction,
+  questions,
+}: ProteusQuestionProps) {
   const { onEvent, onTrack } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusQuestion",
   );
@@ -45,10 +57,20 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     onTrack?.("Ask User Question Dismissed", {
       questionIndex: String(currentIndex),
     });
-    void onEvent({
-      message: "[User declined to answer the question]",
-    });
-  }, [currentIndex, onEvent, onTrack]);
+    if (interaction) {
+      void onEvent({
+        interaction,
+        params: {
+          cancelled: "[User declined to answer the question]",
+          questions,
+        },
+      });
+    } else {
+      void onEvent({
+        message: "[User declined to answer the question]",
+      });
+    }
+  }, [currentIndex, interaction, onEvent, onTrack, questions]);
 
   const questionRef = useRef<HTMLDivElement>(null);
   const lastIndexRef = useRef(currentIndex);
@@ -99,6 +121,20 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
       skippedCount: String(questions.length - answeredCount),
       totalQuestions: String(questions.length),
     });
+    if (interaction) {
+      return onEvent({
+        interaction,
+        params: {
+          answers: Object.fromEntries(
+            questions.map(({ question }, index) => [
+              question,
+              (answers[index] ?? []).join(", "),
+            ]),
+          ),
+          questions,
+        },
+      });
+    }
     return onEvent({
       message: answers
         .map(
