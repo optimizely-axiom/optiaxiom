@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 1.1.5
+
+### Patch Changes
+
+- de590db: allow interaction to be both literal and expression
+
 ## 1.1.4
 
 ### Patch Changes
