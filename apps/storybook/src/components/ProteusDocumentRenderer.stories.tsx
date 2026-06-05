@@ -639,6 +639,7 @@ export const AskUserQuestion: Story = {
       blocking: true,
       body: {
         $type: "Question",
+        interaction: "ask_user_question",
         questions: {
           $type: "Value",
           path: "/questions",
