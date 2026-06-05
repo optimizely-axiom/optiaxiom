@@ -251,7 +251,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     extends: "Fragment",
   },
   Question: {
-    allowedProps: ["questions"],
+    allowedProps: ["interaction", "questions"],
     extends: "Fragment",
     requiredProps: ["questions"],
   },
@@ -1414,6 +1414,11 @@ function getPropTypeOverrides(additionalProperties = false) {
       },
     },
     Question: {
+      interaction: {
+        description:
+          "Name of the interaction to fire when the user finishes or cancels. When set, submit and cancel send a structured `{ questions, answers }` payload via the named interaction so a calling tool can read the answers programmatically. When omitted, a human-readable transcript is sent via the `message` event instead.",
+        type: "string",
+      },
       questions: {
         $ref: "#/definitions/ProteusExpression",
         description: "Array of questions data",
