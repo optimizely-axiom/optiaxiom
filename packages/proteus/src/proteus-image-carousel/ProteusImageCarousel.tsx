@@ -24,21 +24,26 @@ export type ProteusImageCarouselProps = {
    * supplying the preview metadata on each item.
    */
   images: Array<
-    ProteusPreviewFile & {
-      [key: string]: unknown;
-      /**
-       * Alternative text for the image.
-       */
-      alt?: string;
-      /**
-       * The URL to the full image.
-       */
-      src: string;
-      /**
-       * The URL to the image thumbnail.
-       */
-      thumb?: string;
-    }
+    ProteusPreviewFile &
+      // Legacy `{src, alt, thumb}` fields kept for backward compatibility with
+      // older hosts that predate `ProteusPreviewFile`. They are only read as
+      // fallbacks (`name`/`full_name`/`file_link` are preferred) and will be
+      // removed in a future release.
+      {
+        [key: string]: unknown;
+        /**
+         * Alternative text for the image.
+         */
+        alt?: string;
+        /**
+         * The URL to the full image.
+         */
+        src: string;
+        /**
+         * The URL to the image thumbnail.
+         */
+        thumb?: string;
+      }
   >;
   /**
    * Accessible label for the carousel region.
@@ -107,7 +112,7 @@ export function ProteusImageCarousel({
           <Group {...styles.slideContainer()}>
             {images.map((image, index) => (
               <ProteusImage
-                alt={image.alt}
+                alt={image.name ?? image.alt}
                 key={index}
                 onClick={() =>
                   onEvent({ action: "preview", file: toPreviewFile(image) })
@@ -157,7 +162,10 @@ export function ProteusImageCarousel({
                 })}
               >
                 <Box asChild objectFit="cover" size="full">
-                  <img alt={image.alt} src={image.thumb ?? image.src} />
+                  <img
+                    alt={image.name ?? image.alt}
+                    src={image.thumb ?? image.src}
+                  />
                 </Box>
               </Box>
             ))}
@@ -187,7 +195,9 @@ export function ProteusImageCarousel({
                 execute: () =>
                   onEvent({
                     action: "download",
-                    url: images[selectedIndex].src,
+                    url:
+                      images[selectedIndex].file_link ??
+                      images[selectedIndex].src,
                   }),
                 label: "Download this image",
               },
@@ -195,7 +205,7 @@ export function ProteusImageCarousel({
                 execute: () =>
                   onEvent({
                     action: "download",
-                    url: images.map((image) => image.src),
+                    url: images.map((image) => image.file_link ?? image.src),
                   }),
                 label: "Download all images",
               },
@@ -210,7 +220,12 @@ export function ProteusImageCarousel({
           <Button
             appearance="primary"
             ml="auto"
-            onClick={() => onEvent({ action: "download", url: images[0].src })}
+            onClick={() =>
+              onEvent({
+                action: "download",
+                url: images[0].file_link ?? images[0].src,
+              })
+            }
           >
             Download
           </Button>
@@ -221,13 +236,21 @@ export function ProteusImageCarousel({
 }
 
 function toPreviewFile({
+  alt,
   extension,
   file_link,
   full_name,
   mime_type,
   name,
-}: ProteusPreviewFile): ProteusPreviewFile {
-  return { extension, file_link, full_name, mime_type, name };
+  src,
+}: ProteusImageCarouselProps["images"][number]): ProteusPreviewFile {
+  return {
+    extension: extension ?? "JPG",
+    file_link: file_link ?? src,
+    full_name: full_name ?? alt ?? src,
+    mime_type: mime_type ?? "image/jpeg",
+    name: name ?? alt ?? src,
+  };
 }
 
 ProteusImageCarousel.displayName = "@optiaxiom/proteus/ProteusImageCarousel";
