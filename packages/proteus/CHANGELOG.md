@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 1.1.6
+
+### Patch Changes
+
+- 3cf87a3: Image carousel uses the shared `onPreview` interaction instead of a fullscreen dialog, building each preview file from the metadata the host supplies. Adds the exported `ProteusPreviewFile` type and requires it on carousel items.
+
 ## 1.1.5
 
 ### Patch Changes
