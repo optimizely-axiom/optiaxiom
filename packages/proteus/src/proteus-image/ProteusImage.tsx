@@ -16,7 +16,6 @@ export function ProteusImage({ ...props }: ProteusImageProps) {
           justifyContent="center"
           p="24"
           rounded="md"
-          style={{ aspectRatio: "16 / 9" }}
           w="full"
           {...props}
         >
