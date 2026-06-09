@@ -1,5 +1,13 @@
 # @optiaxiom/proteus
 
+## 1.1.7
+
+### Patch Changes
+
+- 6036292: Add a `Markdown` element that renders markdown content (headings, paragraphs, lists, links, emphasis, inline/fenced code, blockquotes, images, and GFM tables) as Axiom components. The `children` prop accepts a literal string or a `Value` expression.
+- Updated dependencies [25df2a5]
+  - @optiaxiom/react@1.9.41
+
 ## 1.1.6
 
 ### Patch Changes

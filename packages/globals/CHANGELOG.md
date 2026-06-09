@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.1.14
+
+### Patch Changes
+
+- 25df2a5: update browserslist db
+
 ## 1.1.13
 
 ### Patch Changes
