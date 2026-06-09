@@ -1,5 +1,25 @@
 # @optiaxiom/proteus
 
+## 3.0.2
+
+### Patch Changes
+
+- 25dc00c: allow interaction to be an expression
+- 82f3c01: Image carousel uses the shared `onPreview` interaction instead of a fullscreen dialog, building each preview file from the metadata the host supplies. Adds the exported `ProteusPreviewFile` type and requires it on carousel items.
+- 245282a: allow interaction to be both literal and expression
+- 914030b: Add a `Markdown` element that renders markdown content (headings, paragraphs, lists, links, emphasis, inline/fenced code, blockquotes, images, and GFM tables) as Axiom components. The `children` prop accepts a literal string or a `Value` expression.
+- de43ed0: add an `interaction` prop to ProteusQuestion. When set, submit and cancel report a structured `{ questions, answers }` payload via the named interaction instead of a text message, so a calling tool can read the answers programmatically. On cancel the payload also flags that the user declined. When omitted, the existing `message` (text transcript) behaviour is used.
+- d642d44: add ProteusRichTextEditor wrapper that binds the RichTextEditor into the Proteus document form-data context, renderable via `$type: "RichTextEditor"`
+- Updated dependencies [14c481e]
+- Updated dependencies [1ce9d81]
+- Updated dependencies [d642d44]
+- Updated dependencies [fe13695]
+- Updated dependencies [56497cc]
+- Updated dependencies [fbf4855]
+- Updated dependencies [992917f]
+- Updated dependencies [fa0e6f0]
+  - @optiaxiom/react@3.0.3
+
 ## 3.0.1
 
 ### Patch Changes
