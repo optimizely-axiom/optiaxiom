@@ -36,7 +36,7 @@ export const content = recipe({
       color: "fg.tertiary",
       display: "flex",
       fontFamily: "mono",
-      fontSize: "xs",
+      fontSize: "sm",
       fontWeight: "400",
       size: "full",
       textTransform: "uppercase",
