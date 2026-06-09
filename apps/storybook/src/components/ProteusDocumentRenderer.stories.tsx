@@ -545,6 +545,83 @@ export const WithFiles: Story = {
   },
 };
 
+export const WithMarkdown: Story = {
+  args: {
+    data: {
+      summary:
+        "## Live summary\n\nThis paragraph was resolved from **data** via a `Value` expression.",
+    },
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        {
+          $type: "Markdown",
+          children: [
+            "# Quarterly report",
+            "",
+            "Revenue grew **12%** this quarter ![trend](https://placehold.co/16x16/16a34a/ffffff.png?text=%E2%86%91), driven by _strong_ retention and a new `pricing` tier.",
+            "",
+            "## Highlights",
+            "",
+            "- Net revenue retention up to **118%**",
+            "- Churn down to 2.1%",
+            "- [View the full dashboard](https://example.com)",
+            "",
+            "### Next steps",
+            "",
+            "1. **Finalize Q3 targets**",
+            "",
+            "   Lock the revenue and retention goals with finance before the",
+            "   board review. Blockers to clear first:",
+            "",
+            "   - Confirm headcount plan",
+            "   - Sign off on the pricing change",
+            "",
+            "2. **Ship the new onboarding flow**",
+            "",
+            "   Roll out to 10% of new signups, then expand once activation",
+            "   holds steady.",
+            "",
+            "## Competitive ranking",
+            "",
+            "| Rank | Competitor | Total Brand Mentions | Topics with Presence |",
+            "| ---- | ---------- | -------------------- | -------------------- |",
+            "| 1 | salesforce.com | 84 | 9 of 10 topics |",
+            "| 2 | hubspot.com | 61 | 7 of 10 topics |",
+            "| 3 | servicenow.com | 22 | 4 of 10 topics |",
+            "",
+            "### Pull the numbers",
+            "",
+            "Run `optimizely metrics export` or call the API directly:",
+            "",
+            "```ts",
+            "const res = await fetch('/api/metrics?quarter=Q2');",
+            "const { revenue, retention } = await res.json();",
+            "console.log(`NRR: ${retention}%`);",
+            "```",
+            "",
+            "---",
+            "",
+            "> Generated automatically from this quarter's metrics.",
+          ].join("\n"),
+        },
+        {
+          $type: "Separator",
+        },
+        {
+          $type: "Markdown",
+          children: {
+            $type: "Value",
+            path: "/summary",
+          },
+        },
+      ],
+      title: "Markdown rendering",
+    },
+  },
+};
+
 export const WithAllActions: Story = {
   args: {
     element: {
