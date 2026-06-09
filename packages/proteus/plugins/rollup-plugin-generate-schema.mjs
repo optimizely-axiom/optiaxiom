@@ -239,6 +239,13 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: {},
     extends: "Fragment",
   },
+  Markdown: {
+    allowedProps: ["children"],
+    example: {
+      children: "## Summary\n\nRevenue grew **12%** this quarter.",
+    },
+    extends: "Box",
+  },
   PillMenu: {
     allowedProps: ["inputName", "name", "onInputValueChange", "options"],
     example: {
@@ -1372,6 +1379,16 @@ function getPropTypeOverrides(additionalProperties = false) {
         $ref: "#/definitions/ProteusNode",
         description:
           "Optional separator to render between items. Can be a string or a ProteusNode for more complex separators.",
+      },
+    },
+    Markdown: {
+      children: {
+        anyOf: [
+          { type: "string" },
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
+        description:
+          "Markdown source string to render (e.g. headings, paragraphs, lists, links, emphasis, code). Can be a literal string or a ProteusExpression that resolves to a string.",
       },
     },
     PillMenu: {

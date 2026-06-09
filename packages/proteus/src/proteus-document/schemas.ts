@@ -40,6 +40,7 @@ import type { ProteusImageProps } from "../proteus-image/ProteusImage";
 import type { ProteusLengthProps } from "../proteus-length/ProteusLength";
 import type { ProteusMapIndexProps } from "../proteus-map-index/ProteusMapIndex";
 import type { ProteusMapProps } from "../proteus-map/ProteusMap";
+import type { ProteusMarkdownProps } from "../proteus-markdown/ProteusMarkdown";
 import type { ProteusPillMenuProps } from "../proteus-pill-menu/ProteusPillMenu";
 import type { ProteusQuestionProps } from "../proteus-question/ProteusQuestion";
 import type { ProteusSelectProps } from "../proteus-select/ProteusSelect";
@@ -81,6 +82,7 @@ export type ProteusElement =
   | (ProteusLengthProps & { $type: "Length" })
   | (ProteusMapIndexProps & { $type: "MapIndex" })
   | (ProteusMapProps & { $type: "Map" })
+  | (ProteusMarkdownProps & { $type: "Markdown" })
   | (ProteusPillMenuProps & { $type: "PillMenu" })
   | (ProteusQuestionProps & { $type: "Question" })
   | (ProteusSelectProps & { $type: "Select" })
