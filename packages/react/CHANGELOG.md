@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.9.41
+
+### Patch Changes
+
+- 25df2a5: update browserslist db
+- Updated dependencies [25df2a5]
+  - @optiaxiom/globals@1.1.14
+
 ## 1.9.40
 
 ### Patch Changes
