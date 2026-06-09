@@ -85,6 +85,10 @@ export const icon = recipe({
           width: "28px",
 
           selectors: {
+            "&[data-disabled]": {
+              backgroundColor: theme.colors["fg.disabled"],
+              color: theme.colors["bg.secondary"],
+            },
             "&[data-prefix]": {
               paddingBlock: "6px",
             },
