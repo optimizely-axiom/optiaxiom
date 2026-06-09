@@ -1,5 +1,18 @@
 # @optiaxiom/react
 
+## 3.0.3
+
+### Patch Changes
+
+- 14c481e: add RichTextEditor component (Tiptap-based WYSIWYG editor) to @optiaxiom/react
+- d642d44: add ProteusRichTextEditor wrapper that binds the RichTextEditor into the Proteus document form-data context, renderable via `$type: "RichTextEditor"`
+- 992917f: update browserslist db
+- fa0e6f0: Respect the `disabled` prop on `Input` and `Textarea` for the AI suggestion
+  manual trigger. When the field is disabled, the Opal suggestion button is now
+  disabled too instead of remaining clickable.
+- Updated dependencies [992917f]
+  - @optiaxiom/globals@3.0.1
+
 ## 3.0.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 3.0.1
+
+### Patch Changes
+
+- 992917f: update browserslist db
+
 ## 3.0.0
 
 ### Major Changes
