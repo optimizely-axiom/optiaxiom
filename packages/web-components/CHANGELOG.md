@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 3.0.1
+
+### Patch Changes
+
+- 14c481e: add RichTextEditor component (Tiptap-based WYSIWYG editor) to @optiaxiom/react
+
 ## 3.0.0
 
 ### Major Changes
