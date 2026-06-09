@@ -12,6 +12,7 @@ export * from "./proteus-input";
 export * from "./proteus-length";
 export * from "./proteus-map";
 export * from "./proteus-map-index";
+export * from "./proteus-markdown";
 export * from "./proteus-pill-menu";
 export * from "./proteus-rich-text-editor";
 export * from "./proteus-select";
