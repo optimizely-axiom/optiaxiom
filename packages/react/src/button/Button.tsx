@@ -92,6 +92,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           addonBefore = (
             <ButtonIcon
               addon
+              data-disabled={props.disabled ? "" : undefined}
               inverse={props.appearance === "primary"}
               size={size}
             >
@@ -102,6 +103,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           addonAfter = (
             <ButtonIcon
               addon
+              data-disabled={props.disabled ? "" : undefined}
               inverse={props.appearance === "primary"}
               size={size}
             >
