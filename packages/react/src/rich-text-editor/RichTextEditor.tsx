@@ -7,13 +7,17 @@ import {
 } from "@optiaxiom/icons";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
+import { Table } from "@tiptap/extension-table";
+import { TableCell } from "@tiptap/extension-table-cell";
+import { TableHeader } from "@tiptap/extension-table-header";
+import { TableRow } from "@tiptap/extension-table-row";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { forwardRef, useEffect } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { Button } from "../button";
 import { Group } from "../group";
+import { ToggleButton } from "../toggle-button";
 import { Tooltip } from "../tooltip";
 import * as styles from "./RichTextEditor.css";
 
@@ -84,6 +88,10 @@ export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(
         StarterKit,
         Link.configure({ openOnClick: false }),
         Placeholder.configure({ placeholder: placeholder ?? "" }),
+        Table.configure({ resizable: false }),
+        TableRow,
+        TableHeader,
+        TableCell,
       ],
       onUpdate: ({ editor }) => {
         onValueChange?.(editor.getHTML());
@@ -129,51 +137,60 @@ export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(
         {!readOnly && (
           <Group {...styles.toolbar()}>
             <Tooltip content="Bold">
-              <Button
-                appearance={editor.isActive("bold") ? "primary" : "subtle"}
+              <ToggleButton
+                appearance="subtle"
                 aria-label="Bold"
                 icon={<IconBold />}
-                onClick={() => editor.chain().focus().toggleBold().run()}
+                onPressedChange={() =>
+                  editor.chain().focus().toggleBold().run()
+                }
+                pressed={editor.isActive("bold")}
                 size="sm"
               />
             </Tooltip>
             <Tooltip content="Italic">
-              <Button
-                appearance={editor.isActive("italic") ? "primary" : "subtle"}
+              <ToggleButton
+                appearance="subtle"
                 aria-label="Italic"
                 icon={<IconItalic />}
-                onClick={() => editor.chain().focus().toggleItalic().run()}
+                onPressedChange={() =>
+                  editor.chain().focus().toggleItalic().run()
+                }
+                pressed={editor.isActive("italic")}
                 size="sm"
               />
             </Tooltip>
             <Tooltip content="Bullet list">
-              <Button
-                appearance={
-                  editor.isActive("bulletList") ? "primary" : "subtle"
-                }
+              <ToggleButton
+                appearance="subtle"
                 aria-label="Bullet list"
                 icon={<IconList />}
-                onClick={() => editor.chain().focus().toggleBulletList().run()}
+                onPressedChange={() =>
+                  editor.chain().focus().toggleBulletList().run()
+                }
+                pressed={editor.isActive("bulletList")}
                 size="sm"
               />
             </Tooltip>
             <Tooltip content="Numbered list">
-              <Button
-                appearance={
-                  editor.isActive("orderedList") ? "primary" : "subtle"
-                }
+              <ToggleButton
+                appearance="subtle"
                 aria-label="Numbered list"
                 icon={<IconListOl />}
-                onClick={() => editor.chain().focus().toggleOrderedList().run()}
+                onPressedChange={() =>
+                  editor.chain().focus().toggleOrderedList().run()
+                }
+                pressed={editor.isActive("orderedList")}
                 size="sm"
               />
             </Tooltip>
             <Tooltip content="Link">
-              <Button
-                appearance={editor.isActive("link") ? "primary" : "subtle"}
+              <ToggleButton
+                appearance="subtle"
                 aria-label="Link"
                 icon={<IconLink />}
                 onClick={setLink}
+                pressed={editor.isActive("link")}
                 size="sm"
               />
             </Tooltip>
