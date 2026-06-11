@@ -9,6 +9,8 @@ export const editor = recipe({
     {
       bg: "bg.default",
       border: "1",
+      display: "flex",
+      flexDirection: "column",
       rounded: "md",
     },
     style({
@@ -39,6 +41,12 @@ export const toolbar = recipe({
       flexWrap: "wrap",
     }),
   ],
+});
+
+globalStyle(`${editorClass} > div:has(> .ProseMirror)`, {
+  flex: 1,
+  minHeight: 0,
+  overflowY: "auto",
 });
 
 globalStyle(`${editorClass} .ProseMirror`, {
