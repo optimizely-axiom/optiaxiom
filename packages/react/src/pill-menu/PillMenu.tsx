@@ -1,3 +1,4 @@
+import { useDebouncedCallback } from "@mantine/hooks";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
   type ComponentPropsWithoutRef,
@@ -72,6 +73,10 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
       onChange: onOpenChange,
       prop: openProp,
     });
+    const debouncedOnInputValueChange = useDebouncedCallback(
+      (value: string) => onInputValueChange?.(value),
+      300,
+    );
     const options = optionsProp ?? valueProp ?? EMPTY_LIST;
     const value =
       valueProp ??
@@ -93,7 +98,7 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
           inputValue={inputValue}
           inputVisible={inputVisible}
           loading={loading}
-          onInputValueChange={onInputValueChange}
+          onInputValueChange={debouncedOnInputValueChange}
           onOpenChange={(open) => {
             setOpen(open);
             if (open) {
