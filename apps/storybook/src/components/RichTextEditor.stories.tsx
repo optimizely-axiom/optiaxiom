@@ -52,3 +52,21 @@ export const FixedHeight: Story = {
     h: "224",
   },
 };
+
+export const RichContent: Story = {
+  args: {
+    defaultValue: [
+      "<h1>Quarterly report</h1>",
+      "<p>Revenue grew <strong>12%</strong> this quarter, driven by <em>strong</em> retention and a new <code>pricing</code> tier.</p>",
+      "<h2>Highlights</h2>",
+      "<ul><li>Net revenue retention up to <strong>118%</strong></li><li>Churn down to 2.1%</li><li><a href='https://example.com'>View the full dashboard</a></li></ul>",
+      "<h2>Next steps</h2>",
+      "<ol><li><p><strong>Finalize Q3 targets</strong></p><p>Lock the revenue and retention goals with finance before the board review.</p></li><li><p><strong>Ship the new onboarding flow</strong></p><p>Roll out to 10% of new signups, then expand once activation holds steady.</p></li></ol>",
+      "<h2>Competitive ranking</h2>",
+      "<table><thead><tr><th>Rank</th><th>Competitor</th><th>Total Brand Mentions</th></tr></thead><tbody><tr><td>1</td><td>salesforce.com</td><td>84</td></tr><tr><td>2</td><td>hubspot.com</td><td>61</td></tr><tr><td>3</td><td>servicenow.com</td><td>22</td></tr></tbody></table>",
+      "<h2>Pull the numbers</h2>",
+      "<pre><code>const res = await fetch('/api/metrics?quarter=Q2');\nconst { revenue, retention } = await res.json();</code></pre>",
+      "<blockquote><p>Generated automatically from this quarter's metrics.</p></blockquote>",
+    ].join(""),
+  },
+};
