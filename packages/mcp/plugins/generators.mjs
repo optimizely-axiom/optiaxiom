@@ -154,30 +154,48 @@ export async function generateComponents() {
 // AI client already has — so fetching it adds noise rather than capability.
 const EXCLUDED_GUIDES = new Set(["mcp", "proteus", "proteus-designer"]);
 
+// Styling-section pages (apps/docs/app/(docs)/styling/<name>/) to surface as
+// MCP guides. Kept explicit (not the whole section) so we only expose pages
+// with proven agent value. Add a slug here to surface another styling page.
+const STYLING_GUIDES = new Set([
+  "colors",
+  "design-tokens",
+  "responsive-styles",
+]);
+
 /**
  * @returns {Promise<Record<string, Guide>>}
  */
 export async function generateGuides() {
   const docsAppDir = join(__dirname, "..", "..", "..", "apps", "docs", "app");
   const guidesDir = join(docsAppDir, "(docs)", "guides");
+  const stylingDir = join(docsAppDir, "(docs)", "styling");
 
   // The docs nav manifest is the source of truth for which guides exist and
-  // their titles.
-  const guides = await parseGuidesFromMeta(
+  // their titles. Entries are tagged with the section they came from.
+  const entries = await parseGuidesFromMeta(
     join(docsAppDir, "_meta.global.tsx"),
   );
 
   /** @type {Record<string, Guide>} */
   const result = {};
 
-  for (const { name, title } of guides) {
-    // `index` is the guides landing page (apps/.../guides/page.mdx); every
-    // other key maps to its own folder's page.mdx.
-    const path =
-      name === "index"
-        ? join(guidesDir, "page.mdx")
-        : join(guidesDir, name, "page.mdx");
-    const key = name === "index" ? "getting-started" : name;
+  for (const { name, section, title } of entries) {
+    // Only `design-tokens` (and any future allowlisted slug) is surfaced from
+    // the styling section; everything else there stays out of the MCP.
+    if (section === "styling" && !STYLING_GUIDES.has(name)) {
+      continue;
+    }
+
+    // In the guides section, `index` is the landing page
+    // (apps/.../guides/page.mdx) and is keyed as `getting-started`; every other
+    // key maps to its own folder's page.mdx.
+    const baseDir = section === "styling" ? stylingDir : guidesDir;
+    const isGuidesIndex = section === "guides" && name === "index";
+    const path = isGuidesIndex
+      ? join(baseDir, "page.mdx")
+      : join(baseDir, name, "page.mdx");
+    const key = isGuidesIndex ? "getting-started" : name;
 
     const content = await readFile(path, "utf-8").catch(() => null);
     if (content === null) {
@@ -185,7 +203,7 @@ export async function generateGuides() {
     }
 
     result[key] = {
-      content: stripMDXComponents(content),
+      content: await stripMDXComponents(content),
       name: key,
       title,
     };
@@ -681,6 +699,21 @@ function extractTestComponents(name, source) {
 }
 
 /**
+ * Infer a fenced-code-block language from a demo file name.
+ * @param {string} filename
+ * @returns {string}
+ */
+function langForFile(filename) {
+  if (filename.endsWith(".css")) {
+    return "css";
+  }
+  if (filename.endsWith(".tsx")) {
+    return "tsx";
+  }
+  return "ts";
+}
+
+/**
  * Parse `@deprecated` tag following the pattern:
  *
  * @example
@@ -701,13 +734,14 @@ function parseDeprecation(deprecatedTag) {
 }
 
 /**
- * Read the guide entries from the docs nav manifest (`_meta.global.tsx`).
+ * Read the entries from the docs nav manifest (`_meta.global.tsx`) for both the
+ * `guides` and `styling` sections, tagging each with its `section`.
  *
  * Skips separators, hidden pages, and {@link EXCLUDED_GUIDES}; throws on a
  * non-string title (it can't be surfaced via the MCP).
  *
  * @param {string} metaPath
- * @returns {Promise<Array<{ name: string, title: string }>>}
+ * @returns {Promise<Array<{ name: string, section: "guides" | "styling", title: string }>>}
  */
 async function parseGuidesFromMeta(metaPath) {
   const source = await readFile(metaPath, "utf-8");
@@ -731,37 +765,88 @@ async function parseGuidesFromMeta(metaPath) {
     "data:text/javascript," + encodeURIComponent(`${stub}\n${stripped}`)
   );
 
-  /** @type {Record<string, unknown>} */
-  const items = mod.default?.guides?.items ?? {};
+  /** @type {Array<{ name: string, section: "guides" | "styling", title: string }>} */
+  const entries = [];
 
-  /** @type {Array<{ name: string, title: string }>} */
-  const guides = [];
-  for (const [name, value] of Object.entries(items)) {
-    if (name.startsWith("--") || EXCLUDED_GUIDES.has(name)) {
-      continue;
-    }
+  for (const section of /** @type {const} */ (["guides", "styling"])) {
+    /** @type {Record<string, unknown>} */
+    const items = mod.default?.[section]?.items ?? {};
 
-    if (typeof value === "object" && value !== null) {
-      const entry = /** @type {Record<string, unknown>} */ (value);
-      if (entry.type === "separator" || entry.display === "hidden") {
+    for (const [name, value] of Object.entries(items)) {
+      if (name.startsWith("--") || EXCLUDED_GUIDES.has(name)) {
         continue;
       }
-      if (typeof entry.title !== "string") {
+
+      if (typeof value === "object" && value !== null) {
+        const entry = /** @type {Record<string, unknown>} */ (value);
+        if (entry.type === "separator" || entry.display === "hidden") {
+          continue;
+        }
+        if (typeof entry.title !== "string") {
+          throw new Error(
+            `Guide "${name}" in ${metaPath} has a non-string title; give it a plain-text title or add it to EXCLUDED_GUIDES.`,
+          );
+        }
+        entries.push({ name, section, title: entry.title });
+      } else if (typeof value === "string") {
+        entries.push({ name, section, title: value });
+      } else {
         throw new Error(
           `Guide "${name}" in ${metaPath} has a non-string title; give it a plain-text title or add it to EXCLUDED_GUIDES.`,
         );
       }
-      guides.push({ name, title: entry.title });
-    } else if (typeof value === "string") {
-      guides.push({ name, title: value });
-    } else {
-      throw new Error(
-        `Guide "${name}" in ${metaPath} has a non-string title; give it a plain-text title or add it to EXCLUDED_GUIDES.`,
-      );
     }
   }
 
-  return guides;
+  return entries;
+}
+
+/**
+ * Resolve a `<Demo component="x/y" />` reference to inlined fenced code blocks.
+ *
+ * The `component` attribute is `<demoComponent>/<exampleTitle>` (e.g.
+ * `styles/prop-usage`), matching a subfolder under `apps/docs/demos/`. We reuse
+ * {@link parseDemosFromFiles} (which returns one entry per example subfolder) and
+ * pick the matching example by title.
+ *
+ * Single-file demos render as a plain fence; multi-file demos render one fence
+ * per file tagged with `filename="..."`, matching the docs' own convention.
+ *
+ * @param {string} ref - The `component` attribute value, e.g. `styles/prop-usage`.
+ * @returns {Promise<string>}
+ */
+async function resolveDemoRef(ref) {
+  const slash = ref.lastIndexOf("/");
+  if (slash === -1) {
+    return "";
+  }
+  const demoComponent = ref.slice(0, slash);
+  const exampleTitle = ref.slice(slash + 1);
+
+  const examples = await parseDemosFromFiles(demoComponent);
+  const example = examples.find((e) => e.title === exampleTitle);
+  if (!example) {
+    return "";
+  }
+
+  // Deterministic order: App.tsx first, then the rest alphabetically.
+  const filenames = Object.keys(example.code).sort((a, b) => {
+    if (a === "App.tsx") {
+      return -1;
+    }
+    if (b === "App.tsx") {
+      return 1;
+    }
+    return a.localeCompare(b);
+  });
+
+  const single = filenames.length === 1;
+  return filenames
+    .map((filename) => {
+      const meta = single ? "" : ` filename="${filename}"`;
+      return `\`\`\`${langForFile(filename)}${meta}\n${example.code[filename].trim()}\n\`\`\``;
+    })
+    .join("\n\n");
 }
 
 /**
@@ -771,17 +856,20 @@ async function parseGuidesFromMeta(metaPath) {
  * code (including its `import` lines) survives intact and stays copy-pasteable.
  *
  * @param {string} content
- * @returns {string}
+ * @returns {Promise<string>}
  */
-function stripMDXComponents(content) {
+async function stripMDXComponents(content) {
   // Split on fenced code blocks, keeping the fences. Even indices are prose,
   // odd indices are code fences (left untouched).
-  content = content
-    .split(/(```[\s\S]*?```)/g)
-    .map((segment, index) =>
-      index % 2 === 0 ? stripProseSegment(segment) : segment,
+  content = (
+    await Promise.all(
+      content
+        .split(/(```[\s\S]*?```)/g)
+        .map((segment, index) =>
+          index % 2 === 0 ? stripProseSegment(segment) : segment,
+        ),
     )
-    .join("");
+  ).join("");
 
   // Clean up multiple newlines across the whole document (whitespace-only, so
   // safe to run over code fences too).
@@ -799,9 +887,14 @@ function stripMDXComponents(content) {
  * illustrative imports inside code samples, which are meaningful content.
  *
  * @param {string} content
- * @returns {string}
+ * @returns {Promise<string>}
  */
-function stripProseSegment(content) {
+async function stripProseSegment(content) {
+  // Drop `<Scale .../>` value tables — resolved values are served by get_tokens.
+  // Lazy + dot-all so it spans multi-line tags whose attribute expressions may
+  // themselves contain `>` (e.g. an arrow function inside `values={...}`).
+  content = content.replace(/<Scale\b[\s\S]*?\/>/g, "");
+
   // Remove import statements (MDX page machinery)
   content = content.replace(/^import .+$/gm, "");
 
@@ -822,6 +915,19 @@ function stripProseSegment(content) {
 
   // Remove style attributes
   content = content.replace(/style=\{[^}]+\}/g, "");
+
+  // Inline `<Demo component="x/y" />` as fenced code so the canonical examples
+  // (style props, CSS variables, the `theme` object) survive into the guide
+  // instead of being stripped to a dead tag. Done LAST so the inlined source —
+  // which legitimately contains `import` lines and `style={...}` attributes — is
+  // not mangled by the prose-cleanup regexes above.
+  const demoRefs = [
+    ...content.matchAll(/<Demo\b[\s\S]*?\bcomponent="([^"]+)"[\s\S]*?\/>/g),
+  ];
+  for (const match of demoRefs) {
+    const replacement = await resolveDemoRef(match[1]);
+    content = content.replace(match[0], replacement);
+  }
 
   return content;
 }

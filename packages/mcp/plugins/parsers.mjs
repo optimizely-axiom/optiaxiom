@@ -70,7 +70,9 @@ export async function parseDemosFromFiles(componentName) {
         for (const file of files) {
           if (
             file.isFile() &&
-            (file.name.endsWith(".tsx") || file.name.endsWith(".ts"))
+            (file.name.endsWith(".tsx") ||
+              file.name.endsWith(".ts") ||
+              file.name.endsWith(".css"))
           ) {
             const filePath = join(folderPath, file.name);
             const content = await readFile(filePath, "utf-8");
