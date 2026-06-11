@@ -44,3 +44,11 @@ export const Readonly: Story = {
     readOnly: true,
   },
 };
+
+export const FixedHeight: Story = {
+  args: {
+    defaultValue:
+      "<p>This editor has a constrained height. The toolbar stays pinned at the top while the editable content scrolls inside.</p><p>Paragraph 2 — keep typing or scrolling to see the behavior.</p><p>Paragraph 3.</p><p>Paragraph 4.</p><p>Paragraph 5.</p><p>Paragraph 6.</p><p>Paragraph 7.</p><p>Paragraph 8.</p><p>Paragraph 9 — the last line.</p>",
+    h: "224",
+  },
+};
