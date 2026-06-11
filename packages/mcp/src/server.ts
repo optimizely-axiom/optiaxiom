@@ -271,7 +271,7 @@ const tokenCategories = [
 server.registerTool(
   "get_tokens",
   {
-    description: `Get design token mappings for the Axiom Design System. Returns token-to-value mappings for colors, sizes, spacing, borderRadius, fontSize, boxShadow, duration, fontFamily, and zIndex. Use this to convert hardcoded values to semantic tokens (e.g., #4F576E → fg.secondary, 32px height → h='md').`,
+    description: `Get design token mappings for the Axiom Design System. Returns token-to-value mappings for colors, sizes, spacing, borderRadius, fontSize, boxShadow, duration, fontFamily, and zIndex. Use this to convert hardcoded values to semantic tokens (e.g., #4F576E → fg.secondary, 32px height → h='md'). For how to consume these tokens in code (style props, CSS variables, or the \`theme\` object), call get_guides({ names: 'design-tokens' }).`,
     inputSchema: {
       categories: z
         .array(z.enum(tokenCategories))
