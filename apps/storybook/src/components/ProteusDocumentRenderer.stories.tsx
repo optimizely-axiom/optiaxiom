@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   IconCalendar,
   IconClock,
+  IconEye,
   IconLocationDot,
   IconPlus,
   IconTrashCan,
@@ -449,23 +450,35 @@ export const WithFiles: Story = {
       appearance: "inline",
       files: [
         {
-          mimeType:
-            "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-          name: "Q1 Sales Deck",
-          type: "PPTX",
-          url: "https://example.com/files/q1-sales-deck.pptx",
+          mimeType: "text/markdown",
+          name: "Hello opal",
+          type: "Document · MD",
+          url: "https://example.com/files/hello-opal.md",
         },
         {
-          mimeType: "application/pdf",
-          name: "Project Brief",
-          type: "PDF",
-          url: "https://example.com/files/project-brief.pdf",
+          mimeType: "text/x-python",
+          name: "analysis",
+          type: "Code · PY",
+          url: "https://example.com/files/analysis.py",
         },
         {
           mimeType: "text/csv",
           name: "summary",
-          type: "CSV",
+          type: "Spreadsheet · CSV",
           url: "https://example.com/files/summary.csv",
+        },
+        {
+          mimeType: "image/png",
+          name: "chart",
+          type: "Image · PNG",
+          url: "https://example.com/files/chart.png",
+        },
+        {
+          mimeType:
+            "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+          name: "Q1 Sales Deck",
+          type: "Presentation · PPTX",
+          url: "https://example.com/files/q1-sales-deck.pptx",
         },
       ],
     },
@@ -482,15 +495,43 @@ export const WithFiles: Story = {
                 $type: "Map",
                 children: {
                   $type: "Card",
+                  borderColor: {
+                    $type: "Show",
+                    children: "border.accent",
+                    when: {
+                      "==": [
+                        { $type: "Value", path: "url" },
+                        { $type: "Value", path: "/__preview_file_link" },
+                      ],
+                    },
+                  },
                   children: {
                     $type: "CardHeader",
                     addonAfter: {
-                      $type: "Button",
-                      children: "Download",
-                      onClick: {
-                        action: "download",
-                        url: { $type: "Value", path: "url" },
-                      },
+                      $type: "Group",
+                      alignItems: "center",
+                      children: [
+                        {
+                          $type: "Action",
+                          appearance: "default",
+                          "aria-label": "Preview",
+                          icon: { $type: "Icon", name: "Eye" },
+                          onClick: {
+                            action: "preview",
+                            file: { $type: "Value", path: "" },
+                          },
+                        },
+                        {
+                          $type: "Button",
+                          children: "Download",
+                          onClick: {
+                            action: "download",
+                            url: { $type: "Value", path: "url" },
+                          },
+                        },
+                      ],
+                      flexDirection: "row",
+                      gap: "8",
                     },
                     addonBefore: {
                       $type: "FileIcon",
@@ -541,6 +582,19 @@ export const WithFiles: Story = {
           },
         },
       ],
+    },
+    icons: {
+      Eye: IconEye,
+    },
+  },
+};
+
+export const WithFilesSelected: Story = {
+  args: {
+    ...WithFiles.args,
+    data: {
+      ...WithFiles.args?.data,
+      __preview_file_link: "https://example.com/files/analysis.py",
     },
   },
 };
