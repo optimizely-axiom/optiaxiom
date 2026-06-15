@@ -26,6 +26,16 @@ export const card = recipe({
 
       borderRadius: theme.borderRadius.lg,
       position: "relative",
+
+      "@media": {
+        "(hover: hover)": {
+          selectors: {
+            "&:hover": {
+              borderColor: theme.colors["border.secondary"],
+            },
+          },
+        },
+      },
     }),
   ],
 });
