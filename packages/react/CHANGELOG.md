@@ -1,5 +1,20 @@
 # @optiaxiom/react
 
+## 1.9.42
+
+### Patch Changes
+
+- d4b0fba: Improve `RichTextEditor` content styling to match the rest of the design
+  system. Headings, body text, lists, blockquotes, and code now follow the
+  same typography, color, and vertical rhythm as `ProteusMarkdown`, and
+  tables render as a bordered, rounded block with row dividers (the table
+  extensions are now enabled). Paragraph and list-item spacing is also
+  fixed so blocks no longer collapse together.
+- 836ce9b: Fix `RichTextEditor` overflow when a constrained height is set. The outer
+  container is now a flex column with `overflow: hidden`, and the inner
+  content area scrolls on its own — so the toolbar stays pinned at the top
+  while the editable region scrolls inside.
+
 ## 1.9.41
 
 ### Patch Changes
