@@ -102,7 +102,7 @@ export function ProteusQuestion({
   const otherInputRef = useRef<HTMLInputElement>(null);
   const otherItemRef = useRef<HTMLDivElement>(null);
 
-  if (currentIndex >= questions.length) {
+  if (!Array.isArray(questions) || currentIndex >= questions.length) {
     return null;
   }
 
