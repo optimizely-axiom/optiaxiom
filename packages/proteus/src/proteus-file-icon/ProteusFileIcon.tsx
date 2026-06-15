@@ -4,8 +4,8 @@ import {
   IconCode,
   IconFile,
   IconFileImage,
-  IconFileLines,
   IconFileVideo,
+  IconFileWord,
   IconFileZipper,
   IconMusic,
   IconPresentationScreen,
@@ -21,12 +21,12 @@ const mimeIconMap: Array<[RegExp, ComponentType]> = [
   [/presentation|powerpoint|keynote|slides/, IconPresentationScreen],
   [/spreadsheet|excel|csv|tab-separated-values|tsv|parquet/, IconTableLayout],
   [/zip|tar|compress|archive|x-7z|x-rar/, IconFileZipper],
-  [/pdf|wordprocessing|opendocument\.text/, IconFileLines],
+  [/pdf|wordprocessing|opendocument\.text/, IconFileWord],
   [
     /json|xml|yaml|javascript|typescript|html|css|x-sh|x-python|code|script/,
     IconCode,
   ],
-  [/^text\/|word|rtf/, IconFileLines],
+  [/^text\/|word|rtf/, IconFileWord],
 ];
 
 export type ProteusFileIconProps = BoxProps & {
