@@ -1,5 +1,15 @@
 # @optiaxiom/proteus
 
+## 1.1.8
+
+### Patch Changes
+
+- afef8b0: Guard `ProteusQuestion` against a missing or non-array `questions` prop
+  to prevent "cannot read length of undefined" runtime errors.
+- Updated dependencies [d4b0fba]
+- Updated dependencies [836ce9b]
+  - @optiaxiom/react@1.9.42
+
 ## 1.1.7
 
 ### Patch Changes
