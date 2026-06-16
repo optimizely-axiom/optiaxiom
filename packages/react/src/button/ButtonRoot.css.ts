@@ -3,12 +3,12 @@ import { theme } from "@optiaxiom/globals";
 import {
   createVar,
   fallbackVar,
-  keyframes,
   recipe,
   type RecipeVariants,
   style,
 } from "../vanilla-extract";
 import { groupStyle } from "./groupStyle";
+import { opalRingImage } from "./opalRingImage";
 
 export const accentColorVar = createVar();
 const hoverAccentColorVar = createVar();
@@ -23,19 +23,36 @@ const transparentHoverAccentColorVar = createVar();
 const transparentPressedAccentColorVar = createVar();
 const borderWidthVar = createVar();
 
-const opalRingAngleVar = createVar({
-  inherits: false,
-  initialValue: "0turn",
-  syntax: "<angle>",
-});
-const opalRingColorVar = createVar();
-const opalRingSpinAnim = keyframes({
-  "100%": {
-    vars: {
-      [opalRingAngleVar]: "1turn",
-    },
-  },
-});
+// outline-opal masked ring: the AVIF fills the border-box, a flat bg.default
+// layer (padding-box clip) masks out the centre. Two pseudos behind the button
+// so the hover ring can spill OUTWARD (a border on the element can't): ::before
+// is the base ring, ::after the larger spilled ring that fades in on hover.
+const OPAL_RING_BASE_WIDTH = "2px";
+const OPAL_RING_HOVER_SPILL = "2px";
+const opalRing = (width: string, inset: string) =>
+  ({
+    backgroundClip: "padding-box, border-box",
+    backgroundColor: theme.colors["bg.default"],
+    backgroundImage: `
+    linear-gradient(
+      ${theme.colors["bg.default"]},
+      ${theme.colors["bg.default"]}
+    ),
+    url("data:image/avif;base64,${opalRingImage}")
+  `,
+    backgroundOrigin: "border-box",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    border: `${width} solid transparent`,
+    // Inherit so the ring follows any radius override (e.g. pill on sm).
+    borderRadius: "inherit",
+    content: "",
+    inset,
+    pointerEvents: "none",
+    position: "absolute",
+    zIndex: "-1",
+  }) as const;
 
 export const paddingInlineVar = createVar();
 
@@ -189,48 +206,21 @@ export const buttonBase = recipe({
         },
       }),
       "outline-opal": style({
-        vars: {
-          [opalRingColorVar]: `
-            conic-gradient(
-              from ${opalRingAngleVar},
-              #8670ed 10%,
-              #617bff99 25%,
-              #8a53fe80 75%,
-              #8670ed 90%
-            )
-          `,
-        },
-
-        animation: `${opalRingSpinAnim} 4s linear infinite`,
-        backgroundClip: "padding-box, border-box",
-        backgroundColor: theme.colors["bg.default"],
-        backgroundImage: `
-          linear-gradient(
-            ${theme.colors["bg.default"]},
-            ${theme.colors["bg.default"]}
-          ),
-          ${opalRingColorVar}
-        `,
-        backgroundOrigin: "border-box",
-        border: "1px solid transparent",
         color: fallbackVar(textColorVar, accentColorVar),
-        paddingInline: `calc(${paddingInlineVar} - 1px)`,
+        paddingInline: `calc(${paddingInlineVar} - ${OPAL_RING_BASE_WIDTH})`,
+
+        "::after": {
+          ...opalRing("4px", `-${OPAL_RING_HOVER_SPILL}`),
+          opacity: "0",
+          transition: `opacity ${theme.duration.md} ease`,
+        },
+        "::before": opalRing(OPAL_RING_BASE_WIDTH, "0px"),
 
         "@media": {
           "(hover: hover)": {
             selectors: {
-              "&:hover:not(:active, [data-disabled], [data-loading])": {
-                vars: {
-                  [opalRingColorVar]: `
-                      conic-gradient(
-                        from ${opalRingAngleVar},
-                        #7C3AED,
-                        #8287FF 33%,
-                        #7D04C7 67%,
-                        #7C3AED
-                      )
-                    `,
-                },
+              "&:hover:not([data-disabled], [data-loading])::after": {
+                opacity: "1",
               },
             },
           },
@@ -238,8 +228,14 @@ export const buttonBase = recipe({
 
         selectors: {
           "&[data-disabled]:not([data-loading])": {
-            borderColor: theme.colors["border.disabled"],
             color: theme.colors["fg.disabled"],
+          },
+          "&[data-disabled]:not([data-loading])::after": {
+            backgroundImage: "none",
+          },
+          "&[data-disabled]:not([data-loading])::before": {
+            backgroundImage: "none",
+            borderColor: theme.colors["border.disabled"],
           },
         },
       }),
@@ -369,6 +365,21 @@ export const buttonBase = recipe({
         size: "sm",
         square: false,
         variant: ["outline-opal", "strong-opal"],
+      },
+    },
+    {
+      // Small outline-opal: pill radius, with extra inline padding to clear the
+      // rounded ends.
+      style: style({
+        borderRadius: theme.borderRadius.full,
+        vars: {
+          [paddingInlineVar]: "10px",
+        },
+      }),
+      variants: {
+        size: "sm",
+        square: false,
+        variant: "outline-opal",
       },
     },
     {
