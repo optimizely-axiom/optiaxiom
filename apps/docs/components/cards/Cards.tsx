@@ -14,6 +14,7 @@ import { DialogIcon } from "./icons/DialogIcon";
 import { DropdownMenuIcon } from "./icons/DropdownMenuIcon";
 import { FileUploadIcon } from "./icons/FileUploadIcon";
 import { FlexIcon } from "./icons/FlexIcon";
+import { FontsIcon } from "./icons/FontsIcon";
 import { GridIcon } from "./icons/GridIcon";
 import { HeadingIcon } from "./icons/HeadingIcon";
 import { IconsIcon } from "./icons/IconsIcon";
@@ -116,6 +117,12 @@ const COMPONENTS = {
     href: "/components/flex/",
     icon: <FlexIcon />,
     title: "Flex",
+  },
+  Fonts: {
+    description: "Brand fonts for use with the Optimizely Design System.",
+    href: "/guides/fonts/",
+    icon: <FontsIcon />,
+    title: "Fonts",
   },
   Grid: {
     description:

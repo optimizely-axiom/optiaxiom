@@ -42,6 +42,7 @@ export default {
       },
       "css-imports": "CSS Imports",
       "css-layers": "CSS Layers",
+      fonts: "Fonts",
       icons: "Icons",
       "module-federation": "Module Federation",
       "nested-overlays": "Nested Overlays",
