@@ -3,11 +3,25 @@ import { type ElementType, forwardRef } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { Spinner } from "../spinner";
-import { Transition, TransitionGroup } from "../transition";
+import {
+  Transition,
+  TransitionGlobalConfig,
+  TransitionGroup,
+} from "../transition";
 import { decorateChildren, type ExtendProps } from "../utils";
 import * as styles from "./ButtonRoot.css";
 
 const Slot = createSlot("@optiaxiom/react/ButtonRoot");
+
+/**
+ * The opal variants animate an inlined video that can't be paused via CSS, so
+ * they make visual-regression snapshots (Chromatic) nondeterministic. When
+ * animations are globally skipped, fall back to the static non-opal variant.
+ */
+const staticVariant = {
+  "outline-opal": "outline",
+  "strong-opal": "strong",
+} as const;
 
 const appearances = {
   danger: { intent: "danger", variant: "strong" },
@@ -66,7 +80,11 @@ export const ButtonRoot = forwardRef<HTMLButtonElement, ButtonRootProps>(
     const Comp = asChild ? Slot : "button";
     const { boxProps, restProps } = extractBoxProps(props);
 
-    const { intent, variant } = appearances[appearance];
+    const { intent, variant: resolvedVariant } = appearances[appearance];
+    const variant =
+      TransitionGlobalConfig.skipAnimations && resolvedVariant in staticVariant
+        ? staticVariant[resolvedVariant as keyof typeof staticVariant]
+        : resolvedVariant;
 
     return (
       <Box
