@@ -1,8 +1,20 @@
+diff --git a/dist/schemas.js b/dist/schemas.js
+index 060d0b9..8a7c81f 100644
+--- a/dist/schemas.js
++++ b/dist/schemas.js
+@@ -26,6 +26,7 @@ const nextThemesSchema = z.strictObject({
+   defaultTheme: z.string().default("system"),
+   disableTransitionOnChange: z.boolean().default(true),
+   forcedTheme: z.string().optional(),
++  scriptProps: z.custom().optional(),
+   storageKey: z.string().default("theme")
+ });
+ const sidebarSchema = z.strictObject({
 diff --git a/dist/style.css b/dist/style.css
-index 27ab9c4ec96f65bca5969b1ba02b46b43ba164ec..3a7d0e9ecd2a35174079c3b8df1deac5093a7d62 100644
+index 387ae10..2a942b8 100644
 --- a/dist/style.css
 +++ b/dist/style.css
-@@ -120,12 +120,14 @@
+@@ -131,12 +131,14 @@
    }
  }
  @layer base {
@@ -18,3 +30,17 @@ index 27ab9c4ec96f65bca5969b1ba02b46b43ba164ec..3a7d0e9ecd2a35174079c3b8df1deac5
    html, :host {
      line-height: 1.5;
      -webkit-text-size-adjust: 100%;
+diff --git a/dist/types.generated.d.mts b/dist/types.generated.d.mts
+index daa88cd..d8c22bc 100644
+--- a/dist/types.generated.d.mts
++++ b/dist/types.generated.d.mts
+@@ -109,6 +109,9 @@ interface LayoutProps {
+          */
+         disableTransitionOnChange?: boolean;
+         forcedTheme?: string;
++        scriptProps?: React.ScriptHTMLAttributes<HTMLScriptElement> & {
++            [dataAttribute: `data-${string}`]: string;
++        };
+         /**
+          * @default "theme"
+          */

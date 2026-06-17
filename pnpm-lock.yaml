@@ -9,7 +9,7 @@ patchedDependencies:
     hash: 530004842e1937cf2ffe2728e2a18629c5dd638aa441e1158192285fcee2fe7e
     path: patches/@vanilla-extract__sprinkles.patch
   nextra-theme-docs:
-    hash: d173a2490a1dbce2910c4d3d8c5938a7d2a59901e175ada090c4924ef8572e82
+    hash: a391591b3ddb7fdaebf44d26ebcaa6ff78dad06cbb0ea8d21554d51de6d8b0d8
     path: patches/nextra-theme-docs.patch
   react-docgen-typescript:
     hash: 8d59bedddcc0e12eb101abaf2f2b1853eab540d27f0b777e65720b67fe8f7e57
@@ -186,7 +186,7 @@ importers:
         version: 4.6.1(acorn@8.15.0)(next@16.2.4(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)
       nextra-theme-docs:
         specifier: ^4.6.1
-        version: 4.6.1(patch_hash=d173a2490a1dbce2910c4d3d8c5938a7d2a59901e175ada090c4924ef8572e82)(@types/react@18.3.28)(immer@11.1.4)(next@16.2.4(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.6.1(acorn@8.15.0)(next@16.2.4(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.6.0(react@18.3.1))
+        version: 4.6.1(patch_hash=a391591b3ddb7fdaebf44d26ebcaa6ff78dad06cbb0ea8d21554d51de6d8b0d8)(@types/react@18.3.28)(immer@11.1.4)(next@16.2.4(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.6.1(acorn@8.15.0)(next@16.2.4(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.6.0(react@18.3.1))
       pagefind:
         specifier: ^1.5.2
         version: 1.5.2
@@ -17046,7 +17046,7 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  nextra-theme-docs@4.6.1(patch_hash=d173a2490a1dbce2910c4d3d8c5938a7d2a59901e175ada090c4924ef8572e82)(@types/react@18.3.28)(immer@11.1.4)(next@16.2.4(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.6.1(acorn@8.15.0)(next@16.2.4(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.6.0(react@18.3.1)):
+  nextra-theme-docs@4.6.1(patch_hash=a391591b3ddb7fdaebf44d26ebcaa6ff78dad06cbb0ea8d21554d51de6d8b0d8)(@types/react@18.3.28)(immer@11.1.4)(next@16.2.4(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.6.1(acorn@8.15.0)(next@16.2.4(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.6.0(react@18.3.1)):
     dependencies:
       '@headlessui/react': 2.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       clsx: 2.1.1
