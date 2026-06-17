@@ -1,5 +1,26 @@
 # @optiaxiom/react
 
+## 3.0.4
+
+### Patch Changes
+
+- 4dcd9c5: Refine the opal `Button` variants. The `outline-opal` ring is now an animated
+  holographic texture rendered on a pseudo-element so it can grow outward on hover
+  without layout shift, and small non-icon opal buttons use a full (pill) radius.
+  Separately, loading buttons now keep the standard offset focus ring instead of
+  falling back to the browser default.
+- 7d5c873: Debounce `onInputValueChange` on `PillMenu` by 300ms.
+- 5208f93: Improve `RichTextEditor` content styling to match the rest of the design
+  system. Headings, body text, lists, blockquotes, and code now follow the
+  same typography, color, and vertical rhythm as `ProteusMarkdown`, and
+  tables render as a bordered, rounded block with row dividers (the table
+  extensions are now enabled). Paragraph and list-item spacing is also
+  fixed so blocks no longer collapse together.
+- 8cf18e7: Fix `RichTextEditor` overflow when a constrained height is set. The outer
+  container is now a flex column with `overflow: hidden`, and the inner
+  content area scrolls on its own — so the toolbar stays pinned at the top
+  while the editable region scrolls inside.
+
 ## 3.0.3
 
 ### Patch Changes
