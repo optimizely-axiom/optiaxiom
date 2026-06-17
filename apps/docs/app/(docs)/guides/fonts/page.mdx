@@ -1,0 +1,41 @@
+import { Alert } from "@optiaxiom/react";
+
+# Fonts (Optimizely staff only)
+
+We ship our licensed brand fonts as a private package for use with our Optimizely Design System.
+
+<Alert intent="warning" mt="16">
+<p style={{ margin: 0 }}>**Optimizely staff** should always use the fonts from our **`@optimizely/axiom-fonts`** package.</p>
+
+<p style={{ margin: 0 }}>**Third party developers** can skip this package - we automatically fall back to free web fonts.</p>
+</Alert>
+
+## Installation
+
+### Install package
+
+Make sure you have access to our private package repository and install the `@optimizely/axiom-fonts` package.
+
+```sh npm2yarn
+npm install @optimizely/axiom-fonts
+```
+
+### Basic usage
+
+Add a bare import statement at the top of your application's entry point (such as your root layout or main entry file) so the fonts CSS gets loaded.
+
+```tsx
+import "@optimizely/axiom-fonts";
+```
+
+Make sure the import stays static and synchronous - keep it as a top-level `import` rather than a dynamic `import()` or lazy-loaded module - so the fonts are available from first paint and you avoid a flash of fallback fonts.
+
+## How it works
+
+### Font fallbacks
+
+Our font stacks already list our **licensed brand fonts** first, followed by free web fonts. The free fonts are loaded automatically by the design system, so text always renders.
+
+### Loading the brand fonts
+
+The `@optimizely/axiom-fonts` package adds the `@font-face` declarations for the brand fonts. Once it's imported, the browser uses them at the front of the stack; without it, text gracefully falls back to the free web fonts.
