@@ -4,7 +4,6 @@ import {
   AvatarGroup,
   Badge,
   Box,
-  Card,
   CardHeader,
   Disclosure,
   DisclosureContent,
@@ -23,6 +22,7 @@ import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 
 import { ProteusAction } from "../proteus-action/ProteusAction";
 import { ProteusBridge } from "../proteus-bridge/ProteusBridge";
+import { ProteusCard } from "../proteus-card/ProteusCard";
 import { ProteusCardLink } from "../proteus-card-link/ProteusCardLink";
 import { ProteusDataTable } from "../proteus-data-table/ProteusDataTable";
 import { ProteusDateInput } from "../proteus-date-input/ProteusDateInput";
@@ -128,7 +128,7 @@ export const ProteusElement = ({
     case "Button":
       return <ProteusAction {...resolve(element)} />;
     case "Card":
-      return <Card {...resolve(element)} />;
+      return <ProteusCard {...resolve(element)} />;
     case "CardHeader":
       return <CardHeader {...resolve(element)} />;
     case "CardLink":
