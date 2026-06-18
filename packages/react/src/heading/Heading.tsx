@@ -41,8 +41,8 @@ const mapLevelToFontSize = {
 const mapLevelToFontWeight = {
   "1": "900",
   "2": "900",
-  "3": "500",
-  "4": "600",
+  "3": "600",
+  "4": "700",
 } as const;
 const mapLevelToFontFamily = {
   "1": "heading",
