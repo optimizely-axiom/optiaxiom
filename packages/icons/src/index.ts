@@ -346,6 +346,7 @@ export { IconWarning as IconTriangleExclamation } from "../svg/warning.svg";
 export { IconWaterDrop as IconDroplet } from "../svg/water_drop.svg";
 export { IconWebTraffic as IconAgent } from "../svg/web_traffic.svg";
 export { IconWebTraffic as IconSubAgent } from "../svg/web_traffic.svg";
+export { IconWebhook as IconWebhook } from "../svg/webhook.svg";
 export { IconWest as IconArrowLeftLong } from "../svg/west.svg";
 export { IconZoomIn as IconMagnifyingGlassPlus } from "../svg/zoom_in.svg";
 export { IconZoomOut as IconMagnifyingGlassMinus } from "../svg/zoom_out.svg";

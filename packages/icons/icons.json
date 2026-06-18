@@ -296,6 +296,7 @@
   "warning": ["TriangleExclamation"],
   "water_drop": ["Droplet"],
   "web_traffic": ["Agent", "SubAgent"],
+  "webhook": ["Webhook"],
   "west": ["ArrowLeftLong"],
   "zoom_in": ["MagnifyingGlassPlus"],
   "zoom_out": ["MagnifyingGlassMinus"]
