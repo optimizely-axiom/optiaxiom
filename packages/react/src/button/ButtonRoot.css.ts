@@ -325,7 +325,6 @@ export const buttonBase = recipe({
             backgroundColor: theme.colors["bg.default.pressed"],
           },
           "&[data-disabled]:not([data-loading])": {
-            backgroundColor: theme.colors["bg.secondary"],
             color: theme.colors["fg.disabled"],
           },
         },
