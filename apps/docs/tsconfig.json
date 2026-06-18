@@ -12,7 +12,6 @@
       "@/components/*": ["./components/*"],
       "@/demos/*": ["./demos/*"],
       "@optiaxiom/globals": ["../../packages/globals/src"],
-      "@optiaxiom/icons": ["../../packages/icons/src"],
       "@optiaxiom/proteus": ["../../packages/proteus/src"],
       "@optiaxiom/proteus/spec": ["../../packages/proteus/src/spec"],
       "@optiaxiom/react": ["../../packages/react/src"],
@@ -32,7 +31,6 @@
   "exclude": ["node_modules"],
   "references": [
     { "path": "../../packages/globals" },
-    { "path": "../../packages/icons" },
     { "path": "../../packages/proteus" },
     { "path": "../../packages/react" }
   ]

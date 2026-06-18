@@ -6,12 +6,11 @@
     "esModuleInterop": true,
     "paths": {
       "@optiaxiom/globals": ["../globals/src"],
-      "@optiaxiom/globals/fonts": ["../globals/src/fonts"],
-      "@optiaxiom/icons": ["../icons/src"]
+      "@optiaxiom/globals/fonts": ["../globals/src/fonts"]
     },
     "types": ["@testing-library/jest-dom"]
   },
   "include": [".", "package.json"],
   "exclude": ["dist", "lib", "node_modules"],
-  "references": [{ "path": "../globals" }, { "path": "../icons" }]
+  "references": [{ "path": "../globals" }]
 }
