@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.43
+
+### Patch Changes
+
+- d94e63d: Debounce `onInputValueChange` on `PillMenu` by 300ms.
+
 ## 1.9.42
 
 ### Patch Changes
