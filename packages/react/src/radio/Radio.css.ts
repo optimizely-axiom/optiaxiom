@@ -26,11 +26,28 @@ export const control = recipe({
       borderColor: styles.controlAccentVar,
       borderWidth: "2px",
       placeContent: "center",
+      position: "relative",
       transitionDuration: theme.duration.sm,
       transitionProperty: "border-color, border-width",
       transitionTimingFunction: "ease",
 
       selectors: {
+        "&::before": {
+          border: `1px solid ${theme.colors["border.disabled"]}`,
+          borderRadius: "inherit",
+          content: "",
+          inset: "-2px",
+          opacity: 0,
+          pointerEvents: "none",
+          position: "absolute",
+          transitionDuration: theme.duration.sm,
+          transitionProperty: "inset, opacity",
+          transitionTimingFunction: "ease",
+        },
+        [`${marker}:has(${inputMarker}:checked) &::before`]: {
+          inset: "-12px",
+          opacity: 1,
+        },
         [`${marker}:has(${inputMarker}:checked) &`]: {
           borderWidth: "12px",
         },
