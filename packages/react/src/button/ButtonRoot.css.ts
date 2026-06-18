@@ -24,12 +24,12 @@ const transparentPressedAccentColorVar = createVar();
 const borderWidthVar = createVar();
 
 // outline-opal masked ring: the AVIF fills the border-box, a flat bg.default
-// layer (padding-box clip) masks out the centre. Two pseudos behind the button
-// so the hover ring can spill OUTWARD (a border on the element can't): ::before
-// is the base ring, ::after the larger spilled ring that fades in on hover.
-const OPAL_RING_BASE_WIDTH = "2px";
-const OPAL_RING_HOVER_SPILL = "2px";
-const opalRing = (width: string, inset: string) =>
+// layer (padding-box clip) masks out the centre, leaving only the border showing
+// as a textured ring. Each pseudo is sized by its border `width` and pulled
+// OUTWARD by that same width (negative inset) so it sits behind the button and
+// spills past its edge: ::before is the base ring, ::after the larger ring that
+// fades in on hover.
+const opalRing = (width: string) =>
   ({
     backgroundClip: "padding-box, border-box",
     backgroundColor: theme.colors["bg.default"],
@@ -48,7 +48,7 @@ const opalRing = (width: string, inset: string) =>
     // Inherit so the ring follows any radius override (e.g. pill on sm).
     borderRadius: "inherit",
     content: "",
-    inset,
+    inset: `calc(-1 * ${width})`,
     pointerEvents: "none",
     position: "absolute",
     zIndex: "-1",
@@ -207,15 +207,20 @@ export const buttonBase = recipe({
         },
       }),
       "outline-opal": style({
+        vars: {
+          [borderWidthVar]: "2px",
+        },
+
+        border: `${borderWidthVar} solid transparent`,
         color: fallbackVar(textColorVar, accentColorVar),
-        paddingInline: `calc(${paddingInlineVar} - ${OPAL_RING_BASE_WIDTH})`,
+        paddingInline: `calc(${paddingInlineVar} - ${borderWidthVar})`,
 
         "::after": {
-          ...opalRing("4px", `-${OPAL_RING_HOVER_SPILL}`),
+          ...opalRing("4px"),
           opacity: "0",
           transition: `opacity ${theme.duration.md} ease`,
         },
-        "::before": opalRing(OPAL_RING_BASE_WIDTH, "0px"),
+        "::before": opalRing(borderWidthVar),
 
         "@media": {
           "(hover: hover)": {
@@ -365,7 +370,7 @@ export const buttonBase = recipe({
       variants: {
         size: "sm",
         square: false,
-        variant: ["outline-opal", "strong-opal"],
+        variant: "strong-opal",
       },
     },
     {
