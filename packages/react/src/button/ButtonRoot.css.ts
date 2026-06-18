@@ -13,6 +13,7 @@ import { opalRingImage } from "./opalRingImage";
 export const accentColorVar = createVar();
 const hoverAccentColorVar = createVar();
 const pressedAccentColorVar = createVar();
+const solidOutlineColorVar = createVar();
 export const solidTextColorVar = createVar();
 const subtleHoverAccentColorVar = createVar();
 const subtleHoverOutlineColorVar = createVar();
@@ -133,6 +134,7 @@ export const buttonBase = recipe({
           [accentColorVar]: theme.colors["bg.accent"],
           [hoverAccentColorVar]: theme.colors["bg.accent.hovered"],
           [pressedAccentColorVar]: theme.colors["bg.accent.pressed"],
+          [solidOutlineColorVar]: theme.colors["border.disabled"],
           [solidTextColorVar]: theme.colors["fg.black"],
           [subtleHoverAccentColorVar]: theme.colors["bg.accent.subtle"],
           [subtlePressedAccentColorVar]: theme.colors["bg.accent"],
@@ -201,7 +203,8 @@ export const buttonBase = recipe({
             color: theme.colors["fg.black"],
           },
           "&[data-disabled]:not([data-loading])": {
-            borderColor: theme.colors["border.disabled"],
+            backgroundColor: theme.colors["bg.secondary"],
+            borderColor: "transparent",
             color: theme.colors["fg.disabled"],
           },
         },
@@ -234,6 +237,7 @@ export const buttonBase = recipe({
 
         selectors: {
           "&[data-disabled]:not([data-loading])": {
+            backgroundColor: theme.colors["bg.secondary"],
             color: theme.colors["fg.disabled"],
           },
           "&[data-disabled]:not([data-loading])::after": {
@@ -241,19 +245,25 @@ export const buttonBase = recipe({
           },
           "&[data-disabled]:not([data-loading])::before": {
             backgroundImage: "none",
-            borderColor: theme.colors["border.disabled"],
+            borderColor: "transparent",
           },
         },
       }),
       strong: style({
         backgroundColor: accentColorVar,
+        border: `${borderWidthVar} solid ${fallbackVar(solidOutlineColorVar, accentColorVar)}`,
         color: fallbackVar(solidTextColorVar, theme.colors["fg.default"]),
+        paddingInline: `calc(${paddingInlineVar} - ${borderWidthVar})`,
 
         "@media": {
           "(hover: hover)": {
             selectors: {
               "&:hover:not(:active, [data-disabled], [data-loading])": {
                 backgroundColor: hoverAccentColorVar,
+                borderColor: fallbackVar(
+                  solidOutlineColorVar,
+                  hoverAccentColorVar,
+                ),
               },
             },
           },
@@ -266,9 +276,8 @@ export const buttonBase = recipe({
 
           "&[data-disabled]:not([data-loading])": {
             backgroundColor: theme.colors["bg.secondary"],
-            border: `${borderWidthVar} solid ${theme.colors["border.disabled"]}`,
+            borderColor: "transparent",
             color: theme.colors["fg.disabled"],
-            paddingInline: `calc(${paddingInlineVar} - ${borderWidthVar})`,
           },
         },
       }),
@@ -280,9 +289,7 @@ export const buttonBase = recipe({
           "&[data-disabled]:not([data-loading])": {
             backgroundColor: theme.colors["bg.secondary"],
             backgroundImage: "none",
-            border: `1px solid ${theme.colors["border.disabled"]}`,
             color: theme.colors["fg.disabled"],
-            paddingInline: `calc(${paddingInlineVar} - 1px)`,
           },
         },
       }),
@@ -318,6 +325,7 @@ export const buttonBase = recipe({
             backgroundColor: theme.colors["bg.default.pressed"],
           },
           "&[data-disabled]:not([data-loading])": {
+            backgroundColor: theme.colors["bg.secondary"],
             color: theme.colors["fg.disabled"],
           },
         },

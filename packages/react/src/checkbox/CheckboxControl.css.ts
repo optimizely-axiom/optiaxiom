@@ -36,11 +36,29 @@ export const control = recipe({
       borderWidth: "2px",
       color: rootStyles.controlColorVar,
       placeContent: "center",
+      position: "relative",
       transitionDuration: theme.duration.sm,
       transitionProperty: "border-color, border-width",
       transitionTimingFunction: "ease",
 
       selectors: {
+        "&::before": {
+          border: `1px solid ${theme.colors["border.disabled"]}`,
+          borderRadius: "inherit",
+          content: "",
+          inset: "-2px",
+          opacity: 0,
+          pointerEvents: "none",
+          position: "absolute",
+          transitionDuration: theme.duration.sm,
+          transitionProperty: "inset, opacity",
+          transitionTimingFunction: "ease",
+        },
+        [`${rootStyles.className}:has(${inputStyles.className}:checked, ${inputStyles.className}:indeterminate) &::before`]:
+          {
+            inset: "-12px",
+            opacity: 1,
+          },
         [`${rootStyles.className}:has(${inputStyles.className}:checked, ${inputStyles.className}:indeterminate) &`]:
           {
             borderWidth: "12px",

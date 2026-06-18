@@ -33,6 +33,8 @@ export const root = recipe({
 });
 
 const sizeVar = createVar();
+const checkedBorderBlockVar = createVar();
+const checkedBorderInlineVar = createVar();
 
 export const input = recipe({
   base: inputMarker,
@@ -45,6 +47,11 @@ export const control = recipe({
       rounded: "full",
     },
     style({
+      vars: {
+        [checkedBorderBlockVar]: `calc((4px + ${sizeVar} + 4px) / 2)`,
+        [checkedBorderInlineVar]: `calc((4px + ${sizeVar} * 1.5 + 12px + 4px) / 2)`,
+      },
+
       borderColor: styles.controlAccentVar,
       borderWidth: "2px",
       height: `calc(4px + ${sizeVar} + 4px)`,
@@ -56,9 +63,25 @@ export const control = recipe({
       width: `calc(4px + ${sizeVar} * 1.5 + 12px + 4px)`,
 
       selectors: {
+        "&::before": {
+          border: `1px solid ${theme.colors["border.disabled"]}`,
+          borderRadius: "inherit",
+          content: "",
+          inset: "-2px",
+          opacity: 0,
+          pointerEvents: "none",
+          position: "absolute",
+          transitionDuration: theme.duration.sm,
+          transitionProperty: "inset, opacity",
+          transitionTimingFunction: "ease",
+        },
+        [`${marker}:has(${inputMarker}:checked) &::before`]: {
+          inset: `calc(-1 * ${checkedBorderBlockVar}) calc(-1 * ${checkedBorderInlineVar})`,
+          opacity: 1,
+        },
         [`${marker}:has(${inputMarker}:checked) &`]: {
-          borderBlockWidth: `calc((4px + ${sizeVar} + 4px) / 2)`,
-          borderInlineWidth: `calc((4px + ${sizeVar} * 1.5 + 12px + 4px) / 2)`,
+          borderBlockWidth: checkedBorderBlockVar,
+          borderInlineWidth: checkedBorderInlineVar,
         },
       },
     }),
