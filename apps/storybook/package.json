@@ -10,7 +10,7 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@optiaxiom/icons": "workspace:^",
+    "@optiaxiom/icons": "^1.1.3",
     "@optiaxiom/proteus": "workspace:^",
     "@optiaxiom/react": "workspace:^",
     "@optiaxiom/shared": "workspace:^",

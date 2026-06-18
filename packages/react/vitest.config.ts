@@ -7,6 +7,11 @@ export default defineConfig({
     environment: "happy-dom",
     maxWorkers: 1,
     restoreMocks: true,
+    server: {
+      deps: {
+        inline: ["@optiaxiom/icons"],
+      },
+    },
     setupFiles: ["./vitest.setup.ts"],
   },
 });

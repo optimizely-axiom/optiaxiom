@@ -6,7 +6,6 @@
     { "path": "apps/figma" },
     { "path": "apps/storybook" },
     { "path": "packages/globals" },
-    { "path": "packages/icons" },
     { "path": "packages/mcp" },
     { "path": "packages/proteus" },
     { "path": "packages/react" },
