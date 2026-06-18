@@ -1,5 +1,19 @@
 # @optiaxiom/react
 
+## 3.0.5
+
+### Patch Changes
+
+- b34b30c: fix outline-opal padding
+- 5d8c33b: fix heading weights
+- e378608: fix toggle button default pressed state text color
+- d53eb35: add contrast outline around primary controls
+- 3df4ade: use static colors for hover/pressed state of calendar day buttons
+- Updated dependencies [301ce17]
+- Updated dependencies [d53eb35]
+  - @optiaxiom/icons@1.2.0
+  - @optiaxiom/globals@3.0.2
+
 ## 3.0.4
 
 ### Patch Changes

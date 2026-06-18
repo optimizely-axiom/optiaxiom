@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 3.0.2
+
+### Patch Changes
+
+- d53eb35: add contrast outline around primary controls
+
 ## 3.0.1
 
 ### Patch Changes

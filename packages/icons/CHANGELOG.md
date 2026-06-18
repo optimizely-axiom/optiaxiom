@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.2.0
+
+### Minor Changes
+
+- 301ce17: add IconWebhook
+
 ## 1.1.3
 
 ### Patch Changes
