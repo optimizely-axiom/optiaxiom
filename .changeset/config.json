@@ -7,7 +7,7 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": [],
+  "ignore": ["@optiaxiom/icons"],
   "privatePackages": {
     "tag": false,
     "version": false
