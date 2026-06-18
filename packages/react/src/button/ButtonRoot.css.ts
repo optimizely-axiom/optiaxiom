@@ -198,6 +198,7 @@ export const buttonBase = recipe({
           '&:is([data-state="active"], [data-state="on"])': {
             backgroundColor: theme.colors["bg.accent"],
             borderColor: theme.colors["fg.accent"],
+            color: theme.colors["fg.black"],
           },
           "&[data-disabled]:not([data-loading])": {
             borderColor: theme.colors["border.disabled"],
