@@ -2,7 +2,7 @@ name: Docs
 
 on:
   push:
-    branches: [main]
+    branches: [v1]
   workflow_dispatch:
 
 permissions:
@@ -71,13 +71,10 @@ jobs:
       - name: Determine other branch
         id: other
         run: |
-          if [ "${{ github.ref_name }}" = "main" ]; then
-            echo "branch=next" >> "$GITHUB_OUTPUT"
-            echo "subpath=v3" >> "$GITHUB_OUTPUT"
-          else
-            echo "branch=main" >> "$GITHUB_OUTPUT"
-            echo "subpath=" >> "$GITHUB_OUTPUT"
-          fi
+          # This branch is v1: it publishes into the /v1/ subpath while main
+          # (v3) is the root. Pull main's latest docs in as the root.
+          echo "branch=main" >> "$GITHUB_OUTPUT"
+          echo "subpath=v1" >> "$GITHUB_OUTPUT"
 
       - name: Download other branch artifact
         uses: actions/github-script@v9
@@ -131,21 +128,17 @@ jobs:
 
       - name: Merge other branch docs
         if: ${{ steps.download-other.outputs.found == 'true' }}
+        env:
+          SUBPATH: ${{ steps.other.outputs.subpath }}
         run: |
-          if [ "${{ steps.other.outputs.branch }}" = "next" ]; then
-            # We're on main, merge next into combined/v3/
-            mkdir -p combined/v3
-            unzip -o other-docs.zip -d combined/v3
-          else
-            # We're on next, merge main as the root and move our build into v3/
-            mkdir -p other-root
-            unzip -o other-docs.zip -d other-root
-            # Move current build (next) into v3 subfolder of main's output
-            mv combined other-build
-            cp -r other-root/* combined/ 2>/dev/null || mv other-root combined
-            mkdir -p combined/v3
-            cp -r other-build/* combined/v3/
-          fi
+          # We're on v1: main (v3) is the root, our build moves into /$SUBPATH/.
+          mkdir -p other-root
+          unzip -o other-docs.zip -d other-root
+          # Move current build (v1) into the subpath of main's output
+          mv combined other-build
+          cp -r other-root/* combined/ 2>/dev/null || mv other-root combined
+          mkdir -p "combined/${SUBPATH}"
+          cp -r other-build/* "combined/${SUBPATH}/"
 
       - name: Upload combined pages artifact
         uses: actions/upload-pages-artifact@v5

@@ -2,7 +2,7 @@ name: Figma
 
 on:
   push:
-    branches: [main]
+    branches: [v1]
     paths:
       - apps/figma/**
 

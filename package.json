@@ -13,7 +13,7 @@
     "dev:docs": "pnpm -F docs... --parallel dev",
     "dev:storybook": "pnpm -F storybook... --parallel dev",
     "lint": "oas-lint",
-    "release": "pnpm build && changeset publish",
+    "release": "pnpm build && changeset publish --tag v1",
     "test": "vitest run --project=@optiaxiom/globals --project=@optiaxiom/react"
   },
   "devDependencies": {

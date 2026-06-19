@@ -2,9 +2,9 @@ name: CI
 
 on:
   pull_request:
-    branches: [main]
+    branches: [v1]
   push:
-    branches: [main]
+    branches: [v1]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: main
+          ref: ${{ github.event.pull_request.base.ref }}
 
       - uses: pnpm/action-setup@v5
 
@@ -32,12 +32,12 @@ jobs:
 
       - run: |
           pnpm build
-          pnpm --silent bundle-size > bundle-size-main.json
+          pnpm --silent bundle-size > bundle-size-base.json
 
       - uses: actions/upload-artifact@v7
         with:
           if-no-files-found: error
-          path: bundle-size-main.json
+          path: bundle-size-base.json
 
       - uses: actions/checkout@v6
 
@@ -58,7 +58,7 @@ jobs:
           mkdir ./pr
           echo ${{ github.event.number }} > ./pr/ID
           pnpm build
-          pnpm --silent bundle-size compare bundle-size-main.json > ./pr/bundle-size.md
+          pnpm --silent bundle-size compare bundle-size-base.json > ./pr/bundle-size.md
 
       - uses: actions/upload-artifact@v7
         with:
