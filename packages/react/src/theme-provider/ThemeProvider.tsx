@@ -35,8 +35,8 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   const ref = useRef<HTMLStyleElement>(null);
   useEffect(() => {
-    const root = ref.current?.getRootNode();
-    if (root instanceof ShadowRoot) {
+    const root = findShadowRoot(ref.current);
+    if (root) {
       setContainer(root);
     }
   }, []);
@@ -65,3 +65,37 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 }
 
 ThemeProvider.displayName = "@optiaxiom/react/ThemeProvider";
+
+/**
+ * Resolve the shadow root a node is rendered into.
+ *
+ * Covers two cases:
+ *
+ * 1. The subtree physically lives inside a shadow root - `getRootNode()`
+ *    returns the `ShadowRoot` directly.
+ * 2. The subtree is light DOM but projected into a shadow root via a
+ *    `<slot>`. Slotted content's `getRootNode()` returns the document, so we
+ *    walk up the light-DOM ancestors looking for one assigned to a slot, then
+ *    hop to that slot's root node (the shadow root we are composed into).
+ */
+function findShadowRoot(node: Node | null): null | ShadowRoot {
+  if (typeof ShadowRoot === "undefined") {
+    return null;
+  }
+
+  const root = node?.getRootNode();
+  if (root instanceof ShadowRoot) {
+    return root;
+  }
+
+  let el = node instanceof Element ? node : (node?.parentElement ?? null);
+  while (el) {
+    const slotRoot = el.assignedSlot?.getRootNode();
+    if (slotRoot instanceof ShadowRoot) {
+      return slotRoot;
+    }
+    el = el.parentElement;
+  }
+
+  return null;
+}
