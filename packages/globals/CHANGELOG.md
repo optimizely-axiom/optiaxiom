@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 3.0.3
+
+### Patch Changes
+
+- 08119b6: update contrast stroke color
+
 ## 3.0.2
 
 ### Patch Changes
