@@ -202,7 +202,7 @@ export const colors = {
   "border.control": ld(palette["neutral.400"], palette["neutral.600"]),
   "border.control.hovered": ld(palette["neutral.600"], palette["neutral.400"]),
   "border.default": ld(palette["neutral.150"], palette["neutral.800"]),
-  "border.disabled": ld(palette["neutral.1200/22"], palette["neutral.50/22"]),
+  "border.disabled": ld(palette["neutral.1200/8"], palette["neutral.50/22"]),
   "border.error": ld(palette["red.500"], palette["red.dark.200"]),
   "border.focus": ld(palette["blue.500"], palette["blue.400"]),
   "border.focus.error": ld(palette["red.400"], palette["red.300"]),
