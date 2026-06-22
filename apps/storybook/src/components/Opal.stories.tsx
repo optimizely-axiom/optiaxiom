@@ -39,9 +39,7 @@ export const AlertExample: Story = {
       <Alert intent="opal" onDismiss={() => {}}>
         <Group gap="16" justifyContent="space-between">
           <Text>A brief line or two describing the alert information.</Text>
-          <Button appearance="primary-opal" size="sm">
-            Button
-          </Button>
+          <Button size="sm">Button</Button>
         </Group>
       </Alert>
     </Group>
