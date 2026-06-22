@@ -140,10 +140,11 @@ export const unresponsiveProps = defineProperties({
     backgroundImage: {
       "gradient.opal": `
         linear-gradient(
-          135deg,
-          light-dark(#f5f3ff, #1e1b3a),
-          light-dark(#e5efff, #1a2b45)
-        );
+          165deg,
+          light-dark(#F1ECFD, #34343A) 0%,
+          light-dark(#F0F3FC, #323639) 55%,
+          light-dark(#ECFCEE, #2D3C2F) 100%
+        )
       `,
     },
     borderBottomWidth: borderWidths,
