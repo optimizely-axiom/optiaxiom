@@ -84,9 +84,8 @@
     padding-left: 20px;
 
     & h3:before {
-      line-height: 25px;
       margin-top: -2.5px;
-      margin-left: -37px;
+      margin-inline-start: -37px !important;
     }
 
     :is(h2, h3, h4):is(html[class~="dark"] *):before {
