@@ -1,9 +1,11 @@
+import { theme } from "@optiaxiom/globals";
+
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const progress = recipe({
   base: [
     {
-      bg: "bg.tertiary",
+      bg: "bg.pill.default",
       overflow: "hidden",
       rounded: "full",
     },
@@ -26,20 +28,25 @@ export const indicator = recipe({
      * Control the appearance by selecting between the different progress types.
      */
     intent: {
-      danger: {
-        bg: "bg.error",
-      },
-      opal: {
-        bg: "bg.accent",
-      },
-      primary: {
-        bg: "bg.accent",
-      },
-      success: {
-        bg: "bg.success",
-      },
+      danger: style({
+        backgroundColor: theme.colors["bg.error"],
+      }),
+      opal: {},
+      primary: {},
+      success: {},
     },
   },
+
+  variantsCompounded: [
+    {
+      style: style({
+        backgroundColor: theme.colors["fg.tertiary"],
+      }),
+      variants: {
+        intent: ["opal", "primary", "success"],
+      },
+    },
+  ],
 });
 
 export type ProgressVariants = RecipeVariants<typeof indicator>;
