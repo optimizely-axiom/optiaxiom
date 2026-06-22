@@ -1,21 +1,11 @@
-@value card from "../CardsItem.module.css";
-
 .layer {
   grid-area: 1 / 1 / 2 / 2;
 }
 
 .layer:nth-child(1) {
-  transform: translateZ(10px);
+  transform: translateZ(calc(10px + var(--card-hover, 0) * 6px));
 }
 
 .layer:nth-child(3) {
-  transform: translateZ(-10px);
-}
-
-:global(.card):hover .layer:nth-child(1) {
-  transform: translateZ(16px);
-}
-
-:global(.card):hover .layer:nth-child(3) {
-  transform: translateZ(-16px);
+  transform: translateZ(calc(-10px - var(--card-hover, 0) * 6px));
 }

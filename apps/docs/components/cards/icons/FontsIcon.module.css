@@ -1,0 +1,28 @@
+.letter {
+  /* Sharp at rest (0) and at full hover (1); blurs through the midpoint.
+     --card-hover is a registered <number>, so transitioning it makes the
+     calc() re-evaluate each frame and the blur peaks mid-way. filter must
+     NOT be transitioned (its endpoints are equal), only the driving var. */
+  color: color-mix(
+    in srgb,
+    var(--letter-color-from),
+    var(--letter-color-to) calc(var(--card-hover, 0) * 100%)
+  );
+  filter: blur(calc(2px - abs(var(--card-hover, 0) - 0.5) * 4px));
+  font-weight: var(--letter-weight);
+  transition:
+    --card-hover 600ms,
+    font-weight 600ms;
+}
+
+.letter:nth-child(1) {
+  --letter-color-from: var(--ax-colors-fg-secondary);
+  --letter-color-to: var(--ax-colors-fg-tertiary);
+  --letter-weight: calc(600 - var(--card-hover, 0) * 200);
+}
+
+.letter:nth-child(2) {
+  --letter-color-from: var(--ax-colors-fg-tertiary);
+  --letter-color-to: var(--ax-colors-fg-secondary);
+  --letter-weight: calc(400 + var(--card-hover, 0) * 300);
+}

@@ -1,7 +1,11 @@
 .card {
+  --card-hover: 0;
+
   position: relative;
 }
 
 .card:hover {
+  --card-hover: 1;
+
   background-color: var(--ax-colors-bg-accent-subtle);
 }

@@ -1,5 +1,13 @@
 @import "nextra-theme-docs/dist/style.css" layer(optiaxiom.base);
 
+/* Card hover flag (0 = rest, 1 = hover). Registered globally so the typed
+   value survives Lightning CSS module scoping and can be used in calc(). */
+@property --card-hover {
+  inherits: true;
+  initial-value: 0;
+  syntax: "<number>";
+}
+
 @layer optiaxiom.base {
   html {
     font-family: var(--ax-fontFamily-sans);

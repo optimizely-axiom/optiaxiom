@@ -1,12 +1,11 @@
-@value card from "../CardsItem.module.css";
-
 .layer {
-  --size: 32px;
-  --space: 0;
+  --size: calc(32px - var(--card-hover, 0) * 12px);
+  --space: calc(var(--card-hover, 0) * 1.1);
 
   grid-area: 1 / 1 / 2 / 2;
   height: var(--size);
-  opacity: 0;
+  opacity: calc(var(--card-hover, 0) * 0.8);
+  width: auto;
 }
 
 .layer:nth-child(2) {
@@ -16,11 +15,4 @@
 
 .layer:nth-child(3) {
   margin-left: calc(var(--size) * 2 * var(--space));
-}
-
-:global(.card):hover .layer {
-  --size: 20px;
-  --space: 1.1;
-
-  opacity: 0.8;
 }

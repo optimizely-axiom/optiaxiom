@@ -1,5 +1,3 @@
-@value card from "../CardsItem.module.css";
-
 .layer {
   background-image: linear-gradient(
     135deg,
@@ -10,10 +8,6 @@
     transparent 55%,
     color-mix(in srgb, var(--ax-colors-bg-default) 40%, transparent) 55%
   );
-  background-position: 30%;
+  background-position: calc((30 + var(--card-hover, 0) * 20) * 1%);
   background-size: 300% 100%;
-}
-
-:global(.card):hover .layer {
-  background-position: 50%;
 }

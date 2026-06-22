@@ -1,5 +1,7 @@
 import { Group, Text } from "@optiaxiom/react";
 
+import styles from "./FontsIcon.module.css";
+
 export const FontsIcon = () => (
   <Group
     flexDirection="row"
@@ -7,8 +9,7 @@ export const FontsIcon = () => (
     style={{ alignItems: "baseline" }}
   >
     <Text
-      color="fg.secondary"
-      fontWeight="600"
+      className={styles.letter}
       style={{
         fontSize: "40px",
         lineHeight: 1,
@@ -17,7 +18,7 @@ export const FontsIcon = () => (
       A
     </Text>
     <Text
-      color="fg.tertiary"
+      className={styles.letter}
       style={{
         fontSize: "36px",
         lineHeight: 1,
