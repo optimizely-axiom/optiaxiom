@@ -31,7 +31,7 @@ export const alert = recipe({
         bg: "bg.secondary",
       },
       opal: {
-        backgroundImage: `gradient.opal`,
+        bg: "bg.secondary",
       },
       success: {
         bg: "bg.success.subtle",
