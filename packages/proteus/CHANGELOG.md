@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 3.0.4
+
+### Patch Changes
+
+- b9c4509: use primary button appearance in ask user question
+
 ## 3.0.3
 
 ### Patch Changes
