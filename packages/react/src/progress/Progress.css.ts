@@ -29,9 +29,9 @@ export const indicator = recipe({
       danger: {
         bg: "bg.error",
       },
-      opal: style({
-        backgroundImage: `linear-gradient(90deg, #8041EE, #7740EC, #002CCC)`,
-      }),
+      opal: {
+        bg: "bg.accent",
+      },
       primary: {
         bg: "bg.accent",
       },
