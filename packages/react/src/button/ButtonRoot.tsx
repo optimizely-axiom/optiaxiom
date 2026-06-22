@@ -20,7 +20,6 @@ const Slot = createSlot("@optiaxiom/react/ButtonRoot");
  */
 const staticVariant = {
   "outline-opal": "outline",
-  "strong-opal": "strong",
 } as const;
 
 const appearances = {
@@ -30,7 +29,7 @@ const appearances = {
   "default-opal": { intent: "neutral", variant: "outline-opal" },
   inverse: { intent: "neutral", variant: "strong" },
   primary: { intent: "primary", variant: "strong" },
-  "primary-opal": { intent: "primary", variant: "strong-opal" },
+  "primary-opal": { intent: "primary", variant: "strong" },
   subtle: { intent: "neutral", variant: "subtle" },
 } satisfies Record<string, styles.ButtonVariants>;
 
@@ -109,8 +108,7 @@ export const ButtonRoot = forwardRef<HTMLButtonElement, ButtonRootProps>(
                 <Transition>
                   <Spinner
                     appearance={
-                      (variant === "strong" && intent !== "primary") ||
-                      variant === "strong-opal"
+                      variant === "strong" && intent !== "primary"
                         ? "inverse"
                         : "default"
                     }

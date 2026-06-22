@@ -282,18 +282,6 @@ export const buttonBase = recipe({
           },
         },
       }),
-      "strong-opal": style({
-        backgroundImage: `linear-gradient(135deg, #392ECF 16%, #7740EC 85%)`,
-        color: theme.colors["fg.white"],
-
-        selectors: {
-          "&[data-disabled]:not([data-loading])": {
-            backgroundColor: theme.colors["bg.secondary"],
-            backgroundImage: "none",
-            color: theme.colors["fg.disabled"],
-          },
-        },
-      }),
       subtle: style({
         backgroundColor: "transparent",
         borderColor: accentColorVar,
@@ -367,18 +355,6 @@ export const buttonBase = recipe({
         size: "sm",
         square: false,
         variant: ["outline", "strong", "subtle"],
-      },
-    },
-    {
-      style: style({
-        vars: {
-          [paddingInlineVar]: "6px",
-        },
-      }),
-      variants: {
-        size: "sm",
-        square: false,
-        variant: "strong-opal",
       },
     },
     {
