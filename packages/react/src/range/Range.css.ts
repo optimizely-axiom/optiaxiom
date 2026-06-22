@@ -86,7 +86,7 @@ export const range = recipe({
       rounded: "inherit",
     },
     style({
-      backgroundColor: theme.colors["bg.accent"],
+      backgroundColor: theme.colors["fg.tertiary"],
       position: "absolute",
       width: `calc(100% * ${fillValue} + 10px * (1 - ${fillValue}))`,
 
