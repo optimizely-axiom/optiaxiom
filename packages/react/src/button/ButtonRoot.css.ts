@@ -333,6 +333,7 @@ export const buttonBase = recipe({
       variants: {
         intent: "primary",
         size: "lg",
+        square: false,
         variant: "strong",
       },
     },
