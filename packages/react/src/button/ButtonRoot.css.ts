@@ -217,6 +217,7 @@ export const buttonBase = recipe({
         border: `${borderWidthVar} solid transparent`,
         color: fallbackVar(textColorVar, accentColorVar),
         paddingInline: `calc(${paddingInlineVar} - ${borderWidthVar})`,
+        zIndex: "1",
 
         "::after": {
           ...opalRing("4px"),
