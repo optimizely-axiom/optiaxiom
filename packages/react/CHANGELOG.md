@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 3.0.6
+
+### Patch Changes
+
+- 4ae4453: add z-index for opal ring to show up properly
+
 ## 3.0.5
 
 ### Patch Changes
