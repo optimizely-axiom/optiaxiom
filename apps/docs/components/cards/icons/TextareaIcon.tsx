@@ -6,7 +6,7 @@ export const TextareaIcon = () => (
   <Group
     bg="bg.default"
     border="1"
-    borderColor="border.accent"
+    borderColor="border.focus"
     flexDirection="column"
     gap="4"
     p="6"

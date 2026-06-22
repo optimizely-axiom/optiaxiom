@@ -6,7 +6,7 @@ export const SearchInputIcon = () => (
   <Group
     bg="bg.default"
     border="1"
-    borderColor="border.accent"
+    borderColor="border.focus"
     gap="4"
     p="6"
     rounded="sm"
