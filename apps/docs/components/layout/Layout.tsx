@@ -30,7 +30,6 @@ export async function Layout({ children }: { children: ReactNode }) {
           light: tokens.colors["bg.page"].match(/\((#\w+)/)?.[1],
         }}
       >
-        <meta content="noindex,nofollow" name="robots" />
         <link
           href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/favicon.ico`}
           rel="shortcut icon"
