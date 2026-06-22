@@ -418,7 +418,7 @@ export function ProteusQuestion({
                 </RovingFocus.Item>
                 {type === "single_select" && (
                   <Button
-                    appearance={otherValue ? "primary-opal" : "default"}
+                    appearance={otherValue ? "primary" : "default"}
                     aria-label={otherValue && (isLast ? "Submit" : "Next")}
                     icon={otherValue && <IconArrowRight />}
                     ml="auto"
@@ -459,7 +459,7 @@ export function ProteusQuestion({
             Skip
           </Button>
           <Button
-            appearance={valid ? "primary-opal" : "default"}
+            appearance={valid ? "primary" : "default"}
             aria-label={isLast ? "Submit" : "Next"}
             disabled={!valid}
             icon={<IconArrowRight />}
