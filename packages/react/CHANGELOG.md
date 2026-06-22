@@ -1,5 +1,16 @@
 # @optiaxiom/react
 
+## 3.0.7
+
+### Patch Changes
+
+- 911943d: fix padding/radius for large primary button
+- a09a06d: Make the `primary-opal` button appearance render identically to `primary` for backward compatibility.
+- 39c5233: Make the `Progress` `intent="opal"` render identically to `intent="primary"` for backward compatibility.
+- b7ac0ae: update alert opal gradient
+- 5979389: fix range fill color
+- aa1d14d: Update the inlined Opal icon image (used by the `Alert` opal intent and the `fallback="opal"` avatar) to the current Opal orb artwork.
+
 ## 3.0.6
 
 ### Patch Changes
