@@ -31,9 +31,9 @@ export async function Layout({ children }: { children: ReactNode }) {
         }}
       >
         <link
-          href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/favicon.ico`}
-          rel="shortcut icon"
-          type="image/x-icon"
+          href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/favicon.svg`}
+          rel="icon"
+          type="image/svg+xml"
         />
         {process.env.NEXT_PUBLIC_BASE_PATH && (
           <Script>
