@@ -335,7 +335,7 @@ export function ProteusDocumentShell({
             >
               {element.titleIcon && (
                 <Group
-                  bg="bg.avatar.purple"
+                  bg="bg.accent.subtle"
                   flex="none"
                   justifyContent="center"
                   rounded="lg"
