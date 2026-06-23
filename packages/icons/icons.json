@@ -25,6 +25,7 @@
   "arrow_split": ["Split"],
   "article": ["FileLines"],
   "assignment": ["ClipboardCheck", "MemoPad"],
+  "assured_workload": ["AssuredWorkload"],
   "asterisk": ["Asterisk"],
   "attach_file": ["Paperclip"],
   "attach_money": ["DollarSign"],

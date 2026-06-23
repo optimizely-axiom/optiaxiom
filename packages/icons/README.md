@@ -29,9 +29,13 @@ Check out our [Icons Guide](https://optimizely-axiom.github.io/optiaxiom/guides/
 ### Adding new icons
 
 1. Find the icon name on [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols)
-2. Add the icon name to `icons.json` (use the snake_case name, e.g. `arrow_back`)
+2. Add an entry to `icons.json` mapping the Material Symbols snake_case name to its component alias. For new icons, the alias must be the exact Material Symbols name in PascalCase — e.g. `"assured_workload": ["AssuredWorkload"]`. The component is then exported as that alias prefixed with `Icon` (e.g. `IconAssuredWorkload`).
 3. Run `npm run build` to fetch the SVGs and rebuild the package
-4. Commit the updated `icons.json`, `src/index.ts`, and `svg/*.svg.d.ts`
+4. Add a changeset (run `pnpm changeset` from the repo root) with a `minor` bump for `@optiaxiom/icons`
+5. Commit the updated `icons.json`, `src/index.ts`, `tags.json`, `svg/*.svg.d.ts`, and the new `.changeset/*.md` file (the `svg/*.svg` files themselves are gitignored and re-fetched at build time)
+
+> [!NOTE]
+> Some existing icons use hand-picked aliases that differ from their Material Symbols name (e.g. `"account_circle": ["CircleUser"]`). These exist only to keep parity with our legacy icons package and should not be used as a pattern for new icons.
 
 ### How it works
 

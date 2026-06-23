@@ -28,6 +28,7 @@ export { IconArrowSplit as IconSplit } from "../svg/arrow_split.svg";
 export { IconArticle as IconFileLines } from "../svg/article.svg";
 export { IconAssignment as IconClipboardCheck } from "../svg/assignment.svg";
 export { IconAssignment as IconMemoPad } from "../svg/assignment.svg";
+export { IconAssuredWorkload as IconAssuredWorkload } from "../svg/assured_workload.svg";
 export { IconAsterisk as IconAsterisk } from "../svg/asterisk.svg";
 export { IconAttachFile as IconPaperclip } from "../svg/attach_file.svg";
 export { IconAttachMoney as IconDollarSign } from "../svg/attach_money.svg";
