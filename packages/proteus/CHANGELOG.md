@@ -1,5 +1,13 @@
 # @optiaxiom/proteus
 
+## 3.0.5
+
+### Patch Changes
+
+- 506b2bd: Use the rebranded `bg.accent.subtle` color for the document header agent avatar instead of the pre-rebrand `bg.avatar.purple`, so a custom `titleIcon` no longer shows a lavender ring and the no-icon fallback matches the current brand.
+- Updated dependencies [c2eeaf6]
+  - @optiaxiom/icons@1.3.0
+
 ## 3.0.4
 
 ### Patch Changes
