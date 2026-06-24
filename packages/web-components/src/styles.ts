@@ -16,7 +16,7 @@ export function injectGlobalStyle(text: string) {
     document.createTextNode(
       text
         .replaceAll(
-          /font-family:\s?(Fira Code Variable|InterVariable+);/g,
+          /font-family:\s?(Roboto Condensed Variable|Roboto Mono Variable|Roboto Variable);/g,
           (_, m1) => `font-family: ${uuid} ${m1};`,
         )
         .replaceAll(
@@ -30,7 +30,10 @@ export function injectGlobalStyle(text: string) {
 
 export function injectLocalStyle(text: string) {
   styles.push(
-    text.replaceAll(/Fira Code Variable|InterVariable/g, (m) => `${uuid} ${m}`),
+    text.replaceAll(
+      /Roboto Condensed Variable|Roboto Mono Variable|Roboto Variable/g,
+      (m) => `${uuid} ${m}`,
+    ),
   );
   void styleSheet.replace(styles.join("\n"));
 }

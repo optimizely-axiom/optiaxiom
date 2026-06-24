@@ -50,7 +50,7 @@ describe("Box component", () => {
   it("should handle attribute updates", async () => {
     const { user } = setup();
 
-    await document.fonts.load("1rem InterVariable");
+    await document.fonts.load("1rem Roboto Variable");
     expect(
       withinShadowRoot(screen.getByText("Click")).getByRole("button"),
     ).toHaveStyle({

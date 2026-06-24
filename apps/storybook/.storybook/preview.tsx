@@ -29,7 +29,7 @@ export default {
   loaders: isChromatic()
     ? [
         async () => ({
-          fonts: await document.fonts.load("1rem InterVariable"),
+          fonts: await document.fonts.load("1rem Roboto Variable"),
         }),
       ]
     : [],
