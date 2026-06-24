@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 3.1.1
+
+### Patch Changes
+
+- 99e3026: update heading styles to match figma
+
 ## 3.1.0
 
 ### Minor Changes

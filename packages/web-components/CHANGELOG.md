@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 3.0.3
+
+### Patch Changes
+
+- 9e25509: fix stale font name
+
 ## 3.0.2
 
 ### Patch Changes
