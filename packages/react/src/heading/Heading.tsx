@@ -4,6 +4,7 @@ import { type ElementType, forwardRef } from "react";
 import type { ExtendProps } from "../utils";
 
 import { Text, type TextProps } from "../text";
+import * as styles from "./Heading.css";
 
 const Slot = createSlot("@optiaxiom/react/Heading");
 
@@ -40,15 +41,15 @@ const mapLevelToFontSize = {
 } as const;
 const mapLevelToFontWeight = {
   "1": "900",
-  "2": "900",
+  "2": "700",
   "3": "600",
-  "4": "700",
+  "4": "600",
 } as const;
-const mapLevelToFontFamily = {
-  "1": "heading",
-  "2": "heading",
-  "3": "heading",
-  "4": "sans",
+const mapLevelToTracking = {
+  "1": "wide",
+  "2": "wider",
+  "3": "wider",
+  "4": "widest",
 } as const;
 
 /**
@@ -77,7 +78,7 @@ const mapLevelToFontFamily = {
  */
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   (
-    { asChild, children, fontFamily, fontWeight, level = "1", ...props },
+    { asChild, children, className, fontWeight, level = "1", ...props },
     ref,
   ) => {
     const Comp = asChild ? Slot : (mapLevelToTag[level] ?? "h1");
@@ -86,10 +87,15 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
     return (
       <Text
         asChild
-        fontFamily={fontFamily ?? mapLevelToFontFamily[level] ?? "heading"}
         fontSize={fontSize}
         fontWeight={fontWeight ?? mapLevelToFontWeight[level] ?? "700"}
         ref={ref}
+        {...styles.heading(
+          {
+            tracking: mapLevelToTracking[level],
+          },
+          className,
+        )}
         {...props}
       >
         <Comp>{children}</Comp>
