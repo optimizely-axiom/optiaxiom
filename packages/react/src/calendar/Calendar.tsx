@@ -46,7 +46,7 @@ const weekStartsOn = (weekInfo.firstDay % 7) as 0 | 1 | 2 | 3 | 4 | 5 | 6;
 const formatters: Partial<Formatters> = {
   formatCaption: (month) => formatDate(month, "LLLL yyyy"),
   formatDay: (day) => formatDate(day, "d"),
-  formatWeekdayName: (weekday) => formatDate(weekday, "cccccc"),
+  formatWeekdayName: (weekday) => formatDate(weekday, "ccccc"),
 };
 
 export type CalendarProps = BoxProps<
