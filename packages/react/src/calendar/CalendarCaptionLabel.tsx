@@ -4,8 +4,10 @@ import { IconAngleDown } from "@optiaxiom/icons";
 import { CaptionLabel } from "react-day-picker";
 
 import { Button } from "../button";
+import { formatDate } from "../utils";
 import { VisuallyHidden } from "../visually-hidden";
 import { useCalendarContext } from "./CalendarContext";
+import { withYear } from "./utils";
 
 export type CalendarCaptionLabelProps = ComponentPropsWithoutRef<
   typeof CaptionLabel
@@ -35,10 +37,11 @@ export function CalendarCaptionLabel({
       <CaptionLabel {...props}>
         {view === "year" ? (
           <>
-            {month.getFullYear()} - {month.getFullYear() + 11}
+            {formatDate(month, "yyyy")} -{" "}
+            {formatDate(withYear(month, month.getFullYear() + 11), "yyyy")}
           </>
         ) : view === "month" ? (
-          month.getFullYear()
+          formatDate(month, "yyyy")
         ) : (
           children
         )}

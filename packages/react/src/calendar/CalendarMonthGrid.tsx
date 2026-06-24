@@ -2,26 +2,17 @@ import { type ComponentPropsWithoutRef, useEffect, useRef } from "react";
 import { MonthGrid } from "react-day-picker";
 
 import { Box } from "../box";
+import { formatDate } from "../utils";
 import { useCalendarContext } from "./CalendarContext";
 import { CalendarGrid } from "./CalendarGrid";
 import { withMonth, withYear } from "./utils";
 
 export type CalendarMonthGridProps = ComponentPropsWithoutRef<typeof MonthGrid>;
 
-const months = [
-  ["Jan", "January"] as const,
-  ["Feb", "February"] as const,
-  ["Mar", "March"] as const,
-  ["Apr", "April"] as const,
-  ["May", "May"] as const,
-  ["Jun", "June"] as const,
-  ["Jul", "July"] as const,
-  ["Aug", "August"] as const,
-  ["Sep", "September"] as const,
-  ["Oct", "October"] as const,
-  ["Nov", "November"] as const,
-  ["Dec", "December"] as const,
-];
+const months = Array.from({ length: 12 }, (_, month) => {
+  const date = new Date(2000, month, 1);
+  return [formatDate(date, "LLL"), formatDate(date, "LLLL")] as const;
+});
 
 export function CalendarMonthGrid({
   children,
@@ -79,7 +70,8 @@ export function CalendarMonthGrid({
         ) ?? [],
       );
       const focusedDay =
-        days.find((day) => day.textContent === `${month.getDate()}`) ?? days[0];
+        days.find((day) => day.textContent === formatDate(month, "d")) ??
+        days[0];
       focusedDay?.focus();
     }
     lastMonthRef.current = month;
@@ -96,9 +88,13 @@ export function CalendarMonthGrid({
           setMonth(withYear(month, month.getFullYear() + value));
           setView("month");
         }}
-        options={Array.from({ length: 12 }).map(
-          (_, index) => month.getFullYear() + index,
-        )}
+        options={Array.from({ length: 12 }).map((_, index) => {
+          const year = formatDate(
+            withYear(month, month.getFullYear() + index),
+            "yyyy",
+          );
+          return [year, year] as const;
+        })}
         value={0}
       />
     );

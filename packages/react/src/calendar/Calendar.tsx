@@ -6,14 +6,14 @@ import {
   useRef,
   useState,
 } from "react";
-import { DayPicker, type Matcher } from "react-day-picker";
+import { DayPicker, type Formatters, type Matcher } from "react-day-picker";
 
 import { Box, type BoxProps } from "../box";
 import { Clock } from "../clock";
 import { Group } from "../group";
 import { usePopoverContentContext } from "../popover/internals";
 import { Text } from "../text";
-import { toInstant, toPlainDate, toPlainTime } from "../utils";
+import { formatDate, toInstant, toPlainDate, toPlainTime } from "../utils";
 import * as styles from "./Calendar.css";
 import { CalendarCaptionLabel } from "./CalendarCaptionLabel";
 import { CalendarChevron } from "./CalendarChevron";
@@ -30,12 +30,24 @@ import { CalendarWeekday } from "./CalendarWeekday";
 import { CalendarWeekdays } from "./CalendarWeekdays";
 import { toTimeZoneName } from "./toTimeZoneName";
 
-const locale = new Intl.Locale(navigator.language ?? "en-US");
+const locale = new Intl.Locale(
+  typeof navigator !== "undefined" ? navigator.language : "en-US",
+);
 const weekInfo =
   "getWeekInfo" in locale && typeof locale.getWeekInfo === "function"
     ? (locale.getWeekInfo() as { firstDay: number })
     : { firstDay: 0 };
 const weekStartsOn = (weekInfo.firstDay % 7) as 0 | 1 | 2 | 3 | 4 | 5 | 6;
+
+/**
+ * Override `react-day-picker`'s default formatters with locale-aware ones so the
+ * calendar localizes to the browser locale without a date-fns locale object.
+ */
+const formatters: Partial<Formatters> = {
+  formatCaption: (month) => formatDate(month, "LLLL yyyy"),
+  formatDay: (day) => formatDate(day, "d"),
+  formatWeekdayName: (weekday) => formatDate(weekday, "cccccc"),
+};
 
 export type CalendarProps = BoxProps<
   "div",
@@ -220,6 +232,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                   ...(min ? [{ before: min }] : []),
                   ...(max ? [{ after: max }] : []),
                 ]}
+                formatters={formatters}
                 mode="single"
                 modifiers={{ holiday, weekend }}
                 month={month}
@@ -246,6 +259,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                   ...(max ? [{ after: max }] : []),
                 ]}
                 fixedWeeks
+                formatters={formatters}
                 mode="range"
                 modifiers={{ holiday, weekend }}
                 month={month}
