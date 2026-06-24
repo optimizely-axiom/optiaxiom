@@ -29,6 +29,6 @@ describe("Button component", () => {
       "background-color": "rgb(171, 255, 68)",
       color: "rgb(32, 35, 32)",
     });
-    await document.fonts.load("1rem InterVariable");
+    await document.fonts.load("1rem Roboto Variable");
   });
 });
