@@ -188,7 +188,7 @@
     & span {
       border-radius: 100%;
       height: 32px;
-      width: 32px;
+      width: auto;
 
       & svg {
         height: 100%;
