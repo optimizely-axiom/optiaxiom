@@ -1,6 +1,6 @@
 "use client";
 
-import { Select, SelectContent, SelectTrigger } from "@optiaxiom/react";
+import { Box, Select, SelectContent, SelectTrigger } from "@optiaxiom/react";
 import { useEffect, useState } from "react";
 
 export function VersionSwitcher() {
@@ -12,6 +12,8 @@ export function VersionSwitcher() {
     { detail: "", label: "v1", value: "v1" as const },
     { detail: "", label: "v3", value: "v3" as const },
   ]);
+
+  const { detail, label } = isV1 ? versions[0] : versions[1];
 
   useEffect(() => {
     void Promise.all([
@@ -50,9 +52,18 @@ export function VersionSwitcher() {
       options={versions}
     >
       <SelectTrigger className="version-switcher">
-        {isV1
-          ? `v${versions[0].detail ? versions[0].detail.slice(1, -1) : "1"}`
-          : `v${versions[1].detail ? versions[1].detail.slice(1, -1) : "3"}`}
+        {detail ? (
+          <>
+            <Box asChild display={["inline", "none"]}>
+              <span>{label}</span>
+            </Box>
+            <Box asChild display={["none", "inline"]}>
+              <span>v{detail.slice(1, -1)}</span>
+            </Box>
+          </>
+        ) : (
+          label
+        )}
       </SelectTrigger>
       <SelectContent />
     </Select>
