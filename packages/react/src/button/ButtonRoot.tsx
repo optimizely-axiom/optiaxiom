@@ -108,8 +108,10 @@ export const ButtonRoot = forwardRef<HTMLButtonElement, ButtonRootProps>(
                 <Transition>
                   <Spinner
                     appearance={
-                      variant === "strong" && intent !== "primary"
-                        ? "inverse"
+                      variant === "strong"
+                        ? intent === "primary"
+                          ? "current"
+                          : "inverse"
                         : "default"
                     }
                     aria-hidden="true"

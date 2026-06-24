@@ -10,11 +10,12 @@ export type SpinnerProps = BoxProps<
     /**
      * Control the appearance depending on whether the spinner is placed on a light/dark background.
      */
-    appearance?: "default" | "inverse";
+    appearance?: "current" | "default" | "inverse";
   }
 >;
 
 const mapAppearanceToFg = {
+  current: "current",
   default: "fg.spinner.default",
   inverse: "fg.spinner.inverse",
 } as const;
@@ -60,7 +61,12 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
             width={16}
             xmlns="http://www.w3.org/2000/svg"
           >
-            <Box asChild {...styles.track({ appearance })}>
+            <Box
+              asChild
+              {...styles.track({
+                appearance: appearance === "current" ? "default" : appearance,
+              })}
+            >
               <circle
                 cx="8"
                 cy="8"
