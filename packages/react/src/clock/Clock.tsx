@@ -5,7 +5,14 @@ import type { BoxProps } from "../box";
 
 import { Group } from "../group";
 import { Select, SelectContent, SelectTrigger } from "../select";
-import { format, is24Hour, parse, range } from "./utils";
+import {
+  format,
+  is24Hour,
+  parse,
+  range,
+  toLabel,
+  toMeridiemLabel,
+} from "./utils";
 
 export type ClockProps = BoxProps<
   "div",
@@ -64,7 +71,7 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
           onValueChange={(hour) =>
             hour && setValue(format({ ...parsed, hour }))
           }
-          options={hours.map((hour) => ({ label: hour, value: hour }))}
+          options={hours.map((hour) => ({ label: toLabel(hour), value: hour }))}
           value={parsed.hour}
         >
           <SelectTrigger aria-label="Select hour" flex="1" placeholder="HH" />
@@ -76,7 +83,7 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
           }
           options={minutes.map((minute) => ({
             ariaLabel: `${parseInt(minute)}`,
-            label: minute,
+            label: toLabel(minute),
             value: minute,
           }))}
           value={parsed.minute}
@@ -91,7 +98,7 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
               setValue(format({ ...parsed, meridiem }))
             }
             options={periods.map((period) => ({
-              label: period,
+              label: toMeridiemLabel(period),
               value: period,
             }))}
             value={parsed.meridiem}

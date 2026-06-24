@@ -1,9 +1,41 @@
-const locale = new Intl.Locale(navigator.language ?? "en-US");
+const language =
+  typeof navigator !== "undefined" ? navigator.language : "en-US";
+const locale = new Intl.Locale(language);
 const hourCycles =
   "getHourCycles" in locale && typeof locale.getHourCycles === "function"
     ? (locale.getHourCycles() as string[])
     : ["h12"];
 export const is24Hour = hourCycles[0] === "h23";
+
+const numberFormatter = new Intl.NumberFormat(language, { useGrouping: false });
+
+/**
+ * Transliterates the digits of an already-formatted numeric string (e.g.
+ * `"05"`) into the browser locale's numbering system (e.g. `"०५"` for `mr-IN`),
+ * preserving any existing padding. This is digit transliteration rather than a
+ * date format because the clock's value is a `HH:mm` string, not a `Date` — the
+ * underlying Latin value stays unchanged so the time contract is preserved.
+ */
+export const toLabel = (value: string) =>
+  value
+    .split("")
+    .map((digit) => numberFormatter.format(Number(digit)))
+    .join("");
+
+const dayPeriodFormatter = new Intl.DateTimeFormat(language, {
+  hour: "numeric",
+  hour12: true,
+});
+
+/**
+ * Returns the localized AM/PM label — date-fns's `aaa` token, via `Intl`. Yields
+ * `"ص"`/`"م"` for `ar`, but still `"AM"`/`"PM"` for locales like `mr` that use
+ * them by convention.
+ */
+export const toMeridiemLabel = (meridiem: "AM" | "PM") =>
+  dayPeriodFormatter
+    .formatToParts(new Date(2025, 0, 1, meridiem === "AM" ? 9 : 21))
+    .find((part) => part.type === "dayPeriod")?.value ?? meridiem;
 
 export const format = ({
   hour,
