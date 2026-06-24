@@ -1,5 +1,12 @@
 # @optiaxiom/web-components
 
+## 3.0.2
+
+### Patch Changes
+
+- 93803f0: render the inverted icon box for `primary-opal` Button with a start-positioned icon, matching `primary`; end-positioned icons no longer render the inverted box
+- 36db22c: fix `Button` loading spinner being invisible on `primary` buttons in dark mode by inheriting the button text color, and add a `current` appearance to `Spinner` that follows `currentColor`
+
 ## 3.0.1
 
 ### Patch Changes

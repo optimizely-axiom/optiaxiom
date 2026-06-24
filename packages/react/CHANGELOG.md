@@ -1,5 +1,19 @@
 # @optiaxiom/react
 
+## 3.1.0
+
+### Minor Changes
+
+- d315b08: localize `Calendar`, `DateRangePicker`, and `Clock` to the browser locale (via `navigator.language`) instead of always rendering in English
+
+### Patch Changes
+
+- 93803f0: render the inverted icon box for `primary-opal` Button with a start-positioned icon, matching `primary`; end-positioned icons no longer render the inverted box
+- 36db22c: fix `Button` loading spinner being invisible on `primary` buttons in dark mode by inheriting the button text color, and add a `current` appearance to `Spinner` that follows `currentColor`
+- f85648a: `Kbd`: allow inheriting text color so keys can stay readable on colored button backgrounds.
+- Updated dependencies [7ea057e]
+  - @optiaxiom/globals@3.0.4
+
 ## 3.0.7
 
 ### Patch Changes
