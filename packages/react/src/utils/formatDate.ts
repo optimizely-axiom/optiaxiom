@@ -16,7 +16,7 @@ const numberFormat = new Intl.NumberFormat(language, { useGrouping: false })
   .format;
 
 const tokens = {
-  cccccc: dateTimeFormat({ weekday: "short" }),
+  ccccc: dateTimeFormat({ weekday: "narrow" }),
   d: (date: Date) => numberFormat(date.getDate()),
   LLL: dateTimeFormat({ month: "short" }),
   LLLL: dateTimeFormat({ month: "long" }),
@@ -33,7 +33,7 @@ const tokens = {
  * - `LLL` — standalone short month (`Jan`)
  * - `LLLL` — standalone full month (`January`)
  * - `LLLL yyyy` — month and year (`January 2025`)
- * - `cccccc` — standalone short weekday (`Su`)
+ * - `ccccc` — standalone narrow weekday (`S`)
  *
  * Add new tokens to the map above as components need them, rather than parsing
  * arbitrary format strings.
