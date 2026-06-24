@@ -130,23 +130,18 @@ export const Loading: Story = {
 };
 
 export const IconButton: Story = {
-  ...Appearance,
-  args: {
-    "aria-label": "Button",
-    icon: "arrow-drop-down",
-  },
-};
-
-export const IconSizes: Story = {
-  ...Appearance,
   args: {
     "aria-label": "Button",
     icon: "arrow-drop-down",
   },
   render: (args) => (
-    <Group gap="16">
-      {sizes.map(([size]) => (
-        <Button {...args} key={size} size={size} />
+    <Group flexDirection="column" gap="16">
+      {appearances.map((appearance) => (
+        <Group gap="16" key={appearance}>
+          {sizes.map(([size]) => (
+            <Button {...args} appearance={appearance} key={size} size={size} />
+          ))}
+        </Group>
       ))}
     </Group>
   ),
@@ -159,16 +154,37 @@ export const IconsWithText: Story = {
   },
   render: (args) => (
     <Group flexDirection="column" gap="16">
-      <Group gap="16">
-        {sizes.map(([size]) => (
-          <Button {...args} iconPosition="start" key={size} size={size} />
-        ))}
-      </Group>
-      <Group gap="16">
-        {sizes.map(([size]) => (
-          <Button {...args} iconPosition="end" key={size} size={size} />
-        ))}
-      </Group>
+      {appearances.map((appearance) => (
+        <Group
+          alignItems="center"
+          flexDirection="column"
+          gap="16"
+          key={appearance}
+        >
+          <Group gap="16">
+            {sizes.map(([size]) => (
+              <Button
+                {...args}
+                appearance={appearance}
+                iconPosition="start"
+                key={size}
+                size={size}
+              />
+            ))}
+          </Group>
+          <Group gap="16">
+            {sizes.map(([size]) => (
+              <Button
+                {...args}
+                appearance={appearance}
+                iconPosition="end"
+                key={size}
+                size={size}
+              />
+            ))}
+          </Group>
+        </Group>
+      ))}
     </Group>
   ),
 };
