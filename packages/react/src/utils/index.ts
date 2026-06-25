@@ -7,6 +7,7 @@ export * from "./formatDate";
 export * from "./isFocusCaptured";
 export * from "./isHoverSupported";
 export * from "./mapValues";
+export * from "./memoize";
 export * from "./onReactSelectInputBlur";
 export * from "./toInstant";
 export * from "./toPlainDate";

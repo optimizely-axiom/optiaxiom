@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { AxiomProvider } from "@optiaxiom/react";
 import { Calendar } from "@optiaxiom/react/unstable";
 
 export default {
@@ -33,4 +34,18 @@ export const Weekends: Story = {
       dayOfWeek: [0, 6],
     },
   },
+};
+
+export const Locale: Story = {
+  args: {
+    defaultValue: new Date("2025-01-22T00:00:00"),
+  },
+  parameters: {
+    useAxiomProvider: false,
+  },
+  render: (args) => (
+    <AxiomProvider locale="ar-EG">
+      <Calendar {...args} />
+    </AxiomProvider>
+  ),
 };

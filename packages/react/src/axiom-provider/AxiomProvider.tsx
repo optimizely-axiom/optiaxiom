@@ -8,6 +8,7 @@ import {
 import { version } from "../../package.json";
 import { DialogKitProvider } from "../dialog-kit/internals";
 import { FocusBookmarkProvider } from "../focus-bookmark";
+import { LocaleProvider } from "../locale";
 import { SuggestionProvider } from "../suggestion/internals";
 import { ThemeProvider } from "../theme-provider";
 import { ToastProvider } from "../toast";
@@ -21,6 +22,12 @@ export type AxiomProviderProps = {
    * {@link https://optimizely-axiom.github.io/optiaxiom/components/dialog/ Documentation}
    */
   dialog?: Omit<DialogKitProviderProps, "children">;
+  /**
+   * BCP-47 language tag (e.g. `"fr-FR"`) used to localize date/time components
+   * such as `Calendar`, `DateRangePicker`, `Clock`, and `Time`. Defaults to the
+   * browser locale.
+   */
+  locale?: string;
   /**
    * Props for the `ToastProvider` component
    *
@@ -56,9 +63,13 @@ interface TooltipProviderProps
 export function AxiomProvider({
   children,
   dialog,
+  locale,
   toast,
   tooltip,
 }: AxiomProviderProps) {
+  const resolvedLocale =
+    locale ?? (typeof navigator !== "undefined" ? navigator.language : "en-US");
+
   const axiom = useContext(AxiomVersionContext);
   if (!axiom) {
     children = (
@@ -74,12 +85,14 @@ export function AxiomProvider({
 
   return (
     <AxiomVersionContext.Provider value={version}>
-      <TooltipProvider {...tooltip}>
-        <FocusBookmarkProvider>
-          {children}
-          <DialogKitProvider {...dialog} />
-        </FocusBookmarkProvider>
-      </TooltipProvider>
+      <LocaleProvider locale={resolvedLocale}>
+        <TooltipProvider {...tooltip}>
+          <FocusBookmarkProvider>
+            {children}
+            <DialogKitProvider {...dialog} />
+          </FocusBookmarkProvider>
+        </TooltipProvider>
+      </LocaleProvider>
     </AxiomVersionContext.Provider>
   );
 }

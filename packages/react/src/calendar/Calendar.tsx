@@ -11,6 +11,7 @@ import { DayPicker, type Formatters, type Matcher } from "react-day-picker";
 import { Box, type BoxProps } from "../box";
 import { Clock } from "../clock";
 import { Group } from "../group";
+import { useLocaleContext } from "../locale";
 import { usePopoverContentContext } from "../popover/internals";
 import { Text } from "../text";
 import { formatDate, toInstant, toPlainDate, toPlainTime } from "../utils";
@@ -30,23 +31,17 @@ import { CalendarWeekday } from "./CalendarWeekday";
 import { CalendarWeekdays } from "./CalendarWeekdays";
 import { toTimeZoneName } from "./toTimeZoneName";
 
-const locale = new Intl.Locale(
-  typeof navigator !== "undefined" ? navigator.language : "en-US",
-);
-const weekInfo =
-  "getWeekInfo" in locale && typeof locale.getWeekInfo === "function"
-    ? (locale.getWeekInfo() as { firstDay: number })
-    : { firstDay: 0 };
-const weekStartsOn = (weekInfo.firstDay % 7) as 0 | 1 | 2 | 3 | 4 | 5 | 6;
-
 /**
- * Override `react-day-picker`'s default formatters with locale-aware ones so the
- * calendar localizes to the browser locale without a date-fns locale object.
+ * Derive the first day of the week from the locale via `Intl.Locale`, falling
+ * back to Sunday when `getWeekInfo` is unavailable.
  */
-const formatters: Partial<Formatters> = {
-  formatCaption: (month) => formatDate(month, "LLLL yyyy"),
-  formatDay: (day) => formatDate(day, "d"),
-  formatWeekdayName: (weekday) => formatDate(weekday, "ccccc"),
+const weekStartsOnFor = (locale: string) => {
+  const intlLocale = new Intl.Locale(locale);
+  const weekInfo =
+    "getWeekInfo" in intlLocale && typeof intlLocale.getWeekInfo === "function"
+      ? (intlLocale.getWeekInfo() as { firstDay: number })
+      : { firstDay: 0 };
+  return (weekInfo.firstDay % 7) as 0 | 1 | 2 | 3 | 4 | 5 | 6;
 };
 
 export type CalendarProps = BoxProps<
@@ -171,6 +166,18 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
     outerRef,
   ) => {
     const { side } = usePopoverContentContext("@optiaxiom/react/Calendar");
+    const { locale } = useLocaleContext("@optiaxiom/react/Calendar");
+
+    const weekStartsOn = weekStartsOnFor(locale);
+    /**
+     * Override `react-day-picker`'s default formatters with locale-aware ones so
+     * the calendar localizes without a date-fns locale object.
+     */
+    const formatters: Partial<Formatters> = {
+      formatCaption: (month) => formatDate(locale, month, "LLLL yyyy"),
+      formatDay: (day) => formatDate(locale, day, "d"),
+      formatWeekdayName: (weekday) => formatDate(locale, weekday, "ccccc"),
+    };
 
     const [view, setView] = useState<"day" | "month" | "year">("day");
     const [value, setValue] = useControllableState<Date | DateRange | null>({
@@ -341,6 +348,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                 w="full"
               >
                 {toTimeZoneName(
+                  locale,
                   value instanceof Date ? value : placeholderDate,
                 )}
               </Text>

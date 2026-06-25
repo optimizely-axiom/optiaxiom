@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
+import { useLocaleContext } from "../locale";
 import { formatDate } from "./formatDate";
 
 export type TimeProps = BoxProps<
@@ -31,10 +32,11 @@ export type TimeProps = BoxProps<
 export const Time = forwardRef<HTMLTimeElement, TimeProps>(
   ({ date, showDate = true, showTime, ...props }, ref) => {
     const { boxProps, restProps } = extractBoxProps(props);
+    const { locale } = useLocaleContext("@optiaxiom/react/Time");
 
     const parsed = date instanceof Date ? date : new Date(date ?? NaN);
     if (Number.isNaN(parsed.getTime())) return null;
-    const value = formatDate(parsed, { showDate, showTime });
+    const value = formatDate(locale, parsed, { showDate, showTime });
 
     return (
       <Box asChild {...boxProps}>

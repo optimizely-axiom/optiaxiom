@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
+  AxiomProvider,
   Box,
   Button,
   DateRangePicker,
@@ -83,6 +84,27 @@ export const DefaultValue: Story = {
       to: new Date("2025-02-16 00:00:00"),
     },
   },
+};
+
+export const Locale: Story = {
+  args: {
+    defaultOpen: true,
+    defaultValue: {
+      from: new Date("2025-01-22 00:00:00"),
+      to: new Date("2025-02-16 00:00:00"),
+    },
+  },
+  parameters: {
+    useAxiomProvider: false,
+  },
+  render: (args) => (
+    <AxiomProvider locale="ar-EG">
+      <DateRangePicker {...args}>
+        <DateRangePickerTrigger />
+        <DateRangePickerContent today={new Date("2025-01-24T00:00:00")} />
+      </DateRangePicker>
+    </AxiomProvider>
+  ),
 };
 
 export const Disabled: Story = {

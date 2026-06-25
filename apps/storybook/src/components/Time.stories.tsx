@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { AxiomProvider } from "@optiaxiom/react";
 import { Time } from "@optiaxiom/react/unstable";
 
 export default {
@@ -25,4 +26,19 @@ export const WithShowTime: Story = {
     date: "2025-01-22T14:30:00Z",
     showTime: true,
   },
+};
+
+export const Locale: Story = {
+  args: {
+    date: "2025-01-22T14:30:00Z",
+    showTime: true,
+  },
+  parameters: {
+    useAxiomProvider: false,
+  },
+  render: (args) => (
+    <AxiomProvider locale="ar-EG">
+      <Time {...args} />
+    </AxiomProvider>
+  ),
 };

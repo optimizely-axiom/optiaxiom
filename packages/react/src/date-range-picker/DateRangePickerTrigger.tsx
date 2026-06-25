@@ -5,14 +5,19 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Box } from "../box";
 import { useFieldLabelTrigger } from "../hooks";
+import { useLocaleContext } from "../locale";
 import { PopoverTrigger } from "../popover";
+import { memoize } from "../utils";
 import { useDateRangePickerContext } from "./DateRangePickerContext";
 
-const dateFormatter = new Intl.DateTimeFormat(undefined, {
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-});
+const dateFormatterFor = memoize(
+  (locale: string) =>
+    new Intl.DateTimeFormat(locale, {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    }),
+);
 
 export type DateRangePickerTriggerProps = ComponentPropsWithoutRef<
   typeof PopoverTrigger
@@ -48,12 +53,15 @@ export const DateRangePickerTrigger = forwardRef<
     const { disabled, triggerRef, value } = useDateRangePickerContext(
       "@optiaxiom/react/DateRangePickerTrigger",
     );
+    const { locale } = useLocaleContext(
+      "@optiaxiom/react/DateRangePickerTrigger",
+    );
 
     const id = useId();
     const ref = useComposedRefs(outerRef, triggerRef);
     const labelId = useFieldLabelTrigger(triggerRef, ariaLabelledBy);
 
-    const formatter = formatRange ? { formatRange } : dateFormatter;
+    const formatter = formatRange ? { formatRange } : dateFormatterFor(locale);
 
     return (
       <PopoverTrigger

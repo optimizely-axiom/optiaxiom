@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, DateInput, Field, Group, Text } from "@optiaxiom/react";
+import {
+  AxiomProvider,
+  Button,
+  DateInput,
+  Field,
+  Group,
+  Text,
+} from "@optiaxiom/react";
 import { useState } from "react";
 import { expect, screen, userEvent, waitFor } from "storybook/test";
 
@@ -132,6 +139,31 @@ export const Required: Story = {
         await expect(await screen.findByText("January 2025")).toBeVisible(),
     );
   },
+};
+
+export const Locale: Story = {
+  args: {
+    defaultValue: "2025-01-22T10:10",
+    step: "300",
+    type: "datetime-local",
+  },
+  parameters: {
+    useAxiomProvider: false,
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(
+      await canvas.findByRole("img", { name: "Show date picker" }),
+    );
+    await waitFor(
+      async () =>
+        await expect(await screen.findByText("يناير ٢٠٢٥")).toBeVisible(),
+    );
+  },
+  render: (args) => (
+    <AxiomProvider locale="ar-EG">
+      <DateInput {...args} />
+    </AxiomProvider>
+  ),
 };
 
 export const WithTime: Story = {

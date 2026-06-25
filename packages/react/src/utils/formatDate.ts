@@ -1,32 +1,33 @@
-/**
- * The browser's preferred locale, used to localize dates without requiring a
- * `locale` prop. Falls back to `en-US` when unavailable (e.g. SSR).
- */
-const language =
-  typeof navigator !== "undefined" ? navigator.language : "en-US";
+import { memoize } from "./memoize";
 
-const dateTimeFormat = (options: Intl.DateTimeFormatOptions) =>
-  new Intl.DateTimeFormat(language, options).format;
+const dateTimeFormat = (locale: string, options: Intl.DateTimeFormatOptions) =>
+  new Intl.DateTimeFormat(locale, options).format;
 /**
  * Bare numbers go through `NumberFormat` rather than `DateTimeFormat` because
  * the latter appends date-unit suffixes in some locales (e.g. `5日` in `zh`),
  * which we don't want for day/year cells.
  */
-const numberFormat = new Intl.NumberFormat(language, { useGrouping: false })
-  .format;
+const numberFormat = (locale: string) =>
+  new Intl.NumberFormat(locale, { useGrouping: false }).format;
 
-const tokens = {
-  ccccc: dateTimeFormat({ weekday: "narrow" }),
-  d: (date: Date) => numberFormat(date.getDate()),
-  LLL: dateTimeFormat({ month: "short" }),
-  LLLL: dateTimeFormat({ month: "long" }),
-  "LLLL yyyy": dateTimeFormat({ month: "long", year: "numeric" }),
-  yyyy: (date: Date) => numberFormat(date.getFullYear()),
-};
+const buildTokens = (locale: string) => ({
+  ccccc: dateTimeFormat(locale, { weekday: "narrow" }),
+  d: (date: Date) => numberFormat(locale)(date.getDate()),
+  LLL: dateTimeFormat(locale, { month: "short" }),
+  LLLL: dateTimeFormat(locale, { month: "long" }),
+  "LLLL yyyy": dateTimeFormat(locale, { month: "long", year: "numeric" }),
+  yyyy: (date: Date) => numberFormat(locale)(date.getFullYear()),
+});
 
 /**
- * A locale-aware `formatDate(date, token)` modeled on date-fns's `format`, but
- * backed by `Intl` and limited to the tokens we actually use:
+ * `Intl` formatter construction is expensive, so we memoize the token map per
+ * locale. The values are stable for a given locale.
+ */
+const tokensFor = memoize(buildTokens);
+
+/**
+ * A locale-aware `formatDate(locale, date, token)` modeled on date-fns's
+ * `format`, but backed by `Intl` and limited to the tokens we actually use:
  *
  * - `d` — day of month (`5`)
  * - `yyyy` — year (`2025`)
@@ -38,5 +39,8 @@ const tokens = {
  * Add new tokens to the map above as components need them, rather than parsing
  * arbitrary format strings.
  */
-export const formatDate = (date: Date, token: keyof typeof tokens) =>
-  tokens[token](date);
+export const formatDate = (
+  locale: string,
+  date: Date,
+  token: keyof ReturnType<typeof buildTokens>,
+) => tokensFor(locale)[token](date);

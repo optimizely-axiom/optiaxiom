@@ -4,6 +4,7 @@ import { IconAngleDown } from "@optiaxiom/icons";
 import { CaptionLabel } from "react-day-picker";
 
 import { Button } from "../button";
+import { useLocaleContext } from "../locale";
 import { formatDate } from "../utils";
 import { VisuallyHidden } from "../visually-hidden";
 import { useCalendarContext } from "./CalendarContext";
@@ -20,6 +21,7 @@ export function CalendarCaptionLabel({
   const { month, setView, view } = useCalendarContext(
     "@optiaxiom/react/CalendarCaptionLabel",
   );
+  const { locale } = useLocaleContext("@optiaxiom/react/CalendarCaptionLabel");
 
   return (
     <Button
@@ -37,11 +39,15 @@ export function CalendarCaptionLabel({
       <CaptionLabel {...props}>
         {view === "year" ? (
           <>
-            {formatDate(month, "yyyy")} -{" "}
-            {formatDate(withYear(month, month.getFullYear() + 11), "yyyy")}
+            {formatDate(locale, month, "yyyy")} -{" "}
+            {formatDate(
+              locale,
+              withYear(month, month.getFullYear() + 11),
+              "yyyy",
+            )}
           </>
         ) : view === "month" ? (
-          formatDate(month, "yyyy")
+          formatDate(locale, month, "yyyy")
         ) : (
           children
         )}

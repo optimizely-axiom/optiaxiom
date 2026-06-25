@@ -18,6 +18,14 @@ export function App() {
 }
 ```
 
+### Locale
+
+Use the `locale` prop to set a [BCP-47 language tag](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) used to localize date and time components such as `Calendar`, `DateRangePicker`, `Clock`, and `Time`. This controls their captions, weekday headers, week start, range text, AM/PM labels, and numbering system. When omitted, the browser locale is used.
+
+```jsx
+<AxiomProvider locale="fr-FR">{/* Your app code here */}</AxiomProvider>
+```
+
 ### Related
 
 <Cards items={["Toast", "Tooltip"]} />
@@ -29,6 +37,10 @@ export function App() {
 <PropsTable component="AxiomProvider" />
 
 ## Changelog
+
+### 3.1.2
+
+- Added the `locale` prop to override the locale used by date/time components
 
 ### 0.1.0
 
