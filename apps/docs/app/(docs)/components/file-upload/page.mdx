@@ -24,6 +24,7 @@ Capture file input from users with drag and drop.
 import {
   FileUpload,
   FileUploadDropzone,
+  FileUploadList,
   FileUploadTrigger,
 } from "@optiaxiom/react/unstable";
 
@@ -31,9 +32,18 @@ export default () => (
   <FileUpload>
     <FileUploadDropzone />
     <FileUploadTrigger />
+    <FileUploadList />
   </FileUpload>
 );
 ```
+
+### Multiple files
+
+`onFilesDrop` receives every selected file (`File[]`), so a single drop or selection can capture multiple files at once.
+
+### File list
+
+Use `FileUploadList` to preview the captured files. Pass the file items via the `items` prop, and handle removal with `onRemove`, which receives the removed item.
 
 ## Props
 
@@ -49,7 +59,15 @@ export default () => (
 
 <PropsTable component="FileUploadTrigger" />
 
+### FileUploadList
+
+<PropsTable component="FileUploadList" />
+
 ## Changelog
+
+### 1.9.30
+
+- Added the [`FileUploadList`](#file-list) component
 
 ### 1.6.0
 
