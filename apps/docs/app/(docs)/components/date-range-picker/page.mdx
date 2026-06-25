@@ -42,6 +42,10 @@ Use the `addonBefore` and `addonAfter` prop on `DateRangePickerContent` to add c
 
 <Demo component="date-range-picker/addon-usage" />
 
+### Localization
+
+The calendar is localized to the browser locale (via `navigator.language`) by default, which controls the captions, weekday headers, week start, and range text. Override the locale for the whole app by passing the `locale` prop to [AxiomProvider](../axiom-provider/#locale).
+
 ## Props
 
 ### DateRangePicker
@@ -96,6 +100,10 @@ Use the `addonBefore` and `addonAfter` prop on `DateRangePickerContent` to add c
 />
 
 ## Changelog
+
+### 3.1.0
+
+- Added [localization](#localization) support
 
 ### 1.4.0
 

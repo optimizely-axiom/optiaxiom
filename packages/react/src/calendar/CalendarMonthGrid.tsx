@@ -2,17 +2,13 @@ import { type ComponentPropsWithoutRef, useEffect, useRef } from "react";
 import { MonthGrid } from "react-day-picker";
 
 import { Box } from "../box";
+import { useLocaleContext } from "../locale";
 import { formatDate } from "../utils";
 import { useCalendarContext } from "./CalendarContext";
 import { CalendarGrid } from "./CalendarGrid";
 import { withMonth, withYear } from "./utils";
 
 export type CalendarMonthGridProps = ComponentPropsWithoutRef<typeof MonthGrid>;
-
-const months = Array.from({ length: 12 }, (_, month) => {
-  const date = new Date(2000, month, 1);
-  return [formatDate(date, "LLL"), formatDate(date, "LLLL")] as const;
-});
 
 export function CalendarMonthGrid({
   children,
@@ -21,6 +17,15 @@ export function CalendarMonthGrid({
   const { month, setMonth, setView, view } = useCalendarContext(
     "@optiaxiom/react/CalendarMonthGrid",
   );
+  const { locale } = useLocaleContext("@optiaxiom/react/CalendarMonthGrid");
+
+  const months = Array.from({ length: 12 }, (_, month) => {
+    const date = new Date(2000, month, 1);
+    return [
+      formatDate(locale, date, "LLL"),
+      formatDate(locale, date, "LLLL"),
+    ] as const;
+  });
 
   const ref = useRef<HTMLDivElement>(null);
   const lastMonthRef = useRef<Date>();
@@ -70,13 +75,14 @@ export function CalendarMonthGrid({
         ) ?? [],
       );
       const focusedDay =
-        days.find((day) => day.textContent === formatDate(month, "d")) ??
-        days[0];
+        days.find(
+          (day) => day.textContent === formatDate(locale, month, "d"),
+        ) ?? days[0];
       focusedDay?.focus();
     }
     lastMonthRef.current = month;
     lastViewRef.current = view;
-  }, [month, view]);
+  }, [locale, month, view]);
 
   if (view === "year") {
     return (
@@ -90,6 +96,7 @@ export function CalendarMonthGrid({
         }}
         options={Array.from({ length: 12 }).map((_, index) => {
           const year = formatDate(
+            locale,
             withYear(month, month.getFullYear() + index),
             "yyyy",
           );

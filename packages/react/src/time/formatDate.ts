@@ -19,8 +19,12 @@ const options: Record<string, Intl.DateTimeFormatOptions> = {
   },
 };
 
-export function formatDate(date: Date, { showDate = true, showTime = false }) {
-  return date.toLocaleString(["default", "en-US"], {
+export function formatDate(
+  locale: string,
+  date: Date,
+  { showDate = true, showTime = false },
+) {
+  return date.toLocaleString([locale, "en-US"], {
     ...(showDate ? options.date : {}),
     ...(showTime ? options.time : {}),
   });

@@ -4,6 +4,7 @@ import { forwardRef } from "react";
 import type { BoxProps } from "../box";
 
 import { Group } from "../group";
+import { useLocaleContext } from "../locale";
 import { Select, SelectContent, SelectTrigger } from "../select";
 import {
   format,
@@ -47,6 +48,9 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
     },
     ref,
   ) => {
+    const { locale } = useLocaleContext("@optiaxiom/react/Clock");
+    const hour24 = is24Hour(locale);
+
     const [value, setValue] = useControllableState({
       caller: "@optiaxiom/react/Clock",
       defaultProp: defaultValue,
@@ -55,9 +59,9 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
     });
     const stepInMinutes =
       (typeof step === "string" ? parseInt(step) : step) / 60;
-    const parsed = parse(value, stepInMinutes);
+    const parsed = parse(hour24, value, stepInMinutes);
 
-    const hours = is24Hour
+    const hours = hour24
       ? range(0, 23).map((hour) => hour.padStart(2, "0"))
       : range(1, 12);
     const minutes = range(0, 59, stepInMinutes).map((minute) =>
@@ -69,9 +73,12 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
       <Group gap="4" ref={ref} {...props}>
         <Select
           onValueChange={(hour) =>
-            hour && setValue(format({ ...parsed, hour }))
+            hour && setValue(format(hour24, { ...parsed, hour }))
           }
-          options={hours.map((hour) => ({ label: toLabel(hour), value: hour }))}
+          options={hours.map((hour) => ({
+            label: toLabel(locale, hour),
+            value: hour,
+          }))}
           value={parsed.hour}
         >
           <SelectTrigger aria-label="Select hour" flex="1" placeholder="HH" />
@@ -79,11 +86,11 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
         </Select>
         <Select
           onValueChange={(minute) =>
-            minute && setValue(format({ ...parsed, minute }))
+            minute && setValue(format(hour24, { ...parsed, minute }))
           }
           options={minutes.map((minute) => ({
             ariaLabel: `${parseInt(minute)}`,
-            label: toLabel(minute),
+            label: toLabel(locale, minute),
             value: minute,
           }))}
           value={parsed.minute}
@@ -91,14 +98,14 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
           <SelectTrigger aria-label="Select minute" flex="1" placeholder="MM" />
           <SelectContent />
         </Select>
-        {!is24Hour && (
+        {!hour24 && (
           <Select
             onValueChange={(meridiem) =>
               (meridiem === "AM" || meridiem === "PM") &&
-              setValue(format({ ...parsed, meridiem }))
+              setValue(format(hour24, { ...parsed, meridiem }))
             }
             options={periods.map((period) => ({
-              label: toMeridiemLabel(period),
+              label: toMeridiemLabel(locale, period),
               value: period,
             }))}
             value={parsed.meridiem}

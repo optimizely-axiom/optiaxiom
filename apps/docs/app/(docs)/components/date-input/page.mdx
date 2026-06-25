@@ -85,6 +85,10 @@ Use the `type` prop to switch between `date` and `datetime-local` inputs.
 
 <Demo component="date-input/time-usage" />
 
+### Localization
+
+The calendar popover is localized to the browser locale (via `navigator.language`) by default, which controls the captions, weekday headers, week start, and AM/PM labels. Override the locale for the whole app by passing the `locale` prop to [AxiomProvider](../axiom-provider/#locale).
+
 ### Weekend
 
 Use the `weekend` prop to provide one or more matchers to denote weekends on the calendar.
@@ -148,6 +152,10 @@ The `holiday` and `weekend` props support various matcher types including specif
 />
 
 ## Changelog
+
+### 3.1.0
+
+- Added [localization](#localization) support
 
 ### 1.4.0
 

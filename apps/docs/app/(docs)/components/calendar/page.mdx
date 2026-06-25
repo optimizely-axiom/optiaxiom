@@ -13,6 +13,10 @@ Base date picker component.
 
 <Demo component="calendar/usage" />
 
+### Localization
+
+The calendar is localized to the browser locale (via `navigator.language`) by default, which controls the captions, weekday headers, and which day the week starts on. Override the locale for the whole app by passing the `locale` prop to [AxiomProvider](../axiom-provider/#locale).
+
 ## Props
 
 ### Calendar
@@ -52,6 +56,10 @@ Base date picker component.
 />
 
 ## Changelog
+
+### 3.1.0
+
+- Added [localization](#localization) support
 
 ### 0.12.1
 
