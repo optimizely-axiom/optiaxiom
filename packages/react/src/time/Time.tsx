@@ -8,6 +8,7 @@ export type TimeProps = BoxProps<
   {
     /**
      * The date to display. Can be a `Date` object or an ISO 8601 string.
+     * Unparseable values render nothing at runtime instead of throwing.
      */
     date: Date | string;
     /**
@@ -31,14 +32,13 @@ export const Time = forwardRef<HTMLTimeElement, TimeProps>(
   ({ date, showDate = true, showTime, ...props }, ref) => {
     const { boxProps, restProps } = extractBoxProps(props);
 
-    if (typeof date === "string") {
-      date = new Date(date);
-    }
-    const value = formatDate(date, { showDate, showTime });
+    const parsed = date instanceof Date ? date : new Date(date ?? NaN);
+    if (Number.isNaN(parsed.getTime())) return null;
+    const value = formatDate(parsed, { showDate, showTime });
 
     return (
       <Box asChild {...boxProps}>
-        <time dateTime={date.toISOString()} ref={ref} {...restProps}>
+        <time dateTime={parsed.toISOString()} ref={ref} {...restProps}>
           {value}
         </time>
       </Box>
