@@ -1,5 +1,21 @@
 # @optiaxiom/react
 
+## 3.1.2
+
+### Patch Changes
+
+- 01df15a: Added a `locale` prop to `AxiomProvider` (a BCP-47 language tag, e.g. `"fr-FR"`) to override the locale used by date/time components. Previously `Calendar`, `DateRangePicker`, `Clock`, and `Time` always localized to the browser locale with no way to configure it; now their captions, weekday headers, month/year grids, week start, range text, AM/PM labels, digit numbering system, and timezone label follow the provided locale. When omitted, behavior is unchanged and still follows the browser locale.
+- 13068ed: Fixed large primary `Button` reserving extra left padding when it has no leading icon. The tightened left padding now only applies when an icon or addon precedes the label.
+- 89a3864: remove the unused root CommonJS shims (`@optiaxiom/globals/fonts.js` and `@optiaxiom/react/unstable.js`) — these subpaths resolve through the package `exports` map, which every supported bundler and Node version honors
+- bb2c17e: fix large primary button padding
+- e323505: move `RichTextEditor` to its own entrypoint so importing from the main barrel no longer pulls in `@tiptap/*`. Consumers who don't use the editor no longer need the tiptap peer dependencies (now marked optional). Import the editor via `import { RichTextEditor } from "@optiaxiom/react/editor"`. Also corrected the `@optiaxiom/react/css-runtime` CommonJS export to point at the file that is actually built.
+
+  `ax-rich-text-editor` is removed from `@optiaxiom/web-components` for now while the editor lives behind the dedicated entrypoint.
+
+- 4497398: fix `Time` crash when `date` is `undefined`, `null`, or an unparseable string — these now render nothing instead of throwing
+- Updated dependencies [89a3864]
+  - @optiaxiom/globals@3.0.5
+
 ## 3.1.1
 
 ### Patch Changes

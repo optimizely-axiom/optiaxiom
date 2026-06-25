@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 3.0.5
+
+### Patch Changes
+
+- 89a3864: remove the unused root CommonJS shims (`@optiaxiom/globals/fonts.js` and `@optiaxiom/react/unstable.js`) — these subpaths resolve through the package `exports` map, which every supported bundler and Node version honors
+
 ## 3.0.4
 
 ### Patch Changes
