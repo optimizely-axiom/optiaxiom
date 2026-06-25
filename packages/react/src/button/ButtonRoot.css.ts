@@ -87,7 +87,7 @@ export const buttonBase = recipe({
       borderRadius: theme.borderRadius.md,
       cursor: "pointer",
       fontFamily:
-        "DI Grotesk B, Roboto Condensed Variable, system-ui, sans-serif",
+        "Die Grotesk B, DI Grotesk B, Roboto Condensed Variable, system-ui, sans-serif",
       paddingInline: paddingInlineVar,
       position: "relative",
       textDecoration: "none",
