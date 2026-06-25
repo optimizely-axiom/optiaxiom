@@ -322,14 +322,10 @@ export const buttonBase = recipe({
   },
   variantsCompounded: [
     {
-      style: [
-        {
-          pl: "6",
-        },
-        style({
-          borderRadius: theme.borderRadius.lg,
-        }),
-      ],
+      style: style({
+        borderRadius: theme.borderRadius.lg,
+        paddingLeft: `calc(6px - ${borderWidthVar})`,
+      }),
       variants: {
         intent: "primary",
         size: "lg",
