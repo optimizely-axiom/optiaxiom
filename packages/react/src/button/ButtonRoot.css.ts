@@ -57,6 +57,15 @@ const opalRing = (width: string) =>
 
 export const paddingInlineVar = createVar();
 
+// Every addon state that renders a label (i.e. not an icon-only/square button).
+// These share the same inline padding and sizing.
+const withLabel: Array<"both" | "end" | "none" | "start"> = [
+  "both",
+  "end",
+  "none",
+  "start",
+];
+
 export const className = style({});
 
 export const buttonBase = recipe({
@@ -98,6 +107,17 @@ export const buttonBase = recipe({
     }),
   ],
   variants: {
+    /**
+     * Which addons sit alongside the button label, or `only` for an icon-only
+     * (square) button with no label.
+     */
+    addon: {
+      both: {},
+      end: {},
+      none: {},
+      only: {},
+      start: {},
+    },
     intent: {
       danger: style({
         vars: {
@@ -157,13 +177,6 @@ export const buttonBase = recipe({
         fontSize: "lg",
         h: "lg",
       },
-    },
-    /**
-     * Whether button should have square shape.
-     */
-    square: {
-      false: {},
-      true: {},
     },
     variant: {
       outline: style({
@@ -324,12 +337,22 @@ export const buttonBase = recipe({
     {
       style: style({
         borderRadius: theme.borderRadius.lg,
+      }),
+      variants: {
+        addon: withLabel,
+        intent: "primary",
+        size: "lg",
+        variant: "strong",
+      },
+    },
+    {
+      style: style({
         paddingLeft: `calc(6px - ${borderWidthVar})`,
       }),
       variants: {
+        addon: ["both", "start"],
         intent: "primary",
         size: "lg",
-        square: false,
         variant: "strong",
       },
     },
@@ -338,8 +361,8 @@ export const buttonBase = recipe({
         w: "sm",
       },
       variants: {
+        addon: "only",
         size: "sm",
-        square: true,
       },
     },
     {
@@ -349,8 +372,8 @@ export const buttonBase = recipe({
         },
       }),
       variants: {
+        addon: withLabel,
         size: "sm",
-        square: false,
         variant: ["outline", "strong", "subtle"],
       },
     },
@@ -364,8 +387,8 @@ export const buttonBase = recipe({
         },
       }),
       variants: {
+        addon: withLabel,
         size: "sm",
-        square: false,
         variant: "outline-opal",
       },
     },
@@ -374,8 +397,8 @@ export const buttonBase = recipe({
         w: "md",
       },
       variants: {
+        addon: "only",
         size: "md",
-        square: true,
       },
     },
     {
@@ -385,8 +408,8 @@ export const buttonBase = recipe({
         },
       }),
       variants: {
+        addon: withLabel,
         size: "md",
-        square: false,
       },
     },
     {
@@ -394,8 +417,8 @@ export const buttonBase = recipe({
         w: "lg",
       },
       variants: {
+        addon: "only",
         size: "lg",
-        square: true,
       },
     },
     {
@@ -405,8 +428,8 @@ export const buttonBase = recipe({
         },
       }),
       variants: {
+        addon: withLabel,
         size: "lg",
-        square: false,
       },
     },
   ],

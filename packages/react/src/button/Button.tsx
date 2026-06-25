@@ -140,6 +140,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       );
     });
 
+    const addon = square
+      ? "only"
+      : addonBefore && addonAfter
+        ? "both"
+        : addonBefore
+          ? "start"
+          : addonAfter
+            ? "end"
+            : "none";
+
     const isIconMissingAriaLabel = isIconOnly && !props["aria-label"];
     useEffect(() => {
       if (isIconMissingAriaLabel) {
@@ -151,6 +161,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <ButtonRoot
+        addon={addon}
         asChild
         justifyContent={
           square
@@ -167,7 +178,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         }}
         ref={ref}
         size={size}
-        square={square}
         {...props}
       >
         <Comp>{children}</Comp>

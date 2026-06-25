@@ -39,7 +39,14 @@ export type ButtonRootProps<
 > = BoxProps<
   T,
   ExtendProps<
-    Omit<NonNullable<styles.ButtonVariants>, "intent" | "variant"> & {
+    Omit<NonNullable<styles.ButtonVariants>, "addon" | "intent" | "variant"> & {
+      /**
+       * Which addons sit alongside the button label. Set internally by `Button`
+       * based on the leading/trailing content.
+       *
+       * @internal
+       */
+      addon?: NonNullable<styles.ButtonVariants>["addon"];
       /**
        * Control the appearance by selecting between the different button types.
        */
@@ -53,6 +60,11 @@ export type ButtonRootProps<
        */
       loading?: boolean;
       /**
+       * Whether button should have square shape (an icon-only button with no
+       * label).
+       */
+      square?: boolean;
+      /**
        * The default behavior of the button.
        */
       type?: "button" | "reset" | "submit" | undefined;
@@ -64,6 +76,7 @@ export type ButtonRootProps<
 export const ButtonRoot = forwardRef<HTMLButtonElement, ButtonRootProps>(
   (
     {
+      addon = "none",
       appearance = "default",
       asChild,
       children,
@@ -92,9 +105,9 @@ export const ButtonRoot = forwardRef<HTMLButtonElement, ButtonRootProps>(
         data-loading={loading ? "" : undefined}
         {...styles.buttonBase(
           {
+            addon: square ? "only" : addon,
             intent,
             size,
-            square: Boolean(square),
             variant,
           },
           className,
