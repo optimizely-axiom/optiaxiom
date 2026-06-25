@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 3.1.3
+
+### Patch Changes
+
+- 3f28c49: fix font name in button
+
 ## 3.1.2
 
 ### Patch Changes
