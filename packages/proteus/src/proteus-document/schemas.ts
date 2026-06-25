@@ -15,7 +15,6 @@ import type {
   HeadingProps,
   InputProps,
   LinkProps,
-  RichTextEditorProps,
   SelectContentProps,
   SelectTriggerProps,
   SeparatorProps,
@@ -23,6 +22,7 @@ import type {
   TextareaProps,
   TextProps,
 } from "@optiaxiom/react";
+import type { RichTextEditorProps } from "@optiaxiom/react/editor";
 import type { RangeProps, TimeProps } from "@optiaxiom/react/unstable";
 
 import { Validator } from "@cfworker/json-schema";

@@ -27,6 +27,7 @@ const external = new RegExp(
 export default defineConfig([
   ...getConfig({
     input: {
+      editor: "src/editor.ts",
       index: "src/index.ts",
       unstable: "src/unstable.ts",
     },

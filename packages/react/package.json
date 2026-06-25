@@ -22,7 +22,12 @@
     "./css-runtime": {
       "types": "./dist/css-runtime.d.ts",
       "import": "./dist/esm/css-runtime.js",
-      "require": "./dist/cjs/css-runtime.cjs"
+      "require": "./dist/cjs/css-runtime.js"
+    },
+    "./editor": {
+      "types": "./dist/editor.d.ts",
+      "import": "./dist/esm/editor.js",
+      "require": "./dist/cjs/editor.js"
     },
     "./package.json": "./package.json",
     "./unstable": {
@@ -115,5 +120,34 @@
     "@tiptap/starter-kit": "^2.10.3",
     "react": "^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
     "react-dom": "^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@tiptap/extension-link": {
+      "optional": true
+    },
+    "@tiptap/extension-placeholder": {
+      "optional": true
+    },
+    "@tiptap/extension-table": {
+      "optional": true
+    },
+    "@tiptap/extension-table-cell": {
+      "optional": true
+    },
+    "@tiptap/extension-table-header": {
+      "optional": true
+    },
+    "@tiptap/extension-table-row": {
+      "optional": true
+    },
+    "@tiptap/pm": {
+      "optional": true
+    },
+    "@tiptap/react": {
+      "optional": true
+    },
+    "@tiptap/starter-kit": {
+      "optional": true
+    }
   }
 }

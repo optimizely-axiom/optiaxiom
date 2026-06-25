@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Group, RichTextEditor, Text } from "@optiaxiom/react";
+import { Group, Text } from "@optiaxiom/react";
+import { RichTextEditor } from "@optiaxiom/react/editor";
 import { useState } from "react";
 
 export default {
