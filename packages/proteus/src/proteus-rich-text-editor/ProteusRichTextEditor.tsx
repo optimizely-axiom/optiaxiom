@@ -1,4 +1,7 @@
-import { RichTextEditor, type RichTextEditorProps } from "@optiaxiom/react";
+import {
+  RichTextEditor,
+  type RichTextEditorProps,
+} from "@optiaxiom/react/editor";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";

@@ -41,7 +41,6 @@ export * from "./paper";
 export * from "./popover";
 export * from "./progress";
 export * from "./radio";
-export * from "./rich-text-editor";
 export * from "./search-input";
 export * from "./segmented-control";
 export * from "./select";
