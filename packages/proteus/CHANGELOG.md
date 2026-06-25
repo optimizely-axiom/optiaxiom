@@ -1,5 +1,21 @@
 # @optiaxiom/proteus
 
+## 3.0.6
+
+### Patch Changes
+
+- e323505: move `RichTextEditor` to its own entrypoint so importing from the main barrel no longer pulls in `@tiptap/*`. Consumers who don't use the editor no longer need the tiptap peer dependencies (now marked optional). Import the editor via `import { RichTextEditor } from "@optiaxiom/react/editor"`. Also corrected the `@optiaxiom/react/css-runtime` CommonJS export to point at the file that is actually built.
+
+  `ax-rich-text-editor` is removed from `@optiaxiom/web-components` for now while the editor lives behind the dedicated entrypoint.
+
+- Updated dependencies [01df15a]
+- Updated dependencies [13068ed]
+- Updated dependencies [89a3864]
+- Updated dependencies [bb2c17e]
+- Updated dependencies [e323505]
+- Updated dependencies [4497398]
+  - @optiaxiom/react@3.1.2
+
 ## 3.0.5
 
 ### Patch Changes
