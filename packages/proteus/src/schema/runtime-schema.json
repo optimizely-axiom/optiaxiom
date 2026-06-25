@@ -4901,7 +4901,7 @@
             { "type": "string" },
             { "$ref": "#/definitions/ProteusExpression" }
           ],
-          "description": "The date to display. Can be a `Date` object or an ISO 8601 string."
+          "description": "The date to display. Can be a `Date` object or an ISO 8601 string.\nUnparseable values render nothing at runtime instead of throwing."
         },
         "display": { "$ref": "#/definitions/SprinkleProp_display" },
         "flex": { "$ref": "#/definitions/SprinkleProp_flex" },
