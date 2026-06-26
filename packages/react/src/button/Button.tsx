@@ -20,6 +20,13 @@ export type ButtonProps<
   ExtendProps<
     {
       /**
+       * Internal prop set by `Button` based on leading/trailing content - not
+       * available to consumers.
+       *
+       * @internal
+       */
+      addon?: never;
+      /**
        * Display content inside the button after `children`.
        */
       addonAfter?: ReactNode;
