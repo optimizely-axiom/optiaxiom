@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 3.1.4
+
+### Patch Changes
+
+- f76edf6: Removed the internal `addon` prop from the public `Button` type. It is set internally based on leading/trailing content and was never meant for consumers.
+
 ## 3.1.3
 
 ### Patch Changes
