@@ -8,12 +8,13 @@ const __dirname = dirname(__filename);
 /**
  * @typedef {import('@optiaxiom/shared').Prop} PropItem
  * @typedef {import('../src/types.js').Example} Example
+ * @typedef {import('../src/types.js').ExampleFile} ExampleFile
  * @typedef {import('../src/types.js').PropDefinition} PropDefinition
  */
 
 /**
  * Extract Axiom component names imported from @optiaxiom/react across all files in an example.
- * @param {Record<string, string>} code - Mapping of filename to file contents
+ * @param {ExampleFile[]} code - The example's source files
  * @returns {string[]}
  */
 export function extractAxiomImports(code) {
@@ -22,9 +23,9 @@ export function extractAxiomImports(code) {
   const importPattern =
     /import\s*\{([^}]+)\}\s*from\s*["']@optiaxiom\/react(?:\/[^"']+)?["']/g;
 
-  for (const source of Object.values(code)) {
+  for (const { content } of code) {
     let match;
-    while ((match = importPattern.exec(source)) !== null) {
+    while ((match = importPattern.exec(content)) !== null) {
       for (const name of match[1].split(",")) {
         const trimmed = name.trim();
         if (trimmed) {
@@ -50,7 +51,11 @@ export async function parseDemosFromFiles(componentName) {
   );
 
   try {
-    const folders = await readdir(demosPath, { withFileTypes: true });
+    // Sort so generated output is deterministic across platforms (readdir
+    // order is filesystem-dependent).
+    const folders = (await readdir(demosPath, { withFileTypes: true })).sort(
+      (a, b) => a.name.localeCompare(b.name),
+    );
     /** @type {Example[]} */
     const examples = [];
 
@@ -62,26 +67,32 @@ export async function parseDemosFromFiles(componentName) {
       const folderPath = join(demosPath, folder.name);
 
       try {
-        // Read all files in the demo folder
-        const files = await readdir(folderPath, { withFileTypes: true });
-        /** @type {Record<string, string>} */
-        const code = {};
+        const files = (await readdir(folderPath, { withFileTypes: true }))
+          .filter(
+            (file) =>
+              file.isFile() &&
+              (file.name.endsWith(".tsx") ||
+                file.name.endsWith(".ts") ||
+                file.name.endsWith(".css")),
+          )
+          // App.tsx first, then alphabetical — fixes the display order.
+          .sort((a, b) => {
+            if (a.name === "App.tsx") return -1;
+            if (b.name === "App.tsx") return 1;
+            return a.name.localeCompare(b.name);
+          });
 
+        /** @type {ExampleFile[]} */
+        const code = [];
         for (const file of files) {
-          if (
-            file.isFile() &&
-            (file.name.endsWith(".tsx") ||
-              file.name.endsWith(".ts") ||
-              file.name.endsWith(".css"))
-          ) {
-            const filePath = join(folderPath, file.name);
-            const content = await readFile(filePath, "utf-8");
-            code[file.name] = content;
-          }
+          code.push({
+            content: await readFile(join(folderPath, file.name), "utf-8"),
+            filename: file.name,
+          });
         }
 
         // Only add if we found at least one file
-        if (Object.keys(code).length > 0) {
+        if (code.length > 0) {
           examples.push({
             code,
             components: extractAxiomImports(code),
@@ -120,7 +131,7 @@ export function parseLightDark(value) {
  */
 export function parsePropDefinition(prop) {
   let type = prop.type.raw || prop.type.name || "unknown";
-  /** @type {Array<number | string> | undefined} */
+  /** @type {Array<boolean | number | string> | undefined} */
   let extractedValues = undefined;
 
   // Helper to parse a value (handles JSON-stringified values)

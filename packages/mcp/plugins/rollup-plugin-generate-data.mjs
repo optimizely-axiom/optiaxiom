@@ -1,3 +1,8 @@
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { format } from "oxfmt";
+
 import {
   generateComponents,
   generateGuides,
@@ -8,29 +13,34 @@ import {
 
 /** @returns {import('rolldown').Plugin} */
 export function generateDataPlugin() {
-  const prefix = "\0virtual:mcp-data/";
+  const dataFile = path.join(
+    path.dirname(fileURLToPath(import.meta.url)),
+    "../src/data.json",
+  );
 
   return {
     name: "mcp:generate-data",
 
-    resolveId(id) {
-      if (id === "#mcp/data") {
-        return prefix + "index";
-      }
-      return null;
-    },
-
     async load(id) {
-      if (!id.startsWith(prefix)) {
+      if (id !== dataFile) {
         return null;
       }
 
-      return `export const components = ${JSON.stringify(await generateComponents())};
-export const guides = ${JSON.stringify(await generateGuides())};
-export const icons = ${JSON.stringify(await generateIcons())};
-export const tests = ${JSON.stringify(await generateTests())};
-export const tokens = ${JSON.stringify(await generateTokens())};
-`;
+      // Regenerate the committed data on every build and write it back to
+      // source. A `git diff --exit-code` in CI then fails when a change to
+      // react/globals/shared alters the data without it being committed.
+      const data = {
+        components: await generateComponents(),
+        guides: await generateGuides(),
+        icons: await generateIcons(),
+        tests: await generateTests(),
+        tokens: await generateTokens(),
+      };
+      const code = (await format(id, JSON.stringify(data), { printWidth: 80 }))
+        .code;
+      fs.writeFileSync(id, code);
+
+      return code;
     },
   };
 }
