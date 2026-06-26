@@ -33,11 +33,14 @@ jobs:
       - run: |
           pnpm build
           pnpm --silent bundle-size > bundle-size-base.json
+          pnpm --silent changeset-drift snapshot > changeset-drift-base.json
 
       - uses: actions/upload-artifact@v7
         with:
           if-no-files-found: error
-          path: bundle-size-base.json
+          path: |
+            bundle-size-base.json
+            changeset-drift-base.json
 
       - uses: actions/checkout@v6
 
@@ -59,6 +62,7 @@ jobs:
           echo ${{ github.event.number }} > ./pr/ID
           pnpm build
           pnpm --silent bundle-size compare bundle-size-base.json > ./pr/bundle-size.md
+          pnpm --silent changeset-drift compare changeset-drift-base.json > ./pr/changeset-drift.md || true
 
       - uses: actions/upload-artifact@v7
         with:
