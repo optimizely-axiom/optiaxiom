@@ -8,6 +8,7 @@
   "scripts": {
     "build": "pnpm -F \"./packages/**\" build",
     "bundle-size": "oas-bundle-size",
+    "changeset-drift": "oas-changeset-drift",
     "design-tokens": "oas-design-tokens",
     "dev": "pnpm run --parallel -F !web-components dev",
     "dev:docs": "pnpm -F docs... --parallel dev",

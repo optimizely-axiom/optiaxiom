@@ -59,6 +59,7 @@ jobs:
           echo ${{ github.event.number }} > ./pr/ID
           pnpm build
           pnpm --silent bundle-size compare bundle-size-base.json > ./pr/bundle-size.md
+          pnpm --silent changeset-drift > ./pr/changeset-drift.md || true
 
       - uses: actions/upload-artifact@v7
         with:
