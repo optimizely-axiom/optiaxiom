@@ -12,7 +12,7 @@ const external = new RegExp(
 export default defineConfig([
   {
     external,
-    input: "src/index.ts",
+    input: ["src/index.ts", "src/data.ts"],
     output: {
       dir: "dist",
       format: "es",
@@ -27,7 +27,7 @@ export default defineConfig([
     },
   },
   {
-    input: "src/index.ts",
+    input: ["src/index.ts", "src/data.ts"],
     output: {
       dir: "dist",
       format: "es",

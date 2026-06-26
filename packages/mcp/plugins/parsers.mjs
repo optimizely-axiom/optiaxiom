@@ -50,7 +50,9 @@ export async function parseDemosFromFiles(componentName) {
   );
 
   try {
-    const folders = await readdir(demosPath, { withFileTypes: true });
+    const folders = (await readdir(demosPath, { withFileTypes: true })).sort(
+      (a, b) => a.name.localeCompare(b.name),
+    );
     /** @type {Example[]} */
     const examples = [];
 
@@ -63,7 +65,9 @@ export async function parseDemosFromFiles(componentName) {
 
       try {
         // Read all files in the demo folder
-        const files = await readdir(folderPath, { withFileTypes: true });
+        const files = (await readdir(folderPath, { withFileTypes: true })).sort(
+          (a, b) => a.name.localeCompare(b.name),
+        );
         /** @type {Record<string, string>} */
         const code = {};
 

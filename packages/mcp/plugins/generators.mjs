@@ -252,7 +252,9 @@ export async function generateTests() {
 
   /** @param {string} dir */
   async function walk(dir) {
-    const entries = await readdir(dir, { withFileTypes: true });
+    const entries = (await readdir(dir, { withFileTypes: true })).sort((a, b) =>
+      a.name.localeCompare(b.name),
+    );
     for (const entry of entries) {
       const fullPath = join(dir, entry.name);
       if (entry.isDirectory()) {
