@@ -66,15 +66,19 @@ export interface DesignTokens {
  * Code example
  */
 export interface Example {
-  /**
-   * Source code for this example.
-   * Object mapping filename to file contents (e.g., { "App.tsx": "...", "utils.ts": "..." })
-   */
-  code: Record<string, string>;
+  /** Source files for this example, in display order (App.tsx first). */
+  code: ExampleFile[];
   /** Axiom component names imported in this example */
   components: string[];
   /** Example title */
   title: string;
+}
+
+export interface ExampleFile {
+  /** File contents */
+  content: string;
+  /** File name (e.g. "App.tsx") */
+  filename: string;
 }
 
 /**
@@ -110,13 +114,13 @@ export interface PropDefinition {
   /** If deprecated, migration info */
   deprecated?: DeprecationInfo;
   /** Description of what this prop does */
-  description: string | undefined;
+  description?: string;
   /** Is this prop required? */
   required?: boolean;
   /** TypeScript type */
   type: string;
   /** For enum types, possible values */
-  values?: Array<number | string>;
+  values?: Array<boolean | number | string>;
 }
 
 /**

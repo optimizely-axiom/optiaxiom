@@ -125,12 +125,19 @@ jobs:
 
       - run: pnpm exec playwright install chromium
 
-      - run: pnpm -F icons... -F proteus... -F web-components... build
+      - run: pnpm -F icons... -F proteus... -F web-components... -F mcp... build
 
       - name: Check schema files are up-to-date
         run: |
           git diff --exit-code packages/proteus/src/schema/public-schema.json packages/proteus/src/schema/runtime-schema.json || {
             echo "Error: Schema files are out of date. Please run 'pnpm -F proteus build' and commit the changes."
+            exit 1
+          }
+
+      - name: Check MCP data is up-to-date
+        run: |
+          git diff --exit-code packages/mcp/src/data.json || {
+            echo "Error: MCP data is out of date. Please run 'pnpm -F mcp build', commit the changes, and add an @optiaxiom/mcp changeset."
             exit 1
           }
 

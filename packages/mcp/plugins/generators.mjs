@@ -252,7 +252,10 @@ export async function generateTests() {
 
   /** @param {string} dir */
   async function walk(dir) {
-    const entries = await readdir(dir, { withFileTypes: true });
+    // Sort for deterministic output (readdir order is filesystem-dependent).
+    const entries = (await readdir(dir, { withFileTypes: true })).sort((a, b) =>
+      a.name.localeCompare(b.name),
+    );
     for (const entry of entries) {
       const fullPath = join(dir, entry.name);
       if (entry.isDirectory()) {
@@ -334,7 +337,10 @@ export async function generateTokens() {
  * @returns {string[]}
  */
 function extractTestComponents(name, source) {
-  const components = new Set([name, ...extractAxiomImports({ source })]);
+  const components = new Set([
+    name,
+    ...extractAxiomImports([{ content: source, filename: name }]),
+  ]);
   return [...components].sort();
 }
 
@@ -469,22 +475,12 @@ async function resolveDemoRef(ref) {
     return "";
   }
 
-  // Deterministic order: App.tsx first, then the rest alphabetically.
-  const filenames = Object.keys(example.code).sort((a, b) => {
-    if (a === "App.tsx") {
-      return -1;
-    }
-    if (b === "App.tsx") {
-      return 1;
-    }
-    return a.localeCompare(b);
-  });
-
-  const single = filenames.length === 1;
-  return filenames
-    .map((filename) => {
+  // example.code is already in display order (App.tsx first).
+  const single = example.code.length === 1;
+  return example.code
+    .map(({ content, filename }) => {
       const meta = single ? "" : ` filename="${filename}"`;
-      return `\`\`\`${langForFile(filename)}${meta}\n${example.code[filename].trim()}\n\`\`\``;
+      return `\`\`\`${langForFile(filename)}${meta}\n${content.trim()}\n\`\`\``;
     })
     .join("\n\n");
 }
