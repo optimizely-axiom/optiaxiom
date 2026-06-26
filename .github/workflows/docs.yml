@@ -33,7 +33,7 @@ jobs:
           cache: pnpm
           node-version-file: .node-version
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
 
       - run: pnpm install
 
