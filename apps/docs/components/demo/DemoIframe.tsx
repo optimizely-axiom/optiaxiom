@@ -92,11 +92,15 @@ const useIframe = (targetRef: RefObject<HTMLIFrameElement>) => {
 
   const { resolvedTheme } = useTheme();
   useEffect(() => {
-    if (resolvedTheme && targetRef.current?.contentDocument) {
-      targetRef.current.contentDocument.documentElement.style.colorScheme =
-        resolvedTheme;
+    const root = targetRef.current?.contentDocument?.documentElement;
+    if (!resolvedTheme || !root) {
+      return;
     }
-  }, [resolvedTheme, targetRef]);
+
+    root.style.colorScheme = resolvedTheme;
+    root.classList.toggle("dark", resolvedTheme === "dark");
+    root.classList.toggle("light", resolvedTheme === "light");
+  }, [body, resolvedTheme, targetRef]);
 
   return body;
 };
