@@ -35,9 +35,37 @@ export function App() {
             }
             options={options}
             styles={{
+              control: (styles) => ({
+                ...styles,
+                backgroundColor: theme.colors["bg.default"],
+                borderColor: theme.colors["border.default"],
+              }),
+              input: (styles) => ({
+                ...styles,
+                color: theme.colors["fg.default"],
+              }),
+              menu: (styles) => ({
+                ...styles,
+                backgroundColor: theme.colors["bg.default"],
+              }),
               menuPortal: (styles) => ({
                 ...styles,
                 zIndex: theme.zIndex.popover,
+              }),
+              option: (styles, state) => ({
+                ...styles,
+                backgroundColor: state.isFocused
+                  ? theme.colors["bg.default.hovered"]
+                  : "transparent",
+                color: theme.colors["fg.default"],
+              }),
+              placeholder: (styles) => ({
+                ...styles,
+                color: theme.colors["fg.tertiary"],
+              }),
+              singleValue: (styles) => ({
+                ...styles,
+                color: theme.colors["fg.default"],
               }),
             }}
           />
