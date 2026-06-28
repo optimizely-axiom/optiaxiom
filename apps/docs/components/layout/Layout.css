@@ -205,3 +205,15 @@
     text-decoration: underline;
   }
 }
+
+html:root {
+  --nextra-primary-hue: 88deg;
+  --nextra-primary-saturation: 90%;
+  --nextra-primary-lightness: 32%;
+}
+
+html:root[class~="dark"] {
+  --nextra-primary-hue: 116deg;
+  --nextra-primary-saturation: 56%;
+  --nextra-primary-lightness: 50%;
+}
