@@ -181,9 +181,16 @@ export const ProteusElement = ({
       const { filled, name, ...rest } = resolve(element);
       const IconComp = icons?.[name as string];
       if (!IconComp) {
+        if (typeof name === "string" && /^(?:https?:\/\/|data:)/.test(name)) {
+          return (
+            <Box asChild {...rest}>
+              <img alt="" aria-hidden="true" src={name} />
+            </Box>
+          );
+        }
         if (strict) {
           throw new Error(
-            `Icon "${name}" not registered. Pass it via the \`icons\` prop on ProteusDocumentRenderer.`,
+            `Icon "${name}" not registered and not a URL. Pass it via the \`icons\` prop on ProteusDocumentRenderer, or use an http(s):// or data: URL.`,
           );
         }
         return null;
