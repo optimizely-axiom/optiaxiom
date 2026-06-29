@@ -54,6 +54,8 @@ export type ProteusDocumentShellProps = Pick<
   element: ProteusDocument;
   /**
    * Map of icon name to React component. Referenced by `{ $type: "Icon", name }` elements.
+   * If `name` is not in the map but starts with `http(s)://` or `data:`, it is
+   * rendered as `<img src={name}>` instead.
    */
   icons?: ProteusIconMap;
   /**
