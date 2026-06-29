@@ -4,7 +4,8 @@
   border-bottom-left-radius: var(--ax-borderRadius-lg);
   border-bottom-right-radius: var(--ax-borderRadius-lg);
   inset-inline: 0;
-  position: absolute;
+  margin-top: -72px;
+  position: sticky;
 }
 
 .toggle {
