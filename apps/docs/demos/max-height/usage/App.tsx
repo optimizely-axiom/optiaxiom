@@ -31,8 +31,7 @@ export function App() {
 function DemoBox({ children, ...props }: ComponentPropsWithoutRef<typeof Box>) {
   return (
     <Box
-      bg="bg.success.subtle"
-      color="fg.success.strong"
+      bg="bg.warning.light"
       display="grid"
       fontFamily="mono"
       fontSize="md"

@@ -2,4 +2,4 @@
 "@optiaxiom/mcp": patch
 ---
 
-Update layout demo examples to use the branded `bg.success.subtle` and `fg.success.strong` tokens instead of `bg.avatar.purple`.
+Update layout demo examples to use the branded `bg.warning.light` token instead of `bg.avatar.purple`.

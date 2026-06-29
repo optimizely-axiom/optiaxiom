@@ -32,12 +32,7 @@ function DemoBox({ children, ...props }: ComponentPropsWithoutRef<typeof Box>) {
       >
         {children}
       </Text>
-      <Box
-        bg="bg.success.subtle"
-        color="fg.success.strong"
-        rounded="sm"
-        {...props}
-      />
+      <Box bg="bg.warning.light" rounded="sm" {...props} />
     </Group>
   );
 }

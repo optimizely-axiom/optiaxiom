@@ -22,8 +22,7 @@ function DemoBox({ children, ...props }: ComponentPropsWithoutRef<typeof Box>) {
   return (
     <Box rounded="sm" style={stripes}>
       <Box
-        bg="bg.success.subtle"
-        color="fg.success.strong"
+        bg="bg.warning.light"
         fontFamily="mono"
         fontSize="md"
         fontWeight="600"
