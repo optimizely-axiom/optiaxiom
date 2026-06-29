@@ -8,12 +8,12 @@ export function App() {
       <DemoBox>01</DemoBox>
       <DemoBox>02</DemoBox>
       <DemoBox>03</DemoBox>
-      <DemoBox bg="bg.success.subtle" color="fg.success.strong" gridColumn="2">
+      <DemoBox bg="bg.warning.light" gridColumn="2">
         04
       </DemoBox>
       <DemoBox>05</DemoBox>
       <DemoBox>06</DemoBox>
-      <DemoBox bg="bg.success.subtle" color="fg.success.strong" gridColumn="2">
+      <DemoBox bg="bg.warning.light" gridColumn="2">
         07
       </DemoBox>
     </Grid>

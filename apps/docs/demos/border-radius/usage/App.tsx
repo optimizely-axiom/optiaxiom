@@ -32,8 +32,7 @@ function DemoBox({ children, ...props }: ComponentPropsWithoutRef<typeof Box>) {
         {children}
       </Text>
       <Box
-        bg="bg.success.subtle"
-        color="fg.success.strong"
+        bg="bg.warning.light"
         display="grid"
         placeItems="center"
         size="56"

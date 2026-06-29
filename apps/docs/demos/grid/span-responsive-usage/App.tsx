@@ -5,20 +5,12 @@ import { Box, Grid } from "@optiaxiom/react";
 export function App() {
   return (
     <Grid gridTemplateColumns="3" w="full">
-      <DemoBox
-        bg="bg.success.subtle"
-        color="fg.success.strong"
-        gridColumn={["3", "2"]}
-      >
+      <DemoBox bg="bg.warning.light" gridColumn={["3", "2"]}>
         01
       </DemoBox>
       <DemoBox>02</DemoBox>
       <DemoBox>03</DemoBox>
-      <DemoBox
-        bg="bg.success.subtle"
-        color="fg.success.strong"
-        gridColumn={["1", "2"]}
-      >
+      <DemoBox bg="bg.warning.light" gridColumn={["1", "2"]}>
         04
       </DemoBox>
     </Grid>

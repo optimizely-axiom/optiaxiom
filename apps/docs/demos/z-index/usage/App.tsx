@@ -17,9 +17,8 @@ export function App() {
 function DemoBox({ children, ...props }: ComponentPropsWithoutRef<typeof Box>) {
   return (
     <Box
-      bg="bg.success.subtle"
+      bg="bg.warning.light"
       border="2"
-      color="fg.success.strong"
       display="grid"
       fontFamily="mono"
       fontWeight="600"
