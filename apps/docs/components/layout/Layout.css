@@ -207,13 +207,13 @@
 }
 
 html:root {
-  --nextra-primary-hue: 88deg;
-  --nextra-primary-saturation: 90%;
-  --nextra-primary-lightness: 32%;
+  --nextra-primary-hue: 117deg;
+  --nextra-primary-saturation: 34%;
+  --nextra-primary-lightness: 36%;
 }
 
 html:root[class~="dark"] {
-  --nextra-primary-hue: 116deg;
+  --nextra-primary-hue: 117deg;
   --nextra-primary-saturation: 56%;
-  --nextra-primary-lightness: 50%;
+  --nextra-primary-lightness: 45%;
 }
