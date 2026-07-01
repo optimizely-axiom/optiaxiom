@@ -70,7 +70,9 @@ function resolveEventPath(
     event &&
     typeof event === "object" &&
     "action" in event &&
-    (event.action === "pushValue" || event.action === "removeValue")
+    (event.action === "pushValue" ||
+      event.action === "removeValue" ||
+      event.action === "setValue")
   ) {
     const { path } = event;
     const resolved =

@@ -120,6 +120,11 @@ export type ProteusEventHandler =
       action: "removeValue";
       path: string;
     }
+  | {
+      action: "setValue";
+      path: string;
+      value?: unknown;
+    }
   | { interaction: string; params?: Record<string, unknown> }
   | { message: string | StructuredMessage }
   | { params?: Record<string, unknown>; script: string };
