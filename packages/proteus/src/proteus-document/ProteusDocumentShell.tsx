@@ -264,6 +264,15 @@ export function ProteusDocumentShell({
         );
         return next;
       });
+    } else if (event.action === "setValue") {
+      // Writes `value` at `path`, replacing whatever is there — the same
+      // pointer write field inputs perform on every keystroke.
+      const { path, value } = event;
+      onDataChange?.((prev) => {
+        const next = structuredClone(prev);
+        set(next, path, value);
+        return next;
+      });
     }
     return;
   });

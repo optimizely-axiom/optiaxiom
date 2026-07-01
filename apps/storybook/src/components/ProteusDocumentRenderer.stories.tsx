@@ -2105,6 +2105,15 @@ export const Scripts: Story = {
           },
         },
         {
+          $type: "Action",
+          children: "Rename first tag",
+          // Edits an existing entry in place via `setValue` — no delete + append.
+          onClick: {
+            params: { newTag: { $type: "Value", path: "/tag" } },
+            script: "main:renameFirst",
+          },
+        },
+        {
           $type: "Button",
           children: "Announce count",
           onClick: { script: "main:announce" },
@@ -2119,19 +2128,24 @@ export const Scripts: Story = {
             name: "tag",
             placeholder: "Enter a tag",
           },
-          label: "New tag",
+          label: "Tag",
         },
         {
           $type: "Text",
           children: ["Tags added so far: ", { $type: "Length", path: "/tags" }],
         },
         {
-          $type: "Map",
+          $type: "Group",
           children: {
-            $type: "Badge",
-            children: { $type: "Value", path: "" },
+            $type: "Map",
+            children: {
+              $type: "Badge",
+              children: { $type: "Value", path: "" },
+            },
+            path: "/tags",
           },
-          path: "/tags",
+          flexDirection: "row",
+          gap: "8",
         },
       ],
       // Scripts run in a sandboxed Web Worker. Handlers registered here can only
@@ -2142,8 +2156,12 @@ export const Scripts: Story = {
           "register('addTag', (ctx) => {",
           "  const tag = ctx.params.tag;",
           "  if (!tag) return;",
-          "  const tags = ctx.getValue('/tags') || [];",
           "  ctx.emit({ action: 'pushValue', path: '/tags', value: tag });",
+          "});",
+          "register('renameFirst', (ctx) => {",
+          "  const tags = ctx.getValue('/tags') || [];",
+          "  if (!tags.length || !ctx.params.newTag) return;",
+          "  ctx.emit({ action: 'setValue', path: '/tags/0', value: ctx.params.newTag });",
           "});",
           "register('announce', (ctx) => {",
           "  const tags = ctx.getValue('/tags') || [];",

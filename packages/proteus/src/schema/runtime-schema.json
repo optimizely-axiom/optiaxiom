@@ -1536,6 +1536,25 @@
           },
           "required": ["action", "path"],
           "type": "object"
+        },
+        {
+          "description": "Runtime data operation - writes `value` at `path` in form data, replacing any existing value (e.g. `/tags/2`). Path resolves like `Value` (absolute `/x`, relative to current parentPath, or `''` for parentPath itself).",
+          "properties": {
+            "action": {
+              "const": "setValue",
+              "description": "The action type",
+              "type": "string"
+            },
+            "path": {
+              "description": "JSON pointer path to write to",
+              "type": "string"
+            },
+            "value": {
+              "description": "The value to write; primitives or objects"
+            }
+          },
+          "required": ["action", "path"],
+          "type": "object"
         }
       ],
       "description": "Handler for user interactions - a server-side interaction call, client-side message, or client-side component action"
