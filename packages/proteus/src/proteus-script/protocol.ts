@@ -30,6 +30,11 @@ export type HostToWorkerMessage =
  * The single argument passed to a registered script handler. Its `emit`,
  * `getValue`, and `params` members are everything the handler is given to work
  * with — no capability leaks beyond re-emitting existing Proteus events.
+ *
+ * Trust note: this grants a handler exactly the authority the document already
+ * has — it can read all form data (`getValue("/")`) and emit any event the
+ * document could. It is NOT a boundary against untrusted input; author the
+ * `scripts` map with the same trust as the rest of the document.
  */
 export type ScriptContext = {
   /**
@@ -37,13 +42,16 @@ export type ScriptContext = {
    * through the same `onEvent` dispatcher. Resolves to the dispatcher's return
    * value — only `interaction` returns something meaningful; the client-side
    * actions resolve to `undefined`.
+   *
+   * This is the handler's only outward capability; it can do nothing the host
+   * dispatcher would not do for a document-declared event.
    */
   emit: (event: ProteusEventHandler) => Promise<unknown>;
   /**
    * Read from the form-data snapshot captured at invoke time (JSON pointer,
-   * same semantics as `Value`). Read-only — a mutating `emit` (e.g. pushValue)
-   * is NOT observable within the same handler run. Writes must go through
-   * `emit`.
+   * same semantics as `Value`). `getValue("/")` returns the whole snapshot.
+   * Read-only — a mutating `emit` (e.g. pushValue) is NOT observable within the
+   * same handler run. Writes must go through `emit`.
    */
   getValue: (path: string) => unknown;
   /** Resolved params from the triggering event. */

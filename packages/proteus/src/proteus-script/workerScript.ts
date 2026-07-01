@@ -8,6 +8,12 @@
  * A handler's sole capability is `ctx.emit`, which posts an existing Proteus
  * event back to the host to be re-dispatched. See `protocol.ts` for the message
  * shapes and `ScriptContext`.
+ *
+ * INVARIANT: script isolation depends on this worker holding no privileged
+ * globals. We `new Function(...)` the document's source below, which is only
+ * safe because there is nothing sensitive in scope. Do NOT add `importScripts`,
+ * pass host capabilities in via `postMessage`, or expose any API to handler
+ * scope — doing so turns `new Function` into an escape hatch.
  */
 export const WORKER_SCRIPT = /* js */ `
 "use strict";
