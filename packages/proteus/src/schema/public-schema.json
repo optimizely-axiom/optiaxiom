@@ -1264,6 +1264,32 @@
             }
           ],
           "title": "Create Test Plan"
+        },
+        {
+          "$type": "Document",
+          "actions": [
+            {
+              "$type": "Action",
+              "appearance": "primary",
+              "children": "Greet",
+              "onClick": {
+                "params": { "name": { "$type": "Value", "path": "/name" } },
+                "script": "main:greet"
+              }
+            }
+          ],
+          "appName": "Opal",
+          "body": [
+            {
+              "$type": "Field",
+              "children": { "$type": "Input", "name": "name" },
+              "label": "Your name"
+            }
+          ],
+          "scripts": {
+            "main": "register('greet', (ctx) => ctx.emit({ message: `Hello, ${ctx.params.name}!` }))"
+          },
+          "title": "Scripted Greeting"
         }
       ],
       "properties": {
@@ -1307,6 +1333,11 @@
         },
         "meta": {
           "description": "Additional metadata not directly consumed by Proteus. Use this to pass along any extra data."
+        },
+        "scripts": {
+          "additionalProperties": { "type": "string" },
+          "description": "Map of module name to JavaScript source. Each module runs in a sandboxed Web Worker and registers named handlers via `register(name, fn)`. Trigger a handler from any event source with `{ script: 'module:handler', params }`; handlers receive a single `ctx` ({ emit, getValue, params }) and can only affect the document by emitting the existing Proteus events through `ctx.emit`.",
+          "type": "object"
         },
         "subtitle": {
           "$ref": "#/definitions/ProteusNode",
@@ -1392,6 +1423,23 @@
             }
           },
           "required": ["interaction"],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "description": "Scripted action - runs a named handler from the document's `scripts` map in a sandboxed Web Worker. The handler can emit the other Proteus events via `ctx.emit`.",
+          "properties": {
+            "params": {
+              "additionalProperties": {},
+              "description": "Parameters passed to the handler as `ctx.params`. Values can be ProteusExpressions that resolve at call time.",
+              "type": "object"
+            },
+            "script": {
+              "description": "Handler to run, addressed as `module:handler` (the module key comes from the document's `scripts` map).",
+              "type": "string"
+            }
+          },
+          "required": ["script"],
           "type": "object"
         },
         {

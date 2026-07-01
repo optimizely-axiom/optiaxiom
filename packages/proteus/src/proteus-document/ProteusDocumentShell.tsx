@@ -27,6 +27,7 @@ import type {
 
 import { useEffectEvent } from "../hooks";
 import { downloadFile } from "../proteus-image/downloadFile";
+import { useProteusScripts } from "../proteus-script/useProteusScripts";
 import {
   ProteusDocumentProvider,
   type ProteusIconMap,
@@ -122,6 +123,7 @@ type ProteusDocument = {
   blocking?: boolean;
   body: ReactNode;
   compact?: boolean;
+  scripts?: Record<string, string>;
   subtitle?: ReactNode;
   title?: ReactNode;
   titleIcon?: string;
@@ -192,6 +194,8 @@ export function ProteusDocumentShell({
       return await onInteraction?.(event.interaction, event.params);
     } else if ("message" in event) {
       await onMessage?.(event.message);
+    } else if ("script" in event) {
+      return await runScript(event.script, event.params);
     } else if (event.action === "download") {
       const urls: string[] = [];
       if (typeof event.url === "string") {
@@ -262,6 +266,14 @@ export function ProteusDocumentShell({
       });
     }
     return;
+  });
+
+  // Events a script emits are re-dispatched through the same `onEvent`, so
+  // scripts can only trigger the existing Proteus events (no new capabilities).
+  const runScript = useProteusScripts({
+    data,
+    onEmit: onEvent,
+    scripts: element.scripts,
   });
 
   return (

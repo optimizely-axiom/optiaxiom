@@ -2088,6 +2088,80 @@ export const FederatedWithFallback: Story = {
   },
 };
 
+export const Scripts: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      actions: [
+        {
+          $type: "Action",
+          appearance: "primary",
+          children: "Add tag",
+          // Triggers the script handler, which decides what system events to
+          // emit — here it reads the input and pushes it onto the `tags` array.
+          onClick: {
+            params: { tag: { $type: "Value", path: "/tag" } },
+            script: "main:addTag",
+          },
+        },
+        {
+          $type: "Button",
+          children: "Announce count",
+          onClick: { script: "main:announce" },
+        },
+      ],
+      appName: "Opal",
+      body: [
+        {
+          $type: "Field",
+          children: {
+            $type: "Input",
+            name: "tag",
+            placeholder: "Enter a tag",
+          },
+          label: "New tag",
+        },
+        {
+          $type: "Text",
+          children: ["Tags added so far: ", { $type: "Length", path: "/tags" }],
+        },
+        {
+          $type: "Map",
+          children: {
+            $type: "Badge",
+            children: { $type: "Value", path: "" },
+          },
+          path: "/tags",
+        },
+      ],
+      // Scripts run in a sandboxed Web Worker. Handlers registered here can only
+      // affect the document by emitting the existing Proteus events via
+      // `ctx.emit` — they have no DOM or host access of their own.
+      scripts: {
+        main: [
+          "register('addTag', (ctx) => {",
+          "  const tag = ctx.params.tag;",
+          "  if (!tag) return;",
+          "  const tags = ctx.getValue('/tags') || [];",
+          "  ctx.emit({ action: 'pushValue', path: '/tags', value: tag });",
+          "});",
+          "register('announce', (ctx) => {",
+          "  const tags = ctx.getValue('/tags') || [];",
+          "  return ctx.emit({ interaction: 'announce', params: { count: tags.length } });",
+          "});",
+        ].join("\n"),
+      },
+      title: "Scripted actions",
+    },
+  },
+  render: function Render(args) {
+    const [data, setData] = useState<Record<string, unknown>>({ tags: [] });
+    return (
+      <ProteusDocumentRenderer {...args} data={data} onDataChange={setData} />
+    );
+  },
+};
+
 export const CreateMeetingEvent: Story = {
   args: {
     element: {

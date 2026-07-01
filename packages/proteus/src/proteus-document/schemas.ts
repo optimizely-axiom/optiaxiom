@@ -121,7 +121,8 @@ export type ProteusEventHandler =
       path: string;
     }
   | { interaction: string; params?: Record<string, unknown> }
-  | { message: string | StructuredMessage };
+  | { message: string | StructuredMessage }
+  | { params?: Record<string, unknown>; script: string };
 
 export type ProteusPreviewFile = {
   extension: string;
