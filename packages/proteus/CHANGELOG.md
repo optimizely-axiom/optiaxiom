@@ -1,5 +1,16 @@
 # @optiaxiom/proteus
 
+## 3.1.0
+
+### Minor Changes
+
+- d55ea6e: Add scriptable actions. A document can ship JavaScript via a `scripts` map and expose named handlers (`register(name, fn)`) triggered with `{ script: "module:handler", params }`. Handlers run in a sandboxed Web Worker whose only capability is `ctx.emit` — they get exactly the authority the document already had, so treat `scripts` with the same trust as the rest of the document.
+- 3cc9e70: Add a `setValue` event action that writes `value` at a JSON-pointer `path` in form data, replacing any existing value (e.g. `{ action: "setValue", path: "/tags/2", value: "…" }`). This complements `pushValue`/`removeValue` with in-place editing — previously the only way to change an existing array entry was to remove and re-append, which lost position. Works from any event source, including scripted handlers via `ctx.emit`.
+
+### Patch Changes
+
+- 5f2706a: Fall back to `<img src={name}>` for `Icon` elements when `name` is an `http(s)://` or `data:` URL not present in the `icons` map. Previously such names rendered nothing (or threw in strict mode). Registered icons continue to take precedence; unknown non-URL names keep the current null / strict-throw behavior.
+
 ## 3.0.6
 
 ### Patch Changes

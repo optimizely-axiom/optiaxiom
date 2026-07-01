@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 3.0.4
+
+### Patch Changes
+
+- 57936b8: Update layout demo examples to use the branded `bg.warning.light` token instead of `bg.avatar.purple`.
+
 ## 3.0.3
 
 ### Patch Changes
