@@ -27,6 +27,7 @@ type ProteusDocument = {
   blocking?: boolean;
   body: unknown;
   compact?: boolean;
+  scripts?: Record<string, string>;
   subtitle?: unknown;
   title?: unknown;
   titleIcon?: string;
