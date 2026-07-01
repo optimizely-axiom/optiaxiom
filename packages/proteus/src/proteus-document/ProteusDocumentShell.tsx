@@ -28,6 +28,7 @@ import type {
 import { useEffectEvent } from "../hooks";
 import { downloadFile } from "../proteus-image/downloadFile";
 import { useProteusScripts } from "../proteus-script/useProteusScripts";
+import { isSafeUrl } from "./isSafeUrl";
 import {
   ProteusDocumentProvider,
   type ProteusIconMap,
@@ -210,14 +211,24 @@ export function ProteusDocumentShell({
       } else {
         throw new Error("Invalid URL for download action");
       }
+      for (const u of urls) {
+        if (!isSafeUrl(u)) {
+          if (strict) {
+            throw new Error(`download: unsafe URL "${u}"`);
+          }
+          return;
+        }
+      }
       if (onDownload) {
         await onDownload(urls);
       } else {
         await Promise.all(urls.map((u) => downloadFile(u)));
       }
     } else if (event.action === "openLink") {
-      if (typeof event.url === "string") {
+      if (isSafeUrl(event.url)) {
         window.open(event.url, "_blank", "noopener,noreferrer");
+      } else if (strict) {
+        throw new Error(`openLink: unsafe URL "${String(event.url)}"`);
       }
     } else if (event.action === "preview") {
       await onPreview?.(event.file);
