@@ -187,6 +187,83 @@ export function ProteusDocumentShell({
   const appearance = resolveProteusValue(element.appearance, data, "", []);
   const inline = appearance === "inline";
 
+  const onEvent = useEffectEvent(async (event: ProteusEventHandler) => {
+    if ("interaction" in event) {
+      return await onInteraction?.(event.interaction, event.params);
+    } else if ("message" in event) {
+      await onMessage?.(event.message);
+    } else if (event.action === "download") {
+      const urls: string[] = [];
+      if (typeof event.url === "string") {
+        urls.push(event.url);
+      } else if (Array.isArray(event.url)) {
+        for (const u of event.url) {
+          if (typeof u !== "string") {
+            throw new Error("Invalid URL in download array");
+          }
+          urls.push(u);
+        }
+      } else {
+        throw new Error("Invalid URL for download action");
+      }
+      if (onDownload) {
+        await onDownload(urls);
+      } else {
+        await Promise.all(urls.map((u) => downloadFile(u)));
+      }
+    } else if (event.action === "openLink") {
+      if (typeof event.url === "string") {
+        window.open(event.url, "_blank", "noopener,noreferrer");
+      }
+    } else if (event.action === "preview") {
+      await onPreview?.(event.file);
+    } else if (event.action === "pushValue") {
+      // `path` arrives already resolved to an absolute pointer by the
+      // firing component (which owns the positional Map context).
+      const { path, value } = event;
+      onDataChange?.((prev) => {
+        const next = structuredClone(prev);
+        const current = get(next, path);
+        if (current !== undefined && !Array.isArray(current)) {
+          if (strict) {
+            throw new Error(`pushValue: expected array at "${path}"`);
+          }
+          return prev;
+        }
+        set(next, path, [...((current as unknown[]) ?? []), value]);
+        return next;
+      });
+    } else if (event.action === "removeValue") {
+      const { path } = event;
+      const slash = path.lastIndexOf("/");
+      const parent = slash > 0 ? path.slice(0, slash) : "";
+      const index = Number(path.slice(slash + 1));
+      if (!parent || !Number.isInteger(index)) {
+        if (strict) {
+          throw new Error(`removeValue: "${path}" is not an array index`);
+        }
+        return;
+      }
+      onDataChange?.((prev) => {
+        const next = structuredClone(prev);
+        const arr = get(next, parent);
+        if (!Array.isArray(arr)) {
+          if (strict) {
+            throw new Error(`removeValue: "${parent}" is not an array`);
+          }
+          return prev;
+        }
+        set(
+          next,
+          parent,
+          arr.filter((_, i) => i !== index),
+        );
+        return next;
+      });
+    }
+    return;
+  });
+
   return (
     <ProteusDocumentProvider
       data={data}
@@ -198,82 +275,7 @@ export function ProteusDocumentShell({
           return next;
         });
       })}
-      onEvent={useEffectEvent(async (event: ProteusEventHandler) => {
-        if ("interaction" in event) {
-          return await onInteraction?.(event.interaction, event.params);
-        } else if ("message" in event) {
-          await onMessage?.(event.message);
-        } else if (event.action === "download") {
-          const urls: string[] = [];
-          if (typeof event.url === "string") {
-            urls.push(event.url);
-          } else if (Array.isArray(event.url)) {
-            for (const u of event.url) {
-              if (typeof u !== "string") {
-                throw new Error("Invalid URL in download array");
-              }
-              urls.push(u);
-            }
-          } else {
-            throw new Error("Invalid URL for download action");
-          }
-          if (onDownload) {
-            await onDownload(urls);
-          } else {
-            await Promise.all(urls.map((u) => downloadFile(u)));
-          }
-        } else if (event.action === "openLink") {
-          if (typeof event.url === "string") {
-            window.open(event.url, "_blank", "noopener,noreferrer");
-          }
-        } else if (event.action === "preview") {
-          await onPreview?.(event.file);
-        } else if (event.action === "pushValue") {
-          // `path` arrives already resolved to an absolute pointer by the
-          // firing component (which owns the positional Map context).
-          const { path, value } = event;
-          onDataChange?.((prev) => {
-            const next = structuredClone(prev);
-            const current = get(next, path);
-            if (current !== undefined && !Array.isArray(current)) {
-              if (strict) {
-                throw new Error(`pushValue: expected array at "${path}"`);
-              }
-              return prev;
-            }
-            set(next, path, [...((current as unknown[]) ?? []), value]);
-            return next;
-          });
-        } else if (event.action === "removeValue") {
-          const { path } = event;
-          const slash = path.lastIndexOf("/");
-          const parent = slash > 0 ? path.slice(0, slash) : "";
-          const index = Number(path.slice(slash + 1));
-          if (!parent || !Number.isInteger(index)) {
-            if (strict) {
-              throw new Error(`removeValue: "${path}" is not an array index`);
-            }
-            return;
-          }
-          onDataChange?.((prev) => {
-            const next = structuredClone(prev);
-            const arr = get(next, parent);
-            if (!Array.isArray(arr)) {
-              if (strict) {
-                throw new Error(`removeValue: "${parent}" is not an array`);
-              }
-              return prev;
-            }
-            set(
-              next,
-              parent,
-              arr.filter((_, i) => i !== index),
-            );
-            return next;
-          });
-        }
-        return;
-      })}
+      onEvent={onEvent}
       onTrack={useEffectEvent(
         (event: string, properties: Record<string, string>) => {
           onTrack?.(event, properties);
