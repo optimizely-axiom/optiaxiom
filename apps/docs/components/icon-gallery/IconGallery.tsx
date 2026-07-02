@@ -14,6 +14,7 @@ import {
 import { type ComponentType, useMemo, useRef, useState } from "react";
 
 import tags from "../../../../packages/icons/tags.json";
+import styles from "./IconGallery.module.css";
 
 type IconComponent = ComponentType<{
   filled?: boolean;
@@ -63,10 +64,10 @@ export function IconGallery() {
 
   return (
     <Group
+      className={styles.IconGallery}
       flexDirection="column"
       gap="24"
       mt="16"
-      style={{ minHeight: "600px" }}
     >
       <Group gap="16">
         <SearchInput
@@ -88,7 +89,14 @@ export function IconGallery() {
           </Text>
         </Box>
       ) : (
-        <Group alignItems="start" flexWrap="wrap" gap="8">
+        <Group
+          alignItems="start"
+          className={styles.scroll}
+          flex="1"
+          flexWrap="wrap"
+          gap="8"
+          overflow="auto"
+        >
           {filtered.map(({ component, label }) => (
             <IconCell
               component={component}
