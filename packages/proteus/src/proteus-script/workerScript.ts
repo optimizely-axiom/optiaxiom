@@ -19,6 +19,7 @@ export const WORKER_SCRIPT = /* js */ `
 "use strict";
 
 const handlers = new Map();
+const watchers = [];
 const pendingEmits = new Map();
 let nextEmitId = 1;
 
@@ -42,13 +43,21 @@ function register(name, fn) {
   handlers.set(name, fn);
 }
 
-// Evaluate one module's source in a scope that exposes \`register\`. Handlers are
-// keyed by "moduleName:handlerName" via a per-module register wrapper.
+function watch(path, fn) {
+  if (typeof path !== "string" || typeof fn !== "function") {
+    throw new Error("watch(path, fn) requires a string path and a function");
+  }
+  watchers.push({ fn, path });
+}
+
+// Evaluate one module's source in a scope that exposes \`register\` and \`watch\`.
+// Handlers are keyed by "moduleName:handlerName" via a per-module register
+// wrapper; watchers are collected globally (order = watch id).
 function loadModule(moduleName, source) {
   const scopedRegister = (name, fn) => register(moduleName + ":" + name, fn);
   // eslint-disable-next-line no-new-func
-  const factory = new Function("register", source);
-  factory(scopedRegister);
+  const factory = new Function("register", "watch", source);
+  factory(scopedRegister, watch);
 }
 
 function emit(event) {
@@ -71,6 +80,8 @@ self.onmessage = async (e) => {
         // surface a "not found" error at call time.
       }
     }
+    // Report watched paths so the host can edge-detect and drive runWatcher.
+    self.postMessage({ paths: watchers.map((w) => w.path), type: "watchers" });
     return;
   }
 
@@ -98,10 +109,9 @@ self.onmessage = async (e) => {
     const ctx = {
       emit,
       getValue: (path) => getByPointer(data, path),
-      params: params ?? {},
     };
     try {
-      const result = await fn(ctx);
+      const result = await fn(ctx, params ?? {});
       self.postMessage({ invokeId, result, type: "invokeResult" });
     } catch (err) {
       self.postMessage({
@@ -110,6 +120,26 @@ self.onmessage = async (e) => {
         result: undefined,
         type: "invokeResult",
       });
+    }
+    return;
+  }
+
+  if (msg.type === "runWatcher") {
+    const { current, data, previous, watchId } = msg;
+    const watcher = watchers[watchId];
+    if (!watcher) {
+      return;
+    }
+    const ctx = {
+      emit,
+      getValue: (path) => getByPointer(data, path),
+    };
+    try {
+      // Fire-and-forget: watchers return nothing to any caller. Errors are
+      // swallowed to match the fail-silent default of the other ops.
+      await watcher.fn(ctx, current, previous);
+    } catch (err) {
+      // Intentionally ignored.
     }
   }
 };

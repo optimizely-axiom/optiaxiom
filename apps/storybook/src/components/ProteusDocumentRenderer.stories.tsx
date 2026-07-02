@@ -2153,15 +2153,15 @@ export const Scripts: Story = {
       // `ctx.emit` — they have no DOM or host access of their own.
       scripts: {
         main: [
-          "register('addTag', (ctx) => {",
-          "  const tag = ctx.params.tag;",
+          "register('addTag', (ctx, params) => {",
+          "  const tag = params.tag;",
           "  if (!tag) return;",
           "  ctx.emit({ action: 'pushValue', path: '/tags', value: tag });",
           "});",
-          "register('renameFirst', (ctx) => {",
+          "register('renameFirst', (ctx, params) => {",
           "  const tags = ctx.getValue('/tags') || [];",
-          "  if (!tags.length || !ctx.params.newTag) return;",
-          "  ctx.emit({ action: 'setValue', path: '/tags/0', value: ctx.params.newTag });",
+          "  if (!tags.length || !params.newTag) return;",
+          "  ctx.emit({ action: 'setValue', path: '/tags/0', value: params.newTag });",
           "});",
           "register('announce', (ctx) => {",
           "  const tags = ctx.getValue('/tags') || [];",
@@ -2174,6 +2174,72 @@ export const Scripts: Story = {
   },
   render: function Render(args) {
     const [data, setData] = useState<Record<string, unknown>>({ tags: [] });
+    return (
+      <ProteusDocumentRenderer {...args} data={data} onDataChange={setData} />
+    );
+  },
+};
+
+export const ScriptsWatch: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        {
+          $type: "Text",
+          children: "Tick every item to unlock the next step.",
+          color: "fg.secondary",
+        },
+        {
+          $type: "Group",
+          children: {
+            $type: "Map",
+            children: {
+              $type: "Switch",
+              children: { $type: "Value", path: "label" },
+              name: "done",
+            },
+            path: "/items",
+          },
+          flexDirection: "column",
+          gap: "8",
+        },
+        {
+          $type: "Show",
+          children: {
+            $type: "Alert",
+            children: "All items complete — you're good to go!",
+            intent: "success",
+          },
+          when: { "!!": { $type: "Value", path: "/all_done" } },
+        },
+      ],
+      // A watcher reacts to data changes (edge-triggered) — the push counterpart
+      // to `register`. When every item is ticked it flips `/all_done` (so the
+      // Show reveals) and fires an interaction. Runs once on the false→true
+      // edge, and its own setValue write does not re-trigger it.
+      scripts: {
+        main: [
+          "watch('/items', (ctx, current) => {",
+          "  const items = current || [];",
+          "  const done = items.length > 0 && items.every((i) => i.done === true);",
+          "  ctx.emit({ action: 'setValue', path: '/all_done', value: done });",
+          "  if (done) ctx.emit({ interaction: 'all_complete' });",
+          "});",
+        ].join("\n"),
+      },
+      title: "Reactive watcher",
+    },
+  },
+  render: function Render(args) {
+    const [data, setData] = useState<Record<string, unknown>>({
+      items: [
+        { done: false, label: "Accept terms" },
+        { done: false, label: "Verify email" },
+        { done: false, label: "Add payment method" },
+      ],
+    });
     return (
       <ProteusDocumentRenderer {...args} data={data} onDataChange={setData} />
     );
