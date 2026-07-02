@@ -90,11 +90,8 @@ export function IconGallery() {
         </Box>
       ) : (
         <Group
-          alignItems="start"
-          className={styles.scroll}
+          className={`${styles.scroll} ${styles.grid}`}
           flex="1"
-          flexWrap="wrap"
-          gap="8"
           overflow="auto"
         >
           {filtered.map(({ component, label }) => (
@@ -148,8 +145,6 @@ function IconCell({
           <style>{`
             @scope {
               :scope {
-                width: 112px;
-
                 &:hover {
                   background-color: var(--ax-colors-bg-tertiary);
                 }
