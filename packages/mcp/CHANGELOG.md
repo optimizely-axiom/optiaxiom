@@ -1,5 +1,12 @@
 # @optiaxiom/mcp
 
+## 3.0.4
+
+### Patch Changes
+
+- a08538e: Update the embedded Icons guide so the icon gallery leads the page, matching the docs site.
+- 57936b8: Update layout demo examples to use the branded `bg.warning.light` token instead of `bg.avatar.purple`.
+
 ## 3.0.3
 
 ### Patch Changes
