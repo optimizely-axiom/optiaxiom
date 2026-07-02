@@ -123965,7 +123965,7 @@
       "title": "Fonts"
     },
     "icons": {
-      "content": "# Icons\n\nWe use **Google Material Symbols** icons with our Optimizely Design System via the `@optiaxiom/icons` package.\n\n## Installation\n\n### Install package\n\n```sh npm2yarn\nnpm install @optiaxiom/icons\n```\n\n### Basic usage\n\nSimply import the icon components and use them in your application.\n\n```tsx\nimport { IconDelete } from \"@optiaxiom/icons\";\n\n<IconDelete />;\n```\n\nIcons accept a `size` prop to control their dimensions:\n\n```tsx\nimport { IconDelete } from \"@optiaxiom/icons\";\n\n<IconDelete size=\"sm\" />;\n```\n\nEach icon also has a filled variant via the `filled` prop:\n\n```tsx\nimport { IconDelete } from \"@optiaxiom/icons\";\n\n<IconDelete filled />;\n```\n\n### Available Icons\n\n<IconGallery />",
+      "content": "# Icons\n\nWe use **Google Material Symbols** icons with our Optimizely Design System via the `@optiaxiom/icons` package.\n\n<IconGallery />\n\n## Installation\n\n### Install package\n\n```sh npm2yarn\nnpm install @optiaxiom/icons\n```\n\n### Basic usage\n\nSimply import the icon components and use them in your application.\n\n```tsx\nimport { IconDelete } from \"@optiaxiom/icons\";\n\n<IconDelete />;\n```\n\nIcons accept a `size` prop to control their dimensions:\n\n```tsx\nimport { IconDelete } from \"@optiaxiom/icons\";\n\n<IconDelete size=\"sm\" />;\n```\n\nEach icon also has a filled variant via the `filled` prop:\n\n```tsx\nimport { IconDelete } from \"@optiaxiom/icons\";\n\n<IconDelete filled />;\n```",
       "name": "icons",
       "title": "Icons"
     },
