@@ -16,6 +16,27 @@
   initial-value: 0px;
 }
 
+.grid {
+  --gap: 8px;
+
+  display: grid;
+  gap: var(--gap);
+
+  /* Responsive columns: aim for ~112px cells, targeting 3 per row on phones up
+     to 7 on wide screens. minmax(X, 1fr) fits floor(width / X) columns, so X is
+     clamped between a 7-column share (upper bound on count) and a 3-column
+     share (lower bound). The gap is subtracted from each share so the row still
+     fits once gaps are counted. Below ~360px this relaxes to 2 columns rather
+     than cramming in sub-90px cells with truncated labels. */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(
+      clamp((100% - 6 * var(--gap)) / 7, 112px, (100% - 3 * var(--gap)) / 3),
+      1fr
+    )
+  );
+}
+
 .scroll {
   --fade: 24px;
 
