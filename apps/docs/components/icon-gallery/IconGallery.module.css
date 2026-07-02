@@ -1,0 +1,61 @@
+.IconGallery {
+  height: 420px;
+}
+
+/* Fade size for each edge, animated independently by scroll position.
+   Typed via @property so they interpolate smoothly. */
+@property --fade-top {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --fade-bottom {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+.scroll {
+  --fade: 24px;
+
+  /* Two mask layers (one per edge) so both fades can be visible at once while
+     scrolling through the middle. Each edge's size is driven by scroll below. */
+  mask-image:
+    linear-gradient(to bottom, transparent 0, #000 var(--fade-top)),
+    linear-gradient(to top, transparent 0, #000 var(--fade-bottom));
+  mask-composite: intersect;
+
+  /* Longhands (not the `animation` shorthand, which resets animation-timeline
+     to `auto`) so the scroll-driven fades actually bind. Each animation only
+     covers the first/last slice of scroll travel so the fade grows in as you
+     leave an edge and collapses to 0 once you reach it. */
+  animation-name: fade-in-top, fade-out-bottom;
+  animation-duration: 1ms;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-timeline: scroll(self), scroll(self);
+  animation-range:
+    0 var(--fade),
+    calc(100% - var(--fade)) 100%;
+}
+
+@keyframes fade-in-top {
+  from {
+    --fade-top: 0px;
+  }
+
+  to {
+    --fade-top: var(--fade);
+  }
+}
+
+@keyframes fade-out-bottom {
+  from {
+    --fade-bottom: var(--fade);
+  }
+
+  to {
+    --fade-bottom: 0px;
+  }
+}
