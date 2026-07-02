@@ -1,2 +1,2 @@
-export type { ScriptContext, ScriptHandler } from "./protocol";
+export type { ScriptContext, ScriptHandler, WatchHandler } from "./protocol";
 export { useProteusScripts } from "./useProteusScripts";
