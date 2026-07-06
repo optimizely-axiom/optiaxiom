@@ -56,6 +56,10 @@ export function useProteusScripts({
 }: UseProteusScriptsOptions) {
   const dataRef = useRef(data);
   dataRef.current = data;
+  // The data as of mount, used to seed watcher baselines — so a data change the
+  // user made before the worker finished registering its watchers still reads as
+  // an edge once the watcher subscribes (rather than being silently absorbed).
+  const initialDataRef = useRef(data);
 
   const emit = useEffectEvent(onEmit);
 
@@ -88,6 +92,39 @@ export function useProteusScripts({
     lastEval.current = watchedPaths.current.map((path) =>
       JSON.stringify(getByPointer(data, path) ?? null),
     );
+  });
+
+  /**
+   * Compare each watched path in `data` against its `lastEval` baseline and post
+   * `runWatcher` for any that changed, advancing the baseline. Shared by the
+   * data-change effect and the `watchers` message handler (so a watcher that
+   * registers after the user already changed data still catches that edge).
+   */
+  const runEdgeDetect = useEffectEvent((data: Record<string, unknown>) => {
+    const worker = workerRef.current;
+    if (!worker) {
+      return;
+    }
+    watchedPaths.current.forEach((path, watchId) => {
+      const current = getByPointer(data, path) ?? null;
+      const serialized = JSON.stringify(current);
+      const prevSerialized = lastEval.current[watchId];
+      if (serialized !== prevSerialized) {
+        lastEval.current[watchId] = serialized;
+        // Hand the watcher both sides of the edge. `previous` is parsed from the
+        // serialized baseline the edge-detector already keeps (undefined on the
+        // first change after seeding).
+        const previous =
+          prevSerialized === undefined ? undefined : JSON.parse(prevSerialized);
+        worker.postMessage({
+          current,
+          data,
+          previous,
+          type: "runWatcher",
+          watchId,
+        });
+      }
+    });
   });
 
   /** Resolve a pending run (if still pending) and clear its timeout. */
@@ -136,9 +173,12 @@ export function useProteusScripts({
           settle(msg.invokeId, msg.result);
         } else if (msg.type === "watchers") {
           watchedPaths.current = msg.paths;
-          // Seed from current data so pre-existing values are not treated as a
-          // change on mount — a watcher fires on the first edge after load.
-          seedWatchers(dataRef.current);
+          // Seed baselines from the mount-time data, then edge-detect against the
+          // current data. If nothing changed before the watcher registered this
+          // is a no-op; if the user already toggled something during the async
+          // worker handshake, that edge fires now instead of being swallowed.
+          seedWatchers(initialDataRef.current);
+          runEdgeDetect(dataRef.current);
         }
       },
     );
@@ -177,8 +217,7 @@ export function useProteusScripts({
   // Edge-detect watched paths on every data change and run the ones that
   // changed — unless the change was caused by a script's own emit.
   useEffect(() => {
-    const worker = workerRef.current;
-    if (!worker || watchedPaths.current.length === 0) {
+    if (!workerRef.current || watchedPaths.current.length === 0) {
       return;
     }
     if (emitDepth.current > 0) {
@@ -186,26 +225,7 @@ export function useProteusScripts({
       seedWatchers(data);
       return;
     }
-    watchedPaths.current.forEach((path, watchId) => {
-      const current = getByPointer(data, path) ?? null;
-      const serialized = JSON.stringify(current);
-      const prevSerialized = lastEval.current[watchId];
-      if (serialized !== prevSerialized) {
-        lastEval.current[watchId] = serialized;
-        // Hand the watcher both sides of the edge. `previous` is parsed from the
-        // serialized baseline the edge-detector already keeps (undefined on the
-        // first change after seeding).
-        const previous =
-          prevSerialized === undefined ? undefined : JSON.parse(prevSerialized);
-        worker.postMessage({
-          current,
-          data,
-          previous,
-          type: "runWatcher",
-          watchId,
-        });
-      }
-    });
+    runEdgeDetect(data);
   }, [data]);
 
   return useEffectEvent(
