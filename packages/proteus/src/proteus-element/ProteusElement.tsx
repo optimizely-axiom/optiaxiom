@@ -25,6 +25,7 @@ import { ProteusAction } from "../proteus-action/ProteusAction";
 import { ProteusBridge } from "../proteus-bridge/ProteusBridge";
 import { ProteusCardLink } from "../proteus-card-link/ProteusCardLink";
 import { ProteusDataTable } from "../proteus-data-table/ProteusDataTable";
+import { ProteusDiff } from "../proteus-diff/ProteusDiff";
 import { ProteusDateInput } from "../proteus-date-input/ProteusDateInput";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
@@ -148,6 +149,14 @@ export const ProteusElement = ({
         <ProteusDataTable
           {...(resolve(element) as ComponentPropsWithoutRef<
             typeof ProteusDataTable
+          >)}
+        />
+      );
+    case "Diff":
+      return (
+        <ProteusDiff
+          {...(resolve(element) as ComponentPropsWithoutRef<
+            typeof ProteusDiff
           >)}
         />
       );

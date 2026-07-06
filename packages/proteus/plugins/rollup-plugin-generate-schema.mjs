@@ -130,6 +130,22 @@ const PROTEUS_COMPONENT_CONFIG = {
     },
     extends: "Fragment",
   },
+  Diff: {
+    allowedProps: ["changes", "newTitle", "oldTitle", "title"],
+    example: {
+      changes: [
+        {
+          field: "Status",
+          newValue: "Running",
+          oldValue: "Paused",
+          type: "modified",
+        },
+        { field: "Traffic", newValue: "50%", type: "added" },
+      ],
+      title: "Changes",
+    },
+    extends: "Fragment",
+  },
   DateInput: {
     allowedProps: ["name", "placeholder", "required", "type"],
     example: { name: "date_field", type: "date" },
@@ -1296,6 +1312,57 @@ function getPropTypeOverrides(additionalProperties = false) {
           { $ref: "#/definitions/ProteusExpression" },
           { $ref: "#/definitions/ProteusZip" },
         ],
+      },
+    },
+    Diff: {
+      changes: {
+        anyOf: [
+          {
+            description: "Array of change entries to display",
+            items: {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                field: {
+                  description: "Name of the changed field",
+                  type: "string",
+                },
+                newValue: {
+                  description: "New value after the change",
+                  type: "string",
+                },
+                oldValue: {
+                  description: "Previous value before the change",
+                  type: "string",
+                },
+                type: {
+                  anyOf: [
+                    { const: "added" },
+                    { const: "modified" },
+                    { const: "removed" },
+                  ],
+                  description:
+                    "Type of change. Inferred from oldValue/newValue if omitted.",
+                },
+              },
+              required: ["field"],
+              type: "object",
+            },
+            type: "array",
+          },
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
+      },
+      newTitle: {
+        description: "Column header for new values. Defaults to 'New'.",
+        type: "string",
+      },
+      oldTitle: {
+        description: "Column header for old values. Defaults to 'Old'.",
+        type: "string",
+      },
+      title: {
+        description: "Optional heading displayed above the diff table",
+        type: "string",
       },
     },
     Federated: {

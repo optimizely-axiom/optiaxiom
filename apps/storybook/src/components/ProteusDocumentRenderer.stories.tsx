@@ -2652,3 +2652,43 @@ export const PartialRendering: Story = {
     strict: false,
   },
 };
+
+export const WithDiff: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        {
+          $type: "Diff",
+          changes: [
+            {
+              field: "Status",
+              newValue: "Running",
+              oldValue: "Paused",
+              type: "modified",
+            },
+            {
+              field: "Traffic Allocation",
+              newValue: "50%",
+              oldValue: "25%",
+              type: "modified",
+            },
+            {
+              field: "Description",
+              newValue: "Updated experiment for Q3 launch",
+              type: "added",
+            },
+            {
+              field: "Legacy Flag",
+              oldValue: "enabled",
+              type: "removed",
+            },
+          ],
+          title: "Flag Configuration Changes",
+        },
+      ],
+      title: "Change History",
+    },
+  },
+};
