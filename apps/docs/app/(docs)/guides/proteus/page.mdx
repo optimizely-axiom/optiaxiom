@@ -38,6 +38,10 @@ Use `Group` as a flexbox container to arrange child elements. It supports `flexD
 
 <Demo component="proteus/data-display" />
 
+#### Icon
+
+`Icon` renders a named icon from the `icons` map passed to the renderer. If `name` is instead an `http(s)://` or `data:` URL not present in the map, it falls back to rendering an `<img>` with that source — so you can drop in a remote or inline SVG without registering it. Registered icons always take precedence.
+
 #### Custom table cells
 
 By default a `DataTable` column renders its value as text. Give a column a `cell` instead to render a Proteus node for that column. Inside a `cell`, read the current row with `DataTableRow` — `{ $type: "DataTableRow", path: "status" }` reads the row's `status` field, and omitting `path` gives the whole row object (the same way `MapIndex` exposes the current index inside a `Map`). This lets a table column render a `Badge`, `Icon`, link, or any composition of elements, with `Show` picking what to render per row. A change-history / diff view, for example, is just a `DataTable` whose "Change" column is a badge whose intent depends on the row:
@@ -121,6 +125,26 @@ Sends a text message back to the LLM:
 Triggers a file download:
 
 <Demo component="proteus/action-download" />
+
+### Data operations
+
+Actions can also edit form data directly, without a round-trip to your server. `setValue` writes `value` at a JSON-pointer `path`, replacing any existing value; `pushValue` appends to the array at `path`; and `removeValue` removes the array element at `path`. Paths resolve like `Value` (absolute `/x`, relative to the current context, or `''` for the current context itself).
+
+<Demo component="proteus/action-set-value" />
+
+## Scripting
+
+### Scripts
+
+For logic that shouldn't require a server round-trip, a document can ship JavaScript in a `scripts` map. Each module registers named handlers with `register(name, fn)`; trigger one from any event source with `{ script: "module:handler", params }`. Handlers run in a sandboxed Web Worker whose only capability is `ctx.emit` — they get exactly the authority the document already has (emitting the existing Proteus events), so treat `scripts` with the same trust as the rest of the document.
+
+<Demo component="proteus/scripting" />
+
+### Reactive watchers
+
+`watch(path, fn)` is the push counterpart to `register`: it runs edge-triggered whenever the value at `path` changes (use `'/'` to watch all data). A watcher can only `ctx.emit` existing events and does not react to changes its own emit causes, so it can't loop.
+
+<Demo component="proteus/scripting-watch" />
 
 ## Proteus Designer
 
