@@ -145,6 +145,8 @@ function IconCell({
           <style>{`
             @scope {
               :scope {
+                height: 128px;
+
                 &:hover {
                   background-color: var(--ax-colors-bg-tertiary);
                 }
