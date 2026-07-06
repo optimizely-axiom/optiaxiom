@@ -1239,8 +1239,8 @@ export const WithDataTable: Story = {
 // A change-history / diff view built entirely from the generic `DataTable`
 // element — no dedicated element needed. Each column's `cell` is a regular
 // Proteus element template; `DataTableRow` reads the current row inside it. The
-// "Change" column renders a `Badge` whose intent is chosen per row via `Show`
-// conditions on the row's `type`.
+// "Change" column is a single `Badge` whose intent is picked by a `Show`/`else`
+// chain on the row's `type`.
 export const WithDataTableCell: Story = {
   args: {
     data: {
@@ -1291,41 +1291,30 @@ export const WithDataTableCell: Story = {
             { accessorKey: "newValue", header: "New", size: 170 },
             {
               accessorKey: "type",
-              cell: [
-                {
+              // One Badge whose intent is chosen by a Show/else chain on the
+              // row's `type` — `DataTableRow` reads the current row's field.
+              cell: {
+                $type: "Badge",
+                children: { $type: "DataTableRow", path: "type" },
+                intent: {
                   $type: "Show",
-                  children: {
-                    $type: "Badge",
-                    children: { $type: "DataTableRow", path: "type" },
-                    intent: "success",
+                  children: "success",
+                  else: {
+                    $type: "Show",
+                    children: "danger",
+                    else: "warning",
+                    when: {
+                      "==": [
+                        { $type: "DataTableRow", path: "type" },
+                        "removed",
+                      ],
+                    },
                   },
                   when: {
                     "==": [{ $type: "DataTableRow", path: "type" }, "added"],
                   },
                 },
-                {
-                  $type: "Show",
-                  children: {
-                    $type: "Badge",
-                    children: { $type: "DataTableRow", path: "type" },
-                    intent: "warning",
-                  },
-                  when: {
-                    "==": [{ $type: "DataTableRow", path: "type" }, "modified"],
-                  },
-                },
-                {
-                  $type: "Show",
-                  children: {
-                    $type: "Badge",
-                    children: { $type: "DataTableRow", path: "type" },
-                    intent: "danger",
-                  },
-                  when: {
-                    "==": [{ $type: "DataTableRow", path: "type" }, "removed"],
-                  },
-                },
-              ],
+              },
               header: "Change",
               size: 120,
             },

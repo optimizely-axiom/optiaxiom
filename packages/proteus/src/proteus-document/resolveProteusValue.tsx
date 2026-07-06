@@ -269,11 +269,16 @@ export function resolveProteusValue(
             dataTableRow,
           ),
       );
-      if (!shouldShow) {
+      const branch = shouldShow
+        ? value.children
+        : "else" in value
+          ? value.else
+          : undefined;
+      if (branch === undefined) {
         return undefined;
       }
       return resolveProteusValue(
-        value.children,
+        branch,
         data,
         parentPath,
         mapIndices,

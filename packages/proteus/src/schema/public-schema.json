@@ -4722,6 +4722,10 @@
           "$ref": "#/definitions/ProteusNode",
           "description": "Content to show when condition is true"
         },
+        "else": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Content to render when the condition is false. Omitting it renders nothing. Chain nested Show/else to express multi-way choices (e.g. mapping a value to one of several outputs)."
+        },
         "when": {
           "anyOf": [
             { "$ref": "#/definitions/ProteusCondition" },
