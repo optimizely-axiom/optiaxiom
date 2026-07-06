@@ -2661,30 +2661,10 @@ export const WithDiff: Story = {
       body: [
         {
           $type: "Diff",
-          changes: [
-            {
-              field: "Status",
-              newValue: "Running",
-              oldValue: "Paused",
-              type: "modified",
-            },
-            {
-              field: "Traffic Allocation",
-              newValue: "50%",
-              oldValue: "25%",
-              type: "modified",
-            },
-            {
-              field: "Description",
-              newValue: "Updated experiment for Q3 launch",
-              type: "added",
-            },
-            {
-              field: "Legacy Flag",
-              oldValue: "enabled",
-              type: "removed",
-            },
-          ],
+          newText:
+            '{\n  "name": "homepage_redesign",\n  "status": "Running",\n  "traffic_allocation": 75,\n  "targeting": "all_users",\n  "description": "Updated experiment for Q3 launch"\n}',
+          oldText:
+            '{\n  "name": "homepage_redesign",\n  "status": "Paused",\n  "traffic_allocation": 50,\n  "legacy_flag": true\n}',
           title: "Flag Configuration Changes",
         },
       ],
