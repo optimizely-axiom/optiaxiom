@@ -299,7 +299,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     allowedProps: [],
   },
   Show: {
-    allowedProps: ["when", "children"],
+    allowedProps: ["when", "children", "else"],
     example: {
       children: { $type: "Text", children: "Shown conditionally" },
       when: { "!!": { $type: "Value", path: "/field_name" } },
@@ -1596,6 +1596,11 @@ function getPropTypeOverrides(additionalProperties = false) {
       children: {
         $ref: "#/definitions/ProteusNode",
         description: "Content to show when condition is true",
+      },
+      else: {
+        $ref: "#/definitions/ProteusNode",
+        description:
+          "Content to render when the condition is false. Omitting it renders nothing. Chain nested Show/else to express multi-way choices (e.g. mapping a value to one of several outputs).",
       },
       when: {
         anyOf: [

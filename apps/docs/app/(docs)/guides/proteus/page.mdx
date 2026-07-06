@@ -96,7 +96,7 @@ This template renders a list of search results dynamically from a tool response:
 
 ### Show
 
-Use `Show` to render content only when a condition is met:
+Use `Show` to render content only when a condition is met. Add an `else` to render a fallback when the condition is false — this works for element children and, since `Show` also resolves as a value, for props too. Chain nested `Show`/`else` to express multi-way choices (e.g. mapping a value to one of several outputs, like a `Badge` intent):
 
 <Demo component="proteus/show" />
 

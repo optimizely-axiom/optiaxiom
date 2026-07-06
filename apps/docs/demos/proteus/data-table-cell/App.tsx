@@ -40,48 +40,30 @@ export function App() {
               {
                 accessorKey: "type",
                 // `cell` is a regular Proteus node. `DataTableRow` reads the
-                // current row inside it, and Show picks the badge intent per row.
-                cell: [
-                  {
+                // current row inside it, and a Show/else chain picks the badge
+                // intent per row.
+                cell: {
+                  $type: "Badge",
+                  children: { $type: "DataTableRow", path: "type" },
+                  intent: {
                     $type: "Show",
-                    children: {
-                      $type: "Badge",
-                      children: { $type: "DataTableRow", path: "type" },
-                      intent: "success",
+                    children: "success",
+                    else: {
+                      $type: "Show",
+                      children: "danger",
+                      else: "warning",
+                      when: {
+                        "==": [
+                          { $type: "DataTableRow", path: "type" },
+                          "removed",
+                        ],
+                      },
                     },
                     when: {
                       "==": [{ $type: "DataTableRow", path: "type" }, "added"],
                     },
                   },
-                  {
-                    $type: "Show",
-                    children: {
-                      $type: "Badge",
-                      children: { $type: "DataTableRow", path: "type" },
-                      intent: "warning",
-                    },
-                    when: {
-                      "==": [
-                        { $type: "DataTableRow", path: "type" },
-                        "modified",
-                      ],
-                    },
-                  },
-                  {
-                    $type: "Show",
-                    children: {
-                      $type: "Badge",
-                      children: { $type: "DataTableRow", path: "type" },
-                      intent: "danger",
-                    },
-                    when: {
-                      "==": [
-                        { $type: "DataTableRow", path: "type" },
-                        "removed",
-                      ],
-                    },
-                  },
-                ],
+                },
                 header: "Change",
                 size: 120,
               },

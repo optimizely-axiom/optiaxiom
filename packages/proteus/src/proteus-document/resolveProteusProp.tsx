@@ -89,11 +89,13 @@ export function resolveProteusProp(
           dataTableRow,
         ),
     );
-    if (!shouldShow) {
-      return undefined;
-    }
+    const branch = shouldShow
+      ? value.children
+      : "else" in value
+        ? value.else
+        : undefined;
     return resolveProteusProp(
-      value.children,
+      branch,
       data,
       parentPath,
       mapIndices,
