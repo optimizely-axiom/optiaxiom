@@ -24,8 +24,13 @@ import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 import { ProteusAction } from "../proteus-action/ProteusAction";
 import { ProteusBridge } from "../proteus-bridge/ProteusBridge";
 import { ProteusCardLink } from "../proteus-card-link/ProteusCardLink";
+import { ProteusDataTableRow } from "../proteus-data-table-row/ProteusDataTableRow";
 import { ProteusDataTable } from "../proteus-data-table/ProteusDataTable";
 import { ProteusDateInput } from "../proteus-date-input/ProteusDateInput";
+import {
+  ProteusDataTableRowProvider,
+  useProteusDataTableRowContext,
+} from "../proteus-document/ProteusDataTableRowContext";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
 import { resolveProteusProp } from "../proteus-document/resolveProteusProp";
@@ -71,6 +76,9 @@ export const ProteusElement = ({
   const { mapIndices, path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/proteus/ProteusElement",
   );
+  const { row: dataTableRow } = useProteusDataTableRowContext(
+    "@optiaxiom/proteus/ProteusElement",
+  );
   if (!elementProp) {
     return null;
   } else if (
@@ -101,7 +109,13 @@ export const ProteusElement = ({
     const { $type: _$type, ...rest } = obj;
     const resolved: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(rest)) {
-      resolved[key] = resolveProteusProp(value, data, parentPath, mapIndices);
+      resolved[key] = resolveProteusProp(
+        value,
+        data,
+        parentPath,
+        mapIndices,
+        dataTableRow,
+      );
     }
     return resolved as Omit<T, "$type">;
   };
@@ -143,14 +157,16 @@ export const ProteusElement = ({
           />
         </Suspense>
       );
-    case "DataTable":
+    case "DataTable": {
+      const { columns, ...props } = resolve(
+        element,
+      ) as ComponentPropsWithoutRef<typeof ProteusDataTable>;
       return (
-        <ProteusDataTable
-          {...(resolve(element) as ComponentPropsWithoutRef<
-            typeof ProteusDataTable
-          >)}
-        />
+        <ProteusDataTable {...props} columns={wireCellTemplates(columns)} />
       );
+    }
+    case "DataTableRow":
+      return <ProteusDataTableRow {...resolve(element)} />;
     case "DateInput":
       return <ProteusDateInput {...resolve(element)} />;
     case "Disclosure":
@@ -284,3 +300,28 @@ export const ProteusElement = ({
 };
 
 ProteusElement.displayName = "@optiaxiom/proteus/ProteusElement";
+
+/**
+ * Turns each column's raw `cell` template into a render function that renders it
+ * (via `ProteusElement`) with the row exposed through context, so `DataTableRow`
+ * can read the row. Keeps `ProteusDataTable` free of any `ProteusElement`
+ * dependency (avoids bundling the whole element graph into its chunk).
+ */
+function wireCellTemplates(
+  columns: ComponentPropsWithoutRef<typeof ProteusDataTable>["columns"],
+) {
+  return columns?.map((column) => {
+    const cell = (column as { cell?: unknown }).cell;
+    if (cell == null) {
+      return column;
+    }
+    return {
+      ...column,
+      cell: (row: Record<string, unknown>) => (
+        <ProteusDataTableRowProvider row={row}>
+          <ProteusElement element={cell} />
+        </ProteusDataTableRowProvider>
+      ),
+    };
+  });
+}

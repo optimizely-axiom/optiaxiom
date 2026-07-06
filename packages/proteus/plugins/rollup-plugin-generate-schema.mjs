@@ -130,6 +130,11 @@ const PROTEUS_COMPONENT_CONFIG = {
     },
     extends: "Fragment",
   },
+  DataTableRow: {
+    allowedProps: ["path"],
+    example: { path: "status" },
+    extends: "Fragment",
+  },
   DateInput: {
     allowedProps: ["name", "placeholder", "required", "type"],
     example: { name: "date_field", type: "date" },
@@ -502,6 +507,7 @@ function generateSpec(additionalProperties = false) {
             { type: "number" },
             { type: "boolean" },
             { type: "null" },
+            { $ref: "#/definitions/ProteusDataTableRow" },
             { $ref: "#/definitions/ProteusLength" },
             { $ref: "#/definitions/ProteusMapIndex" },
             { $ref: "#/definitions/ProteusValue" },
@@ -1011,6 +1017,7 @@ function generateSpec(additionalProperties = false) {
         },
         ProteusExpression: {
           anyOf: [
+            { $ref: "#/definitions/ProteusDataTableRow" },
             { $ref: "#/definitions/ProteusLength" },
             { $ref: "#/definitions/ProteusMap" },
             { $ref: "#/definitions/ProteusMapIndex" },
@@ -1250,6 +1257,11 @@ function getPropTypeOverrides(additionalProperties = false) {
                   description: "Key in data objects",
                   type: "string",
                 },
+                cell: {
+                  $ref: "#/definitions/ProteusNode",
+                  description:
+                    "A Proteus node template rendered for each cell in this column. Read the current row with DataTableRow (e.g. { $type: 'DataTableRow', path: 'status' } reads the row's 'status', or omit 'path' for the whole row). Can be a single element or an array — use Show elements to conditionally render (e.g. a Badge whose intent depends on the row value). When set, takes precedence over 'format'.",
+                },
                 format: {
                   anyOf: [
                     {
@@ -1296,6 +1308,13 @@ function getPropTypeOverrides(additionalProperties = false) {
           { $ref: "#/definitions/ProteusExpression" },
           { $ref: "#/definitions/ProteusZip" },
         ],
+      },
+    },
+    DataTableRow: {
+      path: {
+        description:
+          "JSON pointer path to a field within the current row (e.g. 'status' or '/status'). When omitted, resolves to the whole row object. Only meaningful inside a DataTable column's `cell`.",
+        type: "string",
       },
     },
     Federated: {

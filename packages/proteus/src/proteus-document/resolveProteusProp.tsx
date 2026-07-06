@@ -1,3 +1,4 @@
+import { getDataTableRowValue } from "../proteus-data-table-row/ProteusDataTableRow";
 import { ProteusElement } from "../proteus-element";
 import { getProteusValue } from "./getProteusValue";
 import {
@@ -10,6 +11,7 @@ export function resolveProteusProp(
   data: Record<string, unknown>,
   parentPath: string,
   mapIndices: number[] = [],
+  dataTableRow?: Record<string, unknown>,
 ): unknown {
   if (typeof value !== "object" || value === null) {
     return value;
@@ -17,6 +19,15 @@ export function resolveProteusProp(
 
   if ("$type" in value && value.$type === "MapIndex") {
     return mapIndices.at(-1);
+  }
+
+  if ("$type" in value && value.$type === "DataTableRow") {
+    return getDataTableRowValue(
+      dataTableRow,
+      "path" in value && typeof value.path === "string"
+        ? value.path
+        : undefined,
+    );
   }
 
   if (
@@ -40,7 +51,13 @@ export function resolveProteusProp(
     const resolved: Record<string, unknown[]> = {};
     let length = 0;
     for (const [k, v] of Object.entries(sources)) {
-      const arr = resolveProteusProp(v, data, parentPath, mapIndices);
+      const arr = resolveProteusProp(
+        v,
+        data,
+        parentPath,
+        mapIndices,
+        dataTableRow,
+      );
       if (Array.isArray(arr)) {
         resolved[k] = arr;
         length = Math.max(length, arr.length);
@@ -64,12 +81,24 @@ export function resolveProteusProp(
     const conditions = Array.isArray(value.when) ? value.when : [value.when];
     const shouldShow = conditions.every(
       (condition: ProteusCondition | undefined) =>
-        evaluateCondition(condition, data, parentPath, mapIndices),
+        evaluateCondition(
+          condition,
+          data,
+          parentPath,
+          mapIndices,
+          dataTableRow,
+        ),
     );
     if (!shouldShow) {
       return undefined;
     }
-    return resolveProteusProp(value.children, data, parentPath, mapIndices);
+    return resolveProteusProp(
+      value.children,
+      data,
+      parentPath,
+      mapIndices,
+      dataTableRow,
+    );
   }
 
   return "$type" in value ||
