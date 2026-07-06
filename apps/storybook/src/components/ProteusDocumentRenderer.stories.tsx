@@ -1236,6 +1236,108 @@ export const WithDataTable: Story = {
   },
 };
 
+// A change-history / diff view built entirely from the generic `DataTable`
+// element — no dedicated element needed. Each column's `cell` is a regular
+// Proteus element template; `DataTableRow` reads the current row inside it. The
+// "Change" column renders a `Badge` whose intent is chosen per row via `Show`
+// conditions on the row's `type`.
+export const WithDataTableCell: Story = {
+  args: {
+    data: {
+      changes: [
+        {
+          field: "Status",
+          newValue: "Running",
+          oldValue: "Paused",
+          type: "modified",
+        },
+        {
+          field: "Traffic Allocation",
+          newValue: "50%",
+          oldValue: "25%",
+          type: "modified",
+        },
+        {
+          field: "Description",
+          newValue: "Updated experiment for Q3 launch",
+          oldValue: "—",
+          type: "added",
+        },
+        {
+          field: "Legacy Flag",
+          newValue: "—",
+          oldValue: "enabled",
+          type: "removed",
+        },
+      ],
+    },
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        {
+          $type: "Heading",
+          children: "Flag Configuration Changes",
+          fontSize: "md",
+          fontWeight: "600",
+          level: "3",
+          mb: "8",
+        },
+        {
+          $type: "DataTable",
+          columns: [
+            { accessorKey: "field", header: "Field", size: 150 },
+            { accessorKey: "oldValue", header: "Old", size: 110 },
+            { accessorKey: "newValue", header: "New", size: 170 },
+            {
+              accessorKey: "type",
+              cell: [
+                {
+                  $type: "Show",
+                  children: {
+                    $type: "Badge",
+                    children: { $type: "DataTableRow", path: "type" },
+                    intent: "success",
+                  },
+                  when: {
+                    "==": [{ $type: "DataTableRow", path: "type" }, "added"],
+                  },
+                },
+                {
+                  $type: "Show",
+                  children: {
+                    $type: "Badge",
+                    children: { $type: "DataTableRow", path: "type" },
+                    intent: "warning",
+                  },
+                  when: {
+                    "==": [{ $type: "DataTableRow", path: "type" }, "modified"],
+                  },
+                },
+                {
+                  $type: "Show",
+                  children: {
+                    $type: "Badge",
+                    children: { $type: "DataTableRow", path: "type" },
+                    intent: "danger",
+                  },
+                  when: {
+                    "==": [{ $type: "DataTableRow", path: "type" }, "removed"],
+                  },
+                },
+              ],
+              header: "Change",
+              size: 120,
+            },
+          ],
+          data: { $type: "Value", path: "/changes" },
+        },
+      ],
+      title: "Change History",
+    },
+  },
+};
+
 export const WithChart: Story = {
   args: {
     element: {

@@ -5,6 +5,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { get } from "jsonpointer";
+import { type ReactNode } from "react";
 
 import { applyFormatter } from "../proteus-document/getProteusValue";
 
@@ -21,6 +22,12 @@ export type ProteusDataTableProps = {
 
 type ColumnDef = {
   accessorKey: string;
+  /**
+   * Renders a cell for this column from the row's data. When set, takes
+   * precedence over `format`. Wired up from a Proteus `cell` template by
+   * `ProteusElement`.
+   */
+  cell?: (row: Record<string, unknown>) => ReactNode;
   format?: string | { options?: Record<string, unknown>; type: string };
   header: string;
   size?: number;
@@ -40,6 +47,9 @@ export const ProteusDataTable = ({ columns, data }: ProteusDataTableProps) => {
         header: col.header,
         id: col.accessorKey,
         size: col.size,
+        ...(col.cell && {
+          cell: ({ row }) => col.cell?.(row.original),
+        }),
       },
     );
   });
