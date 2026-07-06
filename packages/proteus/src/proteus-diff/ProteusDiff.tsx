@@ -52,20 +52,20 @@ export const ProteusDiff = ({
           {title}
         </Heading>
       )}
-      <Box asChild className={styles.table()}>
+      <Box asChild {...styles.table()}>
         <table>
           <thead>
             <tr>
-              <Box asChild className={styles.th()}>
+              <Box asChild {...styles.th()}>
                 <th>Field</th>
               </Box>
-              <Box asChild className={styles.th()}>
+              <Box asChild {...styles.th()}>
                 <th>{oldTitle}</th>
               </Box>
-              <Box asChild className={styles.th()}>
+              <Box asChild {...styles.th()}>
                 <th>{newTitle}</th>
               </Box>
-              <Box asChild className={styles.th()}>
+              <Box asChild {...styles.th()}>
                 <th>Change</th>
               </Box>
             </tr>
@@ -75,16 +75,22 @@ export const ProteusDiff = ({
               const type = inferType(change);
               return (
                 <tr key={index}>
-                  <Box asChild className={`${styles.td()} ${styles.fieldCell()}`}>
+                  <Box
+                    asChild
+                    {...styles.fieldCell(
+                      undefined,
+                      styles.td().className,
+                    )}
+                  >
                     <td>{change.field}</td>
                   </Box>
-                  <Box asChild className={styles.td()}>
+                  <Box asChild {...styles.td()}>
                     <td>{change.oldValue ?? "—"}</td>
                   </Box>
-                  <Box asChild className={styles.td()}>
+                  <Box asChild {...styles.td()}>
                     <td>{change.newValue ?? "—"}</td>
                   </Box>
-                  <Box asChild className={styles.td()}>
+                  <Box asChild {...styles.td()}>
                     <td>
                       <Badge intent={intentMap[type]}>{type}</Badge>
                     </td>
