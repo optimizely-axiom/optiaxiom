@@ -32,6 +32,8 @@ export function App() {
               label: "Target by",
             },
             {
+              // Show renders `children` when the condition holds, otherwise the
+              // `else` branch — here a whole different field.
               $type: "Show",
               children: {
                 $type: "Field",
@@ -42,13 +44,7 @@ export function App() {
                 },
                 label: "URL",
               },
-              when: {
-                "==": [{ $type: "Value", path: "/target_by" }, "url"],
-              },
-            },
-            {
-              $type: "Show",
-              children: {
+              else: {
                 $type: "Field",
                 children: {
                   $type: "Select",
@@ -66,7 +62,7 @@ export function App() {
                 label: "Saved Page",
               },
               when: {
-                "==": [{ $type: "Value", path: "/target_by" }, "page"],
+                "==": [{ $type: "Value", path: "/target_by" }, "url"],
               },
             },
           ],

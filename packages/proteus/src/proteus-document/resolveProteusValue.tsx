@@ -1,3 +1,4 @@
+import { getDataTableRowValue } from "../proteus-data-table-row/ProteusDataTableRow";
 import { getProteusValue } from "./getProteusValue";
 
 export type ProteusCondition =
@@ -17,6 +18,7 @@ type ComparisonValue =
   | null
   | number
   | string
+  | { $type: "DataTableRow"; path?: string }
   | { $type: "Length"; path: string }
   | { $type: "MapIndex" }
   | { $type: "Value"; path: string };
@@ -26,6 +28,7 @@ export function evaluateCondition(
   data: Record<string, unknown>,
   parentPath: string,
   mapIndices: number[] = [],
+  dataTableRow?: Record<string, unknown>,
 ): boolean {
   if (!condition) {
     return true;
@@ -33,13 +36,13 @@ export function evaluateCondition(
 
   if ("and" in condition) {
     return condition.and.every((cond) =>
-      evaluateCondition(cond, data, parentPath, mapIndices),
+      evaluateCondition(cond, data, parentPath, mapIndices, dataTableRow),
     );
   }
 
   if ("or" in condition) {
     return condition.or.some((cond) =>
-      evaluateCondition(cond, data, parentPath, mapIndices),
+      evaluateCondition(cond, data, parentPath, mapIndices, dataTableRow),
     );
   }
 
@@ -49,6 +52,7 @@ export function evaluateCondition(
       data,
       parentPath,
       mapIndices,
+      dataTableRow,
     );
     return !!value;
   }
@@ -59,6 +63,7 @@ export function evaluateCondition(
       data,
       parentPath,
       mapIndices,
+      dataTableRow,
     );
     return !value;
   }
@@ -66,19 +71,31 @@ export function evaluateCondition(
   if ("==" in condition) {
     const [left, right] = condition["=="];
     return (
-      resolveProteusValue(left, data, parentPath, mapIndices) ===
-      resolveProteusValue(right, data, parentPath, mapIndices)
+      resolveProteusValue(left, data, parentPath, mapIndices, dataTableRow) ===
+      resolveProteusValue(right, data, parentPath, mapIndices, dataTableRow)
     );
   } else if ("!=" in condition) {
     const [left, right] = condition["!="];
     return (
-      resolveProteusValue(left, data, parentPath, mapIndices) !==
-      resolveProteusValue(right, data, parentPath, mapIndices)
+      resolveProteusValue(left, data, parentPath, mapIndices, dataTableRow) !==
+      resolveProteusValue(right, data, parentPath, mapIndices, dataTableRow)
     );
   } else if ("<" in condition) {
     const [left, right] = condition["<"];
-    const leftVal = resolveProteusValue(left, data, parentPath, mapIndices);
-    const rightVal = resolveProteusValue(right, data, parentPath, mapIndices);
+    const leftVal = resolveProteusValue(
+      left,
+      data,
+      parentPath,
+      mapIndices,
+      dataTableRow,
+    );
+    const rightVal = resolveProteusValue(
+      right,
+      data,
+      parentPath,
+      mapIndices,
+      dataTableRow,
+    );
     return (
       typeof leftVal === "number" &&
       typeof rightVal === "number" &&
@@ -86,8 +103,20 @@ export function evaluateCondition(
     );
   } else if ("<=" in condition) {
     const [left, right] = condition["<="];
-    const leftVal = resolveProteusValue(left, data, parentPath, mapIndices);
-    const rightVal = resolveProteusValue(right, data, parentPath, mapIndices);
+    const leftVal = resolveProteusValue(
+      left,
+      data,
+      parentPath,
+      mapIndices,
+      dataTableRow,
+    );
+    const rightVal = resolveProteusValue(
+      right,
+      data,
+      parentPath,
+      mapIndices,
+      dataTableRow,
+    );
     return (
       typeof leftVal === "number" &&
       typeof rightVal === "number" &&
@@ -95,8 +124,20 @@ export function evaluateCondition(
     );
   } else if (">" in condition) {
     const [left, right] = condition[">"];
-    const leftVal = resolveProteusValue(left, data, parentPath, mapIndices);
-    const rightVal = resolveProteusValue(right, data, parentPath, mapIndices);
+    const leftVal = resolveProteusValue(
+      left,
+      data,
+      parentPath,
+      mapIndices,
+      dataTableRow,
+    );
+    const rightVal = resolveProteusValue(
+      right,
+      data,
+      parentPath,
+      mapIndices,
+      dataTableRow,
+    );
     return (
       typeof leftVal === "number" &&
       typeof rightVal === "number" &&
@@ -104,8 +145,20 @@ export function evaluateCondition(
     );
   } else if (">=" in condition) {
     const [left, right] = condition[">="];
-    const leftVal = resolveProteusValue(left, data, parentPath, mapIndices);
-    const rightVal = resolveProteusValue(right, data, parentPath, mapIndices);
+    const leftVal = resolveProteusValue(
+      left,
+      data,
+      parentPath,
+      mapIndices,
+      dataTableRow,
+    );
+    const rightVal = resolveProteusValue(
+      right,
+      data,
+      parentPath,
+      mapIndices,
+      dataTableRow,
+    );
     return (
       typeof leftVal === "number" &&
       typeof rightVal === "number" &&
@@ -121,6 +174,7 @@ export function resolveProteusValue(
   data: Record<string, unknown>,
   parentPath: string,
   mapIndices: number[] = [],
+  dataTableRow?: Record<string, unknown>,
 ): unknown {
   if (typeof value !== "object" || value === null) {
     return value;
@@ -129,6 +183,15 @@ export function resolveProteusValue(
   if ("$type" in value) {
     if (value.$type === "MapIndex") {
       return mapIndices.at(-1);
+    }
+
+    if (value.$type === "DataTableRow") {
+      return getDataTableRowValue(
+        dataTableRow,
+        "path" in value && typeof value.path === "string"
+          ? value.path
+          : undefined,
+      );
     }
 
     if (
@@ -176,6 +239,7 @@ export function resolveProteusValue(
             data,
             `${resolvedPath}/${index}`,
             [...mapIndices, index],
+            dataTableRow,
           ),
         )
         .filter((v: unknown) => v !== undefined);
@@ -186,6 +250,7 @@ export function resolveProteusValue(
           data,
           parentPath,
           mapIndices,
+          dataTableRow,
         );
         return result.join(typeof sep === "string" ? sep : "");
       }
@@ -196,12 +261,29 @@ export function resolveProteusValue(
       const conditions = Array.isArray(value.when) ? value.when : [value.when];
       const shouldShow = conditions.every(
         (condition: ProteusCondition | undefined) =>
-          evaluateCondition(condition, data, parentPath, mapIndices),
+          evaluateCondition(
+            condition,
+            data,
+            parentPath,
+            mapIndices,
+            dataTableRow,
+          ),
       );
-      if (!shouldShow) {
+      const branch = shouldShow
+        ? value.children
+        : "else" in value
+          ? value.else
+          : undefined;
+      if (branch === undefined) {
         return undefined;
       }
-      return resolveProteusValue(value.children, data, parentPath, mapIndices);
+      return resolveProteusValue(
+        branch,
+        data,
+        parentPath,
+        mapIndices,
+        dataTableRow,
+      );
     }
 
     if (value.$type === "Concat" && "children" in value) {
@@ -210,7 +292,13 @@ export function resolveProteusValue(
       }
       return value.children
         .map((child: unknown) =>
-          resolveProteusValue(child, data, parentPath, mapIndices),
+          resolveProteusValue(
+            child,
+            data,
+            parentPath,
+            mapIndices,
+            dataTableRow,
+          ),
         )
         .filter((v: unknown) => v !== undefined)
         .join("");
@@ -221,13 +309,21 @@ export function resolveProteusValue(
 
   if (Array.isArray(value)) {
     return value
-      .map((v) => resolveProteusValue(v, data, parentPath, mapIndices))
+      .map((v) =>
+        resolveProteusValue(v, data, parentPath, mapIndices, dataTableRow),
+      )
       .filter((v) => v !== undefined);
   }
 
   const resolved: Record<string, unknown> = {};
   for (const [k, v] of Object.entries(value)) {
-    const r = resolveProteusValue(v, data, parentPath, mapIndices);
+    const r = resolveProteusValue(
+      v,
+      data,
+      parentPath,
+      mapIndices,
+      dataTableRow,
+    );
     if (r !== undefined) resolved[k] = r;
   }
   return resolved;

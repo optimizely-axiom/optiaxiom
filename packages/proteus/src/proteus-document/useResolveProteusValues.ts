@@ -1,3 +1,4 @@
+import { useProteusDataTableRowContext } from "./ProteusDataTableRowContext";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
 import { resolveProteusValue } from "./resolveProteusValue";
@@ -11,10 +12,19 @@ export function useResolveProteusValues(
   const { mapIndices, path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/react/useResolveProteusValues",
   );
+  const { row: dataTableRow } = useProteusDataTableRowContext(
+    "@optiaxiom/react/useResolveProteusValues",
+  );
 
   const resolved: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(props)) {
-    resolved[key] = resolveProteusValue(value, data, parentPath, mapIndices);
+    resolved[key] = resolveProteusValue(
+      value,
+      data,
+      parentPath,
+      mapIndices,
+      dataTableRow,
+    );
   }
   return resolved;
 }

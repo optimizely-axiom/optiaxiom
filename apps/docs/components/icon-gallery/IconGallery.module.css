@@ -22,6 +22,10 @@
   display: grid;
   gap: var(--gap);
 
+  /* Align each cell to the top of its row so icons line up even when labels
+     wrap to different line counts across a row. */
+  align-items: start;
+
   /* Responsive columns: aim for ~112px cells, targeting 3 per row on phones up
      to 7 on wide screens. minmax(X, 1fr) fits floor(width / X) columns, so X is
      clamped between a 7-column share (upper bound on count) and a 3-column

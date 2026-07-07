@@ -130,6 +130,11 @@ const PROTEUS_COMPONENT_CONFIG = {
     },
     extends: "Fragment",
   },
+  DataTableRow: {
+    allowedProps: ["path"],
+    example: { path: "status" },
+    extends: "Fragment",
+  },
   Diff: {
     allowedProps: ["newText", "newTitle", "oldText", "oldTitle", "title"],
     example: {
@@ -303,7 +308,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     allowedProps: [],
   },
   Show: {
-    allowedProps: ["when", "children"],
+    allowedProps: ["when", "children", "else"],
     example: {
       children: { $type: "Text", children: "Shown conditionally" },
       when: { "!!": { $type: "Value", path: "/field_name" } },
@@ -511,6 +516,7 @@ function generateSpec(additionalProperties = false) {
             { type: "number" },
             { type: "boolean" },
             { type: "null" },
+            { $ref: "#/definitions/ProteusDataTableRow" },
             { $ref: "#/definitions/ProteusLength" },
             { $ref: "#/definitions/ProteusMapIndex" },
             { $ref: "#/definitions/ProteusValue" },
@@ -1020,6 +1026,7 @@ function generateSpec(additionalProperties = false) {
         },
         ProteusExpression: {
           anyOf: [
+            { $ref: "#/definitions/ProteusDataTableRow" },
             { $ref: "#/definitions/ProteusLength" },
             { $ref: "#/definitions/ProteusMap" },
             { $ref: "#/definitions/ProteusMapIndex" },
@@ -1259,6 +1266,11 @@ function getPropTypeOverrides(additionalProperties = false) {
                   description: "Key in data objects",
                   type: "string",
                 },
+                cell: {
+                  $ref: "#/definitions/ProteusNode",
+                  description:
+                    "A Proteus node template rendered for each cell in this column. Read the current row with DataTableRow (e.g. { $type: 'DataTableRow', path: 'status' } reads the row's 'status', or omit 'path' for the whole row). Can be a single element or an array — use Show elements to conditionally render (e.g. a Badge whose intent depends on the row value). When set, takes precedence over 'format'.",
+                },
                 format: {
                   anyOf: [
                     {
@@ -1305,6 +1317,13 @@ function getPropTypeOverrides(additionalProperties = false) {
           { $ref: "#/definitions/ProteusExpression" },
           { $ref: "#/definitions/ProteusZip" },
         ],
+      },
+    },
+    DataTableRow: {
+      path: {
+        description:
+          "JSON pointer path to a field within the current row (e.g. 'status' or '/status'). When omitted, resolves to the whole row object. Only meaningful inside a DataTable column's `cell`.",
+        type: "string",
       },
     },
     Diff: {
@@ -1614,6 +1633,11 @@ function getPropTypeOverrides(additionalProperties = false) {
       children: {
         $ref: "#/definitions/ProteusNode",
         description: "Content to show when condition is true",
+      },
+      else: {
+        $ref: "#/definitions/ProteusNode",
+        description:
+          "Content to render when the condition is false. Omitting it renders nothing. Chain nested Show/else to express multi-way choices (e.g. mapping a value to one of several outputs).",
       },
       when: {
         anyOf: [
