@@ -110,7 +110,7 @@ Supported operators: `==`, `!=`, `<`, `<=`, `>`, `>=`, `!!` (truthy), `!` (falsy
 
 ### Interaction handler
 
-Sends the named interaction back to your server, where it can be handled and responded to:
+Sends the named interaction back to your server, where it can be handled and responded to. Because the handler owns the document's `data`, the response can meaningfully change what the card renders — here approving or requesting changes updates `status`, and `Show`/`Value` swap the actions for a resolved state:
 
 <Demo component="proteus/action-interaction" />
 
