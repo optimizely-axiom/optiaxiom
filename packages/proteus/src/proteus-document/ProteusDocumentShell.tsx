@@ -37,11 +37,12 @@ import {
 } from "./ProteusDocumentContext";
 import * as styles from "./ProteusDocumentShell.css";
 import { resolveProteusValue } from "./resolveProteusValue";
+import {
+  resolveThemeOverride,
+  type ThemeOverride,
+} from "./resolveThemeOverride";
 
-export type ProteusDocumentShellProps = Pick<
-  ComponentPropsWithoutRef<typeof Disclosure>,
-  "defaultOpen" | "onOpenChange" | "open"
-> & {
+export type ProteusDocumentShellProps = {
   /**
    * Whether block is collapsible
    */
@@ -111,10 +112,25 @@ export type ProteusDocumentShellProps = Pick<
    */
   strict?: boolean;
   /**
+   * Re-skin this document by overriding Axiom design tokens for its subtree.
+   * Accepts a partial of the `theme` contract — any subset of any category
+   * (`colors`, `spacing`, `borderRadius`, …). Only the tokens you provide are
+   * overridden; everything else inherits the ambient theme. The overrides are
+   * applied as scoped CSS variables on a wrapper element, so they affect this
+   * document only and never leak to the rest of the page.
+   *
+   * @example
+   * themeOverride={{ colors: { "bg.default": "#1a1a2e", "fg.default": "#e0e0ff" } }}
+   */
+  themeOverride?: ThemeOverride;
+  /**
    * Hook to resolve a resource URI to HTML content for Bridge elements
    */
   useResource?: UseResource;
-};
+} & Pick<
+  ComponentPropsWithoutRef<typeof Disclosure>,
+  "defaultOpen" | "onOpenChange" | "open"
+>;
 
 type ProteusDocument = {
   actions?: ReactNode;
@@ -147,6 +163,7 @@ export function ProteusDocumentShell({
   open: openProp,
   readOnly = false,
   strict,
+  themeOverride,
   useResource,
 }: ProteusDocumentShellProps) {
   const [valid, setValid] = useState(false);
@@ -296,7 +313,12 @@ export function ProteusDocumentShell({
     scripts: element.scripts,
   });
 
-  return (
+  // Resolved token overrides, applied as scoped CSS variables on a wrapper so
+  // they cascade to this document only. `undefined` when nothing is overridden,
+  // in which case we skip the wrapper element entirely.
+  const themeVars = resolveThemeOverride(themeOverride);
+
+  const content = (
     <ProteusDocumentProvider
       data={data}
       icons={icons}
@@ -431,6 +453,8 @@ export function ProteusDocumentShell({
       </Disclosure>
     </ProteusDocumentProvider>
   );
+
+  return themeVars ? <div style={themeVars}>{content}</div> : content;
 }
 
 ProteusDocumentShell.displayName = "@optiaxiom/proteus/ProteusDocumentShell";

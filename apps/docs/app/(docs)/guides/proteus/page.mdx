@@ -146,6 +146,67 @@ For logic that shouldn't require a server round-trip, a document can ship JavaSc
 
 <Demo component="proteus/scripting-watch" />
 
+## Theming
+
+### Overriding tokens
+
+Pass `themeOverride` to re-skin a document without touching its element tree. It takes a partial of the Axiom `theme` contract — any subset of any category (`colors`, `borderRadius`, `fontFamily`, `spacing`, …) — and applies those tokens as scoped CSS variables on a wrapper around the document. Only the tokens you list are overridden; everything else inherits the ambient theme, and the overrides never leak to the rest of the page.
+
+Because a token like `bg.accent` (the primary button's face) is paired with a dark foreground token, keep overridden surfaces that hold text light enough for the text to remain legible.
+
+<Demo component="proteus/theming" />
+
+## Embedding external UI
+
+### Module federation
+
+The `Federated` element loads a remote React component at runtime via [Module Federation](https://module-federation.io/) and renders it inline in the document. Point `entry` at the remote's `remoteEntry.js` (or `mf-manifest.json`), and use `exposeKey` to pick which exposed module to render (defaults to `"."`). Provide a `fallback` — any Proteus node — to render if the remote fails to load.
+
+```json
+{
+  "$type": "Document",
+  "body": [
+    {
+      "$type": "Federated",
+      "entry": "https://cdn.example.com/widget/remoteEntry.js",
+      "exposeKey": "./Dashboard",
+      "fallback": [
+        {
+          "$type": "Text",
+          "children": "Couldn't load the dashboard widget.",
+          "color": "fg.error"
+        }
+      ]
+    }
+  ]
+}
+```
+
+The remote receives the document's current form `data` as props, so a federated widget can read the same state the rest of the document binds to. There's no live demo here because the element needs a real remote served over the network; wire it against your own `remoteEntry.js` to try it.
+
+### Bridge
+
+The `Bridge` element embeds sandboxed HTML — such as an [MCP UI](https://modelcontextprotocol.io/) or OpenAI apps widget — inside an isolated iframe. Give it a `resource` URI; the renderer resolves it through the `useResource` hook you pass to `ProteusDocumentRenderer`, which returns the HTML to render. The iframe auto-resizes to its content, or you can pin a `height`. The embedded widget communicates back through the standard bridge protocol (calling tools, sending follow-up messages), which surface as the renderer's `onInteraction` and `onMessage` callbacks.
+
+```tsx
+<ProteusDocumentRenderer
+  element={{
+    $type: "Document",
+    body: [{ $type: "Bridge", height: 200, resource: "ui://my-widget" }],
+  }}
+  onInteraction={(name, params) => {
+    /* widget called a tool */
+  }}
+  onMessage={(message) => {
+    /* widget sent a follow-up message */
+  }}
+  useResource={(uri) => ({
+    data: { mimeType: "text/html+skybridge", text: "<!doctype html>…" },
+    isError: false,
+  })}
+/>
+```
+
 ## Proteus Designer
 
 ### Visual editor
@@ -302,6 +363,12 @@ The [Proteus Designer](/guides/proteus-designer) is a visual editor for building
 
 <ProteusElementRef type="Show" />
 
-### Bridge
+### Embedding
+
+#### Bridge
 
 <ProteusElementRef type="Bridge" />
+
+#### Federated
+
+<ProteusElementRef type="Federated" />
