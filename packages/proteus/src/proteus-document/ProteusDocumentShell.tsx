@@ -116,8 +116,8 @@ export type ProteusDocumentShellProps = {
    * Accepts a partial of the `theme` contract — any subset of any category
    * (`colors`, `spacing`, `borderRadius`, …). Only the tokens you provide are
    * overridden; everything else inherits the ambient theme. The overrides are
-   * applied as scoped CSS variables on a wrapper element, so they affect this
-   * document only and never leak to the rest of the page.
+   * applied as scoped CSS variables on the document's root element, so they
+   * affect this document only and never leak to the rest of the page.
    *
    * @example
    * themeOverride={{ colors: { "bg.default": "#1a1a2e", "fg.default": "#e0e0ff" } }}
@@ -313,12 +313,12 @@ export function ProteusDocumentShell({
     scripts: element.scripts,
   });
 
-  // Resolved token overrides, applied as scoped CSS variables on a wrapper so
-  // they cascade to this document only. `undefined` when nothing is overridden,
-  // in which case we skip the wrapper element entirely.
+  // Resolved token overrides, applied as scoped CSS variables on the outer
+  // Disclosure so they cascade to this document only (and to the Disclosure's
+  // own token-driven styling). `undefined` when nothing is overridden.
   const themeVars = resolveThemeOverride(themeOverride);
 
-  const content = (
+  return (
     <ProteusDocumentProvider
       data={data}
       icons={icons}
@@ -349,6 +349,7 @@ export function ProteusDocumentShell({
         open={open}
         p={inline ? undefined : "20"}
         rounded={inline ? undefined : "xl"}
+        style={themeVars}
       >
         {!inline && element.appName && (
           <Trigger py="0" {...(collapsible ? { chevronPosition: "end" } : {})}>
@@ -453,8 +454,6 @@ export function ProteusDocumentShell({
       </Disclosure>
     </ProteusDocumentProvider>
   );
-
-  return themeVars ? <div style={themeVars}>{content}</div> : content;
 }
 
 ProteusDocumentShell.displayName = "@optiaxiom/proteus/ProteusDocumentShell";
