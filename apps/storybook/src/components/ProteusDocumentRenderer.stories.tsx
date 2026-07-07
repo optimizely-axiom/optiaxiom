@@ -2337,6 +2337,263 @@ export const ScriptsWatch: Story = {
   },
 };
 
+// A live mortgage calculator built entirely from data + a single watcher, then
+// re-skinned into a Windows 98 dialog with `themeOverride` — so one story shows
+// both scripting and theming at once.
+//
+// The three inputs (amount / rate / term) live in form data; a `watch('/', …)`
+// recomputes the monthly payment, total paid, and total interest on every
+// change using the standard amortization formula, writing the results back via
+// `setValue`. The Document declares no interactions — all the logic is in the
+// sandboxed script, and the result cards `Show` only once a payment exists.
+//
+// The Win98 look is a pure `themeOverride`: it lists a partial of the `theme`
+// contract (silver chrome, squared corners, MS Sans Serif) and everything else
+// inherits the ambient theme. The element tree is untouched by the skin.
+const win98Icon =
+  "data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'32'%20height%3D'32'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20x%3D'2'%20y%3D'4'%20width%3D'28'%20height%3D'22'%20fill%3D'%23000080'%20stroke%3D'%23000'%2F%3E%3Crect%20x%3D'4'%20y%3D'6'%20width%3D'24'%20height%3D'3'%20fill%3D'%23c0c0c0'%2F%3E%3Crect%20x%3D'4'%20y%3D'11'%20width%3D'24'%20height%3D'13'%20fill%3D'%23008080'%2F%3E%3Crect%20x%3D'13'%20y%3D'26'%20width%3D'6'%20height%3D'3'%20fill%3D'%23808080'%2F%3E%3Crect%20x%3D'9'%20y%3D'29'%20width%3D'14'%20height%3D'2'%20fill%3D'%23808080'%2F%3E%3C%2Fsvg%3E";
+
+export const MortgageCalculator: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "System Properties",
+      body: [
+        {
+          $type: "Group",
+          children: [
+            {
+              $type: "Field",
+              children: {
+                $type: "Input",
+                addonBefore: "$",
+                name: "amount",
+                placeholder: "e.g. 400000",
+                type: "number",
+              },
+              label: "Loan amount",
+            },
+            {
+              $type: "Group",
+              children: [
+                {
+                  $type: "Field",
+                  children: {
+                    $type: "Input",
+                    addonAfter: "%",
+                    name: "rate",
+                    placeholder: "e.g. 6.5",
+                    type: "number",
+                  },
+                  flex: "1",
+                  label: "Interest rate",
+                },
+                {
+                  $type: "Field",
+                  children: {
+                    $type: "Select",
+                    children: [
+                      { $type: "SelectTrigger", w: "full" },
+                      { $type: "SelectContent" },
+                    ],
+                    name: "term",
+                    options: [
+                      { label: "10 years", value: "10" },
+                      { label: "15 years", value: "15" },
+                      { label: "20 years", value: "20" },
+                      { label: "30 years", value: "30" },
+                    ],
+                  },
+                  flex: "1",
+                  label: "Term",
+                },
+              ],
+              flexDirection: "row",
+              gap: "16",
+            },
+          ],
+          flexDirection: "column",
+          gap: "16",
+        },
+        {
+          $type: "Show",
+          children: {
+            $type: "Group",
+            children: [
+              {
+                $type: "Group",
+                border: "1",
+                borderColor: "border.tertiary",
+                children: [
+                  {
+                    $type: "Text",
+                    children: "Monthly payment",
+                    color: "fg.tertiary",
+                    fontSize: "xs",
+                    textTransform: "uppercase",
+                  },
+                  {
+                    $type: "Text",
+                    children: { $type: "Value", path: "/monthly" },
+                    fontSize: "2xl",
+                    fontWeight: "700",
+                  },
+                ],
+                flex: "1",
+                flexDirection: "column",
+                gap: "4",
+                p: "12",
+                rounded: "xl",
+              },
+              {
+                $type: "Group",
+                border: "1",
+                borderColor: "border.tertiary",
+                children: [
+                  {
+                    $type: "Text",
+                    children: "Total interest",
+                    color: "fg.tertiary",
+                    fontSize: "xs",
+                    textTransform: "uppercase",
+                  },
+                  {
+                    $type: "Text",
+                    children: { $type: "Value", path: "/interest" },
+                    color: "fg.warning.strong",
+                    fontSize: "2xl",
+                    fontWeight: "700",
+                  },
+                ],
+                flex: "1",
+                flexDirection: "column",
+                gap: "4",
+                p: "12",
+                rounded: "xl",
+              },
+              {
+                $type: "Group",
+                border: "1",
+                borderColor: "border.tertiary",
+                children: [
+                  {
+                    $type: "Text",
+                    children: "Total paid",
+                    color: "fg.tertiary",
+                    fontSize: "xs",
+                    textTransform: "uppercase",
+                  },
+                  {
+                    $type: "Text",
+                    children: { $type: "Value", path: "/total" },
+                    fontSize: "2xl",
+                    fontWeight: "700",
+                  },
+                ],
+                flex: "1",
+                flexDirection: "column",
+                gap: "4",
+                p: "12",
+                rounded: "xl",
+              },
+            ],
+            gap: "16",
+          },
+          when: { "!!": { $type: "Value", path: "/monthly" } },
+        },
+      ],
+      // The whole calculator is this one watcher. It reads the three inputs from
+      // the snapshot, applies the amortization formula (falling back to simple
+      // division when the rate is 0), and writes formatted currency strings back
+      // — or clears the results when the inputs are incomplete/invalid. Its own
+      // setValue writes target paths outside `/amount`, `/rate`, `/term`, so it
+      // does not re-trigger itself into a loop.
+      scripts: {
+        main: [
+          "const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US');",
+          "watch('/', (ctx) => {",
+          "  const amount = Number(ctx.getValue('/amount'));",
+          "  const rate = Number(ctx.getValue('/rate'));",
+          "  const years = Number(ctx.getValue('/term'));",
+          "  const clear = () => {",
+          "    ctx.emit({ action: 'setValue', path: '/monthly', value: '' });",
+          "    ctx.emit({ action: 'setValue', path: '/interest', value: '' });",
+          "    ctx.emit({ action: 'setValue', path: '/total', value: '' });",
+          "  };",
+          "  if (!(amount > 0) || !(years > 0) || rate < 0 || Number.isNaN(rate)) {",
+          "    return clear();",
+          "  }",
+          "  const n = years * 12;",
+          "  const i = rate / 100 / 12;",
+          "  const monthly = i === 0",
+          "    ? amount / n",
+          "    : (amount * i) / (1 - Math.pow(1 + i, -n));",
+          "  if (!Number.isFinite(monthly)) return clear();",
+          "  const total = monthly * n;",
+          "  ctx.emit({ action: 'setValue', path: '/monthly', value: fmt(monthly) });",
+          "  ctx.emit({ action: 'setValue', path: '/interest', value: fmt(total - amount) });",
+          "  ctx.emit({ action: 'setValue', path: '/total', value: fmt(total) });",
+          "});",
+        ].join("\n"),
+      },
+      subtitle: "General · Payment · Amortization",
+      title: "Mortgage Properties",
+      titleIcon: win98Icon,
+    },
+    themeOverride: {
+      borderRadius: {
+        xs: "0",
+        sm: "0",
+        md: "0",
+        lg: "0",
+        xl: "0",
+        // Square everything off — Win98 chrome had no rounded corners.
+        full: "0",
+      },
+      colors: {
+        // Blocky silver window chrome — the classic 98 palette. Note the accent
+        // (the primary button face) stays LIGHT: its label comes from the dark
+        // `fg.*` tokens, so a dark face would be unreadable. We tint it a light
+        // teal so it sits with the teal desktop instead of fighting it. Navy is
+        // reserved for the small app-icon block, where nothing sits on top.
+        "bg.accent": "#7bc5c5",
+        "bg.accent.hovered": "#5fb0b0",
+        "bg.accent.pressed": "#4a9a9a",
+        "bg.accent.subtle": "#000080",
+        "bg.default": "#c0c0c0",
+        "bg.page": "#c0c0c0",
+        "bg.pill.default": "#c0c0c0",
+        "border.default": "#000000",
+        "border.secondary": "#808080",
+        "border.tertiary": "#808080",
+        "fg.default": "#000000",
+        "fg.secondary": "#000080",
+        "fg.tertiary": "#404040",
+      },
+      fontFamily: {
+        heading:
+          "'MS Sans Serif', 'Pixelated MS Sans Serif', Tahoma, Geneva, sans-serif",
+        sans: "'MS Sans Serif', 'Pixelated MS Sans Serif', Tahoma, Geneva, sans-serif",
+      },
+    },
+  },
+  decorators: (Story) => (
+    <Box style={{ background: "#008080", padding: 40 }}>
+      <Story />
+    </Box>
+  ),
+  render: function Render(args) {
+    const [data, setData] = useState<Record<string, unknown>>({
+      amount: 400000,
+      rate: 6.5,
+      term: "30",
+    });
+    return (
+      <ProteusDocumentRenderer {...args} data={data} onDataChange={setData} />
+    );
+  },
+};
+
 export const CreateMeetingEvent: Story = {
   args: {
     element: {
