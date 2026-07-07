@@ -28,8 +28,8 @@ type DeepPartial<T> = {
  * variable is *defined*, not re-wrapped in another `var()`. Unknown keys (not
  * in the contract) are skipped rather than emitting a dangling variable.
  *
- * Returns `undefined` for a nullish or empty override so callers can avoid
- * rendering a wrapper element when there is nothing to scope.
+ * Returns `undefined` for a nullish or empty override so callers can skip
+ * setting an inline `style` when there is nothing to scope.
  */
 export function resolveThemeOverride(
   override: ThemeOverride | undefined,
