@@ -1,5 +1,16 @@
 # @optiaxiom/proteus
 
+## 3.2.0
+
+### Minor Changes
+
+- 874bfc7: Add custom cell rendering to `DataTable`. A column can now carry a `cell` node template instead of plain text, and a new `DataTableRow` element/expression reads the current row inside it — `{ $type: "DataTableRow", path: "status" }` reads a field, or omit `path` for the whole row (mirroring how `MapIndex` exposes the current index inside a `Map`). This lets a column render a `Badge`, `Icon`, link, or any element composition, with `Show` picking what to render per row (e.g. a change-history table whose "Change" column is a badge whose intent depends on the row). Columns without `cell` are unchanged; `cell` takes precedence over `format`.
+- 4541a4b: Add an `else` branch to `Show`. When the condition is false, `Show` now renders `else` instead of nothing — for element children and, since `Show` also resolves as a value, for props. Chain nested `Show`/`else` to express multi-way choices in a single expression (e.g. a `Badge` whose `intent` maps a value to one of several tokens), instead of repeating the element once per case. `Show` without an `else` is unchanged.
+
+### Patch Changes
+
+- 8be7c75: Fix `watch(path, fn)` script watchers missing edges that happened during startup. The worker reports its watched paths asynchronously after init; if the user changed the watched data before that message arrived, the change was swallowed and the watcher never fired. The watcher now seeds its baseline from the mount-time data and runs an immediate edge-detect the moment its paths are registered, so any change made during the async handshake fires correctly. `register` handlers and watcher-less documents are unaffected.
+
 ## 3.1.0
 
 ### Minor Changes
