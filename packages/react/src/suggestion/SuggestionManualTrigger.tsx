@@ -4,7 +4,7 @@ import type { PopoverTrigger } from "../popover";
 
 import { Avatar } from "../avatar";
 import { Button, type ButtonProps } from "../button";
-import { useEffectEvent } from "../hooks";
+import { useEvent } from "../hooks";
 import { useSurface } from "../surface";
 import { useSuggestions } from "../surface/internals";
 
@@ -16,18 +16,16 @@ export const SuggestionManualTrigger = forwardRef<
 >((props, ref) => {
   const surface = useSurface("property");
 
-  const register = useEffectEvent(
-    surface?.suggestionPopover.register ?? (() => {}),
-  );
+  const register = useEvent(surface?.suggestionPopover.register ?? (() => {}));
   useEffect(() => {
     return register();
-  }, []);
+  }, [register]);
 
   const [pending, setPending] = useState(false);
   const suggestions = useSuggestions("property", "value");
   const suggestion = suggestions?.[0];
 
-  const acceptSuggestion = useEffectEvent(() => {
+  const acceptSuggestion = useEvent(() => {
     if (!suggestion) {
       return;
     }
@@ -36,7 +34,7 @@ export const SuggestionManualTrigger = forwardRef<
   });
   useEffect(() => {
     acceptSuggestion();
-  }, [suggestion?.id]);
+  }, [suggestion?.id, acceptSuggestion]);
 
   if (!surface) {
     return null;

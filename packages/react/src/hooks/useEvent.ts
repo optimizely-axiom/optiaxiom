@@ -1,13 +1,13 @@
 "use client";
 
-import { useCallback, useLayoutEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
-export function useEffectEvent<
-  T extends (...args: Parameters<T>) => ReturnType<T>,
->(callback: T) {
+export function useEvent<T extends (...args: Parameters<T>) => ReturnType<T>>(
+  callback: T,
+) {
   const callbackRef = useRef(callback);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     callbackRef.current = callback;
   });
 

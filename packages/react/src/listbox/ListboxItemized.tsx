@@ -1,7 +1,7 @@
 import { forwardRef, Fragment, type ReactNode, useEffect } from "react";
 
 import { type BoxProps } from "../box";
-import { useEffectEvent } from "../hooks";
+import { useEvent } from "../hooks";
 import { Skeleton } from "../skeleton";
 import { Listbox } from "./Listbox";
 import { ListboxEmpty } from "./ListboxEmpty";
@@ -62,7 +62,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
     },
     ref,
   ) => {
-    const onPlacedChangeStable = useEffectEvent(onPlacedChange ?? (() => {}));
+    const onPlacedChangeStable = useEvent(onPlacedChange ?? (() => {}));
     useEffect(() => {
       /**
        * We wait for first paint to render the menu and then another paint for
@@ -73,7 +73,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
         requestAnimationFrame(() => onPlacedChangeStable(true)),
       );
       return () => onPlacedChangeStable(false);
-    }, []);
+    }, [onPlacedChangeStable]);
 
     return (
       <Listbox

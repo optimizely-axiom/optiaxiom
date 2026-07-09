@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { useEffectEvent } from "../hooks";
+import { useEvent } from "../hooks";
 
 export function useHighlightedIndex(
   open: boolean | number | undefined,
@@ -14,16 +14,14 @@ export function useHighlightedIndex(
    * Since we manually track highlightedIndex we need to reset it whenever
    * the menu is closed or the open state changes.
    */
-  const getInitialHighlightedIndexStable = useEffectEvent(
-    getInitialHighlightedIndex,
-  );
+  const getInitialHighlightedIndexStable = useEvent(getInitialHighlightedIndex);
   useEffect(() => {
     if (!open) {
       setHighlightedIndex(-1);
     } else if (open) {
       setHighlightedIndex(getInitialHighlightedIndexStable);
     }
-  }, [open]);
+  }, [open, getInitialHighlightedIndexStable]);
 
   return [
     /**

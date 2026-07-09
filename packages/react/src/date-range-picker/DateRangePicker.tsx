@@ -1,7 +1,7 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithRef, useEffect, useRef, useState } from "react";
 
-import { useEffectEvent } from "../hooks";
+import { useEvent } from "../hooks";
 import { Popover } from "../popover";
 import { toInstant, toPlainDate } from "../utils";
 import { DateRangePickerProvider } from "./DateRangePickerContext";
@@ -61,7 +61,7 @@ export function DateRangePicker({
     onChange: onValueChange,
     prop: valueProp,
   });
-  const setValueStable = useEffectEvent(setValue);
+  const setValueStable = useEvent(setValue);
 
   useEffect(() => {
     if (open) {
@@ -75,7 +75,7 @@ export function DateRangePicker({
         setValueStable({ from: from, to: end });
       }
     }
-  }, [from, open]);
+  }, [from, open, setValueStable]);
 
   return (
     <Popover onOpenChange={setOpen} open={open} {...props}>

@@ -11,7 +11,7 @@ import {
 
 import type { BoxProps } from "../box";
 
-import { useEffectEvent } from "../hooks";
+import { useEvent } from "../hooks";
 import { TableRow } from "../table";
 import { useDataTableContext } from "./DataTableContext";
 import { DataTableRowProvider, fakeRow } from "./DataTableRowContext";
@@ -62,7 +62,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
 
     const focusManaged = Boolean(selector || primary);
 
-    const onActionMount = useEffectEvent(
+    const onActionMount = useEvent(
       ({
         primary,
         ref,
@@ -227,7 +227,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
           labelId={labelId}
           onActionMount={onActionMount}
           row={row}
-          setHighlightedIndex={useEffectEvent((nextIndex: number) => {
+          setHighlightedIndex={useEvent((nextIndex: number) => {
             setSubHighlightedIndex(nextIndex);
             if (nextIndex === -1) {
               innerRef.current?.focus();

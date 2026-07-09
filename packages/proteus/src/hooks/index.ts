@@ -1,2 +1,2 @@
-export * from "./useEffectEvent";
+export * from "./useEvent";
 export * from "./useObserveValue";

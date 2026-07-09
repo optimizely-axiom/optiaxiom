@@ -6,7 +6,7 @@ import {
   useRef,
 } from "react";
 
-import { useEffectEvent } from "../hooks";
+import { useEvent } from "../hooks";
 import { Input } from "../input";
 import { SurfaceProvider } from "../surface";
 import { useCommandContext } from "./CommandContext";
@@ -17,10 +17,10 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
   ({ onBlur, onKeyDown, size, ...props }, ref) => {
     const { downshift, highlightedItem, highlightedItemRef, setInputValue } =
       useCommandContext("@optiaxiom/react/CommandInput");
-    const setInputValueStable = useEffectEvent(setInputValue);
+    const setInputValueStable = useEvent(setInputValue);
     useEffect(() => {
       setInputValueStable("");
-    }, []);
+    }, [setInputValueStable]);
 
     const preventDownshiftBlurRef = useRef(false);
 
