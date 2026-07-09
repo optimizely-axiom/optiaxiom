@@ -192,16 +192,16 @@
     "perfectionist/sort-objects": [
       "error",
       {
-        "customGroups": {
-          "base": "^base$",
-          "2xs": "^\\dxs$",
-          "xs": "^xs$",
-          "sm": "^sm$",
-          "md": "^md$",
-          "lg": "^lg$",
-          "xl": "^xl$",
-          "2xl": "^\\dxl$"
-        },
+        "customGroups": [
+          { "elementNamePattern": "^base$", "groupName": "base" },
+          { "elementNamePattern": "^\\dxs$", "groupName": "2xs" },
+          { "elementNamePattern": "^xs$", "groupName": "xs" },
+          { "elementNamePattern": "^sm$", "groupName": "sm" },
+          { "elementNamePattern": "^md$", "groupName": "md" },
+          { "elementNamePattern": "^lg$", "groupName": "lg" },
+          { "elementNamePattern": "^xl$", "groupName": "xl" },
+          { "elementNamePattern": "^\\dxl$", "groupName": "2xl" }
+        ],
         "groups": ["base", "2xs", "xs", "sm", "md", "lg", "xl", "2xl"],
         "partitionByNewLine": true,
         "type": "natural"

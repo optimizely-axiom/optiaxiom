@@ -29,7 +29,6 @@
     "build": "node scripts/download.mjs && rm -rf dist && NODE_ENV=production rolldown -c",
     "dev": "node scripts/download.mjs && rm -rf dist && rolldown -wc"
   },
-  "dependencies": {},
   "devDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
