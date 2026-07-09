@@ -3,7 +3,7 @@ import { type ComponentPropsWithoutRef, useEffect, useState } from "react";
 import { Alert } from "../alert";
 import { Button } from "../button";
 import { Group } from "../group";
-import { useEffectEvent } from "../hooks";
+import { useEvent } from "../hooks";
 import { useSurface } from "../surface";
 import { useSuggestions } from "../surface/internals";
 import { Text } from "../text";
@@ -20,12 +20,10 @@ export function SuggestionAlert({ ...props }: SuggestionAlertProps) {
   const valueSuggestions = useSuggestions("property", "value");
   const [isExecuting, setIsExecuting] = useState(false);
 
-  const register = useEffectEvent(
-    surface?.suggestionAlert.register ?? (() => {}),
-  );
+  const register = useEvent(surface?.suggestionAlert.register ?? (() => {}));
   useEffect(() => {
     return register();
-  }, []);
+  }, [register]);
 
   // Show message suggestions first, then value suggestions if no popover is handling them
   const messageSuggestion = messageSuggestions?.[0];

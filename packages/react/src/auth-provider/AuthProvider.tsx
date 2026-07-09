@@ -1,7 +1,7 @@
 import { AxiomAuthContext } from "@optiaxiom/globals";
 import { type ReactNode, useMemo } from "react";
 
-import { useEffectEvent } from "../hooks";
+import { useEvent } from "../hooks";
 
 export type AuthProviderProps = {
   children?: ReactNode;
@@ -31,11 +31,14 @@ export function AuthProvider({
   refresh: refreshProp,
   token,
 }: AuthProviderProps) {
-  const refresh = useEffectEvent(refreshProp);
+  const refresh = useEvent(refreshProp);
 
   return (
     <AxiomAuthContext.Provider
-      value={useMemo(() => ({ instance, refresh, token }), [instance, token])}
+      value={useMemo(
+        () => ({ instance, refresh, token }),
+        [instance, refresh, token],
+      )}
     >
       {children}
     </AxiomAuthContext.Provider>

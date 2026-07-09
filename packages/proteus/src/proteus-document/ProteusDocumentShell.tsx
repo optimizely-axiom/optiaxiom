@@ -25,7 +25,7 @@ import type {
   StructuredMessage,
 } from "./schemas";
 
-import { useEffectEvent } from "../hooks";
+import { useEvent } from "../hooks";
 import { downloadFile } from "../proteus-image/downloadFile";
 import { useProteusScripts } from "../proteus-script/useProteusScripts";
 import { isSafeUrl } from "./isSafeUrl";
@@ -207,7 +207,7 @@ export function ProteusDocumentShell({
   const appearance = resolveProteusValue(element.appearance, data, "", []);
   const inline = appearance === "inline";
 
-  const onEvent = useEffectEvent(async (event: ProteusEventHandler) => {
+  const onEvent = useEvent(async (event: ProteusEventHandler) => {
     if ("interaction" in event) {
       return await onInteraction?.(event.interaction, event.params);
     } else if ("message" in event) {
@@ -322,7 +322,7 @@ export function ProteusDocumentShell({
     <ProteusDocumentProvider
       data={data}
       icons={icons}
-      onDataChange={useEffectEvent((path: string, value: unknown) => {
+      onDataChange={useEvent((path: string, value: unknown) => {
         onDataChange?.((prev) => {
           const next = structuredClone(prev);
           set(next, path, value);
@@ -330,11 +330,9 @@ export function ProteusDocumentShell({
         });
       })}
       onEvent={onEvent}
-      onTrack={useEffectEvent(
-        (event: string, properties: Record<string, string>) => {
-          onTrack?.(event, properties);
-        },
-      )}
+      onTrack={useEvent((event: string, properties: Record<string, string>) => {
+        onTrack?.(event, properties);
+      })}
       onUpload={onUpload}
       readOnly={readOnly}
       strict={strict}

@@ -2,7 +2,7 @@ import { type ComponentPropsWithoutRef, useMemo } from "react";
 
 import type { Command } from "./Command";
 
-import { useEffectEvent } from "../hooks";
+import { useEvent } from "../hooks";
 import { useSurface } from "../surface";
 import {
   buildSurfacePath,
@@ -20,7 +20,7 @@ export const useCommandItems = ({
   inputValue,
   options,
 }: useCommandItemsProps) => {
-  const filterFn = useEffectEvent((item: CommandOption, inputValue: string) => {
+  const filterFn = useEvent((item: CommandOption, inputValue: string) => {
     const string = resolveItemProperty(item.label, {
       inputValue,
     }).normalize();
@@ -113,5 +113,5 @@ export const useCommandItems = ({
         (b.group?.priority ?? 0) + bScore - ((a.group?.priority ?? 0) + aScore)
       );
     });
-  }, [options, inputValue, suggestions, surface?.path]);
+  }, [options, inputValue, suggestions, surface?.path, filterFn]);
 };

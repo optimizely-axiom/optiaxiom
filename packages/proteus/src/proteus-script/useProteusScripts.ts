@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import type { ProteusEventHandler } from "../proteus-document/schemas";
 import type { WorkerToHostMessage } from "./protocol";
 
-import { useEffectEvent } from "../hooks";
+import { useEvent } from "../hooks";
 import { WORKER_SCRIPT } from "./workerScript";
 
 type UseProteusScriptsOptions = {
@@ -61,7 +61,7 @@ export function useProteusScripts({
   // an edge once the watcher subscribes (rather than being silently absorbed).
   const initialDataRef = useRef(data);
 
-  const emit = useEffectEvent(onEmit);
+  const emit = useEvent(onEmit);
 
   const hasScripts = !!scripts && Object.keys(scripts).length > 0;
 
@@ -88,7 +88,7 @@ export function useProteusScripts({
   const emitDepth = useRef(0);
 
   /** Snapshot every watched path from `data` into `lastEval` without firing. */
-  const seedWatchers = useEffectEvent((data: Record<string, unknown>) => {
+  const seedWatchers = useEvent((data: Record<string, unknown>) => {
     lastEval.current = watchedPaths.current.map((path) =>
       JSON.stringify(getByPointer(data, path) ?? null),
     );
@@ -100,7 +100,7 @@ export function useProteusScripts({
    * data-change effect and the `watchers` message handler (so a watcher that
    * registers after the user already changed data still catches that edge).
    */
-  const runEdgeDetect = useEffectEvent((data: Record<string, unknown>) => {
+  const runEdgeDetect = useEvent((data: Record<string, unknown>) => {
     const worker = workerRef.current;
     if (!worker) {
       return;
@@ -128,7 +128,7 @@ export function useProteusScripts({
   });
 
   /** Resolve a pending run (if still pending) and clear its timeout. */
-  const settle = useEffectEvent((invokeId: number, result: unknown) => {
+  const settle = useEvent((invokeId: number, result: unknown) => {
     const entry = pending.get(invokeId);
     if (!entry) {
       return;
@@ -138,7 +138,7 @@ export function useProteusScripts({
     entry.resolve(result);
   });
 
-  const spawnWorker = useEffectEvent(() => {
+  const spawnWorker = useEvent(() => {
     const url = URL.createObjectURL(
       new Blob([WORKER_SCRIPT], { type: "text/javascript" }),
     );
@@ -186,7 +186,7 @@ export function useProteusScripts({
   });
 
   /** Ensure the worker exists, spawning it on first need. */
-  const ensureWorker = useEffectEvent(() => {
+  const ensureWorker = useEvent(() => {
     if (!workerRef.current) {
       workerRef.current = spawnWorker();
     }
@@ -194,7 +194,7 @@ export function useProteusScripts({
   });
 
   /** Tear down the current worker and abandon every in-flight run. */
-  const teardown = useEffectEvent(() => {
+  const teardown = useEvent(() => {
     workerRef.current?.terminate();
     workerRef.current = null;
     watchedPaths.current = [];
@@ -212,7 +212,7 @@ export function useProteusScripts({
       ensureWorker();
     }
     return teardown;
-  }, [scripts, hasScripts]);
+  }, [scripts, hasScripts, ensureWorker, teardown]);
 
   // Edge-detect watched paths on every data change and run the ones that
   // changed — unless the change was caused by a script's own emit.
@@ -226,9 +226,9 @@ export function useProteusScripts({
       return;
     }
     runEdgeDetect(data);
-  }, [data]);
+  }, [data, seedWatchers, runEdgeDetect]);
 
-  return useEffectEvent(
+  return useEvent(
     (handler: string, params?: Record<string, unknown>): Promise<unknown> => {
       if (!hasScripts) {
         return Promise.resolve(undefined);
