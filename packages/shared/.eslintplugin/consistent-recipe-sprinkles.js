@@ -82,7 +82,7 @@ const SPRINKLE_PROPERTIES = new Set([
   "zIndex",
 ]);
 
-/** @type {import('eslint').Rule.RuleModule} */
+/** @type {import('@typescript-eslint/utils').TSESLint.RuleModule<string>} */
 export default {
   create(context) {
     // Check if we're linting properties.css.ts
@@ -90,7 +90,7 @@ export default {
       return {
         /**
          * Check that all properties in defineProperties match our static list
-         * @type {import('eslint').Rule.RuleListener['Property']}
+         * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['Property']}
          */
         "CallExpression[callee.name=defineProperties] > ObjectExpression > Property[key.name=properties] > ObjectExpression > Property":
           (node) => {
@@ -108,7 +108,7 @@ export default {
           },
         /**
          * Check that all shorthands in defineProperties match our static list
-         * @type {import('eslint').Rule.RuleListener['Property']}
+         * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['Property']}
          */
         "CallExpression[callee.name=defineProperties] > ObjectExpression > Property[key.name=shorthands] > ObjectExpression > Property":
           (node) => {

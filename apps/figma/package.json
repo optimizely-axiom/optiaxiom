@@ -7,7 +7,7 @@
     "build": "figma connect publish"
   },
   "devDependencies": {
-    "@figma/code-connect": "^1.4.3",
+    "@figma/code-connect": "^1.4.9",
     "@optiaxiom/react": "workspace:^",
     "@optiaxiom/shared": "workspace:^"
   }

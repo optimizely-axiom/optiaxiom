@@ -58,7 +58,7 @@ type SurfaceContextValue<V = unknown> = {
   value?: V;
 };
 
-type SurfaceInteraction = { id?: string } & (
+type SurfaceInteraction = (
   | { checked: boolean; name: "toggled" }
   | { name: "added"; value: unknown }
   | { name: "blurred" }
@@ -68,14 +68,9 @@ type SurfaceInteraction = { id?: string } & (
   | { name: "removed"; value: unknown }
   | { name: "requested"; value: unknown }
   | { name: "viewed" }
-);
+) & { id?: string };
 
-type SurfaceSuggestion = {
-  createdAt: string;
-  id: string;
-  page: string;
-  surface: string;
-} & (
+type SurfaceSuggestion = (
   | {
       cards: Array<{
         data: unknown;
@@ -95,7 +90,12 @@ type SurfaceSuggestion = {
       tool?: { name: string; parameters: unknown };
       type: "message";
     }
-);
+) & {
+  createdAt: string;
+  id: string;
+  page: string;
+  surface: string;
+};
 
 const SuggestionContext = createContext<null | {
   add: <V = unknown>(

@@ -34,13 +34,13 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
     "fuzzysearch": "^1.0.3",
-    "zod": "^3.25.76"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@optiaxiom/globals": "workspace:^",
     "@optiaxiom/react": "workspace:^",
     "@optiaxiom/shared": "workspace:^",
     "@types/fuzzysearch": "^1.0.2",
-    "@types/node": "^22.19.17"
+    "@types/node": "^22.20.1"
   }
 }
