@@ -58,6 +58,9 @@
       "msw",
       "sharp"
     ],
+    "overrides": {
+      "@module-federation/enhanced": "^2.7.0"
+    },
     "patchedDependencies": {
       "@vanilla-extract/sprinkles": "patches/@vanilla-extract__sprinkles.patch",
       "nextra-theme-docs": "patches/nextra-theme-docs.patch",
