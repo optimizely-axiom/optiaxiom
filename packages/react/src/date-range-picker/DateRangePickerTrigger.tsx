@@ -25,7 +25,7 @@ export type DateRangePickerTriggerProps = ComponentPropsWithoutRef<
   /**
    * Provide a custom date range formatter.
    */
-  formatRange?: Intl.DateTimeFormat["formatRange"];
+  formatRange?: (startDate: Date, endDate: Date) => string;
   /**
    * The placeholder when there is no value.
    */
