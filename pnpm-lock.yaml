@@ -624,8 +624,8 @@ importers:
         specifier: ^0.9.2
         version: 0.9.2
       '@mantine/hooks':
-        specifier: ^9.4.1
-        version: 9.4.1(react@18.3.1)
+        specifier: ^8.3.18
+        version: 8.3.18(react@18.3.1)
       '@optiaxiom/shared':
         specifier: workspace:^
         version: link:../shared
@@ -2025,10 +2025,10 @@ packages:
     peerDependencies:
       '@types/react': 17 || 18 || 19
 
-  '@mantine/hooks@9.4.1':
-    resolution: {integrity: sha512-eTI8wmzPx3r98zgKIEuvukmoGTHBhmtI6+9E6o2DbTmEU2eM1bCdjE2vFdf0op2AlRO0KEYEcZhNQi4T/SJk0A==}
+  '@mantine/hooks@8.3.18':
+    resolution: {integrity: sha512-QoWr9+S8gg5050TQ06aTSxtlpGjYOpIllRbjYYXlRvZeTsUqiTbVfvQROLexu4rEaK+yy9Wwriwl9PMRgbLqPw==}
     peerDependencies:
-      react: ^19.2.0
+      react: ^18.x || ^19.x
 
   '@manypkg/find-root@1.1.0':
     resolution: {integrity: sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA==}
@@ -10792,7 +10792,7 @@ snapshots:
     dependencies:
       '@types/react': 18.3.31
 
-  '@mantine/hooks@9.4.1(react@18.3.1)':
+  '@mantine/hooks@8.3.18(react@18.3.1)':
     dependencies:
       react: 18.3.1
 
