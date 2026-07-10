@@ -32066,7 +32066,7 @@
         },
         "formatRange": {
           "description": "Provide a custom date range formatter.",
-          "type": "((startDate: number | bigint | Date, endDate: number | bigint | Date) => string)"
+          "type": "((startDate: Date, endDate: Date) => string)"
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
