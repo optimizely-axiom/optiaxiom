@@ -42,6 +42,10 @@ optiaxiom/
 │   ├── react/              # Main React component library (@optiaxiom/react)
 │   ├── web-components/     # Framework-agnostic web components
 │   ├── globals/            # Internal utilities and design tokens
+│   ├── icons/              # Material Symbols icon kit (@optiaxiom/icons)
+│   ├── mcp/                # MCP server for AI assistants (@optiaxiom/mcp)
+│   ├── proteus/            # JSON-based UI spec renderer (@optiaxiom/proteus)
+│   ├── codemod/            # Codemods for migrating Axiom code
 │   └── shared/             # Shared build and development tools
 ├── apps/
 │   ├── docs/               # Documentation site (Nextra + Next.js)
@@ -55,6 +59,9 @@ optiaxiom/
 - [`@optiaxiom/react`](./packages/react): React component library
 - [`@optiaxiom/web-components`](./packages/web-components): Web component library
 - [`@optiaxiom/globals`](./packages/globals): Design tokens and shared React contexts (for module federation)
+- [`@optiaxiom/icons`](./packages/icons): Material Symbols icon kit
+- [`@optiaxiom/proteus`](./packages/proteus): Renderer for Proteus, a JSON-based UI specification for building interactive tool interfaces
+- [`@optiaxiom/mcp`](./packages/mcp): MCP server exposing component metadata to AI assistants
 - [`@optiaxiom/codemod`](./packages/codemod): Codemods for migrating Axiom code
 - [`@optiaxiom/shared`](./packages/shared): Shared build tools (not for public use)
 
