@@ -1,6 +1,6 @@
 {
   "name": "optiaxiom",
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@11.12.0",
   "private": true,
   "type": "module",
   "version": "0.0.0",
@@ -49,22 +49,5 @@
     "typescript": "^5.9.3",
     "vitest": "^4.1.10",
     "wait-on": "^9.0.10"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "edgedriver",
-      "esbuild",
-      "geckodriver",
-      "msw",
-      "sharp"
-    ],
-    "overrides": {
-      "@module-federation/enhanced": "^2.7.0"
-    },
-    "patchedDependencies": {
-      "@vanilla-extract/sprinkles": "patches/@vanilla-extract__sprinkles.patch",
-      "nextra-theme-docs": "patches/nextra-theme-docs.patch",
-      "react-docgen-typescript": "patches/react-docgen-typescript.patch"
-    }
   }
 }
