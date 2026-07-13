@@ -25,8 +25,6 @@ jobs:
           cache: pnpm
           node-version-file: .node-version
 
-      - run: npm install -g npm@latest
-
       - run: pnpm install
 
       - run: pnpm exec playwright install chromium

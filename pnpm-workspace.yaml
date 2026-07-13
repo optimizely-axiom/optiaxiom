@@ -1,3 +1,18 @@
 packages:
   - apps/*
   - packages/*
+
+allowBuilds:
+  edgedriver: true
+  esbuild: true
+  geckodriver: true
+  msw: true
+  sharp: true
+
+overrides:
+  "@module-federation/enhanced": "^2.7.0"
+
+patchedDependencies:
+  "@vanilla-extract/sprinkles": patches/@vanilla-extract__sprinkles.patch
+  nextra-theme-docs: patches/nextra-theme-docs.patch
+  react-docgen-typescript: patches/react-docgen-typescript.patch
