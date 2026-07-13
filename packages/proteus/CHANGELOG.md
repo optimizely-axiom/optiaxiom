@@ -1,5 +1,18 @@
 # @optiaxiom/proteus
 
+## 3.3.0
+
+### Minor Changes
+
+- 77e3cbc: added `themeOverride` to `ProteusDocumentRenderer` for re-skinning a document without touching its element tree. It accepts a partial of the Axiom `theme` contract (any subset of any token category) and applies the tokens you provide as scoped CSS variables — only the listed tokens are overridden, and the overrides affect that document's subtree only.
+
+### Patch Changes
+
+- Updated dependencies [0b899f1]
+- Updated dependencies [f211b2a]
+  - @optiaxiom/icons@1.4.0
+  - @optiaxiom/react@3.1.5
+
 ## 3.2.0
 
 ### Minor Changes

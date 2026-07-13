@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.4.0
+
+### Minor Changes
+
+- 0b899f1: Added `IconRecordVoiceOver` (Material Symbols `record_voice_over`) for text-to-speech / voice-mode controls.
+
 ## 1.3.0
 
 ### Minor Changes

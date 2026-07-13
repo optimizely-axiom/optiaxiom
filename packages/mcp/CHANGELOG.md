@@ -1,5 +1,12 @@
 # @optiaxiom/mcp
 
+## 3.0.5
+
+### Patch Changes
+
+- 24fbe63: Regenerated icon data to include `IconRecordVoiceOver`.
+- f211b2a: regenerated the embedded docs data so the `DateRangePickerTrigger` `formatRange` prop reports a clean `(startDate: Date, endDate: Date) => string` type instead of a truncated overloaded signature.
+
 ## 3.0.4
 
 ### Patch Changes
