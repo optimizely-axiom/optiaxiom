@@ -201,6 +201,12 @@ The MCP server serves pre-generated component metadata that is automatically ext
 
 All data is bundled into the published package — there is no filesystem or network I/O at runtime.
 
+The generated metadata is committed to the repo as `src/data.json` and re-verified in CI with
+`git diff --exit-code`. Any change to an upstream source (a `@optiaxiom/react` component, a
+`@optiaxiom/globals` token, or a `@optiaxiom/icons` icon) therefore requires you to rebuild
+(`pnpm -F mcp... build`), commit the regenerated `src/data.json`, and add an `@optiaxiom/mcp` `patch`
+changeset — otherwise the CI diff check fails.
+
 **Important**: When adding warnings or guidance about component usage, add them to the component's JSDoc comment rather than the MCP server code. This ensures the information is:
 
 - Visible in IDEs (hover tooltips)

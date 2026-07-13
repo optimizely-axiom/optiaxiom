@@ -15,7 +15,12 @@ package-specific setup, testing, and conventions.
 
 - `apps/docs/` — documentation site (see `apps/docs/README.md` for doc writing guidelines)
 - `packages/react/` — React component library
-- `packages/mcp/` — MCP server for AI assistants
+- `packages/icons/` — Material Symbols kit; add icons via `icons.json` + `npm run build` (see `packages/icons/README.md`)
+- `packages/mcp/` — MCP server for AI assistants (see `packages/mcp/README.md`)
+
+Some packages commit **generated** files that CI re-runs and `git diff --exit-code`s — if you touch
+their inputs, rebuild and commit the output or CI fails: `packages/mcp/src/data.json` (from
+react/globals/icons — see `packages/mcp/README.md`) and `packages/proteus/src/schema/*.json`.
 
 ## Changesets (REQUIRED for every user-facing change)
 
