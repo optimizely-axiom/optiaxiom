@@ -224,6 +224,7 @@
   "portrait": ["ImagePortrait"],
   "progress_activity": ["Spinner"],
   "push_pin": ["ThumbtackSolid"],
+  "record_voice_over": ["RecordVoiceOver"],
   "redo": ["ArrowRotateRight"],
   "refresh": ["ArrowRotateLeft"],
   "remove_shopping_cart": ["CartMinus"],

@@ -261,6 +261,7 @@ export { IconPoll as IconSquarePollHorizontal } from "../svg/poll.svg";
 export { IconPortrait as IconImagePortrait } from "../svg/portrait.svg";
 export { IconProgressActivity as IconSpinner } from "../svg/progress_activity.svg";
 export { IconPushPinFill as IconThumbtackSolid } from "../svg/push_pin-fill.svg";
+export { IconRecordVoiceOver as IconRecordVoiceOver } from "../svg/record_voice_over.svg";
 export { IconRedo as IconArrowRotateRight } from "../svg/redo.svg";
 export { IconRefresh as IconArrowRotateLeft } from "../svg/refresh.svg";
 export { IconRemove as IconPipe } from "../svg/remove.svg";
