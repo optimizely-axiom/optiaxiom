@@ -81,6 +81,7 @@
   "desktop_windows": ["Display"],
   "devices": ["LaptopMobile"],
   "do_not_disturb_on": ["CircleMinus"],
+  "domain": ["Domain"],
   "done_all": ["CheckDouble"],
   "download": ["Download"],
   "draft": ["File"],
