@@ -96,6 +96,7 @@ export { IconDesktopMac as IconDesktop } from "../svg/desktop_mac.svg";
 export { IconDesktopWindows as IconDisplay } from "../svg/desktop_windows.svg";
 export { IconDevices as IconLaptopMobile } from "../svg/devices.svg";
 export { IconDoNotDisturbOn as IconCircleMinus } from "../svg/do_not_disturb_on.svg";
+export { IconDomain as IconDomain } from "../svg/domain.svg";
 export { IconDoneAll as IconCheckDouble } from "../svg/done_all.svg";
 export { IconDownload as IconDownload } from "../svg/download.svg";
 export { IconDraft as IconFile } from "../svg/draft.svg";
