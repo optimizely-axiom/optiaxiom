@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.5.0
+
+### Minor Changes
+
+- 3b08b06: Added `IconDomain` (Material Symbols `domain`) for organization / building / domain contexts.
+
 ## 1.4.0
 
 ### Minor Changes

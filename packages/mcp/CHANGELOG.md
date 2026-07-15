@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 3.0.6
+
+### Patch Changes
+
+- 3b08b06: Regenerated icon data to include `IconDomain`.
+
 ## 3.0.5
 
 ### Patch Changes
