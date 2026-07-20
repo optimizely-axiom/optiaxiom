@@ -48,9 +48,24 @@ By default a `DataTable` column renders its value as text. Give a column a `cell
 
 <Demo component="proteus/data-table-cell" />
 
+#### Row selection
+
+Give a `DataTable` a `rowSelection` prop — a JSON pointer such as `"/selection"` — to add a select-all header checkbox and a per-row checkbox column. As rows are toggled, the selected row objects are written as an array to that pointer, so an action can read them back with `Value`:
+
+```json
+{
+  "$type": "DataTable",
+  "rowSelection": "/selection",
+  "columns": [{ "accessorKey": "name", "header": "Task Name" }],
+  "data": { "$type": "Value", "path": "/tasks" }
+}
+```
+
+An action can then read the selection via `{ "$type": "Value", "path": "/selection" }` — for example to send the selected rows to an interaction, or to disable a submit button until at least one row is selected.
+
 ### Form controls
 
-Wrap inputs with `Field` to add a label. Available inputs include `Input`, `Textarea`, `Select` (composed from `SelectTrigger` and `SelectContent`), `Switch`, `Range`, and `Question` (a multi-question dynamic form).
+Wrap inputs with `Field` to add a label. Available inputs include `Input`, `Textarea`, `Select` (composed from `SelectTrigger` and `SelectContent`), `Switch`, `Checkbox`, `Range`, and `Question` (a multi-question dynamic form). `Switch` and `Checkbox` are boolean controls bound to a data path via `name`.
 
 <Demo component="proteus/form-controls" />
 
@@ -318,6 +333,10 @@ The [Proteus Designer](/guides/proteus-designer) is a visual editor for building
 #### Switch
 
 <ProteusElementRef type="Switch" />
+
+#### Checkbox
+
+<ProteusElementRef type="Checkbox" />
 
 #### Range
 

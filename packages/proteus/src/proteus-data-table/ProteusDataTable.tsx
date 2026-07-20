@@ -3,6 +3,7 @@ import {
   DataTable,
   DataTableBody,
   DataTableCheckbox,
+  DataTableLabel,
 } from "@optiaxiom/react";
 import {
   createColumnHelper,
@@ -65,7 +66,17 @@ export const ProteusDataTable = ({
 
   const columnHelper = createColumnHelper<Record<string, unknown>>();
   const columnDefs = useMemo(() => {
-    const defs = (columns || []).map((col) => {
+    const selectable = rowSelection !== undefined;
+    const defs = (columns || []).map((col, index) => {
+      // When the table is selectable, wrap the first column's content in
+      // `DataTableLabel` so each row checkbox has an accessible name (the
+      // checkbox references the label via `aria-labelledby`).
+      const withLabel = (content: ReactNode) =>
+        selectable && index === 0 ? (
+          <DataTableLabel>{content}</DataTableLabel>
+        ) : (
+          content
+        );
       return columnHelper.accessor(
         (row) => {
           const value = get(row, "/" + col.accessorKey);
@@ -75,14 +86,17 @@ export const ProteusDataTable = ({
           header: col.header,
           id: col.accessorKey,
           size: col.size,
-          ...(col.cell && {
-            cell: ({ row }) => col.cell?.(row.original),
+          ...((col.cell || (selectable && index === 0)) && {
+            cell: ({ getValue, row }) =>
+              withLabel(
+                col.cell ? col.cell(row.original) : (getValue() as ReactNode),
+              ),
           }),
         },
       );
     });
 
-    if (rowSelection === undefined) {
+    if (!selectable) {
       return defs;
     }
 
