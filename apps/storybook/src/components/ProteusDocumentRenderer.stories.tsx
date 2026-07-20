@@ -2969,6 +2969,170 @@ export const CreateMeetingEvent: Story = {
   },
 };
 
+// Stands in for the server handler behind the `create_tasks` interaction: takes
+// the current document data and returns the next data. Turns the selected rows
+// into created tasks (with real refs + links), appends them to `/created`,
+// removes them from the pending `/tasks`, and clears the selection.
+function createTasks(data: Record<string, unknown>): Record<string, unknown> {
+  const selection = Array.isArray(data.selection)
+    ? (data.selection as Array<Record<string, unknown>>)
+    : [];
+  const base = (data.nextRef as number) ?? 47;
+  const created = selection.map(
+    (row, index): Record<string, unknown> => ({
+      ...row,
+      ref: `TSK-${base + index}`,
+      url: `https://cmp.example.com/tasks/TSK-${base + index}`,
+    }),
+  );
+  const createdNames = new Set(created.map((row) => row.name));
+  const tasks = Array.isArray(data.tasks)
+    ? (data.tasks as Array<Record<string, unknown>>)
+    : [];
+  return {
+    ...data,
+    created: [...(Array.isArray(data.created) ? data.created : []), ...created],
+    nextRef: base + created.length,
+    selection: [],
+    tasks: tasks.filter((task) => !createdNames.has(task.name)),
+  };
+}
+
+// Action card for creating multiple tasks in one shot (CCP-17176). The input
+// table uses the `DataTable` `rowSelection` prop — pointing it at `/selection`
+// gives a select-all header checkbox + per-row checkboxes for free, and writes
+// the selected row objects there. `Create` reads `/selection` via the
+// interaction handler, appends the created tasks (with real refs + links) to
+// `/created`, and clears the selection so the user can pick and create more.
+export const CreateTasks: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      // Hide the Create button once every task has been created.
+      actions: {
+        $type: "Show",
+        children: {
+          $type: "Action",
+          appearance: "primary",
+          children: "Create",
+          // Disabled until at least one row is selected.
+          disabled: {
+            $type: "Show",
+            children: true,
+            else: false,
+            when: { "!": { $type: "Value", path: "/selection/0" } },
+          },
+          onClick: { interaction: "create_tasks" },
+        },
+        when: { "!!": { $type: "Value", path: "/tasks/0" } },
+      },
+      appName: "Content Marketing Platform",
+      body: [
+        // Pending section — only while there are tasks left to create.
+        {
+          $type: "Show",
+          children: {
+            $type: "Group",
+            children: [
+              {
+                $type: "Text",
+                children:
+                  "Here are your suggested tasks. Select all you would like to create.",
+                color: "fg.secondary",
+                fontSize: "md",
+              },
+              {
+                $type: "DataTable",
+                columns: [{ accessorKey: "name", header: "Task Name" }],
+                data: { $type: "Value", path: "/tasks" },
+                rowSelection: "/selection",
+              },
+            ],
+            flexDirection: "column",
+            gap: "16",
+          },
+          when: { "!!": { $type: "Value", path: "/tasks/0" } },
+        },
+        // Output section — appears once the first batch is created and grows
+        // with each subsequent Create.
+        {
+          $type: "Show",
+          children: {
+            $type: "Group",
+            children: [
+              {
+                $type: "Badge",
+                alignSelf: "start",
+                children: [
+                  { $type: "Length", path: "/created" },
+                  " tasks created",
+                ],
+                intent: "success",
+              },
+              {
+                $type: "DataTable",
+                columns: [
+                  {
+                    accessorKey: "ref",
+                    cell: {
+                      $type: "Badge",
+                      children: { $type: "DataTableRow", path: "ref" },
+                      intent: "neutral",
+                    },
+                    header: "Ref",
+                    size: 40,
+                  },
+                  {
+                    accessorKey: "name",
+                    cell: {
+                      $type: "CardLink",
+                      children: { $type: "DataTableRow", path: "name" },
+                      href: { $type: "DataTableRow", path: "url" },
+                    },
+                    header: "Task Name",
+                  },
+                ],
+                data: { $type: "Value", path: "/created" },
+              },
+            ],
+            flexDirection: "column",
+            gap: "16",
+          },
+          when: { "!!": { $type: "Value", path: "/created/0" } },
+        },
+      ],
+      title: "Create Tasks",
+    },
+  },
+  render: function Render(args) {
+    const [data, setData] = useState<Record<string, unknown>>({
+      created: [],
+      nextRef: 47,
+      selection: [],
+      tasks: [
+        { name: "Write blog post about Q2 product updates" },
+        { name: "Schedule design review for new dashboard" },
+        { name: "Update project roadmap in Confluence" },
+        { name: "Send stakeholder comms for March release" },
+      ],
+    });
+
+    return (
+      <ProteusDocumentRenderer
+        {...args}
+        data={data}
+        onDataChange={setData}
+        onInteraction={(name): void => {
+          action(name)();
+          if (name === "create_tasks") {
+            setData(createTasks(data));
+          }
+        }}
+      />
+    );
+  },
+};
+
 export const PartialRendering: Story = {
   args: {
     element: {
