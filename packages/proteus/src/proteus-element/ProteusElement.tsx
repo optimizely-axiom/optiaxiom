@@ -24,6 +24,7 @@ import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 import { ProteusAction } from "../proteus-action/ProteusAction";
 import { ProteusBridge } from "../proteus-bridge/ProteusBridge";
 import { ProteusCardLink } from "../proteus-card-link/ProteusCardLink";
+import { ProteusCheckbox } from "../proteus-checkbox/ProteusCheckbox";
 import { ProteusDataTableRow } from "../proteus-data-table-row/ProteusDataTableRow";
 import { ProteusDataTable } from "../proteus-data-table/ProteusDataTable";
 import { ProteusDateInput } from "../proteus-date-input/ProteusDateInput";
@@ -157,6 +158,8 @@ export const ProteusElement = ({
           />
         </Suspense>
       );
+    case "Checkbox":
+      return <ProteusCheckbox {...resolve(element)} />;
     case "DataTable": {
       const { columns, ...props } = resolve(
         element,

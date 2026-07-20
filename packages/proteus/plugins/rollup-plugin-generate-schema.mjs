@@ -118,6 +118,10 @@ const PROTEUS_COMPONENT_CONFIG = {
     },
     extends: "Fragment",
   },
+  Checkbox: {
+    allowedProps: ["children", "description", "name", "required"],
+    example: { children: "I agree", name: "field_name" },
+  },
   Concat: {
     allowedProps: ["children"],
     extends: "Fragment",
