@@ -775,6 +775,13 @@ export const AskAgentInput: Story = {
           type: "boolean",
           value: null,
         },
+        {
+          description: "Confirm you have permission to run this campaign",
+          name: "Confirm Permission",
+          required: true,
+          type: "checkbox",
+          value: null,
+        },
       ],
     },
     element: {
@@ -861,6 +868,18 @@ export const AskAgentInput: Story = {
               },
               when: {
                 "==": [{ $type: "Value", path: "type" }, "boolean"],
+              },
+            },
+            {
+              $type: "Show",
+              children: {
+                $type: "Checkbox",
+                children: { $type: "Value", path: "name" },
+                description: { $type: "Value", path: "description" },
+                name: { $type: "Value", path: "name" },
+              },
+              when: {
+                "==": [{ $type: "Value", path: "type" }, "checkbox"],
               },
             },
           ],

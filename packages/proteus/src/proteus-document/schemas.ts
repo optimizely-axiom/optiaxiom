@@ -6,6 +6,7 @@ import type {
   BoxProps,
   CardHeaderProps,
   CardProps,
+  CheckboxProps,
   DateInputProps,
   DisclosureContentProps,
   DisclosureProps,
@@ -60,6 +61,7 @@ export type ProteusElement =
   | (BoxProps & { $type: "Icon"; filled?: boolean; name: string })
   | (CardHeaderProps & { $type: "CardHeader" })
   | (CardProps & { $type: "Card" })
+  | (CheckboxProps & { $type: "Checkbox" })
   | (DateInputProps & { $type: "DateInput" })
   | (DisclosureContentProps & { $type: "DisclosureContent" })
   | (DisclosureProps & { $type: "Disclosure" })
