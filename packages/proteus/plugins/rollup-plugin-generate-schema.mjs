@@ -123,7 +123,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     extends: "Fragment",
   },
   DataTable: {
-    allowedProps: ["columns", "data"],
+    allowedProps: ["columns", "data", "rowSelection"],
     example: {
       columns: [{ accessorKey: "name", header: "Name" }],
       data: [{ name: "Alice" }],
@@ -1308,6 +1308,11 @@ function getPropTypeOverrides(additionalProperties = false) {
           { $ref: "#/definitions/ProteusExpression" },
           { $ref: "#/definitions/ProteusZip" },
         ],
+      },
+      rowSelection: {
+        description:
+          "JSON pointer where the selected rows are stored (e.g. '/selection'). When set, the table renders a select-all header checkbox and a per-row checkbox column, and writes the selected row objects as an array to this pointer so an action can read them via Value.",
+        type: "string",
       },
     },
     DataTableRow: {
