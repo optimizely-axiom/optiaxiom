@@ -19,6 +19,7 @@ export default {
     onInteraction: action("onInteraction"),
     onMessage: action("onMessage"),
     onPreview: action("onPreview"),
+    onRequestModal: action("onRequestModal"),
     strict: true,
   },
   component: ProteusDocumentRenderer,
@@ -342,6 +343,58 @@ export const WithExternalLink: Story = {
       ],
       title:
         "Version 2.2 Performance Optimization | StellarEdge Outdoor Equipment",
+    },
+  },
+};
+
+export const WithRequestModal: Story = {
+  args: {
+    data: {
+      experimentId: "exp_9d21",
+      experimentName: "Checkout Flow V2",
+    },
+    element: {
+      $type: "Document",
+      actions: [
+        {
+          $type: "Action",
+          appearance: "primary",
+          children: "Open results",
+          onClick: {
+            action: "requestModal",
+            params: {
+              experimentId: { $type: "Value", path: "/experimentId" },
+              range: "last_30_days",
+            },
+            resource: "ui://experiment-results",
+          },
+        },
+      ],
+      appName: "Experiments",
+      body: [
+        {
+          $type: "Group",
+          children: [
+            {
+              $type: "Heading",
+              children: {
+                $type: "Value",
+                path: "/experimentName",
+              },
+              level: "3",
+            },
+            {
+              $type: "Text",
+              children:
+                "Click below to open the detailed results view. The host receives `{ resource, params }` via `onRequestModal` — check the Actions panel.",
+            },
+          ],
+          flexDirection: "column",
+          gap: "8",
+          p: "16",
+        },
+      ],
+      title: "Experiment Summary",
     },
   },
 };
