@@ -147,6 +147,27 @@ Actions can also edit form data directly, without a round-trip to your server. `
 
 <Demo component="proteus/action-set-value" />
 
+### Modal handler
+
+Opens a modal on the host that renders a named UI resource of the same tool provider — useful when a compact card should link to a fuller detail view of the same data. Fire `{ action: "requestModal", resource, params }` from any `onClick`: `resource` is a bare `ui://...` URI, and `params` is an opaque render-context object that becomes the modal's `data`. Values inside `params` are resolved through the usual expression pipeline before dispatch, so `Value` bindings resolve against the current card's data.
+
+```json
+{
+  "$type": "Action",
+  "appearance": "primary",
+  "children": "Open results",
+  "onClick": {
+    "action": "requestModal",
+    "resource": "ui://experiment-results",
+    "params": {
+      "experimentId": { "$type": "Value", "path": "/experimentId" }
+    }
+  }
+}
+```
+
+The host wires this via the `onRequestModal({ resource, params })` prop on `ProteusDocumentRenderer` — the library is agnostic about how the modal itself is rendered. Federated remotes can also fire the event by calling `onEvent({ action: "requestModal", ... })` directly.
+
 ## Scripting
 
 ### Scripts
