@@ -95,6 +95,24 @@ export type ProteusDocumentShellProps = {
    */
   onPreview?: (file: ProteusPreviewFile) => Promise<void> | void;
   /**
+   * Callback when a card action fires `{ action: "requestModal" }`. The host
+   * opens a canvas-style modal that renders the named `resource` (a bare
+   * `ui://...` URI of the same tool provider) with `params` as the render
+   * data context. `params` is opaque to the provider — it is used only on
+   * the client to render the resource template.
+   */
+  onRequestModal?: (payload: {
+    /**
+     * Render data context passed to the resource template. Values are already
+     * resolved through the usual ProteusExpression pipeline before dispatch.
+     */
+    params?: Record<string, unknown>;
+    /**
+     * Bare `ui://...` URI of a named resource of the same tool provider.
+     */
+    resource: string;
+  }) => Promise<void> | void;
+  /**
    * Callback when an analytics event is fired
    */
   onTrack?: (event: string, properties: Record<string, string>) => void;
@@ -158,6 +176,7 @@ export function ProteusDocumentShell({
   onMessage,
   onOpenChange,
   onPreview,
+  onRequestModal,
   onTrack,
   onUpload,
   open: openProp,
@@ -249,6 +268,11 @@ export function ProteusDocumentShell({
       }
     } else if (event.action === "preview") {
       await onPreview?.(event.file);
+    } else if (event.action === "requestModal") {
+      await onRequestModal?.({
+        params: event.params,
+        resource: event.resource,
+      });
     } else if (event.action === "pushValue") {
       // `path` arrives already resolved to an absolute pointer by the
       // firing component (which owns the positional Map context).

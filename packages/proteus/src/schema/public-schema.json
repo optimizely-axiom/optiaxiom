@@ -1531,6 +1531,28 @@
         },
         {
           "additionalProperties": false,
+          "description": "Client-side component action - opens a canvas-style modal on the host that renders a named UI resource of the same tool provider. The host derives the fetch URL from the current card's resource URL; `params` is the render data context passed to the resource template (not forwarded to the provider).",
+          "properties": {
+            "action": {
+              "const": "requestModal",
+              "description": "The action type",
+              "type": "string"
+            },
+            "params": {
+              "additionalProperties": {},
+              "description": "Render data context passed to the resource template (opaque to the provider).",
+              "type": "object"
+            },
+            "resource": {
+              "description": "Bare `ui://...` URI of a named resource of the same tool provider.",
+              "type": "string"
+            }
+          },
+          "required": ["action", "resource"],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
           "description": "Runtime data operation - appends `value` to the array at `path` in form data. Path resolves like `Value` (absolute `/x`, relative to current parentPath, or `''` for parentPath itself).",
           "properties": {
             "action": {
