@@ -125,6 +125,11 @@ export type ProteusEventHandler =
       path: string;
     }
   | {
+      action: "requestModal";
+      params?: Record<string, unknown>;
+      resource: string;
+    }
+  | {
       action: "setValue";
       path: string;
       value?: unknown;
