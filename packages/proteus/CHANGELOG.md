@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 3.5.0
+
+### Minor Changes
+
+- d746979: Added a `requestModal` client-side `Action.onClick` variant and matching `onRequestModal({ resource, params })` handler on `ProteusDocumentShell` / `ProteusDocumentRenderer` so hosts can open a modal rendering a named `ui://...` resource.
+
 ## 3.4.0
 
 ### Minor Changes
