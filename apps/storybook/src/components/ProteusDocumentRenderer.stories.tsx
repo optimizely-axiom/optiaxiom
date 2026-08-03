@@ -20,6 +20,7 @@ export default {
     onMessage: action("onMessage"),
     onPreview: action("onPreview"),
     onRequestModal: action("onRequestModal"),
+    onRequestSidebar: action("onRequestSidebar"),
     strict: true,
   },
   component: ProteusDocumentRenderer,
@@ -387,6 +388,66 @@ export const WithRequestModal: Story = {
               $type: "Text",
               children:
                 "Click below to open the detailed results view. The host receives `{ resource, params }` via `onRequestModal` — check the Actions panel.",
+            },
+          ],
+          flexDirection: "column",
+          gap: "8",
+          p: "16",
+        },
+      ],
+      title: "Experiment Summary",
+    },
+  },
+};
+
+export const WithRequestSidebar: Story = {
+  args: {
+    data: {
+      experiment: {
+        id: "exp_9d21",
+        name: "Checkout Flow V2",
+      },
+      isReady: true,
+    },
+    element: {
+      $type: "Document",
+      actions: [
+        {
+          $type: "Action",
+          appearance: "primary",
+          children: "Open results",
+          onClick: {
+            action: "requestSidebar",
+            // Hosts without auto-mode support ignore `auto` entirely; the
+            // click path is unaffected either way.
+            auto: {
+              when: { "==": [{ $type: "Value", path: "/isReady" }, true] },
+            },
+            params: {
+              experiment: { $type: "Value", path: "/experiment" },
+            },
+            resource: "ui://experiment-results",
+            title: "Experiment results",
+          },
+        },
+      ],
+      appName: "Experiments",
+      body: [
+        {
+          $type: "Group",
+          children: [
+            {
+              $type: "Heading",
+              children: {
+                $type: "Value",
+                path: "/experiment/name",
+              },
+              level: "3",
+            },
+            {
+              $type: "Text",
+              children:
+                "Click below to dock the detailed results beside the conversation. The host receives `{ resource, params, title }` via `onRequestSidebar` — check the Actions panel.",
             },
           ],
           flexDirection: "column",

@@ -1553,6 +1553,49 @@
         },
         {
           "additionalProperties": false,
+          "description": "Client-side component action - opens a docked side panel on the host that renders a named UI resource of the same tool provider, alongside the conversation rather than over it. Same payload as `requestModal`; only the surface differs. The host derives the fetch URL from the current card's resource URL; `params` is the render data context passed to the resource template (not forwarded to the provider).",
+          "properties": {
+            "action": {
+              "const": "requestSidebar",
+              "description": "The action type",
+              "type": "string"
+            },
+            "auto": {
+              "additionalProperties": false,
+              "description": "Fire this handler without a click. Hosts that support it evaluate `when` and open the panel unprompted, subject to their own policy; hosts that do not simply ignore the field and the click path is unaffected.",
+              "properties": {
+                "when": {
+                  "anyOf": [
+                    { "$ref": "#/definitions/ProteusCondition" },
+                    {
+                      "items": { "$ref": "#/definitions/ProteusCondition" },
+                      "type": "array"
+                    }
+                  ],
+                  "description": "Single condition or array of conditions (AND logic), same grammar as `Show.when`. Omitted means always."
+                }
+              },
+              "type": "object"
+            },
+            "params": {
+              "additionalProperties": {},
+              "description": "Render data context passed to the resource template (opaque to the provider).",
+              "type": "object"
+            },
+            "resource": {
+              "description": "Bare `ui://...` URI of a named resource of the same tool provider.",
+              "type": "string"
+            },
+            "title": {
+              "description": "Panel header. Falls back to the target document's own `title`.",
+              "type": "string"
+            }
+          },
+          "required": ["action", "resource"],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
           "description": "Runtime data operation - appends `value` to the array at `path` in form data. Path resolves like `Value` (absolute `/x`, relative to current parentPath, or `''` for parentPath itself).",
           "properties": {
             "action": {

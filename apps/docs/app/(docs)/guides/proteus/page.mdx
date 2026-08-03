@@ -168,6 +168,43 @@ Opens a modal on the host that renders a named UI resource of the same tool prov
 
 The host wires this via the `onRequestModal({ resource, params })` prop on `ProteusDocumentRenderer` — the library is agnostic about how the modal itself is rendered. Federated remotes can also fire the event by calling `onEvent({ action: "requestModal", ... })` directly.
 
+### Sidebar handler
+
+`requestSidebar` carries the same payload as `requestModal` — only the surface differs. Where a modal covers the conversation, a sidebar docks beside it, so the user can keep reading the thread while a fuller view stays open. Prefer it when the panel is something to work alongside rather than a detour. An optional `title` sets the panel header, falling back to the target document's own `title`.
+
+```json
+{
+  "$type": "Action",
+  "appearance": "primary",
+  "children": "Open results",
+  "onClick": {
+    "action": "requestSidebar",
+    "resource": "ui://experiment-results",
+    "title": "Experiment results",
+    "params": {
+      "experiment": { "$type": "Value", "path": "/experiment" }
+    }
+  }
+}
+```
+
+Note that `params` is the panel's **entire** dataset — the host renders the target resource as a static template with `params` as its root `data`, and nothing else is fetched on the panel's behalf. Pass the data the panel needs, not just an id to expand.
+
+The host wires this via `onRequestSidebar({ resource, params, title })`. A host that does not implement the panel simply omits the prop, and the action becomes a no-op.
+
+The variant also accepts `auto: { when }`, using the same condition grammar as `Show`, to declare that a host may open the panel _without_ a click:
+
+```json
+"onClick": {
+  "action": "requestSidebar",
+  "resource": "ui://experiment-results",
+  "params": { "experiment": { "$type": "Value", "path": "/experiment" } },
+  "auto": { "when": { "==": [{ "$type": "Value", "path": "/is_ready" }, true] } }
+}
+```
+
+Because `auto` lives on the handler rather than on the document, a card that auto-opens always has a visible control to reopen the panel after the user closes it. Honouring `auto` is entirely at the host's discretion — hosts that ignore it lose nothing, since the click path is unchanged.
+
 ## Scripting
 
 ### Scripts

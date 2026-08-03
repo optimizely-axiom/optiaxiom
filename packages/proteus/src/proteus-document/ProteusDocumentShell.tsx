@@ -113,6 +113,32 @@ export type ProteusDocumentShellProps = {
     resource: string;
   }) => Promise<void> | void;
   /**
+   * Callback when a card action fires `{ action: "requestSidebar" }`. Same
+   * payload as `onRequestModal`, but the host is asked to dock the resource
+   * in a side panel alongside the conversation rather than open it over the
+   * top. The library is agnostic about how the panel is rendered.
+   */
+  onRequestSidebar?: (payload: {
+    /**
+     * True when the handler fired via its `auto` declaration rather than a
+     * click, so the host can gate unprompted opens without gating clicks.
+     */
+    auto?: boolean;
+    /**
+     * Render data context passed to the resource template. Values are already
+     * resolved through the usual ProteusExpression pipeline before dispatch.
+     */
+    params?: Record<string, unknown>;
+    /**
+     * Bare `ui://...` URI of a named resource of the same tool provider.
+     */
+    resource: string;
+    /**
+     * Panel header. Falls back to the target document's own `title`.
+     */
+    title?: string;
+  }) => Promise<void> | void;
+  /**
    * Callback when an analytics event is fired
    */
   onTrack?: (event: string, properties: Record<string, string>) => void;
@@ -177,6 +203,7 @@ export function ProteusDocumentShell({
   onOpenChange,
   onPreview,
   onRequestModal,
+  onRequestSidebar,
   onTrack,
   onUpload,
   open: openProp,
@@ -272,6 +299,15 @@ export function ProteusDocumentShell({
       await onRequestModal?.({
         params: event.params,
         resource: event.resource,
+      });
+    } else if (event.action === "requestSidebar") {
+      // `auto` is intentionally not forwarded — it describes when the host
+      // may fire this handler unprompted, which is a decision the host makes
+      // before dispatch, not part of the dispatched payload.
+      await onRequestSidebar?.({
+        params: event.params,
+        resource: event.resource,
+        title: event.title,
       });
     } else if (event.action === "pushValue") {
       // `path` arrives already resolved to an absolute pointer by the

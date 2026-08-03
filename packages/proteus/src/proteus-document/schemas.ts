@@ -50,6 +50,7 @@ import type { ProteusShowProps } from "../proteus-show/ProteusShow";
 import type { ProteusValueProps } from "../proteus-value/ProteusValue";
 import type { FileUploadMetadata } from "./ProteusDocumentContext";
 import type { ProteusDocumentShellProps } from "./ProteusDocumentShell";
+import type { ProteusCondition } from "./resolveProteusValue";
 
 import proteusDocumentSpec from "../schema/runtime-schema.json";
 
@@ -128,6 +129,13 @@ export type ProteusEventHandler =
       action: "requestModal";
       params?: Record<string, unknown>;
       resource: string;
+    }
+  | {
+      action: "requestSidebar";
+      auto?: { when?: ProteusCondition | ProteusCondition[] };
+      params?: Record<string, unknown>;
+      resource: string;
+      title?: string;
     }
   | {
       action: "setValue";

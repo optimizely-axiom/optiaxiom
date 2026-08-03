@@ -3,6 +3,7 @@ import { type ComponentPropsWithoutRef } from "react";
 import { ProteusElement } from "../proteus-element";
 import { ProteusDocumentShell } from "./ProteusDocumentShell";
 import { safeParseDocument } from "./schemas";
+import { useAutoSidebar } from "./useAutoSidebar";
 
 export type ProteusDocumentRendererProps = Omit<
   ComponentPropsWithoutRef<typeof ProteusDocumentShell>,
@@ -39,6 +40,15 @@ export function ProteusDocumentRenderer({
   ...props
 }: ProteusDocumentRendererProps) {
   const result = safeParseDocument(elementProp);
+
+  // Must run before the early return below so hook order stays stable across
+  // valid and invalid documents. Passing null simply disables it.
+  useAutoSidebar(
+    result.success ? (elementProp as unknown as Record<string, unknown>) : null,
+    props.data,
+    props.onRequestSidebar,
+  );
+
   if (!result.success) {
     if (strict) {
       throw new Error(`Invalid document: ${result.error.join("\n")}`);
