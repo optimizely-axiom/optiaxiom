@@ -280,6 +280,7 @@
         { "const": "400" },
         { "const": "500" },
         { "const": "700" },
+        { "const": "800" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
       "description": "Set the element's `font-weight` CSS property"

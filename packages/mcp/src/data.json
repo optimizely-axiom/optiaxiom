@@ -226,7 +226,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -1270,7 +1270,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -2047,7 +2047,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -2861,7 +2861,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -3638,7 +3638,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -4418,7 +4418,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -5209,7 +5209,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -6022,7 +6022,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -6825,7 +6825,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -7641,7 +7641,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -8475,7 +8475,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -9259,7 +9259,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -10105,7 +10105,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -10943,7 +10943,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -11740,7 +11740,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -12604,7 +12604,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -13493,7 +13493,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -14292,7 +14292,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -15145,7 +15145,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -16140,7 +16140,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -16932,7 +16932,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -17740,7 +17740,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -18539,7 +18539,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -19335,7 +19335,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -20140,7 +20140,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -20948,7 +20948,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -21739,7 +21739,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -22628,7 +22628,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -23431,7 +23431,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -24234,7 +24234,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -25291,7 +25291,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -26092,7 +26092,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -26888,7 +26888,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -27729,7 +27729,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -28525,7 +28525,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -29321,7 +29321,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -30138,7 +30138,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -31193,7 +31193,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -32062,7 +32062,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "formatRange": {
           "description": "Provide a custom date range formatter.",
@@ -32848,7 +32848,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -33660,7 +33660,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -34447,7 +34447,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -35246,7 +35246,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -36256,7 +36256,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -37070,7 +37070,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -37847,7 +37847,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -38627,7 +38627,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -39414,7 +39414,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -40209,7 +40209,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -41031,7 +41031,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -41814,7 +41814,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -42687,7 +42687,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -43492,7 +43492,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -44572,7 +44572,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -45376,7 +45376,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -46188,7 +46188,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -46988,7 +46988,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -47786,7 +47786,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -48573,7 +48573,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -49385,7 +49385,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -50198,7 +50198,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -51021,7 +51021,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -51824,7 +51824,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -52609,7 +52609,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -53504,7 +53504,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -54315,7 +54315,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -55121,7 +55121,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -55918,7 +55918,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -56738,7 +56738,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -57517,7 +57517,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -58377,7 +58377,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -59229,7 +59229,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -60066,7 +60066,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -60896,7 +60896,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -61760,7 +61760,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -62568,7 +62568,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -63363,7 +63363,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -64241,7 +64241,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -65151,7 +65151,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -66127,7 +66127,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -66965,7 +66965,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -67737,7 +67737,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -68516,7 +68516,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -69322,7 +69322,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -70625,7 +70625,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -71451,7 +71451,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -72280,7 +72280,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -73071,7 +73071,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -73867,7 +73867,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -74654,7 +74654,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -75451,7 +75451,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -76246,7 +76246,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -77046,7 +77046,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -77833,7 +77833,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -78628,7 +78628,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -79419,7 +79419,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -80210,7 +80210,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -81011,7 +81011,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -81838,7 +81838,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -82624,7 +82624,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -83439,7 +83439,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -84235,7 +84235,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -85080,7 +85080,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -85880,7 +85880,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -86749,7 +86749,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -87547,7 +87547,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -88394,7 +88394,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -89171,7 +89171,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -89992,7 +89992,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -90805,7 +90805,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -91719,7 +91719,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -92597,7 +92597,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -93434,7 +93434,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -94283,7 +94283,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -95146,7 +95146,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -96119,7 +96119,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -96938,7 +96938,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -97723,7 +97723,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -98556,7 +98556,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -99427,7 +99427,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -100225,7 +100225,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -101061,7 +101061,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -101970,7 +101970,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -102767,7 +102767,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -103554,7 +103554,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -104359,7 +104359,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -105239,7 +105239,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -106063,7 +106063,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -106838,7 +106838,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -107625,7 +107625,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -108452,7 +108452,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -109231,7 +109231,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -110085,7 +110085,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -110911,7 +110911,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -111703,7 +111703,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -112490,7 +112490,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -113282,7 +113282,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -114073,7 +114073,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -114867,7 +114867,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -115668,7 +115668,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -116487,7 +116487,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -117275,7 +117275,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -118071,7 +118071,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -118859,7 +118859,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -119727,7 +119727,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -120653,7 +120653,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -121456,7 +121456,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -122339,7 +122339,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
@@ -123200,7 +123200,7 @@
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
           "type": "enum",
-          "values": ["inherit", "600", "900", "400", "500", "700"]
+          "values": ["inherit", "600", "900", "400", "500", "700", "800"]
         },
         "gap": {
           "description": "Set the element's `gap` CSS property",
