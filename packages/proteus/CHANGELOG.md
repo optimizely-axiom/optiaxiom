@@ -1,5 +1,13 @@
 # @optiaxiom/proteus
 
+## 3.5.1
+
+### Patch Changes
+
+- e8fcf32: Added the `bg.message.neutral` color token (light `#F5F6F7` / dark `#3C3D40`), usable via the `bg` sprinkle prop as `bg="message.neutral"`.
+- Updated dependencies [e8fcf32]
+  - @optiaxiom/react@3.1.6
+
 ## 3.5.0
 
 ### Minor Changes
