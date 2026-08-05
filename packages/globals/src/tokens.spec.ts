@@ -49,7 +49,7 @@ describe("tokens", () => {
       count: Object.keys(tokens.colors).length,
       keys: Object.keys(tokens.colors),
     }).toEqual({
-      count: 87,
+      count: 88,
       keys: [
         "bg.accent",
         "bg.accent.hovered",
@@ -73,6 +73,7 @@ describe("tokens", () => {
         "bg.information",
         "bg.information.light",
         "bg.information.subtle",
+        "bg.message.neutral",
         "bg.overlay",
         "bg.page",
         "bg.pill.default",
