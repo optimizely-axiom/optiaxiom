@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 3.1.6
+
+### Patch Changes
+
+- e8fcf32: Added the `bg.message.neutral` color token (light `#F5F6F7` / dark `#3C3D40`), usable via the `bg` sprinkle prop as `bg="message.neutral"`.
+- Updated dependencies [e8fcf32]
+  - @optiaxiom/globals@3.0.6
+
 ## 3.1.5
 
 ### Patch Changes
