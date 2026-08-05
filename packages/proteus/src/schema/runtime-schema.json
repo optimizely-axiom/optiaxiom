@@ -64,6 +64,7 @@
         { "const": "bg.information" },
         { "const": "bg.information.light" },
         { "const": "bg.information.subtle" },
+        { "const": "bg.message.neutral" },
         { "const": "bg.overlay" },
         { "const": "bg.page" },
         { "const": "bg.pill.default" },

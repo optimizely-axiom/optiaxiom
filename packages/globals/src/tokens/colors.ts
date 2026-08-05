@@ -88,6 +88,9 @@ const palette = {
   "neutral.1050": "#252825" as const,
   "neutral.1100": "#202320" as const,
 
+  "neutral.message.dark": "#3C3D40" as const,
+  "neutral.message.light": "#F5F6F7" as const,
+
   "neutral.50/6": "#DDE9D20D" as const,
   "neutral.50/12": "#DDE9D21F" as const,
   "neutral.50/18": "#DDE9D224" as const,
@@ -179,6 +182,10 @@ export const colors = {
   "bg.information": ld(palette["blue.600"], palette["blue.600"]),
   "bg.information.light": ld(palette["blue.200"], palette["blue.800"]),
   "bg.information.subtle": ld(palette["blue.100"], palette["blue.dark.900"]),
+  "bg.message.neutral": ld(
+    palette["neutral.message.light"],
+    palette["neutral.message.dark"],
+  ),
   "bg.overlay": ld(palette["neutral.1200/32"], palette["neutral.1200/32"]),
   "bg.page": ld(palette["neutral.25"], palette["neutral.1050"]),
   "bg.pill.default": ld(palette["neutral.150"], palette["neutral.800"]),
