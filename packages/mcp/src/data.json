@@ -138593,6 +138593,7 @@
       "bg.information": "#036988",
       "bg.information.light": "#91DBDA",
       "bg.information.subtle": "#E2F5F5",
+      "bg.message.neutral": "#F5F6F7",
       "bg.overlay": "#393E3252",
       "bg.page": "#F9FCF8",
       "bg.pill.default": "#D8E4CB",
