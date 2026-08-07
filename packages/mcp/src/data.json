@@ -59913,7 +59913,7 @@
       ]
     },
     "Heading": {
-      "description": "Renders semantic heading elements (h1-h4) for document structure and\naccessibility.\n\nUse this for page titles, section headings, and any text that represents a\nheading in the document outline. Don't use Text with large fontSize and bold\nfontWeight for headings - Heading provides proper semantics for screen\nreaders and improves accessibility.\n\nWhen to use:\n- Page titles\n- Section headings\n- Card/panel titles\n- Any text with fontSize='xl'+ and fontWeight='500'+\n\nDefault `fontWeight` per level: `1`=900, `2`=800, `3`=600, `4`=600. Pass\n`fontWeight` explicitly to override.\n\nDon't use Text component for headings - it lacks semantic meaning.",
+      "description": "Renders semantic heading elements (h1-h4) for document structure and\naccessibility.\n\nUse this for page titles, section headings, and any text that represents a\nheading in the document outline. Don't use Text with large fontSize and bold\nfontWeight for headings - Heading provides proper semantics for screen\nreaders and improves accessibility.\n\nWhen to use:\n- Page titles\n- Section headings\n- Card/panel titles\n- Any text with fontSize='xl'+ and fontWeight='500'+\n\nDefault `fontWeight` per level: `1`=900, `2`=800 (falls back to 700 when\n`fontSize` is overridden), `3`=600, `4`=600. Pass `fontWeight` explicitly\nto override.\n\nDon't use Text component for headings - it lacks semantic meaning.",
       "import": "import { Heading } from '@optiaxiom/react';",
       "name": "Heading",
       "props": {
