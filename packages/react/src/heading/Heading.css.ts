@@ -6,12 +6,9 @@ export const heading = recipe({
   },
   variants: {
     level: {
-      "1": {},
       "2": style({
         lineHeight: "1.875rem",
       }),
-      "3": {},
-      "4": {},
     },
     tracking: {
       wide: style({

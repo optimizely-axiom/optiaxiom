@@ -92,7 +92,11 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
         ref={ref}
         {...styles.heading(
           {
-            level,
+            level:
+              level === "2" &&
+              (props.fontSize == null || props.fontSize === fontSize)
+                ? "2"
+                : undefined,
             tracking: mapLevelToTracking[level],
           },
           className,
