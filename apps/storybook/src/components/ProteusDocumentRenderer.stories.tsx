@@ -18,6 +18,7 @@ export default {
     onDownload: action("onDownload"),
     onInteraction: action("onInteraction"),
     onMessage: action("onMessage"),
+    onOpenLink: action("onOpenLink"),
     onPreview: action("onPreview"),
     onRequestModal: action("onRequestModal"),
     strict: true,
