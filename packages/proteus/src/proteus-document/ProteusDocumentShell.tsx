@@ -90,6 +90,19 @@ export type ProteusDocumentShellProps = {
    */
   onMessage?: (message: string | StructuredMessage) => Promise<void> | void;
   /**
+   * Callback when user clicks a link (`openLink` action); receives `{ url }`.
+   * When provided, the host is responsible for navigation — useful for
+   * embedded shells (MCP widgets, sandboxed iframes, native hosts) where
+   * `window.open` is blocked or would open in the wrong frame.
+   * Falls back to `window.open(url, "_blank", "noopener,noreferrer")` when absent.
+   */
+  onOpenLink?: (params: {
+    /**
+     * The URL to open. Already validated by `isSafeUrl` (http/https only).
+     */
+    url: string;
+  }) => Promise<void> | void;
+  /**
    * Callback when user triggers a preview action.
    * Receives the file object to preview.
    */
@@ -157,6 +170,7 @@ export function ProteusDocumentShell({
   onInteraction,
   onMessage,
   onOpenChange,
+  onOpenLink,
   onPreview,
   onTrack,
   onUpload,
@@ -243,7 +257,11 @@ export function ProteusDocumentShell({
       }
     } else if (event.action === "openLink") {
       if (isSafeUrl(event.url)) {
-        window.open(event.url, "_blank", "noopener,noreferrer");
+        if (onOpenLink) {
+          await onOpenLink({ url: event.url });
+        } else {
+          window.open(event.url, "_blank", "noopener,noreferrer");
+        }
       } else if (strict) {
         throw new Error(`openLink: unsafe URL "${String(event.url)}"`);
       }
