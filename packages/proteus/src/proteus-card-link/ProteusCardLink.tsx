@@ -17,6 +17,7 @@ export type ProteusCardLinkProps = Omit<CardLinkProps, "onClick"> & {
 
 export function ProteusCardLink({
   children,
+  href,
   onClick,
   ...props
 }: ProteusCardLinkProps) {
@@ -29,18 +30,27 @@ export function ProteusCardLink({
 
   const [loading, setLoading] = useState(false);
 
+  // Route bare `href` through the shell's `openLink` event so sandboxed hosts (MCP Apps, OpenAI Apps SDK) — where the browser's `target="_blank"` fallback is blocked — can handle it via `onOpenLink`.
+  const hasHrefFallback = !onClick && typeof href === "string" && href !== "";
+  const eventToDispatch: ProteusEventHandler | undefined = onClick
+    ? resolvedOnClick
+    : hasHrefFallback
+      ? { action: "openLink", url: href }
+      : undefined;
+
   return (
     <CardLink
       aria-busy={loading || undefined}
+      href={href}
       onClick={
-        onClick
+        eventToDispatch
           ? async (event) => {
               event.preventDefault();
               if (loading) {
                 return;
               }
               setLoading(true);
-              await onEvent(resolvedOnClick);
+              await onEvent(eventToDispatch);
               setLoading(false);
             }
           : undefined
