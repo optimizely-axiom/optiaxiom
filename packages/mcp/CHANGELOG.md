@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 3.0.8
+
+### Patch Changes
+
+- a5a2ccd: fix undo/ArrowRotateLeft icon
+
 ## 3.0.7
 
 ### Patch Changes

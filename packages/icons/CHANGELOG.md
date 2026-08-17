@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.5.1
+
+### Patch Changes
+
+- a5a2ccd: fix undo/ArrowRotateLeft icon
+
 ## 1.5.0
 
 ### Minor Changes
