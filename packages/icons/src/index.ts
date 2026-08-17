@@ -264,7 +264,6 @@ export { IconProgressActivity as IconSpinner } from "../svg/progress_activity.sv
 export { IconPushPinFill as IconThumbtackSolid } from "../svg/push_pin-fill.svg";
 export { IconRecordVoiceOver as IconRecordVoiceOver } from "../svg/record_voice_over.svg";
 export { IconRedo as IconArrowRotateRight } from "../svg/redo.svg";
-export { IconRefresh as IconArrowRotateLeft } from "../svg/refresh.svg";
 export { IconRemove as IconPipe } from "../svg/remove.svg";
 export { IconRemoveShoppingCart as IconCartMinus } from "../svg/remove_shopping_cart.svg";
 export { IconRepeat as IconArrowsRepeat } from "../svg/repeat.svg";
@@ -330,6 +329,7 @@ export { IconTrendingDown as IconArrowTrendDown } from "../svg/trending_down.svg
 export { IconTrendingUp as IconArrowTrendUp } from "../svg/trending_up.svg";
 export { IconTune as IconSliders } from "../svg/tune.svg";
 export { IconTune as IconSlidersSimple } from "../svg/tune.svg";
+export { IconUndo as IconArrowRotateLeft } from "../svg/undo.svg";
 export { IconUnfoldMore as IconAnglesUpDown } from "../svg/unfold_more.svg";
 export { IconUnfoldMore as IconArrowsFromDottedLine } from "../svg/unfold_more.svg";
 export { IconUnfoldMore as IconArrowsFromLine } from "../svg/unfold_more.svg";
