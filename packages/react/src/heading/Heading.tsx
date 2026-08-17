@@ -67,8 +67,9 @@ const mapLevelToTracking = {
  * - Card/panel titles
  * - Any text with fontSize='xl'+ and fontWeight='500'+
  *
- * ⚠️ All heading levels (1-4) default to fontWeight="700". If your design shows
- * lighter headings, explicitly set fontWeight="500" or "600".
+ * Default `fontWeight` per level: `1`=900, `2`=800 (falls back to 700 when
+ * `fontSize` is overridden), `3`=600, `4`=600. Pass `fontWeight` explicitly
+ * to override.
  *
  * Don't use Text component for headings - it lacks semantic meaning.
  *
@@ -83,15 +84,21 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   ) => {
     const Comp = asChild ? Slot : (mapLevelToTag[level] ?? "h1");
     const fontSize = mapLevelToFontSize[level] ?? "4xl";
+    const isDefaultLevel2 = level === "2" && props.fontSize == null;
 
     return (
       <Text
         asChild
         fontSize={fontSize}
-        fontWeight={fontWeight ?? mapLevelToFontWeight[level] ?? "700"}
+        fontWeight={
+          fontWeight ??
+          (isDefaultLevel2 ? "800" : mapLevelToFontWeight[level]) ??
+          "700"
+        }
         ref={ref}
         {...styles.heading(
           {
+            level: isDefaultLevel2 ? "2" : undefined,
             tracking: mapLevelToTracking[level],
           },
           className,

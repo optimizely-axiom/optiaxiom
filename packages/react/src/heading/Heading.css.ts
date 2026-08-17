@@ -5,6 +5,11 @@ export const heading = recipe({
     fontFamily: "heading",
   },
   variants: {
+    level: {
+      "2": style({
+        lineHeight: "1.875rem",
+      }),
+    },
     tracking: {
       wide: style({
         letterSpacing: "1%",
