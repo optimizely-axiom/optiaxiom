@@ -47,14 +47,8 @@ export const DetailsPanelHeader = forwardRef<
         <Box ref={ref} {...styles.header({}, className)} {...props}>
           {addonBefore && <Group gap="8">{addonBefore}</Group>}
 
-          <Heading
-            flex="1"
-            fontSize="lg"
-            fontWeight="600"
-            id={labelId}
-            level="2"
-          >
-            {children}
+          <Heading asChild flex="1" level="4">
+            <h2 id={labelId}>{children}</h2>
           </Heading>
 
           {addonAfter && <Group gap="8">{addonAfter}</Group>}

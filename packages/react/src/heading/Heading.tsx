@@ -13,13 +13,16 @@ export type HeadingProps<T extends ElementType = "h1", P = unknown> = TextProps<
   ExtendProps<
     {
       /**
-       * Heading level (1-4) that controls both the semantic HTML tag and font size.
-       * - `level="1"`: renders `<h1>` with `fontSize="4xl"` (default)
-       * - `level="2"`: renders `<h2>` with `fontSize="3xl"`
-       * - `level="3"`: renders `<h3>` with `fontSize="2xl"`
-       * - `level="4"`: renders `<h4>` with `fontSize="xl"`
+       * Heading level (1-4) that controls the semantic HTML tag, font size, and
+       * line height together (the sizes come from the design library, so don't
+       * override `fontSize` directly).
+       * - `level="1"`: renders `<h1>` at 50px/1.04 (default)
+       * - `level="2"`: renders `<h2>` at 28px/1.04
+       * - `level="3"`: renders `<h3>` at 20px/1.1
+       * - `level="4"`: renders `<h4>` at 16px/1.3
        *
-       * Use `asChild` to decouple the semantic level from visual appearance.
+       * To use a level's visual size under a different semantic tag, combine
+       * `level` with `asChild` (e.g. `<Heading asChild level="4"><h2>…`).
        */
       level?: keyof typeof mapLevelToTag;
     },
@@ -32,12 +35,6 @@ const mapLevelToTag = {
   "2": "h2",
   "3": "h3",
   "4": "h4",
-} as const;
-const mapLevelToFontSize = {
-  "1": "4xl",
-  "2": "3xl",
-  "3": "xl",
-  "4": "lg",
 } as const;
 const mapLevelToFontWeight = {
   "1": "900",
@@ -82,16 +79,15 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
     ref,
   ) => {
     const Comp = asChild ? Slot : (mapLevelToTag[level] ?? "h1");
-    const fontSize = mapLevelToFontSize[level] ?? "4xl";
 
     return (
       <Text
         asChild
-        fontSize={fontSize}
         fontWeight={fontWeight ?? mapLevelToFontWeight[level] ?? "700"}
         ref={ref}
         {...styles.heading(
           {
+            level,
             tracking: mapLevelToTracking[level],
           },
           className,

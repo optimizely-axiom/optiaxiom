@@ -36,6 +36,9 @@ incomplete. This is the most commonly missed step — check for it on every revi
   `major` = breaking changes.
 - Write the summary for **consumers**, present tense and specific ("added `X` to `Y` via `prop`"),
   not a description of the code change.
+- **Keep it concise — never verbose.** Aim for one sentence; two only when a behavioral caveat
+  genuinely needs it. State what changed and, if non-obvious, why. Don't pad with restated context,
+  migration essays, or defensive "this is non-breaking" prose.
 - A follow-up to a feature that hasn't been released yet may not need its own changeset.
 
 ## Component conventions

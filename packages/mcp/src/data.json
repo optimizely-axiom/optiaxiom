@@ -60236,7 +60236,7 @@
           "values": ["stretch", "center", "end", "start", "normal"]
         },
         "level": {
-          "description": "Heading level (1-4) that controls both the semantic HTML tag and font size.\n- `level=\"1\"`: renders `<h1>` with `fontSize=\"4xl\"` (default)\n- `level=\"2\"`: renders `<h2>` with `fontSize=\"3xl\"`\n- `level=\"3\"`: renders `<h3>` with `fontSize=\"2xl\"`\n- `level=\"4\"`: renders `<h4>` with `fontSize=\"xl\"`\n\nUse `asChild` to decouple the semantic level from visual appearance.",
+          "description": "Heading level (1-4) that controls the semantic HTML tag, font size, and\nline height together (the sizes come from the design library, so don't\noverride `fontSize` directly).\n- `level=\"1\"`: renders `<h1>` at 50px/1.04 (default)\n- `level=\"2\"`: renders `<h2>` at 28px/1.04\n- `level=\"3\"`: renders `<h3>` at 20px/1.1\n- `level=\"4\"`: renders `<h4>` at 16px/1.3\n\nTo use a level's visual size under a different semantic tag, combine\n`level` with `asChild` (e.g. `<Heading asChild level=\"4\"><h2>…`).",
           "type": "enum",
           "values": ["2", "1", "3", "4"],
           "default": "1"

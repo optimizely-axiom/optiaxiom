@@ -446,8 +446,8 @@ export function ProteusDocumentShell({
                 </Group>
               )}
               <Group flex="1" flexDirection="column" gap="4">
-                <Heading fontSize="lg" fontWeight="600" level="2" lineClamp="2">
-                  {element.title}
+                <Heading asChild level="4" lineClamp="2">
+                  <h2>{element.title}</h2>
                 </Heading>
                 {!!element.subtitle && (
                   <Tooltip auto content={element.subtitle}>
