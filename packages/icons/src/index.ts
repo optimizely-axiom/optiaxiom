@@ -310,6 +310,7 @@ export { IconSuperscript as IconSuperscript } from "../svg/superscript.svg";
 export { IconSwapHoriz as IconArrowRightArrowLeft } from "../svg/swap_horiz.svg";
 export { IconSwapVert as IconArrowDownShortWide } from "../svg/swap_vert.svg";
 export { IconSwapVert as IconArrowDownWideShort } from "../svg/swap_vert.svg";
+export { IconSwitchAccount as IconSwitchAccount } from "../svg/switch_account.svg";
 export { IconTab as IconBrowser } from "../svg/tab.svg";
 export { IconTabGroup as IconBrowsers } from "../svg/tab_group.svg";
 export { IconTableChart as IconFileSpreadsheet } from "../svg/table_chart.svg";

@@ -267,6 +267,7 @@
   "superscript": ["Superscript"],
   "swap_horiz": ["ArrowRightArrowLeft"],
   "swap_vert": ["ArrowDownShortWide", "ArrowDownWideShort"],
+  "switch_account": ["SwitchAccount"],
   "tab_group": ["Browsers"],
   "tab": ["Browser"],
   "table_chart": ["FileSpreadsheet", "TableLayout"],
