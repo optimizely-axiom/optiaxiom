@@ -3,6 +3,7 @@ import { recipe, style } from "../vanilla-extract";
 export const header = recipe({
   base: [
     {
+      alignItems: "center",
       bg: "bg.default",
       display: "flex",
       flexWrap: "wrap",
