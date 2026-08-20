@@ -1,5 +1,14 @@
 # @optiaxiom/react
 
+## 3.1.7
+
+### Patch Changes
+
+- 46f3c9a: `DialogHeader` and `DetailsPanelHeader` now vertically center their title against the close button and action addons (`alignItems: "center"`), fixing a latent misalignment that the tighter `Heading` line height made visible.
+- c96065a: `Heading` now sets font size and a tighter line height together per level to match the Figma type styles (1: 50px/1.04, 2: 28px/1.04, 3: 20px/1.1, 4: 16px/1.3). To render a level's size under a different tag, use `level` with `asChild` instead of overriding `fontSize`.
+- Updated dependencies [55f56fe]
+  - @optiaxiom/icons@1.6.0
+
 ## 3.1.6
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @optiaxiom/mcp
 
+## 3.0.9
+
+### Patch Changes
+
+- c96065a: Regenerated the embedded metadata for the updated `Heading` `level` documentation.
+- 55f56fe: Regenerated icon data to include `IconSwitchAccount` and `IconPinboard`.
+
 ## 3.0.8
 
 ### Patch Changes
