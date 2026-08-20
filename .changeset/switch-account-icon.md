@@ -2,4 +2,4 @@
 "@optiaxiom/icons": minor
 ---
 
-Added `IconSwitchAccount`.
+Added `IconSwitchAccount` and `IconPinboard`.

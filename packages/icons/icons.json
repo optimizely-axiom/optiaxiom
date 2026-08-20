@@ -219,6 +219,7 @@
   "photo_library": ["Images"],
   "picture_as_pdf": ["FilePdf"],
   "pie_chart": ["FileChartPie"],
+  "pinboard": ["Pinboard"],
   "play_arrow": ["Play"],
   "play_circle": ["CirclePlay"],
   "poll": ["SquarePollHorizontal"],
