@@ -139,6 +139,15 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { path: "status" },
     extends: "Fragment",
   },
+  Diff: {
+    allowedProps: ["newText", "newTitle", "oldText", "oldTitle", "title"],
+    example: {
+      newText: '{\n  "status": "Running"\n}',
+      oldText: '{\n  "status": "Paused"\n}',
+      title: "Changes",
+    },
+    extends: "Fragment",
+  },
   DateInput: {
     allowedProps: ["name", "placeholder", "required", "type"],
     example: { name: "date_field", type: "date" },
@@ -1348,6 +1357,34 @@ function getPropTypeOverrides(additionalProperties = false) {
       path: {
         description:
           "JSON pointer path to a field within the current row (e.g. 'status' or '/status'). When omitted, resolves to the whole row object. Only meaningful inside a DataTable column's `cell`.",
+        type: "string",
+      },
+    },
+    Diff: {
+      newText: {
+        anyOf: [
+          { type: "string" },
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
+        description: "The new version of the text to compare",
+      },
+      newTitle: {
+        description: "Column header for the new text side. Defaults to 'New'.",
+        type: "string",
+      },
+      oldText: {
+        anyOf: [
+          { type: "string" },
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
+        description: "The old version of the text to compare",
+      },
+      oldTitle: {
+        description: "Column header for the old text side. Defaults to 'Old'.",
+        type: "string",
+      },
+      title: {
+        description: "Optional heading displayed above the diff viewer",
         type: "string",
       },
     },

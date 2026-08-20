@@ -27,6 +27,7 @@ import { ProteusCardLink } from "../proteus-card-link/ProteusCardLink";
 import { ProteusCheckbox } from "../proteus-checkbox/ProteusCheckbox";
 import { ProteusDataTableRow } from "../proteus-data-table-row/ProteusDataTableRow";
 import { ProteusDataTable } from "../proteus-data-table/ProteusDataTable";
+import { ProteusDiff } from "../proteus-diff/ProteusDiff";
 import { ProteusDateInput } from "../proteus-date-input/ProteusDateInput";
 import {
   ProteusDataTableRowProvider,
@@ -170,6 +171,14 @@ export const ProteusElement = ({
     }
     case "DataTableRow":
       return <ProteusDataTableRow {...resolve(element)} />;
+    case "Diff":
+      return (
+        <ProteusDiff
+          {...(resolve(element) as ComponentPropsWithoutRef<
+            typeof ProteusDiff
+          >)}
+        />
+      );
     case "DateInput":
       return <ProteusDateInput {...resolve(element)} />;
     case "Disclosure":

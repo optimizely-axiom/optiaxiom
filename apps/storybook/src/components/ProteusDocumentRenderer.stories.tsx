@@ -3237,3 +3237,23 @@ export const PartialRendering: Story = {
     strict: false,
   },
 };
+
+export const WithDiff: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        {
+          $type: "Diff",
+          newText:
+            '{\n  "name": "homepage_redesign",\n  "status": "Running",\n  "traffic_allocation": 75,\n  "targeting": "all_users",\n  "description": "Updated experiment for Q3 launch"\n}',
+          oldText:
+            '{\n  "name": "homepage_redesign",\n  "status": "Paused",\n  "traffic_allocation": 50,\n  "legacy_flag": true\n}',
+          title: "Flag Configuration Changes",
+        },
+      ],
+      title: "Change History",
+    },
+  },
+};
