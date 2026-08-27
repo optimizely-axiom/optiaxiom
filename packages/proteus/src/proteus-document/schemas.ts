@@ -34,6 +34,7 @@ import type { ProteusCardLinkProps } from "../proteus-card-link/ProteusCardLink"
 import type { ProteusChartProps } from "../proteus-chart/ProteusChart";
 import type { ProteusDataTableRowProps } from "../proteus-data-table-row/ProteusDataTableRow";
 import type { ProteusDataTableProps } from "../proteus-data-table/ProteusDataTable";
+import type { ProteusDiffProps } from "../proteus-diff/ProteusDiff";
 import type { ProteusFederatedProps } from "../proteus-federated/ProteusFederated";
 import type { ProteusFileIconProps } from "../proteus-file-icon/ProteusFileIcon";
 import type { ProteusFileUploadProps } from "../proteus-file-upload/ProteusFileUpload";
@@ -78,6 +79,7 @@ export type ProteusElement =
   | (ProteusChartProps & { $type: "Chart" })
   | (ProteusDataTableProps & { $type: "DataTable" })
   | (ProteusDataTableRowProps & { $type: "DataTableRow" })
+  | (ProteusDiffProps & { $type: "Diff" })
   | (ProteusFederatedProps & { $type: "Federated" })
   | (ProteusFileIconProps & { $type: "FileIcon" })
   | (ProteusFileUploadProps & { $type: "FileUpload" })
