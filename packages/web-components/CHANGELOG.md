@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 3.0.7
+
+### Patch Changes
+
+- f751816: Fixed Arabic text rendering in the `mono` font stack.
+
 ## 3.0.6
 
 ### Patch Changes

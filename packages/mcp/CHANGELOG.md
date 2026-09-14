@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 3.0.10
+
+### Patch Changes
+
+- f751816: Fixed Arabic text rendering in the `mono` font stack.
+
 ## 3.0.9
 
 ### Patch Changes
