@@ -1,6 +1,6 @@
 export const fontFamily = {
   heading:
     "VC Nudge, Nudge SemiNormal, Roboto Condensed Variable, system-ui, sans-serif",
-  mono: "Roboto Mono Variable, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace",
+  mono: "Roboto Mono Variable, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace, Arial",
   sans: "Die Grotesk B, DI Grotesk B, Roboto Variable, system-ui, sans-serif",
 } as const;
