@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 3.1.8
+
+### Patch Changes
+
+- f751816: Fixed Arabic text rendering in the `mono` font stack.
+- Updated dependencies [f751816]
+  - @optiaxiom/globals@3.0.7
+
 ## 3.1.7
 
 ### Patch Changes
