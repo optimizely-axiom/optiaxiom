@@ -77,11 +77,18 @@ export type ProteusDocumentShellProps = {
    */
   onDownload?: (urls: string[]) => Promise<void> | void;
   /**
-   * Callback when user clicks a Action button with interaction handler
+   * Callback when user clicks a Action button with interaction handler.
+   *
+   * `mode` tells the host who owns the state that follows the call: `"update"`
+   * (the default when the document omits it) means the host persists the
+   * response as the document's new state and handles the bookkeeping; `"read"`
+   * means the guest owns it and decides itself when — or whether — to write
+   * back (concurrent calls, ephemeral data, and so on).
    */
   onInteraction?: (
     name: string,
     params?: Record<string, unknown>,
+    mode?: "read" | "update",
   ) => Promise<unknown> | unknown;
   /**
    * Callback when user sends a message action. The payload may be a plain
@@ -242,7 +249,11 @@ export function ProteusDocumentShell({
 
   const onEvent = useEvent(async (event: ProteusEventHandler) => {
     if ("interaction" in event) {
-      return await onInteraction?.(event.interaction, event.params);
+      return await onInteraction?.(
+        event.interaction,
+        event.params,
+        event.mode ?? "update",
+      );
     } else if ("message" in event) {
       await onMessage?.(event.message);
     } else if ("script" in event) {
