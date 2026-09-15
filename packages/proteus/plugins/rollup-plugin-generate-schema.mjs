@@ -842,6 +842,12 @@ function generateSpec(additionalProperties = false) {
                   description: "Name of registered interaction to call",
                   type: "string",
                 },
+                mode: {
+                  description:
+                    "Who owns the state after the call. `update` (default) tells the host to persist the response as the document's new state and handle the bookkeeping. `read` tells the host the interaction only reads — the guest decides itself when, or whether, to write state back (concurrent calls, ephemeral data).",
+                  enum: ["read", "update"],
+                  type: "string",
+                },
                 params: {
                   additionalProperties: {},
                   description:

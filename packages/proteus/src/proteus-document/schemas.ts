@@ -134,7 +134,11 @@ export type ProteusEventHandler =
       path: string;
       value?: unknown;
     }
-  | { interaction: string; params?: Record<string, unknown> }
+  | {
+      interaction: string;
+      mode?: "read" | "update";
+      params?: Record<string, unknown>;
+    }
   | { message: string | StructuredMessage }
   | { params?: Record<string, unknown>; script: string };
 
