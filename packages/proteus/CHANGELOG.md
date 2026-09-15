@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 3.7.0
+
+### Minor Changes
+
+- 610aba9: added `mode` to the `interaction` event handler
+
 ## 3.6.2
 
 ### Patch Changes
