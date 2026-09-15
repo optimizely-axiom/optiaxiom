@@ -43,6 +43,28 @@ incomplete. This is the most commonly missed step — check for it on every revi
   with restated context or defensive "this is non-breaking" prose.
 - A follow-up to a feature that hasn't been released yet may not need its own changeset.
 
+## Decide the commit structure BEFORE writing code
+
+Before starting any work, decide how it will be committed — the commit boundaries are part of the
+plan, not an afterthought at `git add` time. State the intended commits up front (as you would the
+API surface) so the work is shaped to land as clean, reviewable units.
+
+The unit is **one revertable concern per commit**. A reviewer reading `git log --oneline` should see
+the shape of the change; a bisect should land on a single coherent cause; a revert should undo
+exactly one thing without dragging unrelated changes with it.
+
+- **Each commit builds and passes on its own** (`pnpm lint`, which type-checks too). A story or test
+  goes in the SAME commit as the behavior it covers, and a change to a generated file's input goes
+  in the same commit as the regenerated output — splitting either leaves a commit red.
+- **Group by cause, not by file or by layer.** A component change spanning the `.tsx`, its
+  `.css.ts`, the story, and its changeset is ONE commit; a mechanical rename riding alongside it is
+  a SEPARATE commit even if it touches the same files.
+- **Conventional-commit prefixes** (`feat:`/`fix:`/`refactor:`/`docs:`/`chore:`), scope in parens
+  (`feat(proteus): …`), imperative subject. Order commits so each rests on the last (foundational
+  refactor first, then the feature that uses it).
+- **One PR unless asked otherwise** — the commits are the structure WITHIN that PR. Confirm the
+  split with the user when several defensible groupings exist; then don't re-litigate it.
+
 ## Component conventions
 
 **API & props**
