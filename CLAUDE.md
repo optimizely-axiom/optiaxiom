@@ -16,6 +16,7 @@ package-specific setup, testing, and conventions.
 - `apps/docs/` — documentation site (see `apps/docs/README.md` for doc writing guidelines)
 - `packages/react/` — React component library
 - `packages/icons/` — Material Symbols kit; add icons via `icons.json` + `npm run build` (see `packages/icons/README.md`)
+- `packages/proteus/` — JSON-document renderer + generated JSON Schema (see `packages/proteus/README.md`)
 - `packages/mcp/` — MCP server for AI assistants (see `packages/mcp/README.md`)
 
 Some packages commit **generated** files that CI re-runs and `git diff --exit-code`s — if you touch
