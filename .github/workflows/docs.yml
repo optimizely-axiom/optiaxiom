@@ -78,7 +78,7 @@ jobs:
           echo "subpath=v1" >> "$GITHUB_OUTPUT"
 
       - name: Download other branch artifact
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         id: download-other
         continue-on-error: true
         with:
