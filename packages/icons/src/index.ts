@@ -349,6 +349,7 @@ export { IconVrpano as IconPanorama } from "../svg/vrpano.svg";
 export { IconWandShine as IconSparkles } from "../svg/wand_shine.svg";
 export { IconWarning as IconTriangleExclamation } from "../svg/warning.svg";
 export { IconWaterDrop as IconDroplet } from "../svg/water_drop.svg";
+export { IconWeb as IconWeb } from "../svg/web.svg";
 export { IconWebTraffic as IconAgent } from "../svg/web_traffic.svg";
 export { IconWebTraffic as IconSubAgent } from "../svg/web_traffic.svg";
 export { IconWebhook as IconWebhook } from "../svg/webhook.svg";
