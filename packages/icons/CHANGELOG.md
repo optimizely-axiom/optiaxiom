@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.7.0
+
+### Minor Changes
+
+- b1ca2ba: Added `IconWeb` (Material Symbols `web`) for web page / site / layout contexts.
+
 ## 1.6.0
 
 ### Minor Changes
