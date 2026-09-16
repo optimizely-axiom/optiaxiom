@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 3.0.11
+
+### Patch Changes
+
+- b1ca2ba: Regenerated icon data to include `IconWeb`.
+
 ## 3.0.10
 
 ### Patch Changes
