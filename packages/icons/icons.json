@@ -300,6 +300,7 @@
   "wand_shine": ["Sparkles"],
   "warning": ["TriangleExclamation"],
   "water_drop": ["Droplet"],
+  "web": ["Web"],
   "web_traffic": ["Agent", "SubAgent"],
   "webhook": ["Webhook"],
   "west": ["ArrowLeftLong"],
