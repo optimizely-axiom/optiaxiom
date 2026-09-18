@@ -1,7 +1,7 @@
 import type { ButtonProps } from "@optiaxiom/react";
 
 import { Button } from "@optiaxiom/react";
-import { useState } from "react";
+import { useId } from "react";
 
 import type { ProteusEventHandler } from "../proteus-document/schemas";
 
@@ -22,9 +22,8 @@ export function ProteusAction({
   type = "button",
   ...props
 }: ProteusActionProps) {
-  const { onEvent, valid } = useProteusDocumentContext(
-    "@optiaxiom/proteus/ProteusAction",
-  );
+  const { onEvent, pendingAction, setPendingAction, valid } =
+    useProteusDocumentContext("@optiaxiom/proteus/ProteusAction");
   const { path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/proteus/ProteusAction",
   );
@@ -32,21 +31,25 @@ export function ProteusAction({
     (onClick ?? {}) as Record<string, unknown>,
   ) as ProteusEventHandler;
 
-  const [loading, setLoading] = useState(false);
+  const id = useId();
+  const loading = pendingAction === id;
 
   return (
     <Button
-      disabled={type === "submit" && !valid}
+      disabled={(type === "submit" && !valid) || (!!pendingAction && !loading)}
       justifyContent="center"
       loading={loading}
       onClick={async () => {
-        if (!onClick || loading) {
+        if (!onClick || pendingAction) {
           return;
         }
 
-        setLoading(true);
-        await onEvent(resolveEventPath(resolvedOnClick, parentPath));
-        setLoading(false);
+        setPendingAction(id);
+        try {
+          await onEvent(resolveEventPath(resolvedOnClick, parentPath));
+        } finally {
+          setPendingAction(undefined);
+        }
       }}
       type={type}
       {...props}
