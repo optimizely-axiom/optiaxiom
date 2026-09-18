@@ -214,6 +214,13 @@ export function ProteusDocumentShell({
     }
   }, []);
 
+  // Only one action at a time: while an action's event is in flight every
+  // other action in the document is disabled, so a pending "Delete" cannot be
+  // raced by a "Cancel" click (or the other way around).
+  const [pendingAction, setPendingAction] = useState<string | undefined>(
+    undefined,
+  );
+
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
@@ -387,7 +394,9 @@ export function ProteusDocumentShell({
         onTrack?.(event, properties);
       })}
       onUpload={onUpload}
+      pendingAction={pendingAction}
       readOnly={readOnly}
+      setPendingAction={setPendingAction}
       strict={strict}
       useResource={useResource}
       valid={valid}

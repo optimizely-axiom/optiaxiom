@@ -33,7 +33,14 @@ export const [ProteusDocumentProvider, useProteusDocumentContext] =
     onEvent: (event: ProteusEventHandler) => Promise<unknown>;
     onTrack?: (event: string, properties: Record<string, string>) => void;
     onUpload?: UploadFile;
+    /**
+     * Identity of the action whose event is currently in flight, or
+     * `undefined` when the document is idle. Actions use this to show their
+     * own spinner and to disable themselves while another action is pending.
+     */
+    pendingAction: string | undefined;
     readOnly: boolean | undefined;
+    setPendingAction: (id: string | undefined) => void;
     strict: boolean | undefined;
     useResource?: UseResource;
     valid: boolean | undefined;

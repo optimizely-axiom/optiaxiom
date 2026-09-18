@@ -12,6 +12,7 @@ import { ProteusDocumentRenderer } from "@optiaxiom/proteus";
 import { Box } from "@optiaxiom/react";
 import { useEffect, useRef, useState } from "react";
 import { action } from "storybook/actions";
+import { expect, userEvent, waitFor } from "storybook/test";
 
 export default {
   args: {
@@ -700,6 +701,65 @@ export const WithAllActions: Story = {
       ],
       title: "Approve Changes",
     },
+  },
+};
+
+export const WithAsyncActions: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      actions: [
+        {
+          $type: "Action",
+          appearance: "subtle",
+          children: "Cancel",
+          onClick: {
+            interaction: "cancel_delete_record",
+          },
+        },
+        {
+          $type: "Action",
+          appearance: "danger",
+          children: "Delete permanently",
+          icon: {
+            $type: "Icon",
+            name: "TrashCan",
+          },
+          onClick: {
+            interaction: "confirm_delete_record",
+          },
+        },
+      ],
+      appName: "Dynamics 365",
+      body: [
+        {
+          $type: "Text",
+          children: "Delete this record permanently?",
+        },
+      ],
+    },
+    icons: {
+      TrashCan: IconTrashCan,
+    },
+    onInteraction: async (name, params) => {
+      action("onInteraction")(name, params);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    },
+  },
+  play: async ({ canvas }) => {
+    const cancel = canvas.getByRole("button", { name: "Cancel" });
+    const remove = canvas.getByRole("button", { name: "Delete permanently" });
+
+    await userEvent.click(remove);
+    // the action that fired keeps its spinner and stays clickable-looking,
+    // while every other action in the document is held until it settles
+    await expect(remove).toBeEnabled();
+    await expect(cancel).toBeDisabled();
+    await waitFor(() => expect(cancel).toBeEnabled(), { timeout: 3000 });
+
+    await userEvent.click(cancel);
+    await expect(remove).toBeDisabled();
+    await waitFor(() => expect(remove).toBeEnabled(), { timeout: 3000 });
   },
 };
 
