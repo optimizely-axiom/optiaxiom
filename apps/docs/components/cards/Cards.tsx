@@ -39,7 +39,7 @@ import { ToastIcon } from "./icons/ToastIcon";
 import { ToggleButtonIcon } from "./icons/ToggleButtonIcon";
 import { TooltipIcon } from "./icons/TooltipIcon";
 
-const COMPONENTS = {
+const PAGES = {
   Alert: {
     description:
       "Show inline messages about important or time-sensitive changes.",
@@ -282,7 +282,7 @@ const COMPONENTS = {
   },
 };
 
-export function Cards({ items }: { items: Array<keyof typeof COMPONENTS> }) {
+export function Cards({ items }: { items: Array<keyof typeof PAGES> }) {
   return (
     <Grid
       className={styles.cards}
@@ -291,7 +291,7 @@ export function Cards({ items }: { items: Array<keyof typeof COMPONENTS> }) {
       mt="16"
     >
       {items
-        .map((name) => COMPONENTS[name])
+        .map((name) => PAGES[name])
         .map((data) => (
           <CardsItem
             href={data.href}
