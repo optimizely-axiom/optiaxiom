@@ -91,7 +91,7 @@ export default {
         props: ["borderColor"],
       },
       {
-        path: "/text-color/",
+        path: "/color/",
         props: ["color"],
       },
     ],

@@ -13,15 +13,19 @@ const MOVED_TO_GUIDES = [
   "typography",
 ];
 
+// Prop pages that were also renamed on the way over, keyed by their old slug.
+const RENAMED: Record<string, string> = { "text-color": "color" };
+
 const destination = (slug: string[]) =>
   slug.length && MOVED_TO_GUIDES.includes(slug[0])
     ? `/guides/${slug[0]}/`
-    : `/${["props", ...slug].join("/")}/`;
+    : `/${["props", ...slug.map((part) => RENAMED[part] ?? part)].join("/")}/`;
 
 export function generateStaticParams() {
   return [
     { slug: [] },
     ...MOVED_TO_GUIDES.map((name) => ({ slug: [name] })),
+    ...Object.keys(RENAMED).map((name) => ({ slug: [name] })),
     ...fg
       .sync("./app/(docs)/props/*/page.mdx")
       .map((path) => ({ slug: [path.split("/").at(-2) as string] })),
