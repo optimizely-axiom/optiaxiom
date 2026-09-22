@@ -158,9 +158,9 @@ Get setup, configuration, and integration guides for the Axiom Design System.
 
 **Returns:** When `names` is omitted, the list of available guides (name + title). When `names` is provided, the markdown content for each requested guide, plus the full list of available guide names so an invalid name self-corrects.
 
-The available guides are derived at build time from the docs nav manifest (`apps/docs/app/_meta.global.tsx`) — every guide page listed there is surfaced automatically (separators, hidden pages, and a small exclusion list are skipped). At time of writing: `getting-started`, `test-environments`, `css-imports`, `css-layers`, `icons`, `module-federation`, `nested-overlays`, `group-migration`. Run `get_guides()` for the current list.
+The available guides are derived at build time from the `guides` section of the docs nav manifest (`apps/docs/app/_meta.global.tsx`) — every page listed there is surfaced automatically (separators, hidden pages, and a small exclusion list are skipped). At time of writing: `getting-started`, `css-imports`, `colors`, `design-tokens`, `typography`, `fonts`, `icons`, `responsive-styles`, `css-layers`, `nested-overlays`, `module-federation`, `test-environments`, `group-migration`. Run `get_guides()` for the current list.
 
-In addition to the `guides/` section, select pages from the docs **`styling/`** section are surfaced as guides — currently `design-tokens` (the canonical ways to consume tokens: style props, CSS variables, the `theme` object), `colors` (semantic color names and dark mode via `color-scheme`), and `responsive-styles` (object vs. array breakpoint notation). This list is an explicit allowlist (`STYLING_GUIDES` in `packages/mcp/plugins/generators.mjs`); add a styling page's slug there to surface it. When a styling page is surfaced, its `<Demo>` examples are inlined as fenced code blocks and its `<Scale>` value tables are dropped (resolved values are served by `get_tokens`).
+The docs **`props/`** section (one page per style prop) is not surfaced — resolved values are served by `get_tokens` instead. When a guide is surfaced, its `<Demo>` examples are inlined as fenced code blocks and its `<Scale>` value tables are dropped.
 
 ## Example Interactions
 

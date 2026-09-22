@@ -21,7 +21,7 @@ export const PropType = ({ prop }: PropTypeProps) => {
               "ConditionalStyleWithResponsiveArray<",
             ) ? (
               <>
-                <Link href="/styling/responsive-styles/">
+                <Link href="/guides/responsive-styles/">
                   <abbr className="hover:_underline" title="">
                     <span style={{ color: "var(--shiki-token-function)" }}>
                       ResponsiveValue
@@ -105,7 +105,7 @@ const ThemeLink = ({
     <>
       <span style={{ color: "var(--shiki-token-keyword)" }}>typeof </span>
       <Tooltip content={propTypeRaw(type)}>
-        <Link href={`/styling${path}`}>
+        <Link href={`/props${path}`}>
           <abbr className="hover:_underline" title="">
             <span style={{ color: "var(--shiki-token-constant)" }}>
               {scope}

@@ -154,25 +154,15 @@ export async function generateComponents() {
 // AI client already has — so fetching it adds noise rather than capability.
 const EXCLUDED_GUIDES = new Set(["mcp", "proteus", "proteus-designer"]);
 
-// Styling-section pages (apps/docs/app/(docs)/styling/<name>/) to surface as
-// MCP guides. Kept explicit (not the whole section) so we only expose pages
-// with proven agent value. Add a slug here to surface another styling page.
-const STYLING_GUIDES = new Set([
-  "colors",
-  "design-tokens",
-  "responsive-styles",
-]);
-
 /**
  * @returns {Promise<Record<string, Guide>>}
  */
 export async function generateGuides() {
   const docsAppDir = join(__dirname, "..", "..", "..", "apps", "docs", "app");
   const guidesDir = join(docsAppDir, "(docs)", "guides");
-  const stylingDir = join(docsAppDir, "(docs)", "styling");
 
   // The docs nav manifest is the source of truth for which guides exist and
-  // their titles. Entries are tagged with the section they came from.
+  // their titles.
   const entries = await parseGuidesFromMeta(
     join(docsAppDir, "_meta.global.tsx"),
   );
@@ -180,21 +170,13 @@ export async function generateGuides() {
   /** @type {Record<string, Guide>} */
   const result = {};
 
-  for (const { name, section, title } of entries) {
-    // Only `design-tokens` (and any future allowlisted slug) is surfaced from
-    // the styling section; everything else there stays out of the MCP.
-    if (section === "styling" && !STYLING_GUIDES.has(name)) {
-      continue;
-    }
-
-    // In the guides section, `index` is the landing page
-    // (apps/.../guides/page.mdx) and is keyed as `getting-started`; every other
-    // key maps to its own folder's page.mdx.
-    const baseDir = section === "styling" ? stylingDir : guidesDir;
-    const isGuidesIndex = section === "guides" && name === "index";
+  for (const { name, title } of entries) {
+    // `index` is the landing page (apps/.../guides/page.mdx) and is keyed as
+    // `getting-started`; every other key maps to its own folder's page.mdx.
+    const isGuidesIndex = name === "index";
     const path = isGuidesIndex
-      ? join(baseDir, "page.mdx")
-      : join(baseDir, name, "page.mdx");
+      ? join(guidesDir, "page.mdx")
+      : join(guidesDir, name, "page.mdx");
     const key = isGuidesIndex ? "getting-started" : name;
 
     const content = await readFile(path, "utf-8").catch(() => null);
@@ -381,13 +363,13 @@ function parseDeprecation(deprecatedTag) {
 
 /**
  * Read the entries from the docs nav manifest (`_meta.global.tsx`) for both the
- * `guides` and `styling` sections, tagging each with its `section`.
+ * `guides` section.
  *
  * Skips separators, hidden pages, and {@link EXCLUDED_GUIDES}; throws on a
  * non-string title (it can't be surfaced via the MCP).
  *
  * @param {string} metaPath
- * @returns {Promise<Array<{ name: string, section: "guides" | "styling", title: string }>>}
+ * @returns {Promise<Array<{ name: string, title: string }>>}
  */
 async function parseGuidesFromMeta(metaPath) {
   const source = await readFile(metaPath, "utf-8");
@@ -411,36 +393,34 @@ async function parseGuidesFromMeta(metaPath) {
     "data:text/javascript," + encodeURIComponent(`${stub}\n${stripped}`)
   );
 
-  /** @type {Array<{ name: string, section: "guides" | "styling", title: string }>} */
+  /** @type {Array<{ name: string, title: string }>} */
   const entries = [];
 
-  for (const section of /** @type {const} */ (["guides", "styling"])) {
-    /** @type {Record<string, unknown>} */
-    const items = mod.default?.[section]?.items ?? {};
+  /** @type {Record<string, unknown>} */
+  const items = mod.default?.guides?.items ?? {};
 
-    for (const [name, value] of Object.entries(items)) {
-      if (name.startsWith("--") || EXCLUDED_GUIDES.has(name)) {
+  for (const [name, value] of Object.entries(items)) {
+    if (name.startsWith("--") || EXCLUDED_GUIDES.has(name)) {
+      continue;
+    }
+
+    if (typeof value === "object" && value !== null) {
+      const entry = /** @type {Record<string, unknown>} */ (value);
+      if (entry.type === "separator" || entry.display === "hidden") {
         continue;
       }
-
-      if (typeof value === "object" && value !== null) {
-        const entry = /** @type {Record<string, unknown>} */ (value);
-        if (entry.type === "separator" || entry.display === "hidden") {
-          continue;
-        }
-        if (typeof entry.title !== "string") {
-          throw new Error(
-            `Guide "${name}" in ${metaPath} has a non-string title; give it a plain-text title or add it to EXCLUDED_GUIDES.`,
-          );
-        }
-        entries.push({ name, section, title: entry.title });
-      } else if (typeof value === "string") {
-        entries.push({ name, section, title: value });
-      } else {
+      if (typeof entry.title !== "string") {
         throw new Error(
           `Guide "${name}" in ${metaPath} has a non-string title; give it a plain-text title or add it to EXCLUDED_GUIDES.`,
         );
       }
+      entries.push({ name, title: entry.title });
+    } else if (typeof value === "string") {
+      entries.push({ name, title: value });
+    } else {
+      throw new Error(
+        `Guide "${name}" in ${metaPath} has a non-string title; give it a plain-text title or add it to EXCLUDED_GUIDES.`,
+      );
     }
   }
 
