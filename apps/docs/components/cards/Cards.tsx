@@ -230,7 +230,7 @@ const PAGES = {
   Styling: {
     description:
       "Learn about our styling solution and how to consume our design tokens.",
-    href: "/styling/",
+    href: "/props/",
     icon: <StylingIcon />,
     title: "Styling",
   },

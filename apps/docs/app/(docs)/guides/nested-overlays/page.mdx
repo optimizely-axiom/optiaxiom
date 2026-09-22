@@ -5,7 +5,7 @@ Third-party overlays (menus, dialogs, popovers from other libraries) render in t
 1. **Stacking** — the third-party overlay renders _behind_ the Axiom dialog because it does not share Axiom's z-index band.
 2. **Focus, scroll, and dismissal** — the Axiom dialog traps focus, locks scroll, and owns the dismiss stack, so the nested overlay can be unusable.
 
-The fix has two parts: wrap the portalled content in [ModalLayer](/components/modal-layer/) (to join Axiom's focus/scroll/dismiss handling) and set its `z-index` to Axiom's `popover` token (to lift it into Axiom's stacking band). See [Z-Index](/styling/z-index/) for the available tokens.
+The fix has two parts: wrap the portalled content in [ModalLayer](/components/modal-layer/) (to join Axiom's focus/scroll/dismiss handling) and set its `z-index` to Axiom's `popover` token (to lift it into Axiom's stacking band). See [Z-Index](/props/z-index/) for the available tokens.
 
 ## React Select
 

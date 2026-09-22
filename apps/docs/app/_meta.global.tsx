@@ -40,13 +40,16 @@ export default {
         title: "Guides",
         type: "separator",
       },
+      colors: "Colors",
       "css-imports": "CSS Imports",
       "css-layers": "CSS Layers",
+      "design-tokens": "Design Tokens",
       fonts: "Fonts",
       icons: "Icons",
       "module-federation": "Module Federation",
       "nested-overlays": "Nested Overlays",
       proteus: "Proteus",
+      "responsive-styles": "Responsive Styles",
 
       "-- Migrations": {
         title: "Migrations",
@@ -187,18 +190,13 @@ export default {
     type: "page",
   },
 
-  styling: {
+  props: {
     items: {
       "--": {
-        title: "Styling",
+        title: "Props",
         type: "separator",
       },
       index: "Style Props",
-
-      "design-tokens": "Design Tokens",
-      "responsive-styles": "Responsive Styles",
-
-      colors: "Colors",
 
       "-- Layout": {
         title: "Layout",
@@ -272,7 +270,7 @@ export default {
       animation: "Animation",
       "transition-property": "Transition Property",
     },
-    title: "Styling",
+    title: "Props",
     type: "page",
   },
 };
