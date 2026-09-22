@@ -1,0 +1,61 @@
+import { Cards, Demo } from "@/components";
+
+# Typography
+
+Text in Axiom comes from two places: the `Heading` and `Text` components, which say what a
+piece of text **is**, and the font style props, which set individual **values**. Reach for a
+component first.
+
+## Documentation
+
+### Headings
+
+Use `Heading` for page titles, section headings, and card or panel titles. The `level` prop
+controls the semantic tag, font size, and line height together, so the page keeps a correct
+document outline for screen readers. Levels run from `1` to `4`.
+
+<Demo component="heading/usage" />
+
+Because the sizes come from the design library, don't override `fontSize` on a `Heading` —
+pick the `level` that matches. Two adjustments are expected:
+
+- Every level defaults to `fontWeight="700"`. If the design shows a lighter heading, set
+  `fontWeight="500"` or `"600"` explicitly.
+- To use one level's visual size under a different tag, combine `level` with `asChild` — see
+  [Heading](/components/heading/).
+
+### Body text
+
+Use `Text` for paragraphs, captions, descriptions, and any other non-heading copy. It
+renders a `<p>`, which cannot be nested inside another `<p>` — for inline styling within a
+paragraph, use `asChild` with a `<span>`.
+
+<Demo component="text/usage" />
+
+Body copy is where the font props belong: [`fontSize`](/props/font-size/),
+[`fontWeight`](/props/font-weight/), [`fontFamily`](/props/font-family/) and
+[`color`](/props/text-color/), which takes `fg.` tokens. Each page lists the values
+available.
+
+### When it is really a heading
+
+If text ends up at `fontSize="xl"` or larger **and** `fontWeight="500"` or heavier, it is a
+heading — reach for the component instead. Styling `Text` to look like one produces the
+right pixels with none of the semantics:
+
+```jsx
+// Don't do this
+<Text fontSize="2xl" fontWeight="700">
+  Section title
+</Text>
+
+// Do this
+<Heading level="2">Section title</Heading>
+```
+
+If you are coming from Figma, `Heading` and `Text` are the text styles. The font props are
+the equivalent of overriding size or weight on a single layer.
+
+### Related
+
+<Cards items={["Heading", "Text", "Colors"]} />

@@ -9,6 +9,7 @@ import { BannerIcon } from "./icons/BannerIcon";
 import { BoxIcon } from "./icons/BoxIcon";
 import { ButtonIcon } from "./icons/ButtonIcon";
 import { CheckboxIcon } from "./icons/CheckboxIcon";
+import { ColorsIcon } from "./icons/ColorsIcon";
 import { ComponentsIcon } from "./icons/ComponentsIcon";
 import { DialogIcon } from "./icons/DialogIcon";
 import { DropdownMenuIcon } from "./icons/DropdownMenuIcon";
@@ -38,6 +39,7 @@ import { TextIcon } from "./icons/TextIcon";
 import { ToastIcon } from "./icons/ToastIcon";
 import { ToggleButtonIcon } from "./icons/ToggleButtonIcon";
 import { TooltipIcon } from "./icons/TooltipIcon";
+import { TypographyIcon } from "./icons/TypographyIcon";
 
 const PAGES = {
   Alert: {
@@ -86,12 +88,26 @@ const PAGES = {
     icon: <CheckboxIcon />,
     title: "Checkbox",
   },
+  Colors: {
+    description:
+      "Every text, background, and border color token, with light and dark mode values.",
+    href: "/guides/colors/",
+    icon: <ColorsIcon />,
+    title: "Colors",
+  },
   Components: {
     description:
       "Discover all the components available in our library and how to use them.",
     href: "/components/",
     icon: <ComponentsIcon />,
     title: "Components",
+  },
+  DesignTokens: {
+    description:
+      "The full token reference — spacing, sizing, radius, shadow, and type scales.",
+    href: "/guides/design-tokens/",
+    icon: <StylingIcon />,
+    title: "Design Tokens",
   },
   Dialog: {
     description: "Display a modal dialog box.",
@@ -279,6 +295,13 @@ const PAGES = {
     href: "/components/tooltip/",
     icon: <TooltipIcon />,
     title: "Tooltip",
+  },
+  Typography: {
+    description:
+      "The type scale, and which component renders each style. Start here before reaching for font props.",
+    href: "/guides/typography/",
+    icon: <TypographyIcon />,
+    title: "Typography",
   },
 };
 
