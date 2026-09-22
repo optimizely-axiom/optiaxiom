@@ -84,6 +84,45 @@
     }
   }
 
+  /* The whole site is one flat list, so tighten the rows to fit more of it on
+     screen. Desktop only — the mobile nav keeps full-size touch targets. */
+  .nextra-sidebar {
+    & ul {
+      gap: 2px;
+    }
+
+    & li > a {
+      padding-block: 6px;
+    }
+
+    & li:not(:has(a)):not(:has(hr)) {
+      margin-block: 12px 2px;
+    }
+  }
+
+  /* The sidebar is one flat list, so pin each section heading while its own
+     section scrolls past — the current section stays visible at all times.
+     Separators are the only sidebar items that contain neither a link nor a
+     rule, which is steadier to target than the generated utility classes. */
+  :is(.nextra-sidebar, .nextra-mobile-nav) li:not(:has(a)):not(:has(hr)) {
+    background-color: var(--ax-colors-bg-page);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    /* Cover the scroll container's own top padding, which items would
+       otherwise scroll through above the pinned heading. */
+    &::before {
+      background-color: inherit;
+      bottom: 100%;
+      content: "";
+      height: 1rem;
+      left: 0;
+      position: absolute;
+      right: 0;
+    }
+  }
+
   .nextra-steps {
     margin-left: 10px;
     padding-left: 20px;

@@ -14,6 +14,11 @@ const LegacyItem = ({ children }: { children?: ReactNode }) => (
   </Group>
 );
 
+/*
+ * This file is the canonical sidebar definition — group order, item order,
+ * separators, titles and visibility all live here. `flatten-page-map.ts` only
+ * hoists these entries into a single flat list, preserving this order.
+ */
 export default {
   index: {
     display: "hidden",
@@ -32,29 +37,32 @@ export default {
         type: "separator",
       },
       index: "Installation",
+
+      "css-imports": "CSS Imports",
+      mcp: "MCP Server",
       "test-environments": "Test Environments",
 
-      mcp: "MCP Server",
+      "-- Foundations": {
+        title: "Foundations",
+        type: "separator",
+      },
+      colors: "Colors",
+      "design-tokens": "Design Tokens",
+
+      fonts: "Fonts",
+      icons: "Icons",
 
       "-- Guides": {
         title: "Guides",
         type: "separator",
       },
-      colors: "Colors",
-      "css-imports": "CSS Imports",
+      "responsive-styles": "Responsive Styles",
+
       "css-layers": "CSS Layers",
-      "design-tokens": "Design Tokens",
-      fonts: "Fonts",
-      icons: "Icons",
       "module-federation": "Module Federation",
       "nested-overlays": "Nested Overlays",
       proteus: "Proteus",
-      "responsive-styles": "Responsive Styles",
 
-      "-- Migrations": {
-        title: "Migrations",
-        type: "separator",
-      },
       "group-migration": "Flex to Group migration",
 
       "proteus-designer": {
@@ -68,43 +76,22 @@ export default {
       },
     },
     title: "Guides",
-    type: "page",
   },
 
   components: {
     items: {
       "--": {
-        title: "Primitives",
+        title: "Components",
         type: "separator",
       },
       index: "Box",
 
-      cover: "Cover",
-      flex: {
-        title: <LegacyItem>Flex</LegacyItem>,
-      },
-      grid: "Grid",
-      group: "Group",
-      heading: "Heading",
-      separator: "Separator",
-      text: "Text",
-
-      "-- Providers": {
-        title: "Providers",
-        type: "separator",
-      },
-      "axiom-provider": "AxiomProvider",
-
-      "auth-provider": "AuthProvider",
-
-      "-- Components": {
-        title: "Components",
-        type: "separator",
-      },
       alert: "Alert",
       "alert-dialog": "AlertDialog",
       "angle-menu-button": "AngleMenuButton",
+      "auth-provider": "AuthProvider",
       avatar: "Avatar",
+      "axiom-provider": "AxiomProvider",
       badge: "Badge",
       banner: "Banner",
       breadcrumb: "Breadcrumb",
@@ -117,6 +104,7 @@ export default {
       code: {
         display: "hidden",
       },
+      cover: "Cover",
       "data-table": "DataTable",
       "date-input": "DateInput",
       "date-range-picker": "DateRangePicker",
@@ -133,6 +121,12 @@ export default {
       "file-upload": {
         title: <AlphaItem>FileUpload</AlphaItem>,
       },
+      flex: {
+        title: <LegacyItem>Flex</LegacyItem>,
+      },
+      grid: "Grid",
+      group: "Group",
+      heading: "Heading",
       "hover-card": {
         title: <AlphaItem>HoverCard</AlphaItem>,
       },
@@ -150,6 +144,7 @@ export default {
       },
       link: "Link",
       menu: "Menu",
+      "modal-layer": "ModalLayer",
       pagination: "Pagination",
       pill: {
         title: <AlphaItem>Pill</AlphaItem>,
@@ -166,6 +161,7 @@ export default {
       "search-input": "SearchInput",
       "segmented-control": "SegmentedControl",
       select: "Select",
+      separator: "Separator",
       sidebar: "Sidebar",
       skeleton: "Skeleton",
       sortable: {
@@ -175,19 +171,13 @@ export default {
       switch: "Switch",
       table: "Table",
       tabs: "Tabs",
+      text: "Text",
       textarea: "Textarea",
       toast: "Toast",
       "toggle-button": "ToggleButton",
       tooltip: "Tooltip",
-
-      "-- Utilities": {
-        title: "Utilities",
-        type: "separator",
-      },
-      "modal-layer": "ModalLayer",
     },
     title: "Components",
-    type: "page",
   },
 
   props: {
@@ -198,79 +188,39 @@ export default {
       },
       index: "Style Props",
 
-      "-- Layout": {
-        title: "Layout",
-        type: "separator",
-      },
-      display: "Display",
-      margin: "Margin",
-      "object-fit": "Object Fit",
-      overflow: "Overflow",
-      padding: "Padding",
-      "z-index": "Z-Index",
-
-      "-- Flexbox & Grid": {
-        title: "Flexbox & Grid",
-        type: "separator",
-      },
       "align-items": "Align Items",
       "align-self": "Align Self",
-      flex: "Flex",
-      "flex-direction": "Flex Direction",
-      "flex-wrap": "Flex Wrap",
-      gap: "Gap",
-      "grid-column": "Grid Column",
-      "grid-template-columns": "Grid Template Columns",
-      "justify-content": "Justify Content",
-
-      "-- Sizing": {
-        title: "Sizing",
-        type: "separator",
-      },
-      height: "Height",
-      "max-height": "Max Height",
-      "max-width": "Max Width",
-      size: "Size",
-      width: "Width",
-
-      "-- Typography": {
-        title: "Typography",
-        type: "separator",
-      },
-      "font-family": "Font Family",
-      "font-size": "Font Size",
-      "font-weight": "Font Weight",
-      "text-align": "Text Align",
-      "text-color": "Text Color",
-
-      "-- Backgrounds": {
-        title: "Backgrounds",
-        type: "separator",
-      },
+      animation: "Animation",
       "background-color": "Background Color",
-
-      "-- Borders": {
-        title: "Borders",
-        type: "separator",
-      },
       "border-color": "Border Color",
       "border-radius": "Border Radius",
       "border-width": "Border Width",
-
-      "-- Effects": {
-        title: "Effects",
-        type: "separator",
-      },
       "box-shadow": "Box Shadow",
-
-      "-- Transitions & Animation": {
-        title: "Transitions & Animation",
-        type: "separator",
-      },
-      animation: "Animation",
+      display: "Display",
+      flex: "Flex",
+      "flex-direction": "Flex Direction",
+      "flex-wrap": "Flex Wrap",
+      "font-family": "Font Family",
+      "font-size": "Font Size",
+      "font-weight": "Font Weight",
+      gap: "Gap",
+      "grid-column": "Grid Column",
+      "grid-template-columns": "Grid Template Columns",
+      height: "Height",
+      "justify-content": "Justify Content",
+      margin: "Margin",
+      "max-height": "Max Height",
+      "max-width": "Max Width",
+      "object-fit": "Object Fit",
+      overflow: "Overflow",
+      padding: "Padding",
+      size: "Size",
+      "text-align": "Text Align",
+      "text-color": "Text Color",
       "transition-property": "Transition Property",
+      width: "Width",
+      "z-index": "Z-Index",
     },
     title: "Props",
-    type: "page",
   },
 };
