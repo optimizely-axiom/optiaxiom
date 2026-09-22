@@ -1,7 +1,9 @@
 import { Grid } from "@optiaxiom/react";
 
+import { AlertDialogIcon } from "./AlertDialogIcon";
+import { AlertIcon } from "./AlertIcon";
 import styles from "./BoxIcon.module.css";
-import { IconBox } from "./IconBox";
+import { DialogIcon } from "./DialogIcon";
 
 export const BoxIcon = () => (
   <Grid
@@ -11,26 +13,8 @@ export const BoxIcon = () => (
       transformStyle: "preserve-3d",
     }}
   >
-    <IconBox
-      bg="bg.default"
-      className={styles.layer}
-      h="lg"
-      transition="all"
-      w="56"
-    />
-    <IconBox
-      bg="bg.warning.subtle"
-      className={styles.layer}
-      h="lg"
-      transition="all"
-      w="56"
-    />
-    <IconBox
-      bg="bg.default"
-      className={styles.layer}
-      h="lg"
-      transition="all"
-      w="56"
-    />
+    <DialogIcon className={styles.layer} transition="all" />
+    <AlertIcon className={styles.layer} transition="all" />
+    <AlertDialogIcon className={styles.layer} transition="all" />
   </Grid>
 );

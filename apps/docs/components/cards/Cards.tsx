@@ -10,7 +10,6 @@ import { BoxIcon } from "./icons/BoxIcon";
 import { ButtonIcon } from "./icons/ButtonIcon";
 import { CheckboxIcon } from "./icons/CheckboxIcon";
 import { ColorsIcon } from "./icons/ColorsIcon";
-import { ComponentsIcon } from "./icons/ComponentsIcon";
 import { DialogIcon } from "./icons/DialogIcon";
 import { DropdownMenuIcon } from "./icons/DropdownMenuIcon";
 import { FileUploadIcon } from "./icons/FileUploadIcon";
@@ -94,13 +93,6 @@ const PAGES = {
     href: "/guides/colors/",
     icon: <ColorsIcon />,
     title: "Colors",
-  },
-  Components: {
-    description:
-      "Discover all the components available in our library and how to use them.",
-    href: "/components/",
-    icon: <ComponentsIcon />,
-    title: "Components",
   },
   DesignTokens: {
     description:
@@ -243,12 +235,12 @@ const PAGES = {
     icon: <SpinnerIcon />,
     title: "Spinner",
   },
-  Styling: {
+  StyleProps: {
     description:
-      "Learn about our styling solution and how to consume our design tokens.",
+      "Set an element's styles directly with utility props, backed by our design tokens.",
     href: "/props/",
     icon: <StylingIcon />,
-    title: "Styling",
+    title: "Style Props",
   },
   Switch: {
     description:
