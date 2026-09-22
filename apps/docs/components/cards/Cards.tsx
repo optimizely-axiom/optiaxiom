@@ -80,6 +80,12 @@ const PAGES = {
     icon: <ButtonIcon />,
     title: "Button",
   },
+  Card: {
+    description: "Generic container for grouping related components together.",
+    href: "/components/card/",
+    icon: <BoxIcon />,
+    title: "Card",
+  },
   Checkbox: {
     description:
       "Basic control to allow selecting one or more items from a set.",
@@ -93,6 +99,12 @@ const PAGES = {
     href: "/guides/colors/",
     icon: <ColorsIcon />,
     title: "Colors",
+  },
+  DataTable: {
+    description: "Easy to use table and datagrids built using TanStack Table.",
+    href: "/components/data-table/",
+    icon: <TableIcon />,
+    title: "DataTable",
   },
   DesignTokens: {
     description:
@@ -112,6 +124,13 @@ const PAGES = {
     href: "/components/dropdown-menu/",
     icon: <DropdownMenuIcon />,
     title: "DropdownMenu",
+  },
+  Field: {
+    description:
+      "Wrapper for inputs to provide context such as label, help text and required state.",
+    href: "/components/field/",
+    icon: <InputIcon />,
+    title: "Field",
   },
   FileUpload: {
     description: "Capture file input from users with drag and drop.",
@@ -172,6 +191,12 @@ const PAGES = {
     icon: <InputIcon />,
     title: "Input",
   },
+  Link: {
+    description: "Anchor element for creating hyperlinks.",
+    href: "/components/link/",
+    icon: <TextIcon />,
+    title: "Link",
+  },
   MCP: {
     description:
       "MCP server enabling AI assistants to generate accurate Axiom code.",
@@ -185,11 +210,25 @@ const PAGES = {
     icon: <MenuIcon />,
     title: "Menu",
   },
+  NestedOverlays: {
+    description:
+      "Render third-party menus and dialogs inside Axiom overlays without breaking stacking or focus.",
+    href: "/guides/nested-overlays/",
+    icon: <DialogIcon />,
+    title: "Nested Overlays",
+  },
   Pagination: {
     description: "Display active page and navigate between multiple pages.",
     href: "/components/pagination/",
     icon: <PaginationIcon />,
     title: "Pagination",
+  },
+  Popover: {
+    description:
+      "Display arbitrary rich content inside a non-modal dialog triggered by a button.",
+    href: "/components/popover/",
+    icon: <DialogIcon />,
+    title: "Popover",
   },
   Progress: {
     description: "Display feedback on status of task or length of a process.",
@@ -254,6 +293,13 @@ const PAGES = {
     href: "/components/table/",
     icon: <TableIcon />,
     title: "Table",
+  },
+  Tabs: {
+    description:
+      "Organize content into multiple sections with horizontal navigation.",
+    href: "/components/tabs/",
+    icon: <SegmentedControlIcon />,
+    title: "Tabs",
   },
   Text: {
     description:
