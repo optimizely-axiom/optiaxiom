@@ -8,6 +8,7 @@ import { Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 
 import { CookieConsent } from "./CookieConsent";
+import { flattenPageMap } from "./flatten-page-map";
 import "./Layout.css";
 import { VersionSwitcher } from "./VersionSwitcher";
 
@@ -108,7 +109,7 @@ export async function Layout({ children }: { children: ReactNode }) {
               </Navbar>
             }
             nextThemes={{ scriptProps: { type: "application/json" } }}
-            pageMap={await getPageMap()}
+            pageMap={flattenPageMap(await getPageMap())}
             sidebar={{
               defaultMenuCollapseLevel: 1,
             }}
