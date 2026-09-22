@@ -48,6 +48,7 @@ export default {
       },
       colors: "Colors",
       "design-tokens": "Design Tokens",
+      typography: "Typography",
 
       fonts: "Fonts",
       icons: "Icons",
