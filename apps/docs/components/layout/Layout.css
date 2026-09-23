@@ -8,6 +8,14 @@
   syntax: "<number>";
 }
 
+/* Horizontal offset of the colors card swatch. Registered for the same reason
+   as --card-hover, and typed so it can be both animated and transitioned. */
+@property --colors-swatch-x {
+  inherits: false;
+  initial-value: 0%;
+  syntax: "<percentage>";
+}
+
 @layer optiaxiom.base {
   html {
     font-family: var(--ax-fontFamily-sans);
