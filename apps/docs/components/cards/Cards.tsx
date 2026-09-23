@@ -74,6 +74,13 @@ const PAGES = {
     icon: <BoxIcon />,
     title: "Box",
   },
+  Breadcrumb: {
+    description:
+      "Display a list of links showing the location of the current page in the navigational hierarchy.",
+    href: "/components/breadcrumb/",
+    icon: <PaginationIcon />,
+    title: "Breadcrumb",
+  },
   Button: {
     description: "Button component is used to trigger actions.",
     href: "/components/button/",
@@ -105,6 +112,18 @@ const PAGES = {
     href: "/components/data-table/",
     icon: <TableIcon />,
     title: "DataTable",
+  },
+  DateInput: {
+    description: "Input field with calendar that lets user enter dates.",
+    href: "/components/date-input/",
+    icon: <InputIcon />,
+    title: "DateInput",
+  },
+  DateRangePicker: {
+    description: "Calendar popover that lets user pick date ranges.",
+    href: "/components/date-range-picker/",
+    icon: <DialogIcon />,
+    title: "DateRangePicker",
   },
   DesignTokens: {
     description:
