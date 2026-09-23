@@ -147,7 +147,8 @@ const PAGES = {
     title: "Flex",
   },
   Fonts: {
-    description: "Brand fonts for use with the Optimizely Design System.",
+    description:
+      "Licensed brand fonts for Optimizely staff. Third parties fall back to free web fonts automatically.",
     href: "/guides/fonts/",
     icon: <FontsIcon />,
     title: "Fonts",
