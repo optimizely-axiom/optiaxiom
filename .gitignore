@@ -23,6 +23,10 @@ storybook-static
 # typescript
 *.tsbuildinfo
 
+# tooling scratch (git worktrees, playwright mcp output)
+.claude/worktrees/
+.playwright-mcp/
+
 # project
 .next
 _pagefind/

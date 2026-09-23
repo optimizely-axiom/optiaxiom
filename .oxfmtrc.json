@@ -4,7 +4,9 @@
   "sortPackageJson": false,
   "ignorePatterns": [
     ".changeset/pre.json",
+    ".claude/worktrees/",
     ".next",
+    ".playwright-mcp/",
     "apps/docs/data/",
     "CHANGELOG.md",
     "dist",
