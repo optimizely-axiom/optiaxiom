@@ -255,7 +255,9 @@
     "eslint-plugin-perfectionist"
   ],
   "ignorePatterns": [
+    "**/.claude/worktrees/**",
     "**/.next/**",
+    "**/.playwright-mcp/**",
     "**/components/demo/demos.d.ts",
     "**/dist/**",
     "**/lib/**",
