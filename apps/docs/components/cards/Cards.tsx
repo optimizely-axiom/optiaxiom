@@ -28,6 +28,7 @@ import { RadioGroupIcon } from "./icons/RadioGroupIcon";
 import { SearchInputIcon } from "./icons/SearchInputIcon";
 import { SegmentedControlIcon } from "./icons/SegmentedControlIcon";
 import { SelectIcon } from "./icons/SelectIcon";
+import { SidebarIcon } from "./icons/SidebarIcon";
 import { SkeletonIcon } from "./icons/SkeletonIcon";
 import { SpinnerIcon } from "./icons/SpinnerIcon";
 import { StylingIcon } from "./icons/StylingIcon";
@@ -261,6 +262,13 @@ const PAGES = {
     href: "/components/select/",
     icon: <SelectIcon />,
     title: "Select",
+  },
+  Sidebar: {
+    description:
+      "Primary navigation menu for left side of the page, with support for branding and links.",
+    href: "/components/sidebar/",
+    icon: <SidebarIcon />,
+    title: "Sidebar",
   },
   Skeleton: {
     description: "Display placeholder content while data is loading.",
