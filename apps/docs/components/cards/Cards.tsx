@@ -39,7 +39,6 @@ import { TextIcon } from "./icons/TextIcon";
 import { ToastIcon } from "./icons/ToastIcon";
 import { ToggleButtonIcon } from "./icons/ToggleButtonIcon";
 import { TooltipIcon } from "./icons/TooltipIcon";
-import { TypographyIcon } from "./icons/TypographyIcon";
 
 const PAGES = {
   Alert: {
@@ -347,7 +346,7 @@ const PAGES = {
     description:
       "The type scale, and which component renders each style. Start here before reaching for font props.",
     href: "/guides/typography/",
-    icon: <TypographyIcon />,
+    icon: <FontsIcon />,
     title: "Typography",
   },
 };
