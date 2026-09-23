@@ -39,6 +39,7 @@ export default {
       index: "Installation",
 
       "css-imports": "CSS Imports",
+      fonts: "Fonts",
       mcp: "MCP Server",
       "test-environments": "Test Environments",
 
@@ -50,7 +51,6 @@ export default {
       "design-tokens": "Design Tokens",
       typography: "Typography",
 
-      fonts: "Fonts",
       icons: "Icons",
 
       "-- Guides": {
