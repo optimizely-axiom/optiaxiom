@@ -7581,7 +7581,7 @@
           ]
         },
         "colorScheme": {
-          "description": "Control the avatar fallback background and text colors.",
+          "description": "Control the avatar fallback background and text colors.\n@deprecated since 3.0.0 - avatars use the neutral color scheme.",
           "type": "enum",
           "values": ["purple", "neutral"],
           "default": "neutral"
@@ -8187,16 +8187,6 @@
       "category": ["data-display"],
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/avatar",
       "examples": [
-        {
-          "code": [
-            {
-              "content": "import { Avatar, Group } from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Group flexWrap=\"wrap\" gap=\"16\">\n      <Avatar>KP</Avatar> {/* Neutral is default */}\n      <Avatar colorScheme=\"purple\">KP</Avatar>\n    </Group>\n  );\n}\n",
-              "filename": "App.tsx"
-            }
-          ],
-          "components": ["Avatar", "Group"],
-          "title": "color-usage"
-        },
         {
           "code": [
             {
