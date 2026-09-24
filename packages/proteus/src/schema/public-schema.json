@@ -1957,7 +1957,7 @@
             { "const": "neutral" },
             { "$ref": "#/definitions/ProteusExpression" }
           ],
-          "description": "Control the avatar fallback background and text colors."
+          "description": "Control the avatar fallback background and text colors.\n@deprecated since 3.0.0 - avatars use the neutral color scheme."
         },
         "cursor": { "$ref": "#/definitions/SprinkleProp_cursor" },
         "display": { "$ref": "#/definitions/SprinkleProp_display" },
