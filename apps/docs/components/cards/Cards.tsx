@@ -4,6 +4,7 @@ import styles from "./Cards.module.css";
 import { CardsItem } from "./CardsItem";
 import { AlertDialogIcon } from "./icons/AlertDialogIcon";
 import { AlertIcon } from "./icons/AlertIcon";
+import { AvatarIcon } from "./icons/AvatarIcon";
 import { BadgeIcon } from "./icons/BadgeIcon";
 import { BannerIcon } from "./icons/BannerIcon";
 import { BoxIcon } from "./icons/BoxIcon";
@@ -54,6 +55,13 @@ const PAGES = {
     href: "/components/alert-dialog/",
     icon: <AlertDialogIcon />,
     title: "AlertDialog",
+  },
+  Avatar: {
+    description:
+      "Displays a user profile picture or initials. For multiple avatars, use AvatarGroup.",
+    href: "/components/avatar/",
+    icon: <AvatarIcon />,
+    title: "Avatar",
   },
   Badge: {
     description: "Use to emphasize a status, count, state or value.",
