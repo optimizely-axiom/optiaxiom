@@ -28,6 +28,8 @@ export const avatar = recipe({
   variants: {
     /**
      * Control the avatar fallback background and text colors.
+     *
+     * @deprecated since 3.0.0 - avatars use the neutral color scheme.
      */
     colorScheme: {
       neutral: {
