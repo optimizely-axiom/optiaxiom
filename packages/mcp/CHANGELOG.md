@@ -1,5 +1,17 @@
 # @optiaxiom/mcp
 
+## 3.1.0
+
+### Minor Changes
+
+- 12f3d8c: added `typography` guide covering when to use `Heading` and `Text`
+
+### Patch Changes
+
+- cdc3723: refreshed guide content for the reorganised docs
+- 09a1726: marked `Avatar` `colorScheme` as deprecated
+- d67cfb1: updated guide links to new `/props` docs routes
+
 ## 3.0.11
 
 ### Patch Changes
