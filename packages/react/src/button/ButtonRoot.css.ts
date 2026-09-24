@@ -188,7 +188,7 @@ export const buttonBase = recipe({
         "@media": {
           "(hover: hover)": {
             selectors: {
-              '&:hover:not(:active, [data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
+              '&:hover:not(:active, [data-disabled], [data-loading], [data-state="active"], [data-state="on"], [data-state="open"])':
                 {
                   backgroundColor: subtleHoverAccentColorVar,
                   borderColor: fallbackVar(
@@ -201,7 +201,7 @@ export const buttonBase = recipe({
         },
 
         selectors: {
-          '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
+          '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"], [data-state="open"])':
             {
               backgroundColor: subtlePressedAccentColorVar,
               borderColor: fallbackVar(
@@ -219,6 +219,9 @@ export const buttonBase = recipe({
             backgroundColor: theme.colors["bg.secondary"],
             borderColor: "transparent",
             color: theme.colors["fg.disabled"],
+          },
+          '&[data-state="open"]': {
+            backgroundColor: theme.colors["bg.default.pressed"],
           },
         },
       }),
@@ -303,7 +306,7 @@ export const buttonBase = recipe({
         "@media": {
           "(hover: hover)": {
             selectors: {
-              '&:hover:not(:active, [data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
+              '&:hover:not(:active, [data-disabled], [data-loading], [data-state="active"], [data-state="on"], [data-state="open"])':
                 {
                   backgroundColor: fallbackVar(
                     transparentHoverAccentColorVar,
@@ -315,7 +318,7 @@ export const buttonBase = recipe({
         },
 
         selectors: {
-          '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
+          '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"], [data-state="open"])':
             {
               backgroundColor: fallbackVar(
                 transparentPressedAccentColorVar,
@@ -323,9 +326,10 @@ export const buttonBase = recipe({
               ),
             },
 
-          '&:is([data-state="active"], [data-state="on"])': {
-            backgroundColor: theme.colors["bg.default.pressed"],
-          },
+          '&:is([data-state="active"], [data-state="on"], [data-state="open"])':
+            {
+              backgroundColor: theme.colors["bg.default.pressed"],
+            },
           "&[data-disabled]:not([data-loading])": {
             color: theme.colors["fg.disabled"],
           },
