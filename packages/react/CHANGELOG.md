@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 3.1.9
+
+### Patch Changes
+
+- 09a1726: marked `colorScheme` on `Avatar` as deprecated
+
 ## 3.1.8
 
 ### Patch Changes

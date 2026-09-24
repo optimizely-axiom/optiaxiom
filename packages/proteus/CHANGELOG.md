@@ -1,5 +1,14 @@
 # @optiaxiom/proteus
 
+## 3.7.1
+
+### Patch Changes
+
+- 04f3228: disable other actions while an interaction is pending
+- 1230a93: marked `colorScheme` on `Avatar` as deprecated in the schema
+- Updated dependencies [09a1726]
+  - @optiaxiom/react@3.1.9
+
 ## 3.7.0
 
 ### Minor Changes
