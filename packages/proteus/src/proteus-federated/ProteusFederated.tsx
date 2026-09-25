@@ -4,12 +4,12 @@ import {
   loadRemote,
   registerRemotes,
 } from "@module-federation/enhanced/runtime";
+import { useId } from "@radix-ui/react-id";
 import {
   type ComponentType,
   type ReactNode,
   Suspense,
   useEffect,
-  useId,
   useState,
 } from "react";
 
@@ -51,6 +51,11 @@ export function ProteusFederated({
       setError(true);
       return;
     }
+    // Before React 18 the id is empty until after the first render; wait for
+    // it so every instance registers under its own remote name.
+    if (!id) {
+      return;
+    }
 
     let cancelled = false;
 
@@ -74,7 +79,7 @@ export function ProteusFederated({
     return () => {
       cancelled = true;
     };
-  }, [entry, exposeKey, name]);
+  }, [entry, exposeKey, id, name]);
 
   if (error) {
     return fallback ? <>{fallback}</> : null;
