@@ -35,9 +35,9 @@ export default defineConfig([
     plugins: [
       dts({
         emitDtsOnly: true,
+        generator: "tsgo",
         sourcemap: false,
         tsconfig: "tsconfig.build.json",
-        tsgo: true,
       }),
     ],
   },

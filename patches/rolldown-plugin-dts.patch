@@ -1,0 +1,22 @@
+diff --git a/dist/index.mjs b/dist/index.mjs
+index cb3854e..4702856 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -234,7 +234,7 @@ const spawnAsync = (...args) => new Promise((resolve, reject) => {
+ let tsgoPathCache;
+ function resolveTsgoPath(logger) {
+ 	if (tsgoPathCache) return tsgoPathCache;
+-	const pkgName = isTS70Installed() ? "typescript" : "@typescript/native-preview";
++	const pkgName = isTS70Installed() ? "typescript" : tryResolve("@typescript/native/package.json") ? "@typescript/native" : "@typescript/native-preview";
+ 	const pkgJsonPath = tryResolve(`${pkgName}/package.json`);
+ 	if (!pkgJsonPath) throw new Error("TypeScript Go is not installed. Please install the `typescript@7.0` or `@typescript/native-preview` package to use the `tsgo` generator.");
+ 	const { version } = require(pkgJsonPath);
+@@ -599,7 +599,7 @@ async function collectDependencies(context, node, importer, namespaceStmts, chil
+ 					addDependency(TSEntityNameToRuntime(node.typeName));
+ 					break;
+ 				case "TSQualifiedName":
+-					addDependency(getIdFromTSEntityName(node.left));
++					if (parent?.type === "TSImportEqualsDeclaration") addDependency(getIdFromTSEntityName(node.left));
+ 					break;
+ 				case "TSTypeQuery":
+ 					if (seen.has(node.exprName)) return;

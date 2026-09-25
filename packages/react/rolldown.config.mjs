@@ -180,9 +180,9 @@ function getConfig({ input, plugins = [] }) {
       plugins: [
         dts({
           emitDtsOnly: true,
+          generator: watch ? "tsc" : "tsgo",
           sourcemap: false,
           tsconfig: "tsconfig.build.json",
-          tsgo: !watch,
         }),
       ],
     },

@@ -58,14 +58,14 @@ Before you begin, ensure you have the following installed:
 3. **Run Tests and Linting**
 
    ```sh
-   pnpm lint           # Type-check (tsgo), format (oxfmt), and lint (oxlint)
+   pnpm lint           # Type-check (tsc), format (oxfmt), and lint (oxlint)
    pnpm lint --no-fix  # Same, but check-only (no auto-format/fix) — used in CI
    pnpm test           # Run tests in watch mode
    pnpm test run       # Run tests once
    ```
 
-   > `pnpm lint` runs `tsgo --build` first, so it covers type-checking too —
-   > there's no need to run `tsgo` separately.
+   > `pnpm lint` runs `tsc --build` first, so it covers type-checking too —
+   > there's no need to run `tsc` separately.
 
 4. **Build the Project**
 
@@ -170,7 +170,7 @@ Required documentation:
 
 ## Code Style
 
-- **Linting**: We use Oxlint - run `pnpm lint` before committing. This single command also type-checks (`tsgo --build`) and formats (Oxfmt), so you don't need to run those separately.
+- **Linting**: We use Oxlint - run `pnpm lint` before committing. This single command also type-checks (`tsc --build`) and formats (Oxfmt), so you don't need to run those separately.
 - **Formatting**: We use Oxfmt - run as part of `pnpm lint`
 - **TypeScript**: All code must be properly typed - covered by `pnpm lint`
 - **Design Principles**: Follow our [Philosophy](PHILOSOPHY.md) for component architecture, type safety, and naming conventions
