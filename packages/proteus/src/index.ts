@@ -3,6 +3,7 @@ export * from "./proteus-bridge";
 export * from "./proteus-chart";
 export * from "./proteus-data-table";
 export * from "./proteus-data-table-row";
+export * from "./proteus-diff";
 export * from "./proteus-date-input";
 export * from "./proteus-document";
 export * from "./proteus-federated";
