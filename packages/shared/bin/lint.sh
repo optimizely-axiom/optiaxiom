@@ -1,6 +1,6 @@
 set -e
 
-tsgo --build
+tsc --build
 p_flag="--write" ox_flag="--fix"
 [ "$1" = "--no-fix" ] && p_flag="--check" ox_flag=
 if [ -f .oxlintrc.json ]; then
