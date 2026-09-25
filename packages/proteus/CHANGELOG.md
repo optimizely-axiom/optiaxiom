@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 3.7.2
+
+### Patch Changes
+
+- 631c0ba: fixed actions crashing on React versions before 18
+
 ## 3.7.1
 
 ### Patch Changes
