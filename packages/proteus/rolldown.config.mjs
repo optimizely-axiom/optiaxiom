@@ -119,9 +119,9 @@ export default defineConfig([
     plugins: [
       dts({
         emitDtsOnly: true,
+        generator: watch ? "tsc" : "tsgo",
         sourcemap: false,
         tsconfig: "tsconfig.build.json",
-        tsgo: !watch,
       }),
     ],
   },
