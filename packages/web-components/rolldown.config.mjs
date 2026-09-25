@@ -427,9 +427,9 @@ export { Portal, Portal as Root };`;
       dts({
         dtsInput: true,
         emitDtsOnly: true,
+        generator: watch ? "tsc" : "tsgo",
         sourcemap: false,
         tsconfig: "tsconfig.build.json",
-        tsgo: !watch,
       }),
     ],
   },

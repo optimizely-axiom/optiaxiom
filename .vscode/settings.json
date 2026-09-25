@@ -31,11 +31,12 @@
     "**/apps/docs/.next/**": true,
     "**/node_modules/*/**": true
   },
+  "js/ts.experimental.useTsgo": true,
+  "js/ts.tsdk.path": "node_modules/@typescript/native",
   "oxc.typeAware": true,
   "oxc.unusedDisableDirectives": "deny",
   "search.exclude": {
     "**/dist": true,
     "**/lib": true
-  },
-  "typescript.experimental.useTsgo": true
+  }
 }
