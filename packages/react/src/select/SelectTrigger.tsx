@@ -77,6 +77,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     return (
       <PopperAnchor asChild>
         <Slot
+          data-state={isOpen ? "open" : "closed"}
           ref={ref}
           {...boxProps}
           {...downshift.getToggleButtonProps({

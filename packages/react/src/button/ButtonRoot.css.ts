@@ -201,7 +201,7 @@ export const buttonBase = recipe({
         },
 
         selectors: {
-          '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"], [data-state="open"])':
+          '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
             {
               backgroundColor: subtlePressedAccentColorVar,
               borderColor: fallbackVar(
@@ -221,7 +221,7 @@ export const buttonBase = recipe({
             color: theme.colors["fg.disabled"],
           },
           '&[data-state="open"]': {
-            backgroundColor: theme.colors["bg.default.pressed"],
+            backgroundColor: theme.colors["bg.default.hovered"],
           },
         },
       }),
@@ -296,6 +296,10 @@ export const buttonBase = recipe({
             borderColor: "transparent",
             color: theme.colors["fg.disabled"],
           },
+          '&[data-state="open"]': {
+            backgroundColor: hoverAccentColorVar,
+            borderColor: fallbackVar(solidOutlineColorVar, hoverAccentColorVar),
+          },
         },
       }),
       subtle: style({
@@ -318,7 +322,7 @@ export const buttonBase = recipe({
         },
 
         selectors: {
-          '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"], [data-state="open"])':
+          '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
             {
               backgroundColor: fallbackVar(
                 transparentPressedAccentColorVar,
@@ -326,12 +330,14 @@ export const buttonBase = recipe({
               ),
             },
 
-          '&:is([data-state="active"], [data-state="on"], [data-state="open"])':
-            {
-              backgroundColor: theme.colors["bg.default.pressed"],
-            },
+          '&:is([data-state="active"], [data-state="on"])': {
+            backgroundColor: theme.colors["bg.default.pressed"],
+          },
           "&[data-disabled]:not([data-loading])": {
             color: theme.colors["fg.disabled"],
+          },
+          '&[data-state="open"]': {
+            backgroundColor: theme.colors["bg.default.hovered"],
           },
         },
       }),
