@@ -29,7 +29,7 @@
     "@typescript/native": "npm:typescript@^7.0.2",
     "@vanilla-extract/integration": "^8.0.10",
     "@vanilla-extract/rollup-plugin": "^1.5.4",
-    "@vanilla-extract/vite-plugin": "^5.2.4",
+    "@vanilla-extract/vite-plugin": "^5.2.6",
     "@vitest/browser": "^4.1.10",
     "@vitest/browser-playwright": "^4.1.10",
     "concurrently": "^10.0.3",
