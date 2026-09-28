@@ -1,5 +1,14 @@
-/** @type {import('typescript').CompilerOptions} */
-export const compilerOptions = { esModuleInterop: true };
+/**
+ * `strictNullChecks` adds `undefined` to every optional prop's type, which
+ * `getPropType` can't map, so those props drop out. TypeScript 6 turns it on
+ * by default.
+ *
+ * @type {import('typescript').CompilerOptions}
+ */
+export const compilerOptions = {
+  esModuleInterop: true,
+  strictNullChecks: false,
+};
 
 /** @type {import('react-docgen-typescript').ParserOptions} */
 export const parserOptions = {
