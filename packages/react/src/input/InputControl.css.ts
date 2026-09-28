@@ -19,14 +19,14 @@ export const control = recipe({
     },
     style({
       /**
-       * Explicitly use 16px on mobile because otherwise iOS will zoom in on
-       * the page anytime the input is focused
+       * Never compute below 16px on mobile because otherwise iOS will zoom in
+       * on the page anytime the input is focused
        */
-      fontSize: "16px",
+      fontSize: "max(16px, 1rem)",
       /**
        * Line-height was set to 22px to adjust for the 1px border on top and bottom
        */
-      lineHeight: "22px",
+      lineHeight: "1.375rem",
       minWidth: "0",
       outline: "2px solid transparent",
 
@@ -44,7 +44,7 @@ export const control = recipe({
     }),
     responsiveStyle({
       sm: {
-        fontSize: "14px",
+        fontSize: "0.875rem",
       },
     }),
   ],
@@ -59,7 +59,7 @@ export const control = recipe({
       xl: [
         responsiveStyle({
           sm: {
-            fontSize: "16px",
+            fontSize: "1rem",
           },
         }),
       ],
