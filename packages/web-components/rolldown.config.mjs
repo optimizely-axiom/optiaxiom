@@ -9,6 +9,12 @@ import docgen from "react-docgen-typescript";
 import { defineConfig } from "rolldown";
 import { dts } from "rolldown-plugin-dts";
 
+import {
+  compilerOptions,
+  getPropTypes,
+  parserOptions,
+} from "./plugins/prop-types.mjs";
+
 const external = new RegExp(
   "^(?:" +
     ["@stencil/core/internal", "react", "react-dom"].join("|") +
@@ -490,20 +496,17 @@ function stylePlugin({ exclude = [], include = [] } = {}) {
 function typeDeclarationPlugin({ include = [] }) {
   const filter = createFilter(include ?? []);
   const docs = docgen
-    .withCompilerOptions(
-      { esModuleInterop: true },
-      {
-        propFilter: (prop) =>
-          prop.parent
-            ? prop.parent.fileName.includes("@types/react")
-              ? prop.name === "ref"
-              : true
-            : true,
-        savePropValueAsString: true,
-        shouldExtractValuesFromUnion: true,
-        skipChildrenPropWithoutDoc: false,
-      },
-    )
+    .withCompilerOptions(compilerOptions, {
+      propFilter: (prop) =>
+        prop.parent
+          ? prop.parent.fileName.includes("@types/react")
+            ? prop.name === "ref"
+            : true
+          : true,
+      savePropValueAsString: true,
+      shouldExtractValuesFromUnion: true,
+      skipChildrenPropWithoutDoc: false,
+    })
     .parse(fg.globSync("../react/dist/**/*.d.ts"));
   const box = docs.find((doc) => doc.displayName === "Box");
 
@@ -714,19 +717,7 @@ function webComponentPlugin({ include = [] }) {
   const prefix = `\0virtual:`;
   const filter = createFilter(include ?? []);
   const docs = docgen
-    .withCompilerOptions(
-      { esModuleInterop: true },
-      {
-        propFilter: (prop) =>
-          prop.parent
-            ? prop.parent.fileName.includes("@types/react")
-              ? ["defaultChecked", "defaultValue"].includes(prop.name)
-              : true
-            : true,
-        savePropValueAsString: true,
-        shouldExtractValuesFromUnion: true,
-      },
-    )
+    .withCompilerOptions(compilerOptions, parserOptions)
     .parse(fg.globSync("../react/dist/**/*.d.ts"));
 
   return {
@@ -766,14 +757,7 @@ if (!customElements.get(${component})) {
             .map(([key, value]) => {
               const component = path.parse(value).name;
               const doc = docs.find((doc) => doc.displayName === component);
-              const propTypes = Object.fromEntries(
-                Object.entries(doc?.props ?? {}).flatMap(([name, value]) => {
-                  const type = name.startsWith("on")
-                    ? "function"
-                    : getPropType(value.type);
-                  return type ? [[name, type]] : [];
-                }),
-              );
+              const propTypes = getPropTypes(doc);
 
               return key === "index"
                 ? ""
@@ -817,54 +801,6 @@ export default register(
     },
   };
 }
-
-/**
- * @param {import('react-docgen-typescript').PropItemType} type
- */
-const getPropType = (type) => {
-  if (type.name === "number") {
-    return "number";
-  } else if (type.name === "string") {
-    return "string";
-  } else if (
-    type.name === "enum" &&
-    (type.raw === "boolean" || type.raw === "Booleanish")
-  ) {
-    return "boolean";
-  } else if (type.raw === "ReactNode") {
-    return "object";
-  } else if (
-    type.name === "enum" &&
-    type.value.find(
-      ({ value }) =>
-        value.startsWith("ResponsiveArray<") || value.startsWith("{ "),
-    )
-  ) {
-    return "object";
-  } else if (
-    type.name === "enum" &&
-    Array.isArray(type.value) &&
-    (type.value.find(
-      (item) => item.value === "string" || item.value === "string & {}",
-    ) ||
-      type.value.every(
-        (item) =>
-          (item.value.startsWith('"') && item.value.endsWith('"')) ||
-          ["false", "true"].includes(item.value) ||
-          item.value.endsWith("[]"),
-      ))
-  ) {
-    return "string";
-  } else if (
-    type.name === "enum" &&
-    Array.isArray(type.value) &&
-    type.value.every((item) => item.value === parseInt(item.value).toString())
-  ) {
-    return "number";
-  } else if (type.name.startsWith('"') && type.name.endsWith('"')) {
-    return "string";
-  }
-};
 
 const toKebabCase = (str) =>
   str.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
