@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.pkg.json",
   "compilerOptions": {
+    "allowJs": true,
     "paths": {
       "@optiaxiom/globals": ["../globals/src"],
       "@optiaxiom/react": ["../react/src"]

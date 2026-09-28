@@ -12,6 +12,7 @@ export default defineConfig({
       instances: [{ browser: "chromium" }],
       provider: playwright(),
     },
+    include: ["tests/**/*.spec.tsx"],
     maxWorkers: 1,
     restoreMocks: true,
     retry: 1,
