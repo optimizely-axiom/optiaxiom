@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 3.2.0
+
+### Minor Changes
+
+- a7e21ff: added open-state highlight to overlay trigger buttons
+
+### Patch Changes
+
+- fabf5f7: scaled input text with root font size
+
 ## 3.1.9
 
 ### Patch Changes

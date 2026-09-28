@@ -1,5 +1,16 @@
 # @optiaxiom/web-components
 
+## 3.1.0
+
+### Minor Changes
+
+- a7e21ff: added open-state highlight to overlay trigger buttons
+
+### Patch Changes
+
+- fabf5f7: scaled input text with root font size
+- e17c423: restored boolean, number and style props on custom elements
+
 ## 3.0.7
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @optiaxiom/proteus
 
+## 3.7.3
+
+### Patch Changes
+
+- fabf5f7: scaled input text with root font size
+- a7e21ff: added open-state highlight to overlay trigger buttons
+- Updated dependencies [fabf5f7]
+- Updated dependencies [a7e21ff]
+  - @optiaxiom/react@3.2.0
+
 ## 3.7.2
 
 ### Patch Changes
