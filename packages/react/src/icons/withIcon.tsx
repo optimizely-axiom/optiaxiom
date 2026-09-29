@@ -4,6 +4,8 @@ import {
   type ReactNode,
 } from "react";
 
+import { rem } from "../utils";
+
 export const withIcon = (
   {
     fill,
@@ -21,11 +23,16 @@ export const withIcon = (
   children: ReactNode,
 ) => {
   const Icon = forwardRef<SVGSVGElement, ComponentPropsWithoutRef<"svg">>(
-    (props, ref) => (
+    ({ style, ...props }, ref) => (
       <svg
         fill={fill}
         height={height}
         ref={ref}
+        style={{
+          height: rem(`${height}px`),
+          width: rem(`${width}px`),
+          ...style,
+        }}
         viewBox={viewBox ?? `0 0 ${width} ${height}`}
         width={width}
         xmlns="http://www.w3.org/2000/svg"
