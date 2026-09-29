@@ -1,6 +1,7 @@
 import { theme } from "@optiaxiom/globals";
 
 import * as styles from "../toggle-input/ToggleInput.css";
+import { rem } from "../utils";
 import { recipe, style } from "../vanilla-extract";
 
 const marker = style({});
@@ -45,11 +46,11 @@ export const control = recipe({
           transitionTimingFunction: "ease",
         },
         [`${marker}:has(${inputMarker}:checked) &::before`]: {
-          inset: "-12px",
+          inset: rem("-12px"),
           opacity: 1,
         },
         [`${marker}:has(${inputMarker}:checked) &`]: {
-          borderWidth: "12px",
+          borderWidth: rem("12px"),
         },
       },
     }),
@@ -59,7 +60,7 @@ export const control = recipe({
     shift: {
       false: {},
       true: style({
-        marginTop: "-2px",
+        marginTop: rem("-2px"),
       }),
     },
   },
@@ -73,9 +74,9 @@ export const indicator = recipe({
     },
     style({
       backgroundColor: styles.controlColorVar,
-      height: "8px",
+      height: rem("8px"),
       transform: "scale(0)",
-      width: "8px",
+      width: rem("8px"),
 
       selectors: {
         [`${marker}:has(${inputMarker}:checked) &`]: {

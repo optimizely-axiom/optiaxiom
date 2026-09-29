@@ -1,3 +1,4 @@
+import { rem } from "../utils";
 import { recipe, style } from "../vanilla-extract";
 
 export const checkbox = recipe({
@@ -11,7 +12,7 @@ export const checkbox = recipe({
       selectors: {
         "&::before": {
           content: "",
-          inset: "-8px",
+          inset: rem("-8px"),
           position: "absolute",
         },
       },

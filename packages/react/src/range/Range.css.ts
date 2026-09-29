@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import {
   createVar,
   recipe,
@@ -65,7 +66,7 @@ export const track = recipe({
     },
     style({
       backgroundColor: theme.colors["bg.tertiary"],
-      height: 8,
+      height: rem("8px"),
       position: "relative",
       touchAction: "none",
       userSelect: "none",
@@ -88,7 +89,7 @@ export const range = recipe({
     style({
       backgroundColor: theme.colors["fg.tertiary"],
       position: "absolute",
-      width: `calc(100% * ${fillValue} + 10px * (1 - ${fillValue}))`,
+      width: `calc(100% * ${fillValue} + ${rem("10px")} * (1 - ${fillValue}))`,
 
       selectors: {
         [`${rootMarker}[data-disabled] &`]: {
@@ -111,7 +112,7 @@ export const thumb = recipe({
       backgroundColor: theme.colors["bg.default"],
       left: `calc(${fillValue} * 100%)`,
       position: "absolute",
-      top: -6,
+      top: rem("-6px"),
       transform: `translateX(calc(-1 * ${fillValue} * 100%))`,
 
       selectors: {
@@ -156,10 +157,10 @@ export const control = recipe({
           appearance: "none",
           background: "transparent",
           borderRadius: "100%",
-          height: 20,
-          marginTop: -6,
+          height: rem("20px"),
+          marginTop: rem("-6px"),
           transform: "scale(2)",
-          width: 20,
+          width: rem("20px"),
         },
         "&:not(:disabled)": {
           cursor: "pointer",
@@ -178,7 +179,7 @@ export const mark = recipe({
       left: `calc(${markValue} * 100%)`,
       position: "absolute",
       top: "100%",
-      translate: `calc(-1 * ${markValue} * 100%) 4px`,
+      translate: `calc(-1 * ${markValue} * 100%) ${rem("4px")}`,
 
       selectors: {
         [`${rootMarker}:not([data-disabled]) &`]: {
