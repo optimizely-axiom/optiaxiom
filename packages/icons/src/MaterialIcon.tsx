@@ -26,14 +26,21 @@ export type MaterialIconProps = Omit<
   unfilledPath: string;
 };
 
+/**
+ * Falls back to `1rem` since icons can render without the react ThemeProvider
+ * that defines `--ax-styles-scale`.
+ */
+const rem = (px: `${number}px`) =>
+  `calc(${parseFloat(px) / 16} * var(--ax-styles-scale, 1rem))`;
+
 const sizeMap: Record<string, string> = {
-  "2xs": "1rem",
-  xs: "1.25rem",
-  sm: "1.5rem",
-  md: "2rem",
-  lg: "2.5rem",
-  xl: "3rem",
-  "3xl": "5rem",
+  "2xs": rem("16px"),
+  xs: rem("20px"),
+  sm: rem("24px"),
+  md: rem("32px"),
+  lg: rem("40px"),
+  xl: rem("48px"),
+  "3xl": rem("80px"),
 };
 
 function resolveSize(size: number | string) {
