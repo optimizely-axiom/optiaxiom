@@ -8,7 +8,7 @@ import {
 
 const maxRowsVar = createVar();
 const maxRowsStyle = style({
-  maxHeight: `calc(16px + ${maxRowsVar} * 22px)`,
+  maxHeight: `calc(1rem + ${maxRowsVar} * 1.375rem)`,
 });
 
 export const wrapper = recipe({
