@@ -45,7 +45,7 @@ export const control = recipe({
     }),
     responsiveStyle({
       sm: {
-        fontSize: rem("14px"),
+        fontSize: theme.fontSize.md.fontSize,
       },
     }),
   ],
@@ -60,7 +60,7 @@ export const control = recipe({
       xl: [
         responsiveStyle({
           sm: {
-            fontSize: rem("16px"),
+            fontSize: theme.fontSize.lg.fontSize,
           },
         }),
       ],
