@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import {
   createVar,
   fallbackVar,
@@ -90,7 +91,7 @@ export const addon = recipe({
       gap: "8",
     },
     style({
-      minHeight: "24px",
+      minHeight: rem("24px"),
     }),
   ],
 
@@ -111,7 +112,7 @@ export const title = recipe({
       gap: "8",
     },
     style({
-      lineHeight: "24px",
+      lineHeight: rem("24px"),
     }),
   ],
 });

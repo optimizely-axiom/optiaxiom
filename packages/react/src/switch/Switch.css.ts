@@ -1,6 +1,7 @@
 import { theme } from "@optiaxiom/globals";
 
 import * as styles from "../toggle-input/ToggleInput.css";
+import { rem } from "../utils";
 import {
   createVar,
   recipe,
@@ -40,6 +41,11 @@ export const input = recipe({
   base: inputMarker,
 });
 
+/**
+ * 2px border plus the gap around the thumb.
+ */
+const edge = `(2px + ${rem("2px")})`;
+
 export const control = recipe({
   base: [
     {
@@ -48,19 +54,19 @@ export const control = recipe({
     },
     style({
       vars: {
-        [checkedBorderBlockVar]: `calc((4px + ${sizeVar} + 4px) / 2)`,
-        [checkedBorderInlineVar]: `calc((4px + ${sizeVar} * 1.5 + 12px + 4px) / 2)`,
+        [checkedBorderBlockVar]: `calc((${edge} + ${sizeVar} + ${edge}) / 2)`,
+        [checkedBorderInlineVar]: `calc((${edge} + ${sizeVar} * 1.5 + ${rem("12px")} + ${edge}) / 2)`,
       },
 
       borderColor: styles.controlAccentVar,
       borderWidth: "2px",
-      height: `calc(4px + ${sizeVar} + 4px)`,
+      height: `calc(${edge} + ${sizeVar} + ${edge})`,
       placeContent: "center",
       position: "relative",
       transitionDuration: theme.duration.sm,
       transitionProperty: "border-color, border-width",
       transitionTimingFunction: "ease",
-      width: `calc(4px + ${sizeVar} * 1.5 + 12px + 4px)`,
+      width: `calc(${edge} + ${sizeVar} * 1.5 + ${rem("12px")} + ${edge})`,
 
       selectors: {
         "&::before": {
@@ -97,7 +103,7 @@ export const control = recipe({
         },
         style({
           vars: {
-            [sizeVar]: "8px",
+            [sizeVar]: rem("8px"),
           },
         }),
       ],
@@ -122,7 +128,7 @@ export const thumb = recipe({
     style({
       backgroundColor: styles.controlColorVar,
       height: sizeVar,
-      transform: `translateX(calc(-6px - ${sizeVar} / 4))`,
+      transform: `translateX(calc(${rem("-6px")} - ${sizeVar} / 4))`,
       width: sizeVar,
 
       selectors: {
@@ -136,7 +142,7 @@ export const thumb = recipe({
           marginRight: `calc(${sizeVar} * -0.25)`,
         },
         [`${marker}:has(${inputMarker}:checked) &`]: {
-          transform: `translateX(calc(6px + ${sizeVar} / 4))`,
+          transform: `translateX(calc(${rem("6px")} + ${sizeVar} / 4))`,
         },
         [`${marker}:has(${inputMarker}:not(:disabled)) &`]: {
           boxShadow: theme.boxShadow["sm"],

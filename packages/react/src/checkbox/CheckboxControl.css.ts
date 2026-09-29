@@ -2,6 +2,7 @@ import { theme } from "@optiaxiom/globals";
 
 import * as rootStyles from "../toggle-input/ToggleInput.css";
 import * as inputStyles from "../toggle-input/ToggleInputHiddenInput.css";
+import { rem } from "../utils";
 import { recipe, style } from "../vanilla-extract";
 
 export const icon = recipe({
@@ -56,12 +57,12 @@ export const control = recipe({
         },
         [`${rootStyles.className}:has(${inputStyles.className}:checked, ${inputStyles.className}:indeterminate) &::before`]:
           {
-            inset: "-12px",
+            inset: rem("-12px"),
             opacity: 1,
           },
         [`${rootStyles.className}:has(${inputStyles.className}:checked, ${inputStyles.className}:indeterminate) &`]:
           {
-            borderWidth: "12px",
+            borderWidth: rem("12px"),
           },
       },
     }),
@@ -71,7 +72,7 @@ export const control = recipe({
     shift: {
       false: {},
       true: style({
-        marginBlock: "-2px",
+        marginBlock: rem("-2px"),
       }),
     },
   },
