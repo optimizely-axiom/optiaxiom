@@ -1,3 +1,4 @@
+import { rem } from "../utils";
 import {
   createVar,
   recipe,
@@ -36,7 +37,7 @@ export const content = recipe({
       position: "fixed",
       top: "12dvh",
       transform: `
-        translateY(calc(1rem * ${nestedDialogCountVar}))
+        translateY(calc(${rem("16px")} * ${nestedDialogCountVar}))
         scale(calc(1 - 0.06 * ${nestedDialogCountVar}))
       `,
       translate: "-50% 0",

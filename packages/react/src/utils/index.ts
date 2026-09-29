@@ -9,6 +9,7 @@ export * from "./isHoverSupported";
 export * from "./mapValues";
 export * from "./memoize";
 export * from "./onReactSelectInputBlur";
+export * from "./rem";
 export * from "./toInstant";
 export * from "./toPlainDate";
 export * from "./toPlainDateTime";
