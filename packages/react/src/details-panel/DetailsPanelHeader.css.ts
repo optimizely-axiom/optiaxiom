@@ -1,3 +1,4 @@
+import { rem } from "../utils";
 import { recipe, style } from "../vanilla-extract";
 
 export const header = recipe({
@@ -11,7 +12,7 @@ export const header = recipe({
       pb: "8",
     },
     style({
-      columnGap: "4px",
+      columnGap: rem("4px"),
       position: "sticky",
       top: "0",
     }),

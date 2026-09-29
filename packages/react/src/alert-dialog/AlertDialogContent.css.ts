@@ -44,7 +44,7 @@ export const content = recipe({
     },
     style({
       maxHeight: "50dvh",
-      maxWidth: "calc(100dvw - 2 * 24px)",
+      maxWidth: `calc(100dvw - 2 * ${rem("24px")})`,
       transform: `
         translateY(calc(${rem("16px")} * ${nestedDialogCountVar}))
         scale(calc(1 - 0.06 * ${nestedDialogCountVar}))
@@ -73,13 +73,13 @@ export const content = recipe({
      */
     size: {
       sm: style({
-        width: "400px",
+        width: rem("400px"),
       }),
       md: style({
-        width: "600px",
+        width: rem("600px"),
       }),
       lg: style({
-        width: "800px",
+        width: rem("800px"),
       }),
     },
   },

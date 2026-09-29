@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 import * as styles from "./AvatarGroup.css";
 
@@ -51,10 +52,10 @@ export const avatar = recipe({
           size: "2xs",
         },
         style({
-          fontSize: "8px",
+          fontSize: rem("8px"),
           selectors: {
             [`${styles.className} &:not(:first-child)`]: {
-              marginLeft: "-1px",
+              marginLeft: rem("-1px"),
             },
           },
         }),
@@ -68,7 +69,7 @@ export const avatar = recipe({
           fontSize: theme.fontSize.xs.fontSize,
           selectors: {
             [`${styles.className} &:not(:first-child)`]: {
-              marginLeft: "-3px",
+              marginLeft: rem("-3px"),
             },
           },
         }),
@@ -81,7 +82,7 @@ export const avatar = recipe({
           fontSize: theme.fontSize.xs.fontSize,
           selectors: {
             [`${styles.className} &:not(:first-child)`]: {
-              marginLeft: "-5px",
+              marginLeft: rem("-5px"),
             },
           },
         }),
@@ -94,7 +95,7 @@ export const avatar = recipe({
           fontSize: theme.fontSize.md.fontSize,
           selectors: {
             [`${styles.className} &:not(:first-child)`]: {
-              marginLeft: "-7px",
+              marginLeft: rem("-7px"),
             },
           },
         }),
@@ -107,7 +108,7 @@ export const avatar = recipe({
           fontSize: theme.fontSize["lg"].fontSize,
           selectors: {
             [`${styles.className} &:not(:first-child)`]: {
-              marginLeft: "-9px",
+              marginLeft: rem("-9px"),
             },
           },
         }),
@@ -120,7 +121,7 @@ export const avatar = recipe({
           fontSize: theme.fontSize["xl"].fontSize,
           selectors: {
             [`${styles.className} &:not(:first-child)`]: {
-              marginLeft: "-11px",
+              marginLeft: rem("-11px"),
             },
           },
         }),
@@ -130,10 +131,10 @@ export const avatar = recipe({
           size: "3xl",
         },
         style({
-          fontSize: "32px",
+          fontSize: rem("32px"),
           selectors: {
             [`${styles.className} &:not(:first-child)`]: {
-              marginLeft: "-13px",
+              marginLeft: rem("-13px"),
             },
           },
         }),
@@ -162,7 +163,7 @@ export const icon = recipe({
   variants: {
     size: {
       "2xs": { h: "12" },
-      xs: [{ h: "16" }, style({ padding: "1px" })],
+      xs: [{ h: "16" }, style({ padding: rem("1px") })],
       sm: { h: "16" },
       md: { h: "xs" },
       lg: { h: "sm" },

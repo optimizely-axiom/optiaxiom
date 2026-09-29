@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import { createVar, recipe, style } from "../vanilla-extract";
 
 const bgVar = createVar();
@@ -124,11 +125,11 @@ export const today = recipe({
     },
     style({
       backgroundColor: theme.colors["fg.default"],
-      bottom: 3,
-      height: 5,
+      bottom: rem("3px"),
+      height: rem("5px"),
       insetInline: 0,
       position: "absolute",
-      width: 5,
+      width: rem("5px"),
     }),
   ],
 });

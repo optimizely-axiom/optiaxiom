@@ -33,7 +33,7 @@ export const content = recipe({
     style({
       left: "50%",
       maxHeight: "75dvh",
-      maxWidth: "calc(100dvw - 2 * 24px)",
+      maxWidth: `calc(100dvw - 2 * ${rem("24px")})`,
       position: "fixed",
       top: "12dvh",
       transform: `
@@ -70,13 +70,13 @@ export const content = recipe({
      */
     size: {
       sm: style({
-        width: "400px",
+        width: rem("400px"),
       }),
       md: style({
-        width: "clamp(600px, 50%, 800px)",
+        width: `clamp(${rem("600px")}, 50%, ${rem("800px")})`,
       }),
       lg: style({
-        width: "clamp(900px, 75%, 1400px)",
+        width: `clamp(${rem("900px")}, 75%, ${rem("1400px")})`,
       }),
       fullscreen: style({
         height: "100dvh",

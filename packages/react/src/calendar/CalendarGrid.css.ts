@@ -1,3 +1,4 @@
+import { rem } from "../utils";
 import { recipe, style } from "../vanilla-extract";
 
 export const grid = recipe({
@@ -8,8 +9,8 @@ export const grid = recipe({
       gap: "2",
     },
     style({
-      height: 192,
-      width: 236,
+      height: rem("192px"),
+      width: rem("236px"),
     }),
   ],
 });
