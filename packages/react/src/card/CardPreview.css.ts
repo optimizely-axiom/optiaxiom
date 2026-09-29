@@ -1,3 +1,4 @@
+import { rem } from "../utils";
 import { recipe, style } from "../vanilla-extract";
 
 export const preview = recipe({
@@ -10,7 +11,7 @@ export const preview = recipe({
     style({
       borderTopLeftRadius: "inherit",
       borderTopRightRadius: "inherit",
-      margin: "-16px -16px 8px",
+      margin: `${rem("-16px")} ${rem("-16px")} ${rem("8px")}`,
       position: "relative",
     }),
   ],
@@ -24,7 +25,7 @@ export const overlay = recipe({
     },
     style({
       inset: "0",
-      padding: "16px",
+      padding: rem("16px"),
       placeContent: "space-between",
       position: "absolute",
     }),

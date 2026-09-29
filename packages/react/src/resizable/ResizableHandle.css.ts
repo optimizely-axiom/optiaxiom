@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import { createVar, recipe, style } from "../vanilla-extract";
 
 const bgVar = createVar();
@@ -18,7 +19,7 @@ export const root = recipe({
         [bgVar]: theme.colors["bg.secondary"],
       },
 
-      marginInline: "-6px",
+      marginInline: rem("-6px"),
 
       "@media": {
         "(hover: hover)": {

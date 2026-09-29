@@ -1,3 +1,4 @@
+import { rem } from "../utils";
 import { recipe, style } from "../vanilla-extract";
 
 export const picker = recipe({
@@ -7,7 +8,7 @@ export const picker = recipe({
       left: {},
       right: {},
       top: style({
-        minHeight: "274px",
+        minHeight: rem("274px"),
       }),
     },
   },

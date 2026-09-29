@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const progress = recipe({
@@ -10,7 +11,7 @@ export const progress = recipe({
       rounded: "full",
     },
     style({
-      height: "8px",
+      height: rem("8px"),
     }),
   ],
 });

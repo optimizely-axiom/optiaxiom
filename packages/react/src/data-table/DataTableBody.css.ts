@@ -1,6 +1,7 @@
 import { theme } from "@optiaxiom/globals";
 
 import * as styles from "../table/TableRow.css";
+import { rem } from "../utils";
 import { createVar, getVarName, recipe, style } from "../vanilla-extract";
 
 const row = styles.className;
@@ -49,7 +50,7 @@ export const root = recipe({
           position: "absolute",
           top: 0,
           transition: "0.3s opacity",
-          width: 16,
+          width: rem("16px"),
           zIndex: 1,
         },
         '&[data-scroll-timeline]:not([data-scroll-timeline="left"])::before': {

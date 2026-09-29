@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import { globalStyle, recipe, style } from "../vanilla-extract";
 
 const editorClass = style({});
@@ -53,9 +54,9 @@ globalStyle(`${editorClass} .ProseMirror`, {
   color: theme.colors["fg.default"],
   fontSize: theme.fontSize.md.fontSize,
   lineHeight: theme.fontSize.md.lineHeight,
-  minHeight: "120px",
+  minHeight: rem("120px"),
   outline: "none",
-  padding: "12px 14px",
+  padding: `${rem("12px")} ${rem("14px")}`,
 });
 
 // Vertical rhythm. These rules share one layer and one specificity, so ORDER IS
@@ -140,7 +141,7 @@ globalStyle(`${editorClass} .ProseMirror table`, {
 // Cells: padded, top-aligned, with a bottom border acting as the row divider.
 globalStyle(`${editorClass} .ProseMirror :is(th, td)`, {
   borderBottom: `1px solid ${theme.colors["border.tertiary"]}`,
-  padding: "16px",
+  padding: rem("16px"),
   textAlign: "start",
   verticalAlign: "top",
 });
@@ -160,7 +161,7 @@ globalStyle(`${editorClass} .ProseMirror th`, {
 // nested in <pre> inherits the pre's size instead of multiplying 0.9em twice.
 globalStyle(`${editorClass} .ProseMirror :is(code, pre)`, {
   background: theme.colors["bg.page"],
-  borderRadius: "4px",
+  borderRadius: rem("4px"),
   fontFamily: theme.fontFamily.mono,
 });
 

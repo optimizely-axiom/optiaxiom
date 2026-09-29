@@ -1,3 +1,4 @@
+import { rem } from "../utils";
 import { createVar, recipe, style } from "../vanilla-extract";
 
 export const indicator = recipe({
@@ -25,7 +26,7 @@ export const floating = recipe({
     },
     style({
       vars: {
-        [offsetVar]: "2px",
+        [offsetVar]: rem("2px"),
         [translateVar]: "50%",
       },
 
@@ -82,7 +83,7 @@ export const badge = recipe({
         style({
           selectors: {
             "&:not(:empty)": {
-              minWidth: "16px",
+              minWidth: rem("16px"),
             },
           },
         }),

@@ -1,3 +1,4 @@
+import { rem } from "../utils";
 import { recipe, style } from "../vanilla-extract";
 
 export const nav = recipe({
@@ -11,7 +12,7 @@ export const nav = recipe({
       py: "16",
     },
     style({
-      width: "248px",
+      width: rem("248px"),
     }),
   ],
 });

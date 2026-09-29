@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import {
   createVar,
   fallbackVar,
@@ -29,7 +30,7 @@ export const listbox = recipe({
           ${fallbackVar(maxHeightVar, "100vh")}
         )
       `,
-      minWidth: "120px",
+      minWidth: rem("120px"),
     }),
   ],
 
@@ -77,7 +78,7 @@ export const listbox = recipe({
                 var(--radix-popper-anchor-width)
               )
             ),
-            120px
+            ${rem("120px")}
           )
         `,
       }),

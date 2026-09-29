@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import { recipe, style } from "../vanilla-extract";
 
 export const item = recipe({
@@ -11,13 +12,13 @@ export const item = recipe({
       whiteSpace: "nowrap",
     },
     style({
-      maxWidth: "160px",
+      maxWidth: rem("160px"),
 
       selectors: {
         "&:not(:first-child)::before": {
           color: theme.colors["fg.tertiary"],
           content: "/",
-          marginRight: "4px",
+          marginRight: rem("4px"),
         },
       },
     }),
