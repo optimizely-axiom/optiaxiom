@@ -1,4 +1,4 @@
-import { mapValues } from "../utils";
+import { mapValues, rem } from "../utils";
 import {
   createVar,
   recipe,
@@ -8,7 +8,7 @@ import {
 
 const maxRowsVar = createVar();
 const maxRowsStyle = style({
-  maxHeight: `calc(1rem + ${maxRowsVar} * 1.375rem)`,
+  maxHeight: `calc(${rem("16px")} + ${maxRowsVar} * ${rem("22px")})`,
 });
 
 export const wrapper = recipe({

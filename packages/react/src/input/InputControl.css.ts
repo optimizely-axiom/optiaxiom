@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import {
   recipe,
   type RecipeVariants,
@@ -22,11 +23,11 @@ export const control = recipe({
        * Never compute below 16px on mobile because otherwise iOS will zoom in
        * on the page anytime the input is focused
        */
-      fontSize: "max(16px, 1rem)",
+      fontSize: `max(16px, ${rem("16px")})`,
       /**
        * Line-height was set to 22px to adjust for the 1px border on top and bottom
        */
-      lineHeight: "1.375rem",
+      lineHeight: rem("22px"),
       minWidth: "0",
       outline: "2px solid transparent",
 
@@ -44,7 +45,7 @@ export const control = recipe({
     }),
     responsiveStyle({
       sm: {
-        fontSize: "0.875rem",
+        fontSize: rem("14px"),
       },
     }),
   ],
@@ -59,7 +60,7 @@ export const control = recipe({
       xl: [
         responsiveStyle({
           sm: {
-            fontSize: "1rem",
+            fontSize: rem("16px"),
           },
         }),
       ],

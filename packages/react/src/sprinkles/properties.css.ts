@@ -3,10 +3,8 @@ import { createGlobalVar, keyframes } from "@vanilla-extract/css";
 import { defineProperties } from "@vanilla-extract/sprinkles";
 
 import { layers } from "../layers";
-import { conditions, mapValues } from "../utils";
+import { conditions, mapValues, rem } from "../utils";
 const merge = <A, B>(objA: A, objB: B): A & B => ({ ...objA, ...objB });
-const rem = <P extends `${string}px`>(px: P) =>
-  `${parseFloat((parseFloat(px.slice(0, -2)) / 16).toFixed(3))}rem` as P;
 
 const animations = {
   ping: keyframes({

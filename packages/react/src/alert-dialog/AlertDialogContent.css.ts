@@ -1,3 +1,4 @@
+import { rem } from "../utils";
 import {
   createVar,
   recipe,
@@ -45,7 +46,7 @@ export const content = recipe({
       maxHeight: "50dvh",
       maxWidth: "calc(100dvw - 2 * 24px)",
       transform: `
-        translateY(calc(1rem * ${nestedDialogCountVar}))
+        translateY(calc(${rem("16px")} * ${nestedDialogCountVar}))
         scale(calc(1 - 0.06 * ${nestedDialogCountVar}))
       `,
 

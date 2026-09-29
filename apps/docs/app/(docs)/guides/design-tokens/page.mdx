@@ -45,6 +45,20 @@ console.log(theme.colors["fg.success"] === "var(--ax-colors-fg-success)"); // tr
 console.log(theme.zIndex.popover === "var(--ax-zIndex-popover)"); // true
 ```
 
+### Sizing scale
+
+Sizes, spacing, font sizes, and radii are based on `rem`, so they follow the root font size of the page, including the user's browser font size setting.
+
+If you embed Axiom in pages you don't control (for example an overlay inside a shadow root on third-party sites), set `--ax-styles-scale` to control the size of `1rem` for Axiom. Using `max()` keeps components from shrinking on pages that reduce the root font size, while still growing when the user increases their browser font size:
+
+```css
+:host {
+  --ax-styles-scale: max(1rem, 16px);
+}
+```
+
+Set it on the same element the theme is declared on: `:root`, or `:host` inside a shadow root. Breakpoints always follow the browser default font size and are not affected.
+
 ## Consuming tokens
 
 ### Using style props

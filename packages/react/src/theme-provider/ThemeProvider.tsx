@@ -4,6 +4,7 @@ import { type ReactNode, useEffect, useRef, useState } from "react";
 
 import { layers } from "../layers";
 import { PortalProvider } from "../portal/internals";
+import { mapValues, rem } from "../utils";
 
 export type ThemeProviderProps = {
   children?: ReactNode;
@@ -18,6 +19,17 @@ const lightColors = Object.fromEntries(
     v.slice(v.indexOf("(") + 1, v.indexOf(",")),
   ]),
 ) as typeof tokens.colors;
+
+/**
+ * `screens` stays in plain rem since breakpoints feed media queries.
+ */
+const scaledTokens = {
+  ...tokens,
+  borderRadius: mapValues(tokens.borderRadius, rem),
+  fontSize: mapValues(tokens.fontSize, (value) => mapValues(value, rem)),
+  maxSize: mapValues(tokens.maxSize, rem),
+  size: mapValues(tokens.size, rem),
+};
 
 /**
  * Provider component for theme tokens and styles. This is included in
@@ -46,8 +58,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       <style ref={ref}>{`
         @layer ${layers.theme} {
           ${selector} {
+            --ax-styles-scale: 1rem;
             ${assignInlineVars(theme, {
-              ...tokens,
+              ...scaledTokens,
               colors: lightColors,
             })}
           }
