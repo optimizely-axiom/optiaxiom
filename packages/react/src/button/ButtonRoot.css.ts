@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import {
   createVar,
   fallbackVar,
@@ -357,7 +358,7 @@ export const buttonBase = recipe({
     },
     {
       style: style({
-        paddingLeft: `calc(6px - ${borderWidthVar})`,
+        paddingLeft: `calc(${rem("6px")} - ${borderWidthVar})`,
       }),
       variants: {
         addon: ["both", "start"],
@@ -378,7 +379,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "6px",
+          [paddingInlineVar]: rem("6px"),
         },
       }),
       variants: {
@@ -393,7 +394,7 @@ export const buttonBase = recipe({
       style: style({
         borderRadius: theme.borderRadius.full,
         vars: {
-          [paddingInlineVar]: "10px",
+          [paddingInlineVar]: rem("10px"),
         },
       }),
       variants: {
@@ -414,7 +415,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "8px",
+          [paddingInlineVar]: rem("8px"),
         },
       }),
       variants: {
@@ -434,7 +435,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "8px",
+          [paddingInlineVar]: rem("8px"),
         },
       }),
       variants: {

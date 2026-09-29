@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import { recipe, style } from "../vanilla-extract";
 
 const marker = style({});
@@ -46,7 +47,7 @@ export const trigger = recipe({
         '&[data-orientation="vertical"]': {
           borderRightWidth: "2px",
           marginRight: "-1px",
-          paddingInline: "10px",
+          paddingInline: rem("10px"),
         },
         '&[data-state="active"]': {
           borderColor: theme.colors["fg.default"],

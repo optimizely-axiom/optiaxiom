@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const wrapper = recipe({
@@ -33,10 +34,10 @@ export const root = recipe({
      */
     size: {
       md: style({
-        padding: "5px",
+        padding: rem("5px"),
       }),
       lg: style({
-        padding: "7px",
+        padding: rem("7px"),
       }),
     },
   },

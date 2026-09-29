@@ -1,5 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
+import { rem } from "../utils";
 import {
   createGlobalVar,
   recipe,
@@ -81,8 +82,8 @@ export const icon = recipe({
           backgroundColor: styles.solidTextColorVar,
           color: styles.accentColorVar,
           height: "auto",
-          padding: "4px",
-          width: "28px",
+          padding: rem("4px"),
+          width: rem("28px"),
 
           selectors: {
             "&[data-disabled]": {
@@ -90,7 +91,7 @@ export const icon = recipe({
               color: theme.colors["bg.secondary"],
             },
             "&[data-prefix]": {
-              paddingBlock: "6px",
+              paddingBlock: rem("6px"),
             },
           },
         }),

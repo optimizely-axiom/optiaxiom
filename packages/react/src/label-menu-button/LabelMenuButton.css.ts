@@ -1,4 +1,5 @@
 import * as styles from "../button/ButtonRoot.css";
+import { rem } from "../utils";
 import { recipe, style } from "../vanilla-extract";
 
 export const button = recipe({
@@ -8,7 +9,7 @@ export const button = recipe({
     },
     style({
       vars: {
-        [styles.paddingInlineVar]: "8px",
+        [styles.paddingInlineVar]: rem("8px"),
       },
 
       minWidth: "0",
