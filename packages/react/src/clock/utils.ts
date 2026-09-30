@@ -16,6 +16,7 @@ const localeData = memoize((locale: string) => {
     dayPeriodFormatter: new Intl.DateTimeFormat(locale, {
       hour: "numeric",
       hour12: true,
+      timeZone: "UTC",
     }),
     is24Hour: hourCycles[0] === "h23",
     numberFormatter: new Intl.NumberFormat(locale, { useGrouping: false }),
@@ -45,7 +46,7 @@ export const toLabel = (locale: string, value: string) =>
 export const toMeridiemLabel = (locale: string, meridiem: "AM" | "PM") =>
   localeData(locale)
     .dayPeriodFormatter.formatToParts(
-      new Date(2025, 0, 1, meridiem === "AM" ? 9 : 21),
+      new Date(Date.UTC(2025, 0, 1, meridiem === "AM" ? 9 : 21)),
     )
     .find((part) => part.type === "dayPeriod")?.value ?? meridiem;
 

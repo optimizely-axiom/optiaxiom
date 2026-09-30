@@ -1,13 +1,10 @@
-import { memoize } from "../utils";
-
 /**
- * `Intl` construction is expensive, so we memoize the formatter per locale.
+ * Not memoized: a formatter keeps the timezone it was constructed in, and this
+ * label must name the current one.
  */
-const formatterFor = memoize(
-  (locale: string) => new Intl.DateTimeFormat(locale, { timeZoneName: "long" }),
-);
-
 export const toTimeZoneName = (locale: string, date: Date) => {
-  const parts = formatterFor(locale).formatToParts(date);
+  const parts = new Intl.DateTimeFormat(locale, {
+    timeZoneName: "long",
+  }).formatToParts(date);
   return parts.find((part) => part.type === "timeZoneName")?.value ?? "";
 };

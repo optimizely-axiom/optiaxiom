@@ -1,7 +1,27 @@
 import { memoize } from "./memoize";
 
-const dateTimeFormat = (locale: string, options: Intl.DateTimeFormatOptions) =>
-  new Intl.DateTimeFormat(locale, options).format;
+/**
+ * Re-expresses a date's local calendar fields as a UTC midnight, for formatting
+ * with a `timeZone: "UTC"` formatter.
+ *
+ * An `Intl.DateTimeFormat` captures the browser timezone when it is
+ * constructed, while `Date` getters follow the current one. Pinning cached
+ * formatters to UTC and feeding them local fields keeps labels in sync with
+ * the day cells after the timezone changes without a reload.
+ */
+export const toUTCDate = (date: Date) =>
+  new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+
+const dateTimeFormat = (
+  locale: string,
+  options: Intl.DateTimeFormatOptions,
+) => {
+  const { format } = new Intl.DateTimeFormat(locale, {
+    ...options,
+    timeZone: "UTC",
+  });
+  return (date: Date) => format(toUTCDate(date));
+};
 /**
  * Bare numbers go through `NumberFormat` rather than `DateTimeFormat` because
  * the latter appends date-unit suffixes in some locales (e.g. `5日` in `zh`),
@@ -21,7 +41,8 @@ const buildTokens = (locale: string) => ({
 
 /**
  * `Intl` formatter construction is expensive, so we memoize the token map per
- * locale. The values are stable for a given locale.
+ * locale. The formatters are pinned to UTC, so they are stable across
+ * timezone changes too.
  */
 const tokensFor = memoize(buildTokens);
 

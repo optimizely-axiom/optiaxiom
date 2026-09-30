@@ -7,17 +7,21 @@ import { Box } from "../box";
 import { useFieldLabelTrigger } from "../hooks";
 import { useLocaleContext } from "../locale";
 import { PopoverTrigger } from "../popover";
-import { memoize } from "../utils";
+import { memoize, toUTCDate } from "../utils";
 import { useDateRangePickerContext } from "./DateRangePickerContext";
 
-const dateFormatterFor = memoize(
-  (locale: string) =>
-    new Intl.DateTimeFormat(locale, {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    }),
-);
+const dateFormatterFor = memoize((locale: string) => {
+  const formatter = new Intl.DateTimeFormat(locale, {
+    day: "numeric",
+    month: "short",
+    timeZone: "UTC",
+    year: "numeric",
+  });
+  return {
+    formatRange: (startDate: Date, endDate: Date) =>
+      formatter.formatRange(toUTCDate(startDate), toUTCDate(endDate)),
+  };
+});
 
 export type DateRangePickerTriggerProps = ComponentPropsWithoutRef<
   typeof PopoverTrigger
