@@ -237,7 +237,7 @@ export const buttonBase = recipe({
         zIndex: "1",
 
         "::after": {
-          ...opalRing("4px"),
+          ...opalRing(`calc(2 * ${borderWidthVar})`),
           opacity: "0",
           transition: `opacity ${theme.duration.md} ease`,
         },
@@ -374,6 +374,17 @@ export const buttonBase = recipe({
       variants: {
         addon: "only",
         size: "sm",
+      },
+    },
+    {
+      style: style({
+        vars: {
+          [borderWidthVar]: "1px",
+        },
+      }),
+      variants: {
+        size: "sm",
+        variant: ["outline", "outline-opal"],
       },
     },
     {
