@@ -2752,7 +2752,6 @@
         },
         "rounded": { "$ref": "#/definitions/SprinkleProp_rounded" },
         "shadow": { "$ref": "#/definitions/SprinkleProp_shadow" },
-        "size": { "$ref": "#/definitions/SprinkleProp_size" },
         "textAlign": { "$ref": "#/definitions/SprinkleProp_textAlign" },
         "textTransform": { "$ref": "#/definitions/SprinkleProp_textTransform" },
         "transition": { "$ref": "#/definitions/SprinkleProp_transition" },

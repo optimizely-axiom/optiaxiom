@@ -15,16 +15,24 @@ export type CheckboxContentProps = BoxProps<
      * Add secondary text after the label.
      */
     description?: ReactNode;
+    /**
+     * Control the size of the label and description.
+     */
+    size?: "md" | "sm";
   }
 >;
 
 export const CheckboxContent = forwardRef<
   HTMLInputElement,
   CheckboxContentProps
->(({ children, description, ...props }, ref) => {
+>(({ children, description, size = "md", ...props }, ref) => {
   return (
-    <ToggleInputContent ref={ref} {...props}>
-      {children && <ToggleInputLabel>{children}</ToggleInputLabel>}
+    <ToggleInputContent fontSize={size} ref={ref} {...props}>
+      {children && (
+        <ToggleInputLabel fontWeight={size === "sm" ? "400" : "500"}>
+          {children}
+        </ToggleInputLabel>
+      )}
 
       {description && (
         <ToggleInputDescription>{description}</ToggleInputDescription>

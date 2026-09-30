@@ -38,6 +38,19 @@ export const MultiLineLabel: Story = {
   ),
 };
 
+export const Sizes: Story = {
+  render: (args) => (
+    <Group flexDirection="column" gap="16">
+      <Checkbox {...args} size="sm" />
+      <Checkbox {...args} defaultChecked size="sm" />
+      <Checkbox {...args} description="Helper Text" size="sm" />
+      <Checkbox {...args} size="md" />
+      <Checkbox {...args} defaultChecked size="md" />
+      <Checkbox {...args} description="Helper Text" size="md" />
+    </Group>
+  ),
+};
+
 export const Checked: Story = {
   args: {
     defaultChecked: true,
