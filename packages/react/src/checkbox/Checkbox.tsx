@@ -11,7 +11,10 @@ import { CheckboxRoot } from "./CheckboxRoot";
 export type CheckboxProps = BoxProps<
   typeof ToggleInputHiddenInput,
   Pick<ComponentPropsWithoutRef<typeof CheckboxContent>, "description"> &
-    Pick<ComponentPropsWithoutRef<typeof CheckboxControl>, "indeterminate">
+    Pick<
+      ComponentPropsWithoutRef<typeof CheckboxControl>,
+      "indeterminate" | "size"
+    >
 >;
 
 /**
@@ -21,7 +24,10 @@ export type CheckboxProps = BoxProps<
  * @category form
  */
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ children, description, indeterminate, ...props }, outerRef) => {
+  (
+    { children, description, indeterminate, size = "md", ...props },
+    outerRef,
+  ) => {
     const innerRef = useRef<HTMLInputElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
@@ -34,10 +40,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         <CheckboxControl
           indeterminate={indeterminate}
           shift={Boolean(children)}
+          size={size}
         />
 
         {(children || description) && (
-          <CheckboxContent description={description}>
+          <CheckboxContent description={description} size={size}>
             {children}
           </CheckboxContent>
         )}

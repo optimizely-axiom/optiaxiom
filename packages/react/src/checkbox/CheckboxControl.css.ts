@@ -3,7 +3,14 @@ import { theme } from "@optiaxiom/globals";
 import * as rootStyles from "../toggle-input/ToggleInput.css";
 import * as inputStyles from "../toggle-input/ToggleInputHiddenInput.css";
 import { rem } from "../utils";
-import { recipe, style } from "../vanilla-extract";
+import {
+  createVar,
+  recipe,
+  type RecipeVariants,
+  style,
+} from "../vanilla-extract";
+
+const sizeVar = createVar();
 
 export const icon = recipe({
   base: [
@@ -28,19 +35,19 @@ export const control = recipe({
   base: [
     {
       display: "grid",
-      rounded: "md",
-      size: "sm",
     },
     style({
       backgroundColor: theme.colors["bg.default"],
       borderColor: rootStyles.controlAccentVar,
       borderWidth: "2px",
       color: rootStyles.controlColorVar,
+      height: sizeVar,
       placeContent: "center",
       position: "relative",
       transitionDuration: theme.duration.sm,
       transitionProperty: "border-color, border-width",
       transitionTimingFunction: "ease",
+      width: sizeVar,
 
       selectors: {
         "&::before": {
@@ -57,12 +64,12 @@ export const control = recipe({
         },
         [`${rootStyles.className}:has(${inputStyles.className}:checked, ${inputStyles.className}:indeterminate) &::before`]:
           {
-            inset: rem("-12px"),
+            inset: `calc(-1 * ${sizeVar} / 2)`,
             opacity: 1,
           },
         [`${rootStyles.className}:has(${inputStyles.className}:checked, ${inputStyles.className}:indeterminate) &`]:
           {
-            borderWidth: rem("12px"),
+            borderWidth: `calc(${sizeVar} / 2)`,
           },
       },
     }),
@@ -74,6 +81,31 @@ export const control = recipe({
       true: style({
         marginBlock: rem("-2px"),
       }),
+    },
+    /**
+     * Control the size of the checkbox.
+     */
+    size: {
+      sm: [
+        {
+          rounded: "sm",
+        },
+        style({
+          vars: {
+            [sizeVar]: theme.size.xs,
+          },
+        }),
+      ],
+      md: [
+        {
+          rounded: "md",
+        },
+        style({
+          vars: {
+            [sizeVar]: theme.size.sm,
+          },
+        }),
+      ],
     },
   },
 });
@@ -89,3 +121,5 @@ export const indicator = recipe({
     },
   ],
 });
+
+export type CheckboxControlVariants = RecipeVariants<typeof control>;

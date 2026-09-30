@@ -8,7 +8,7 @@ import * as styles from "./CheckboxControl.css";
 
 export type CheckboxControlProps = BoxProps<
   typeof ToggleInputControl,
-  {
+  styles.CheckboxControlVariants & {
     /**
      * Display a partially checked icon instead of the regular checkmark.
      */
@@ -24,11 +24,11 @@ export type CheckboxControlProps = BoxProps<
 export const CheckboxControl = forwardRef<
   HTMLInputElement,
   CheckboxControlProps
->(({ className, indeterminate, shift, ...props }, ref) => {
+>(({ className, indeterminate, shift, size = "md", ...props }, ref) => {
   return (
     <ToggleInputControl
       ref={ref}
-      {...styles.control({ shift }, className)}
+      {...styles.control({ shift, size }, className)}
       {...props}
     >
       <Box {...styles.indicator()}>
