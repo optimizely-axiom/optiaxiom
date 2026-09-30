@@ -1,5 +1,19 @@
 # @optiaxiom/web-components
 
+## 3.2.0
+
+### Minor Changes
+
+- d192300: added `--ax-styles-scale` to decouple sizing from root font size
+
+### Patch Changes
+
+- 3253285: fixed button, tabs and pill spacing at non-default root font sizes
+- 1a12066: fixed form control sizing at non-default root font sizes
+- 3dd6bdc: fixed icon sizes at non-default root font sizes
+- be6bc4f: fixed layout sizes at non-default root font sizes
+- 85fee59: fixed textarea `maxRows` height with non-default root font size
+
 ## 3.1.0
 
 ### Minor Changes

@@ -1,5 +1,25 @@
 # @optiaxiom/proteus
 
+## 3.7.4
+
+### Patch Changes
+
+- 3253285: fixed button, tabs and pill spacing at non-default root font sizes
+- 1a12066: fixed form control sizing at non-default root font sizes
+- 3dd6bdc: fixed icon sizes at non-default root font sizes
+- be6bc4f: fixed layout sizes at non-default root font sizes
+- d192300: added `--ax-styles-scale` to decouple sizing from root font size
+- 85fee59: fixed textarea `maxRows` height with non-default root font size
+- Updated dependencies [3253285]
+- Updated dependencies [1a12066]
+- Updated dependencies [a54951b]
+- Updated dependencies [3dd6bdc]
+- Updated dependencies [be6bc4f]
+- Updated dependencies [d192300]
+- Updated dependencies [85fee59]
+  - @optiaxiom/react@3.3.0
+  - @optiaxiom/icons@1.7.1
+
 ## 3.7.3
 
 ### Patch Changes
