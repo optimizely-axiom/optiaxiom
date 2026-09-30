@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.7.1
+
+### Patch Changes
+
+- 3dd6bdc: fixed icon sizes at non-default root font sizes
+
 ## 1.7.0
 
 ### Minor Changes

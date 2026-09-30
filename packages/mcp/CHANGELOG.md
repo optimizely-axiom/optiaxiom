@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 3.1.1
+
+### Patch Changes
+
+- d192300: added `--ax-styles-scale` to decouple sizing from root font size
+
 ## 3.1.0
 
 ### Minor Changes
