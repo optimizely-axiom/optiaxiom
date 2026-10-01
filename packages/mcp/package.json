@@ -27,7 +27,7 @@
     "axiom-mcp": "dist/src/cli.js"
   },
   "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "wait-on ../../packages/react/dist/index.d.ts && rm -rf dist && NODE_ENV=production rolldown -c"
   },
