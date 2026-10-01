@@ -175,7 +175,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             ? "center"
             : iconPosition === "end"
               ? "space-between"
-              : "flex-start"
+              : "center"
         }
         onClick={(event) => {
           onClick?.(event);
