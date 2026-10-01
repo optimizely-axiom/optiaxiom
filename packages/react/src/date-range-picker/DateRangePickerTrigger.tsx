@@ -69,6 +69,7 @@ export const DateRangePickerTrigger = forwardRef<
         disabled={disabled}
         icon={<IconCalendar />}
         id={id}
+        justifyContent="flex-start"
         ref={ref}
         {...props}
       >
