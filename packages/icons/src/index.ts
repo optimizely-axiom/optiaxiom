@@ -224,6 +224,8 @@ export { IconLogout as IconArrowRightFromBracket } from "../svg/logout.svg";
 export { IconMail as IconEnvelope } from "../svg/mail.svg";
 export { IconMemory as IconMicrochipAi } from "../svg/memory.svg";
 export { IconMenuBook as IconBookOpen } from "../svg/menu_book.svg";
+export { IconMic as IconMic } from "../svg/mic.svg";
+export { IconMicOff as IconMicOff } from "../svg/mic_off.svg";
 export { IconMobile as IconMobile } from "../svg/mobile.svg";
 export { IconMonitorHeart as IconGauge } from "../svg/monitor_heart.svg";
 export { IconMonitorHeart as IconMonitorWaveform } from "../svg/monitor_heart.svg";

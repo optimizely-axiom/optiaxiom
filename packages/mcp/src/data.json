@@ -133311,6 +133311,46 @@
       ],
       "name": "IconBookOpen"
     },
+    "IconMic": {
+      "import": "import { IconMic } from '@optiaxiom/icons';",
+      "keywords": [
+        "dictation",
+        "hear",
+        "hearing",
+        "keyboard",
+        "mic",
+        "microphone",
+        "noise",
+        "record",
+        "recorder",
+        "sound",
+        "speaker",
+        "voice"
+      ],
+      "name": "IconMic"
+    },
+    "IconMicOff": {
+      "import": "import { IconMicOff } from '@optiaxiom/icons';",
+      "keywords": [
+        "audio",
+        "disabled",
+        "enabled",
+        "hear",
+        "hearing",
+        "mic",
+        "microphone",
+        "mute",
+        "noise",
+        "off",
+        "on",
+        "record",
+        "recording",
+        "slash",
+        "sound",
+        "voice"
+      ],
+      "name": "IconMicOff"
+    },
     "IconMobile": {
       "import": "import { IconMobile } from '@optiaxiom/icons';",
       "keywords": [
