@@ -77,6 +77,28 @@ You can also run the server directly:
 npx @optiaxiom/mcp
 ```
 
+### Embedding in a host
+
+Importing the package has no side effects. Call `createServer()` to get an `McpServer` with every tool registered and connect it to your own transport. Each call returns an independent instance, so HTTP hosts should create one per request:
+
+```ts
+import { createServer } from "@optiaxiom/mcp";
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+
+app.post("/mcp", async (req, res) => {
+  const server = createServer();
+  const transport = new StreamableHTTPServerTransport({
+    sessionIdGenerator: undefined,
+  });
+  res.on("close", () => {
+    transport.close();
+    server.close();
+  });
+  await server.connect(transport);
+  await transport.handleRequest(req, res, req.body);
+});
+```
+
 ## Available Tools
 
 The MCP server provides the following tools that AI assistants can use:
