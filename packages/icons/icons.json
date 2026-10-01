@@ -189,6 +189,8 @@
   "mail": ["Envelope"],
   "memory": ["MicrochipAi"],
   "menu_book": ["BookOpen"],
+  "mic_off": ["MicOff"],
+  "mic": ["Mic"],
   "mobile": ["Mobile"],
   "monitor_heart": ["Gauge", "MonitorWaveform"],
   "monitoring": ["ChartMixed"],
