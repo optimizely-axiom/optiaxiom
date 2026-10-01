@@ -6,12 +6,21 @@ export const question = recipe({
   base: [
     {
       flexDirection: "column",
-      gap: "16",
     },
     style({
       outline: "none",
     }),
   ],
+  variants: {
+    // Collapsible spacing lives inside DisclosureContent so it animates with
+    // the panel height.
+    collapsible: {
+      false: {
+        gap: "16",
+      },
+      true: {},
+    },
+  },
 });
 
 const marker = style({});
