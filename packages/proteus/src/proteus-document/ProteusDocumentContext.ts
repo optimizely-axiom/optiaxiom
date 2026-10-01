@@ -27,6 +27,11 @@ export type UseResource = (resource: string) => {
 
 export const [ProteusDocumentProvider, useProteusDocumentContext] =
   createContext<{
+    /**
+     * Set when the document is collapsible but has no `appName` header, so the
+     * body element renders its own `DisclosureTrigger`/`DisclosureContent`.
+     */
+    collapsible: boolean | undefined;
     data: Record<string, unknown>;
     icons: ProteusIconMap | undefined;
     onDataChange: (path: string, value: unknown) => void;

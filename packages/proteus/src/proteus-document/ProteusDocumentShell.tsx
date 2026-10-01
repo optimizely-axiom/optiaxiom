@@ -249,10 +249,14 @@ export function ProteusDocumentShell({
     };
   }, []);
 
-  const collapsible = collapsibleProp && element.appName;
-  const Trigger = collapsible ? DisclosureTrigger : Box;
   const appearance = resolveProteusValue(element.appearance, data, "", []);
   const inline = appearance === "inline";
+  const collapsible = collapsibleProp && element.appName;
+  const Trigger = collapsible ? DisclosureTrigger : Box;
+  // Without an `appName` header there is no shell trigger, so the body owns
+  // the collapse and the shell content stays mounted.
+  const bodyCollapsible = collapsibleProp && !element.appName && !inline;
+  const Content = bodyCollapsible ? Group : DisclosureContent;
 
   const onEvent = useEvent(async (event: ProteusEventHandler) => {
     if ("interaction" in event) {
@@ -380,6 +384,7 @@ export function ProteusDocumentShell({
 
   return (
     <ProteusDocumentProvider
+      collapsible={bodyCollapsible}
       data={data}
       icons={icons}
       onDataChange={useEvent((path: string, value: unknown) => {
@@ -436,7 +441,7 @@ export function ProteusDocumentShell({
             </Group>
           </Trigger>
         )}
-        <DisclosureContent
+        <Content
           alignItems="stretch"
           display="flex"
           flexDirection="column"
@@ -510,7 +515,7 @@ export function ProteusDocumentShell({
               )}
             </form>
           </Group>
-        </DisclosureContent>
+        </Content>
       </Disclosure>
     </ProteusDocumentProvider>
   );
