@@ -24,7 +24,7 @@
   ],
   "license": "Apache-2.0",
   "bin": {
-    "axiom-mcp": "dist/src/index.js"
+    "axiom-mcp": "dist/src/cli.js"
   },
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
