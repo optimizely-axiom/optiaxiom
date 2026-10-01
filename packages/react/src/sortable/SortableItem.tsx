@@ -1,3 +1,4 @@
+import { Feedback } from "@dnd-kit/dom";
 import { useSortable } from "@dnd-kit/react/sortable";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, useEffect, useRef } from "react";
@@ -41,11 +42,14 @@ export const SortableItem = forwardRef<HTMLDivElement, SortableItemProps>(
       ref: innerRef,
     } = useSortable({
       accept: "item",
-      feedback: "clone",
       group,
       handle: handleRef,
       id,
       index,
+      plugins: (defaults) => [
+        ...defaults,
+        Feedback.configure({ feedback: "clone" }),
+      ],
       type: "item",
     });
     useEffect(() => {
