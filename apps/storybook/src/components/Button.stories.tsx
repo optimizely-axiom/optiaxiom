@@ -248,7 +248,19 @@ export const Truncate: Story = {
       <Select options={[]}>
         <SelectTrigger {...args} />
       </Select>
-      <Button justifyContent="center">Centered label</Button>
+    </Group>
+  ),
+};
+
+export const Alignment: Story = {
+  render: () => (
+    <Group flexDirection="column" gap="16" w="224">
+      <Button>Centered label</Button>
+      <Button icon={<IconPlus />}>Leading icon</Button>
+      <Button icon={<IconAngleDown />} iconPosition="end">
+        Trailing icon
+      </Button>
+      <Button justifyContent="flex-start">Start aligned</Button>
     </Group>
   ),
 };
