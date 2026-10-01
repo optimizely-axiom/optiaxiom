@@ -43,6 +43,13 @@ incomplete. This is the most commonly missed step — check for it on every revi
   with restated context or defensive "this is non-breaking" prose.
 - A follow-up to a feature that hasn't been released yet may not need its own changeset.
 
+## Testing visual changes
+
+Stories are the test for visual behavior. Chromatic snapshots every Storybook story
+(`.github/workflows/visual.yml` — runs on push, or on a PR labeled `visual`), so a layout, spacing,
+alignment, or color fix needs a story that shows it, not a unit test pinning class names. Add a
+`*.spec.tsx` only for logic Chromatic can't see: behavior, state, accessibility, interactions.
+
 ## Decide the commit structure BEFORE writing code
 
 Before starting any work, decide how it will be committed — the commit boundaries are part of the
