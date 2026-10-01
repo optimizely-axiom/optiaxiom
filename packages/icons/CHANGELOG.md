@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.8.0
+
+### Minor Changes
+
+- ff2a4dd: Added `IconMic` and `IconMicOff`.
+
 ## 1.7.1
 
 ### Patch Changes

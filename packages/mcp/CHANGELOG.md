@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 3.1.2
+
+### Patch Changes
+
+- ff2a4dd: Regenerated icon data to include `IconMic` and `IconMicOff`.
+
 ## 3.1.1
 
 ### Patch Changes
