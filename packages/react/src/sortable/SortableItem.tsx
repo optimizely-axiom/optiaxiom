@@ -1,3 +1,4 @@
+import { shapeIntersection } from "@dnd-kit/collision";
 import { Feedback } from "@dnd-kit/dom";
 import { useSortable } from "@dnd-kit/react/sortable";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
@@ -42,6 +43,10 @@ export const SortableItem = forwardRef<HTMLDivElement, SortableItemProps>(
       ref: innerRef,
     } = useSortable({
       accept: "item",
+      // The clone leaves the source's full-size rect in place, so pointer
+      // intersection would keep tall sources as the target until the pointer
+      // exits them.
+      collisionDetector: shapeIntersection,
       group,
       handle: handleRef,
       id,

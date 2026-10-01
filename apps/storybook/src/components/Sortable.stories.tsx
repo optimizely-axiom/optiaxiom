@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { IconGripVertical } from "@optiaxiom/icons";
 import {
   Avatar,
   Badge,
@@ -15,9 +16,11 @@ import {
 import {
   Sortable,
   SortableGroup,
+  SortableHandle,
   SortableItem,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
+import { expect, userEvent, waitFor } from "storybook/test";
 
 export default {
   component: Sortable,
@@ -213,6 +216,58 @@ export const Basic: Story = {
                 </DisclosureContent>
               </Disclosure>
             </Group>
+          ))
+        }
+      </Sortable>
+    );
+  },
+};
+
+export const TallItems: Story = {
+  play: async ({ canvas }) => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    const [handle] = canvas.getAllByLabelText("draggable");
+    const { x, y } = handle.getBoundingClientRect();
+
+    // Move 80% of the item height: enough clone overlap to swap, but the
+    // pointer is still inside the source item.
+    await user.pointer({
+      coords: { clientX: x, clientY: y },
+      keys: "[MouseLeft>]",
+      target: handle,
+    });
+    for (let dy = 8; dy <= 320; dy += 8) {
+      await user.pointer({ coords: { clientX: x, clientY: y + dy } });
+      await new Promise(requestAnimationFrame);
+    }
+    await user.pointer({ keys: "[/MouseLeft]" });
+
+    await waitFor(() =>
+      expect(
+        canvas.getAllByRole("heading").map((el) => el.textContent),
+      ).toEqual(["Notes", "Description"]),
+    );
+  },
+  render: function Render(args) {
+    const [items, setItems] = useState(["Description", "Notes"]);
+
+    return (
+      <Sortable {...args} items={items} onItemsChange={setItems} p="16">
+        {(items) =>
+          items.map((item, index) => (
+            <Card asChild key={item} style={{ height: 400 }}>
+              <SortableItem index={index} item={item}>
+                <CardHeader
+                  addonBefore={
+                    <SortableHandle>
+                      <IconGripVertical />
+                    </SortableHandle>
+                  }
+                >
+                  {item}
+                </CardHeader>
+              </SortableItem>
+            </Card>
           ))
         }
       </Sortable>
