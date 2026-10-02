@@ -139,7 +139,7 @@ jobs:
           unzip -o other-docs.zip -d "combined/${SUBPATH}"
 
       - name: Upload combined pages artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./combined
 
