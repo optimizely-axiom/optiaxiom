@@ -1,5 +1,21 @@
 # @optiaxiom/proteus
 
+## 3.8.0
+
+### Minor Changes
+
+- adeffad: make Question header collapse the card when `collapsible` is set
+
+### Patch Changes
+
+- 4ea92fb: added `sm` size to `Checkbox` via `size` prop
+- Updated dependencies [7f84fc2]
+- Updated dependencies [97fe107]
+- Updated dependencies [4ea92fb]
+- Updated dependencies [2dddb22]
+- Updated dependencies [3d80b7d]
+  - @optiaxiom/react@3.4.0
+
 ## 3.7.4
 
 ### Patch Changes

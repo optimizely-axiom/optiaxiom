@@ -1,5 +1,17 @@
 # @optiaxiom/mcp
 
+## 3.2.0
+
+### Minor Changes
+
+- a545f99: add `createServer()` for one independent server per request
+
+### Patch Changes
+
+- 4ea92fb: added `sm` size to `Checkbox` via `size` prop
+- 1dc76bc: importing the package no longer starts a stdio server
+- 4db6604: fix `types` path so TypeScript consumers resolve declarations
+
 ## 3.1.2
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @optiaxiom/react
 
+## 3.4.0
+
+### Minor Changes
+
+- 4ea92fb: added `sm` size to `Checkbox` via `size` prop
+
+### Patch Changes
+
+- 7f84fc2: upgrade `@dnd-kit` to 0.5.0
+- 97fe107: center `Button` label by default when wider than content
+- 2dddb22: start-align `DateRangePickerTrigger` content when wider than content
+- 3d80b7d: reorder tall `SortableItem`s by overlap instead of pointer position
+
 ## 3.3.0
 
 ### Minor Changes

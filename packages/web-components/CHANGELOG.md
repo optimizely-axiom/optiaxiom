@@ -1,5 +1,16 @@
 # @optiaxiom/web-components
 
+## 3.3.0
+
+### Minor Changes
+
+- 4ea92fb: added `sm` size to `Checkbox` via `size` prop
+
+### Patch Changes
+
+- 97fe107: center `Button` label by default when wider than content
+- 2dddb22: start-align `DateRangePickerTrigger` content when wider than content
+
 ## 3.2.0
 
 ### Minor Changes
