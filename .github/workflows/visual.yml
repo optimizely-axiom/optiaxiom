@@ -12,7 +12,7 @@ jobs:
     if: ${{ (github.event_name == 'workflow_dispatch' && github.repository_owner == 'optimizely-axiom') || (github.event_name == 'push' && github.repository_owner == 'optimizely-axiom') || github.event.label.name == 'visual' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
