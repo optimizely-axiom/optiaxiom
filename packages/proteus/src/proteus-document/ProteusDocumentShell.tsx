@@ -13,6 +13,7 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { get, set } from "jsonpointer";
 import {
   type ComponentPropsWithoutRef,
+  type FormEvent,
   type ReactNode,
   useEffect,
   useRef,
@@ -43,6 +44,13 @@ import {
 } from "./resolveThemeOverride";
 
 export type ProteusDocumentShellProps = {
+  /**
+   * Custom layout for the document. When given, it replaces the built-in
+   * title, body and actions layout (e.g. so a host can render the document's
+   * title and actions in its own title bar) while still sharing the
+   * document's data, events, validity and pending state.
+   */
+  children?: ReactNode;
   /**
    * Whether block is collapsible
    */
@@ -185,6 +193,7 @@ type ProteusDocument = {
 };
 
 export function ProteusDocumentShell({
+  children,
   collapsible: collapsibleProp,
   data = {},
   defaultOpen = true,
@@ -382,6 +391,19 @@ export function ProteusDocumentShell({
   // own token-driven styling). `undefined` when nothing is overridden.
   const themeVars = resolveThemeOverride(themeOverride);
 
+  const formProps = {
+    onChange: (event: FormEvent<HTMLFormElement>) => {
+      const form = event.currentTarget;
+      setTimeout(() => {
+        setValid(form.checkValidity());
+      });
+    },
+    onSubmit: (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+    },
+    ref: formRef,
+  };
+
   return (
     <ProteusDocumentProvider
       collapsible={bodyCollapsible}
@@ -406,117 +428,115 @@ export function ProteusDocumentShell({
       useResource={useResource}
       valid={valid}
     >
-      <Disclosure
-        bg={inline ? undefined : "bg.default"}
-        border={inline ? undefined : "1"}
-        borderColor={inline ? undefined : "border.tertiary"}
-        onOpenChange={setOpen}
-        open={open}
-        p={inline ? undefined : "20"}
-        rounded={inline ? undefined : "xl"}
-        style={themeVars}
-      >
-        {!inline && element.appName && (
-          <Trigger py="0" {...(collapsible ? { chevronPosition: "end" } : {})}>
-            <Group fontSize="sm" gap="8">
-              <Box
-                asChild
-                bg={element.appIcon ? undefined : "bg.accent.subtle"}
-                flex="none"
-                rounded="xs"
-                size="20"
-              >
-                {element.appIcon ? (
-                  <img alt="" src={element.appIcon} />
-                ) : (
-                  <div />
-                )}
-              </Box>
-              <Text fontWeight="500">{element.appName}</Text>
-              {!open && (
-                <Text color="fg.secondary" lineClamp="1">
-                  {element.title}
-                </Text>
-              )}
-            </Group>
-          </Trigger>
-        )}
-        <Content
-          alignItems="stretch"
-          display="flex"
-          flexDirection="column"
-          gap="16"
-          pb="0"
-          pt={element.appName ? "16" : "0"}
+      {children ? (
+        <form style={themeVars} {...formProps}>
+          {children}
+        </form>
+      ) : (
+        <Disclosure
+          bg={inline ? undefined : "bg.default"}
+          border={inline ? undefined : "1"}
+          borderColor={inline ? undefined : "border.tertiary"}
+          onOpenChange={setOpen}
+          open={open}
+          p={inline ? undefined : "20"}
+          rounded={inline ? undefined : "xl"}
+          style={themeVars}
         >
-          {!inline && element.title && (
-            <Group
-              alignItems={element.titleIcon ? "start" : undefined}
-              bg={element.titleIcon ? "bg.page" : "transparent"}
-              gap="12"
-              p={element.titleIcon ? "12" : undefined}
-              rounded="lg"
+          {!inline && element.appName && (
+            <Trigger
+              py="0"
+              {...(collapsible ? { chevronPosition: "end" } : {})}
             >
-              {element.titleIcon && (
-                <Group
-                  bg="bg.accent.subtle"
+              <Group fontSize="sm" gap="8">
+                <Box
+                  asChild
+                  bg={element.appIcon ? undefined : "bg.accent.subtle"}
                   flex="none"
-                  justifyContent="center"
-                  rounded="lg"
-                  size="md"
+                  rounded="xs"
+                  size="20"
                 >
-                  <Box asChild>
-                    <img alt="" src={element.titleIcon} />
-                  </Box>
-                </Group>
-              )}
-              <Group flex="1" flexDirection="column" gap="4">
-                <Heading asChild level="4" lineClamp="2">
-                  <h2>{element.title}</h2>
-                </Heading>
-                {!!element.subtitle && (
-                  <Tooltip auto content={element.subtitle}>
-                    <Text color="fg.secondary" lineClamp="2">
-                      {element.subtitle}
-                    </Text>
-                  </Tooltip>
+                  {element.appIcon ? (
+                    <img alt="" src={element.appIcon} />
+                  ) : (
+                    <div />
+                  )}
+                </Box>
+                <Text fontWeight="500">{element.appName}</Text>
+                {!open && (
+                  <Text color="fg.secondary" lineClamp="1">
+                    {element.title}
+                  </Text>
                 )}
               </Group>
-            </Group>
+            </Trigger>
           )}
-          <Group asChild flexDirection="column" gap="16">
-            <form
-              onChange={(event) => {
-                const form = event.currentTarget;
-                setTimeout(() => {
-                  setValid(form.checkValidity());
-                });
-              }}
-              onSubmit={(event) => {
-                event.preventDefault();
-              }}
-              ref={formRef}
-            >
+          <Content
+            alignItems="stretch"
+            display="flex"
+            flexDirection="column"
+            gap="16"
+            pb="0"
+            pt={element.appName ? "16" : "0"}
+          >
+            {!inline && element.title && (
               <Group
-                ref={element.compact ? bodyRef : undefined}
-                {...styles.body({ truncate: element.compact })}
+                alignItems={element.titleIcon ? "start" : undefined}
+                bg={element.titleIcon ? "bg.page" : "transparent"}
+                gap="12"
+                p={element.titleIcon ? "12" : undefined}
+                rounded="lg"
               >
-                {element.body}
-                {element.compact && (
-                  <Box {...styles.scrollIndicator()}>
-                    <IconArrowDown />
-                  </Box>
+                {element.titleIcon && (
+                  <Group
+                    bg="bg.accent.subtle"
+                    flex="none"
+                    justifyContent="center"
+                    rounded="lg"
+                    size="md"
+                  >
+                    <Box asChild>
+                      <img alt="" src={element.titleIcon} />
+                    </Box>
+                  </Group>
                 )}
-              </Group>
-              {element.actions && !readOnly && (
-                <Group gap="16" justifyContent="end" w="full">
-                  {element.actions}
+                <Group flex="1" flexDirection="column" gap="4">
+                  <Heading asChild level="4" lineClamp="2">
+                    <h2>{element.title}</h2>
+                  </Heading>
+                  {!!element.subtitle && (
+                    <Tooltip auto content={element.subtitle}>
+                      <Text color="fg.secondary" lineClamp="2">
+                        {element.subtitle}
+                      </Text>
+                    </Tooltip>
+                  )}
                 </Group>
-              )}
-            </form>
-          </Group>
-        </Content>
-      </Disclosure>
+              </Group>
+            )}
+            <Group asChild flexDirection="column" gap="16">
+              <form {...formProps}>
+                <Group
+                  ref={element.compact ? bodyRef : undefined}
+                  {...styles.body({ truncate: element.compact })}
+                >
+                  {element.body}
+                  {element.compact && (
+                    <Box {...styles.scrollIndicator()}>
+                      <IconArrowDown />
+                    </Box>
+                  )}
+                </Group>
+                {element.actions && !readOnly && (
+                  <Group gap="16" justifyContent="end" w="full">
+                    {element.actions}
+                  </Group>
+                )}
+              </form>
+            </Group>
+          </Content>
+        </Disclosure>
+      )}
     </ProteusDocumentProvider>
   );
 }
