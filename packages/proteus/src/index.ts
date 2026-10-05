@@ -5,6 +5,7 @@ export * from "./proteus-data-table";
 export * from "./proteus-data-table-row";
 export * from "./proteus-date-input";
 export * from "./proteus-document";
+export * from "./proteus-element";
 export * from "./proteus-federated";
 export * from "./proteus-file-upload";
 export * from "./proteus-image";

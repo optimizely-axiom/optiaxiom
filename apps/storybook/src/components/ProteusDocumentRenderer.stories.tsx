@@ -8,8 +8,8 @@ import {
   IconTrashCan,
   IconUserGroup,
 } from "@optiaxiom/icons";
-import { ProteusDocumentRenderer } from "@optiaxiom/proteus";
-import { Box } from "@optiaxiom/react";
+import { ProteusDocumentRenderer, ProteusElement } from "@optiaxiom/proteus";
+import { Box, Group, Heading } from "@optiaxiom/react";
 import { useEffect, useRef, useState } from "react";
 import { action } from "storybook/actions";
 import { expect, userEvent, waitFor } from "storybook/test";
@@ -3318,5 +3318,53 @@ export const PartialRendering: Story = {
       title: "Invalid Document Example",
     },
     strict: false,
+  },
+};
+
+const customLayoutDocument = {
+  $type: "Document" as const,
+  actions: [
+    {
+      $type: "Action",
+      appearance: "primary",
+      children: "Save",
+      onClick: { interaction: "save" },
+      type: "submit",
+    },
+  ],
+  body: [
+    {
+      $type: "Field",
+      children: { $type: "Input", name: "name", required: true },
+      label: "Name",
+      required: true,
+    },
+  ],
+  title: "Rename project",
+};
+
+export const CustomLayout: Story = {
+  args: {
+    element: customLayoutDocument,
+  },
+  render: function Render(args) {
+    const [data, setData] = useState<Record<string, unknown>>({});
+    return (
+      <ProteusDocumentRenderer {...args} data={data} onDataChange={setData}>
+        <Group
+          borderB="1"
+          borderColor="border.tertiary"
+          gap="16"
+          justifyContent="space-between"
+          pb="12"
+        >
+          <Heading level="4">{customLayoutDocument.title}</Heading>
+          <ProteusElement element={customLayoutDocument.actions} />
+        </Group>
+        <Box pt="16">
+          <ProteusElement element={customLayoutDocument.body} />
+        </Box>
+      </ProteusDocumentRenderer>
+    );
   },
 };
