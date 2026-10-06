@@ -7,7 +7,7 @@ on:
 
 permissions:
   contents: read
-  actions: read
+  actions: write
   pages: write
   id-token: write
 
@@ -87,6 +87,19 @@ jobs:
             const branch = '${{ steps.other.outputs.branch }}';
             const artifactName = `docs-${branch}`;
 
+            // Artifacts expire after 90 days and the other branch rarely gets
+            // pushes. Rebuild it when its artifact is gone: that run deploys the
+            // combined site itself, pulling this branch's fresh build in.
+            const rebuild = async (reason) => {
+              core.warning(`${reason}; rebuilding docs on ${branch}`);
+              await github.rest.actions.createWorkflowDispatch({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'docs.yml',
+                ref: branch,
+              });
+            };
+
             // Find the latest successful workflow run on the other branch
             const runs = await github.rest.actions.listWorkflowRuns({
               owner: context.repo.owner,
@@ -98,8 +111,7 @@ jobs:
             });
 
             if (runs.data.workflow_runs.length === 0) {
-              core.warning(`No successful runs found for branch ${branch}`);
-              return;
+              return rebuild(`No successful runs found for branch ${branch}`);
             }
 
             const runId = runs.data.workflow_runs[0].id;
@@ -113,8 +125,7 @@ jobs:
 
             const artifact = artifacts.data.artifacts.find(a => a.name === artifactName);
             if (!artifact) {
-              core.warning(`Artifact ${artifactName} not found in run ${runId}`);
-              return;
+              return rebuild(`Artifact ${artifactName} not found in run ${runId}`);
             }
 
             const download = await github.rest.actions.downloadArtifact({
