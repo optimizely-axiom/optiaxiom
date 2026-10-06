@@ -290,6 +290,7 @@
   "unfold_more": ["AnglesUpDown", "ArrowsFromDottedLine", "ArrowsFromLine"],
   "upload_file": ["FileArrowUp"],
   "upload": ["Upload"],
+  "verified": ["Verified"],
   "verified_user": ["ShieldCheck"],
   "video_file": ["FileVideo"],
   "videocam": ["Video"],
