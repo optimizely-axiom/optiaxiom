@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.9.0
+
+### Minor Changes
+
+- 98c0b0d: Added `IconVerified`.
+
 ## 1.8.0
 
 ### Minor Changes

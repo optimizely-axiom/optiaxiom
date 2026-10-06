@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 3.2.1
+
+### Patch Changes
+
+- 98c0b0d: Regenerated icon data to include `IconVerified`.
+
 ## 3.2.0
 
 ### Minor Changes

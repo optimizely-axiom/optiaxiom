@@ -1,5 +1,16 @@
 # @optiaxiom/proteus
 
+## 3.9.0
+
+### Minor Changes
+
+- 3176333: added `children` to `ProteusDocumentShell` for custom document layouts
+
+### Patch Changes
+
+- Updated dependencies [98c0b0d]
+  - @optiaxiom/icons@1.9.0
+
 ## 3.8.0
 
 ### Minor Changes
