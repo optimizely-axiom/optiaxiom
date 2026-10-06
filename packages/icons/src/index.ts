@@ -339,6 +339,7 @@ export { IconUnfoldMore as IconArrowsFromDottedLine } from "../svg/unfold_more.s
 export { IconUnfoldMore as IconArrowsFromLine } from "../svg/unfold_more.svg";
 export { IconUpload as IconUpload } from "../svg/upload.svg";
 export { IconUploadFile as IconFileArrowUp } from "../svg/upload_file.svg";
+export { IconVerified as IconVerified } from "../svg/verified.svg";
 export { IconVerifiedUser as IconShieldCheck } from "../svg/verified_user.svg";
 export { IconVideoFile as IconFileVideo } from "../svg/video_file.svg";
 export { IconVideocam as IconVideo } from "../svg/videocam.svg";
