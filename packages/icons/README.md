@@ -34,6 +34,9 @@ Check out our [Icons Guide](https://optimizely-axiom.github.io/optiaxiom/guides/
 4. Add a changeset (run `pnpm changeset` from the repo root) with a `minor` bump for `@optiaxiom/icons`
 5. Commit the updated `icons.json`, `src/index.ts`, `tags.json`, `svg/*.svg.d.ts`, and the new `.changeset/*.md` file (the `svg/*.svg` files themselves are gitignored and re-fetched at build time)
 
+> [!IMPORTANT]
+> Commit `tags.json` exactly as the build generates it (then formatted by `pnpm lint`). Never edit it by hand — not even to keep existing icons' tags when Google's metadata returns different ones. The file mirrors Google's current metadata.
+
 > [!NOTE]
 > Some existing icons use hand-picked aliases that differ from their Material Symbols name (e.g. `"account_circle": ["CircleUser"]`). These exist only to keep parity with our legacy icons package and should not be used as a pattern for new icons.
 
