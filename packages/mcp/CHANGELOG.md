@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 3.2.3
+
+### Patch Changes
+
+- 344b9a1: added "graph" and "dxp" search tags to `IconHub` and `IconSettingsSlowMotion`
+
 ## 3.2.2
 
 ### Patch Changes
