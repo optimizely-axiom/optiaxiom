@@ -128108,6 +128108,21 @@
       "keywords": ["gmail", "horizontal", "line", "novitas", "rule"],
       "name": "IconPipeSection"
     },
+    "IconHub": {
+      "import": "import { IconHub } from '@optiaxiom/icons';",
+      "keywords": [
+        "center",
+        "connection",
+        "core",
+        "focal point",
+        "hub",
+        "network",
+        "nodes",
+        "nucleus",
+        "topology"
+      ],
+      "name": "IconHub"
+    },
     "IconPaintRoller": {
       "import": "import { IconPaintRoller } from '@optiaxiom/icons';",
       "keywords": ["art", "image", "imagesearch", "paint", "roller", "search"],

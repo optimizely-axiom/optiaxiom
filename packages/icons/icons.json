@@ -152,6 +152,7 @@
   "horizontal_align_left": ["LeftToLine"],
   "horizontal_align_right": ["RightFromLine"],
   "horizontal_rule": ["HorizontalRule", "InputPipe", "PipeSection"],
+  "hub": ["Hub"],
   "imagesearch_roller": ["PaintRoller"],
   "imagesmode": ["FileImage", "Image"],
   "inbox_text": ["InboxFull"],
