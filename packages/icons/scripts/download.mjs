@@ -120,6 +120,12 @@ async function main() {
 
   if (skipTags) {
     console.log("tags.json is up to date, skipping metadata fetch.");
+  } else if (process.env.CI) {
+    // Refetching here would hide a missing tags.json regen behind Google's live metadata
+    console.error(
+      "tags.json is out of date with icons.json. Run `npm run build` in packages/icons and commit tags.json.",
+    );
+    process.exit(1);
   } else {
     console.log("Fetching icon metadata from Google Fonts...");
     const metadataRes = await fetch(
