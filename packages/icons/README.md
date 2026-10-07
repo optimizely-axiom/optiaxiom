@@ -35,7 +35,11 @@ Check out our [Icons Guide](https://optimizely-axiom.github.io/optiaxiom/guides/
 5. Commit the updated `icons.json`, `src/index.ts`, `tags.json`, `svg/*.svg.d.ts`, and the new `.changeset/*.md` file (the `svg/*.svg` files themselves are gitignored and re-fetched at build time)
 
 > [!IMPORTANT]
-> Commit `tags.json` exactly as the build generates it (then formatted by `pnpm lint`). Never edit it by hand — not even to keep existing icons' tags when Google's metadata returns different ones. The file mirrors Google's current metadata.
+> Commit `tags.json` exactly as the build generates it (then formatted by `pnpm lint`). Never edit it by hand — not even to keep existing icons' tags when Google's metadata returns different ones. The file mirrors Google's current metadata plus any custom tags from `icons.json`.
+
+### Adding custom tags
+
+Google's metadata supplies each icon's search tags (used by the docs gallery and the MCP server). To add your own, write the entry as an object mapping each alias to its extra tags — e.g. `"settings_slow_motion": { "SettingsSlowMotion": ["dxp"] }`. Then run `npm run build` and commit the regenerated `tags.json`.
 
 > [!NOTE]
 > Some existing icons use hand-picked aliases that differ from their Material Symbols name (e.g. `"account_circle": ["CircleUser"]`). These exist only to keep parity with our legacy icons package and should not be used as a pattern for new icons.

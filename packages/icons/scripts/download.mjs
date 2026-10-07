@@ -16,7 +16,16 @@ const SIZE = 40;
 
 async function main() {
   const iconsRaw = await readFile(resolve(root, "icons.json"), "utf-8");
-  const iconsMap = JSON.parse(iconsRaw);
+  // Entries are either an alias list or an alias -> custom tags map; custom
+  // tags are added on top of Google's metadata.
+  const iconsMap = Object.fromEntries(
+    Object.entries(JSON.parse(iconsRaw)).map(([icon, entry]) => [
+      icon,
+      Array.isArray(entry)
+        ? Object.fromEntries(entry.map((alias) => [alias, []]))
+        : entry,
+    ]),
+  );
   const icons = Object.keys(iconsMap);
   const iconsHash = createHash("sha256").update(iconsRaw).digest("hex");
 
@@ -84,7 +93,7 @@ async function main() {
   // Collect icons that have _solid aliases (need fill sidecar)
   const needsFillSidecar = new Set();
   for (const [icon, aliases] of Object.entries(iconsMap)) {
-    if (aliases?.some((a) => a.endsWith("Solid"))) {
+    if (Object.keys(aliases).some((a) => a.endsWith("Solid"))) {
       needsFillSidecar.add(`${icon}-fill.svg`);
     }
   }
@@ -140,11 +149,8 @@ async function main() {
     };
     for (const icon of metadata.icons) {
       if (!icons.includes(icon.name)) continue;
-      const aliases = iconsMap[icon.name];
-      if (aliases) {
-        for (const alias of aliases) {
-          tagMap[`Icon${alias}`] = icon.tags;
-        }
+      for (const [alias, tags] of Object.entries(iconsMap[icon.name])) {
+        tagMap[`Icon${alias}`] = [...new Set([...icon.tags, ...tags])].sort();
       }
     }
     writeFileSync(tagsPath, JSON.stringify(tagMap, null, 2) + "\n");
@@ -161,7 +167,7 @@ async function main() {
       if (!aliases) {
         return [];
       }
-      return aliases.map((alias) => {
+      return Object.keys(aliases).map((alias) => {
         const svgFile = alias.endsWith("Solid")
           ? `${iconName}-fill.svg`
           : task.name;
