@@ -1,5 +1,12 @@
 # @optiaxiom/mcp
 
+## 3.2.2
+
+### Patch Changes
+
+- c9211eb: Add Material Symbols settings slow motion icon as `IconSettingsSlowMotion`
+- 387d807: Add Material Symbols hub icon as `IconHub`
+
 ## 3.2.1
 
 ### Patch Changes
