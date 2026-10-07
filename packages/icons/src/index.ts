@@ -286,6 +286,7 @@ export { IconSell as IconTag } from "../svg/sell.svg";
 export { IconSend as IconPaperPlaneTop } from "../svg/send.svg";
 export { IconSentimentSatisfied as IconFaceSmile } from "../svg/sentiment_satisfied.svg";
 export { IconSettings as IconGear } from "../svg/settings.svg";
+export { IconSettingsSlowMotion as IconSettingsSlowMotion } from "../svg/settings_slow_motion.svg";
 export { IconShare as IconShareNodes } from "../svg/share.svg";
 export { IconShoppingBagSpeed as IconCartShoppingFast } from "../svg/shopping_bag_speed.svg";
 export { IconShoppingCart as IconCartShopping } from "../svg/shopping_cart.svg";

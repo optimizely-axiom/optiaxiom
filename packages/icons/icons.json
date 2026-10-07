@@ -247,6 +247,7 @@
   "sell": ["Tag"],
   "send": ["PaperPlaneTop"],
   "sentiment_satisfied": ["FaceSmile"],
+  "settings_slow_motion": ["SettingsSlowMotion"],
   "settings": ["Gear"],
   "share": ["ShareNodes"],
   "shopping_bag_speed": ["CartShoppingFast"],
