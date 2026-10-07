@@ -182,6 +182,7 @@ export { IconHorizontalAlignRight as IconRightFromLine } from "../svg/horizontal
 export { IconHorizontalRule as IconHorizontalRule } from "../svg/horizontal_rule.svg";
 export { IconHorizontalRule as IconInputPipe } from "../svg/horizontal_rule.svg";
 export { IconHorizontalRule as IconPipeSection } from "../svg/horizontal_rule.svg";
+export { IconHub as IconHub } from "../svg/hub.svg";
 export { IconImagesearchRoller as IconPaintRoller } from "../svg/imagesearch_roller.svg";
 export { IconImagesmode as IconFileImage } from "../svg/imagesmode.svg";
 export { IconImagesmode as IconImage } from "../svg/imagesmode.svg";
