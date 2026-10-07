@@ -1,5 +1,12 @@
 # @optiaxiom/icons
 
+## 1.10.0
+
+### Minor Changes
+
+- c9211eb: Add Material Symbols settings slow motion icon as `IconSettingsSlowMotion`
+- 387d807: Add Material Symbols hub icon as `IconHub`
+
 ## 1.9.0
 
 ### Minor Changes
