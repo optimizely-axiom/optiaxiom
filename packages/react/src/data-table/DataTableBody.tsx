@@ -1,5 +1,5 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { flexRender } from "@tanstack/react-table";
+import { type Column, flexRender } from "@tanstack/react-table";
 import {
   defaultRangeExtractor,
   type Range,
@@ -113,7 +113,6 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
       horizontal: true,
     });
     const virtualColumns = columnVirtualizer.getVirtualItems();
-    const virtualColumnsOffset = virtualColumns[0]?.start ?? 0;
 
     /**
      * Keep the highlighted row mounted while it is scrolled out of view so
@@ -147,6 +146,27 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
      * technology relies on these counts and indexes for the real table size.
      */
     const headerGroups = table.getHeaderGroups();
+    const totalResizableSize =
+      headerGroups[0]?.headers.reduce(
+        (sum, header) =>
+          sum + (header.column.getCanResize() ? header.getSize() : 0),
+        0,
+      ) ?? 0;
+
+    const leadingSpacerStyle = columnVirtualizer.options.enabled
+      ? getSpacerStyle(
+          centerColumns.slice(0, virtualColumns[0]?.index ?? 0),
+          totalResizableSize,
+        )
+      : undefined;
+    const trailingSpacerStyle = columnVirtualizer.options.enabled
+      ? getSpacerStyle(
+          centerColumns.slice(
+            (virtualColumns.at(-1)?.index ?? centerColumns.length) + 1,
+          ),
+          totalResizableSize,
+        )
+      : undefined;
     const columnIndexes = new Map(
       [
         ...table.getLeftVisibleLeafColumns(),
@@ -162,13 +182,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
           ...assignInlineVars({
             [styles.leftTotalSizeVar]: `${table.getLeftTotalSize()}px`,
             [styles.rightTotalSizeVar]: `${table.getRightTotalSize()}px`,
-            [styles.totalSizeVar]: (
-              headerGroups[0]?.headers.reduce(
-                (sum, header) =>
-                  sum + (header.column.getCanResize() ? header.getSize() : 0),
-                0,
-              ) ?? 0
-            ).toString(),
+            [styles.totalSizeVar]: totalResizableSize.toString(),
           }),
           ...style,
         }}
@@ -294,13 +308,9 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   </TableCell>
                 ))}
 
-                {columnVirtualizer.options.enabled &&
-                  virtualColumnsOffset > 0 && (
-                    <TableCell
-                      aria-hidden
-                      style={{ width: virtualColumnsOffset }}
-                    />
-                  )}
+                {leadingSpacerStyle && (
+                  <TableCell aria-hidden p="0" style={leadingSpacerStyle} />
+                )}
 
                 {(columnVirtualizer.options.enabled
                   ? virtualColumns.map((virtualCell) => {
@@ -324,6 +334,10 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
+
+                {trailingSpacerStyle && (
+                  <TableCell aria-hidden p="0" style={trailingSpacerStyle} />
+                )}
 
                 {row.getRightVisibleCells().map((cell) => (
                   <TableCell
@@ -355,3 +369,27 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
 );
 
 DataTableBody.displayName = "@optiaxiom/react/DataTableBody";
+
+/**
+ * Sizes a cell standing in for unrendered center columns so body rows match
+ * the header's width and split its free space in the same ratio.
+ */
+const getSpacerStyle = (
+  columns: Array<Column<unknown>>,
+  totalResizableSize: number,
+) => {
+  if (columns.length === 0) {
+    return;
+  }
+
+  let size = 0;
+  let resizableSize = 0;
+  for (const column of columns) {
+    size += column.getSize();
+    resizableSize += column.getCanResize() ? column.getSize() : 0;
+  }
+  return {
+    flexGrow: totalResizableSize ? resizableSize / totalResizableSize : 0,
+    width: `${size}px`,
+  };
+};

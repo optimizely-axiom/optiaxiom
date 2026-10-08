@@ -481,10 +481,30 @@ const manyColumns: ColumnDef<Payment>[] = Array.from(
   }),
 );
 
+const expectColumnsAligned = async (row: HTMLElement) => {
+  const headers = within(row.closest("table")!).getAllByRole("columnheader");
+  for (const cell of within(row).getAllByRole("cell")) {
+    const header = headers.find(
+      (header) =>
+        header.getAttribute("aria-colindex") ===
+        cell.getAttribute("aria-colindex"),
+    )!;
+    await expect(cell.getBoundingClientRect().left).toBeCloseTo(
+      header.getBoundingClientRect().left,
+      0,
+    );
+    await expect(cell.getBoundingClientRect().width).toBeCloseTo(
+      header.getBoundingClientRect().width,
+      0,
+    );
+  }
+};
+
 export const VirtualizedColumns: Story = {
   play: async ({ canvas }) => {
     const table = canvas.getByRole("table");
     await expect(table).toHaveAttribute("aria-colcount", "30");
+    await expectColumnsAligned(canvas.getAllByRole("row")[1]);
 
     const scrollContainer = table.parentElement!;
     scrollContainer.scrollLeft = scrollContainer.scrollWidth;
@@ -502,6 +522,7 @@ export const VirtualizedColumns: Story = {
     )) {
       await expect(cell).toHaveAttribute("aria-colindex");
     }
+    await expectColumnsAligned(canvas.getAllByRole("row")[1]);
     scrollContainer.scrollLeft = 0;
   },
   render: function Render(args) {
