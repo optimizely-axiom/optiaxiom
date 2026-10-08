@@ -3,6 +3,8 @@
  * (e.g. `16px`) on the same `:root` or `:host` as the theme to decouple sizing
  * from the page's root font size. Media queries can't read custom properties,
  * so breakpoints must use plain `rem` instead.
+ *
+ * Falls back to `1rem` for hosts whose ThemeProvider predates the variable.
  */
 export const rem = <T extends string>(value: T) => {
   const units = value.endsWith("px")
@@ -13,6 +15,6 @@ export const rem = <T extends string>(value: T) => {
   return (
     units === null
       ? value
-      : `calc(${parseFloat(units.toFixed(4))} * var(--ax-styles-scale))`
+      : `calc(${parseFloat(units.toFixed(4))} * var(--ax-styles-scale, 1rem))`
   ) as T;
 };
