@@ -120,7 +120,18 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
     });
     const virtualRows = rowVirtualizer.getVirtualItems();
 
+    /**
+     * Virtualized rows and columns are missing from the DOM, so assistive
+     * technology relies on these counts and indexes for the real table size.
+     */
     const headerGroups = table.getHeaderGroups();
+    const columnIndexes = new Map(
+      [
+        ...table.getLeftVisibleLeafColumns(),
+        ...centerColumns,
+        ...table.getRightVisibleLeafColumns(),
+      ].map((column, index) => [column.id, index + 1]),
+    );
 
     return (
       <Box
@@ -143,15 +154,25 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
         {...props}
       >
         <Table
+          aria-colcount={columnIndexes.size}
+          aria-rowcount={
+            headerGroups.length +
+            (loading === true ? SKELETON_ROW_COUNT : rows.length)
+          }
           layout="fixed"
           onScroll={calculateScrollTimeline}
           ref={scrollContainerRef}
         >
           <TableHeader display="grid" pinned>
-            {headerGroups.map((headerGroup) => (
-              <TableRow display="flex" key={headerGroup.id}>
+            {headerGroups.map((headerGroup, headerIndex) => (
+              <TableRow
+                aria-rowindex={headerIndex + 1}
+                display="flex"
+                key={headerGroup.id}
+              >
                 {headerGroup.headers.map((header) => (
                   <DataTableHeaderCell
+                    aria-colindex={columnIndexes.get(header.column.id)}
                     header={header}
                     key={header.id}
                     pinned={!!header.column.getIsPinned()}
@@ -212,6 +233,9 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                 : rows.map((row) => ({ row, virtualRow: undefined }))
             ).map(({ row, virtualRow }, index) => (
               <DataTableRow
+                aria-rowindex={
+                  headerGroups.length + (virtualRow?.index ?? index) + 1
+                }
                 data-index={virtualRow?.index}
                 display="flex"
                 index={virtualRow?.index ?? index}
@@ -229,6 +253,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
               >
                 {row.getLeftVisibleCells().map((cell) => (
                   <TableCell
+                    aria-colindex={columnIndexes.get(cell.column.id)}
                     key={cell.id}
                     pinned
                     style={{
@@ -249,7 +274,10 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
 
                 {columnVirtualizer.options.enabled &&
                   virtualColumnsOffset > 0 && (
-                    <TableCell style={{ width: virtualColumnsOffset }} />
+                    <TableCell
+                      aria-hidden
+                      style={{ width: virtualColumnsOffset }}
+                    />
                   )}
 
                 {(columnVirtualizer.options.enabled
@@ -260,6 +288,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   : row.getCenterVisibleCells()
                 ).map((cell) => (
                   <TableCell
+                    aria-colindex={columnIndexes.get(cell.column.id)}
                     key={cell.id}
                     style={{
                       ...assignInlineVars({
@@ -276,6 +305,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
 
                 {row.getRightVisibleCells().map((cell) => (
                   <TableCell
+                    aria-colindex={columnIndexes.get(cell.column.id)}
                     key={cell.id}
                     pinned
                     style={{

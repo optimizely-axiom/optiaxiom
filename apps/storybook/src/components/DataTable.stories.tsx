@@ -19,6 +19,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useMemo, useRef, useState } from "react";
+import { expect, waitFor, within } from "storybook/test";
 
 type Payment = {
   amount: number;
@@ -270,6 +271,25 @@ export const Basic: Story = {
 };
 
 export const VerticalScroll: Story = {
+  play: async ({ canvas }) => {
+    const table = canvas.getByRole("table");
+    await expect(table).toHaveAttribute("aria-rowcount", "101");
+    await expect(canvas.getAllByRole("row").length).toBeLessThan(101);
+    await expect(canvas.getAllByRole("row")[1]).toHaveAttribute(
+      "aria-rowindex",
+      "2",
+    );
+
+    const scrollContainer = table.parentElement!;
+    scrollContainer.scrollTop = scrollContainer.scrollHeight;
+    await waitFor(() =>
+      expect(canvas.getAllByRole("row").at(-1)).toHaveAttribute(
+        "aria-rowindex",
+        "101",
+      ),
+    );
+    scrollContainer.scrollTop = 0;
+  },
   render: function Render(args) {
     return (
       <DataTable
@@ -303,6 +323,54 @@ export const Pinned: Story = {
             },
             pagination: { pageIndex: 0, pageSize: 100 },
           },
+        })}
+      >
+        <DataTableBody />
+      </DataTable>
+    );
+  },
+};
+
+const manyColumns: ColumnDef<Payment>[] = Array.from(
+  { length: 30 },
+  (_, i) => ({
+    accessorFn: (row) => `${row.id} / ${i + 1}`,
+    header: `Column ${i + 1}`,
+    id: `column${i + 1}`,
+  }),
+);
+
+export const VirtualizedColumns: Story = {
+  play: async ({ canvas }) => {
+    const table = canvas.getByRole("table");
+    await expect(table).toHaveAttribute("aria-colcount", "30");
+
+    const scrollContainer = table.parentElement!;
+    scrollContainer.scrollLeft = scrollContainer.scrollWidth;
+    await waitFor(() =>
+      expect(
+        canvas.getByRole("cell", { name: "order-001 / 30" }),
+      ).toHaveAttribute("aria-colindex", "30"),
+    );
+    await expect(
+      canvas.queryByRole("cell", { name: "order-001 / 2" }),
+    ).not.toBeInTheDocument();
+    // The spacer standing in for unrendered columns has no column index.
+    for (const cell of within(canvas.getAllByRole("row")[1]).getAllByRole(
+      "cell",
+    )) {
+      await expect(cell).toHaveAttribute("aria-colindex");
+    }
+    scrollContainer.scrollLeft = 0;
+  },
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columns: manyColumns,
+          data: largeData,
+          getCoreRowModel: getCoreRowModel(),
         })}
       >
         <DataTableBody />
