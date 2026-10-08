@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 3.3.1
+
+### Patch Changes
+
+- 80c6349: fallback to `1rem` when `--ax-styles-scale` is undefined
+
 ## 3.3.0
 
 ### Minor Changes
