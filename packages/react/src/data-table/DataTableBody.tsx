@@ -28,6 +28,7 @@ export type DataTableBodyProps = BoxProps<
 
 const COL_VIRTUALIZATION_THRESHOLD = 20;
 const ROW_VIRTUALIZATION_THRESHOLD = 20;
+const SKELETON_ROW_COUNT = 10;
 
 /**
  * @group DataTable
@@ -119,6 +120,8 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
     });
     const virtualRows = rowVirtualizer.getVirtualItems();
 
+    const headerGroups = table.getHeaderGroups();
+
     return (
       <Box
         ref={ref}
@@ -127,13 +130,11 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
             [styles.leftTotalSizeVar]: `${table.getLeftTotalSize()}px`,
             [styles.rightTotalSizeVar]: `${table.getRightTotalSize()}px`,
             [styles.totalSizeVar]: (
-              table
-                .getHeaderGroups()[0]
-                ?.headers.reduce(
-                  (sum, header) =>
-                    sum + (header.column.getCanResize() ? header.getSize() : 0),
-                  0,
-                ) ?? 0
+              headerGroups[0]?.headers.reduce(
+                (sum, header) =>
+                  sum + (header.column.getCanResize() ? header.getSize() : 0),
+                0,
+              ) ?? 0
             ).toString(),
           }),
           ...style,
@@ -147,7 +148,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
           ref={scrollContainerRef}
         >
           <TableHeader display="grid" pinned>
-            {table.getHeaderGroups().map((headerGroup) => (
+            {headerGroups.map((headerGroup) => (
               <TableRow display="flex" key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <DataTableHeaderCell
@@ -189,7 +190,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
             }
           >
             {(loading === true
-              ? Array.from({ length: 10 }, (_, rowIndex) => ({
+              ? Array.from({ length: SKELETON_ROW_COUNT }, (_, rowIndex) => ({
                   row: fakeRow(table, rowIndex),
                   virtualRow: undefined,
                 }))
