@@ -1,8 +1,12 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { flexRender } from "@tanstack/react-table";
-import { useVirtualizer } from "@tanstack/react-virtual";
+import {
+  defaultRangeExtractor,
+  type Range,
+  useVirtualizer,
+} from "@tanstack/react-virtual";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { forwardRef, useEffect, useMemo, useRef } from "react";
+import { forwardRef, useCallback, useEffect, useMemo, useRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "../table";
@@ -41,7 +45,9 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
-    const { table } = useDataTableContext("@optiaxiom/react/DataTableBody");
+    const { highlightedIndex, table } = useDataTableContext(
+      "@optiaxiom/react/DataTableBody",
+    );
 
     const { rows: rawRows } = table.getRowModel();
     const rows = useMemo(() => {
@@ -109,6 +115,21 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
     const virtualColumns = columnVirtualizer.getVirtualItems();
     const virtualColumnsOffset = virtualColumns[0]?.start ?? 0;
 
+    /**
+     * Keep the highlighted row mounted while it is scrolled out of view so
+     * keyboard focus isn't dropped to the document body.
+     */
+    const rangeExtractor = useCallback(
+      (range: Range) => {
+        const indexes = defaultRangeExtractor(range);
+        return highlightedIndex >= 0 &&
+          highlightedIndex < range.count &&
+          !indexes.includes(highlightedIndex)
+          ? [...indexes, highlightedIndex].sort((a, b) => a - b)
+          : indexes;
+      },
+      [highlightedIndex],
+    );
     const rowVirtualizer = useVirtualizer({
       count: rows.length,
       enabled:
@@ -117,6 +138,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
       estimateSize: () => estimatedRowHeight,
       getItemKey: (index) => rows[index].id,
       getScrollElement: () => scrollContainerRef.current,
+      rangeExtractor,
     });
     const virtualRows = rowVirtualizer.getVirtualItems();
 
