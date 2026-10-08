@@ -1,6 +1,6 @@
 import type { Table } from "@tanstack/table-core";
 
-import { forwardRef, useState } from "react";
+import { forwardRef, useRef, useState } from "react";
 
 import { type BoxProps } from "../box";
 import { Group } from "../group";
@@ -27,6 +27,7 @@ export type DataTableProps = BoxProps<
 export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
   ({ children, table, ...props }, ref) => {
     const [highlightedIndex, setHighlightedIndex] = useState(-1);
+    const focusRequestRef = useRef(false);
 
     return (
       <Group
@@ -38,6 +39,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
         {...props}
       >
         <DataTableProvider
+          focusRequestRef={focusRequestRef}
           highlightedIndex={highlightedIndex}
           setHighlightedIndex={setHighlightedIndex}
           table={table}

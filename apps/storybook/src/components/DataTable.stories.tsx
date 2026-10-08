@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
+  Button,
   Checkbox,
   DataTable,
+  DataTableAction,
   DataTableBody,
   DataTableFooter,
 } from "@optiaxiom/react";
@@ -18,8 +20,8 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useMemo, useRef, useState } from "react";
-import { expect, waitFor, within } from "storybook/test";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { expect, userEvent, waitFor, within } from "storybook/test";
 
 type Payment = {
   amount: number;
@@ -323,6 +325,145 @@ export const Pinned: Story = {
             },
             pagination: { pageIndex: 0, pageSize: 100 },
           },
+        })}
+      >
+        <DataTableBody />
+      </DataTable>
+    );
+  },
+};
+
+export const KeyboardFocusWhileScrolled: Story = {
+  play: async ({ canvas }) => {
+    const firstRow = canvas.getAllByRole("row")[1];
+    firstRow.focus();
+
+    const scrollContainer = canvas.getByRole("table").parentElement!;
+    scrollContainer.scrollTop = scrollContainer.scrollHeight;
+    await waitFor(() =>
+      expect(canvas.getAllByRole("row").at(-1)).toHaveAttribute(
+        "aria-rowindex",
+        "101",
+      ),
+    );
+    await expect(firstRow).toHaveFocus();
+
+    await userEvent.keyboard("{ArrowDown}");
+    await waitFor(() =>
+      expect(document.activeElement).toHaveAttribute("aria-rowindex", "3"),
+    );
+  },
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columns: [
+            {
+              cell: ({ row }) => (
+                <DataTableAction primary>
+                  <Button>{row.original.id}</Button>
+                </DataTableAction>
+              ),
+              header: "ID",
+              id: "id",
+            },
+            ...columns.slice(2, 5),
+          ],
+          data: largeData,
+          getCoreRowModel: getCoreRowModel(),
+        })}
+      >
+        <DataTableBody />
+      </DataTable>
+    );
+  },
+};
+
+export const PaginatingKeepsFocus: Story = {
+  play: async ({ canvas }) => {
+    canvas.getAllByRole("row")[3].focus();
+    await userEvent.click(canvas.getByRole("button", { name: "Next page" }));
+    await waitFor(() =>
+      expect(canvas.getAllByRole("row")[3]).toHaveTextContent("order-013"),
+    );
+    await expect(
+      canvas.getByRole("button", { name: "Next page" }),
+    ).toHaveFocus();
+  },
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columns: [
+            {
+              cell: ({ row }) => (
+                <DataTableAction primary>
+                  <Button>{row.original.id}</Button>
+                </DataTableAction>
+              ),
+              header: "ID",
+              id: "id",
+            },
+            ...columns.slice(2, 5),
+          ],
+          data: largeData,
+          getCoreRowModel: getCoreRowModel(),
+          getPaginationRowModel: getPaginationRowModel(),
+          initialState: { pagination: { pageSize: 10 } },
+        })}
+      >
+        <DataTableBody />
+        <DataTableFooter />
+      </DataTable>
+    );
+  },
+};
+
+export const ArrowKeysFollowRowAfterDataChange: Story = {
+  play: async ({ canvas }) => {
+    const rowOf = (id: string) =>
+      canvas.getByRole("button", { name: id }).closest("tr")!;
+    rowOf("order-005").focus();
+
+    // Rows arriving from the server shift the focused row down.
+    window.dispatchEvent(new Event("insertrow"));
+    await waitFor(() =>
+      expect(rowOf("order-005")).toHaveAttribute("aria-rowindex", "7"),
+    );
+    await expect(rowOf("order-005")).toHaveFocus();
+
+    await userEvent.keyboard("{ArrowDown}");
+    await waitFor(() => expect(rowOf("order-006")).toHaveFocus());
+  },
+  render: function Render(args) {
+    const [rows, setRows] = useState(() => largeData.slice(0, 10));
+    useEffect(() => {
+      const onInsert = () =>
+        setRows((rows) => [{ ...rows[0], id: "order-new" }, ...rows]);
+      window.addEventListener("insertrow", onInsert);
+      return () => window.removeEventListener("insertrow", onInsert);
+    }, []);
+
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columns: [
+            {
+              cell: ({ row }) => (
+                <DataTableAction primary>
+                  <Button>{row.original.id}</Button>
+                </DataTableAction>
+              ),
+              header: "ID",
+              id: "id",
+            },
+          ],
+          data: rows,
+          getCoreRowModel: getCoreRowModel(),
+          getRowId: (row) => row.id,
         })}
       >
         <DataTableBody />

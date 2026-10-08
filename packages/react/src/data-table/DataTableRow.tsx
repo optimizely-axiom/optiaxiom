@@ -32,24 +32,11 @@ export type DataTableRowProps = BoxProps<
 
 export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
   ({ children, index, row, ...props }, outerRef) => {
-    const { highlightedIndex, setHighlightedIndex, table } =
+    const { focusRequestRef, highlightedIndex, setHighlightedIndex, table } =
       useDataTableContext("@optiaxiom/react/DataTableRow");
 
     const [subHighlightedIndex, setSubHighlightedIndex] = useState(-1);
     const labelId = useId();
-
-    const innerRef = useRef<HTMLTableRowElement>(null);
-    const ref = useComposedRefs(innerRef, outerRef);
-    useEffect(() => {
-      if (highlightedIndex !== index) {
-        return;
-      }
-
-      if (!innerRef.current?.contains(document.activeElement)) {
-        innerRef.current?.focus();
-      }
-      return () => setSubHighlightedIndex(-1);
-    }, [highlightedIndex, index]);
 
     const [actions, setActions] = useState<
       Array<{
@@ -61,6 +48,34 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
     const [selector, setSelector] = useState<RefObject<HTMLInputElement>>();
 
     const focusManaged = Boolean(selector || primary);
+
+    const innerRef = useRef<HTMLTableRowElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
+    /**
+     * A row mounted by the virtualizer only becomes focusable once its actions
+     * register, so wait for `focusManaged` before moving focus to it.
+     */
+    useEffect(() => {
+      if (highlightedIndex !== index) {
+        return;
+      }
+
+      if (focusManaged && focusRequestRef.current) {
+        focusRequestRef.current = false;
+        innerRef.current?.focus();
+      }
+      return () => setSubHighlightedIndex(-1);
+    }, [focusManaged, focusRequestRef, highlightedIndex, index]);
+
+    /**
+     * Keep the highlight on the focused row when data changes move it to a new
+     * index, so arrow keys and `tabIndex` follow the row.
+     */
+    useEffect(() => {
+      if (innerRef.current?.contains(document.activeElement)) {
+        setHighlightedIndex(index);
+      }
+    }, [index, setHighlightedIndex]);
 
     const onActionMount = useEvent(
       ({
@@ -166,6 +181,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
                 : highlightedIndex - 1;
             if (nextIndex >= 0 && nextIndex <= rows.length - 1) {
               event.preventDefault();
+              focusRequestRef.current = true;
               setHighlightedIndex(nextIndex);
 
               if (selector) {
