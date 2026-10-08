@@ -29,11 +29,23 @@ export type TableProps = BoxProps<"div", styles.TableVariants>;
  * @category data-display
  */
 export const Table = forwardRef<HTMLDivElement, TableProps>(
-  ({ children, className, layout = "auto", ...props }, ref) => {
+  (
+    {
+      "aria-colcount": ariaColCount,
+      "aria-rowcount": ariaRowCount,
+      children,
+      className,
+      layout = "auto",
+      ...props
+    },
+    ref,
+  ) => {
     return (
       <Box ref={ref} tabIndex={0} {...styles.wrapper({}, className)} {...props}>
         <Box asChild {...styles.table({ layout })}>
-          <table>{children}</table>
+          <table aria-colcount={ariaColCount} aria-rowcount={ariaRowCount}>
+            {children}
+          </table>
         </Box>
       </Box>
     );
