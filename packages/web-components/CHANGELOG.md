@@ -1,5 +1,13 @@
 # @optiaxiom/web-components
 
+## 3.3.2
+
+### Patch Changes
+
+- 79f6f37: expose virtualized DataTable row and column positions to screen readers
+- b322d36: fixed virtualized DataTable columns drifting from their headers
+- 33873a3: fixed DataTable keyboard focus lost after scrolling virtualized rows
+
 ## 3.3.1
 
 ### Patch Changes
