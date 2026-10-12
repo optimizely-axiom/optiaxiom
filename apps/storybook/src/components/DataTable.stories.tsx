@@ -333,10 +333,20 @@ export const Pinned: Story = {
   },
 };
 
+/**
+ * A row only becomes focusable once its actions register in an effect, which
+ * may not have run yet when `play` starts.
+ */
+const focusRow = (row: HTMLElement) =>
+  waitFor(() => {
+    row.focus();
+    return expect(row).toHaveFocus();
+  });
+
 export const KeyboardFocusWhileScrolled: Story = {
   play: async ({ canvas }) => {
     const firstRow = canvas.getAllByRole("row")[1];
-    firstRow.focus();
+    await focusRow(firstRow);
 
     const scrollContainer = canvas.getByRole("table").parentElement!;
     scrollContainer.scrollTop = scrollContainer.scrollHeight;
@@ -382,7 +392,7 @@ export const KeyboardFocusWhileScrolled: Story = {
 
 export const PaginatingKeepsFocus: Story = {
   play: async ({ canvas }) => {
-    canvas.getAllByRole("row")[3].focus();
+    await focusRow(canvas.getAllByRole("row")[3]);
     await userEvent.click(canvas.getByRole("button", { name: "Next page" }));
     await waitFor(() =>
       expect(canvas.getAllByRole("row")[3]).toHaveTextContent("order-013"),
@@ -425,7 +435,8 @@ export const ArrowKeysFollowRowAfterDataChange: Story = {
   play: async ({ canvas }) => {
     const rowOf = (id: string) =>
       canvas.getByRole("button", { name: id }).closest("tr")!;
-    rowOf("order-005").focus();
+    // Effects have flushed once the row takes focus, so the listener is ready.
+    await focusRow(rowOf("order-005"));
 
     // Rows arriving from the server shift the focused row down.
     window.dispatchEvent(new Event("insertrow"));
