@@ -1,5 +1,14 @@
 # @optiaxiom/react
 
+## 3.4.2
+
+### Patch Changes
+
+- 79f6f37: expose virtualized DataTable row and column positions to screen readers
+- b322d36: fixed virtualized DataTable columns drifting from their headers
+- 33873a3: fixed DataTable keyboard focus lost after scrolling virtualized rows
+- ae5e895: added pressed state color to `default-opal` button
+
 ## 3.4.1
 
 ### Patch Changes
