@@ -4,6 +4,7 @@ import { rem } from "../utils";
 import {
   createVar,
   fallbackVar,
+  getVarName,
   recipe,
   type RecipeVariants,
   style,
@@ -24,18 +25,26 @@ export const textColorVar = createVar();
 const transparentHoverAccentColorVar = createVar();
 const transparentPressedAccentColorVar = createVar();
 const borderWidthVar = createVar();
+// Registered as a <color> so the pressed tint can transition.
+const opalPressedColorVar = createVar({
+  inherits: true,
+  initialValue: "transparent",
+  syntax: "<color>",
+});
 
 // outline-opal masked ring: the AVIF fills the border-box, a flat bg.default
 // layer (padding-box clip) masks out the centre, leaving only the border showing
 // as a textured ring. Each pseudo is sized by its border `width` and pulled
 // OUTWARD by that same width (negative inset) so it sits behind the button and
 // spills past its edge: ::before is the base ring, ::after the larger ring that
-// fades in on hover.
+// fades in on hover. The pressed tint is its own layer over the bg.default
+// mask, as the tint colours are translucent and would let the AVIF through.
 const opalRing = (width: string) =>
   ({
-    backgroundClip: "padding-box, border-box",
+    backgroundClip: "padding-box, padding-box, border-box",
     backgroundColor: theme.colors["bg.default"],
     backgroundImage: `
+    linear-gradient(${opalPressedColorVar}, ${opalPressedColorVar}),
     linear-gradient(
       ${theme.colors["bg.default"]},
       ${theme.colors["bg.default"]}
@@ -229,6 +238,9 @@ export const buttonBase = recipe({
       "outline-opal": style({
         vars: {
           [borderWidthVar]: "2px",
+          // Without @property support the initialValue never applies, and an
+          // unset var would invalidate the ring's background-image.
+          [opalPressedColorVar]: "transparent",
         },
 
         border: `${borderWidthVar} solid transparent`,
@@ -239,9 +251,12 @@ export const buttonBase = recipe({
         "::after": {
           ...opalRing(`calc(2 * ${borderWidthVar})`),
           opacity: "0",
-          transition: `opacity ${theme.duration.md} ease`,
+          transition: `opacity ${theme.duration.md} ease, ${getVarName(opalPressedColorVar)} ${theme.duration.sm} ease`,
         },
-        "::before": opalRing(borderWidthVar),
+        "::before": {
+          ...opalRing(borderWidthVar),
+          transition: `${getVarName(opalPressedColorVar)} ${theme.duration.sm} ease`,
+        },
 
         "@media": {
           "(hover: hover)": {
@@ -254,6 +269,12 @@ export const buttonBase = recipe({
         },
 
         selectors: {
+          "&:active:not([data-disabled], [data-loading])": {
+            vars: {
+              [opalPressedColorVar]: subtlePressedAccentColorVar,
+            },
+          },
+
           "&[data-disabled]:not([data-loading])": {
             backgroundColor: theme.colors["bg.secondary"],
             color: theme.colors["fg.disabled"],
