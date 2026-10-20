@@ -1,2 +1,2 @@
 import type { IconProps } from "../src/IconProps";
-export const IconWandShine: IconProps;
+export const IconSparkles: IconProps;

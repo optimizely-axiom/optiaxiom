@@ -260,6 +260,9 @@
   "sort_by_alpha": ["ArrowDownAZ", "ArrowDownZA"],
   "sort": ["BarsSort", "BarsStaggered", "SortSolid"],
   "south": ["ArrowDown"],
+  "sparkles": {
+    "Sparkles": ["ai", "artificial intelligence", "magic", "sparkle", "star"]
+  },
   "splitscreen": ["WindowRestore"],
   "stacks": ["LayerGroup"],
   "stairs_2": ["Stairs"],
@@ -302,7 +305,6 @@
   "vital_signs": ["WavePulse"],
   "vpn_key": ["KeySkeletonLeftRight"],
   "vrpano": ["Panorama"],
-  "wand_shine": ["Sparkles"],
   "warning": ["TriangleExclamation"],
   "water_drop": ["Droplet"],
   "web": ["Web"],
