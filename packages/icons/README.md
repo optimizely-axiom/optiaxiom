@@ -37,6 +37,17 @@ Check out our [Icons Guide](https://optimizely-axiom.github.io/optiaxiom/guides/
 > [!IMPORTANT]
 > Commit `tags.json` exactly as the build generates it (then formatted by `pnpm lint`). Never edit it by hand — not even to keep existing icons' tags when Google's metadata returns different ones. The file mirrors Google's current metadata plus any custom tags from `icons.json`.
 
+### Adding custom icons
+
+Only for designs Material Symbols has no equivalent for.
+
+1. Convert the Figma export to a single `<path>` in Material's `viewBox="0 -960 960 960"` (the 24px grid scaled by 40 and shifted up by 960), so it renders like every other icon.
+2. Save it as `custom/<name>.svg`, plus `custom/<name>-fill.svg` if the icon has a filled state. Without one, the icon looks the same when `filled`.
+3. Add an `icons.json` entry with custom tags (see below). Custom icons get no tags from Google, so these are their only search terms.
+4. Build, add a changeset, and commit as for any new icon, including the `custom/` files.
+
+A custom SVG takes precedence over a Material Symbol of the same name.
+
 ### Adding custom tags
 
 Google's metadata supplies each icon's search tags (used by the docs gallery and the MCP server). To add your own, write the entry as an object mapping each alias to its extra tags — e.g. `"settings_slow_motion": { "SettingsSlowMotion": ["dxp"] }`. Then run `npm run build` and commit the regenerated `tags.json`.
