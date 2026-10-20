@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -7,12 +7,30 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
 const svgDir = resolve(root, "svg");
+const customDir = resolve(root, "custom");
 const srcDir = resolve(root, "src");
 
 const BASE_URL =
   "https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded";
 const AXES = "wght300grad200";
 const SIZE = 40;
+
+/**
+ * Custom SVGs take precedence over Material Symbols of the same name. An icon
+ * without a `-fill.svg` renders the same in both states.
+ */
+function customSvgPath(svgFileName) {
+  for (const name of [
+    svgFileName,
+    svgFileName.replace(/-fill\.svg$/, ".svg"),
+  ]) {
+    const path = resolve(customDir, name);
+    if (existsSync(path)) {
+      return path;
+    }
+  }
+  return null;
+}
 
 async function main() {
   const iconsRaw = await readFile(resolve(root, "icons.json"), "utf-8");
@@ -48,6 +66,12 @@ async function main() {
 
   async function downloadTask(task) {
     const filePath = resolve(svgDir, task.name);
+    const customPath = customSvgPath(task.name);
+    if (customPath) {
+      copyFileSync(customPath, filePath);
+      completed++;
+      return;
+    }
     if (existsSync(filePath)) {
       completed++;
       return;
@@ -148,9 +172,17 @@ async function main() {
       "//hash": iconsHash,
     };
     for (const icon of metadata.icons) {
-      if (!icons.includes(icon.name)) continue;
+      if (!icons.includes(icon.name) || customSvgPath(`${icon.name}.svg`)) {
+        continue;
+      }
       for (const [alias, tags] of Object.entries(iconsMap[icon.name])) {
         tagMap[`Icon${alias}`] = [...new Set([...icon.tags, ...tags])].sort();
+      }
+    }
+    // Custom icons have no Google metadata, so only their icons.json tags apply
+    for (const icon of icons.filter((icon) => customSvgPath(`${icon}.svg`))) {
+      for (const [alias, tags] of Object.entries(iconsMap[icon])) {
+        tagMap[`Icon${alias}`] = [...new Set(tags)].sort();
       }
     }
     writeFileSync(tagsPath, JSON.stringify(tagMap, null, 2) + "\n");
