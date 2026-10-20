@@ -1,5 +1,12 @@
 # @optiaxiom/icons
 
+## 1.11.0
+
+### Minor Changes
+
+- aa2de15: replaced `IconSparkles` with the custom Axiom AI sparkles glyph
+- 8ce63cf: added custom Virtual Teammate icon as `IconPersonSparkles`
+
 ## 1.10.0
 
 ### Minor Changes

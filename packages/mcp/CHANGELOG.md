@@ -1,5 +1,12 @@
 # @optiaxiom/mcp
 
+## 3.2.4
+
+### Patch Changes
+
+- aa2de15: replaced `IconSparkles` with the custom Axiom AI sparkles glyph
+- 8ce63cf: added custom Virtual Teammate icon as `IconPersonSparkles`
+
 ## 3.2.3
 
 ### Patch Changes
