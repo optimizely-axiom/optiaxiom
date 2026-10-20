@@ -131790,6 +131790,19 @@
       ],
       "name": "IconMagnifyingGlassMinus"
     },
+    "IconPersonSparkles": {
+      "import": "import { IconPersonSparkles } from '@optiaxiom/icons';",
+      "keywords": [
+        "agent",
+        "ai",
+        "artificial intelligence",
+        "person",
+        "user",
+        "virtual teammate",
+        "vt"
+      ],
+      "name": "IconPersonSparkles"
+    },
     "IconSparkles": {
       "import": "import { IconSparkles } from '@optiaxiom/icons';",
       "keywords": ["ai", "artificial intelligence", "magic", "sparkle", "star"],

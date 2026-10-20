@@ -218,6 +218,17 @@
   "person_check": ["UserCheck"],
   "person_edit": ["UserPen"],
   "person_off": ["UserSlash"],
+  "person_sparkles": {
+    "PersonSparkles": [
+      "agent",
+      "ai",
+      "artificial intelligence",
+      "person",
+      "user",
+      "virtual teammate",
+      "vt"
+    ]
+  },
   "person": ["User"],
   "photo_library": ["Images"],
   "picture_as_pdf": ["FilePdf"],

@@ -256,6 +256,7 @@ export { IconPersonCancel as IconUserXmark } from "../svg/person_cancel.svg";
 export { IconPersonCheck as IconUserCheck } from "../svg/person_check.svg";
 export { IconPersonEdit as IconUserPen } from "../svg/person_edit.svg";
 export { IconPersonOff as IconUserSlash } from "../svg/person_off.svg";
+export { IconPersonSparkles as IconPersonSparkles } from "../svg/person_sparkles.svg";
 export { IconPhotoLibrary as IconImages } from "../svg/photo_library.svg";
 export { IconPictureAsPdf as IconFilePdf } from "../svg/picture_as_pdf.svg";
 export { IconPieChart as IconFileChartPie } from "../svg/pie_chart.svg";
