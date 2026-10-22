@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.11.1
+
+### Patch Changes
+
+- c51039f: widened the gap between stars in `IconSparkles`
+
 ## 1.11.0
 
 ### Minor Changes
