@@ -840,6 +840,17 @@ export const AskUserQuestion: Story = {
     },
   },
   play: async ({ canvas }) => {
+    await waitFor(() =>
+      expect(
+        canvas.getByRole("radio", { name: /Search existing/ }),
+      ).toHaveFocus(),
+    );
+  },
+};
+
+export const AskUserQuestionCollapsed: Story = {
+  args: AskUserQuestion.args,
+  play: async ({ canvas }) => {
     const trigger = canvas.getByRole("button", {
       name: "How should I handle the Flow components?",
     });
@@ -850,15 +861,6 @@ export const AskUserQuestion: Story = {
       expect(
         canvas.queryByRole("radio", { name: /Search existing/ }),
       ).not.toBeInTheDocument(),
-    );
-
-    // expand again so the snapshot captures the open card
-    await userEvent.click(trigger);
-    await expect(trigger).toHaveAttribute("aria-expanded", "true");
-    await waitFor(() =>
-      expect(
-        canvas.getByRole("radio", { name: /Search existing/ }),
-      ).toBeVisible(),
     );
   },
 };
