@@ -899,6 +899,62 @@ export const AskUserQuestionManyOptions: Story = {
   parameters: AskUserQuestion.parameters,
 };
 
+export const AskUserQuestionWithDescriptions: Story = {
+  args: {
+    ...AskUserQuestion.args,
+    data: {
+      questions: [
+        {
+          options: [
+            {
+              description:
+                "Reuse a component that **already exists** in the design system.\n\n- Fastest to ship\n- Stays consistent with other flows\n- May need small API changes",
+              label: "Search existing",
+            },
+            {
+              description:
+                "![Draft component](https://placehold.co/640x360/png?text=Axiom+draft)\n\nGenerate a new component from the **Axiom** primitives.\n\n1. Pick the closest primitives\n2. Compose them into a draft\n3. Review against the [guidelines](https://optimizely-axiom.github.io/optiaxiom/)",
+              label: "Generate from Axiom",
+            },
+            {
+              description:
+                "Build it by hand. Best when the flow is unlike anything in the system, but it takes the longest and needs a design review.\n\n### What it involves\n\n1. Write a short brief covering the problem, the users, and the constraints\n2. Sketch two or three directions and review them with design\n3. Prototype the chosen direction against real data\n4. Build the component with stories for every state\n5. Run an accessibility pass: keyboard, screen reader, and contrast\n6. Document the API and add usage guidance\n\n### When to pick it\n\n- Nothing in the system comes close\n- The flow will be reused widely enough to justify the cost\n- There is time for a proper design review",
+              label: "Start from scratch",
+            },
+            "Decide later",
+          ],
+          question: "How should I handle the Flow components?",
+          type: "single_select",
+        },
+        {
+          options: [
+            {
+              description: "Fast, isolated checks of logic and state.",
+              label: "Unit",
+            },
+            {
+              description:
+                "Exercise components together, with `msw` for the network.",
+              label: "Integration",
+            },
+            {
+              description: "Chromatic snapshots of every story.",
+              label: "Visual regression",
+            },
+            {
+              description: "axe checks plus a keyboard-only pass.",
+              label: "Accessibility",
+            },
+          ],
+          question: "Which tests should I add?",
+          type: "multi_select",
+        },
+      ],
+    },
+  },
+  parameters: AskUserQuestion.parameters,
+};
+
 export const AskAgentInput: Story = {
   args: {
     data: {
