@@ -25,6 +25,73 @@ export const question = recipe({
 
 const marker = style({});
 
+// The revised mock insets the header 16px, inside the card's 20px padding.
+export const header = recipe({
+  base: [
+    {
+      py: "0",
+    },
+    style({
+      marginInline: "-4px",
+    }),
+  ],
+});
+
+export const options = recipe({
+  base: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  variants: {
+    capped: {
+      false: {},
+      // A half-visible row signals the list scrolls where scrollbars stay
+      // hidden until used. Padding keeps focus outlines inside the clip.
+      true: style({
+        margin: "-3px",
+        maxHeight: "224px", // 3.5 rows of 64px
+        overflowY: "auto",
+        padding: "3px",
+        scrollPadding: "3px", // so focusing the last row scrolls fully to the end
+      }),
+    },
+  },
+});
+
+// Arrow keys already scroll the list, so the button is pointer-only.
+export const jump = recipe({
+  base: [
+    // The ring of page background keeps row dividers from running into the
+    // button's border as the list scrolls behind it.
+    {
+      bg: "bg.default",
+      display: "flex",
+      flex: "none",
+      p: "4",
+      rounded: "full",
+      transition: "opacity",
+    },
+    // Not a sprinkle: sprinkles outrank style(), so the selector below could
+    // never turn pointer events back on.
+    style({
+      alignSelf: "center",
+      bottom: 0,
+      marginTop: "-40px", // button size (32px) + ring (2 × 4px)
+      opacity: 0,
+      pointerEvents: "none",
+      position: "sticky",
+      zIndex: 1,
+
+      selectors: {
+        "[data-can-scroll] > &": {
+          opacity: 1,
+          pointerEvents: "auto",
+        },
+      },
+    }),
+  ],
+});
+
 export const choiceGroup = recipe({
   base: {
     flexDirection: "column",
@@ -89,6 +156,68 @@ export const choice = recipe({
       text: {
         cursor: "text",
       },
+    },
+    footer: {
+      false: {},
+      // A flat band flush with the card's edges across its 20px padding, with
+      // the divider above it.
+      true: [
+        {
+          px: "16",
+          rounded: "none",
+        },
+        style({
+          backgroundColor: "transparent",
+          borderInlineWidth: 0,
+          borderTop: `1px solid ${theme.colors["border.secondary"]}`,
+          marginBottom: "-20px",
+          marginInline: "-20px",
+          marginTop: "16px", // the same gap as the multi select footer
+
+          "@media": {
+            "(hover: hover)": {
+              selectors: {
+                [`&:hover, &[data-selected], &:has([contenteditable]:focus)`]: {
+                  backgroundColor: "transparent",
+                  borderColor: theme.colors["border.secondary"],
+                },
+              },
+            },
+          },
+        }),
+      ],
+    },
+    // The footer divider already closes the list.
+    last: {
+      false: {},
+      true: style({
+        borderBottomColor: "transparent",
+      }),
+    },
+  },
+});
+
+export const selection = recipe({
+  base: {
+    borderColor: "border.secondary",
+    borderT: "1",
+    gap: "8",
+    pt: "16",
+    px: "16",
+  },
+  variants: {
+    // Spans the card edge to edge across its 20px padding.
+    bleed: {
+      false: {},
+      true: [
+        {
+          pb: "16",
+        },
+        style({
+          marginBottom: "-20px",
+          marginInline: "-20px",
+        }),
+      ],
     },
   },
 });

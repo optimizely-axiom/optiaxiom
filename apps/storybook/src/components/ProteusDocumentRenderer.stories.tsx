@@ -25,8 +25,8 @@ export default {
     strict: true,
   },
   component: ProteusDocumentRenderer,
-  decorators: (Story) => (
-    <Box style={{ maxWidth: 600 }}>
+  decorators: (Story, { parameters }) => (
+    <Box style={{ maxWidth: parameters.maxWidth ?? 600 }}>
       <Story />
     </Box>
   ),
@@ -839,6 +839,7 @@ export const AskUserQuestion: Story = {
       },
     },
   },
+  parameters: { maxWidth: 768 }, // opal-app's chat column
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole("button", {
       name: "How should I handle the Flow components?",
@@ -861,6 +862,41 @@ export const AskUserQuestion: Story = {
       ).toBeVisible(),
     );
   },
+};
+
+export const AskUserQuestionManyOptions: Story = {
+  args: {
+    ...AskUserQuestion.args,
+    data: {
+      questions: [
+        {
+          options: [
+            "I would like to know how to use Opal",
+            "Tell me what tools to connect",
+            "Draft a campaign brief",
+            "Audit my site for SEO issues",
+            "Summarize last week's experiment results",
+            "Set up a new workflow",
+          ],
+          question: "What would you like help with today?",
+          type: "single_select",
+        },
+        {
+          options: [
+            "Unit",
+            "Integration",
+            "Visual regression",
+            "Accessibility",
+            "Performance",
+            "End-to-end",
+          ],
+          question: "Which tests should I add?",
+          type: "multi_select",
+        },
+      ],
+    },
+  },
+  parameters: AskUserQuestion.parameters,
 };
 
 export const AskAgentInput: Story = {
