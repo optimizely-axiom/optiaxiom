@@ -37,6 +37,35 @@ export const header = recipe({
   ],
 });
 
+// The disclosure trigger covers the whole header, so the controls stack above
+// it: near-misses on the gaps or the count must not collapse the card.
+export const controls = recipe({
+  base: [
+    {
+      flex: "none",
+      gap: "6",
+    },
+    style({
+      position: "relative",
+    }),
+  ],
+});
+
+// The pager buttons are small, so their Cover fills this padded box to give
+// them a larger hit area without changing the layout.
+export const hitArea = recipe({
+  base: [
+    {
+      display: "flex",
+    },
+    style({
+      margin: "-8px -4px",
+      padding: "8px 4px",
+      position: "relative",
+    }),
+  ],
+});
+
 export const options = recipe({
   base: {
     display: "flex",
