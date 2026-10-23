@@ -121,6 +121,45 @@ export const jump = recipe({
   ],
 });
 
+export const split = recipe({
+  base: [
+    {
+      display: "grid",
+      gap: "16",
+    },
+    style({
+      gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",
+    }),
+  ],
+});
+
+// Sized by the options column, never by its own content, so a long
+// description scrolls inside it instead of changing the card's height.
+export const preview = recipe({
+  base: [
+    {
+      borderColor: "border.secondary",
+      borderL: "1",
+      color: "fg.secondary",
+      fontSize: "sm",
+      overflow: "auto",
+      pl: "16",
+      py: "16",
+    },
+    style({
+      contain: "size",
+
+      selectors: {
+        // Fades the bottom edge while there is more to read.
+        "&[data-can-scroll]": {
+          maskImage:
+            "linear-gradient(to bottom, #000 calc(100% - 32px), transparent)",
+        },
+      },
+    }),
+  ],
+});
+
 export const choiceGroup = recipe({
   base: {
     flexDirection: "column",

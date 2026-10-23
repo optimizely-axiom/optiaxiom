@@ -10,6 +10,7 @@ import {
   Text,
 } from "@optiaxiom/react";
 import { InlineInput } from "@optiaxiom/react/unstable";
+import { useId } from "@radix-ui/react-id";
 import * as RovingFocus from "@radix-ui/react-roving-focus";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
@@ -17,6 +18,7 @@ import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { IconX } from "../icons/IconX";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
+import { ProteusMarkdown } from "../proteus-markdown";
 import * as styles from "./ProteusQuestion.css";
 
 export type ProteusQuestionProps = {
@@ -36,9 +38,18 @@ export type ProteusQuestionProps = {
 };
 
 type QuestionData = {
-  options: string[];
+  /**
+   * An option is its label, or a label with a markdown description shown in a
+   * preview panel beside the options. Answers are always the labels.
+   */
+  options: Array<QuestionOption | string>;
   question: string;
   type: "multi_select" | "single_select";
+};
+
+type QuestionOption = {
+  description?: string;
+  label: string;
 };
 
 export function ProteusQuestion({
@@ -116,11 +127,40 @@ export function ProteusQuestion({
   const otherInputRef = useRef<HTMLInputElement>(null);
   const otherItemRef = useRef<HTMLDivElement>(null);
 
+  // Keyboard focus previews at once; hover (and leaving, which falls back to
+  // the focused option) waits so sweeping the pointer across the list doesn't
+  // flash every description.
+  const previewId = useId();
+  const [focusPreview, setFocusPreview] = useState<string>();
+  // `null` while hovering a row with nothing to preview ("Something else").
+  const [hoverPreview, setHoverPreview] = useState<null | string>();
+  const hoverTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+  useEffect(() => () => clearTimeout(hoverTimerRef.current), []);
+  const preview = useCanScroll();
+  // Preview whichever row looks marked: hovered, visibly focused, or the
+  // selected single select answer.
+  const selected =
+    questions[currentIndex]?.type === "single_select" ? value?.[0] : undefined;
+  const previewLabel =
+    hoverPreview === undefined ? (focusPreview ?? selected) : hoverPreview;
+  useEffect(() => {
+    preview.nodeRef.current?.scrollTo({ top: 0 });
+    preview.update();
+  }, [preview, previewLabel]);
+
   if (!Array.isArray(questions) || currentIndex >= questions.length) {
     return null;
   }
 
-  const { options, question, type } = questions[currentIndex];
+  const { question, type } = questions[currentIndex];
+  const items = questions[currentIndex].options.map((option) =>
+    typeof option === "string" ? { label: option } : option,
+  );
+  const options = items.map((item) => item.label);
+  const hasDescriptions = items.some((item) => item.description);
+  const previewItem = items.find(
+    (item) => item.label === previewLabel && item.description,
+  );
   const isLast = currentIndex === questions.length - 1;
 
   const otherValue = value?.find((v) => !options.includes(v));
@@ -252,6 +292,17 @@ export function ProteusQuestion({
     <Box
       aria-label="Something else"
       data-selected={otherChecked ? "" : undefined}
+      onMouseEnter={() => {
+        clearTimeout(hoverTimerRef.current);
+        hoverTimerRef.current = setTimeout(() => setHoverPreview(null), 300);
+      }}
+      onMouseLeave={() => {
+        clearTimeout(hoverTimerRef.current);
+        hoverTimerRef.current = setTimeout(
+          () => setHoverPreview(undefined),
+          300,
+        );
+      }}
       role="group"
       {...styles.choice({ cursor: "text", footer })}
     >
@@ -379,6 +430,9 @@ export function ProteusQuestion({
           <RovingFocus.Item asChild key={option}>
             <Box
               aria-checked={type === "single_select" ? checked : undefined}
+              aria-describedby={
+                items[index].description ? previewId : undefined
+              }
               data-disabled={disabled ? "" : undefined}
               data-selected={
                 checked && type === "single_select" ? "" : undefined
@@ -396,7 +450,14 @@ export function ProteusQuestion({
                   );
                 }
               }}
-              onFocus={() => {
+              onFocus={(event) => {
+                // Focus moved in code after a click shows no ring, so a
+                // preview would point at a row that looks untouched.
+                setFocusPreview(
+                  event.currentTarget.matches(":focus-visible")
+                    ? option
+                    : undefined,
+                );
                 if (type === "single_select") {
                   onValueChange([option]);
                 }
@@ -417,6 +478,20 @@ export function ProteusQuestion({
                       : [...current, option],
                   );
                 }
+              }}
+              onMouseEnter={() => {
+                clearTimeout(hoverTimerRef.current);
+                hoverTimerRef.current = setTimeout(
+                  () => setHoverPreview(option),
+                  300,
+                );
+              }}
+              onMouseLeave={() => {
+                clearTimeout(hoverTimerRef.current);
+                hoverTimerRef.current = setTimeout(
+                  () => setHoverPreview(undefined),
+                  300,
+                );
               }}
               role={type === "single_select" ? "radio" : "option"}
               tabIndex={0}
@@ -477,7 +552,44 @@ export function ProteusQuestion({
           role={type === "single_select" ? "radiogroup" : "listbox"}
           {...styles.choiceGroup()}
         >
-          {list}
+          {hasDescriptions ? (
+            <Box {...styles.split()}>
+              {list}
+              <Box
+                id={previewId}
+                // Keep a hovered preview while the pointer is on it, so a long
+                // description can be scrolled and read.
+                onMouseEnter={() => clearTimeout(hoverTimerRef.current)}
+                onMouseLeave={() => {
+                  hoverTimerRef.current = setTimeout(
+                    () => setHoverPreview(undefined),
+                    300,
+                  );
+                }}
+                ref={preview.ref}
+                {...styles.preview()}
+              >
+                {previewItem?.description ? (
+                  <ProteusMarkdown>{previewItem.description}</ProteusMarkdown>
+                ) : (
+                  previewLabel === undefined && (
+                    <Box
+                      color="fg.tertiary"
+                      display="grid"
+                      fontSize="sm"
+                      h="full"
+                      placeItems="center"
+                      textAlign="center"
+                    >
+                      Hover an option to see details
+                    </Box>
+                  )
+                )}
+              </Box>
+            </Box>
+          ) : (
+            list
+          )}
 
           {footer && other}
         </Group>
@@ -512,6 +624,13 @@ export function ProteusQuestion({
 
   return (
     <Group
+      onFocus={(event) => {
+        if (
+          !(event.target as HTMLElement).closest("[role=option], [role=radio]")
+        ) {
+          setFocusPreview(undefined);
+        }
+      }}
       onKeyDown={(event) => {
         if (event.key === "Escape") {
           event.preventDefault();
@@ -596,9 +715,12 @@ function useCanScroll() {
     const observer = new ResizeObserver(update);
     observer.observe(node);
     node.addEventListener("scroll", update, { passive: true });
+    // Images change the content height without resizing the element.
+    node.addEventListener("load", update, true);
     cleanupRef.current = () => {
       observer.disconnect();
       node.removeEventListener("scroll", update);
+      node.removeEventListener("load", update, true);
     };
   }, []);
 
