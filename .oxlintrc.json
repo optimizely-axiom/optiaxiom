@@ -442,6 +442,33 @@
       }
     },
     {
+      "files": ["**/packages/*/src/**"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": [
+              {
+                "name": "react",
+                "importNames": [
+                  "startTransition",
+                  "use",
+                  "useActionState",
+                  "useDeferredValue",
+                  "useId",
+                  "useInsertionEffect",
+                  "useOptimistic",
+                  "useSyncExternalStore",
+                  "useTransition"
+                ],
+                "message": "Published packages support React 16 and 17, which lack this API. Use a polyfill such as `@radix-ui/react-id` for `useId`."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
       "files": ["**/packages/icons/src/index.ts"],
       "rules": {
         "local/consistent-icon-name": "error"
