@@ -1,5 +1,18 @@
 # @optiaxiom/proteus
 
+## 3.10.0
+
+### Minor Changes
+
+- ae5a878: added markdown descriptions to Question options
+- ea9cd1d: scroll collapsible Question options under a pinned footer
+
+### Patch Changes
+
+- e6292ee: stop near-misses on the Question pager collapsing the card
+- Updated dependencies [7a5b5ac]
+  - @optiaxiom/react@3.4.3
+
 ## 3.9.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 3.4.3
+
+### Patch Changes
+
+- 7a5b5ac: fixed `Menu` crashing on React 17 in dialog layout
+
 ## 3.4.2
 
 ### Patch Changes
