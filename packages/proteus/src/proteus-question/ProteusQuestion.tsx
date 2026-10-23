@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Checkbox,
+  Cover,
   DisclosureContent,
   DisclosureTrigger,
   Group,
@@ -193,34 +194,42 @@ export function ProteusQuestion({
   };
 
   const controls = (
-    <Group flex="none" gap="6">
+    <Group {...styles.controls()}>
       {questions.length > 1 && (
         <>
-          <Button
-            appearance="subtle"
-            aria-label="Previous"
-            disabled={currentIndex === 0}
-            icon={<IconAngleLeft />}
-            onClick={(event) => {
-              event.preventDefault();
-              goBack();
-            }}
-            size="sm"
-          />
+          <Box {...styles.hitArea()}>
+            <Cover asChild>
+              <Button
+                appearance="subtle"
+                aria-label="Previous"
+                disabled={currentIndex === 0}
+                icon={<IconAngleLeft />}
+                onClick={(event) => {
+                  event.preventDefault();
+                  goBack();
+                }}
+                size="sm"
+              />
+            </Cover>
+          </Box>
           <Text color="fg.tertiary" fontSize="sm">
             {currentIndex + 1} of {questions.length}
           </Text>
-          <Button
-            appearance="subtle"
-            aria-label="Next"
-            disabled={isLast}
-            icon={<IconAngleRight />}
-            onClick={(event) => {
-              event.preventDefault();
-              setCurrentIndex((i) => i + 1);
-            }}
-            size="sm"
-          />
+          <Box {...styles.hitArea()}>
+            <Cover asChild>
+              <Button
+                appearance="subtle"
+                aria-label="Next"
+                disabled={isLast}
+                icon={<IconAngleRight />}
+                onClick={(event) => {
+                  event.preventDefault();
+                  setCurrentIndex((i) => i + 1);
+                }}
+                size="sm"
+              />
+            </Cover>
+          </Box>
         </>
       )}
       <Button
