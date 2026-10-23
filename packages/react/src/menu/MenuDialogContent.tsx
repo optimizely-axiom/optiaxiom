@@ -1,5 +1,6 @@
+import { useId } from "@radix-ui/react-id";
 import clsx from "clsx";
-import { type ComponentPropsWithoutRef, forwardRef, useId } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { MenuContent } from "./MenuContent";
 
