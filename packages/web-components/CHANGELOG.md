@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 3.3.3
+
+### Patch Changes
+
+- 7a5b5ac: fixed `Menu` crashing on React 17 in dialog layout
+
 ## 3.3.2
 
 ### Patch Changes
