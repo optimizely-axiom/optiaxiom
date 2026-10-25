@@ -33,6 +33,11 @@ export const [ProteusDocumentProvider, useProteusDocumentContext] =
      */
     collapsible: boolean | undefined;
     data: Record<string, unknown>;
+    /**
+     * Whether the host runs host scripts (`onHostScript`). Without it, an
+     * action naming one renders disabled.
+     */
+    hostScripts: boolean;
     icons: ProteusIconMap | undefined;
     onDataChange: (path: string, value: unknown) => void;
     onEvent: (event: ProteusEventHandler) => Promise<unknown>;

@@ -85,6 +85,13 @@ export type ProteusDocumentShellProps = {
    */
   onDownload?: (urls: string[]) => Promise<void> | void;
   /**
+   * Callback when user clicks an Action button with a `hostScript` handler:
+   * the host runs the named script on its server, as the user, with `args` as
+   * data. As for an interaction, the host merges whatever it returns into the
+   * document's data. Without it, such buttons render disabled.
+   */
+  onHostScript?: (name: string, args: string[]) => Promise<unknown> | unknown;
+  /**
    * Callback when user clicks a Action button with interaction handler.
    *
    * `mode` tells the host who owns the state that follows the call: `"update"`
@@ -201,6 +208,7 @@ export function ProteusDocumentShell({
   icons,
   onDataChange,
   onDownload,
+  onHostScript,
   onInteraction,
   onMessage,
   onOpenChange,
@@ -274,6 +282,8 @@ export function ProteusDocumentShell({
         event.params,
         event.mode ?? "update",
       );
+    } else if ("hostScript" in event) {
+      return await onHostScript?.(event.hostScript, event.args ?? []);
     } else if ("message" in event) {
       await onMessage?.(event.message);
     } else if ("script" in event) {
@@ -408,6 +418,7 @@ export function ProteusDocumentShell({
     <ProteusDocumentProvider
       collapsible={bodyCollapsible}
       data={data}
+      hostScripts={!!onHostScript}
       icons={icons}
       onDataChange={useEvent((path: string, value: unknown) => {
         onDataChange?.((prev) => {

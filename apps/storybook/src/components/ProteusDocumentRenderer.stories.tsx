@@ -763,6 +763,112 @@ export const WithAsyncActions: Story = {
   },
 };
 
+const hostScriptButton = {
+  $type: "Button",
+  appearance: "primary",
+  children: "Reply",
+  onClick: { args: ["L-7"], hostScript: "reply-l-7" },
+};
+
+export const WithHostScript: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        {
+          $type: "Show",
+          children: hostScriptButton,
+          else: {
+            $type: "Text",
+            children: { $type: "Value", path: "/result" },
+          },
+          when: { "!": { $type: "Value", path: "/result" } },
+        },
+      ],
+      title: "Host-run script",
+    },
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Reply" }));
+    // the host runs the script and merges what it returns into the data
+    await expect(
+      await canvas.findByText("Ran reply-l-7 with L-7"),
+    ).toBeInTheDocument();
+  },
+  render: function Render(args) {
+    const [data, setData] = useState<Record<string, unknown>>({});
+    return (
+      <ProteusDocumentRenderer
+        {...args}
+        data={data}
+        onDataChange={setData}
+        onHostScript={async (name, scriptArgs) => {
+          action("onHostScript")(name, scriptArgs);
+          setData((prev) => ({
+            ...prev,
+            result: `Ran ${name} with ${scriptArgs.join(", ")}`,
+          }));
+        }}
+      />
+    );
+  },
+};
+
+export const WithHostScriptUnavailable: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [hostScriptButton],
+      title: "Host-run script",
+    },
+  },
+  play: async ({ canvas }) => {
+    // without `onHostScript` the host can't run it, so the button says so
+    const button = canvas.getByRole("button", { name: "Reply" });
+    await expect(button).toBeDisabled();
+    await expect(button).toHaveAttribute("title", "Not available here");
+  },
+};
+
+export const WithHostScriptInvalid: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        { $type: "Text", children: "Only well-formed host scripts render." },
+        {
+          ...hostScriptButton,
+          children: "Bad name",
+          onClick: { hostScript: "Reply L-7" },
+        },
+        {
+          ...hostScriptButton,
+          children: "Bad args",
+          onClick: { args: ["line\nbreak"], hostScript: "reply-l-7" },
+        },
+      ],
+      title: "Host-run script",
+    },
+    onHostScript: action("onHostScript"),
+    strict: false,
+  },
+  play: async ({ canvas }) => {
+    // the schema refuses a malformed name or args, so the button never renders
+    await expect(
+      canvas.getByText("Only well-formed host scripts render."),
+    ).toBeInTheDocument();
+    await expect(
+      canvas.queryByRole("button", { name: "Bad name" }),
+    ).not.toBeInTheDocument();
+    await expect(
+      canvas.queryByRole("button", { name: "Bad args" }),
+    ).not.toBeInTheDocument();
+  },
+};
+
 export const ReadonlyMode: Story = {
   args: {
     data: { message: "This form is readonly", name: "John Doe" },

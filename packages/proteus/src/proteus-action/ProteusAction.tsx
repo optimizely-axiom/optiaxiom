@@ -22,7 +22,7 @@ export function ProteusAction({
   type = "button",
   ...props
 }: ProteusActionProps) {
-  const { onEvent, pendingAction, setPendingAction, valid } =
+  const { hostScripts, onEvent, pendingAction, setPendingAction, valid } =
     useProteusDocumentContext("@optiaxiom/proteus/ProteusAction");
   const { path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/proteus/ProteusAction",
@@ -34,10 +34,14 @@ export function ProteusAction({
   const id = useId();
   const loading = pendingAction === id;
   const otherActionPending = !!pendingAction && !loading;
+  // A host-run script needs a host that runs it.
+  const unavailable = !!onClick && "hostScript" in onClick && !hostScripts;
 
   return (
     <Button
-      disabled={(type === "submit" && !valid) || otherActionPending}
+      disabled={
+        (type === "submit" && !valid) || otherActionPending || unavailable
+      }
       justifyContent="center"
       loading={loading}
       onClick={async () => {
@@ -57,6 +61,7 @@ export function ProteusAction({
       }}
       type={type}
       {...props}
+      {...(unavailable && { title: "Not available here" })}
     >
       {children}
     </Button>

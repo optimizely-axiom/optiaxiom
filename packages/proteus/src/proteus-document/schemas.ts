@@ -134,6 +134,7 @@ export type ProteusEventHandler =
       path: string;
       value?: unknown;
     }
+  | { args?: string[]; hostScript: string }
   | {
       interaction: string;
       mode?: "read" | "update";

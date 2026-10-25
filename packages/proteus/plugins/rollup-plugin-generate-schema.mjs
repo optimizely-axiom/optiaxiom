@@ -880,6 +880,32 @@ function generateSpec(additionalProperties = false) {
             },
             {
               ...(additionalProperties ? {} : { additionalProperties: false }),
+              description:
+                "Host-run script: the host runs the named script on its server, as the user. The document never carries the code.",
+              properties: {
+                args: {
+                  description:
+                    "Arguments passed to the script, as data: at most 8, each at most 120 characters with no line breaks or tabs.",
+                  items: {
+                    maxLength: 120,
+                    pattern: "^[^\\n\\t]*$",
+                    type: "string",
+                  },
+                  maxItems: 8,
+                  type: "array",
+                },
+                hostScript: {
+                  description:
+                    "Name of the script the host runs: lowercase letters, digits and hyphens.",
+                  pattern: "^[a-z0-9][a-z0-9-]{0,63}$",
+                  type: "string",
+                },
+              },
+              required: ["hostScript"],
+              type: "object",
+            },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
               description: "Client-side message action",
               properties: {
                 message: {
