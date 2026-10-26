@@ -906,6 +906,46 @@ export const WithHostScriptOutsideButtons: Story = {
   },
 };
 
+export const WithHostScriptFromScript: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        {
+          $type: "Button",
+          children: "Run script",
+          onClick: { script: "main:run" },
+        },
+        { $type: "Text", children: { $type: "Value", path: "/status" } },
+      ],
+      scripts: {
+        main: [
+          "register('run', async (ctx) => {",
+          "  await ctx.emit({ hostScript: 'reply-l-7', args: ['L-7'] });",
+          "  ctx.emit({ action: 'setValue', path: '/status', value: 'Script done' });",
+          "});",
+        ].join("\n"),
+      },
+      title: "Host-run script",
+    },
+    onHostScript: fn(),
+  },
+  play: async ({ args, canvas }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Run script" }));
+    // emitted events skip the schema, so a script must not reach the host's
+    // server: only a click on a `hostScript` Action does
+    await expect(await canvas.findByText("Script done")).toBeInTheDocument();
+    await expect(args.onHostScript).not.toHaveBeenCalled();
+  },
+  render: function Render(args) {
+    const [data, setData] = useState<Record<string, unknown>>({});
+    return (
+      <ProteusDocumentRenderer {...args} data={data} onDataChange={setData} />
+    );
+  },
+};
+
 export const ReadonlyMode: Story = {
   args: {
     data: { message: "This form is readonly", name: "John Doe" },

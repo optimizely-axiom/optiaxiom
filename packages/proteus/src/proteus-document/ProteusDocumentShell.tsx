@@ -390,9 +390,16 @@ export function ProteusDocumentShell({
 
   // Events a script emits are re-dispatched through the same `onEvent`, so
   // scripts can only trigger the existing Proteus events (no new capabilities).
+  // Emitted events skip schema validation, and a host script runs code on the
+  // host's server, so it takes a user's click on an Action.
   const runScript = useProteusScripts({
     data,
-    onEmit: onEvent,
+    onEmit: async (event) => {
+      if ("hostScript" in event) {
+        return;
+      }
+      return await onEvent(event);
+    },
     scripts: element.scripts,
   });
 
