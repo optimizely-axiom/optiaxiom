@@ -87,8 +87,8 @@ export type ProteusDocumentShellProps = {
   /**
    * Callback when user clicks an Action button with a `hostScript` handler:
    * the host runs the named script on its server, as the user, with `args` as
-   * data. As for an interaction, the host merges whatever it returns into the
-   * document's data. Without it, such buttons render disabled.
+   * data. The renderer ignores the return value: write any result back through
+   * `data`/`onDataChange`. Without it, such buttons render disabled.
    */
   onHostScript?: (name: string, args: string[]) => Promise<unknown> | unknown;
   /**
