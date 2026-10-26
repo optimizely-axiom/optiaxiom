@@ -849,6 +849,11 @@ export const WithHostScriptInvalid: Story = {
           children: "Bad args",
           onClick: { args: ["line\nbreak"], hostScript: "reply-l-7" },
         },
+        {
+          ...hostScriptButton,
+          children: "Bad control character",
+          onClick: { args: ["carriage\rreturn"], hostScript: "reply-l-7" },
+        },
       ],
       title: "Host-run script",
     },
@@ -865,6 +870,9 @@ export const WithHostScriptInvalid: Story = {
     ).not.toBeInTheDocument();
     await expect(
       canvas.queryByRole("button", { name: "Bad args" }),
+    ).not.toBeInTheDocument();
+    await expect(
+      canvas.queryByRole("button", { name: "Bad control character" }),
     ).not.toBeInTheDocument();
   },
 };

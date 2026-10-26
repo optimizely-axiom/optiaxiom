@@ -1069,10 +1069,10 @@ function generateSpec(additionalProperties = false) {
           properties: {
             args: {
               description:
-                "Arguments passed to the script, as data: at most 8, each at most 120 characters with no line breaks or tabs.",
+                "Arguments passed to the script, as data: at most 8, each at most 120 characters with no control characters (line breaks, tabs).",
               items: {
                 maxLength: 120,
-                pattern: "^[^\\n\\t]*$",
+                pattern: "^[^\\x00-\\x1f\\x7f]*$",
                 type: "string",
               },
               maxItems: 8,
