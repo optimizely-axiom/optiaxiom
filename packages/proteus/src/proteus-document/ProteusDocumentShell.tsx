@@ -21,7 +21,7 @@ import {
 } from "react";
 
 import type {
-  ProteusEventHandler,
+  ProteusActionHandler,
   ProteusPreviewFile,
   StructuredMessage,
 } from "./schemas";
@@ -84,6 +84,13 @@ export type ProteusDocumentShellProps = {
    * Falls back to built-in window.open behaviour when absent.
    */
   onDownload?: (urls: string[]) => Promise<void> | void;
+  /**
+   * Callback when user clicks an Action button with a `hostScript` handler:
+   * the host runs the named script on its server, as the user, with `args` as
+   * data. The renderer ignores the return value: write any result back through
+   * `data`/`onDataChange`. Without it, such buttons render disabled.
+   */
+  onHostScript?: (name: string, args: string[]) => Promise<unknown> | unknown;
   /**
    * Callback when user clicks a Action button with interaction handler.
    *
@@ -201,6 +208,7 @@ export function ProteusDocumentShell({
   icons,
   onDataChange,
   onDownload,
+  onHostScript,
   onInteraction,
   onMessage,
   onOpenChange,
@@ -267,13 +275,15 @@ export function ProteusDocumentShell({
   const bodyCollapsible = collapsibleProp && !element.appName && !inline;
   const Content = bodyCollapsible ? Group : DisclosureContent;
 
-  const onEvent = useEvent(async (event: ProteusEventHandler) => {
+  const onEvent = useEvent(async (event: ProteusActionHandler) => {
     if ("interaction" in event) {
       return await onInteraction?.(
         event.interaction,
         event.params,
         event.mode ?? "update",
       );
+    } else if ("hostScript" in event) {
+      return await onHostScript?.(event.hostScript, event.args ?? []);
     } else if ("message" in event) {
       await onMessage?.(event.message);
     } else if ("script" in event) {
@@ -380,9 +390,16 @@ export function ProteusDocumentShell({
 
   // Events a script emits are re-dispatched through the same `onEvent`, so
   // scripts can only trigger the existing Proteus events (no new capabilities).
+  // Emitted events skip schema validation, and a host script runs code on the
+  // host's server, so it takes a user's click on an Action.
   const runScript = useProteusScripts({
     data,
-    onEmit: onEvent,
+    onEmit: async (event) => {
+      if ("hostScript" in event) {
+        return;
+      }
+      return await onEvent(event);
+    },
     scripts: element.scripts,
   });
 
@@ -408,6 +425,7 @@ export function ProteusDocumentShell({
     <ProteusDocumentProvider
       collapsible={bodyCollapsible}
       data={data}
+      hostScripts={!!onHostScript}
       icons={icons}
       onDataChange={useEvent((path: string, value: unknown) => {
         onDataChange?.((prev) => {
