@@ -21,7 +21,7 @@ import {
 } from "react";
 
 import type {
-  ProteusEventHandler,
+  ProteusActionHandler,
   ProteusPreviewFile,
   StructuredMessage,
 } from "./schemas";
@@ -275,7 +275,7 @@ export function ProteusDocumentShell({
   const bodyCollapsible = collapsibleProp && !element.appName && !inline;
   const Content = bodyCollapsible ? Group : DisclosureContent;
 
-  const onEvent = useEvent(async (event: ProteusEventHandler) => {
+  const onEvent = useEvent(async (event: ProteusActionHandler) => {
     if ("interaction" in event) {
       return await onInteraction?.(
         event.interaction,

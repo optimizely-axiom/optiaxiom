@@ -12,7 +12,7 @@ import { ProteusDocumentRenderer, ProteusElement } from "@optiaxiom/proteus";
 import { Box, Group, Heading } from "@optiaxiom/react";
 import { useEffect, useRef, useState } from "react";
 import { action } from "storybook/actions";
-import { expect, userEvent, waitFor } from "storybook/test";
+import { expect, fn, userEvent, waitFor } from "storybook/test";
 
 export default {
   args: {
@@ -866,6 +866,43 @@ export const WithHostScriptInvalid: Story = {
     await expect(
       canvas.queryByRole("button", { name: "Bad args" }),
     ).not.toBeInTheDocument();
+  },
+};
+
+export const WithHostScriptOutsideButtons: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        { $type: "Text", children: "Only buttons run host scripts." },
+        {
+          $type: "CardLink",
+          children: "Open offer",
+          onClick: { hostScript: "reply-l-7" },
+        },
+        {
+          $type: "PillMenu",
+          inputName: "query",
+          name: "people",
+          onInputValueChange: { hostScript: "reply-l-7" },
+          options: [],
+        },
+      ],
+      title: "Host-run script",
+    },
+    onHostScript: fn(),
+    strict: false,
+  },
+  play: async ({ args, canvas }) => {
+    // a link click or a keystroke must not run code on the host's server, so
+    // the schema refuses both and neither element renders
+    await expect(
+      canvas.getByText("Only buttons run host scripts."),
+    ).toBeInTheDocument();
+    await expect(canvas.queryByText("Open offer")).not.toBeInTheDocument();
+    await expect(canvas.queryByRole("combobox")).not.toBeInTheDocument();
+    await expect(args.onHostScript).not.toHaveBeenCalled();
   },
 };
 

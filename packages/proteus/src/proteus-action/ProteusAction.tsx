@@ -3,7 +3,7 @@ import type { ButtonProps } from "@optiaxiom/react";
 import { Button } from "@optiaxiom/react";
 import { useId } from "@radix-ui/react-id";
 
-import type { ProteusEventHandler } from "../proteus-document/schemas";
+import type { ProteusActionHandler } from "../proteus-document/schemas";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
@@ -13,7 +13,7 @@ export type ProteusActionProps = Omit<ButtonProps, "onClick"> & {
   /**
    * Action triggered when button is clicked
    */
-  onClick?: ProteusEventHandler;
+  onClick?: ProteusActionHandler;
 };
 
 export function ProteusAction({
@@ -29,7 +29,7 @@ export function ProteusAction({
   );
   const resolvedOnClick = useResolveProteusValues(
     (onClick ?? {}) as Record<string, unknown>,
-  ) as ProteusEventHandler;
+  ) as ProteusActionHandler;
 
   const id = useId();
   const loading = pendingAction === id;
@@ -75,9 +75,9 @@ export function ProteusAction({
  * available — so the document-root event handler can apply it unambiguously.
  */
 function resolveEventPath(
-  event: ProteusEventHandler,
+  event: ProteusActionHandler,
   parentPath: string,
-): ProteusEventHandler {
+): ProteusActionHandler {
   if (
     event &&
     typeof event === "object" &&
