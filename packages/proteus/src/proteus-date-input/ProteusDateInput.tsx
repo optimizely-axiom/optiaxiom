@@ -2,6 +2,7 @@ import { DateInput, type DateInputProps } from "@optiaxiom/react";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
+import { useProteusValidation } from "../proteus-field/useProteusValidation";
 import { useProteusValue } from "../use-proteus-value";
 
 export function ProteusDateInput(props: DateInputProps) {
@@ -12,11 +13,13 @@ export function ProteusDateInput(props: DateInputProps) {
     "@optiaxiom/proteus/ProteusDateInput",
   );
 
+  const validation = useProteusValidation(props);
   const value = useProteusValue({ path: props.name ?? "" });
 
   return (
     <DateInput
       {...props}
+      {...validation}
       onValueChange={(value) => {
         if (props.name) {
           onDataChange?.(`${parentPath}/${props.name}`, value);

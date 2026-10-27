@@ -7,6 +7,7 @@ export * from "./proteus-date-input";
 export * from "./proteus-document";
 export * from "./proteus-element";
 export * from "./proteus-federated";
+export * from "./proteus-field";
 export * from "./proteus-file-upload";
 export * from "./proteus-image";
 export * from "./proteus-image-carousel";
