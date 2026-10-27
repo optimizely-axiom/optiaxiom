@@ -7,20 +7,17 @@ import type {
   CardHeaderProps,
   CardProps,
   CheckboxProps,
-  DateInputProps,
   DisclosureContentProps,
   DisclosureProps,
   DisclosureTriggerProps,
   FieldProps,
   GroupProps,
   HeadingProps,
-  InputProps,
   LinkProps,
   SelectContentProps,
   SelectTriggerProps,
   SeparatorProps,
   SwitchProps,
-  TextareaProps,
   TextProps,
 } from "@optiaxiom/react";
 import type { RichTextEditorProps } from "@optiaxiom/react/editor";
@@ -34,11 +31,13 @@ import type { ProteusCardLinkProps } from "../proteus-card-link/ProteusCardLink"
 import type { ProteusChartProps } from "../proteus-chart/ProteusChart";
 import type { ProteusDataTableRowProps } from "../proteus-data-table-row/ProteusDataTableRow";
 import type { ProteusDataTableProps } from "../proteus-data-table/ProteusDataTable";
+import type { ProteusDateInputProps } from "../proteus-date-input/ProteusDateInput";
 import type { ProteusFederatedProps } from "../proteus-federated/ProteusFederated";
 import type { ProteusFileIconProps } from "../proteus-file-icon/ProteusFileIcon";
 import type { ProteusFileUploadProps } from "../proteus-file-upload/ProteusFileUpload";
 import type { ProteusImageCarouselProps } from "../proteus-image-carousel/ProteusImageCarousel";
 import type { ProteusImageProps } from "../proteus-image/ProteusImage";
+import type { ProteusInputProps } from "../proteus-input/ProteusInput";
 import type { ProteusLengthProps } from "../proteus-length/ProteusLength";
 import type { ProteusMapIndexProps } from "../proteus-map-index/ProteusMapIndex";
 import type { ProteusMapProps } from "../proteus-map/ProteusMap";
@@ -47,6 +46,7 @@ import type { ProteusPillMenuProps } from "../proteus-pill-menu/ProteusPillMenu"
 import type { ProteusQuestionProps } from "../proteus-question/ProteusQuestion";
 import type { ProteusSelectProps } from "../proteus-select/ProteusSelect";
 import type { ProteusShowProps } from "../proteus-show/ProteusShow";
+import type { ProteusTextareaProps } from "../proteus-textarea/ProteusTextarea";
 import type { ProteusValueProps } from "../proteus-value/ProteusValue";
 import type { FileUploadMetadata } from "./ProteusDocumentContext";
 import type { ProteusDocumentShellProps } from "./ProteusDocumentShell";
@@ -62,14 +62,12 @@ export type ProteusElement =
   | (CardHeaderProps & { $type: "CardHeader" })
   | (CardProps & { $type: "Card" })
   | (CheckboxProps & { $type: "Checkbox" })
-  | (DateInputProps & { $type: "DateInput" })
   | (DisclosureContentProps & { $type: "DisclosureContent" })
   | (DisclosureProps & { $type: "Disclosure" })
   | (DisclosureTriggerProps & { $type: "DisclosureTrigger" })
   | (FieldProps & { $type: "Field" })
   | (GroupProps & { $type: "Group" })
   | (HeadingProps & { $type: "Heading" })
-  | (InputProps & { $type: "Input" })
   | (LinkProps & { $type: "Link" })
   | (ProteusActionProps & { $type: "Action" })
   | (ProteusActionProps & { $type: "Button" })
@@ -78,11 +76,13 @@ export type ProteusElement =
   | (ProteusChartProps & { $type: "Chart" })
   | (ProteusDataTableProps & { $type: "DataTable" })
   | (ProteusDataTableRowProps & { $type: "DataTableRow" })
+  | (ProteusDateInputProps & { $type: "DateInput" })
   | (ProteusFederatedProps & { $type: "Federated" })
   | (ProteusFileIconProps & { $type: "FileIcon" })
   | (ProteusFileUploadProps & { $type: "FileUpload" })
   | (ProteusImageCarouselProps & { $type: "ImageCarousel" })
   | (ProteusImageProps & { $type: "Image" })
+  | (ProteusInputProps & { $type: "Input" })
   | (ProteusLengthProps & { $type: "Length" })
   | (ProteusMapIndexProps & { $type: "MapIndex" })
   | (ProteusMapProps & { $type: "Map" })
@@ -91,6 +91,7 @@ export type ProteusElement =
   | (ProteusQuestionProps & { $type: "Question" })
   | (ProteusSelectProps & { $type: "Select" })
   | (ProteusShowProps & { $type: "Show" })
+  | (ProteusTextareaProps & { $type: "Textarea" })
   | (ProteusValueProps & { $type: "Value" })
   | (RangeProps & { $type: "Range" })
   | (RichTextEditorProps & { $type: "RichTextEditor" })
@@ -98,7 +99,6 @@ export type ProteusElement =
   | (SelectTriggerProps & { $type: "SelectTrigger" })
   | (SeparatorProps & { $type: "Separator" })
   | (SwitchProps & { $type: "Switch" })
-  | (TextareaProps & { $type: "Textarea" })
   | (TextProps & { $type: "Text" })
   | (TimeProps & { $type: "Time" });
 

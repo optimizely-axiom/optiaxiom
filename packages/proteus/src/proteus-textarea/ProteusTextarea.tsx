@@ -2,10 +2,23 @@ import { Textarea, type TextareaProps } from "@optiaxiom/react";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
-import { useProteusValidation } from "../proteus-field/useProteusValidation";
+import {
+  useProteusValidation,
+  type ValidationMessage,
+} from "../proteus-field/useProteusValidation";
 import { useProteusValue } from "../use-proteus-value";
 
-export function ProteusTextarea(props: TextareaProps) {
+export type ProteusTextareaProps = TextareaProps & {
+  /**
+   * Replace the browser's validation message, for any failure or per `ValidityState` flag.
+   */
+  validationMessage?: ValidationMessage;
+};
+
+export function ProteusTextarea({
+  validationMessage,
+  ...props
+}: ProteusTextareaProps) {
   const { onDataChange, readOnly } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusTextarea",
   );
@@ -13,7 +26,7 @@ export function ProteusTextarea(props: TextareaProps) {
     "@optiaxiom/proteus/ProteusTextarea",
   );
 
-  const validation = useProteusValidation(props);
+  const validation = useProteusValidation(props, validationMessage);
   const value = useProteusValue({ path: props.name ?? "" });
 
   return (

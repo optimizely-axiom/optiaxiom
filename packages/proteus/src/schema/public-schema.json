@@ -3003,7 +3003,29 @@
         },
         "w": { "$ref": "#/definitions/SprinkleProp_w" },
         "whiteSpace": { "$ref": "#/definitions/SprinkleProp_whiteSpace" },
-        "z": { "$ref": "#/definitions/SprinkleProp_z" }
+        "z": { "$ref": "#/definitions/SprinkleProp_z" },
+        "validationMessage": {
+          "anyOf": [
+            { "type": "string" },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "badInput": { "type": "string" },
+                "patternMismatch": { "type": "string" },
+                "rangeOverflow": { "type": "string" },
+                "rangeUnderflow": { "type": "string" },
+                "stepMismatch": { "type": "string" },
+                "tooLong": { "type": "string" },
+                "tooShort": { "type": "string" },
+                "typeMismatch": { "type": "string" },
+                "valueMissing": { "type": "string" }
+              },
+              "type": "object"
+            },
+            { "$ref": "#/definitions/ProteusExpression" }
+          ],
+          "description": "Replace the browser's validation message. A string applies to any failure; an object maps `ValidityState` flags (e.g. `valueMissing`, `typeMismatch`) to messages, and unmapped flags keep the browser's text."
+        }
       },
       "required": ["$type"],
       "type": "object"
@@ -4043,7 +4065,29 @@
         },
         "w": { "$ref": "#/definitions/SprinkleProp_w" },
         "whiteSpace": { "$ref": "#/definitions/SprinkleProp_whiteSpace" },
-        "z": { "$ref": "#/definitions/SprinkleProp_z" }
+        "z": { "$ref": "#/definitions/SprinkleProp_z" },
+        "validationMessage": {
+          "anyOf": [
+            { "type": "string" },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "badInput": { "type": "string" },
+                "patternMismatch": { "type": "string" },
+                "rangeOverflow": { "type": "string" },
+                "rangeUnderflow": { "type": "string" },
+                "stepMismatch": { "type": "string" },
+                "tooLong": { "type": "string" },
+                "tooShort": { "type": "string" },
+                "typeMismatch": { "type": "string" },
+                "valueMissing": { "type": "string" }
+              },
+              "type": "object"
+            },
+            { "$ref": "#/definitions/ProteusExpression" }
+          ],
+          "description": "Replace the browser's validation message. A string applies to any failure; an object maps `ValidityState` flags (e.g. `valueMissing`, `typeMismatch`) to messages, and unmapped flags keep the browser's text."
+        }
       },
       "required": ["$type"],
       "type": "object"
@@ -5169,7 +5213,29 @@
         "transition": { "$ref": "#/definitions/SprinkleProp_transition" },
         "w": { "$ref": "#/definitions/SprinkleProp_w" },
         "whiteSpace": { "$ref": "#/definitions/SprinkleProp_whiteSpace" },
-        "z": { "$ref": "#/definitions/SprinkleProp_z" }
+        "z": { "$ref": "#/definitions/SprinkleProp_z" },
+        "validationMessage": {
+          "anyOf": [
+            { "type": "string" },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "badInput": { "type": "string" },
+                "patternMismatch": { "type": "string" },
+                "rangeOverflow": { "type": "string" },
+                "rangeUnderflow": { "type": "string" },
+                "stepMismatch": { "type": "string" },
+                "tooLong": { "type": "string" },
+                "tooShort": { "type": "string" },
+                "typeMismatch": { "type": "string" },
+                "valueMissing": { "type": "string" }
+              },
+              "type": "object"
+            },
+            { "$ref": "#/definitions/ProteusExpression" }
+          ],
+          "description": "Replace the browser's validation message. A string applies to any failure; an object maps `ValidityState` flags (e.g. `valueMissing`, `typeMismatch`) to messages, and unmapped flags keep the browser's text."
+        }
       },
       "required": ["$type"],
       "type": "object"

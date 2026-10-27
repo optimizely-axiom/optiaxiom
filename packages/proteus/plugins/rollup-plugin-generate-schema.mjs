@@ -140,7 +140,13 @@ const PROTEUS_COMPONENT_CONFIG = {
     extends: "Fragment",
   },
   DateInput: {
-    allowedProps: ["name", "placeholder", "required", "type"],
+    allowedProps: [
+      "name",
+      "placeholder",
+      "required",
+      "type",
+      "validationMessage",
+    ],
     example: { name: "date_field", type: "date" },
   },
   Disclosure: {
@@ -221,6 +227,7 @@ const PROTEUS_COMPONENT_CONFIG = {
       "placeholder",
       "required",
       "type",
+      "validationMessage",
     ],
     example: { name: "field_name", placeholder: "Enter value" },
   },
@@ -326,6 +333,7 @@ const PROTEUS_COMPONENT_CONFIG = {
       "resize",
       "required",
       "rows",
+      "validationMessage",
     ],
     example: { name: "field_name", placeholder: "Enter text" },
   },
@@ -1174,6 +1182,32 @@ function generateSpec(additionalProperties = false) {
  * @returns {Record<string, Record<string, JSONSchema7Definition>>}
  */
 function getPropTypeOverrides(additionalProperties = false) {
+  const validationMessage = {
+    anyOf: [
+      { type: "string" },
+      {
+        ...(additionalProperties ? {} : { additionalProperties: false }),
+        properties: Object.fromEntries(
+          [
+            "badInput",
+            "patternMismatch",
+            "rangeOverflow",
+            "rangeUnderflow",
+            "stepMismatch",
+            "tooLong",
+            "tooShort",
+            "typeMismatch",
+            "valueMissing",
+          ].map((flag) => [flag, { type: "string" }]),
+        ),
+        type: "object",
+      },
+      { $ref: "#/definitions/ProteusExpression" },
+    ],
+    description:
+      "Replace the browser's validation message. A string applies to any failure; an object maps `ValidityState` flags (e.g. `valueMissing`, `typeMismatch`) to messages, and unmapped flags keep the browser's text.",
+  };
+
   return {
     Action: {
       "aria-label": {
@@ -1357,6 +1391,7 @@ function getPropTypeOverrides(additionalProperties = false) {
         type: "string",
       },
     },
+    DateInput: { validationMessage },
     Federated: {
       entry: {
         description:
@@ -1484,6 +1519,7 @@ function getPropTypeOverrides(additionalProperties = false) {
         description: "Accessible label for the carousel region.",
       },
     },
+    Input: { validationMessage },
     Length: {
       path: {
         description:
@@ -1654,6 +1690,7 @@ function getPropTypeOverrides(additionalProperties = false) {
           "Single condition or array of conditions (AND logic). Each condition is an object with one operator key.",
       },
     },
+    Textarea: { validationMessage },
     Value: {
       formatter: {
         anyOf: [

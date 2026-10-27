@@ -877,6 +877,88 @@ export const FieldValidation: Story = {
   },
 };
 
+export const FieldValidationMessage: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      actions: [
+        {
+          $type: "Action",
+          appearance: "primary",
+          children: "Create brand pack",
+          onClick: { interaction: "create_brand_pack" },
+          type: "submit",
+        },
+      ],
+      appName: "Opal",
+      body: [
+        {
+          $type: "Field",
+          children: {
+            $type: "Input",
+            name: "brand_name",
+            required: true,
+            validationMessage: "Add a brand name",
+          },
+          label: "Brand name",
+          required: true,
+        },
+        {
+          $type: "Field",
+          children: {
+            $type: "Input",
+            name: "website",
+            placeholder: "https://example.com",
+            required: true,
+            type: "url",
+            validationMessage: {
+              typeMismatch: "Enter the full address, starting with https://",
+              valueMissing: "Add your brand's website",
+            },
+          },
+          label: "Website",
+          required: true,
+        },
+      ],
+      title: "Create brand pack",
+    },
+  },
+  play: async ({ canvas }) => {
+    const brand = canvas.getByRole("textbox", { name: /Brand name/ });
+    const website = canvas.getByRole("textbox", { name: /Website/ });
+
+    await userEvent.click(brand);
+    await userEvent.tab();
+    await expect(brand).toHaveAccessibleDescription("Add a brand name");
+    await userEvent.type(brand, "Optimizely");
+    await expect(brand).not.toHaveAttribute("aria-invalid");
+
+    await userEvent.type(website, "www.optimizely.com");
+    await userEvent.tab();
+    await expect(website).toHaveAccessibleDescription(
+      "Enter the full address, starting with https://",
+    );
+
+    await userEvent.clear(website);
+    await expect(website).toHaveAccessibleDescription(
+      "Add your brand's website",
+    );
+
+    await userEvent.type(website, "https://www.optimizely.com");
+    await expect(website).not.toHaveAttribute("aria-invalid");
+    await waitFor(() =>
+      expect(
+        canvas.getByRole("button", { name: "Create brand pack" }),
+      ).toBeEnabled(),
+    );
+
+    // leave the custom message showing for the snapshot
+    await userEvent.clear(website);
+    await userEvent.type(website, "www.optimizely.com");
+  },
+  render: FieldValidation.render,
+};
+
 export const AskUserQuestion: Story = {
   args: {
     collapsible: true,
