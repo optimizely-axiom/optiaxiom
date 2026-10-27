@@ -2,10 +2,23 @@ import { DateInput, type DateInputProps } from "@optiaxiom/react";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
-import { useProteusValidation } from "../proteus-field/useProteusValidation";
+import {
+  useProteusValidation,
+  type ValidationMessage,
+} from "../proteus-field/useProteusValidation";
 import { useProteusValue } from "../use-proteus-value";
 
-export function ProteusDateInput(props: DateInputProps) {
+export type ProteusDateInputProps = DateInputProps & {
+  /**
+   * Replace the browser's validation message, for any failure or per `ValidityState` flag.
+   */
+  validationMessage?: ValidationMessage;
+};
+
+export function ProteusDateInput({
+  validationMessage,
+  ...props
+}: ProteusDateInputProps) {
   const { onDataChange, readOnly } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusDateInput",
   );
@@ -13,7 +26,7 @@ export function ProteusDateInput(props: DateInputProps) {
     "@optiaxiom/proteus/ProteusDateInput",
   );
 
-  const validation = useProteusValidation(props);
+  const validation = useProteusValidation(props, validationMessage);
   const value = useProteusValue({ path: props.name ?? "" });
 
   return (
