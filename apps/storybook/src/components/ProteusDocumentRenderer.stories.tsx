@@ -800,6 +800,83 @@ export const ReadonlyMode: Story = {
   },
 };
 
+export const FieldValidation: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      actions: [
+        {
+          $type: "Action",
+          appearance: "primary",
+          children: "Create brand pack",
+          onClick: { interaction: "create_brand_pack" },
+          type: "submit",
+        },
+      ],
+      appName: "Opal",
+      body: [
+        {
+          $type: "Field",
+          children: { $type: "Input", name: "brand_name", required: true },
+          label: "Brand name",
+          required: true,
+        },
+        {
+          $type: "Field",
+          children: {
+            $type: "Input",
+            name: "website",
+            placeholder: "https://example.com",
+            type: "url",
+          },
+          description: "Include https://",
+          label: "Website",
+        },
+        {
+          $type: "Field",
+          children: { $type: "Input", name: "contact", type: "email" },
+          label: "Contact email",
+        },
+      ],
+      title: "Create brand pack",
+    },
+  },
+  play: async ({ canvas }) => {
+    const submit = canvas.getByRole("button", { name: "Create brand pack" });
+    const website = canvas.getByRole("textbox", { name: "Website" });
+
+    await userEvent.type(
+      canvas.getByRole("textbox", { name: /Brand name/ }),
+      "Optimizely",
+    );
+    await userEvent.type(website, "www.optimizely.com");
+    // no error while the user is still typing the field
+    await expect(canvas.queryByRole("alert")).not.toBeInTheDocument();
+
+    await userEvent.tab();
+    await expect(website).toHaveAttribute("aria-invalid", "true");
+    await expect(canvas.getByRole("alert")).toHaveTextContent(
+      (website as HTMLInputElement).validationMessage,
+    );
+    await expect(submit).toBeDisabled();
+
+    await userEvent.clear(website);
+    await userEvent.type(website, "https://www.optimizely.com");
+    await expect(canvas.queryByRole("alert")).not.toBeInTheDocument();
+    await waitFor(() => expect(submit).toBeEnabled());
+
+    // leave the error showing for the snapshot
+    await userEvent.clear(website);
+    await userEvent.type(website, "www.optimizely.com");
+  },
+  render: function Render(args) {
+    const [data, setData] = useState<Record<string, unknown>>({});
+    return (
+      <ProteusDocumentRenderer {...args} data={data} onDataChange={setData} />
+    );
+  },
+};
+
 export const AskUserQuestion: Story = {
   args: {
     collapsible: true,

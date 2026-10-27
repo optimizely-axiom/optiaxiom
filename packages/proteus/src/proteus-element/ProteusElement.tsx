@@ -9,7 +9,6 @@ import {
   Disclosure,
   DisclosureContent,
   DisclosureTrigger,
-  Field,
   Group,
   Heading,
   Link,
@@ -37,6 +36,7 @@ import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocume
 import { resolveProteusProp } from "../proteus-document/resolveProteusProp";
 import { safeParseElement } from "../proteus-document/schemas";
 import { ProteusFederated } from "../proteus-federated/ProteusFederated";
+import { ProteusField } from "../proteus-field/ProteusField";
 import { ProteusFileIcon } from "../proteus-file-icon/ProteusFileIcon";
 import { ProteusFileUpload } from "../proteus-file-upload/ProteusFileUpload";
 import { ProteusImageCarousel } from "../proteus-image-carousel/ProteusImageCarousel";
@@ -187,7 +187,7 @@ export const ProteusElement = ({
         />
       );
     case "Field":
-      return <Field {...resolve(element)} />;
+      return <ProteusField {...resolve(element)} />;
     case "FileIcon":
       return <ProteusFileIcon {...resolve(element)} />;
     case "FileUpload":
