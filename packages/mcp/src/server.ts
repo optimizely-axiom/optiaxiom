@@ -26,6 +26,7 @@ Everything else (\`screen\`, \`waitFor\`, queries, matchers) is re-exported from
 
 const tokenCategories = [
   "borderRadius",
+  "breakpoints",
   "boxShadow",
   "colors",
   "duration",
@@ -56,7 +57,7 @@ export function createServer() {
 
 Use the optional "props" parameter to search for specific props by name or description. Searches both component-specific props and style props — you don't need to know shorthand names, just describe what you want (e.g., "padding" finds the "p" prop).
 
-Props marked \`responsive: true\` also accept per-breakpoint values: an object like \`{ base: "16", sm: "32" }\` or an array in \`[base, sm, md]\` order.
+Props marked \`responsive: true\` also accept per-breakpoint values: an object like \`{ base: "16", sm: "32" }\` or an array in \`[base, sm, md]\` order. Breakpoint widths come from get_tokens({ categories: ['breakpoints'] }).
 
 Examples:
   get_component({ name: "Dialog" }) → description, import, sub-components
@@ -280,7 +281,7 @@ Examples:
   server.registerTool(
     "get_tokens",
     {
-      description: `Get design token mappings for the Axiom Design System. Returns token-to-value mappings for colors, sizes, spacing, borderRadius, fontSize, boxShadow, duration, fontFamily, and zIndex. Use this to convert hardcoded values to semantic tokens (e.g., #4F576E → fg.secondary, 32px height → h='md'). For how to consume these tokens in code (style props, CSS variables, or the \`theme\` object), call get_guides({ names: 'design-tokens' }).`,
+      description: `Get design token mappings for the Axiom Design System. Returns token-to-value mappings for colors, sizes, spacing, borderRadius, fontSize, boxShadow, duration, fontFamily, zIndex, and breakpoints (the min-widths responsive props switch at). Use this to convert hardcoded values to semantic tokens (e.g., #4F576E → fg.secondary, 32px height → h='md'). For how to consume these tokens in code (style props, CSS variables, or the \`theme\` object), call get_guides({ names: 'design-tokens' }).`,
       inputSchema: {
         categories: z
           .array(z.enum(tokenCategories))

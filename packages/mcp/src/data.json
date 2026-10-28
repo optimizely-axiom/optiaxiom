@@ -136571,6 +136571,7 @@
     }
   },
   "tokens": {
+    "breakpoints": { "sm": "600px", "md": "900px" },
     "borderRadius": {
       "xs": "2px",
       "sm": "6px",

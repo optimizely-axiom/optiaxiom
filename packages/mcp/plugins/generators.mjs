@@ -271,6 +271,12 @@ export async function generateTokens() {
       ]),
     ),
     boxShadow: tokens.boxShadow,
+    breakpoints: Object.fromEntries(
+      Object.entries(tokens.screens).map(([token, value]) => [
+        token,
+        remToPx(value),
+      ]),
+    ),
     colors: Object.fromEntries(
       Object.entries(tokens.colors)
         .map(([token, value]) => {
@@ -298,6 +304,7 @@ export async function generateTokens() {
         remToPx(value),
       ]),
     ),
+
     size: Object.fromEntries(
       Object.entries(tokens.size).map(([token, value]) => [
         token,

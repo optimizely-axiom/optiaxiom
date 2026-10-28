@@ -38,4 +38,19 @@ describe("createServer", () => {
 
     await Promise.all([clientA.close(), clientB.close()]);
   });
+
+  it("returns the breakpoint widths behind responsive props", async () => {
+    const client = await connect(createServer());
+
+    const result = await client.callTool({
+      arguments: { categories: ["breakpoints"] },
+      name: "get_tokens",
+    });
+
+    expect(
+      JSON.parse((result.content as Array<{ text: string }>)[0].text),
+    ).toEqual({ breakpoints: { sm: "600px", md: "900px" } });
+
+    await client.close();
+  });
 });
