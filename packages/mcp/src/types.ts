@@ -46,6 +46,8 @@ export interface DesignTokens {
   borderRadius: Record<string, string>;
   /** Box shadow tokens (sm, md, lg) */
   boxShadow: Record<string, string>;
+  /** Breakpoint min-widths (sm, md) used by responsive props; `base` applies below `sm` */
+  breakpoints: Record<string, string>;
   /** Color tokens - semantic colors (light mode hex values for Figma) */
   colors: Record<string, string>;
   /** Transition duration tokens (sm, md, lg) */
