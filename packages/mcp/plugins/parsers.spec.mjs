@@ -90,4 +90,16 @@ describe("parsePropDefinition", () => {
     expect(result.values).toBeDefined();
     expect(result.values?.length).toBeGreaterThan(0);
   });
+
+  it("should mark responsive style props", () => {
+    expect(
+      parsePropDefinition(getProp("@optiaxiom/react/Box", "p")).responsive,
+    ).toBe(true);
+    expect(
+      parsePropDefinition(getProp("@optiaxiom/react/Box", "gap")).responsive,
+    ).toBe(true);
+    expect(
+      parsePropDefinition(getProp("@optiaxiom/react/Box", "bg")).responsive,
+    ).toBeUndefined();
+  });
 });

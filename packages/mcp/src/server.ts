@@ -56,6 +56,8 @@ export function createServer() {
 
 Use the optional "props" parameter to search for specific props by name or description. Searches both component-specific props and style props — you don't need to know shorthand names, just describe what you want (e.g., "padding" finds the "p" prop).
 
+Props marked \`responsive: true\` also accept per-breakpoint values: an object like \`{ base: "16", sm: "32" }\` or an array in \`[base, sm, md]\` order.
+
 Examples:
   get_component({ name: "Dialog" }) → description, import, sub-components
   get_component({ name: "Button", props: "appearance size" }) → + matching prop definitions
