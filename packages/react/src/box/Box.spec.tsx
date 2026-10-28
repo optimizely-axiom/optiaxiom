@@ -76,6 +76,33 @@ describe("Box component", () => {
     );
   });
 
+  it("should merge responsive spacing props properly for direct props", () => {
+    render(
+      <Box asChild pl={{ sm: "32" }}>
+        <Box pl={{ sm: "8" }}>This is a box</Box>
+      </Box>,
+    );
+    // jsdom can't evaluate the breakpoint class, so check the inline var values
+    expect(screen.getByText(/This is a box/i).getAttribute("style")).toContain(
+      "calc(0.5 *",
+    );
+    expect(
+      screen.getByText(/This is a box/i).getAttribute("style"),
+    ).not.toContain("calc(2 *");
+  });
+
+  it("should keep responsive spacing props from parent when child sets base value", () => {
+    render(
+      <Box asChild pl={{ sm: "32" }}>
+        <Box pl="8">This is a box</Box>
+      </Box>,
+    );
+    expect(screen.getByText(/This is a box/i)).toContainHTML("paddingLeft_8");
+    expect(screen.getByText(/This is a box/i).getAttribute("style")).toContain(
+      "calc(2 *",
+    );
+  });
+
   it("should merge sprinkle props properly for indirect props", () => {
     render(
       <Text asChild fontSize="sm">

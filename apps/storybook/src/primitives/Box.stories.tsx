@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Box, Text } from "@optiaxiom/react";
+import { expect } from "storybook/test";
 
 export default {
   component: Box,
@@ -24,5 +25,33 @@ export const Composition: Story = {
     bg: "bg.warning.subtle",
     children: <Text>Hello World!</Text>,
     p: "24",
+  },
+};
+
+export const ResponsiveSpacing: Story = {
+  args: {
+    ...Basic.args,
+    p: ["16", "32", "64"],
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByText("Hello World!").parentElement).toHaveStyle({
+      padding: "64px",
+    });
+  },
+};
+
+export const ResponsiveSpacingOverride: Story = {
+  args: {
+    ...Basic.args,
+    p: { sm: "8" },
+    pl: { sm: "32" },
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByText("Hello World!").parentElement).toHaveStyle({
+      paddingBottom: "8px",
+      paddingLeft: "32px",
+      paddingRight: "8px",
+      paddingTop: "8px",
+    });
   },
 };
