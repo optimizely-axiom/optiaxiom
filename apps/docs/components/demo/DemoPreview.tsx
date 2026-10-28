@@ -1,11 +1,14 @@
 "use client";
 
+/// <reference types="react/canary" />
+
 import type { Props } from "react-docgen-typescript";
 
 import { Box, Group, Separator } from "@optiaxiom/react";
 import {
   cloneElement,
   type ReactElement,
+  use,
   useEffect,
   useRef,
   useState,
@@ -48,6 +51,12 @@ export function DemoPreview({
   }>();
   const ref = useRef<HTMLDivElement>(null);
 
+  // A server-rendered demo can arrive as a lazy wrapper around a pending RSC
+  // chunk; cloning that yields an element with an undefined type.
+  const element = isLazyElement(component)
+    ? use<ReactElement>(component._payload)
+    : component;
+
   useEffect(() => {
     const detach = () => setResizing(undefined);
     const resize = ({ clientX }: MouseEvent) => {
@@ -88,10 +97,10 @@ export function DemoPreview({
       >
         {resizable ? (
           <DemoIframe disablePointerEvents={!!resizing} scrollable={scrollable}>
-            {cloneElement(component, props)}
+            {cloneElement(element, props)}
           </DemoIframe>
         ) : (
-          cloneElement(component, props)
+          cloneElement(element, props)
         )}
       </Group>
       {Object.keys(propTypes).length > 0 && (
@@ -133,3 +142,15 @@ export function DemoPreview({
     </Box>
   );
 }
+
+const isLazyElement = (
+  value: unknown,
+): value is { _payload: PromiseLike<ReactElement> } =>
+  typeof value === "object" &&
+  value !== null &&
+  "$$typeof" in value &&
+  value.$$typeof === Symbol.for("react.lazy") &&
+  "_payload" in value &&
+  typeof value._payload === "object" &&
+  value._payload !== null &&
+  "then" in value._payload;
