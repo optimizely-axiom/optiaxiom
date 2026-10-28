@@ -1,9 +1,15 @@
-import { theme } from "@optiaxiom/globals";
-import { createGlobalVar, keyframes } from "@vanilla-extract/css";
+import { theme, tokens } from "@optiaxiom/globals";
+import {
+  createGlobalVar,
+  createVar,
+  keyframes,
+  style as veStyle,
+} from "@vanilla-extract/css";
 import { defineProperties } from "@vanilla-extract/sprinkles";
 
 import { layers } from "../layers";
 import { conditions, mapValues, rem } from "../utils";
+import { getVarName } from "../vanilla-extract";
 const merge = <A, B>(objA: A, objB: B): A & B => ({ ...objA, ...objB });
 
 const animations = {
@@ -190,10 +196,6 @@ export const unresponsiveProps = defineProperties({
      * Set the element's `font-weight` CSS property
      */
     fontWeight: ["400", "500", "600", "700", "900", "inherit"] as const,
-    marginBottom: margins,
-    marginLeft: margins,
-    marginRight: margins,
-    marginTop: margins,
     /**
      * Set the element's `object-fit` CSS property
      */
@@ -206,10 +208,6 @@ export const unresponsiveProps = defineProperties({
      * Set the element's `overflow-y` CSS property
      */
     overflowY: ["auto", "hidden", "visible"] as const,
-    paddingBottom: spacing,
-    paddingLeft: spacing,
-    paddingRight: spacing,
-    paddingTop: spacing,
     /**
      * Set the element's `pointer-events` CSS property
      */
@@ -292,6 +290,39 @@ export const unresponsiveProps = defineProperties({
     borderT: ["borderTopWidth"],
 
     /**
+     * Set the element's `overflow` CSS property
+     */
+    overflow: ["overflowX", "overflowY"],
+
+    /**
+     * Set the element's border radius. Only accepts predefined borderRadius tokens.
+     */
+    rounded: ["borderRadius"],
+    /**
+     * Set the element's box shadow. Only accepts predefined boxShadow tokens.
+     */
+    shadow: ["boxShadow"],
+    /**
+     * Set the element's stacking order. Only accepts predefined zIndex tokens (e.g., popover, toast, tooltip) or numeric values (0, 10, 20, 30, auto).
+     */
+    z: ["zIndex"],
+  },
+});
+
+export const spacingProps = defineProperties({
+  "@layer": layers.axiom,
+  properties: {
+    marginBottom: margins,
+    marginLeft: margins,
+    marginRight: margins,
+    marginTop: margins,
+    paddingBottom: spacing,
+    paddingLeft: spacing,
+    paddingRight: spacing,
+    paddingTop: spacing,
+  },
+  shorthands: {
+    /**
      * Set the element's margin on all sides. Only accepts predefined spacing tokens.
      */
     m: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
@@ -322,11 +353,6 @@ export const unresponsiveProps = defineProperties({
     mt: ["marginTop"],
 
     /**
-     * Set the element's `overflow` CSS property
-     */
-    overflow: ["overflowX", "overflowY"],
-
-    /**
      * Set the element's padding on all sides. Only accepts predefined spacing tokens.
      */
     p: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
@@ -355,19 +381,6 @@ export const unresponsiveProps = defineProperties({
      * Set the element's top padding. Only accepts predefined spacing tokens.
      */
     pt: ["paddingTop"],
-
-    /**
-     * Set the element's border radius. Only accepts predefined borderRadius tokens.
-     */
-    rounded: ["borderRadius"],
-    /**
-     * Set the element's box shadow. Only accepts predefined boxShadow tokens.
-     */
-    shadow: ["boxShadow"],
-    /**
-     * Set the element's stacking order. Only accepts predefined zIndex tokens (e.g., popover, toast, tooltip) or numeric values (0, 10, 20, 30, auto).
-     */
-    z: ["zIndex"],
   },
 });
 
@@ -527,3 +540,44 @@ export const responsiveProps = defineProperties({
     w: ["width"],
   },
 });
+
+/**
+ * Breakpoint values for padding and margin go through non-inheriting
+ * `@property` vars set inline, so each longhand needs one class per breakpoint
+ * rather than one per spacing value.
+ */
+export const spacingBreakpoints = mapValues(
+  {
+    marginBottom: ["<length>", "auto"],
+    marginLeft: ["<length>", "auto"],
+    marginRight: ["<length>", "auto"],
+    marginTop: ["<length>", "auto"],
+    paddingBottom: ["<length>"],
+    paddingLeft: ["<length>"],
+    paddingRight: ["<length>"],
+    paddingTop: ["<length>"],
+  },
+  (syntax, property) =>
+    mapValues(tokens.screens, (_, screen) => {
+      const valueVar = createVar({
+        inherits: false,
+        initialValue: "0px",
+        syntax,
+      });
+      return {
+        className: veStyle({
+          "@media": {
+            [conditions.conditions[screen]["@media"]]: {
+              "@layer": {
+                [layers.axiom]: {
+                  [property]: valueVar,
+                },
+              },
+            },
+          },
+        }),
+        varName: getVarName(valueVar),
+      };
+    }),
+);
+export const spacingValues = margins;

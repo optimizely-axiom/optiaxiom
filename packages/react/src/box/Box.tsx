@@ -48,13 +48,18 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
   ({ asChild, className, style, ...props }, ref) => {
     const Comp = asChild ? Slot : "div";
     const { boxProps, restProps } = extractBoxProps(props);
+    const sprinkleStyles = sprinkles(boxProps);
 
     return (
       <Comp
         data-axiom={version}
         ref={ref}
-        {...(style && { style })}
-        {...styles.box({}, sprinklesMerge(className, sprinkles(boxProps)))}
+        {...((style || sprinkleStyles.style) && {
+          // Own vars win over a parent's passed down through `asChild`, as
+          // `sprinklesMerge` does for classes; consumers can't target them.
+          style: { ...style, ...sprinkleStyles.style },
+        })}
+        {...styles.box({}, sprinklesMerge(className, sprinkleStyles.className))}
         {...restProps}
       />
     );

@@ -58,7 +58,7 @@ export const Scale = ({
       {(typeof sprinklePropOrValues === "string"
         ? getPropValues(getBoxProp(sprinklePropOrValues)).map((value) => [
             value,
-            sprinkles({ [sprinklePropOrValues]: value }),
+            sprinkles({ [sprinklePropOrValues]: value }).className,
           ])
         : Object.entries(sprinklePropOrValues)
       )

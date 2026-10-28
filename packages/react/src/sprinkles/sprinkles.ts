@@ -5,14 +5,31 @@ import {
 } from "@vanilla-extract/sprinkles";
 
 import * as styles from "./properties.css";
+import {
+  responsiveSpacingProps,
+  responsiveSpacingVars,
+} from "./responsiveSpacing";
 
 export const vars = {
   fontFamilyVar: styles.fontFamilyVar,
 };
 
-export const sprinkles = createSprinkles(
+const sprinklesClassName = createSprinkles(
   styles.unresponsiveProps,
+  responsiveSpacingProps,
   styles.responsiveProps,
+);
+
+/**
+ * Breakpoint values of padding and margin need the inline vars in `style`
+ * alongside the classes.
+ */
+export const sprinkles = Object.assign(
+  (props: Parameters<typeof sprinklesClassName>[0]) => {
+    const style = responsiveSpacingVars(props);
+    return { className: sprinklesClassName(props), ...(style && { style }) };
+  },
+  { properties: sprinklesClassName.properties },
 );
 export const mapResponsiveValue = createMapValueFn(styles.responsiveProps);
 export const normalizeResponsiveValue = createNormalizeValueFn(
