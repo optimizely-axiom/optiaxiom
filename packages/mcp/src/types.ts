@@ -117,6 +117,8 @@ export interface PropDefinition {
   description?: string;
   /** Is this prop required? */
   required?: boolean;
+  /** Accepts per-breakpoint values: `{ base, sm, md }` or `[base, sm, md]` */
+  responsive?: boolean;
   /** TypeScript type */
   type: string;
   /** For enum types, possible values */

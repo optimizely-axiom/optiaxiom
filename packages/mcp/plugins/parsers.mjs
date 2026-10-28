@@ -144,11 +144,10 @@ export function parsePropDefinition(prop) {
     }
   };
 
+  const responsive = type.startsWith("ConditionalStyleWithResponsiveArray<");
+
   // For responsive/conditional style props, extract the union values instead of the complex type
-  if (
-    type.startsWith("ConditionalStyleWithResponsiveArray<") &&
-    prop.type.value
-  ) {
+  if (responsive && prop.type.value) {
     const values = /** @type {Array<{value: string, description?: string}>} */ (
       prop.type.value
     )
@@ -207,6 +206,10 @@ export function parsePropDefinition(prop) {
 
   if (prop.required) {
     propDef.required = true;
+  }
+
+  if (responsive) {
+    propDef.responsive = true;
   }
 
   return propDef;
