@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Text } from "@optiaxiom/react";
+import { Avatar, Box, Group, Text } from "@optiaxiom/react";
+import { expect } from "storybook/test";
 
 export default {
   component: Text,
@@ -47,4 +48,23 @@ export const Truncate: Story = {
     truncate: true,
     w: "224",
   },
+};
+
+export const TruncateInFlexRow: Story = {
+  args: {
+    children: "The quick brown fox jumps over the lazy dog.",
+    truncate: true,
+  },
+  play: async ({ canvas }) => {
+    const text = canvas.getByText(/quick brown fox/);
+    await expect(text.scrollWidth).toBeGreaterThan(text.clientWidth);
+  },
+  render: (args) => (
+    <Group gap="8" w="224">
+      <Avatar name="Ada Lovelace" />
+      <Box minW="0">
+        <Text {...args} />
+      </Box>
+    </Group>
+  ),
 };

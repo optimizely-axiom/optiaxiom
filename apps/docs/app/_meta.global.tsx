@@ -213,6 +213,7 @@ export default {
       margin: "Margin",
       "max-height": "Max Height",
       "max-width": "Max Width",
+      "min-width": "Min Width",
       "object-fit": "Object Fit",
       overflow: "Overflow",
       padding: "Padding",

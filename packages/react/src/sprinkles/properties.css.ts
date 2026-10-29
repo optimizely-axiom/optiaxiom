@@ -504,6 +504,12 @@ export const responsiveProps = defineProperties({
      */
     maxWidth: maxSizes,
     /**
+     * Set the element's minimum width. `0` lets a flex item shrink below its
+     * content, e.g. so a `Text` with `truncate` inside it can truncate; `auto`
+     * restores the default.
+     */
+    minWidth: ["0", "auto"] as const,
+    /**
      * Set the element's `place-items` CSS property
      */
     placeItems: ["center"] as const,
@@ -521,6 +527,12 @@ export const responsiveProps = defineProperties({
      * Set the element's maximum width. Only accepts predefined maxSize tokens.
      */
     maxW: ["maxWidth"],
+    /**
+     * Set the element's minimum width. `0` lets a flex item shrink below its
+     * content, e.g. so a `Text` with `truncate` inside it can truncate; `auto`
+     * restores the default.
+     */
+    minW: ["minWidth"],
 
     /**
      * Set the element's width and height. Only accepts predefined size tokens.

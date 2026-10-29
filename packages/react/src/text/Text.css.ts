@@ -29,6 +29,10 @@ export const text = recipe({
     ),
     /**
      * Whether to truncate the text and add an ellipsis at the end.
+     *
+     * A flex item doesn't shrink below its content, so inside a flex row set
+     * `minW="0"` on the item that wraps the `Text` (or make the `Text` the flex
+     * item).
      */
     truncate: {
       true: [

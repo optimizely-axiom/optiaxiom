@@ -13,6 +13,7 @@ const mapSprinkleToStyle = {
   maxH: ["maxHeight"],
   maxW: ["maxWidth"],
   mb: ["marginBottom"],
+  minW: ["minWidth"],
   ml: ["marginLeft"],
   mr: ["marginRight"],
   mt: ["marginTop"],

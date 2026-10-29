@@ -119,6 +119,7 @@ export default {
       { path: "/height/", props: ["h"] },
       { path: "/max-height/", props: ["maxH"] },
       { path: "/max-width/", props: ["maxW"] },
+      { path: "/min-width/", props: ["minW"] },
       { path: "/size/", props: ["size"] },
       { path: "/width/", props: ["w"] },
     ],

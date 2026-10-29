@@ -407,6 +407,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -1484,6 +1490,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -2278,6 +2290,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -3140,6 +3158,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -3934,6 +3958,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -4746,6 +4776,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -5570,6 +5606,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -6431,6 +6473,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -7266,6 +7314,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -8099,6 +8153,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -8957,6 +9017,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -9791,6 +9857,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -10155,7 +10227,7 @@
           "values": ["opacity", "transform", "all", "none", "colors"]
         },
         "truncate": {
-          "description": "Whether to truncate the text and add an ellipsis at the end.",
+          "description": "Whether to truncate the text and add an ellipsis at the end.\n\nA flex item doesn't shrink below its content, so inside a flex row set\n`minW=\"0\"` on the item that wraps the `Text` (or make the `Text` the flex\nitem).",
           "type": "boolean"
         },
         "variant": {
@@ -10656,6 +10728,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -11523,6 +11601,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -12361,6 +12445,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -13262,6 +13352,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -14172,6 +14268,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -15015,6 +15117,12 @@
         "min": {
           "description": "The earliest date that is allowed.",
           "type": "Date"
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
         },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
@@ -15887,6 +15995,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -16917,6 +17031,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -17746,6 +17866,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -18548,6 +18674,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -19387,6 +19519,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -19751,7 +19889,7 @@
           "values": ["opacity", "transform", "all", "none", "colors"]
         },
         "truncate": {
-          "description": "Whether to truncate the text and add an ellipsis at the end.",
+          "description": "Whether to truncate the text and add an ellipsis at the end.\n\nA flex item doesn't shrink below its content, so inside a flex row set\n`minW=\"0\"` on the item that wraps the `Text` (or make the `Text` the flex\nitem).",
           "type": "boolean"
         },
         "w": {
@@ -20209,6 +20347,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -21048,6 +21192,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -21890,6 +22040,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -22716,6 +22872,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -23614,6 +23776,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -24455,6 +24623,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -25284,6 +25458,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -26376,6 +26556,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -27215,6 +27401,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -28041,6 +28233,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -28880,6 +29078,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -29714,6 +29918,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -30536,6 +30746,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -31395,6 +31611,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -33393,6 +33615,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -34192,6 +34420,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -35039,6 +35273,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -35857,6 +36097,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -36689,6 +36935,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -37734,6 +37986,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -38594,6 +38852,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -39388,6 +39652,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -40200,6 +40470,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -41020,6 +41296,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -41855,6 +42137,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -42219,7 +42507,7 @@
           "values": ["opacity", "transform", "all", "none", "colors"]
         },
         "truncate": {
-          "description": "Whether to truncate the text and add an ellipsis at the end.",
+          "description": "Whether to truncate the text and add an ellipsis at the end.\n\nA flex item doesn't shrink below its content, so inside a flex row set\n`minW=\"0\"` on the item that wraps the `Text` (or make the `Text` the flex\nitem).",
           "type": "boolean"
         },
         "w": {
@@ -42716,6 +43004,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -43518,6 +43812,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -44430,6 +44730,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -45262,6 +45568,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -46384,6 +46696,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -48058,6 +48376,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -48900,6 +49224,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -49722,6 +50052,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -50540,6 +50876,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -52241,6 +52583,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -53101,6 +53449,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -53936,6 +54290,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -54754,6 +55114,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -55680,6 +56046,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -56510,6 +56882,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -57356,6 +57734,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -58184,6 +58568,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -59047,6 +59437,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -59844,6 +60240,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -60740,6 +61142,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -61623,6 +62031,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -62504,6 +62918,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -62868,7 +63288,7 @@
           "values": ["opacity", "transform", "all", "none", "colors"]
         },
         "truncate": {
-          "description": "Whether to truncate the text and add an ellipsis at the end.",
+          "description": "Whether to truncate the text and add an ellipsis at the end.\n\nA flex item doesn't shrink below its content, so inside a flex row set\n`minW=\"0\"` on the item that wraps the `Text` (or make the `Text` the flex\nitem).",
           "type": "boolean"
         },
         "w": {
@@ -63354,6 +63774,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -64253,6 +64679,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -65092,6 +65524,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -65939,6 +66377,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -66318,7 +66762,7 @@
           "values": ["opacity", "transform", "all", "none", "colors"]
         },
         "truncate": {
-          "description": "Whether to truncate the text and add an ellipsis at the end.",
+          "description": "Whether to truncate the text and add an ellipsis at the end.\n\nA flex item doesn't shrink below its content, so inside a flex row set\n`minW=\"0\"` on the item that wraps the `Text` (or make the `Text` the flex\nitem).",
           "type": "boolean"
         },
         "variant": {
@@ -66836,6 +67280,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -67778,6 +68228,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -68784,6 +69240,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -69664,6 +70126,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -70461,6 +70929,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -71268,6 +71742,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -72108,6 +72588,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -73461,9 +73947,15 @@
           "responsive": true
         },
         "minW": {
-          "description": "Whether to set the min-width to the width of the trigger.",
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.\nWhether to set the min-width to the width of the trigger.",
           "type": "enum",
-          "values": ["0", "trigger"]
+          "values": [
+            "0",
+            "{ readonly base?: \"auto\" | \"0\" | undefined; readonly sm?: \"auto\" | \"0\" | undefined; readonly md?: \"auto\" | \"0\" | undefined; } & \"0\"",
+            "{ readonly base?: \"auto\" | \"0\" | undefined; readonly sm?: \"auto\" | \"0\" | undefined; readonly md?: \"auto\" | \"0\" | undefined; } & \"trigger\"",
+            "ResponsiveArray<1 | 2 | 3, \"auto\" | \"0\" | null> & \"0\"",
+            "ResponsiveArray<1 | 2 | 3, \"auto\" | \"0\" | null> & \"trigger\""
+          ]
         },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
@@ -74315,6 +74807,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -75163,6 +75661,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -75985,6 +76489,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -76816,6 +77326,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -77634,6 +78150,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -78466,6 +78988,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -79292,6 +79820,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -80127,6 +80661,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -80945,6 +81485,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -81779,6 +82325,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -82597,6 +83149,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -83421,6 +83979,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -84256,6 +84820,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -85118,6 +85688,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -85935,6 +86511,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -86784,6 +87366,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -87626,6 +88214,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -88507,9 +89101,15 @@
           "responsive": true
         },
         "minW": {
-          "description": "Whether to set the min-width to the width of the trigger.",
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.\nWhether to set the min-width to the width of the trigger.",
           "type": "enum",
-          "values": ["0", "trigger"]
+          "values": [
+            "0",
+            "{ readonly base?: \"auto\" | \"0\" | undefined; readonly sm?: \"auto\" | \"0\" | undefined; readonly md?: \"auto\" | \"0\" | undefined; } & \"0\"",
+            "{ readonly base?: \"auto\" | \"0\" | undefined; readonly sm?: \"auto\" | \"0\" | undefined; readonly md?: \"auto\" | \"0\" | undefined; } & \"trigger\"",
+            "ResponsiveArray<1 | 2 | 3, \"auto\" | \"0\" | null> & \"0\"",
+            "ResponsiveArray<1 | 2 | 3, \"auto\" | \"0\" | null> & \"trigger\""
+          ]
         },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
@@ -89320,6 +89920,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -90221,6 +90827,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -91946,6 +92558,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -92748,6 +93366,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -93596,6 +94220,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -94440,6 +95070,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -95408,6 +96044,12 @@
           "type": "number",
           "default": "0"
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -96299,6 +96941,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -97171,6 +97819,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -98049,6 +98703,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -98957,6 +99617,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -100815,6 +101481,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -101617,6 +102289,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -102484,6 +103162,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -103394,6 +104078,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -104219,6 +104909,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -105093,6 +105789,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -106042,6 +106744,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -106860,6 +107568,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -107692,6 +108406,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -108519,6 +109239,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -109449,9 +110175,15 @@
           "responsive": true
         },
         "minW": {
-          "description": "Whether to set the min-width to the width of the trigger.",
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.\nWhether to set the min-width to the width of the trigger.",
           "type": "enum",
-          "values": ["0", "trigger"]
+          "values": [
+            "0",
+            "{ readonly base?: \"auto\" | \"0\" | undefined; readonly sm?: \"auto\" | \"0\" | undefined; readonly md?: \"auto\" | \"0\" | undefined; } & \"0\"",
+            "{ readonly base?: \"auto\" | \"0\" | undefined; readonly sm?: \"auto\" | \"0\" | undefined; readonly md?: \"auto\" | \"0\" | undefined; } & \"trigger\"",
+            "ResponsiveArray<1 | 2 | 3, \"auto\" | \"0\" | null> & \"0\"",
+            "ResponsiveArray<1 | 2 | 3, \"auto\" | \"0\" | null> & \"trigger\""
+          ]
         },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
@@ -110301,6 +111033,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -111093,6 +111831,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -111925,6 +112669,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -112788,6 +113538,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -113584,6 +114340,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -114478,6 +115240,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -115331,6 +116099,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -116156,6 +116930,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -116974,6 +117754,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -117801,6 +118587,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -118623,6 +119415,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -119450,6 +120248,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -120284,6 +121088,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -121138,6 +121948,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -121958,6 +122774,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -122788,6 +123610,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -123614,6 +124442,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -123978,7 +124812,7 @@
           "values": ["opacity", "transform", "all", "none", "colors"]
         },
         "truncate": {
-          "description": "Whether to truncate the text and add an ellipsis at the end.",
+          "description": "Whether to truncate the text and add an ellipsis at the end.\n\nA flex item doesn't shrink below its content, so inside a flex row set\n`minW=\"0\"` on the item that wraps the `Text` (or make the `Text` the flex\nitem).",
           "type": "boolean"
         },
         "w": {
@@ -124513,6 +125347,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -125468,6 +126308,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -126310,6 +127156,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -127233,6 +128085,12 @@
           ],
           "responsive": true
         },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
+          "responsive": true
+        },
         "ml": {
           "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
           "type": "enum",
@@ -128111,6 +128969,12 @@
             "4",
             "64"
           ],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "type": "enum",
+          "values": ["auto", "0"],
           "responsive": true
         },
         "ml": {
@@ -136571,7 +137435,6 @@
     }
   },
   "tokens": {
-    "breakpoints": { "sm": "600px", "md": "900px" },
     "borderRadius": {
       "xs": "2px",
       "sm": "6px",
@@ -136586,6 +137449,7 @@
       "lg": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
       "xl": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)"
     },
+    "breakpoints": { "sm": "600px", "md": "900px" },
     "colors": {
       "bg.accent": "#ABFF44",
       "bg.accent.hovered": "#99F141",
