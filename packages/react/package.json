@@ -30,6 +30,11 @@
       "require": "./dist/cjs/editor.js"
     },
     "./package.json": "./package.json",
+    "./testing": {
+      "types": "./dist/testing.d.ts",
+      "import": "./dist/esm/testing.js",
+      "require": "./dist/cjs/testing.js"
+    },
     "./unstable": {
       "types": "./dist/unstable.d.ts",
       "import": "./dist/esm/unstable.js",
