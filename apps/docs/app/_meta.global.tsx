@@ -59,6 +59,7 @@ export default {
       },
       "responsive-styles": "Responsive Styles",
 
+      "build-performance": "Build Performance",
       "css-layers": "CSS Layers",
       "module-federation": "Module Federation",
       "nested-overlays": "Nested Overlays",

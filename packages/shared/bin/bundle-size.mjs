@@ -76,25 +76,40 @@ async function measure() {
       write: false,
     });
 
+    /** @param {string} exportPath */
+    const getExports = async (exportPath) =>
+      Object.values(
+        (
+          await esbuild.build({
+            ...config,
+            entryPoints: [exportPath.replace(".", pkg.name)],
+            format: "esm",
+            metafile: true,
+          })
+        ).metafile.outputs,
+      )[0]
+        .exports.sort()
+        .filter((name) => name !== "default");
+    const rootExports = new Set(pkg.exports["."] ? await getExports(".") : []);
+
     const imports = (
       await Promise.all(
         Object.keys(pkg.exports)
           .filter((exportPath) => exportPath !== "./package.json")
           .map(async (exportPath) => {
-            const exportedItems = Object.values(
-              (
-                await esbuild.build({
-                  ...config,
-                  entryPoints: [exportPath.replace(".", pkg.name)],
-                  format: "esm",
-                  metafile: true,
-                })
-              ).metafile.outputs,
-            )[0]
-              .exports.sort()
-              .filter((name) => name !== "default")
-              .map((name) => [name, `fixture/${exportPath}/${name}.js`]);
-            return exportedItems.length === 1
+            const names = await getExports(exportPath);
+            const exportedItems = names.map((name) => [
+              name,
+              `fixture/${exportPath}/${name}.js`,
+            ]);
+            // A subpath that only re-exports root exports (e.g. `./avatar`)
+            // gets no aggregate row: its name would collide with the
+            // `Avatar` row, since esbuild compares output paths
+            // case-insensitively.
+            const subset =
+              exportPath !== "." &&
+              names.every((name) => rootExports.has(name));
+            return exportedItems.length === 1 || subset
               ? exportedItems
               : [
                   [
