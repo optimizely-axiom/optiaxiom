@@ -1,4 +1,4 @@
-import { IconSearch } from "@optiaxiom/icons";
+import { IconSearch } from "@optiaxiom/icons/IconSearch";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,

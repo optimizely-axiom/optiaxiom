@@ -1,4 +1,4 @@
-import { IconXmark } from "@optiaxiom/icons";
+import { IconXmark } from "@optiaxiom/icons/IconXmark";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { forwardRef, type ReactNode } from "react";

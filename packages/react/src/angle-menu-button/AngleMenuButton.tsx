@@ -1,4 +1,4 @@
-import { IconAngleDown } from "@optiaxiom/icons";
+import { IconAngleDown } from "@optiaxiom/icons/IconAngleDown";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Button } from "../button";

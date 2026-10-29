@@ -1,6 +1,7 @@
 import type { CellContext } from "@tanstack/table-core";
 
-import { IconAngleDown, IconChevronRight } from "@optiaxiom/icons";
+import { IconAngleDown } from "@optiaxiom/icons/IconAngleDown";
+import { IconChevronRight } from "@optiaxiom/icons/IconChevronRight";
 import { useId } from "@radix-ui/react-id";
 import clsx from "clsx";
 import { type ReactNode } from "react";

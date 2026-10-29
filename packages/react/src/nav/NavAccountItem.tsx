@@ -1,4 +1,4 @@
-import { IconEllipsisStroke } from "@optiaxiom/icons";
+import { IconEllipsisStroke } from "@optiaxiom/icons/IconEllipsisStroke";
 import { forwardRef } from "react";
 
 import { Avatar } from "../avatar";

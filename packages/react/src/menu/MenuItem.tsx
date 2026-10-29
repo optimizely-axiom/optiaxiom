@@ -1,4 +1,4 @@
-import { IconArrowUpRightFromSquare } from "@optiaxiom/icons";
+import { IconArrowUpRightFromSquare } from "@optiaxiom/icons/IconArrowUpRightFromSquare";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { CommandItem } from "../command";

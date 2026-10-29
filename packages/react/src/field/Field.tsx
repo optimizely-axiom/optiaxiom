@@ -1,4 +1,4 @@
-import { IconTriangleExclamation } from "@optiaxiom/icons";
+import { IconTriangleExclamation } from "@optiaxiom/icons/IconTriangleExclamation";
 import { useId } from "@radix-ui/react-id";
 import {
   type ComponentPropsWithoutRef,

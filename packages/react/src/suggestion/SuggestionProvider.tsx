@@ -2,7 +2,7 @@ import {
   unstable_SuggestionContext as SuggestionContext,
   unstable_SurfaceProvider,
 } from "@optiaxiom/globals";
-import { IconXmark } from "@optiaxiom/icons";
+import { IconXmark } from "@optiaxiom/icons/IconXmark";
 import { useId } from "@radix-ui/react-id";
 import {
   type ComponentPropsWithoutRef,

@@ -1,4 +1,4 @@
-import { IconEllipsisStroke } from "@optiaxiom/icons";
+import { IconEllipsisStroke } from "@optiaxiom/icons/IconEllipsisStroke";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Button } from "../button";

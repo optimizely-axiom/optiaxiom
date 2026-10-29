@@ -1,4 +1,5 @@
-import { IconSearch, IconXmark } from "@optiaxiom/icons";
+import { IconSearch } from "@optiaxiom/icons/IconSearch";
+import { IconXmark } from "@optiaxiom/icons/IconXmark";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithRef, forwardRef, useRef } from "react";

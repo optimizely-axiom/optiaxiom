@@ -1,4 +1,4 @@
-import { IconArrowDown } from "@optiaxiom/icons";
+import { IconArrowDown } from "@optiaxiom/icons/IconArrowDown";
 import {
   Box,
   Disclosure,

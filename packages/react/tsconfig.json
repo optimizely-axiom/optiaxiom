@@ -7,7 +7,8 @@
     "paths": {
       "@optiaxiom/globals": ["../globals/src"],
       "@optiaxiom/globals/fonts": ["../globals/src/fonts"],
-      "@optiaxiom/icons": ["../icons/src"]
+      "@optiaxiom/icons": ["../icons/src"],
+      "@optiaxiom/icons/*": ["../icons/src/entries/*"]
     },
     "types": ["@testing-library/jest-dom"]
   },

@@ -1,4 +1,4 @@
-import { IconCircleQuestion } from "@optiaxiom/icons";
+import { IconCircleQuestion } from "@optiaxiom/icons/IconCircleQuestion";
 import { useId } from "@radix-ui/react-id";
 import * as RadixLabel from "@radix-ui/react-label";
 import { forwardRef, type ReactNode } from "react";

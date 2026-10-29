@@ -1,4 +1,4 @@
-import { IconUpload } from "@optiaxiom/icons";
+import { IconUpload } from "@optiaxiom/icons/IconUpload";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, useRef, useState } from "react";
 

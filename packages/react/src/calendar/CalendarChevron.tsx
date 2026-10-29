@@ -1,6 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { IconChevronLeft, IconChevronRight } from "@optiaxiom/icons";
+import { IconChevronLeft } from "@optiaxiom/icons/IconChevronLeft";
+import { IconChevronRight } from "@optiaxiom/icons/IconChevronRight";
 import { Chevron } from "react-day-picker";
 
 export type CalendarChevronProps = ComponentPropsWithoutRef<typeof Chevron>;

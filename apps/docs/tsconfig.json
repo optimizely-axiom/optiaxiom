@@ -13,6 +13,7 @@
       "@/demos/*": ["./demos/*"],
       "@optiaxiom/globals": ["../../packages/globals/src"],
       "@optiaxiom/icons": ["../../packages/icons/src"],
+      "@optiaxiom/icons/*": ["../../packages/icons/src/entries/*"],
       "@optiaxiom/proteus": ["../../packages/proteus/src"],
       "@optiaxiom/proteus/spec": ["../../packages/proteus/src/spec"],
       "@optiaxiom/react": ["../../packages/react/src"],

@@ -1,4 +1,4 @@
-import { IconXmark } from "@optiaxiom/icons";
+import { IconXmark } from "@optiaxiom/icons/IconXmark";
 import { createSlot } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 

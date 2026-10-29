@@ -1,5 +1,5 @@
 import { useHotkeys } from "@mantine/hooks";
-import { IconSearch } from "@optiaxiom/icons";
+import { IconSearch } from "@optiaxiom/icons/IconSearch";
 import { forwardRef } from "react";
 
 import { Box } from "../box";

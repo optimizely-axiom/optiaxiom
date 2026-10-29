@@ -1,4 +1,4 @@
-import { IconPlus } from "@optiaxiom/icons";
+import { IconPlus } from "@optiaxiom/icons/IconPlus";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, useRef } from "react";
 

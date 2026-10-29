@@ -1,8 +1,6 @@
-import {
-  IconCircleExclamation,
-  IconFile,
-  IconTrashCan,
-} from "@optiaxiom/icons";
+import { IconCircleExclamation } from "@optiaxiom/icons/IconCircleExclamation";
+import { IconFile } from "@optiaxiom/icons/IconFile";
+import { IconTrashCan } from "@optiaxiom/icons/IconTrashCan";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
