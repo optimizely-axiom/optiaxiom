@@ -32,7 +32,7 @@ Check out our [Icons Guide](https://optimizely-axiom.github.io/optiaxiom/guides/
 2. Add an entry to `icons.json` mapping the Material Symbols snake_case name to its component alias. For new icons, the alias must be the exact Material Symbols name in PascalCase — e.g. `"assured_workload": ["AssuredWorkload"]`. The component is then exported as that alias prefixed with `Icon` (e.g. `IconAssuredWorkload`).
 3. Run `npm run build` to fetch the SVGs and rebuild the package
 4. Add a changeset (run `pnpm changeset` from the repo root) with a `minor` bump for `@optiaxiom/icons`
-5. Commit the updated `icons.json`, `src/index.ts`, `tags.json`, `svg/*.svg.d.ts`, and the new `.changeset/*.md` file (the `svg/*.svg` files themselves are gitignored and re-fetched at build time)
+5. Commit the updated `icons.json`, `src/index.ts`, `src/entries/*.ts`, `tags.json`, `svg/*.svg.d.ts`, and the new `.changeset/*.md` file (the `svg/*.svg` files themselves are gitignored and re-fetched at build time)
 
 > [!IMPORTANT]
 > Commit `tags.json` exactly as the build generates it (then formatted by `pnpm lint`). Never edit it by hand — not even to keep existing icons' tags when Google's metadata returns different ones. The file mirrors Google's current metadata plus any custom tags from `icons.json`.

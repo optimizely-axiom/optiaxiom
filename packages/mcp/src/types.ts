@@ -101,6 +101,8 @@ export interface Guide {
  * Icon information
  */
 export interface IconInfo {
+  /** Entry point that exports only this icon, for consumers who skip the barrel */
+  entryPoint: string;
   /** Import statement example */
   import: string;
   /** Search keywords/tags for this icon */

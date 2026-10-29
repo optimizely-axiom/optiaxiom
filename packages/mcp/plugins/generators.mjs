@@ -209,6 +209,7 @@ export async function generateIcons() {
       .map(([name, keywords]) => [
         name,
         {
+          entryPoint: `@optiaxiom/icons/${name}`,
           import: `import { ${name} } from '@optiaxiom/icons';`,
           keywords,
           name,

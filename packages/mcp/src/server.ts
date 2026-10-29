@@ -316,7 +316,7 @@ Examples:
   server.registerTool(
     "search_icons",
     {
-      description: `Search for icons from the @optiaxiom/icons package. Returns matching icon component names. Search by keywords (e.g., 'message', 'arrow', 'user').`,
+      description: `Search for icons from the @optiaxiom/icons package. Returns matching icon component names. Search by keywords (e.g., 'message', 'arrow', 'user'). Use the \`import\` statement; use \`entryPoint\` instead only when the project imports icons from entry points.`,
       inputSchema: {
         limit: z
           .number()
@@ -341,6 +341,7 @@ Examples:
                 limit,
                 query,
               }).map((icon) => ({
+                entryPoint: icon.entryPoint,
                 import: icon.import,
                 name: icon.name,
               })),

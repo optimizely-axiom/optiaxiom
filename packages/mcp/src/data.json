@@ -130197,7 +130197,7 @@
       "title": "Typography"
     },
     "icons": {
-      "content": "# Icons\n\nWe use **Google Material Symbols** icons with our Optimizely Design System via the `@optiaxiom/icons` package.\n\n<IconGallery />\n\n## Installation\n\n### Install package\n\n```sh npm2yarn\nnpm install @optiaxiom/icons\n```\n\n### Basic usage\n\nSimply import the icon components and use them in your application.\n\n```tsx\nimport { IconTrashCan } from \"@optiaxiom/icons\";\n\n<IconTrashCan />;\n```\n\nIcons accept a `size` prop to control their dimensions:\n\n```tsx\nimport { IconTrashCan } from \"@optiaxiom/icons\";\n\n<IconTrashCan size=\"sm\" />;\n```\n\nEach icon also has a filled variant via the `filled` prop:\n\n```tsx\nimport { IconTrashCan } from \"@optiaxiom/icons\";\n\n<IconTrashCan filled />;\n```",
+      "content": "# Icons\n\nWe use **Google Material Symbols** icons with our Optimizely Design System via the `@optiaxiom/icons` package.\n\n<IconGallery />\n\n## Installation\n\n### Install package\n\n```sh npm2yarn\nnpm install @optiaxiom/icons\n```\n\n### Basic usage\n\nSimply import the icon components and use them in your application.\n\n```tsx\nimport { IconTrashCan } from \"@optiaxiom/icons\";\n// or\nimport { IconTrashCan } from \"@optiaxiom/icons/IconTrashCan\";\n\n<IconTrashCan />;\n```\n\nIcons accept a `size` prop to control their dimensions:\n\n```tsx\nimport { IconTrashCan } from \"@optiaxiom/icons\";\n\n<IconTrashCan size=\"sm\" />;\n```\n\nEach icon also has a filled variant via the `filled` prop:\n\n```tsx\nimport { IconTrashCan } from \"@optiaxiom/icons\";\n\n<IconTrashCan filled />;\n```",
       "name": "icons",
       "title": "Icons"
     },
@@ -130207,7 +130207,7 @@
       "title": "Responsive Styles"
     },
     "build-performance": {
-      "content": "# Build Performance\n\n`@optiaxiom/react` is a barrel file: one entry point that re-exports every component. Production builds tree-shake the components you don't use, and Webpack and Turbopack skip them in development too, so most apps should keep importing from it.\n\nSome tools load every module behind a barrel even when you import a single component. Vite's dependency pre-bundling and esbuild both do, which can make a dev server slow to start. If that's what you're seeing, import each component from its own entry point instead.\n\n## Component entry points\n\nEvery component is also available from its own entry point, named after its folder. That's usually the component name in kebab-case, though a few differ: `RadioGroup` comes from `@optiaxiom/react/radio`. Sub-components come from the same entry:\n\n```ts\nimport { Button, ButtonGroup } from \"@optiaxiom/react/button\";\nimport { AlertDialog, AlertDialogContent } from \"@optiaxiom/react/alert-dialog\";\n```\n\nEach component's Props section lists the entry point to import it from.\n\n`toaster` and `createToaster` come from `@optiaxiom/react/toast`, and `theme` and `tokens` from `@optiaxiom/react/theme`.\n\nBoth styles share the same modules, so contexts and providers work across them, but pick one per project so imports stay consistent.\n\n## Enforcing entry points\n\nIf a project uses entry points, disallow the root import with ESLint, so every import follows the same style, including code written by AI assistants:\n\n```js filename=\"eslint.config.js\"\nexport default [\n  {\n    rules: {\n      \"no-restricted-imports\": [\n        \"error\",\n        {\n          paths: [\n            {\n              message: 'Import from \"@optiaxiom/react/<component>\" instead.',\n              name: \"@optiaxiom/react\",\n            },\n          ],\n        },\n      ],\n    },\n  },\n];\n```",
+      "content": "# Build Performance\n\n`@optiaxiom/react` is a barrel file: one entry point that re-exports every component. Production builds tree-shake the components you don't use, and Webpack and Turbopack skip them in development too, so most apps should keep importing from it.\n\nSome tools load every module behind a barrel even when you import a single component. Vite's dependency pre-bundling and esbuild both do, which can make a dev server slow to start. If that's what you're seeing, import each component from its own entry point instead.\n\n## Component entry points\n\nEvery component is also available from its own entry point, named after its folder. That's usually the component name in kebab-case, though a few differ: `RadioGroup` comes from `@optiaxiom/react/radio`. Sub-components come from the same entry:\n\n```ts\nimport { Button, ButtonGroup } from \"@optiaxiom/react/button\";\nimport { AlertDialog, AlertDialogContent } from \"@optiaxiom/react/alert-dialog\";\n```\n\nEach component's Props section lists the entry point to import it from.\n\nIcons work the same way: every icon has an entry point named after it, like `@optiaxiom/icons/IconTrashCan`.\n\n`toaster` and `createToaster` come from `@optiaxiom/react/toast`, and `theme` and `tokens` from `@optiaxiom/react/theme`.\n\nBoth styles share the same modules, so contexts and providers work across them, but pick one per project so imports stay consistent.\n\n## Enforcing entry points\n\nIf a project uses entry points, disallow the root import with ESLint, so every import follows the same style, including code written by AI assistants:\n\n```js filename=\"eslint.config.js\"\nexport default [\n  {\n    rules: {\n      \"no-restricted-imports\": [\n        \"error\",\n        {\n          paths: [\n            {\n              message: 'Import from \"@optiaxiom/react/<component>\" instead.',\n              name: \"@optiaxiom/react\",\n            },\n          ],\n        },\n      ],\n    },\n  },\n];\n```",
       "name": "build-performance",
       "title": "Build Performance"
     },
@@ -130234,6 +130234,7 @@
   },
   "icons": {
     "Icon360Degrees": {
+      "entryPoint": "@optiaxiom/icons/Icon360Degrees",
       "import": "import { Icon360Degrees } from '@optiaxiom/icons';",
       "keywords": [
         "360",
@@ -130249,6 +130250,7 @@
       "name": "Icon360Degrees"
     },
     "IconCircleUser": {
+      "entryPoint": "@optiaxiom/icons/IconCircleUser",
       "import": "import { IconCircleUser } from '@optiaxiom/icons';",
       "keywords": [
         "account",
@@ -130265,6 +130267,7 @@
       "name": "IconCircleUser"
     },
     "IconDiagramSubtask": {
+      "entryPoint": "@optiaxiom/icons/IconDiagramSubtask",
       "import": "import { IconDiagramSubtask } from '@optiaxiom/icons';",
       "keywords": [
         "account",
@@ -130288,6 +130291,7 @@
       "name": "IconDiagramSubtask"
     },
     "IconListTree": {
+      "entryPoint": "@optiaxiom/icons/IconListTree",
       "import": "import { IconListTree } from '@optiaxiom/icons';",
       "keywords": [
         "account",
@@ -130311,6 +130315,7 @@
       "name": "IconListTree"
     },
     "IconPlus": {
+      "entryPoint": "@optiaxiom/icons/IconPlus",
       "import": "import { IconPlus } from '@optiaxiom/icons';",
       "keywords": [
         "+",
@@ -130350,16 +130355,19 @@
       "name": "IconPlus"
     },
     "IconSquarePlus": {
+      "entryPoint": "@optiaxiom/icons/IconSquarePlus",
       "import": "import { IconSquarePlus } from '@optiaxiom/icons';",
       "keywords": ["add", "box", "new square", "plus", "symbol"],
       "name": "IconSquarePlus"
     },
     "IconCirclePlus": {
+      "entryPoint": "@optiaxiom/icons/IconCirclePlus",
       "import": "import { IconCirclePlus } from '@optiaxiom/icons';",
       "keywords": ["+", "add", "circle", "counter", "create", "new", "plus"],
       "name": "IconCirclePlus"
     },
     "IconCommentPlus": {
+      "entryPoint": "@optiaxiom/icons/IconCommentPlus",
       "import": "import { IconCommentPlus } from '@optiaxiom/icons';",
       "keywords": [
         "+",
@@ -130378,6 +130386,7 @@
       "name": "IconCommentPlus"
     },
     "IconCartPlus": {
+      "entryPoint": "@optiaxiom/icons/IconCartPlus",
       "import": "import { IconCartPlus } from '@optiaxiom/icons';",
       "keywords": [
         "add",
@@ -130400,6 +130409,7 @@
       "name": "IconCartPlus"
     },
     "IconBullseyePointer": {
+      "entryPoint": "@optiaxiom/icons/IconBullseyePointer",
       "import": "import { IconBullseyePointer } from '@optiaxiom/icons';",
       "keywords": [
         "ads",
@@ -130415,6 +130425,7 @@
       "name": "IconBullseyePointer"
     },
     "IconObjectsAlignBottom": {
+      "entryPoint": "@optiaxiom/icons/IconObjectsAlignBottom",
       "import": "import { IconObjectsAlignBottom } from '@optiaxiom/icons';",
       "keywords": [
         "align",
@@ -130433,6 +130444,7 @@
       "name": "IconObjectsAlignBottom"
     },
     "IconObjectsAlignCenterVertical": {
+      "entryPoint": "@optiaxiom/icons/IconObjectsAlignCenterVertical",
       "import": "import { IconObjectsAlignCenterVertical } from '@optiaxiom/icons';",
       "keywords": [
         "align",
@@ -130451,6 +130463,7 @@
       "name": "IconObjectsAlignCenterVertical"
     },
     "IconObjectsAlignTop": {
+      "entryPoint": "@optiaxiom/icons/IconObjectsAlignTop",
       "import": "import { IconObjectsAlignTop } from '@optiaxiom/icons';",
       "keywords": [
         "align",
@@ -130469,11 +130482,13 @@
       "name": "IconObjectsAlignTop"
     },
     "IconAt": {
+      "entryPoint": "@optiaxiom/icons/IconAt",
       "import": "import { IconAt } from '@optiaxiom/icons';",
       "keywords": ["@", "address", "alternate", "contact", "email", "tag"],
       "name": "IconAt"
     },
     "IconTruckMedical": {
+      "entryPoint": "@optiaxiom/icons/IconTruckMedical",
       "import": "import { IconTruckMedical } from '@optiaxiom/icons';",
       "keywords": [
         "aid",
@@ -130523,16 +130538,19 @@
       "name": "IconTruckMedical"
     },
     "IconCircleArrowDown": {
+      "entryPoint": "@optiaxiom/icons/IconCircleArrowDown",
       "import": "import { IconCircleArrowDown } from '@optiaxiom/icons';",
       "keywords": ["arrow", "circle", "direction", "down", "navigation"],
       "name": "IconCircleArrowDown"
     },
     "IconCircleArrowUp": {
+      "entryPoint": "@optiaxiom/icons/IconCircleArrowUp",
       "import": "import { IconCircleArrowUp } from '@optiaxiom/icons';",
       "keywords": ["arrow", "circle", "direction", "navigation", "up"],
       "name": "IconCircleArrowUp"
     },
     "IconCaretDownSolid": {
+      "entryPoint": "@optiaxiom/icons/IconCaretDownSolid",
       "import": "import { IconCaretDownSolid } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -130554,6 +130572,7 @@
       "name": "IconCaretDownSolid"
     },
     "IconCaretUpSolid": {
+      "entryPoint": "@optiaxiom/icons/IconCaretUpSolid",
       "import": "import { IconCaretUpSolid } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -130575,6 +130594,7 @@
       "name": "IconCaretUpSolid"
     },
     "IconArrowRightSolid": {
+      "entryPoint": "@optiaxiom/icons/IconArrowRightSolid",
       "import": "import { IconArrowRightSolid } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -130597,6 +130617,7 @@
       "name": "IconArrowRightSolid"
     },
     "IconArrowLeft": {
+      "entryPoint": "@optiaxiom/icons/IconArrowLeft",
       "import": "import { IconArrowLeft } from '@optiaxiom/icons';",
       "keywords": [
         "alternate",
@@ -130635,6 +130656,7 @@
       "name": "IconArrowLeft"
     },
     "IconArrowsLeftRight": {
+      "entryPoint": "@optiaxiom/icons/IconArrowsLeftRight",
       "import": "import { IconArrowsLeftRight } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -130674,6 +130696,7 @@
       "name": "IconArrowsLeftRight"
     },
     "IconArrowRight": {
+      "entryPoint": "@optiaxiom/icons/IconArrowRight",
       "import": "import { IconArrowRight } from '@optiaxiom/icons';",
       "keywords": [
         "alt",
@@ -130688,6 +130711,7 @@
       "name": "IconArrowRight"
     },
     "IconMousePointer": {
+      "entryPoint": "@optiaxiom/icons/IconMousePointer",
       "import": "import { IconMousePointer } from '@optiaxiom/icons';",
       "keywords": [
         "action",
@@ -130730,6 +130754,7 @@
       "name": "IconMousePointer"
     },
     "IconSplit": {
+      "entryPoint": "@optiaxiom/icons/IconSplit",
       "import": "import { IconSplit } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -130772,6 +130797,7 @@
       "name": "IconSplit"
     },
     "IconFileLines": {
+      "entryPoint": "@optiaxiom/icons/IconFileLines",
       "import": "import { IconFileLines } from '@optiaxiom/icons';",
       "keywords": [
         "article",
@@ -130786,6 +130812,7 @@
       "name": "IconFileLines"
     },
     "IconClipboardCheck": {
+      "entryPoint": "@optiaxiom/icons/IconClipboardCheck",
       "import": "import { IconClipboardCheck } from '@optiaxiom/icons';",
       "keywords": [
         "assignment",
@@ -130798,6 +130825,7 @@
       "name": "IconClipboardCheck"
     },
     "IconMemoPad": {
+      "entryPoint": "@optiaxiom/icons/IconMemoPad",
       "import": "import { IconMemoPad } from '@optiaxiom/icons';",
       "keywords": [
         "assignment",
@@ -130810,6 +130838,7 @@
       "name": "IconMemoPad"
     },
     "IconAssuredWorkload": {
+      "entryPoint": "@optiaxiom/icons/IconAssuredWorkload",
       "import": "import { IconAssuredWorkload } from '@optiaxiom/icons';",
       "keywords": [
         "account",
@@ -130841,6 +130870,7 @@
       "name": "IconAssuredWorkload"
     },
     "IconAsterisk": {
+      "entryPoint": "@optiaxiom/icons/IconAsterisk",
       "import": "import { IconAsterisk } from '@optiaxiom/icons';",
       "keywords": [
         "abstract",
@@ -130880,6 +130910,7 @@
       "name": "IconAsterisk"
     },
     "IconPaperclip": {
+      "entryPoint": "@optiaxiom/icons/IconPaperclip",
       "import": "import { IconPaperclip } from '@optiaxiom/icons';",
       "keywords": [
         "add",
@@ -130895,6 +130926,7 @@
       "name": "IconPaperclip"
     },
     "IconDollarSign": {
+      "entryPoint": "@optiaxiom/icons/IconDollarSign",
       "import": "import { IconDollarSign } from '@optiaxiom/icons';",
       "keywords": [
         "bill",
@@ -130920,6 +130952,7 @@
       "name": "IconDollarSign"
     },
     "IconChartColumn": {
+      "entryPoint": "@optiaxiom/icons/IconChartColumn",
       "import": "import { IconChartColumn } from '@optiaxiom/icons';",
       "keywords": [
         "analysis",
@@ -130963,6 +130996,7 @@
       "name": "IconChartColumn"
     },
     "IconBarcode": {
+      "entryPoint": "@optiaxiom/icons/IconBarcode",
       "import": "import { IconBarcode } from '@optiaxiom/icons';",
       "keywords": [
         "abstract",
@@ -131001,6 +131035,7 @@
       "name": "IconBarcode"
     },
     "IconBan": {
+      "entryPoint": "@optiaxiom/icons/IconBan",
       "import": "import { IconBan } from '@optiaxiom/icons';",
       "keywords": [
         "avoid",
@@ -131020,6 +131055,7 @@
       "name": "IconBan"
     },
     "IconOctagonMinus": {
+      "entryPoint": "@optiaxiom/icons/IconOctagonMinus",
       "import": "import { IconOctagonMinus } from '@optiaxiom/icons';",
       "keywords": [
         "avoid",
@@ -131039,6 +131075,7 @@
       "name": "IconOctagonMinus"
     },
     "IconBook": {
+      "entryPoint": "@optiaxiom/icons/IconBook",
       "import": "import { IconBook } from '@optiaxiom/icons';",
       "keywords": [
         "book",
@@ -131056,6 +131093,7 @@
       "name": "IconBook"
     },
     "IconBookmarkSolid": {
+      "entryPoint": "@optiaxiom/icons/IconBookmarkSolid",
       "import": "import { IconBookmarkSolid } from '@optiaxiom/icons';",
       "keywords": [
         "archive",
@@ -131073,6 +131111,7 @@
       "name": "IconBookmarkSolid"
     },
     "IconBorderNone": {
+      "entryPoint": "@optiaxiom/icons/IconBorderNone",
       "import": "import { IconBorderNone } from '@optiaxiom/icons';",
       "keywords": [
         "border",
@@ -131093,6 +131132,7 @@
       "name": "IconBorderNone"
     },
     "IconPenLine": {
+      "entryPoint": "@optiaxiom/icons/IconPenLine",
       "import": "import { IconPenLine } from '@optiaxiom/icons';",
       "keywords": [
         "all",
@@ -131113,6 +131153,7 @@
       "name": "IconPenLine"
     },
     "IconBox": {
+      "entryPoint": "@optiaxiom/icons/IconBox",
       "import": "import { IconBox } from '@optiaxiom/icons';",
       "keywords": [
         "abstract",
@@ -131154,6 +131195,7 @@
       "name": "IconBox"
     },
     "IconBallPile": {
+      "entryPoint": "@optiaxiom/icons/IconBallPile",
       "import": "import { IconBallPile } from '@optiaxiom/icons';",
       "keywords": [
         "analytics",
@@ -131173,6 +131215,7 @@
       "name": "IconBallPile"
     },
     "IconBug": {
+      "entryPoint": "@optiaxiom/icons/IconBug",
       "import": "import { IconBug } from '@optiaxiom/icons';",
       "keywords": [
         "animal",
@@ -131189,6 +131232,7 @@
       "name": "IconBug"
     },
     "IconBriefcase": {
+      "entryPoint": "@optiaxiom/icons/IconBriefcase",
       "import": "import { IconBriefcase } from '@optiaxiom/icons';",
       "keywords": [
         "bag",
@@ -131205,6 +131249,7 @@
       "name": "IconBriefcase"
     },
     "IconArrowsRotate": {
+      "entryPoint": "@optiaxiom/icons/IconArrowsRotate",
       "import": "import { IconArrowsRotate } from '@optiaxiom/icons';",
       "keywords": [
         "around",
@@ -131220,6 +131265,7 @@
       "name": "IconArrowsRotate"
     },
     "IconCalendarClock": {
+      "entryPoint": "@optiaxiom/icons/IconCalendarClock",
       "import": "import { IconCalendarClock } from '@optiaxiom/icons';",
       "keywords": [
         "agenda",
@@ -131266,6 +131312,7 @@
       "name": "IconCalendarClock"
     },
     "IconCalendarDays": {
+      "entryPoint": "@optiaxiom/icons/IconCalendarDays",
       "import": "import { IconCalendarDays } from '@optiaxiom/icons';",
       "keywords": [
         "calendar",
@@ -131279,6 +131326,7 @@
       "name": "IconCalendarDays"
     },
     "IconCalendar": {
+      "entryPoint": "@optiaxiom/icons/IconCalendar",
       "import": "import { IconCalendar } from '@optiaxiom/icons';",
       "keywords": [
         "calendar",
@@ -131292,6 +131340,7 @@
       "name": "IconCalendar"
     },
     "IconPhone": {
+      "entryPoint": "@optiaxiom/icons/IconPhone",
       "import": "import { IconPhone } from '@optiaxiom/icons';",
       "keywords": [
         "call",
@@ -131306,6 +131355,7 @@
       "name": "IconPhone"
     },
     "IconBullhorn": {
+      "entryPoint": "@optiaxiom/icons/IconBullhorn",
       "import": "import { IconBullhorn } from '@optiaxiom/icons';",
       "keywords": [
         "alert",
@@ -131320,6 +131370,7 @@
       "name": "IconBullhorn"
     },
     "IconMegaphone": {
+      "entryPoint": "@optiaxiom/icons/IconMegaphone",
       "import": "import { IconMegaphone } from '@optiaxiom/icons';",
       "keywords": [
         "alert",
@@ -131334,6 +131385,7 @@
       "name": "IconMegaphone"
     },
     "IconCircleXmark": {
+      "entryPoint": "@optiaxiom/icons/IconCircleXmark",
       "import": "import { IconCircleXmark } from '@optiaxiom/icons';",
       "keywords": [
         "cancel",
@@ -131348,6 +131400,7 @@
       "name": "IconCircleXmark"
     },
     "IconCircleXmarkSolid": {
+      "entryPoint": "@optiaxiom/icons/IconCircleXmarkSolid",
       "import": "import { IconCircleXmarkSolid } from '@optiaxiom/icons';",
       "keywords": [
         "cancel",
@@ -131362,6 +131415,7 @@
       "name": "IconCircleXmarkSolid"
     },
     "IconShapes": {
+      "entryPoint": "@optiaxiom/icons/IconShapes",
       "import": "import { IconShapes } from '@optiaxiom/icons';",
       "keywords": [
         "categories",
@@ -131378,6 +131432,7 @@
       "name": "IconShapes"
     },
     "IconMessageLines": {
+      "entryPoint": "@optiaxiom/icons/IconMessageLines",
       "import": "import { IconMessageLines } from '@optiaxiom/icons';",
       "keywords": [
         "bubble",
@@ -131391,6 +131446,7 @@
       "name": "IconMessageLines"
     },
     "IconComment": {
+      "entryPoint": "@optiaxiom/icons/IconComment",
       "import": "import { IconComment } from '@optiaxiom/icons';",
       "keywords": [
         "bubble",
@@ -131404,6 +131460,7 @@
       "name": "IconComment"
     },
     "IconCheck": {
+      "entryPoint": "@optiaxiom/icons/IconCheck",
       "import": "import { IconCheck } from '@optiaxiom/icons';",
       "keywords": [
         "!",
@@ -131431,6 +131488,7 @@
       "name": "IconCheck"
     },
     "IconSquareCheck": {
+      "entryPoint": "@optiaxiom/icons/IconSquareCheck",
       "import": "import { IconSquareCheck } from '@optiaxiom/icons';",
       "keywords": [
         "approved",
@@ -131453,6 +131511,7 @@
       "name": "IconSquareCheck"
     },
     "IconCheckCircleSolid": {
+      "entryPoint": "@optiaxiom/icons/IconCheckCircleSolid",
       "import": "import { IconCheckCircleSolid } from '@optiaxiom/icons';",
       "keywords": [
         "approve",
@@ -131472,6 +131531,7 @@
       "name": "IconCheckCircleSolid"
     },
     "IconCircleCheck": {
+      "entryPoint": "@optiaxiom/icons/IconCircleCheck",
       "import": "import { IconCircleCheck } from '@optiaxiom/icons';",
       "keywords": [
         "approve",
@@ -131491,6 +131551,7 @@
       "name": "IconCircleCheck"
     },
     "IconCircleCheckSolid": {
+      "entryPoint": "@optiaxiom/icons/IconCircleCheckSolid",
       "import": "import { IconCircleCheckSolid } from '@optiaxiom/icons';",
       "keywords": [
         "approve",
@@ -131510,6 +131571,7 @@
       "name": "IconCircleCheckSolid"
     },
     "IconMoneyCheckPen": {
+      "entryPoint": "@optiaxiom/icons/IconMoneyCheckPen",
       "import": "import { IconMoneyCheckPen } from '@optiaxiom/icons';",
       "keywords": [
         "accounting",
@@ -131547,6 +131609,7 @@
       "name": "IconMoneyCheckPen"
     },
     "IconListCheck": {
+      "entryPoint": "@optiaxiom/icons/IconListCheck",
       "import": "import { IconListCheck } from '@optiaxiom/icons';",
       "keywords": [
         "align",
@@ -131579,6 +131642,7 @@
       "name": "IconListCheck"
     },
     "IconChevronLeft": {
+      "entryPoint": "@optiaxiom/icons/IconChevronLeft",
       "import": "import { IconChevronLeft } from '@optiaxiom/icons';",
       "keywords": [
         "DISABLE_IOS",
@@ -131592,16 +131656,19 @@
       "name": "IconChevronLeft"
     },
     "IconAngleRight": {
+      "entryPoint": "@optiaxiom/icons/IconAngleRight",
       "import": "import { IconAngleRight } from '@optiaxiom/icons';",
       "keywords": ["arrow", "arrows", "chevron", "direction", "right"],
       "name": "IconAngleRight"
     },
     "IconChevronRight": {
+      "entryPoint": "@optiaxiom/icons/IconChevronRight",
       "import": "import { IconChevronRight } from '@optiaxiom/icons';",
       "keywords": ["arrow", "arrows", "chevron", "direction", "right"],
       "name": "IconChevronRight"
     },
     "IconCircle": {
+      "entryPoint": "@optiaxiom/icons/IconCircle",
       "import": "import { IconCircle } from '@optiaxiom/icons';",
       "keywords": [
         "angle",
@@ -131622,6 +131689,7 @@
       "name": "IconCircle"
     },
     "IconCircleSolid": {
+      "entryPoint": "@optiaxiom/icons/IconCircleSolid",
       "import": "import { IconCircleSolid } from '@optiaxiom/icons';",
       "keywords": [
         "angle",
@@ -131642,6 +131710,7 @@
       "name": "IconCircleSolid"
     },
     "IconSunBright": {
+      "entryPoint": "@optiaxiom/icons/IconSunBright",
       "import": "import { IconSunBright } from '@optiaxiom/icons';",
       "keywords": [
         "beams",
@@ -131680,11 +131749,13 @@
       "name": "IconSunBright"
     },
     "IconXmark": {
+      "entryPoint": "@optiaxiom/icons/IconXmark",
       "import": "import { IconXmark } from '@optiaxiom/icons';",
       "keywords": ["cancel", "clear", "close", "exit", "remove", "stop", "x"],
       "name": "IconXmark"
     },
     "IconPresentationScreen": {
+      "entryPoint": "@optiaxiom/icons/IconPresentationScreen",
       "import": "import { IconPresentationScreen } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -131701,6 +131772,7 @@
       "name": "IconPresentationScreen"
     },
     "IconCode": {
+      "entryPoint": "@optiaxiom/icons/IconCode",
       "import": "import { IconCode } from '@optiaxiom/icons';",
       "keywords": [
         "angle brackets",
@@ -131742,6 +131814,7 @@
       "name": "IconCode"
     },
     "IconClone": {
+      "entryPoint": "@optiaxiom/icons/IconClone",
       "import": "import { IconClone } from '@optiaxiom/icons';",
       "keywords": [
         "content",
@@ -131758,6 +131831,7 @@
       "name": "IconClone"
     },
     "IconCopy": {
+      "entryPoint": "@optiaxiom/icons/IconCopy",
       "import": "import { IconCopy } from '@optiaxiom/icons';",
       "keywords": [
         "content",
@@ -131774,6 +131848,7 @@
       "name": "IconCopy"
     },
     "IconScissors": {
+      "entryPoint": "@optiaxiom/icons/IconScissors",
       "import": "import { IconScissors } from '@optiaxiom/icons';",
       "keywords": [
         "content",
@@ -131789,6 +131864,7 @@
       "name": "IconScissors"
     },
     "IconClipboard": {
+      "entryPoint": "@optiaxiom/icons/IconClipboard",
       "import": "import { IconClipboard } from '@optiaxiom/icons';",
       "keywords": [
         "clipboard",
@@ -131804,6 +131880,7 @@
       "name": "IconClipboard"
     },
     "IconPaste": {
+      "entryPoint": "@optiaxiom/icons/IconPaste",
       "import": "import { IconPaste } from '@optiaxiom/icons';",
       "keywords": [
         "clipboard",
@@ -131819,6 +131896,7 @@
       "name": "IconPaste"
     },
     "IconCircleHalfStrokeSolid": {
+      "entryPoint": "@optiaxiom/icons/IconCircleHalfStrokeSolid",
       "import": "import { IconCircleHalfStrokeSolid } from '@optiaxiom/icons';",
       "keywords": [
         "black",
@@ -131840,6 +131918,7 @@
       "name": "IconCircleHalfStrokeSolid"
     },
     "IconFolderPlus": {
+      "entryPoint": "@optiaxiom/icons/IconFolderPlus",
       "import": "import { IconFolderPlus } from '@optiaxiom/icons';",
       "keywords": [
         "+",
@@ -131861,6 +131940,7 @@
       "name": "IconFolderPlus"
     },
     "IconRectangleWide": {
+      "entryPoint": "@optiaxiom/icons/IconRectangleWide",
       "import": "import { IconRectangleWide } from '@optiaxiom/icons';",
       "keywords": [
         "adjust",
@@ -131881,6 +131961,7 @@
       "name": "IconRectangleWide"
     },
     "IconSquare": {
+      "entryPoint": "@optiaxiom/icons/IconSquare",
       "import": "import { IconSquare } from '@optiaxiom/icons';",
       "keywords": [
         "adjust",
@@ -131918,6 +131999,7 @@
       "name": "IconSquare"
     },
     "IconGrid2Plus": {
+      "entryPoint": "@optiaxiom/icons/IconGrid2Plus",
       "import": "import { IconGrid2Plus } from '@optiaxiom/icons';",
       "keywords": [
         "cards",
@@ -131934,11 +132016,13 @@
       "name": "IconGrid2Plus"
     },
     "IconBracketsSquare": {
+      "entryPoint": "@optiaxiom/icons/IconBracketsSquare",
       "import": "import { IconBracketsSquare } from '@optiaxiom/icons';",
       "keywords": ["array", "brackets", "code", "coder", "data", "parentheses"],
       "name": "IconBracketsSquare"
     },
     "IconBracketsCurly": {
+      "entryPoint": "@optiaxiom/icons/IconBracketsCurly",
       "import": "import { IconBracketsCurly } from '@optiaxiom/icons';",
       "keywords": [
         "brackets",
@@ -131951,6 +132035,7 @@
       "name": "IconBracketsCurly"
     },
     "IconDatabase": {
+      "entryPoint": "@optiaxiom/icons/IconDatabase",
       "import": "import { IconDatabase } from '@optiaxiom/icons';",
       "keywords": [
         "access",
@@ -131995,6 +132080,7 @@
       "name": "IconDatabase"
     },
     "IconServer": {
+      "entryPoint": "@optiaxiom/icons/IconServer",
       "import": "import { IconServer } from '@optiaxiom/icons';",
       "keywords": [
         "access",
@@ -132039,6 +132125,7 @@
       "name": "IconServer"
     },
     "IconBars": {
+      "entryPoint": "@optiaxiom/icons/IconBars",
       "import": "import { IconBars } from '@optiaxiom/icons';",
       "keywords": [
         "adjust",
@@ -132056,11 +132143,13 @@
       "name": "IconBars"
     },
     "IconTrashCan": {
+      "entryPoint": "@optiaxiom/icons/IconTrashCan",
       "import": "import { IconTrashCan } from '@optiaxiom/icons';",
       "keywords": ["bin", "can", "delete", "garbage", "remove", "trash"],
       "name": "IconTrashCan"
     },
     "IconBoxesStacked": {
+      "entryPoint": "@optiaxiom/icons/IconBoxesStacked",
       "import": "import { IconBoxesStacked } from '@optiaxiom/icons';",
       "keywords": [
         "3d",
@@ -132105,6 +132194,7 @@
       "name": "IconBoxesStacked"
     },
     "IconCube": {
+      "entryPoint": "@optiaxiom/icons/IconCube",
       "import": "import { IconCube } from '@optiaxiom/icons';",
       "keywords": [
         "3d",
@@ -132149,6 +132239,7 @@
       "name": "IconCube"
     },
     "IconCubes": {
+      "entryPoint": "@optiaxiom/icons/IconCubes",
       "import": "import { IconCubes } from '@optiaxiom/icons';",
       "keywords": [
         "3d",
@@ -132193,6 +132284,7 @@
       "name": "IconCubes"
     },
     "IconFileWord": {
+      "entryPoint": "@optiaxiom/icons/IconFileWord",
       "import": "import { IconFileWord } from '@optiaxiom/icons';",
       "keywords": [
         "article",
@@ -132215,6 +132307,7 @@
       "name": "IconFileWord"
     },
     "IconDesktop": {
+      "entryPoint": "@optiaxiom/icons/IconDesktop",
       "import": "import { IconDesktop } from '@optiaxiom/icons';",
       "keywords": [
         "Android",
@@ -132234,6 +132327,7 @@
       "name": "IconDesktop"
     },
     "IconDisplay": {
+      "entryPoint": "@optiaxiom/icons/IconDisplay",
       "import": "import { IconDisplay } from '@optiaxiom/icons';",
       "keywords": [
         "Android",
@@ -132256,6 +132350,7 @@
       "name": "IconDisplay"
     },
     "IconLaptopMobile": {
+      "entryPoint": "@optiaxiom/icons/IconLaptopMobile",
       "import": "import { IconLaptopMobile } from '@optiaxiom/icons';",
       "keywords": [
         "Android",
@@ -132277,6 +132372,7 @@
       "name": "IconLaptopMobile"
     },
     "IconCircleMinus": {
+      "entryPoint": "@optiaxiom/icons/IconCircleMinus",
       "import": "import { IconCircleMinus } from '@optiaxiom/icons';",
       "keywords": [
         "cancel",
@@ -132297,6 +132393,7 @@
       "name": "IconCircleMinus"
     },
     "IconDomain": {
+      "entryPoint": "@optiaxiom/icons/IconDomain",
       "import": "import { IconDomain } from '@optiaxiom/icons';",
       "keywords": [
         "apartment",
@@ -132317,6 +132414,7 @@
       "name": "IconDomain"
     },
     "IconCheckDouble": {
+      "entryPoint": "@optiaxiom/icons/IconCheckDouble",
       "import": "import { IconCheckDouble } from '@optiaxiom/icons';",
       "keywords": [
         "all",
@@ -132338,6 +132436,7 @@
       "name": "IconCheckDouble"
     },
     "IconDownload": {
+      "entryPoint": "@optiaxiom/icons/IconDownload",
       "import": "import { IconDownload } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -132351,6 +132450,7 @@
       "name": "IconDownload"
     },
     "IconFile": {
+      "entryPoint": "@optiaxiom/icons/IconFile",
       "import": "import { IconFile } from '@optiaxiom/icons';",
       "keywords": [
         "attachment",
@@ -132387,6 +132487,7 @@
       "name": "IconFile"
     },
     "IconEnvelopeOpen": {
+      "entryPoint": "@optiaxiom/icons/IconEnvelopeOpen",
       "import": "import { IconEnvelopeOpen } from '@optiaxiom/icons';",
       "keywords": [
         "document",
@@ -132402,6 +132503,7 @@
       "name": "IconEnvelopeOpen"
     },
     "IconGrip": {
+      "entryPoint": "@optiaxiom/icons/IconGrip",
       "import": "import { IconGrip } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -132433,6 +132535,7 @@
       "name": "IconGrip"
     },
     "IconGripLinesVertical": {
+      "entryPoint": "@optiaxiom/icons/IconGripLinesVertical",
       "import": "import { IconGripLinesVertical } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -132464,6 +132567,7 @@
       "name": "IconGripLinesVertical"
     },
     "IconGripVertical": {
+      "entryPoint": "@optiaxiom/icons/IconGripVertical",
       "import": "import { IconGripVertical } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -132495,6 +132599,7 @@
       "name": "IconGripVertical"
     },
     "IconArrowsUpDownLeftRight": {
+      "entryPoint": "@optiaxiom/icons/IconArrowsUpDownLeftRight",
       "import": "import { IconArrowsUpDownLeftRight } from '@optiaxiom/icons';",
       "keywords": [
         "adjust",
@@ -132539,6 +132644,7 @@
       "name": "IconArrowsUpDownLeftRight"
     },
     "IconFolderArrowDown": {
+      "entryPoint": "@optiaxiom/icons/IconFolderArrowDown",
       "import": "import { IconFolderArrowDown } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -132557,6 +132663,7 @@
       "name": "IconFolderArrowDown"
     },
     "IconListDropdown": {
+      "entryPoint": "@optiaxiom/icons/IconListDropdown",
       "import": "import { IconListDropdown } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -132603,6 +132710,7 @@
       "name": "IconListDropdown"
     },
     "IconArrowRightLong": {
+      "entryPoint": "@optiaxiom/icons/IconArrowRightLong",
       "import": "import { IconArrowRightLong } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -132615,6 +132723,7 @@
       "name": "IconArrowRightLong"
     },
     "IconPen": {
+      "entryPoint": "@optiaxiom/icons/IconPen",
       "import": "import { IconPen } from '@optiaxiom/icons';",
       "keywords": [
         "compose",
@@ -132631,6 +132740,7 @@
       "name": "IconPen"
     },
     "IconFilePen": {
+      "entryPoint": "@optiaxiom/icons/IconFilePen",
       "import": "import { IconFilePen } from '@optiaxiom/icons';",
       "keywords": [
         "compose",
@@ -132655,6 +132765,7 @@
       "name": "IconFilePen"
     },
     "IconPenField": {
+      "entryPoint": "@optiaxiom/icons/IconPenField",
       "import": "import { IconPenField } from '@optiaxiom/icons';",
       "keywords": [
         "compose",
@@ -132674,6 +132785,7 @@
       "name": "IconPenField"
     },
     "IconPenSlash": {
+      "entryPoint": "@optiaxiom/icons/IconPenSlash",
       "import": "import { IconPenSlash } from '@optiaxiom/icons';",
       "keywords": [
         "compose",
@@ -132697,6 +132809,7 @@
       "name": "IconPenSlash"
     },
     "IconPenToSquare": {
+      "entryPoint": "@optiaxiom/icons/IconPenToSquare",
       "import": "import { IconPenToSquare } from '@optiaxiom/icons';",
       "keywords": [
         "compose",
@@ -132715,6 +132828,7 @@
       "name": "IconPenToSquare"
     },
     "IconBolt": {
+      "entryPoint": "@optiaxiom/icons/IconBolt",
       "import": "import { IconBolt } from '@optiaxiom/icons';",
       "keywords": [
         "bolt",
@@ -132729,6 +132843,7 @@
       "name": "IconBolt"
     },
     "IconCircleExclamation": {
+      "entryPoint": "@optiaxiom/icons/IconCircleExclamation",
       "import": "import { IconCircleExclamation } from '@optiaxiom/icons';",
       "keywords": [
         "!",
@@ -132748,6 +132863,7 @@
       "name": "IconCircleExclamation"
     },
     "IconFileExclamation": {
+      "entryPoint": "@optiaxiom/icons/IconFileExclamation",
       "import": "import { IconFileExclamation } from '@optiaxiom/icons';",
       "keywords": [
         "!",
@@ -132767,6 +132883,7 @@
       "name": "IconFileExclamation"
     },
     "IconCircleChevronDown": {
+      "entryPoint": "@optiaxiom/icons/IconCircleChevronDown",
       "import": "import { IconCircleChevronDown } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -132784,6 +132901,7 @@
       "name": "IconCircleChevronDown"
     },
     "IconExpand": {
+      "entryPoint": "@optiaxiom/icons/IconExpand",
       "import": "import { IconExpand } from '@optiaxiom/icons';",
       "keywords": [
         "adjustment",
@@ -132830,6 +132948,7 @@
       "name": "IconExpand"
     },
     "IconFlask": {
+      "entryPoint": "@optiaxiom/icons/IconFlask",
       "import": "import { IconFlask } from '@optiaxiom/icons';",
       "keywords": [
         "analysis",
@@ -132867,6 +132986,7 @@
       "name": "IconFlask"
     },
     "IconPuzzlePiece": {
+      "entryPoint": "@optiaxiom/icons/IconPuzzlePiece",
       "import": "import { IconPuzzlePiece } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -132881,6 +133001,7 @@
       "name": "IconPuzzlePiece"
     },
     "IconGlassesRound": {
+      "entryPoint": "@optiaxiom/icons/IconGlassesRound",
       "import": "import { IconGlassesRound } from '@optiaxiom/icons';",
       "keywords": [
         "accessory",
@@ -132919,6 +133040,7 @@
       "name": "IconGlassesRound"
     },
     "IconGift": {
+      "entryPoint": "@optiaxiom/icons/IconGift",
       "import": "import { IconGift } from '@optiaxiom/icons';",
       "keywords": [
         "and",
@@ -132957,6 +133079,7 @@
       "name": "IconGift"
     },
     "IconCircleDot": {
+      "entryPoint": "@optiaxiom/icons/IconCircleDot",
       "import": "import { IconCircleDot } from '@optiaxiom/icons';",
       "keywords": [
         "circle",
@@ -132970,6 +133093,7 @@
       "name": "IconCircleDot"
     },
     "IconCircleSmallSolid": {
+      "entryPoint": "@optiaxiom/icons/IconCircleSmallSolid",
       "import": "import { IconCircleSmallSolid } from '@optiaxiom/icons';",
       "keywords": [
         "circle",
@@ -132983,6 +133107,7 @@
       "name": "IconCircleSmallSolid"
     },
     "IconFileExport": {
+      "entryPoint": "@optiaxiom/icons/IconFileExport",
       "import": "import { IconFileExport } from '@optiaxiom/icons';",
       "keywords": [
         "archive",
@@ -133020,6 +133145,7 @@
       "name": "IconFileExport"
     },
     "IconFileImport": {
+      "entryPoint": "@optiaxiom/icons/IconFileImport",
       "import": "import { IconFileImport } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -133035,11 +133161,13 @@
       "name": "IconFileImport"
     },
     "IconFilter": {
+      "entryPoint": "@optiaxiom/icons/IconFilter",
       "import": "import { IconFilter } from '@optiaxiom/icons';",
       "keywords": ["edit", "filter", "funnel", "options", "refine", "sift"],
       "name": "IconFilter"
     },
     "IconFilterSlash": {
+      "entryPoint": "@optiaxiom/icons/IconFilterSlash",
       "import": "import { IconFilterSlash } from '@optiaxiom/icons';",
       "keywords": [
         "alt",
@@ -133057,6 +133185,7 @@
       "name": "IconFilterSlash"
     },
     "IconArrowLeftFromLine": {
+      "entryPoint": "@optiaxiom/icons/IconArrowLeftFromLine",
       "import": "import { IconArrowLeftFromLine } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -133070,6 +133199,7 @@
       "name": "IconArrowLeftFromLine"
     },
     "IconFlag": {
+      "entryPoint": "@optiaxiom/icons/IconFlag",
       "import": "import { IconFlag } from '@optiaxiom/icons';",
       "keywords": [
         "achievement",
@@ -133113,6 +133243,7 @@
       "name": "IconFlag"
     },
     "IconFolder": {
+      "entryPoint": "@optiaxiom/icons/IconFolder",
       "import": "import { IconFolder } from '@optiaxiom/icons';",
       "keywords": [
         "data",
@@ -133129,6 +133260,7 @@
       "name": "IconFolder"
     },
     "IconFolderBlank": {
+      "entryPoint": "@optiaxiom/icons/IconFolderBlank",
       "import": "import { IconFolderBlank } from '@optiaxiom/icons';",
       "keywords": [
         "data",
@@ -133145,6 +133277,7 @@
       "name": "IconFolderBlank"
     },
     "IconFolderClosed": {
+      "entryPoint": "@optiaxiom/icons/IconFolderClosed",
       "import": "import { IconFolderClosed } from '@optiaxiom/icons';",
       "keywords": [
         "data",
@@ -133161,6 +133294,7 @@
       "name": "IconFolderClosed"
     },
     "IconFolderBookmark": {
+      "entryPoint": "@optiaxiom/icons/IconFolderBookmark",
       "import": "import { IconFolderBookmark } from '@optiaxiom/icons';",
       "keywords": [
         "accepted",
@@ -133206,6 +133340,7 @@
       "name": "IconFolderBookmark"
     },
     "IconFiles": {
+      "entryPoint": "@optiaxiom/icons/IconFiles",
       "import": "import { IconFiles } from '@optiaxiom/icons';",
       "keywords": [
         "content",
@@ -133228,6 +133363,7 @@
       "name": "IconFiles"
     },
     "IconFolders": {
+      "entryPoint": "@optiaxiom/icons/IconFolders",
       "import": "import { IconFolders } from '@optiaxiom/icons';",
       "keywords": [
         "content",
@@ -133250,6 +133386,7 @@
       "name": "IconFolders"
     },
     "IconFolderOpen": {
+      "entryPoint": "@optiaxiom/icons/IconFolderOpen",
       "import": "import { IconFolderOpen } from '@optiaxiom/icons';",
       "keywords": [
         "data",
@@ -133267,6 +133404,7 @@
       "name": "IconFolderOpen"
     },
     "IconFolderUser": {
+      "entryPoint": "@optiaxiom/icons/IconFolderUser",
       "import": "import { IconFolderUser } from '@optiaxiom/icons';",
       "keywords": [
         "account",
@@ -133293,6 +133431,7 @@
       "name": "IconFolderUser"
     },
     "IconFolderImage": {
+      "entryPoint": "@optiaxiom/icons/IconFolderImage",
       "import": "import { IconFolderImage } from '@optiaxiom/icons';",
       "keywords": [
         "bookmark",
@@ -133318,6 +133457,7 @@
       "name": "IconFolderImage"
     },
     "IconFileZipper": {
+      "entryPoint": "@optiaxiom/icons/IconFileZipper",
       "import": "import { IconFileZipper } from '@optiaxiom/icons';",
       "keywords": [
         "compress",
@@ -133337,6 +133477,7 @@
       "name": "IconFileZipper"
     },
     "IconCodeBranch": {
+      "entryPoint": "@optiaxiom/icons/IconCodeBranch",
       "import": "import { IconCodeBranch } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -133355,6 +133496,7 @@
       "name": "IconCodeBranch"
     },
     "IconAlignCenter": {
+      "entryPoint": "@optiaxiom/icons/IconAlignCenter",
       "import": "import { IconAlignCenter } from '@optiaxiom/icons';",
       "keywords": [
         "align",
@@ -133374,6 +133516,7 @@
       "name": "IconAlignCenter"
     },
     "IconAlignJustify": {
+      "entryPoint": "@optiaxiom/icons/IconAlignJustify",
       "import": "import { IconAlignJustify } from '@optiaxiom/icons';",
       "keywords": [
         "align",
@@ -133396,6 +133539,7 @@
       "name": "IconAlignJustify"
     },
     "IconAlignLeft": {
+      "entryPoint": "@optiaxiom/icons/IconAlignLeft",
       "import": "import { IconAlignLeft } from '@optiaxiom/icons';",
       "keywords": [
         "align",
@@ -133415,6 +133559,7 @@
       "name": "IconAlignLeft"
     },
     "IconAlignRight": {
+      "entryPoint": "@optiaxiom/icons/IconAlignRight",
       "import": "import { IconAlignRight } from '@optiaxiom/icons';",
       "keywords": [
         "align",
@@ -133434,6 +133579,7 @@
       "name": "IconAlignRight"
     },
     "IconBold": {
+      "entryPoint": "@optiaxiom/icons/IconBold",
       "import": "import { IconBold } from '@optiaxiom/icons';",
       "keywords": [
         "B",
@@ -133458,6 +133604,7 @@
       "name": "IconBold"
     },
     "IconText": {
+      "entryPoint": "@optiaxiom/icons/IconText",
       "import": "import { IconText } from '@optiaxiom/icons';",
       "keywords": [
         "color",
@@ -133478,6 +133625,7 @@
       "name": "IconText"
     },
     "IconHeading": {
+      "entryPoint": "@optiaxiom/icons/IconHeading",
       "import": "import { IconHeading } from '@optiaxiom/icons';",
       "keywords": [
         "article",
@@ -133516,6 +133664,7 @@
       "name": "IconHeading"
     },
     "IconHighlighter": {
+      "entryPoint": "@optiaxiom/icons/IconHighlighter",
       "import": "import { IconHighlighter } from '@optiaxiom/icons';",
       "keywords": [
         "annotate",
@@ -133561,6 +133710,7 @@
       "name": "IconHighlighter"
     },
     "IconItalic": {
+      "entryPoint": "@optiaxiom/icons/IconItalic",
       "import": "import { IconItalic } from '@optiaxiom/icons';",
       "keywords": [
         "alphabet",
@@ -133584,6 +133734,7 @@
       "name": "IconItalic"
     },
     "IconLineHeight": {
+      "entryPoint": "@optiaxiom/icons/IconLineHeight",
       "import": "import { IconLineHeight } from '@optiaxiom/icons';",
       "keywords": [
         "align",
@@ -133604,6 +133755,7 @@
       "name": "IconLineHeight"
     },
     "IconList": {
+      "entryPoint": "@optiaxiom/icons/IconList",
       "import": "import { IconList } from '@optiaxiom/icons';",
       "keywords": [
         "align",
@@ -133625,6 +133777,7 @@
       "name": "IconList"
     },
     "IconListUl": {
+      "entryPoint": "@optiaxiom/icons/IconListUl",
       "import": "import { IconListUl } from '@optiaxiom/icons';",
       "keywords": [
         "align",
@@ -133646,6 +133799,7 @@
       "name": "IconListUl"
     },
     "IconListOl": {
+      "entryPoint": "@optiaxiom/icons/IconListOl",
       "import": "import { IconListOl } from '@optiaxiom/icons';",
       "keywords": [
         "align",
@@ -133670,6 +133824,7 @@
       "name": "IconListOl"
     },
     "IconQuoteRight": {
+      "entryPoint": "@optiaxiom/icons/IconQuoteRight",
       "import": "import { IconQuoteRight } from '@optiaxiom/icons';",
       "keywords": [
         "doc",
@@ -133688,6 +133843,7 @@
       "name": "IconQuoteRight"
     },
     "IconStrikethrough": {
+      "entryPoint": "@optiaxiom/icons/IconStrikethrough",
       "import": "import { IconStrikethrough } from '@optiaxiom/icons';",
       "keywords": [
         "alphabet",
@@ -133711,6 +133867,7 @@
       "name": "IconStrikethrough"
     },
     "IconUnderline": {
+      "entryPoint": "@optiaxiom/icons/IconUnderline",
       "import": "import { IconUnderline } from '@optiaxiom/icons';",
       "keywords": [
         "alphabet",
@@ -133736,6 +133893,7 @@
       "name": "IconUnderline"
     },
     "IconComments": {
+      "entryPoint": "@optiaxiom/icons/IconComments",
       "import": "import { IconComments } from '@optiaxiom/icons';",
       "keywords": [
         "bubble",
@@ -133753,6 +133911,7 @@
       "name": "IconComments"
     },
     "IconMessages": {
+      "entryPoint": "@optiaxiom/icons/IconMessages",
       "import": "import { IconMessages } from '@optiaxiom/icons';",
       "keywords": [
         "bubble",
@@ -133770,6 +133929,7 @@
       "name": "IconMessages"
     },
     "IconArrowsMinimize": {
+      "entryPoint": "@optiaxiom/icons/IconArrowsMinimize",
       "import": "import { IconArrowsMinimize } from '@optiaxiom/icons';",
       "keywords": [
         "adjust",
@@ -133792,6 +133952,7 @@
       "name": "IconArrowsMinimize"
     },
     "IconArrowUpRightAndArrowDownLeftFromCenter": {
+      "entryPoint": "@optiaxiom/icons/IconArrowUpRightAndArrowDownLeftFromCenter",
       "import": "import { IconArrowUpRightAndArrowDownLeftFromCenter } from '@optiaxiom/icons';",
       "keywords": [
         "adjust",
@@ -133814,6 +133975,7 @@
       "name": "IconArrowUpRightAndArrowDownLeftFromCenter"
     },
     "IconGalleryThumbnails": {
+      "entryPoint": "@optiaxiom/icons/IconGalleryThumbnails",
       "import": "import { IconGalleryThumbnails } from '@optiaxiom/icons';",
       "keywords": [
         "album",
@@ -133861,6 +134023,7 @@
       "name": "IconGalleryThumbnails"
     },
     "IconBorderAll": {
+      "entryPoint": "@optiaxiom/icons/IconBorderAll",
       "import": "import { IconBorderAll } from '@optiaxiom/icons';",
       "keywords": [
         "background",
@@ -133878,6 +134041,7 @@
       "name": "IconBorderAll"
     },
     "IconGridDividers": {
+      "entryPoint": "@optiaxiom/icons/IconGridDividers",
       "import": "import { IconGridDividers } from '@optiaxiom/icons';",
       "keywords": [
         "background",
@@ -133895,6 +134059,7 @@
       "name": "IconGridDividers"
     },
     "IconTableCells": {
+      "entryPoint": "@optiaxiom/icons/IconTableCells",
       "import": "import { IconTableCells } from '@optiaxiom/icons';",
       "keywords": [
         "background",
@@ -133912,6 +134077,7 @@
       "name": "IconTableCells"
     },
     "IconGrid": {
+      "entryPoint": "@optiaxiom/icons/IconGrid",
       "import": "import { IconGrid } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -133936,6 +134102,7 @@
       "name": "IconGrid"
     },
     "IconGrid2": {
+      "entryPoint": "@optiaxiom/icons/IconGrid2",
       "import": "import { IconGrid2 } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -133960,6 +134127,7 @@
       "name": "IconGrid2"
     },
     "IconPeopleSimple": {
+      "entryPoint": "@optiaxiom/icons/IconPeopleSimple",
       "import": "import { IconPeopleSimple } from '@optiaxiom/icons';",
       "keywords": [
         "accounts",
@@ -133980,6 +134148,7 @@
       "name": "IconPeopleSimple"
     },
     "IconUsers": {
+      "entryPoint": "@optiaxiom/icons/IconUsers",
       "import": "import { IconUsers } from '@optiaxiom/icons';",
       "keywords": [
         "accounts",
@@ -134000,6 +134169,7 @@
       "name": "IconUsers"
     },
     "IconUserGroup": {
+      "entryPoint": "@optiaxiom/icons/IconUserGroup",
       "import": "import { IconUserGroup } from '@optiaxiom/icons';",
       "keywords": [
         "body",
@@ -134018,6 +134188,7 @@
       "name": "IconUserGroup"
     },
     "IconCircleQuestion": {
+      "entryPoint": "@optiaxiom/icons/IconCircleQuestion",
       "import": "import { IconCircleQuestion } from '@optiaxiom/icons';",
       "keywords": [
         "?",
@@ -134037,6 +134208,7 @@
       "name": "IconCircleQuestion"
     },
     "IconImageSlash": {
+      "entryPoint": "@optiaxiom/icons/IconImageSlash",
       "import": "import { IconImageSlash } from '@optiaxiom/icons';",
       "keywords": [
         "disabled",
@@ -134056,6 +134228,7 @@
       "name": "IconImageSlash"
     },
     "IconClockRotateLeft": {
+      "entryPoint": "@optiaxiom/icons/IconClockRotateLeft",
       "import": "import { IconClockRotateLeft } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -134080,6 +134253,7 @@
       "name": "IconClockRotateLeft"
     },
     "IconHouse": {
+      "entryPoint": "@optiaxiom/icons/IconHouse",
       "import": "import { IconHouse } from '@optiaxiom/icons';",
       "keywords": [
         "address",
@@ -134111,6 +134285,7 @@
       "name": "IconHouse"
     },
     "IconHouseBlank": {
+      "entryPoint": "@optiaxiom/icons/IconHouseBlank",
       "import": "import { IconHouseBlank } from '@optiaxiom/icons';",
       "keywords": [
         "address",
@@ -134142,6 +134317,7 @@
       "name": "IconHouseBlank"
     },
     "IconScrewdriverWrench": {
+      "entryPoint": "@optiaxiom/icons/IconScrewdriverWrench",
       "import": "import { IconScrewdriverWrench } from '@optiaxiom/icons';",
       "keywords": [
         "box",
@@ -134161,6 +134337,7 @@
       "name": "IconScrewdriverWrench"
     },
     "IconToolbox": {
+      "entryPoint": "@optiaxiom/icons/IconToolbox",
       "import": "import { IconToolbox } from '@optiaxiom/icons';",
       "keywords": [
         "box",
@@ -134180,6 +134357,7 @@
       "name": "IconToolbox"
     },
     "IconLeftToLine": {
+      "entryPoint": "@optiaxiom/icons/IconLeftToLine",
       "import": "import { IconLeftToLine } from '@optiaxiom/icons';",
       "keywords": [
         "align",
@@ -134224,6 +134402,7 @@
       "name": "IconLeftToLine"
     },
     "IconRightFromLine": {
+      "entryPoint": "@optiaxiom/icons/IconRightFromLine",
       "import": "import { IconRightFromLine } from '@optiaxiom/icons';",
       "keywords": [
         "adjust",
@@ -134267,21 +134446,25 @@
       "name": "IconRightFromLine"
     },
     "IconHorizontalRule": {
+      "entryPoint": "@optiaxiom/icons/IconHorizontalRule",
       "import": "import { IconHorizontalRule } from '@optiaxiom/icons';",
       "keywords": ["gmail", "horizontal", "line", "novitas", "rule"],
       "name": "IconHorizontalRule"
     },
     "IconInputPipe": {
+      "entryPoint": "@optiaxiom/icons/IconInputPipe",
       "import": "import { IconInputPipe } from '@optiaxiom/icons';",
       "keywords": ["gmail", "horizontal", "line", "novitas", "rule"],
       "name": "IconInputPipe"
     },
     "IconPipeSection": {
+      "entryPoint": "@optiaxiom/icons/IconPipeSection",
       "import": "import { IconPipeSection } from '@optiaxiom/icons';",
       "keywords": ["gmail", "horizontal", "line", "novitas", "rule"],
       "name": "IconPipeSection"
     },
     "IconHub": {
+      "entryPoint": "@optiaxiom/icons/IconHub",
       "import": "import { IconHub } from '@optiaxiom/icons';",
       "keywords": [
         "center",
@@ -134298,11 +134481,13 @@
       "name": "IconHub"
     },
     "IconPaintRoller": {
+      "entryPoint": "@optiaxiom/icons/IconPaintRoller",
       "import": "import { IconPaintRoller } from '@optiaxiom/icons';",
       "keywords": ["art", "image", "imagesearch", "paint", "roller", "search"],
       "name": "IconPaintRoller"
     },
     "IconFileImage": {
+      "entryPoint": "@optiaxiom/icons/IconFileImage",
       "import": "import { IconFileImage } from '@optiaxiom/icons';",
       "keywords": [
         "album",
@@ -134338,6 +134523,7 @@
       "name": "IconFileImage"
     },
     "IconImage": {
+      "entryPoint": "@optiaxiom/icons/IconImage",
       "import": "import { IconImage } from '@optiaxiom/icons';",
       "keywords": [
         "album",
@@ -134373,6 +134559,7 @@
       "name": "IconImage"
     },
     "IconInboxFull": {
+      "entryPoint": "@optiaxiom/icons/IconInboxFull",
       "import": "import { IconInboxFull } from '@optiaxiom/icons';",
       "keywords": [
         "alerts",
@@ -134411,6 +134598,7 @@
       "name": "IconInboxFull"
     },
     "IconCircleInfo": {
+      "entryPoint": "@optiaxiom/icons/IconCircleInfo",
       "import": "import { IconCircleInfo } from '@optiaxiom/icons';",
       "keywords": [
         "alert",
@@ -134427,6 +134615,7 @@
       "name": "IconCircleInfo"
     },
     "IconEraser": {
+      "entryPoint": "@optiaxiom/icons/IconEraser",
       "import": "import { IconEraser } from '@optiaxiom/icons';",
       "keywords": [
         "art",
@@ -134471,6 +134660,7 @@
       "name": "IconEraser"
     },
     "IconInputText": {
+      "entryPoint": "@optiaxiom/icons/IconInputText",
       "import": "import { IconInputText } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -134484,6 +134674,7 @@
       "name": "IconInputText"
     },
     "IconBoxArchive": {
+      "entryPoint": "@optiaxiom/icons/IconBoxArchive",
       "import": "import { IconBoxArchive } from '@optiaxiom/icons';",
       "keywords": [
         "archive",
@@ -134500,6 +134691,7 @@
       "name": "IconBoxArchive"
     },
     "IconDiagramVenn": {
+      "entryPoint": "@optiaxiom/icons/IconDiagramVenn",
       "import": "import { IconDiagramVenn } from '@optiaxiom/icons';",
       "keywords": [
         "circle",
@@ -134514,6 +134706,7 @@
       "name": "IconDiagramVenn"
     },
     "IconThumbtack": {
+      "entryPoint": "@optiaxiom/icons/IconThumbtack",
       "import": "import { IconThumbtack } from '@optiaxiom/icons';",
       "keywords": [
         "basic",
@@ -134545,6 +134738,7 @@
       "name": "IconThumbtack"
     },
     "IconKey": {
+      "entryPoint": "@optiaxiom/icons/IconKey",
       "import": "import { IconKey } from '@optiaxiom/icons';",
       "keywords": [
         "access",
@@ -134558,16 +134752,19 @@
       "name": "IconKey"
     },
     "IconAngleDown": {
+      "entryPoint": "@optiaxiom/icons/IconAngleDown",
       "import": "import { IconAngleDown } from '@optiaxiom/icons';",
       "keywords": ["arrow", "arrows", "down", "keyboard"],
       "name": "IconAngleDown"
     },
     "IconChevronDown": {
+      "entryPoint": "@optiaxiom/icons/IconChevronDown",
       "import": "import { IconChevronDown } from '@optiaxiom/icons';",
       "keywords": ["arrow", "arrows", "down", "keyboard"],
       "name": "IconChevronDown"
     },
     "IconChevronUp": {
+      "entryPoint": "@optiaxiom/icons/IconChevronUp",
       "import": "import { IconChevronUp } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -134584,6 +134781,7 @@
       "name": "IconChevronUp"
     },
     "IconArrowLeftToLine": {
+      "entryPoint": "@optiaxiom/icons/IconArrowLeftToLine",
       "import": "import { IconArrowLeftToLine } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -134597,6 +134795,7 @@
       "name": "IconArrowLeftToLine"
     },
     "IconArrowRightToLine": {
+      "entryPoint": "@optiaxiom/icons/IconArrowRightToLine",
       "import": "import { IconArrowRightToLine } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -134610,11 +134809,13 @@
       "name": "IconArrowRightToLine"
     },
     "IconArrowTurnUp": {
+      "entryPoint": "@optiaxiom/icons/IconArrowTurnUp",
       "import": "import { IconArrowTurnUp } from '@optiaxiom/icons';",
       "keywords": ["arrow", "back", "keyboard", "left", "return"],
       "name": "IconArrowTurnUp"
     },
     "IconVials": {
+      "entryPoint": "@optiaxiom/icons/IconVials",
       "import": "import { IconVials } from '@optiaxiom/icons';",
       "keywords": [
         "analysis",
@@ -134654,6 +134855,7 @@
       "name": "IconVials"
     },
     "IconImageLandscape": {
+      "entryPoint": "@optiaxiom/icons/IconImageLandscape",
       "import": "import { IconImageLandscape } from '@optiaxiom/icons';",
       "keywords": [
         "image",
@@ -134668,6 +134870,7 @@
       "name": "IconImageLandscape"
     },
     "IconGlobe": {
+      "entryPoint": "@optiaxiom/icons/IconGlobe",
       "import": "import { IconGlobe } from '@optiaxiom/icons';",
       "keywords": [
         "globe",
@@ -134681,6 +134884,7 @@
       "name": "IconGlobe"
     },
     "IconArrowRightFromLine": {
+      "entryPoint": "@optiaxiom/icons/IconArrowRightFromLine",
       "import": "import { IconArrowRightFromLine } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -134704,6 +134908,7 @@
       "name": "IconArrowRightFromLine"
     },
     "IconBooks": {
+      "entryPoint": "@optiaxiom/icons/IconBooks",
       "import": "import { IconBooks } from '@optiaxiom/icons';",
       "keywords": [
         "add",
@@ -134719,6 +134924,7 @@
       "name": "IconBooks"
     },
     "IconLightbulb": {
+      "entryPoint": "@optiaxiom/icons/IconLightbulb",
       "import": "import { IconLightbulb } from '@optiaxiom/icons';",
       "keywords": [
         "alert",
@@ -134762,6 +134968,7 @@
       "name": "IconLightbulb"
     },
     "IconSlider": {
+      "entryPoint": "@optiaxiom/icons/IconSlider",
       "import": "import { IconSlider } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -134786,6 +134993,7 @@
       "name": "IconSlider"
     },
     "IconLink": {
+      "entryPoint": "@optiaxiom/icons/IconLink",
       "import": "import { IconLink } from '@optiaxiom/icons';",
       "keywords": [
         "chain",
@@ -134800,6 +135008,7 @@
       "name": "IconLink"
     },
     "IconLinkHorizontal": {
+      "entryPoint": "@optiaxiom/icons/IconLinkHorizontal",
       "import": "import { IconLinkHorizontal } from '@optiaxiom/icons';",
       "keywords": [
         "chain",
@@ -134814,6 +135023,7 @@
       "name": "IconLinkHorizontal"
     },
     "IconLinkHorizontalSlash": {
+      "entryPoint": "@optiaxiom/icons/IconLinkHorizontalSlash",
       "import": "import { IconLinkHorizontalSlash } from '@optiaxiom/icons';",
       "keywords": [
         "attached",
@@ -134834,6 +135044,7 @@
       "name": "IconLinkHorizontalSlash"
     },
     "IconLinkSlash": {
+      "entryPoint": "@optiaxiom/icons/IconLinkSlash",
       "import": "import { IconLinkSlash } from '@optiaxiom/icons';",
       "keywords": [
         "attached",
@@ -134854,6 +135065,7 @@
       "name": "IconLinkSlash"
     },
     "IconRectangleList": {
+      "entryPoint": "@optiaxiom/icons/IconRectangleList",
       "import": "import { IconRectangleList } from '@optiaxiom/icons';",
       "keywords": [
         "alt",
@@ -134871,6 +135083,7 @@
       "name": "IconRectangleList"
     },
     "IconMoneyBill": {
+      "entryPoint": "@optiaxiom/icons/IconMoneyBill",
       "import": "import { IconMoneyBill } from '@optiaxiom/icons';",
       "keywords": [
         "atm",
@@ -134894,6 +135107,7 @@
       "name": "IconMoneyBill"
     },
     "IconMugHot": {
+      "entryPoint": "@optiaxiom/icons/IconMugHot",
       "import": "import { IconMugHot } from '@optiaxiom/icons';",
       "keywords": [
         "bottle",
@@ -134908,6 +135122,7 @@
       "name": "IconMugHot"
     },
     "IconShip": {
+      "entryPoint": "@optiaxiom/icons/IconShip",
       "import": "import { IconShip } from '@optiaxiom/icons';",
       "keywords": [
         "automobile",
@@ -134934,6 +135149,7 @@
       "name": "IconShip"
     },
     "IconTruck": {
+      "entryPoint": "@optiaxiom/icons/IconTruck",
       "import": "import { IconTruck } from '@optiaxiom/icons';",
       "keywords": [
         "automobile",
@@ -134960,6 +135176,7 @@
       "name": "IconTruck"
     },
     "IconLocationDot": {
+      "entryPoint": "@optiaxiom/icons/IconLocationDot",
       "import": "import { IconLocationDot } from '@optiaxiom/icons';",
       "keywords": [
         "destination",
@@ -134974,6 +135191,7 @@
       "name": "IconLocationDot"
     },
     "IconLock": {
+      "entryPoint": "@optiaxiom/icons/IconLock",
       "import": "import { IconLock } from '@optiaxiom/icons';",
       "keywords": [
         "lock",
@@ -134989,6 +135207,7 @@
       "name": "IconLock"
     },
     "IconLockOpen": {
+      "entryPoint": "@optiaxiom/icons/IconLockOpen",
       "import": "import { IconLockOpen } from '@optiaxiom/icons';",
       "keywords": [
         "access",
@@ -135024,11 +135243,13 @@
       "name": "IconLockOpen"
     },
     "IconUserLock": {
+      "entryPoint": "@optiaxiom/icons/IconUserLock",
       "import": "import { IconUserLock } from '@optiaxiom/icons';",
       "keywords": [],
       "name": "IconUserLock"
     },
     "IconArrowRightToBracket": {
+      "entryPoint": "@optiaxiom/icons/IconArrowRightToBracket",
       "import": "import { IconArrowRightToBracket } from '@optiaxiom/icons';",
       "keywords": [
         "access",
@@ -135054,6 +135275,7 @@
       "name": "IconArrowRightToBracket"
     },
     "IconArrowRightFromBracket": {
+      "entryPoint": "@optiaxiom/icons/IconArrowRightFromBracket",
       "import": "import { IconArrowRightFromBracket } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -135078,11 +135300,13 @@
       "name": "IconArrowRightFromBracket"
     },
     "IconEnvelope": {
+      "entryPoint": "@optiaxiom/icons/IconEnvelope",
       "import": "import { IconEnvelope } from '@optiaxiom/icons';",
       "keywords": ["email", "envelop", "letters", "mail", "message", "send"],
       "name": "IconEnvelope"
     },
     "IconMicrochipAi": {
+      "entryPoint": "@optiaxiom/icons/IconMicrochipAi",
       "import": "import { IconMicrochipAi } from '@optiaxiom/icons';",
       "keywords": [
         "card",
@@ -135097,11 +135321,13 @@
       "name": "IconMicrochipAi"
     },
     "IconBookOpen": {
+      "entryPoint": "@optiaxiom/icons/IconBookOpen",
       "import": "import { IconBookOpen } from '@optiaxiom/icons';",
       "keywords": ["book", "dining", "food", "meal", "menu", "restaurant"],
       "name": "IconBookOpen"
     },
     "IconMic": {
+      "entryPoint": "@optiaxiom/icons/IconMic",
       "import": "import { IconMic } from '@optiaxiom/icons';",
       "keywords": [
         "dictation",
@@ -135120,6 +135346,7 @@
       "name": "IconMic"
     },
     "IconMicOff": {
+      "entryPoint": "@optiaxiom/icons/IconMicOff",
       "import": "import { IconMicOff } from '@optiaxiom/icons';",
       "keywords": [
         "audio",
@@ -135142,6 +135369,7 @@
       "name": "IconMicOff"
     },
     "IconMobile": {
+      "entryPoint": "@optiaxiom/icons/IconMobile",
       "import": "import { IconMobile } from '@optiaxiom/icons';",
       "keywords": [
         "Android",
@@ -135181,6 +135409,7 @@
       "name": "IconMobile"
     },
     "IconGauge": {
+      "entryPoint": "@optiaxiom/icons/IconGauge",
       "import": "import { IconGauge } from '@optiaxiom/icons';",
       "keywords": [
         "baseline",
@@ -135197,6 +135426,7 @@
       "name": "IconGauge"
     },
     "IconMonitorWaveform": {
+      "entryPoint": "@optiaxiom/icons/IconMonitorWaveform",
       "import": "import { IconMonitorWaveform } from '@optiaxiom/icons';",
       "keywords": [
         "baseline",
@@ -135213,6 +135443,7 @@
       "name": "IconMonitorWaveform"
     },
     "IconChartMixed": {
+      "entryPoint": "@optiaxiom/icons/IconChartMixed",
       "import": "import { IconChartMixed } from '@optiaxiom/icons';",
       "keywords": [
         "analysis",
@@ -135250,6 +135481,7 @@
       "name": "IconChartMixed"
     },
     "IconEllipsisSolid": {
+      "entryPoint": "@optiaxiom/icons/IconEllipsisSolid",
       "import": "import { IconEllipsisSolid } from '@optiaxiom/icons';",
       "keywords": [
         "3",
@@ -135276,6 +135508,7 @@
       "name": "IconEllipsisSolid"
     },
     "IconEllipsisStroke": {
+      "entryPoint": "@optiaxiom/icons/IconEllipsisStroke",
       "import": "import { IconEllipsisStroke } from '@optiaxiom/icons';",
       "keywords": [
         "3",
@@ -135302,6 +135535,7 @@
       "name": "IconEllipsisStroke"
     },
     "IconEllipsisStrokeVertical": {
+      "entryPoint": "@optiaxiom/icons/IconEllipsisStrokeVertical",
       "import": "import { IconEllipsisStrokeVertical } from '@optiaxiom/icons';",
       "keywords": [
         "3",
@@ -135328,6 +135562,7 @@
       "name": "IconEllipsisStrokeVertical"
     },
     "IconMusic": {
+      "entryPoint": "@optiaxiom/icons/IconMusic",
       "import": "import { IconMusic } from '@optiaxiom/icons';",
       "keywords": [
         "angled line",
@@ -135365,6 +135600,7 @@
       "name": "IconMusic"
     },
     "IconBrain": {
+      "entryPoint": "@optiaxiom/icons/IconBrain",
       "import": "import { IconBrain } from '@optiaxiom/icons';",
       "keywords": [
         "analysis",
@@ -135404,11 +135640,13 @@
       "name": "IconBrain"
     },
     "IconArrowUp": {
+      "entryPoint": "@optiaxiom/icons/IconArrowUp",
       "import": "import { IconArrowUp } from '@optiaxiom/icons';",
       "keywords": ["arrow", "directional", "maps", "navigation", "north", "up"],
       "name": "IconArrowUp"
     },
     "IconFilePlus": {
+      "entryPoint": "@optiaxiom/icons/IconFilePlus",
       "import": "import { IconFilePlus } from '@optiaxiom/icons';",
       "keywords": [
         "+",
@@ -135433,6 +135671,7 @@
       "name": "IconFilePlus"
     },
     "IconBell": {
+      "entryPoint": "@optiaxiom/icons/IconBell",
       "import": "import { IconBell } from '@optiaxiom/icons';",
       "keywords": [
         "active",
@@ -135449,6 +135688,7 @@
       "name": "IconBell"
     },
     "IconBellSlash": {
+      "entryPoint": "@optiaxiom/icons/IconBellSlash",
       "import": "import { IconBellSlash } from '@optiaxiom/icons';",
       "keywords": [
         "active",
@@ -135471,11 +135711,13 @@
       "name": "IconBellSlash"
     },
     "IconInputNumeric": {
+      "entryPoint": "@optiaxiom/icons/IconInputNumeric",
       "import": "import { IconInputNumeric } from '@optiaxiom/icons';",
       "keywords": ["digit", "numbers", "symbol"],
       "name": "IconInputNumeric"
     },
     "IconArrowsMaximize": {
+      "entryPoint": "@optiaxiom/icons/IconArrowsMaximize",
       "import": "import { IconArrowsMaximize } from '@optiaxiom/icons';",
       "keywords": [
         "action",
@@ -135491,6 +135733,7 @@
       "name": "IconArrowsMaximize"
     },
     "IconArrowUpRightFromSquare": {
+      "entryPoint": "@optiaxiom/icons/IconArrowUpRightFromSquare",
       "import": "import { IconArrowUpRightFromSquare } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -135515,6 +135758,7 @@
       "name": "IconArrowUpRightFromSquare"
     },
     "IconBoxOpen": {
+      "entryPoint": "@optiaxiom/icons/IconBoxOpen",
       "import": "import { IconBoxOpen } from '@optiaxiom/icons';",
       "keywords": [
         "box",
@@ -135556,6 +135800,7 @@
       "name": "IconBoxOpen"
     },
     "IconCircleDollar": {
+      "entryPoint": "@optiaxiom/icons/IconCircleDollar",
       "import": "import { IconCircleDollar } from '@optiaxiom/icons';",
       "keywords": [
         "bill",
@@ -135581,6 +135826,7 @@
       "name": "IconCircleDollar"
     },
     "IconHandPointer": {
+      "entryPoint": "@optiaxiom/icons/IconHandPointer",
       "import": "import { IconHandPointer } from '@optiaxiom/icons';",
       "keywords": [
         "fingers",
@@ -135597,11 +135843,13 @@
       "name": "IconHandPointer"
     },
     "IconPause": {
+      "entryPoint": "@optiaxiom/icons/IconPause",
       "import": "import { IconPause } from '@optiaxiom/icons';",
       "keywords": ["control", "controls", "media", "music", "pause", "video"],
       "name": "IconPause"
     },
     "IconCirclePause": {
+      "entryPoint": "@optiaxiom/icons/IconCirclePause",
       "import": "import { IconCirclePause } from '@optiaxiom/icons';",
       "keywords": [
         "circle",
@@ -135615,6 +135863,7 @@
       "name": "IconCirclePause"
     },
     "IconBadgePercent": {
+      "entryPoint": "@optiaxiom/icons/IconBadgePercent",
       "import": "import { IconBadgePercent } from '@optiaxiom/icons';",
       "keywords": [
         "bargain",
@@ -135651,6 +135900,7 @@
       "name": "IconBadgePercent"
     },
     "IconUser": {
+      "entryPoint": "@optiaxiom/icons/IconUser",
       "import": "import { IconUser } from '@optiaxiom/icons';",
       "keywords": [
         "account",
@@ -135664,6 +135914,7 @@
       "name": "IconUser"
     },
     "IconUserPlus": {
+      "entryPoint": "@optiaxiom/icons/IconUserPlus",
       "import": "import { IconUserPlus } from '@optiaxiom/icons';",
       "keywords": [
         "+",
@@ -135683,6 +135934,7 @@
       "name": "IconUserPlus"
     },
     "IconSquareUser": {
+      "entryPoint": "@optiaxiom/icons/IconSquareUser",
       "import": "import { IconSquareUser } from '@optiaxiom/icons';",
       "keywords": [
         "account",
@@ -135725,6 +135977,7 @@
       "name": "IconSquareUser"
     },
     "IconUserXmark": {
+      "entryPoint": "@optiaxiom/icons/IconUserXmark",
       "import": "import { IconUserXmark } from '@optiaxiom/icons';",
       "keywords": [
         "access denied",
@@ -135764,6 +136017,7 @@
       "name": "IconUserXmark"
     },
     "IconUserCheck": {
+      "entryPoint": "@optiaxiom/icons/IconUserCheck",
       "import": "import { IconUserCheck } from '@optiaxiom/icons';",
       "keywords": [
         "accepted",
@@ -135809,6 +136063,7 @@
       "name": "IconUserCheck"
     },
     "IconUserPen": {
+      "entryPoint": "@optiaxiom/icons/IconUserPen",
       "import": "import { IconUserPen } from '@optiaxiom/icons';",
       "keywords": [
         "account",
@@ -135853,6 +136108,7 @@
       "name": "IconUserPen"
     },
     "IconUserSlash": {
+      "entryPoint": "@optiaxiom/icons/IconUserSlash",
       "import": "import { IconUserSlash } from '@optiaxiom/icons';",
       "keywords": [
         "account",
@@ -135872,6 +136128,7 @@
       "name": "IconUserSlash"
     },
     "IconImages": {
+      "entryPoint": "@optiaxiom/icons/IconImages",
       "import": "import { IconImages } from '@optiaxiom/icons';",
       "keywords": [
         "album",
@@ -135886,6 +136143,7 @@
       "name": "IconImages"
     },
     "IconFilePdf": {
+      "entryPoint": "@optiaxiom/icons/IconFilePdf",
       "import": "import { IconFilePdf } from '@optiaxiom/icons';",
       "keywords": [
         "alphabet",
@@ -135911,6 +136169,7 @@
       "name": "IconFilePdf"
     },
     "IconFileChartPie": {
+      "entryPoint": "@optiaxiom/icons/IconFileChartPie",
       "import": "import { IconFileChartPie } from '@optiaxiom/icons';",
       "keywords": [
         "analytics",
@@ -135930,6 +136189,7 @@
       "name": "IconFileChartPie"
     },
     "IconPinboard": {
+      "entryPoint": "@optiaxiom/icons/IconPinboard",
       "import": "import { IconPinboard } from '@optiaxiom/icons';",
       "keywords": [
         "board",
@@ -135972,6 +136232,7 @@
       "name": "IconPinboard"
     },
     "IconPlay": {
+      "entryPoint": "@optiaxiom/icons/IconPlay",
       "import": "import { IconPlay } from '@optiaxiom/icons';",
       "keywords": [
         "app",
@@ -136001,6 +136262,7 @@
       "name": "IconPlay"
     },
     "IconCirclePlay": {
+      "entryPoint": "@optiaxiom/icons/IconCirclePlay",
       "import": "import { IconCirclePlay } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -136015,6 +136277,7 @@
       "name": "IconCirclePlay"
     },
     "IconSquarePollHorizontal": {
+      "entryPoint": "@optiaxiom/icons/IconSquarePollHorizontal",
       "import": "import { IconSquarePollHorizontal } from '@optiaxiom/icons';",
       "keywords": [
         "analytics",
@@ -136036,6 +136299,7 @@
       "name": "IconSquarePollHorizontal"
     },
     "IconImagePortrait": {
+      "entryPoint": "@optiaxiom/icons/IconImagePortrait",
       "import": "import { IconImagePortrait } from '@optiaxiom/icons';",
       "keywords": [
         "account",
@@ -136052,6 +136316,7 @@
       "name": "IconImagePortrait"
     },
     "IconSpinner": {
+      "entryPoint": "@optiaxiom/icons/IconSpinner",
       "import": "import { IconSpinner } from '@optiaxiom/icons';",
       "keywords": [
         "activity",
@@ -136087,6 +136352,7 @@
       "name": "IconSpinner"
     },
     "IconThumbtackSolid": {
+      "entryPoint": "@optiaxiom/icons/IconThumbtackSolid",
       "import": "import { IconThumbtackSolid } from '@optiaxiom/icons';",
       "keywords": [
         "location",
@@ -136100,6 +136366,7 @@
       "name": "IconThumbtackSolid"
     },
     "IconRecordVoiceOver": {
+      "entryPoint": "@optiaxiom/icons/IconRecordVoiceOver",
       "import": "import { IconRecordVoiceOver } from '@optiaxiom/icons';",
       "keywords": [
         "account",
@@ -136122,6 +136389,7 @@
       "name": "IconRecordVoiceOver"
     },
     "IconArrowRotateRight": {
+      "entryPoint": "@optiaxiom/icons/IconArrowRotateRight",
       "import": "import { IconArrowRotateRight } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -136136,6 +136404,7 @@
       "name": "IconArrowRotateRight"
     },
     "IconPipe": {
+      "entryPoint": "@optiaxiom/icons/IconPipe",
       "import": "import { IconPipe } from '@optiaxiom/icons';",
       "keywords": [
         "can",
@@ -136149,6 +136418,7 @@
       "name": "IconPipe"
     },
     "IconCartMinus": {
+      "entryPoint": "@optiaxiom/icons/IconCartMinus",
       "import": "import { IconCartMinus } from '@optiaxiom/icons';",
       "keywords": [
         "card",
@@ -136175,6 +136445,7 @@
       "name": "IconCartMinus"
     },
     "IconArrowsRepeat": {
+      "entryPoint": "@optiaxiom/icons/IconArrowsRepeat",
       "import": "import { IconArrowsRepeat } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -136190,6 +136461,7 @@
       "name": "IconArrowsRepeat"
     },
     "IconReply": {
+      "entryPoint": "@optiaxiom/icons/IconReply",
       "import": "import { IconReply } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -136204,6 +136476,7 @@
       "name": "IconReply"
     },
     "IconRobot": {
+      "entryPoint": "@optiaxiom/icons/IconRobot",
       "import": "import { IconRobot } from '@optiaxiom/icons';",
       "keywords": [
         "agent",
@@ -136243,6 +136516,7 @@
       "name": "IconRobot"
     },
     "IconRocket": {
+      "entryPoint": "@optiaxiom/icons/IconRocket",
       "import": "import { IconRocket } from '@optiaxiom/icons';",
       "keywords": [
         "astronaut",
@@ -136258,6 +136532,7 @@
       "name": "IconRocket"
     },
     "IconRss": {
+      "entryPoint": "@optiaxiom/icons/IconRss",
       "import": "import { IconRss } from '@optiaxiom/icons';",
       "keywords": [
         "application",
@@ -136277,6 +136552,7 @@
       "name": "IconRss"
     },
     "IconFloppyDisk": {
+      "entryPoint": "@optiaxiom/icons/IconFloppyDisk",
       "import": "import { IconFloppyDisk } from '@optiaxiom/icons';",
       "keywords": [
         "data",
@@ -136292,11 +136568,13 @@
       "name": "IconFloppyDisk"
     },
     "IconClock": {
+      "entryPoint": "@optiaxiom/icons/IconClock",
       "import": "import { IconClock } from '@optiaxiom/icons';",
       "keywords": ["clock", "date", "history", "recent", "schedule", "time"],
       "name": "IconClock"
     },
     "IconSitemap": {
+      "entryPoint": "@optiaxiom/icons/IconSitemap",
       "import": "import { IconSitemap } from '@optiaxiom/icons';",
       "keywords": [
         "analytics",
@@ -136316,6 +136594,7 @@
       "name": "IconSitemap"
     },
     "IconMagnifyingGlass": {
+      "entryPoint": "@optiaxiom/icons/IconMagnifyingGlass",
       "import": "import { IconMagnifyingGlass } from '@optiaxiom/icons';",
       "keywords": [
         "filter",
@@ -136330,6 +136609,7 @@
       "name": "IconMagnifyingGlass"
     },
     "IconSearch": {
+      "entryPoint": "@optiaxiom/icons/IconSearch",
       "import": "import { IconSearch } from '@optiaxiom/icons';",
       "keywords": [
         "filter",
@@ -136344,6 +136624,7 @@
       "name": "IconSearch"
     },
     "IconShieldKeyhole": {
+      "entryPoint": "@optiaxiom/icons/IconShieldKeyhole",
       "import": "import { IconShieldKeyhole } from '@optiaxiom/icons';",
       "keywords": [
         "certified",
@@ -136358,6 +136639,7 @@
       "name": "IconShieldKeyhole"
     },
     "IconSquareDashed": {
+      "entryPoint": "@optiaxiom/icons/IconSquareDashed",
       "import": "import { IconSquareDashed } from '@optiaxiom/icons';",
       "keywords": [
         "action",
@@ -136397,6 +136679,7 @@
       "name": "IconSquareDashed"
     },
     "IconTag": {
+      "entryPoint": "@optiaxiom/icons/IconTag",
       "import": "import { IconTag } from '@optiaxiom/icons';",
       "keywords": [
         "bill",
@@ -136420,6 +136703,7 @@
       "name": "IconTag"
     },
     "IconPaperPlaneTop": {
+      "entryPoint": "@optiaxiom/icons/IconPaperPlaneTop",
       "import": "import { IconPaperPlaneTop } from '@optiaxiom/icons';",
       "keywords": [
         "email",
@@ -136435,6 +136719,7 @@
       "name": "IconPaperPlaneTop"
     },
     "IconFaceSmile": {
+      "entryPoint": "@optiaxiom/icons/IconFaceSmile",
       "import": "import { IconFaceSmile } from '@optiaxiom/icons';",
       "keywords": [
         "emotions",
@@ -136457,6 +136742,7 @@
       "name": "IconFaceSmile"
     },
     "IconGear": {
+      "entryPoint": "@optiaxiom/icons/IconGear",
       "import": "import { IconGear } from '@optiaxiom/icons';",
       "keywords": [
         "application",
@@ -136473,6 +136759,7 @@
       "name": "IconGear"
     },
     "IconSettingsSlowMotion": {
+      "entryPoint": "@optiaxiom/icons/IconSettingsSlowMotion",
       "import": "import { IconSettingsSlowMotion } from '@optiaxiom/icons';",
       "keywords": [
         "adjust",
@@ -136520,6 +136807,7 @@
       "name": "IconSettingsSlowMotion"
     },
     "IconShareNodes": {
+      "entryPoint": "@optiaxiom/icons/IconShareNodes",
       "import": "import { IconShareNodes } from '@optiaxiom/icons';",
       "keywords": [
         "DISABLE_IOS",
@@ -136541,6 +136829,7 @@
       "name": "IconShareNodes"
     },
     "IconCartShoppingFast": {
+      "entryPoint": "@optiaxiom/icons/IconCartShoppingFast",
       "import": "import { IconCartShoppingFast } from '@optiaxiom/icons';",
       "keywords": [
         "bag",
@@ -136589,6 +136878,7 @@
       "name": "IconCartShoppingFast"
     },
     "IconCartShopping": {
+      "entryPoint": "@optiaxiom/icons/IconCartShopping",
       "import": "import { IconCartShopping } from '@optiaxiom/icons';",
       "keywords": [
         "add",
@@ -136612,6 +136902,7 @@
       "name": "IconCartShopping"
     },
     "IconCartCircleCheck": {
+      "entryPoint": "@optiaxiom/icons/IconCartCircleCheck",
       "import": "import { IconCartCircleCheck } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -136632,6 +136923,7 @@
       "name": "IconCartCircleCheck"
     },
     "IconChartLine": {
+      "entryPoint": "@optiaxiom/icons/IconChartLine",
       "import": "import { IconChartLine } from '@optiaxiom/icons';",
       "keywords": [
         "analytics",
@@ -136653,6 +136945,7 @@
       "name": "IconChartLine"
     },
     "IconSidebar": {
+      "entryPoint": "@optiaxiom/icons/IconSidebar",
       "import": "import { IconSidebar } from '@optiaxiom/icons';",
       "keywords": [
         "action",
@@ -136704,16 +136997,19 @@
       "name": "IconSidebar"
     },
     "IconMessageBot": {
+      "entryPoint": "@optiaxiom/icons/IconMessageBot",
       "import": "import { IconMessageBot } from '@optiaxiom/icons';",
       "keywords": ["bot", "droid", "games", "robot", "smart", "toy"],
       "name": "IconMessageBot"
     },
     "IconUserRobot": {
+      "entryPoint": "@optiaxiom/icons/IconUserRobot",
       "import": "import { IconUserRobot } from '@optiaxiom/icons';",
       "keywords": ["bot", "droid", "games", "robot", "smart", "toy"],
       "name": "IconUserRobot"
     },
     "IconFolderTree": {
+      "entryPoint": "@optiaxiom/icons/IconFolderTree",
       "import": "import { IconFolderTree } from '@optiaxiom/icons';",
       "keywords": [
         "data",
@@ -136730,21 +137026,25 @@
       "name": "IconFolderTree"
     },
     "IconBarsSort": {
+      "entryPoint": "@optiaxiom/icons/IconBarsSort",
       "import": "import { IconBarsSort } from '@optiaxiom/icons';",
       "keywords": [],
       "name": "IconBarsSort"
     },
     "IconBarsStaggered": {
+      "entryPoint": "@optiaxiom/icons/IconBarsStaggered",
       "import": "import { IconBarsStaggered } from '@optiaxiom/icons';",
       "keywords": [],
       "name": "IconBarsStaggered"
     },
     "IconSortSolid": {
+      "entryPoint": "@optiaxiom/icons/IconSortSolid",
       "import": "import { IconSortSolid } from '@optiaxiom/icons';",
       "keywords": [],
       "name": "IconSortSolid"
     },
     "IconArrowDownAZ": {
+      "entryPoint": "@optiaxiom/icons/IconArrowDownAZ",
       "import": "import { IconArrowDownAZ } from '@optiaxiom/icons';",
       "keywords": [
         "alphabet",
@@ -136765,6 +137065,7 @@
       "name": "IconArrowDownAZ"
     },
     "IconArrowDownZA": {
+      "entryPoint": "@optiaxiom/icons/IconArrowDownZA",
       "import": "import { IconArrowDownZA } from '@optiaxiom/icons';",
       "keywords": [
         "alphabet",
@@ -136785,6 +137086,7 @@
       "name": "IconArrowDownZA"
     },
     "IconArrowDown": {
+      "entryPoint": "@optiaxiom/icons/IconArrowDown",
       "import": "import { IconArrowDown } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -136797,6 +137099,7 @@
       "name": "IconArrowDown"
     },
     "IconWindowRestore": {
+      "entryPoint": "@optiaxiom/icons/IconWindowRestore",
       "import": "import { IconWindowRestore } from '@optiaxiom/icons';",
       "keywords": [
         "column",
@@ -136813,6 +137116,7 @@
       "name": "IconWindowRestore"
     },
     "IconLayerGroup": {
+      "entryPoint": "@optiaxiom/icons/IconLayerGroup",
       "import": "import { IconLayerGroup } from '@optiaxiom/icons';",
       "keywords": [
         "arrange",
@@ -136850,6 +137154,7 @@
       "name": "IconLayerGroup"
     },
     "IconStairs": {
+      "entryPoint": "@optiaxiom/icons/IconStairs",
       "import": "import { IconStairs } from '@optiaxiom/icons';",
       "keywords": [
         "access",
@@ -136888,6 +137193,7 @@
       "name": "IconStairs"
     },
     "IconStar": {
+      "entryPoint": "@optiaxiom/icons/IconStar",
       "import": "import { IconStar } from '@optiaxiom/icons';",
       "keywords": [
         "best",
@@ -136904,6 +137210,7 @@
       "name": "IconStar"
     },
     "IconDiamond": {
+      "entryPoint": "@optiaxiom/icons/IconDiamond",
       "import": "import { IconDiamond } from '@optiaxiom/icons';",
       "keywords": [
         "0",
@@ -136941,6 +137248,7 @@
       "name": "IconDiamond"
     },
     "IconCircleStop": {
+      "entryPoint": "@optiaxiom/icons/IconCircleStop",
       "import": "import { IconCircleStop } from '@optiaxiom/icons';",
       "keywords": [
         "circle",
@@ -136956,6 +137264,7 @@
       "name": "IconCircleStop"
     },
     "IconStore": {
+      "entryPoint": "@optiaxiom/icons/IconStore",
       "import": "import { IconStore } from '@optiaxiom/icons';",
       "keywords": [
         "business",
@@ -136976,6 +137285,7 @@
       "name": "IconStore"
     },
     "IconArrowTurnDownLeft": {
+      "entryPoint": "@optiaxiom/icons/IconArrowTurnDownLeft",
       "import": "import { IconArrowTurnDownLeft } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -136989,6 +137299,7 @@
       "name": "IconArrowTurnDownLeft"
     },
     "IconSubscript": {
+      "entryPoint": "@optiaxiom/icons/IconSubscript",
       "import": "import { IconSubscript } from '@optiaxiom/icons';",
       "keywords": [
         "2",
@@ -137010,6 +137321,7 @@
       "name": "IconSubscript"
     },
     "IconSuperscript": {
+      "entryPoint": "@optiaxiom/icons/IconSuperscript",
       "import": "import { IconSuperscript } from '@optiaxiom/icons';",
       "keywords": [
         "2",
@@ -137031,11 +137343,13 @@
       "name": "IconSuperscript"
     },
     "IconArrowRightArrowLeft": {
+      "entryPoint": "@optiaxiom/icons/IconArrowRightArrowLeft",
       "import": "import { IconArrowRightArrowLeft } from '@optiaxiom/icons';",
       "keywords": ["arrow", "arrows", "back", "forward", "horizontal", "swap"],
       "name": "IconArrowRightArrowLeft"
     },
     "IconArrowDownShortWide": {
+      "entryPoint": "@optiaxiom/icons/IconArrowDownShortWide",
       "import": "import { IconArrowDownShortWide } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -137053,6 +137367,7 @@
       "name": "IconArrowDownShortWide"
     },
     "IconArrowDownWideShort": {
+      "entryPoint": "@optiaxiom/icons/IconArrowDownWideShort",
       "import": "import { IconArrowDownWideShort } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -137070,6 +137385,7 @@
       "name": "IconArrowDownWideShort"
     },
     "IconSwitchAccount": {
+      "entryPoint": "@optiaxiom/icons/IconSwitchAccount",
       "import": "import { IconSwitchAccount } from '@optiaxiom/icons';",
       "keywords": [
         "account",
@@ -137089,6 +137405,7 @@
       "name": "IconSwitchAccount"
     },
     "IconBrowser": {
+      "entryPoint": "@optiaxiom/icons/IconBrowser",
       "import": "import { IconBrowser } from '@optiaxiom/icons';",
       "keywords": [
         "browser",
@@ -137107,6 +137424,7 @@
       "name": "IconBrowser"
     },
     "IconBrowsers": {
+      "entryPoint": "@optiaxiom/icons/IconBrowsers",
       "import": "import { IconBrowsers } from '@optiaxiom/icons';",
       "keywords": [
         "arrange",
@@ -137147,6 +137465,7 @@
       "name": "IconBrowsers"
     },
     "IconFileSpreadsheet": {
+      "entryPoint": "@optiaxiom/icons/IconFileSpreadsheet",
       "import": "import { IconFileSpreadsheet } from '@optiaxiom/icons';",
       "keywords": [
         "analytics",
@@ -137166,6 +137485,7 @@
       "name": "IconFileSpreadsheet"
     },
     "IconTableLayout": {
+      "entryPoint": "@optiaxiom/icons/IconTableLayout",
       "import": "import { IconTableLayout } from '@optiaxiom/icons';",
       "keywords": [
         "analytics",
@@ -137185,6 +137505,7 @@
       "name": "IconTableLayout"
     },
     "IconTablet": {
+      "entryPoint": "@optiaxiom/icons/IconTablet",
       "import": "import { IconTablet } from '@optiaxiom/icons';",
       "keywords": [
         "Android",
@@ -137200,6 +137521,7 @@
       "name": "IconTablet"
     },
     "IconHashtag": {
+      "entryPoint": "@optiaxiom/icons/IconHashtag",
       "import": "import { IconHashtag } from '@optiaxiom/icons';",
       "keywords": [
         "hash",
@@ -137215,6 +137537,7 @@
       "name": "IconHashtag"
     },
     "IconTerminal": {
+      "entryPoint": "@optiaxiom/icons/IconTerminal",
       "import": "import { IconTerminal } from '@optiaxiom/icons';",
       "keywords": [
         "administration",
@@ -137253,6 +137576,7 @@
       "name": "IconTerminal"
     },
     "IconThumbsDown": {
+      "entryPoint": "@optiaxiom/icons/IconThumbsDown",
       "import": "import { IconThumbsDown } from '@optiaxiom/icons';",
       "keywords": [
         "ate",
@@ -137272,6 +137596,7 @@
       "name": "IconThumbsDown"
     },
     "IconThumbsDownSolid": {
+      "entryPoint": "@optiaxiom/icons/IconThumbsDownSolid",
       "import": "import { IconThumbsDownSolid } from '@optiaxiom/icons';",
       "keywords": [
         "ate",
@@ -137291,6 +137616,7 @@
       "name": "IconThumbsDownSolid"
     },
     "IconThumbsUp": {
+      "entryPoint": "@optiaxiom/icons/IconThumbsUp",
       "import": "import { IconThumbsUp } from '@optiaxiom/icons';",
       "keywords": [
         "favorite",
@@ -137309,6 +137635,7 @@
       "name": "IconThumbsUp"
     },
     "IconThumbsUpSolid": {
+      "entryPoint": "@optiaxiom/icons/IconThumbsUpSolid",
       "import": "import { IconThumbsUpSolid } from '@optiaxiom/icons';",
       "keywords": [
         "favorite",
@@ -137327,6 +137654,7 @@
       "name": "IconThumbsUpSolid"
     },
     "IconTimelineArrow": {
+      "entryPoint": "@optiaxiom/icons/IconTimelineArrow",
       "import": "import { IconTimelineArrow } from '@optiaxiom/icons';",
       "keywords": [
         "data",
@@ -137343,6 +137671,7 @@
       "name": "IconTimelineArrow"
     },
     "IconToggleOff": {
+      "entryPoint": "@optiaxiom/icons/IconToggleOff",
       "import": "import { IconToggleOff } from '@optiaxiom/icons';",
       "keywords": [
         "active",
@@ -137369,11 +137698,13 @@
       "name": "IconToggleOff"
     },
     "IconFlagPennant": {
+      "entryPoint": "@optiaxiom/icons/IconFlagPennant",
       "import": "import { IconFlagPennant } from '@optiaxiom/icons';",
       "keywords": ["destination", "flag", "places", "tour", "travel", "visit"],
       "name": "IconFlagPennant"
     },
     "IconLanguage": {
+      "entryPoint": "@optiaxiom/icons/IconLanguage",
       "import": "import { IconLanguage } from '@optiaxiom/icons';",
       "keywords": [
         "language",
@@ -137386,6 +137717,7 @@
       "name": "IconLanguage"
     },
     "IconArrowTrendDown": {
+      "entryPoint": "@optiaxiom/icons/IconArrowTrendDown",
       "import": "import { IconArrowTrendDown } from '@optiaxiom/icons';",
       "keywords": [
         "analytics",
@@ -137407,6 +137739,7 @@
       "name": "IconArrowTrendDown"
     },
     "IconArrowTrendUp": {
+      "entryPoint": "@optiaxiom/icons/IconArrowTrendUp",
       "import": "import { IconArrowTrendUp } from '@optiaxiom/icons';",
       "keywords": [
         "analytics",
@@ -137428,6 +137761,7 @@
       "name": "IconArrowTrendUp"
     },
     "IconSliders": {
+      "entryPoint": "@optiaxiom/icons/IconSliders",
       "import": "import { IconSliders } from '@optiaxiom/icons';",
       "keywords": [
         "adjust",
@@ -137453,6 +137787,7 @@
       "name": "IconSliders"
     },
     "IconSlidersSimple": {
+      "entryPoint": "@optiaxiom/icons/IconSlidersSimple",
       "import": "import { IconSlidersSimple } from '@optiaxiom/icons';",
       "keywords": [
         "adjust",
@@ -137478,6 +137813,7 @@
       "name": "IconSlidersSimple"
     },
     "IconArrowRotateLeft": {
+      "entryPoint": "@optiaxiom/icons/IconArrowRotateLeft",
       "import": "import { IconArrowRotateLeft } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -137492,6 +137828,7 @@
       "name": "IconArrowRotateLeft"
     },
     "IconAnglesUpDown": {
+      "entryPoint": "@optiaxiom/icons/IconAnglesUpDown",
       "import": "import { IconAnglesUpDown } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -137510,6 +137847,7 @@
       "name": "IconAnglesUpDown"
     },
     "IconArrowsFromDottedLine": {
+      "entryPoint": "@optiaxiom/icons/IconArrowsFromDottedLine",
       "import": "import { IconArrowsFromDottedLine } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -137528,6 +137866,7 @@
       "name": "IconArrowsFromDottedLine"
     },
     "IconArrowsFromLine": {
+      "entryPoint": "@optiaxiom/icons/IconArrowsFromLine",
       "import": "import { IconArrowsFromLine } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -137546,11 +137885,13 @@
       "name": "IconArrowsFromLine"
     },
     "IconUpload": {
+      "entryPoint": "@optiaxiom/icons/IconUpload",
       "import": "import { IconUpload } from '@optiaxiom/icons';",
       "keywords": ["arrow", "arrows", "download", "drive", "up", "upload"],
       "name": "IconUpload"
     },
     "IconFileArrowUp": {
+      "entryPoint": "@optiaxiom/icons/IconFileArrowUp",
       "import": "import { IconFileArrowUp } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -137573,6 +137914,7 @@
       "name": "IconFileArrowUp"
     },
     "IconVerified": {
+      "entryPoint": "@optiaxiom/icons/IconVerified",
       "import": "import { IconVerified } from '@optiaxiom/icons';",
       "keywords": [
         "approve",
@@ -137593,6 +137935,7 @@
       "name": "IconVerified"
     },
     "IconShieldCheck": {
+      "entryPoint": "@optiaxiom/icons/IconShieldCheck",
       "import": "import { IconShieldCheck } from '@optiaxiom/icons';",
       "keywords": [
         "approve",
@@ -137618,6 +137961,7 @@
       "name": "IconShieldCheck"
     },
     "IconFileVideo": {
+      "entryPoint": "@optiaxiom/icons/IconFileVideo",
       "import": "import { IconFileVideo } from '@optiaxiom/icons';",
       "keywords": [
         "camera",
@@ -137635,6 +137979,7 @@
       "name": "IconFileVideo"
     },
     "IconVideo": {
+      "entryPoint": "@optiaxiom/icons/IconVideo",
       "import": "import { IconVideo } from '@optiaxiom/icons';",
       "keywords": [
         "cam",
@@ -137652,6 +137997,7 @@
       "name": "IconVideo"
     },
     "IconColumns3": {
+      "entryPoint": "@optiaxiom/icons/IconColumns3",
       "import": "import { IconColumns3 } from '@optiaxiom/icons';",
       "keywords": [
         "column",
@@ -137666,11 +138012,13 @@
       "name": "IconColumns3"
     },
     "IconEye": {
+      "entryPoint": "@optiaxiom/icons/IconEye",
       "import": "import { IconEye } from '@optiaxiom/icons';",
       "keywords": ["eye", "on", "reveal", "see", "show", "view", "visibility"],
       "name": "IconEye"
     },
     "IconEyeSlash": {
+      "entryPoint": "@optiaxiom/icons/IconEyeSlash",
       "import": "import { IconEyeSlash } from '@optiaxiom/icons';",
       "keywords": [
         "disabled",
@@ -137688,6 +138036,7 @@
       "name": "IconEyeSlash"
     },
     "IconWavePulse": {
+      "entryPoint": "@optiaxiom/icons/IconWavePulse",
       "import": "import { IconWavePulse } from '@optiaxiom/icons';",
       "keywords": [
         "analysis",
@@ -137730,6 +138079,7 @@
       "name": "IconWavePulse"
     },
     "IconKeySkeletonLeftRight": {
+      "entryPoint": "@optiaxiom/icons/IconKeySkeletonLeftRight",
       "import": "import { IconKeySkeletonLeftRight } from '@optiaxiom/icons';",
       "keywords": [
         "access",
@@ -137747,6 +138097,7 @@
       "name": "IconKeySkeletonLeftRight"
     },
     "IconPanorama": {
+      "entryPoint": "@optiaxiom/icons/IconPanorama",
       "import": "import { IconPanorama } from '@optiaxiom/icons';",
       "keywords": [
         "angle",
@@ -137765,6 +138116,7 @@
       "name": "IconPanorama"
     },
     "IconTriangleExclamation": {
+      "entryPoint": "@optiaxiom/icons/IconTriangleExclamation",
       "import": "import { IconTriangleExclamation } from '@optiaxiom/icons';",
       "keywords": [
         "!",
@@ -137784,6 +138136,7 @@
       "name": "IconTriangleExclamation"
     },
     "IconDroplet": {
+      "entryPoint": "@optiaxiom/icons/IconDroplet",
       "import": "import { IconDroplet } from '@optiaxiom/icons';",
       "keywords": [
         "drink",
@@ -137800,6 +138153,7 @@
       "name": "IconDroplet"
     },
     "IconWeb": {
+      "entryPoint": "@optiaxiom/icons/IconWeb",
       "import": "import { IconWeb } from '@optiaxiom/icons';",
       "keywords": [
         "browser",
@@ -137814,6 +138168,7 @@
       "name": "IconWeb"
     },
     "IconAgent": {
+      "entryPoint": "@optiaxiom/icons/IconAgent",
       "import": "import { IconAgent } from '@optiaxiom/icons';",
       "keywords": [
         "bandwidth",
@@ -137856,6 +138211,7 @@
       "name": "IconAgent"
     },
     "IconSubAgent": {
+      "entryPoint": "@optiaxiom/icons/IconSubAgent",
       "import": "import { IconSubAgent } from '@optiaxiom/icons';",
       "keywords": [
         "bandwidth",
@@ -137898,6 +138254,7 @@
       "name": "IconSubAgent"
     },
     "IconWebhook": {
+      "entryPoint": "@optiaxiom/icons/IconWebhook",
       "import": "import { IconWebhook } from '@optiaxiom/icons';",
       "keywords": [
         "api",
@@ -137910,6 +138267,7 @@
       "name": "IconWebhook"
     },
     "IconArrowLeftLong": {
+      "entryPoint": "@optiaxiom/icons/IconArrowLeftLong",
       "import": "import { IconArrowLeftLong } from '@optiaxiom/icons';",
       "keywords": [
         "arrow",
@@ -137922,6 +138280,7 @@
       "name": "IconArrowLeftLong"
     },
     "IconMagnifyingGlassPlus": {
+      "entryPoint": "@optiaxiom/icons/IconMagnifyingGlassPlus",
       "import": "import { IconMagnifyingGlassPlus } from '@optiaxiom/icons';",
       "keywords": [
         "big",
@@ -137943,6 +138302,7 @@
       "name": "IconMagnifyingGlassPlus"
     },
     "IconMagnifyingGlassMinus": {
+      "entryPoint": "@optiaxiom/icons/IconMagnifyingGlassMinus",
       "import": "import { IconMagnifyingGlassMinus } from '@optiaxiom/icons';",
       "keywords": [
         "find",
@@ -137964,6 +138324,7 @@
       "name": "IconMagnifyingGlassMinus"
     },
     "IconPersonSparkles": {
+      "entryPoint": "@optiaxiom/icons/IconPersonSparkles",
       "import": "import { IconPersonSparkles } from '@optiaxiom/icons';",
       "keywords": [
         "agent",
@@ -137977,6 +138338,7 @@
       "name": "IconPersonSparkles"
     },
     "IconSparkles": {
+      "entryPoint": "@optiaxiom/icons/IconSparkles",
       "import": "import { IconSparkles } from '@optiaxiom/icons';",
       "keywords": ["ai", "artificial intelligence", "magic", "sparkle", "star"],
       "name": "IconSparkles"
