@@ -112,7 +112,7 @@ Get information about an Axiom component. Returns the component's description, i
 - `name` (string, required): Component name (e.g., "Badge", "Button", "Alert")
 - `props` (string, optional): Search query to find specific props by name or description (e.g., "appearance size", "loading", "padding background"). Omit to get just the component description, import, and sub-components without any props.
 
-**Returns:** Component metadata with description, import statement, sub-components, examples, and optionally matching prop definitions.
+**Returns:** Component metadata with description, import statement, sub-components, examples, and optionally matching prop definitions. Props that accept per-breakpoint values (`{ base, sm, md }` or `[base, sm, md]`) are marked `responsive: true`.
 
 ### `search_components`
 
@@ -144,9 +144,9 @@ Get design token mappings for the Axiom Design System.
 
 **Parameters:**
 
-- `categories` (string[], optional): Filter to specific token categories (e.g., `["colors", "boxShadow"]`). Returns all categories if omitted. Valid values: `borderRadius`, `boxShadow`, `colors`, `duration`, `fontFamily`, `fontSize`, `maxSize`, `size`, `zIndex`.
+- `categories` (string[], optional): Filter to specific token categories (e.g., `["colors", "boxShadow"]`). Returns all categories if omitted. Valid values: `borderRadius`, `boxShadow`, `breakpoints`, `colors`, `duration`, `fontFamily`, `fontSize`, `maxSize`, `size`, `zIndex`.
 
-**Returns:** Token-to-value mappings for the requested categories. Useful for converting Figma design values to semantic tokens (e.g., `#4F576E` → `fg.secondary`, `32px` height → `h='md'`). For how to _consume_ tokens in code (style props, CSS variables, or the `theme` object), the description points callers at `get_guides({ names: "design-tokens" })`.
+**Returns:** Token-to-value mappings for the requested categories. `breakpoints` holds the min-widths that responsive props' `sm` and `md` keys switch at. Useful for converting Figma design values to semantic tokens (e.g., `#4F576E` → `fg.secondary`, `32px` height → `h='md'`). For how to _consume_ tokens in code (style props, CSS variables, or the `theme` object), the description points callers at `get_guides({ names: "design-tokens" })`.
 
 ### `search_icons`
 
