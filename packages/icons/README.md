@@ -9,14 +9,14 @@ npm install @optiaxiom/icons
 ```
 
 ```tsx
-import { IconDelete } from "@optiaxiom/icons";
+import { IconTrashCan } from "@optiaxiom/icons";
 
 function App() {
   return (
     <>
-      <IconDelete />
-      <IconDelete size="md" />
-      <IconDelete filled />
+      <IconTrashCan />
+      <IconTrashCan size="md" />
+      <IconTrashCan filled />
     </>
   );
 }
