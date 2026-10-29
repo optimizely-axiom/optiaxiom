@@ -403,7 +403,7 @@
     "clsx": "^2.1.1",
     "downshift": "^9.3.2",
     "jsonpointer": "^5.0.1",
-    "react-day-picker": "^9.14.0",
+    "react-day-picker": "^10.0.2",
     "react-remove-scroll": "^2.7.2",
     "react-resizable-panels": "^3.0.6",
     "recharts": "^3.8.1",

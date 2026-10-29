@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { AxiomProvider } from "@optiaxiom/react";
 import { Calendar } from "@optiaxiom/react/unstable";
+import { expect, userEvent, waitFor } from "storybook/test";
 
 export default {
   args: {
@@ -22,6 +23,47 @@ type Story = StoryObj<typeof Calendar>;
 export const Basic: Story = {
   args: {
     defaultValue: new Date("2025-01-22T00:00:00"),
+  },
+};
+
+export const KeyboardNavigation: Story = {
+  args: {
+    defaultValue: new Date("2025-01-22T00:00:00"),
+  },
+  play: async ({ canvas }) => {
+    await waitFor(() =>
+      expect(
+        canvas.getByRole("button", { name: /January 22nd, 2025/ }),
+      ).toHaveFocus(),
+    );
+    await userEvent.keyboard("{ArrowDown}{ArrowDown}");
+    await waitFor(() =>
+      expect(
+        canvas.getByRole("button", { name: /February 5th, 2025/ }),
+      ).toHaveFocus(),
+    );
+    // Let the month transition finish before the a11y check samples colors.
+    await waitFor(() => expect(document.getAnimations()).toHaveLength(0));
+  },
+};
+
+export const MonthSelection: Story = {
+  args: {
+    defaultValue: new Date("2025-01-22T00:00:00"),
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("button", { name: /change month/ }));
+    await waitFor(() =>
+      expect(canvas.getByRole("button", { name: "January" })).toHaveFocus(),
+    );
+    await userEvent.keyboard("{ArrowRight}{ArrowRight}{Enter}");
+    await waitFor(() =>
+      expect(
+        canvas.getByRole("button", { name: /March 22nd, 2025/ }),
+      ).toHaveFocus(),
+    );
+    // Let the month transition finish before the a11y check samples colors.
+    await waitFor(() => expect(document.getAnimations()).toHaveLength(0));
   },
 };
 
