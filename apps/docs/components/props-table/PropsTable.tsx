@@ -7,6 +7,7 @@ import { compileMdx } from "nextra/compile";
 import { MDXRemote } from "nextra/mdx-remote";
 import { type ReactNode } from "react";
 
+import { nextraOptions } from "../../nextra.config.mjs";
 import { PropType } from "../prop-type";
 import { Table, Td, Th, Thead, Tr } from "../table";
 
@@ -27,8 +28,26 @@ export async function PropsTable({ component }: { component: AllComponents }) {
   const isBox = component === "Box";
   const virtual = !propItems.find((prop) => prop.name === "asChild");
 
+  const imports = [
+    component in Components
+      ? "@optiaxiom/react"
+      : component in UnstableComponents
+        ? "@optiaxiom/react/unstable"
+        : undefined,
+    doc.entryPoint,
+  ]
+    .filter(Boolean)
+    .map((source) => `import { ${component} } from "${source}";`)
+    .join("\n// or\n");
+
   return (
     <>
+      <MDXRemote
+        compiledSource={await compileMdx(
+          `\`\`\`tsx\n${imports}\n\`\`\``,
+          nextraOptions,
+        )}
+      />
       <PropsTableDescription
         baseName={baseName}
         name={component as AllComponents}
