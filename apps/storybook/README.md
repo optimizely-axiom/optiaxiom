@@ -158,6 +158,7 @@ Key points:
 - Use `canvas` to scope queries to the story
 - Use `screen` for queries outside the story (e.g., portals, popovers)
 - Use `await` and `waitFor` for async interactions
+- Story tests run in Chromium at 1200×900, the `md` breakpoint, so assert `md` values for responsive props
 
 ### Using Decorators
 
