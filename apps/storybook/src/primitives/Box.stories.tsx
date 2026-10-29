@@ -55,3 +55,15 @@ export const ResponsiveSpacingOverride: Story = {
     });
   },
 };
+
+export const ResponsiveRounded: Story = {
+  args: {
+    ...Basic.args,
+    rounded: ["none", "xl"],
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByText("Hello World!").parentElement).toHaveStyle({
+      borderRadius: "16px",
+    });
+  },
+};

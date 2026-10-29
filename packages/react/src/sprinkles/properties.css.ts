@@ -157,10 +157,6 @@ export const unresponsiveProps = defineProperties({
      */
     borderColor: colors("border."),
     borderLeftWidth: borderWidths,
-    /**
-     * Set the element's border radius. Only accepts predefined borderRadius tokens.
-     */
-    borderRadius: radiuses,
     borderRightWidth: borderWidths,
     borderTopWidth: borderWidths,
     /**
@@ -184,15 +180,6 @@ export const unresponsiveProps = defineProperties({
       },
     })),
     /**
-     * Set the element's font size and line height (both properties are set together). Only accepts predefined fontSize tokens.
-     */
-    fontSize: merge(theme.fontSize, {
-      inherit: {
-        fontSize: "inherit",
-        lineHeight: "inherit",
-      },
-    }),
-    /**
      * Set the element's `font-weight` CSS property
      */
     fontWeight: ["400", "500", "600", "700", "900", "inherit"] as const,
@@ -212,10 +199,6 @@ export const unresponsiveProps = defineProperties({
      * Set the element's `pointer-events` CSS property
      */
     pointerEvents: ["auto", "none"] as const,
-    /**
-     * Set the element's `text-align` CSS property
-     */
-    textAlign: ["end", "start", "center", "justify"] as const,
     /**
      * Set the element's `text-transform` CSS property
      */
@@ -294,10 +277,6 @@ export const unresponsiveProps = defineProperties({
      */
     overflow: ["overflowX", "overflowY"],
 
-    /**
-     * Set the element's border radius. Only accepts predefined borderRadius tokens.
-     */
-    rounded: ["borderRadius"],
     /**
      * Set the element's box shadow. Only accepts predefined boxShadow tokens.
      */
@@ -397,6 +376,10 @@ export const responsiveProps = defineProperties({
      */
     alignSelf: ["center", "end", "normal", "start", "stretch"] as const,
     /**
+     * Set the element's border radius. Only accepts predefined borderRadius tokens.
+     */
+    borderRadius: radiuses,
+    /**
      * Set the element's `display` CSS property
      */
     display: [
@@ -431,6 +414,15 @@ export const responsiveProps = defineProperties({
      * Set the element's `flex-wrap` CSS property
      */
     flexWrap: ["nowrap", "wrap"] as const,
+    /**
+     * Set the element's font size and line height (both properties are set together). Only accepts predefined fontSize tokens.
+     */
+    fontSize: merge(theme.fontSize, {
+      inherit: {
+        fontSize: "inherit",
+        lineHeight: "inherit",
+      },
+    }),
     /**
      * Set the element's `gap` CSS property
      */
@@ -514,6 +506,10 @@ export const responsiveProps = defineProperties({
      */
     placeItems: ["center"] as const,
     /**
+     * Set the element's `text-align` CSS property
+     */
+    textAlign: ["end", "start", "center", "justify"] as const,
+    /**
      * Set the element's width. Only accepts predefined values: size tokens (xs, sm, md, etc.), numeric spacing values (16, 24, 32), fractional percentages (1/2, 1/3), or special keywords (auto, full, fit, max, min).
      */
     width: sizes,
@@ -534,6 +530,10 @@ export const responsiveProps = defineProperties({
      */
     minW: ["minWidth"],
 
+    /**
+     * Set the element's border radius. Only accepts predefined borderRadius tokens.
+     */
+    rounded: ["borderRadius"],
     /**
      * Set the element's width and height. Only accepts predefined size tokens.
      *
