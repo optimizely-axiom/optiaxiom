@@ -31,14 +31,19 @@ export function App() {
 
 function DemoItem({
   children,
-  ...props
-}: ComponentPropsWithoutRef<typeof Text>) {
+  textAlign,
+}: Pick<ComponentPropsWithoutRef<typeof Text>, "children"> & {
+  textAlign: Extract<
+    ComponentPropsWithoutRef<typeof Text>["textAlign"],
+    string
+  >;
+}) {
   return (
     <div>
       <Text color="fg.tertiary" fontFamily="mono" fontWeight="600">
-        {props.textAlign}
+        {textAlign}
       </Text>
-      <Text {...props}>{children}</Text>
+      <Text textAlign={textAlign}>{children}</Text>
     </div>
   );
 }

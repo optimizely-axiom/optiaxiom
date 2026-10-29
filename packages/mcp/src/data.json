@@ -228,7 +228,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -720,7 +721,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -768,7 +770,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -1311,7 +1314,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -1799,7 +1803,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -1818,7 +1823,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -2126,7 +2132,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -2601,7 +2608,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -2649,7 +2657,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -2979,7 +2988,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -3467,7 +3477,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -3486,7 +3497,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -3794,7 +3806,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -4293,7 +4306,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -4309,7 +4323,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -4612,7 +4627,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -5087,7 +5103,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -5135,7 +5152,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -5442,7 +5460,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -5917,7 +5936,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -5965,7 +5985,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -6294,7 +6315,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -6782,7 +6804,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -6801,7 +6824,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -7135,7 +7159,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -7623,7 +7648,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -7642,7 +7668,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -7989,7 +8016,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -8468,7 +8496,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -8487,7 +8516,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -8851,7 +8881,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -9326,7 +9357,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -9342,7 +9374,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -9673,7 +9706,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -10166,7 +10200,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -10214,7 +10249,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -10558,7 +10594,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -11043,7 +11080,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -11091,7 +11129,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -11435,7 +11474,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -11910,7 +11950,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -11958,7 +11999,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -12271,7 +12313,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -12756,7 +12799,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -12804,7 +12848,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -13174,7 +13219,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -13663,7 +13709,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -13682,7 +13729,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -14101,7 +14149,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -14583,7 +14632,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -14631,7 +14681,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -14939,7 +14990,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -15445,7 +15497,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -15498,7 +15551,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -15831,7 +15885,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -16306,7 +16361,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -16354,7 +16410,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -16865,7 +16922,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -17340,7 +17398,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -17388,7 +17447,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -17696,7 +17756,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -18187,7 +18248,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -18202,7 +18264,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -18510,7 +18573,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -18985,7 +19049,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -19033,7 +19098,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -19348,7 +19414,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -19828,7 +19895,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -19876,7 +19944,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -20183,7 +20252,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -20658,7 +20728,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -20706,7 +20777,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -21027,7 +21099,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -21507,7 +21580,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -21555,7 +21629,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -21874,7 +21949,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -22349,7 +22425,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -22397,7 +22474,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -22704,7 +22782,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -23195,7 +23274,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -23211,7 +23291,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -23610,7 +23691,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -24085,7 +24167,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -24133,7 +24216,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -24452,7 +24536,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -24932,7 +25017,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -24980,7 +25066,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -25294,7 +25381,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -25769,7 +25857,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -25822,7 +25911,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -26390,7 +26480,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -26869,7 +26960,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -26917,7 +27009,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -27230,7 +27323,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -27710,7 +27804,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -27758,7 +27853,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -28065,7 +28161,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -28556,7 +28653,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -28571,7 +28669,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -28912,7 +29011,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -29392,7 +29492,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -29444,7 +29545,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -29747,7 +29849,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -30231,7 +30334,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -30279,7 +30383,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -30582,7 +30687,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -31057,7 +31163,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -31105,7 +31212,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -31438,7 +31546,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -31938,7 +32047,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -31953,7 +32063,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -32531,7 +32642,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -33041,7 +33153,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -33094,7 +33207,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -33432,7 +33546,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -33929,7 +34044,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -33948,7 +34064,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -34256,7 +34373,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -34731,7 +34849,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -34779,7 +34898,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -35107,7 +35227,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -35582,7 +35703,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -35630,7 +35752,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -35933,7 +36056,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -36408,7 +36532,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -36456,7 +36581,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -36771,7 +36897,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -37246,7 +37373,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -37294,7 +37422,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -37820,7 +37949,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -38295,7 +38425,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -38343,7 +38474,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -38673,7 +38805,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -39161,7 +39294,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -39180,7 +39314,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -39488,7 +39623,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -39987,7 +40123,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -40003,7 +40140,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -40306,7 +40444,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -40781,7 +40920,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -40829,7 +40969,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -41132,7 +41273,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -41607,7 +41749,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -41655,7 +41798,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -41966,7 +42110,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -42446,7 +42591,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -42494,7 +42640,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -42827,7 +42974,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -43315,7 +43463,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -43334,7 +43483,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -43648,7 +43798,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -44131,7 +44282,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -44179,7 +44331,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -44560,7 +44713,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -45039,7 +45193,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -45087,7 +45242,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -45404,7 +45560,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -45879,7 +46036,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -45927,7 +46085,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -46523,7 +46682,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -47009,7 +47169,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -47057,7 +47218,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -47366,7 +47528,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -47855,7 +48018,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -47907,7 +48071,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -48210,7 +48375,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -48685,7 +48851,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -48733,7 +48900,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -49049,7 +49217,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -49534,7 +49703,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -49582,7 +49752,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -49886,7 +50057,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -50361,7 +50533,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -50409,7 +50582,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -50712,7 +50886,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -51187,7 +51362,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -51235,7 +51411,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -51563,7 +51740,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -52044,7 +52222,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -52092,7 +52271,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -52408,7 +52588,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -52892,7 +53073,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -52940,7 +53122,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -53270,7 +53453,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -53758,7 +53942,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -53777,7 +53962,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -54111,7 +54297,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -54599,7 +54786,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -54618,7 +54806,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -54934,7 +55123,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -55429,7 +55619,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -55477,7 +55668,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -55868,7 +56060,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -56359,7 +56552,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -56407,7 +56601,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -56718,7 +56913,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -57197,7 +57393,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -57245,7 +57442,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -57563,7 +57761,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -58048,7 +58247,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -58096,7 +58296,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -58399,7 +58600,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -58883,7 +59085,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -58931,7 +59134,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -59258,7 +59462,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -59746,7 +59951,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -59765,7 +59971,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -60075,7 +60282,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -60551,7 +60759,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -60599,7 +60808,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -60974,7 +61184,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -61451,7 +61662,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -61499,7 +61711,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -61865,7 +62078,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -62340,7 +62554,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -62388,7 +62603,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -62741,7 +62957,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -63227,7 +63444,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -63275,7 +63493,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -63610,7 +63829,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -64090,7 +64310,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -64138,7 +64359,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -64513,7 +64735,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -65004,7 +65227,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -65057,7 +65281,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -65360,7 +65585,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -65835,7 +66061,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -65883,7 +66110,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -66194,7 +66422,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -66701,7 +66930,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -66749,7 +66979,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -67111,7 +67342,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -67603,7 +67835,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -67651,7 +67884,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -68060,7 +68294,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -68555,7 +68790,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -68571,7 +68807,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -69074,7 +69311,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -69554,7 +69792,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -69602,7 +69841,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -69951,7 +70191,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -70435,7 +70676,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -70449,7 +70691,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -70761,7 +71004,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -71244,7 +71488,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -71264,7 +71509,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -71578,7 +71824,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -72053,7 +72300,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -72101,7 +72349,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -72423,7 +72672,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -72903,7 +73153,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -72951,7 +73202,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -73765,7 +74017,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -74284,7 +74537,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -74299,7 +74553,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -74628,7 +74883,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -75116,7 +75372,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -75135,7 +75392,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -75495,7 +75753,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -75974,7 +76233,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -76022,7 +76282,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -76325,7 +76586,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -76805,7 +77067,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -76857,7 +77120,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -77160,7 +77424,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -77635,7 +77900,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -77683,7 +77949,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -77986,7 +78253,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -78461,7 +78729,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -78509,7 +78778,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -78822,7 +79092,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -79305,7 +79576,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -79353,7 +79625,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -79656,7 +79929,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -80131,7 +80405,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -80179,7 +80454,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -80495,7 +80771,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -80970,7 +81247,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -81018,7 +81296,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -81321,7 +81600,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -81796,7 +82076,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -81844,7 +82125,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -82155,7 +82437,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -82634,7 +82917,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -82682,7 +82966,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -82985,7 +83270,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -83460,7 +83746,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -83508,7 +83795,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -83815,7 +84103,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -84296,7 +84585,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -84344,7 +84634,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -84656,7 +84947,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -85139,7 +85431,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -85187,7 +85480,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -85522,7 +85816,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -85997,7 +86292,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -86045,7 +86341,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -86347,7 +86644,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -86830,7 +87128,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -86846,7 +87145,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -87200,7 +87500,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -87675,7 +87976,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -87723,7 +88025,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -88035,7 +88338,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -88545,7 +88849,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -88593,7 +88898,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -88919,7 +89225,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -89438,7 +89745,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -89453,7 +89761,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -89756,7 +90065,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -90235,7 +90545,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -90251,7 +90562,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -90663,7 +90975,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -91138,7 +91451,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -91190,7 +91504,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -91500,7 +91815,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -91997,7 +92313,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -92050,7 +92367,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -92379,7 +92697,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -92867,7 +93186,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -92886,7 +93206,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -93194,7 +93515,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -93677,7 +93999,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -93725,7 +94048,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -94054,7 +94378,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -94541,7 +94866,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -94589,7 +94915,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -94906,7 +95233,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -95397,7 +95725,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -95445,7 +95774,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -95859,7 +96189,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -96357,7 +96688,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -96383,7 +96715,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -96775,7 +97108,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -97266,7 +97600,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -97314,7 +97649,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -97651,7 +97987,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -98150,7 +98487,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -98165,7 +98503,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -98538,7 +98877,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -99019,7 +99359,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "rovingFocus": {
           "description": "Whether the group should maintain roving focus of its buttons.\n@defaultValue true",
@@ -99071,7 +99412,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -99440,7 +99782,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -99928,7 +100271,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -99947,7 +100291,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -100451,7 +100796,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -100924,7 +101270,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -100977,7 +101324,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -101302,7 +101650,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -101794,7 +102143,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -101813,7 +102163,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -102125,7 +102476,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -102607,7 +102959,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -102655,7 +103008,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -102998,7 +103352,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -103477,7 +103832,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -103525,7 +103881,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -103908,7 +104265,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -104387,7 +104745,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -104435,7 +104794,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -104745,7 +105105,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -105221,7 +105582,8 @@
           "description": "Border radius of the skeleton. Defaults to \"sm\" for regular shapes,\nautomatically set to \"full\" when circle={true}.",
           "type": "enum",
           "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
-          "default": "sm"
+          "default": "sm",
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -105269,7 +105631,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -105620,7 +105983,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -106108,7 +106472,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -106156,7 +106521,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -106568,7 +106934,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -107053,7 +107420,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -107101,7 +107469,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -107404,7 +107773,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -107879,7 +108249,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -107927,7 +108298,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -108230,7 +108602,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -108715,7 +109088,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -108763,7 +109137,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -109074,7 +109449,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -109550,7 +109926,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -109599,7 +109976,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -109993,7 +110371,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -110512,7 +110891,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -110527,7 +110907,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -110854,7 +111235,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -111342,7 +111724,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -111361,7 +111744,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -111667,7 +112051,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -112142,7 +112527,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -112190,7 +112576,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -112493,7 +112880,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -112984,7 +113372,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -113032,7 +113421,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -113359,7 +113749,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -113847,7 +114238,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -113866,7 +114258,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -114176,7 +114569,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -114663,7 +115057,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -114679,7 +115074,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -115068,7 +115464,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -115549,7 +115946,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -115597,7 +115995,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -115933,7 +116332,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -116408,7 +116808,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -116456,7 +116857,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -116764,7 +117166,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -117239,7 +117642,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -117287,7 +117691,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -117590,7 +117995,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -118070,7 +118476,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -118118,7 +118525,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -118421,7 +118829,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -118900,7 +119309,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -118948,7 +119358,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -119251,7 +119662,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -119733,7 +120145,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -119781,7 +120194,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -120084,7 +120498,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -120559,7 +120974,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -120607,7 +121023,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -120924,7 +121341,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -121408,7 +121826,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -121456,7 +121875,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -121782,7 +122202,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -122257,7 +122678,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -122305,7 +122727,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -122609,7 +123032,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -123085,7 +123509,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -123133,7 +123558,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -123444,7 +123870,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -123919,7 +124346,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -123967,7 +124395,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -124271,7 +124700,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -124751,7 +125181,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -124799,7 +125230,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -125178,7 +125610,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -125679,7 +126112,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "rows": {
           "description": "The number of rows to display.",
@@ -125693,7 +126127,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -126142,7 +126577,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -126617,7 +127053,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -126674,7 +127111,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -126984,7 +127422,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -127480,7 +127919,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -127537,7 +127977,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -127906,7 +128347,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -128402,7 +128844,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -128421,7 +128864,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",
@@ -128805,7 +129249,8 @@
             "2xl",
             "3xl",
             "4xl"
-          ]
+          ],
+          "responsive": true
         },
         "fontWeight": {
           "description": "Set the element's `font-weight` CSS property",
@@ -129296,7 +129741,8 @@
         "rounded": {
           "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
           "type": "enum",
-          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"]
+          "values": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
         },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
@@ -129348,7 +129794,8 @@
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
           "type": "enum",
-          "values": ["center", "end", "start", "justify"]
+          "values": ["center", "end", "start", "justify"],
+          "responsive": true
         },
         "textTransform": {
           "description": "Set the element's `text-transform` CSS property",

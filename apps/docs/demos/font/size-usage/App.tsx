@@ -26,14 +26,16 @@ export function App() {
 
 function DemoItem({
   children,
-  ...props
-}: ComponentPropsWithoutRef<typeof Text>) {
+  fontSize,
+}: Pick<ComponentPropsWithoutRef<typeof Text>, "children"> & {
+  fontSize: Extract<ComponentPropsWithoutRef<typeof Text>["fontSize"], string>;
+}) {
   return (
     <div>
       <Text color="fg.tertiary" fontFamily="mono" fontWeight="600">
-        {props.fontSize}
+        {fontSize}
       </Text>
-      <Text {...props}>{children}</Text>
+      <Text fontSize={fontSize}>{children}</Text>
     </div>
   );
 }

@@ -68,3 +68,18 @@ export const TruncateInFlexRow: Story = {
     </Group>
   ),
 };
+
+export const ResponsiveTypography: Story = {
+  args: {
+    children: "The quick brown fox jumps over the lazy dog.",
+    fontSize: ["md", "xl"],
+    textAlign: ["center", "start"],
+    w: "full",
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByText(/quick brown fox/)).toHaveStyle({
+      fontSize: "20px",
+      textAlign: "start",
+    });
+  },
+};
