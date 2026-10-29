@@ -12,6 +12,8 @@ export interface ComponentInfo {
   description: string;
   /** Link to documentation */
   docsUrl?: string;
+  /** Narrowest entry point that exports this component, for consumers who skip the barrel */
+  entryPoint?: string;
   /** Usage examples */
   examples?: Example[];
   /** Base types/interfaces this component extends */

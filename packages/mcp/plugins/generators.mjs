@@ -59,6 +59,7 @@ export async function generateComponents() {
     /** @type {ComponentInfo} */
     const component = {
       description,
+      ...(doc.entryPoint && { entryPoint: doc.entryPoint }),
       import: `import { ${name} } from '${
         "experimental" in doc.tags
           ? `@optiaxiom/react/unstable`

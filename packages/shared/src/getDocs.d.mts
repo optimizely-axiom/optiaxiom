@@ -3,6 +3,7 @@ import type { PropItem } from "react-docgen-typescript";
 export type ComponentDoc = {
   description?: string;
   displayName: string;
+  entryPoint?: string;
   props: Prop[];
   tags: {
     [key: string]: string | undefined;

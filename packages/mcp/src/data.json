@@ -2,6 +2,7 @@
   "components": {
     "Alert": {
       "description": "Keeps users informed of important and sometimes time-sensitive changes.\n\nImportant Notes:\n- The `intent` prop uses \"information\" (not \"info\") for the blue\n  informational style\n- Default intent is \"neutral\" - only set intent when you need a specific\n  color/emphasis",
+      "entryPoint": "@optiaxiom/react/alert",
       "import": "import { Alert } from '@optiaxiom/react';",
       "name": "Alert",
       "props": {
@@ -879,6 +880,7 @@
     },
     "AlertDialog": {
       "description": "Display a modal with important content that expects confirmation from the\nuser.\n\nAlertDialog does NOT have a close (X) button in the header - users must\nexplicitly choose an action. This is intentional for confirmation dialogs to\nprevent accidental dismissal of critical actions.\n\nUse for confirmations, destructive actions, and critical decisions. Do not\nuse for general forms or informational content (use Dialog instead).\n\nFor async operations, use event.preventDefault() in AlertDialogAction onClick\nto prevent auto-close, then manually close after completion.",
+      "entryPoint": "@optiaxiom/react/alert-dialog",
       "import": "import { AlertDialog } from '@optiaxiom/react';",
       "name": "AlertDialog",
       "props": {
@@ -1061,6 +1063,7 @@
     },
     "AlertDialogAction": {
       "description": "AlertDialogAction component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/alert-dialog",
       "import": "import { AlertDialogAction } from '@optiaxiom/react';",
       "name": "AlertDialogAction",
       "props": {
@@ -1906,6 +1909,7 @@
     },
     "AlertDialogBody": {
       "description": "AlertDialogBody component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/alert-dialog",
       "import": "import { AlertDialogBody } from '@optiaxiom/react';",
       "name": "AlertDialogBody",
       "props": {
@@ -2735,6 +2739,7 @@
     },
     "AlertDialogCancel": {
       "description": "AlertDialogCancel component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/alert-dialog",
       "import": "import { AlertDialogCancel } from '@optiaxiom/react';",
       "name": "AlertDialogCancel",
       "props": {
@@ -3580,6 +3585,7 @@
     },
     "AlertDialogContent": {
       "description": "AlertDialogContent component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/alert-dialog",
       "import": "import { AlertDialogContent } from '@optiaxiom/react';",
       "name": "AlertDialogContent",
       "props": {
@@ -4401,6 +4407,7 @@
     },
     "AlertDialogFooter": {
       "description": "AlertDialogFooter component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/alert-dialog",
       "import": "import { AlertDialogFooter } from '@optiaxiom/react';",
       "name": "AlertDialogFooter",
       "props": {
@@ -5230,6 +5237,7 @@
     },
     "AlertDialogHeader": {
       "description": "AlertDialogHeader component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/alert-dialog",
       "import": "import { AlertDialogHeader } from '@optiaxiom/react';",
       "name": "AlertDialogHeader",
       "props": {
@@ -6063,6 +6071,7 @@
     },
     "AlertDialogTrigger": {
       "description": "AlertDialogTrigger component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/alert-dialog",
       "import": "import { AlertDialogTrigger } from '@optiaxiom/react';",
       "name": "AlertDialogTrigger",
       "props": {
@@ -6907,6 +6916,7 @@
     },
     "AngleMenuButton": {
       "description": "Button with trailing chevron icon for opening dropdowns and popovers.\n\nFor Menu dropdowns, MenuTrigger uses this component automatically. For other\ndropdown patterns (like Popover), use AngleMenuButton as the trigger.",
+      "entryPoint": "@optiaxiom/react/angle-menu-button",
       "import": "import { AngleMenuButton } from '@optiaxiom/react';",
       "name": "AngleMenuButton",
       "props": {
@@ -7751,6 +7761,7 @@
     },
     "AuthProvider": {
       "description": "`AuthProvider` is used to pass down the user credentials to all components. It should be rendered near the root of your application and should be used only once.",
+      "entryPoint": "@optiaxiom/react/auth-provider",
       "import": "import { AuthProvider } from '@optiaxiom/react';",
       "name": "AuthProvider",
       "props": {
@@ -7778,6 +7789,7 @@
     },
     "Avatar": {
       "description": "Displays a user profile picture or initials. For multiple avatars, use\nAvatarGroup.",
+      "entryPoint": "@optiaxiom/react/avatar",
       "import": "import { Avatar } from '@optiaxiom/react';",
       "name": "Avatar",
       "props": {
@@ -8655,6 +8667,7 @@
     },
     "AvatarGroup": {
       "description": "Displays a group of avatars representing multiple users with automatic layout\nand overflow handling.\n\nUse this component whenever you have 2 or more Avatar components together,\neven if they're not overlapping in the design. AvatarGroup handles consistent\nsizing, spacing, overflow indicators (+N), and semantic grouping\nautomatically.\n\nDon't manually layout multiple Avatars in a Flex - use AvatarGroup instead.\n\nWhen to use:\n- Multiple assignees on a task\n- Team members or collaborators\n- Participants in a conversation\n- Any group of users",
+      "entryPoint": "@optiaxiom/react/avatar",
       "import": "import { AvatarGroup } from '@optiaxiom/react';",
       "name": "AvatarGroup",
       "props": {
@@ -9452,6 +9465,7 @@
     },
     "AxiomProvider": {
       "description": "`AxiomProvider` provides all the context managers required for our components to work. It must be rendered at the root of your application and should be used only once.",
+      "entryPoint": "@optiaxiom/react/axiom-provider",
       "import": "import { AxiomProvider } from '@optiaxiom/react';",
       "name": "AxiomProvider",
       "props": {
@@ -9480,6 +9494,7 @@
     },
     "Badge": {
       "description": "Use to emphasize a status, count, state or value.",
+      "entryPoint": "@optiaxiom/react/badge",
       "import": "import { Badge } from '@optiaxiom/react';",
       "name": "Badge",
       "props": {
@@ -10368,6 +10383,7 @@
     },
     "Banner": {
       "description": "Display a prominent message at the top of the screen.",
+      "entryPoint": "@optiaxiom/react/banner",
       "import": "import { Banner } from '@optiaxiom/react';",
       "name": "Banner",
       "props": {
@@ -11248,6 +11264,7 @@
     },
     "Box": {
       "description": "A primitive layout component that provides access to design tokens and\nstyling without custom CSS.\n\nUse Box for simple styling (padding, margin, colors, borders) when you\ndon't need flexbox layout features. For flexbox layouts with\ndirection/alignment/gap, use Group instead.\n\nUse `extractBoxProps` to separate sprinkle props from the rest when\nrendering non-div elements with `asChild`.",
+      "entryPoint": "@optiaxiom/react/box",
       "import": "import { Box } from '@optiaxiom/react';",
       "name": "Box",
       "props": {
@@ -12087,6 +12104,7 @@
     },
     "Breadcrumb": {
       "description": "Display a list of links showing the location of the current page in the navigational hierarchy.",
+      "entryPoint": "@optiaxiom/react/breadcrumb",
       "import": "import { Breadcrumb } from '@optiaxiom/react';",
       "name": "Breadcrumb",
       "props": {
@@ -12967,6 +12985,7 @@
     },
     "Button": {
       "description": "Button component for triggering actions, with support for icons, addons, and\nloading states.\n\nUse this for standard action buttons. The component supports icon-only\nbuttons, buttons with leading/trailing icons, and custom addon content before\nor after the main label.\n\nWhen not to use:\n- For menu and select buttons with a chevron use AngleMenuButton instead.\n- For ellipsis menus use EllipsisMenuButton instead.\n- For buttons that include label use LabelMenuButton instead.\n- For expand/collapse triggers use Disclosure instead of Button with chevron\n  icon and manual state.\n- Don't use Button to build tab navigation - use Tabs instead.",
+      "entryPoint": "@optiaxiom/react/button",
       "import": "import { Button } from '@optiaxiom/react';",
       "name": "Button",
       "props": {
@@ -13923,6 +13942,7 @@
     },
     "ButtonGroup": {
       "description": "ButtonGroup component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/button",
       "import": "import { ButtonGroup } from '@optiaxiom/react';",
       "name": "ButtonGroup",
       "props": {
@@ -15659,6 +15679,7 @@
     },
     "Card": {
       "description": "Generic container for grouping related components together.",
+      "entryPoint": "@optiaxiom/react/card",
       "import": "import { Card } from '@optiaxiom/react';",
       "name": "Card",
       "props": {
@@ -16696,6 +16717,7 @@
     },
     "CardAction": {
       "description": "CardAction component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/card",
       "import": "import { CardAction } from '@optiaxiom/react';",
       "name": "CardAction",
       "props": {
@@ -17530,6 +17552,7 @@
     },
     "CardCheckbox": {
       "description": "CardCheckbox component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/card",
       "import": "import { CardCheckbox } from '@optiaxiom/react';",
       "name": "CardCheckbox",
       "props": {
@@ -18347,6 +18370,7 @@
     },
     "CardFooter": {
       "description": "CardFooter component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/card",
       "import": "import { CardFooter } from '@optiaxiom/react';",
       "name": "CardFooter",
       "props": {
@@ -19176,6 +19200,7 @@
     },
     "CardHeader": {
       "description": "CardHeader component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/card",
       "import": "import { CardHeader } from '@optiaxiom/react';",
       "name": "CardHeader",
       "props": {
@@ -20026,6 +20051,7 @@
     },
     "CardImage": {
       "description": "CardImage component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/card",
       "import": "import { CardImage } from '@optiaxiom/react';",
       "name": "CardImage",
       "props": {
@@ -20855,6 +20881,7 @@
     },
     "CardLink": {
       "description": "CardLink component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/card",
       "import": "import { CardLink } from '@optiaxiom/react';",
       "name": "CardLink",
       "props": {
@@ -21707,6 +21734,7 @@
     },
     "CardPreview": {
       "description": "CardPreview component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/card",
       "import": "import { CardPreview } from '@optiaxiom/react';",
       "name": "CardPreview",
       "props": {
@@ -22552,6 +22580,7 @@
     },
     "Checkbox": {
       "description": "Basic control to allow selecting one or more items from a set.",
+      "entryPoint": "@optiaxiom/react/checkbox",
       "import": "import { Checkbox } from '@optiaxiom/react';",
       "name": "Checkbox",
       "props": {
@@ -23465,6 +23494,7 @@
     },
     "Code": {
       "description": "Display inline code.",
+      "entryPoint": "@optiaxiom/react/code",
       "import": "import { Code } from '@optiaxiom/react';",
       "name": "Code",
       "props": {
@@ -24305,6 +24335,7 @@
     },
     "Cover": {
       "description": "Use `Cover` to to expand and fill up the whole area of the parent which has `position: relative` using the `::before` pseudo element.",
+      "entryPoint": "@optiaxiom/react/cover",
       "import": "import { Cover } from '@optiaxiom/react';",
       "name": "Cover",
       "props": {
@@ -25155,6 +25186,7 @@
     },
     "DataTable": {
       "description": "Easy to use table and datagrids built using [TanStack Table](https://tanstack.com/table/latest).",
+      "entryPoint": "@optiaxiom/react/data-table",
       "import": "import { DataTable } from '@optiaxiom/react';",
       "name": "DataTable",
       "props": {
@@ -26254,6 +26286,7 @@
     },
     "DataTableAction": {
       "description": "DataTableAction component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/data-table",
       "import": "import { DataTableAction } from '@optiaxiom/react';",
       "name": "DataTableAction",
       "props": {
@@ -27092,6 +27125,7 @@
     },
     "DataTableBody": {
       "description": "DataTableBody component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/data-table",
       "import": "import { DataTableBody } from '@optiaxiom/react';",
       "name": "DataTableBody",
       "props": {
@@ -27931,6 +27965,7 @@
     },
     "DataTableCheckbox": {
       "description": "DataTableCheckbox component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/data-table",
       "import": "import { DataTableCheckbox } from '@optiaxiom/react';",
       "name": "DataTableCheckbox",
       "props": {
@@ -28785,6 +28820,7 @@
     },
     "DataTableFooter": {
       "description": "DataTableFooter component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/data-table",
       "import": "import { DataTableFooter } from '@optiaxiom/react';",
       "name": "DataTableFooter",
       "props": {
@@ -30461,6 +30497,7 @@
     },
     "DataTableLabel": {
       "description": "DataTableLabel component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/data-table",
       "import": "import { DataTableLabel } from '@optiaxiom/react';",
       "name": "DataTableLabel",
       "props": {
@@ -31290,6 +31327,7 @@
     },
     "DateInput": {
       "description": "Input field with calendar that lets user enter dates.\n\nImportant Notes:\n- The `placeholder` prop sets the default date/time in the calendar picker,\n  NOT hint text for the input field (native date inputs don't support that)\n- Don't use `addonBefore` as it will override the calendar icon that opens\n  the date picker popover",
+      "entryPoint": "@optiaxiom/react/date-input",
       "import": "import { DateInput } from '@optiaxiom/react';",
       "name": "DateInput",
       "props": {
@@ -32303,6 +32341,7 @@
     },
     "DateRangePicker": {
       "description": "Calendar popover that lets user pick date ranges.",
+      "entryPoint": "@optiaxiom/react/date-range-picker",
       "import": "import { DateRangePicker } from '@optiaxiom/react';",
       "name": "DateRangePicker",
       "props": {
@@ -32406,6 +32445,7 @@
     },
     "DateRangePickerContent": {
       "description": "DateRangePickerContent component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/date-range-picker",
       "import": "import { DateRangePickerContent } from '@optiaxiom/react';",
       "name": "DateRangePickerContent",
       "props": {
@@ -33294,6 +33334,7 @@
     },
     "DateRangePickerTrigger": {
       "description": "DateRangePickerTrigger component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/date-range-picker",
       "import": "import { DateRangePickerTrigger } from '@optiaxiom/react';",
       "name": "DateRangePickerTrigger",
       "props": {
@@ -37500,6 +37541,7 @@
     },
     "Dialog": {
       "description": "Display a modal dialog box.\n\nDialogHeader automatically includes a close button (X) in the top-right\ncorner - do not manually add a close button to the header.\n\nUse Dialog for forms, data entry, content display, multi-step workflows, and\nnon-critical interactions. For confirmations or destructive actions, use\nAlertDialog instead (which has no close button and requires explicit user\nchoice).\n\nFor forms, wrap DialogBody and DialogFooter in DialogForm and use\ntype=\"submit\" on the primary action button.",
+      "entryPoint": "@optiaxiom/react/dialog",
       "import": "import { Dialog } from '@optiaxiom/react';",
       "name": "Dialog",
       "props": {
@@ -37723,6 +37765,7 @@
     },
     "DialogBody": {
       "description": "DialogBody component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dialog",
       "import": "import { DialogBody } from '@optiaxiom/react';",
       "name": "DialogBody",
       "props": {
@@ -38552,6 +38595,7 @@
     },
     "DialogClose": {
       "description": "DialogClose component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dialog",
       "import": "import { DialogClose } from '@optiaxiom/react';",
       "name": "DialogClose",
       "props": {
@@ -39397,6 +39441,7 @@
     },
     "DialogContent": {
       "description": "DialogContent component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dialog",
       "import": "import { DialogContent } from '@optiaxiom/react';",
       "name": "DialogContent",
       "props": {
@@ -40218,6 +40263,7 @@
     },
     "DialogFooter": {
       "description": "DialogFooter component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dialog",
       "import": "import { DialogFooter } from '@optiaxiom/react';",
       "name": "DialogFooter",
       "props": {
@@ -41047,6 +41093,7 @@
     },
     "DialogForm": {
       "description": "DialogForm component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dialog",
       "import": "import { DialogForm } from '@optiaxiom/react';",
       "name": "DialogForm",
       "props": {
@@ -41876,6 +41923,7 @@
     },
     "DialogHeader": {
       "description": "DialogHeader component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dialog",
       "import": "import { DialogHeader } from '@optiaxiom/react';",
       "name": "DialogHeader",
       "props": {
@@ -42722,6 +42770,7 @@
     },
     "DialogTrigger": {
       "description": "DialogTrigger component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dialog",
       "import": "import { DialogTrigger } from '@optiaxiom/react';",
       "name": "DialogTrigger",
       "props": {
@@ -43566,6 +43615,7 @@
     },
     "Disclosure": {
       "description": "Interactive component for expanding and collapsing content panels with\nbuilt-in state management.\n\nUse this for collapsible sections with expand/collapse triggers. Disclosure\nhandles the toggle state, animations, and accessibility automatically.\n\nWhen to use:\n- FAQ sections\n- Expandable content panels\n- Show/hide details sections\n- Any expand/collapse pattern with a chevron icon\n\nDon't manually build with Button + chevron icon + useState - use Disclosure\ninstead.",
+      "entryPoint": "@optiaxiom/react/disclosure",
       "import": "import { Disclosure } from '@optiaxiom/react';",
       "name": "Disclosure",
       "props": {
@@ -44487,6 +44537,7 @@
     },
     "DisclosureContent": {
       "description": "DisclosureContent component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/disclosure",
       "import": "import { DisclosureContent } from '@optiaxiom/react';",
       "name": "DisclosureContent",
       "props": {
@@ -45320,6 +45371,7 @@
     },
     "DisclosureTrigger": {
       "description": "DisclosureTrigger component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/disclosure",
       "import": "import { DisclosureTrigger } from '@optiaxiom/react';",
       "name": "DisclosureTrigger",
       "props": {
@@ -46163,6 +46215,7 @@
     },
     "DropdownMenu": {
       "description": "Display a dropdown menu.",
+      "entryPoint": "@optiaxiom/react/dropdown-menu",
       "import": "import { DropdownMenu } from '@optiaxiom/react';",
       "name": "DropdownMenu",
       "props": {
@@ -46442,6 +46495,7 @@
     },
     "DropdownMenuCheckboxItem": {
       "description": "DropdownMenuCheckboxItem component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dropdown-menu",
       "import": "import { DropdownMenuCheckboxItem } from '@optiaxiom/react';",
       "name": "DropdownMenuCheckboxItem",
       "props": {
@@ -47297,6 +47351,7 @@
     },
     "DropdownMenuContent": {
       "description": "DropdownMenuContent component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dropdown-menu",
       "import": "import { DropdownMenuContent } from '@optiaxiom/react';",
       "name": "DropdownMenuContent",
       "props": {
@@ -48149,6 +48204,7 @@
     },
     "DropdownMenuGroup": {
       "description": "DropdownMenuGroup component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dropdown-menu",
       "import": "import { DropdownMenuGroup } from '@optiaxiom/react';",
       "name": "DropdownMenuGroup",
       "props": {
@@ -48978,6 +49034,7 @@
     },
     "DropdownMenuItem": {
       "description": "DropdownMenuItem component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dropdown-menu",
       "import": "import { DropdownMenuItem } from '@optiaxiom/react';",
       "name": "DropdownMenuItem",
       "props": {
@@ -49831,6 +49888,7 @@
     },
     "DropdownMenuLabel": {
       "description": "DropdownMenuLabel component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dropdown-menu",
       "import": "import { DropdownMenuLabel } from '@optiaxiom/react';",
       "name": "DropdownMenuLabel",
       "props": {
@@ -50660,6 +50718,7 @@
     },
     "DropdownMenuSeparator": {
       "description": "DropdownMenuSeparator component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dropdown-menu",
       "import": "import { DropdownMenuSeparator } from '@optiaxiom/react';",
       "name": "DropdownMenuSeparator",
       "props": {
@@ -51489,6 +51548,7 @@
     },
     "DropdownMenuSub": {
       "description": "DropdownMenuSub component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dropdown-menu",
       "import": "import { DropdownMenuSub } from '@optiaxiom/react';",
       "name": "DropdownMenuSub",
       "props": {
@@ -51514,6 +51574,7 @@
     },
     "DropdownMenuSubContent": {
       "description": "DropdownMenuSubContent component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dropdown-menu",
       "import": "import { DropdownMenuSubContent } from '@optiaxiom/react';",
       "name": "DropdownMenuSubContent",
       "props": {
@@ -52349,6 +52410,7 @@
     },
     "DropdownMenuSubTrigger": {
       "description": "DropdownMenuSubTrigger component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dropdown-menu",
       "import": "import { DropdownMenuSubTrigger } from '@optiaxiom/react';",
       "name": "DropdownMenuSubTrigger",
       "props": {
@@ -53201,6 +53263,7 @@
     },
     "DropdownMenuTrigger": {
       "description": "DropdownMenuTrigger component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/dropdown-menu",
       "import": "import { DropdownMenuTrigger } from '@optiaxiom/react';",
       "name": "DropdownMenuTrigger",
       "props": {
@@ -54045,6 +54108,7 @@
     },
     "EllipsisMenuButton": {
       "description": "Button with ellipsis icon for opening overflow menus and dropdowns.\n\nUse with MenuTrigger asChild for overflow menus.",
+      "entryPoint": "@optiaxiom/react/ellipsis-menu-button",
       "import": "import { EllipsisMenuButton } from '@optiaxiom/react';",
       "name": "EllipsisMenuButton",
       "props": {
@@ -54889,6 +54953,7 @@
     },
     "Field": {
       "description": "Wrapper for inputs to provide context such as label/help/required etc.",
+      "entryPoint": "@optiaxiom/react/field",
       "import": "import { Field } from '@optiaxiom/react';",
       "name": "Field",
       "props": {
@@ -55834,6 +55899,7 @@
     },
     "FieldLabel": {
       "description": "FieldLabel component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/field",
       "import": "import { FieldLabel } from '@optiaxiom/react';",
       "name": "FieldLabel",
       "props": {
@@ -60054,6 +60120,7 @@
     },
     "Flex": {
       "description": "Stack items vertically or horizontally in a flex container.",
+      "entryPoint": "@optiaxiom/react/flex",
       "import": "import { Flex } from '@optiaxiom/react';",
       "name": "Flex",
       "props": {
@@ -60957,6 +61024,7 @@
     },
     "Grid": {
       "description": "Use `Grid` component to place items in a grid using equal width columns.",
+      "entryPoint": "@optiaxiom/react/grid",
       "import": "import { Grid } from '@optiaxiom/react';",
       "name": "Grid",
       "props": {
@@ -61850,6 +61918,7 @@
     },
     "Group": {
       "description": "A flexbox layout component for grouping items horizontally or vertically.\n\nDefault Props:\n- flexDirection: 'row' (CSS standard - horizontal layout)\n- alignItems: 'center' (when row) or 'stretch' (when column)\n\nCommon Usage:\n- Horizontal button groups: <Group gap=\"8\"><Button /><Button /></Group>\n- Vertical forms: <Group flexDirection=\"column\" gap=\"16\"><Input /><Input /></Group>\n- Icon + text combos: <Group gap=\"4\" alignItems=\"center\"><Icon /><Text /></Group>",
+      "entryPoint": "@optiaxiom/react/group",
       "import": "import { Group } from '@optiaxiom/react';",
       "name": "Group",
       "props": {
@@ -62731,6 +62800,7 @@
     },
     "Heading": {
       "description": "Renders semantic heading elements (h1-h4) for document structure and\naccessibility.\n\nUse this for page titles, section headings, and any text that represents a\nheading in the document outline. Don't use Text with large fontSize and bold\nfontWeight for headings - Heading provides proper semantics for screen\nreaders and improves accessibility.\n\nWhen to use:\n- Page titles\n- Section headings\n- Card/panel titles\n- Any text with fontSize='xl'+ and fontWeight='500'+\n\n⚠️ All heading levels (1-4) default to fontWeight=\"700\". If your design shows\nlighter headings, explicitly set fontWeight=\"500\" or \"600\".\n\nDon't use Text component for headings - it lacks semantic meaning.",
+      "entryPoint": "@optiaxiom/react/heading",
       "import": "import { Heading } from '@optiaxiom/react';",
       "name": "Heading",
       "props": {
@@ -66188,6 +66258,7 @@
     },
     "Indicator": {
       "description": "Display a badge at the corner of another element.",
+      "entryPoint": "@optiaxiom/react/indicator",
       "import": "import { Indicator } from '@optiaxiom/react';",
       "name": "Indicator",
       "props": {
@@ -68037,6 +68108,7 @@
     },
     "Input": {
       "description": "Basic text field for capturing user input.",
+      "entryPoint": "@optiaxiom/react/input",
       "import": "import { Input } from '@optiaxiom/react';",
       "name": "Input",
       "props": {
@@ -69085,6 +69157,7 @@
     },
     "Kbd": {
       "description": "Inline text representing keyboard input.",
+      "entryPoint": "@optiaxiom/react/kbd",
       "import": "import { Kbd } from '@optiaxiom/react';",
       "name": "Kbd",
       "props": {
@@ -69956,6 +70029,7 @@
     },
     "LabelMenuButton": {
       "description": "Button displaying both a label and value, used as the trigger for Select\ncomponents.",
+      "entryPoint": "@optiaxiom/react/label-menu-button",
       "import": "import { LabelMenuButton } from '@optiaxiom/react';",
       "name": "LabelMenuButton",
       "props": {
@@ -72427,6 +72501,7 @@
     },
     "Link": {
       "description": "Anchor element for creating hyperlinks.",
+      "entryPoint": "@optiaxiom/react/link",
       "import": "import { Link } from '@optiaxiom/react';",
       "name": "Link",
       "props": {
@@ -73331,6 +73406,7 @@
     },
     "Menu": {
       "description": "Dropdown menu for actions, multi-select, and complex interactions.\nSupports filtering/search, checkbox/radio items, nested sub-menus,\nlinks, and action handlers via `execute`.\n\nMust be used with MenuTrigger and MenuContent sub-components. MenuTrigger\nautomatically renders a button with chevron icon, or use MenuTrigger asChild\nwith custom buttons like EllipsisMenuButton for overflow menus.\n\nUse Menu when: action menus (edit/delete/archive), multi-select dropdowns,\nfilterable lists, nested menus, or items with links/navigation.\n\nUse Select instead when: you need a simple single-select form input\nwith `value`/`onChange` and form submission support.\n\nNote: Menu is not a form control - it has no `value`/`onChange` and does\nnot integrate with `Field`. For a single-select form field, use Select\n(which does not support filtering). There is currently no built-in\nfilterable single-select form input.",
+      "entryPoint": "@optiaxiom/react/menu",
       "import": "import { Menu } from '@optiaxiom/react';",
       "name": "Menu",
       "props": {
@@ -73789,6 +73865,7 @@
     },
     "MenuContent": {
       "description": "Menu content rendered in a portal with absolute positioning.\n\nRendered as a popover in larger screens and in a dialog in smaller screens by\ndefault.",
+      "entryPoint": "@optiaxiom/react/menu",
       "import": "import { MenuContent } from '@optiaxiom/react';",
       "name": "MenuContent",
       "props": {
@@ -74631,6 +74708,7 @@
     },
     "MenuTrigger": {
       "description": "Trigger button for Menu component with automatic chevron icon.\n\nUse this as the trigger for Menu dropdowns. By default, renders an\nAngleMenuButton (button with trailing chevron). Use asChild to customize the\ntrigger button.",
+      "entryPoint": "@optiaxiom/react/menu",
       "import": "import { MenuTrigger } from '@optiaxiom/react';",
       "name": "MenuTrigger",
       "props": {
@@ -75475,6 +75553,7 @@
     },
     "ModalLayer": {
       "description": "`ModalLayer` is a helper component intended to wrap components that are\nrendered inside portals inside other dialogs or popovers.",
+      "entryPoint": "@optiaxiom/react/modal",
       "import": "import { ModalLayer } from '@optiaxiom/react';",
       "name": "ModalLayer",
       "props": {
@@ -75519,6 +75598,7 @@
     },
     "Nav": {
       "description": "Primary navigation menu that includes support for branding, links, and other navigation items.",
+      "entryPoint": "@optiaxiom/react/nav",
       "import": "import { Nav } from '@optiaxiom/react';",
       "name": "Nav",
       "props": {
@@ -76360,6 +76440,7 @@
     },
     "NavAccountItem": {
       "description": "NavAccountItem component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/nav",
       "import": "import { NavAccountItem } from '@optiaxiom/react';",
       "name": "NavAccountItem",
       "props": {
@@ -77198,6 +77279,7 @@
     },
     "NavBody": {
       "description": "NavBody component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/nav",
       "import": "import { NavBody } from '@optiaxiom/react';",
       "name": "NavBody",
       "props": {
@@ -78027,6 +78109,7 @@
     },
     "NavFooter": {
       "description": "NavFooter component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/nav",
       "import": "import { NavFooter } from '@optiaxiom/react';",
       "name": "NavFooter",
       "props": {
@@ -78856,6 +78939,7 @@
     },
     "NavGroup": {
       "description": "NavGroup component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/nav",
       "import": "import { NavGroup } from '@optiaxiom/react';",
       "name": "NavGroup",
       "props": {
@@ -79703,6 +79787,7 @@
     },
     "NavGroupContent": {
       "description": "NavGroupContent component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/nav",
       "import": "import { NavGroupContent } from '@optiaxiom/react';",
       "name": "NavGroupContent",
       "props": {
@@ -80532,6 +80617,7 @@
     },
     "NavGroupTrigger": {
       "description": "NavGroupTrigger component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/nav",
       "import": "import { NavGroupTrigger } from '@optiaxiom/react';",
       "name": "NavGroupTrigger",
       "props": {
@@ -81374,6 +81460,7 @@
     },
     "NavHeader": {
       "description": "NavHeader component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/nav",
       "import": "import { NavHeader } from '@optiaxiom/react';",
       "name": "NavHeader",
       "props": {
@@ -82203,6 +82290,7 @@
     },
     "NavItem": {
       "description": "NavItem component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/nav",
       "import": "import { NavItem } from '@optiaxiom/react';",
       "name": "NavItem",
       "props": {
@@ -83044,6 +83132,7 @@
     },
     "NavList": {
       "description": "NavList component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/nav",
       "import": "import { NavList } from '@optiaxiom/react';",
       "name": "NavList",
       "props": {
@@ -83873,6 +83962,7 @@
     },
     "NavSeparator": {
       "description": "NavSeparator component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/nav",
       "import": "import { NavSeparator } from '@optiaxiom/react';",
       "name": "NavSeparator",
       "props": {
@@ -84712,6 +84802,7 @@
     },
     "Pagination": {
       "description": "Display active page and navigate between multiple pages.",
+      "entryPoint": "@optiaxiom/react/pagination",
       "import": "import { Pagination } from '@optiaxiom/react';",
       "name": "Pagination",
       "props": {
@@ -85584,6 +85675,7 @@
     },
     "Paper": {
       "description": "Paper component for elevated surfaces",
+      "entryPoint": "@optiaxiom/react/paper",
       "import": "import { Paper } from '@optiaxiom/react';",
       "name": "Paper",
       "props": {
@@ -90640,6 +90732,7 @@
     },
     "Popover": {
       "description": "Display arbitrary rich content inside a non-modal dialog triggered by a button.",
+      "entryPoint": "@optiaxiom/react/popover",
       "import": "import { Popover } from '@optiaxiom/react';",
       "name": "Popover",
       "props": {
@@ -90749,6 +90842,7 @@
     },
     "PopoverAnchor": {
       "description": "PopoverAnchor component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/popover",
       "import": "import { PopoverAnchor } from '@optiaxiom/react';",
       "name": "PopoverAnchor",
       "props": {
@@ -91583,6 +91677,7 @@
     },
     "PopoverContent": {
       "description": "PopoverContent component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/popover",
       "import": "import { PopoverContent } from '@optiaxiom/react';",
       "name": "PopoverContent",
       "props": {
@@ -92445,6 +92540,7 @@
     },
     "PopoverTrigger": {
       "description": "PopoverTrigger component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/popover",
       "import": "import { PopoverTrigger } from '@optiaxiom/react';",
       "name": "PopoverTrigger",
       "props": {
@@ -93289,6 +93385,7 @@
     },
     "Progress": {
       "description": "Display feedback on status of task or length of a process.",
+      "entryPoint": "@optiaxiom/react/progress",
       "import": "import { Progress } from '@optiaxiom/react';",
       "name": "Progress",
       "props": {
@@ -94148,6 +94245,7 @@
     },
     "Radio": {
       "description": "Basic control to allow selecting only one item from a set.",
+      "entryPoint": "@optiaxiom/react/radio",
       "import": "import { Radio } from '@optiaxiom/react';",
       "name": "Radio",
       "props": {
@@ -94998,6 +95096,7 @@
     },
     "RadioGroup": {
       "description": "Basic control to allow selecting only one item from a set.",
+      "entryPoint": "@optiaxiom/react/radio",
       "import": "import { RadioGroup } from '@optiaxiom/react';",
       "name": "RadioGroup",
       "props": {
@@ -96878,6 +96977,7 @@
     },
     "RichTextEditor": {
       "description": "Rich text editor with a toolbar for basic formatting (bold, italic, lists, links).",
+      "entryPoint": "@optiaxiom/react/editor",
       "import": "import { RichTextEditor } from '@optiaxiom/react/unstable';",
       "name": "RichTextEditor",
       "props": {
@@ -97731,6 +97831,7 @@
     },
     "SearchInput": {
       "description": "Basic search input field with clear button.",
+      "entryPoint": "@optiaxiom/react/search-input",
       "import": "import { SearchInput } from '@optiaxiom/react';",
       "name": "SearchInput",
       "props": {
@@ -98641,6 +98742,7 @@
     },
     "SegmentedControl": {
       "description": "Toggle buttons for switching between different values or views.",
+      "entryPoint": "@optiaxiom/react/segmented-control",
       "import": "import { SegmentedControl } from '@optiaxiom/react';",
       "name": "SegmentedControl",
       "props": {
@@ -99530,6 +99632,7 @@
     },
     "SegmentedControlItem": {
       "description": "SegmentedControlItem component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/segmented-control",
       "import": "import { SegmentedControlItem } from '@optiaxiom/react';",
       "name": "SegmentedControlItem",
       "props": {
@@ -100379,6 +100482,7 @@
     },
     "Select": {
       "description": "Single-select form input for choosing one value from a dropdown list.\nWorks like a native `<select>` — supports `name`, `value`, `onChange`,\nand works with `<form>` submissions.\n\nMust be used with SelectTrigger and SelectContent sub-components.\n\nUse Select when: single value selection in a form, controlled/uncontrolled\nform input, you need form submission support.\n\nUse Menu instead when: you need multi-select, actions (edit/delete),\nlinks, filtering/search, nested sub-menus, or checkbox/radio items.",
+      "entryPoint": "@optiaxiom/react/select",
       "import": "import { Select } from '@optiaxiom/react';",
       "name": "Select",
       "props": {
@@ -100562,6 +100666,7 @@
     },
     "SelectContent": {
       "description": "SelectContent component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/select",
       "import": "import { SelectContent } from '@optiaxiom/react';",
       "name": "SelectContent",
       "props": {
@@ -101402,6 +101507,7 @@
     },
     "SelectTrigger": {
       "description": "SelectTrigger component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/select",
       "import": "import { SelectTrigger } from '@optiaxiom/react';",
       "name": "SelectTrigger",
       "props": {
@@ -102246,6 +102352,7 @@
     },
     "Separator": {
       "description": "`Separator` component is used to visually separate items in a list or group. By default the orientation is set to `horizontal`.",
+      "entryPoint": "@optiaxiom/react/separator",
       "import": "import { Separator } from '@optiaxiom/react';",
       "name": "Separator",
       "props": {
@@ -103117,6 +103224,7 @@
     },
     "Sidebar": {
       "description": "Primary navigation menu for left side of the page that includes support for branding, links, etc.",
+      "entryPoint": "@optiaxiom/react/sidebar",
       "import": "import { Sidebar } from '@optiaxiom/react';",
       "name": "Sidebar",
       "props": {
@@ -104030,6 +104138,7 @@
     },
     "SidebarToggle": {
       "description": "SidebarToggle component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/sidebar",
       "import": "import { SidebarToggle } from '@optiaxiom/react';",
       "name": "SidebarToggle",
       "props": {
@@ -104872,6 +104981,7 @@
     },
     "Skeleton": {
       "description": "Display placeholder content while data is loading.",
+      "entryPoint": "@optiaxiom/react/skeleton",
       "import": "import { Skeleton } from '@optiaxiom/react';",
       "name": "Skeleton",
       "props": {
@@ -109215,6 +109325,7 @@
     },
     "Spinner": {
       "description": "Used for indicating an unspecified wait time.",
+      "entryPoint": "@optiaxiom/react/spinner",
       "import": "import { Spinner } from '@optiaxiom/react';",
       "name": "Spinner",
       "props": {
@@ -111825,6 +111936,7 @@
     },
     "SubNav": {
       "description": "SubNav component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/sub-nav",
       "import": "import { SubNav } from '@optiaxiom/react';",
       "name": "SubNav",
       "props": {
@@ -114339,6 +114451,7 @@
     },
     "Switch": {
       "description": "Control to allow toggling between checked and not checked state.",
+      "entryPoint": "@optiaxiom/react/switch",
       "import": "import { Switch } from '@optiaxiom/react';",
       "name": "Switch",
       "props": {
@@ -115238,6 +115351,7 @@
     },
     "Table": {
       "description": "Display tabular data using rows and columns.\n\n⚠️ **IMPORTANT**: Consider using `DataTable` instead for displaying tabular\ndata.\n\n`DataTable` provides built-in support for:\n- Sorting (client-side and server-side)\n- Pagination (client-side and server-side)\n- Row selection with checkboxes\n- Column pinning (sticky columns)\n- Row expansion\n- Loading states\n- Virtualization for large datasets\n\n`Table` is a low-level primitive and should only be used for very specific\ncustom table layouts. For most use cases, `DataTable` is the recommended\nchoice.",
+      "entryPoint": "@optiaxiom/react/table",
       "import": "import { Table } from '@optiaxiom/react';",
       "name": "Table",
       "props": {
@@ -116105,6 +116219,7 @@
     },
     "TableAction": {
       "description": "TableAction component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/table",
       "import": "import { TableAction } from '@optiaxiom/react';",
       "name": "TableAction",
       "props": {
@@ -116940,6 +117055,7 @@
     },
     "TableBody": {
       "description": "TableBody component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/table",
       "import": "import { TableBody } from '@optiaxiom/react';",
       "name": "TableBody",
       "props": {
@@ -117769,6 +117885,7 @@
     },
     "TableCell": {
       "description": "TableCell component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/table",
       "import": "import { TableCell } from '@optiaxiom/react';",
       "name": "TableCell",
       "props": {
@@ -118603,6 +118720,7 @@
     },
     "TableHeader": {
       "description": "TableHeader component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/table",
       "import": "import { TableHeader } from '@optiaxiom/react';",
       "name": "TableHeader",
       "props": {
@@ -119436,6 +119554,7 @@
     },
     "TableHeaderCell": {
       "description": "TableHeaderCell component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/table",
       "import": "import { TableHeaderCell } from '@optiaxiom/react';",
       "name": "TableHeaderCell",
       "props": {
@@ -120272,6 +120391,7 @@
     },
     "TableRow": {
       "description": "TableRow component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/table",
       "import": "import { TableRow } from '@optiaxiom/react';",
       "name": "TableRow",
       "props": {
@@ -121101,6 +121221,7 @@
     },
     "Tabs": {
       "description": "Tabs organize content into multiple sections with horizontal navigation.\n\nUse this component when users need to switch between different views of\nrelated content. Don't manually build tab navigation with multiple Buttons in\na Flex - Tabs handles state management, active states, keyboard navigation,\nand accessibility automatically.\n\nWhen not to use:\n- For primary/vertical navigation use Sidebar instead.",
+      "entryPoint": "@optiaxiom/react/tabs",
       "import": "import { Tabs } from '@optiaxiom/react';",
       "name": "Tabs",
       "props": {
@@ -121976,6 +122097,7 @@
     },
     "TabsContent": {
       "description": "TabsContent component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/tabs",
       "import": "import { TabsContent } from '@optiaxiom/react';",
       "name": "TabsContent",
       "props": {
@@ -122806,6 +122928,7 @@
     },
     "TabsList": {
       "description": "TabsList component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/tabs",
       "import": "import { TabsList } from '@optiaxiom/react';",
       "name": "TabsList",
       "props": {
@@ -123636,6 +123759,7 @@
     },
     "TabsTrigger": {
       "description": "TabsTrigger component from Axiom Design System",
+      "entryPoint": "@optiaxiom/react/tabs",
       "import": "import { TabsTrigger } from '@optiaxiom/react';",
       "name": "TabsTrigger",
       "props": {
@@ -124474,6 +124598,7 @@
     },
     "Text": {
       "description": "Renders text content for body copy, descriptions, and general text without\nsemantic meaning.\n\n🚨 Renders a `<p>` tag by default, which cannot be nested inside another\n`<p>` tag. For inline text styling within a paragraph, use `asChild` with a\n`<span>` element.\n\nUse this for paragraphs, captions, descriptions, and non-heading text.\n\nWhen not to use:\n- For headings and titles use Heading instead.\n- For form labels use Label instead.\n- Don't combine large fontSize ('xl'+) with bold fontWeight ('500'+) - that\n  indicates a heading.",
+      "entryPoint": "@optiaxiom/react/text",
       "import": "import { Text } from '@optiaxiom/react';",
       "name": "Text",
       "props": {
@@ -125363,6 +125488,7 @@
     },
     "Textarea": {
       "description": "Multi-line text field for capturing user input.",
+      "entryPoint": "@optiaxiom/react/textarea",
       "import": "import { Textarea } from '@optiaxiom/react';",
       "name": "Textarea",
       "props": {
@@ -126336,6 +126462,7 @@
     },
     "ThemeProvider": {
       "description": "Provider component for theme tokens and styles. This is included in\nAxiomProvider by default - you only need to use this component directly for\nadvanced customization.",
+      "entryPoint": "@optiaxiom/react/theme-provider",
       "import": "import { ThemeProvider } from '@optiaxiom/react';",
       "name": "ThemeProvider",
       "props": { "children": { "type": "ReactNode" } },
@@ -127188,6 +127315,7 @@
     },
     "ToastProvider": {
       "description": "Provider component for toast notifications. This is included in AxiomProvider\nby default - you only need to use this component directly for advanced\ncustomization. Use `toaster.create()` to display toast messages.",
+      "entryPoint": "@optiaxiom/react/toast",
       "import": "import { ToastProvider } from '@optiaxiom/react';",
       "name": "ToastProvider",
       "props": {
@@ -128100,6 +128228,7 @@
     },
     "ToggleButton": {
       "description": "`ToggleButton` component represents a button that can be toggled on or off.",
+      "entryPoint": "@optiaxiom/react/toggle-button",
       "import": "import { ToggleButton } from '@optiaxiom/react';",
       "name": "ToggleButton",
       "props": {
@@ -128998,6 +129127,7 @@
     },
     "Tooltip": {
       "description": "Popup with brief information shown when user interacts with an element using\nkeyboard focus or mouse hover.",
+      "entryPoint": "@optiaxiom/react/tooltip",
       "import": "import { Tooltip } from '@optiaxiom/react';",
       "name": "Tooltip",
       "props": {
@@ -129923,6 +130053,7 @@
     },
     "TooltipProvider": {
       "description": "Provider component for tooltips. This is included in AxiomProvider by default - you only need to use this component directly for advanced customization.",
+      "entryPoint": "@optiaxiom/react/tooltip",
       "import": "import { TooltipProvider } from '@optiaxiom/react';",
       "name": "TooltipProvider",
       "props": {
@@ -129948,6 +130079,7 @@
     },
     "Transition": {
       "description": "Component for animating element transitions with fade and pop effects.",
+      "entryPoint": "@optiaxiom/react/transition",
       "import": "import { Transition } from '@optiaxiom/react';",
       "name": "Transition",
       "props": {
@@ -129998,6 +130130,7 @@
     },
     "TransitionGroup": {
       "description": "Manages the presence and animation lifecycle of children during transitions.",
+      "entryPoint": "@optiaxiom/react/transition",
       "import": "import { TransitionGroup } from '@optiaxiom/react';",
       "name": "TransitionGroup",
       "props": {

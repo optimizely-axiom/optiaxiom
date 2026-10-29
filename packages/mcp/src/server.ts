@@ -55,6 +55,8 @@ export function createServer() {
     {
       description: `Get information about an Axiom component. Returns the component's description, import statement, and sub-components by default — no props.
 
+Use the \`import\` statement. \`entryPoint\` names the component's own entry point; use it instead only when the project imports from entry points (e.g. a lint rule bans the \`@optiaxiom/react\` barrel). Never mix both styles in one project.
+
 Use the optional "props" parameter to search for specific props by name or description. Searches both component-specific props and style props — you don't need to know shorthand names, just describe what you want (e.g., "padding" finds the "p" prop).
 
 Props marked \`responsive: true\` also accept per-breakpoint values: an object like \`{ base: "16", sm: "32" }\` or an array in \`[base, sm, md]\` order. Breakpoint widths come from get_tokens({ categories: ['breakpoints'] }).
@@ -97,6 +99,7 @@ Examples:
               components: component.components,
               deprecated: component.deprecated,
               description: component.description,
+              entryPoint: component.entryPoint,
               examples: component.examples?.map((e) => e.title),
               import: component.import,
               name: component.name,
