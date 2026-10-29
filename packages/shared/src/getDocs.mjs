@@ -13,6 +13,7 @@ const __dirname = path.dirname(__filename);
  * @typedef {Object} ComponentDoc
  * @property {string} [description]
  * @property {string} displayName
+ * @property {string} [entryPoint]
  * @property {Prop[]} props
  * @property {Object} tags
  * @property {string} [tags.example]

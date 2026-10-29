@@ -62,7 +62,7 @@ function expandTypeReferences(rawType, expansions) {
 }
 
 function generateDocs() {
-  const exportedComponents = getExportedComponentsFromSource();
+  const { entryPoints, exportedComponents } = getExportedComponentsFromSource();
   const reactSrcPath = path.resolve(__dirname, "../../react/src");
   const reactTsconfigPath = path.resolve(
     __dirname,
@@ -158,6 +158,12 @@ function generateDocs() {
         };
       },
     )
+    .map((doc) => {
+      const entryPoint = entryPoints.get(
+        doc.displayName.replace("@optiaxiom/react/", ""),
+      );
+      return entryPoint ? { ...doc, entryPoint } : doc;
+    })
     .filter((doc) => doc.displayName.startsWith("@optiaxiom/react/"))
     .filter((doc) =>
       exportedComponents.has(doc.displayName.replace("@optiaxiom/react/", "")),
@@ -183,16 +189,15 @@ function getExportedComponentsFromSource() {
   );
 
   const typeChecker = program.getTypeChecker();
+  /** @type {Map<string, string>} */
+  const entryPoints = new Map();
   const exportedComponents = new Set();
 
   for (const exportKey of Object.keys(pkg.exports)) {
-    const sourceFile = program.getSourceFile(
-      path.join(
-        reactPath,
-        "src",
-        `${exportKey === "." ? "index" : exportKey}.ts`,
-      ),
-    );
+    const entry = exportKey === "." ? "index" : exportKey;
+    const sourceFile =
+      program.getSourceFile(path.join(reactPath, "src", `${entry}.ts`)) ??
+      program.getSourceFile(path.join(reactPath, "src", entry, "index.ts"));
     if (!sourceFile) {
       continue;
     }
@@ -210,11 +215,16 @@ function getExportedComponentsFromSource() {
         !name.endsWith("Props")
       ) {
         exportedComponents.add(name);
+        // The narrowest entry that exports the component, for consumers who
+        // skip the barrel. `unstable` is the only entry for its components.
+        if (exportKey !== "." && exportKey !== "./unstable") {
+          entryPoints.set(name, `@optiaxiom/react/${exportKey.slice(2)}`);
+        }
       }
     });
   }
 
-  return exportedComponents;
+  return { entryPoints, exportedComponents };
 }
 
 // Generate and write to file
