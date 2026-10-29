@@ -1,10 +1,8 @@
-import {
-  IconCheckCircleSolid,
-  IconCircleExclamation,
-  IconCircleInfo,
-  IconTriangleExclamation,
-  IconXmark,
-} from "@optiaxiom/icons";
+import { IconCheckCircleSolid } from "@optiaxiom/icons/IconCheckCircleSolid";
+import { IconCircleExclamation } from "@optiaxiom/icons/IconCircleExclamation";
+import { IconCircleInfo } from "@optiaxiom/icons/IconCircleInfo";
+import { IconTriangleExclamation } from "@optiaxiom/icons/IconTriangleExclamation";
+import { IconXmark } from "@optiaxiom/icons/IconXmark";
 import { useId } from "@radix-ui/react-id";
 import { createElement, forwardRef } from "react";
 

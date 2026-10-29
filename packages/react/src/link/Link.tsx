@@ -1,4 +1,4 @@
-import { IconArrowUpRightFromSquare } from "@optiaxiom/icons";
+import { IconArrowUpRightFromSquare } from "@optiaxiom/icons/IconArrowUpRightFromSquare";
 import { createSlot } from "@radix-ui/react-slot";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 

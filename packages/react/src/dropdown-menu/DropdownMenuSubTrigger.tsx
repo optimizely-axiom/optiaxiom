@@ -1,4 +1,4 @@
-import { IconChevronRight } from "@optiaxiom/icons";
+import { IconChevronRight } from "@optiaxiom/icons/IconChevronRight";
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { forwardRef } from "react";
 

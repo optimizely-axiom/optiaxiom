@@ -1,4 +1,4 @@
-import { IconEllipsisStroke } from "@optiaxiom/icons";
+import { IconEllipsisStroke } from "@optiaxiom/icons/IconEllipsisStroke";
 import { forwardRef, Fragment, type ReactNode } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";

@@ -1,4 +1,4 @@
-import { IconPlus } from "@optiaxiom/icons";
+import { IconPlus } from "@optiaxiom/icons/IconPlus";
 import { Flex, toaster } from "@optiaxiom/react";
 import {
   FileUpload,

@@ -1,4 +1,4 @@
-import { IconCheck } from "@optiaxiom/icons";
+import { IconCheck } from "@optiaxiom/icons/IconCheck";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";

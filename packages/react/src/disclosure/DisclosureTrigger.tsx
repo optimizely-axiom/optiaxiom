@@ -1,4 +1,4 @@
-import { IconChevronRight } from "@optiaxiom/icons";
+import { IconChevronRight } from "@optiaxiom/icons/IconChevronRight";
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
 import { createSlot } from "@radix-ui/react-slot";
 import { forwardRef, type ReactNode } from "react";

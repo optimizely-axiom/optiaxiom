@@ -1,16 +1,14 @@
 import type { BoxProps } from "@optiaxiom/react";
 
-import {
-  IconCode,
-  IconFile,
-  IconFileImage,
-  IconFileLines,
-  IconFileVideo,
-  IconFileZipper,
-  IconMusic,
-  IconPresentationScreen,
-  IconTableLayout,
-} from "@optiaxiom/icons";
+import { IconCode } from "@optiaxiom/icons/IconCode";
+import { IconFile } from "@optiaxiom/icons/IconFile";
+import { IconFileImage } from "@optiaxiom/icons/IconFileImage";
+import { IconFileLines } from "@optiaxiom/icons/IconFileLines";
+import { IconFileVideo } from "@optiaxiom/icons/IconFileVideo";
+import { IconFileZipper } from "@optiaxiom/icons/IconFileZipper";
+import { IconMusic } from "@optiaxiom/icons/IconMusic";
+import { IconPresentationScreen } from "@optiaxiom/icons/IconPresentationScreen";
+import { IconTableLayout } from "@optiaxiom/icons/IconTableLayout";
 import { Box } from "@optiaxiom/react";
 import { type ComponentType } from "react";
 

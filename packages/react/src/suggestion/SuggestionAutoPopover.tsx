@@ -1,4 +1,4 @@
-import { IconCheck } from "@optiaxiom/icons";
+import { IconCheck } from "@optiaxiom/icons/IconCheck";
 import { forwardRef, useEffect } from "react";
 
 import { Avatar } from "../avatar";

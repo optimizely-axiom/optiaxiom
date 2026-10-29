@@ -1,4 +1,4 @@
-import { IconAngleDown } from "@optiaxiom/icons";
+import { IconAngleDown } from "@optiaxiom/icons/IconAngleDown";
 import { useId } from "@radix-ui/react-id";
 import { Label } from "@radix-ui/react-label";
 import clsx from "clsx";

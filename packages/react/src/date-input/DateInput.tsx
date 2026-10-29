@@ -1,4 +1,5 @@
-import { IconCalendar, IconXmark } from "@optiaxiom/icons";
+import { IconCalendar } from "@optiaxiom/icons/IconCalendar";
+import { IconXmark } from "@optiaxiom/icons/IconXmark";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useId } from "@radix-ui/react-id";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";

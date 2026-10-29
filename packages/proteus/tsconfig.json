@@ -5,6 +5,7 @@
     "esModuleInterop": true,
     "paths": {
       "@optiaxiom/icons": ["../icons/src"],
+      "@optiaxiom/icons/*": ["../icons/src/entries/*"],
       "@optiaxiom/react": ["../react/src"],
       "@optiaxiom/react/css-runtime": ["../react/src/css-runtime"],
       "@optiaxiom/react/editor": ["../react/src/editor"],

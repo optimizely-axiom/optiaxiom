@@ -1,4 +1,5 @@
-import { IconUser, IconUserGroup } from "@optiaxiom/icons";
+import { IconUser } from "@optiaxiom/icons/IconUser";
+import { IconUserGroup } from "@optiaxiom/icons/IconUserGroup";
 import * as RadixAvatar from "@radix-ui/react-avatar";
 import { forwardRef } from "react";
 

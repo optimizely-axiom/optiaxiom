@@ -1,10 +1,8 @@
-import {
-  IconBold,
-  IconItalic,
-  IconLink,
-  IconList,
-  IconListOl,
-} from "@optiaxiom/icons";
+import { IconBold } from "@optiaxiom/icons/IconBold";
+import { IconItalic } from "@optiaxiom/icons/IconItalic";
+import { IconLink } from "@optiaxiom/icons/IconLink";
+import { IconList } from "@optiaxiom/icons/IconList";
+import { IconListOl } from "@optiaxiom/icons/IconListOl";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
 import { Table } from "@tiptap/extension-table";

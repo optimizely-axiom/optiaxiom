@@ -1,4 +1,6 @@
-import { IconArrowDown, IconArrowRight, IconPen } from "@optiaxiom/icons";
+import { IconArrowDown } from "@optiaxiom/icons/IconArrowDown";
+import { IconArrowRight } from "@optiaxiom/icons/IconArrowRight";
+import { IconPen } from "@optiaxiom/icons/IconPen";
 import {
   Box,
   Button,
