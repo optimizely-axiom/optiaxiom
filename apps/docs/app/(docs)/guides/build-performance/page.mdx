@@ -1,0 +1,42 @@
+# Build Performance
+
+`@optiaxiom/react` is a barrel file: one entry point that re-exports every component. Production builds tree-shake the components you don't use, and Webpack and Turbopack skip them in development too, so most apps should keep importing from it.
+
+Some tools load every module behind a barrel even when you import a single component. Vite's dependency pre-bundling and esbuild both do, which can make a dev server slow to start. If that's what you're seeing, import each component from its own entry point instead.
+
+## Component entry points
+
+Every component is also available from its own entry point, named after its folder. That's usually the component name in kebab-case, though a few differ: `RadioGroup` comes from `@optiaxiom/react/radio`. Sub-components come from the same entry:
+
+```ts
+import { Button, ButtonGroup } from "@optiaxiom/react/button";
+import { AlertDialog, AlertDialogContent } from "@optiaxiom/react/alert-dialog";
+```
+
+`toaster` and `createToaster` come from `@optiaxiom/react/toast`, and `theme` and `tokens` from `@optiaxiom/react/theme`.
+
+Both styles share the same modules, so contexts and providers work across them, but pick one per project so imports stay consistent.
+
+## Enforcing entry points
+
+If a project uses entry points, disallow the root import with ESLint, so every import follows the same style, including code written by AI assistants:
+
+```js filename="eslint.config.js"
+export default [
+  {
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            {
+              message: 'Import from "@optiaxiom/react/<component>" instead.',
+              name: "@optiaxiom/react",
+            },
+          ],
+        },
+      ],
+    },
+  },
+];
+```

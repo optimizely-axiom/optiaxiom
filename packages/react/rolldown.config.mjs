@@ -5,7 +5,7 @@ import {
 } from "@vanilla-extract/integration";
 import { vanillaExtractPlugin } from "@vanilla-extract/rollup-plugin";
 import autoprefixer from "autoprefixer";
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import postcss from "postcss";
@@ -24,19 +24,30 @@ const external = new RegExp(
     ")(?:/.+)?$",
 );
 
+// Every module re-exported by the barrel also gets its own subpath
+// (`@optiaxiom/react/button`) so consumers can skip loading the whole barrel.
+const components = Object.fromEntries(
+  [
+    ...readFileSync("src/index.ts", "utf8").matchAll(
+      /^export \* from "\.\/([a-z-]+)";$/gm,
+    ),
+  ].map(([, name]) => [name, `./src/${name}`]),
+);
+const input = {
+  ...components,
+  editor: "src/editor.ts",
+  index: "src/index.ts",
+  unstable: "src/unstable.ts",
+};
+const runtimeInput = {
+  "css-runtime": "src/css-runtime.ts",
+};
+writeExports({ ...input, ...runtimeInput });
+
 export default defineConfig([
+  ...getConfig({ input }),
   ...getConfig({
-    input: {
-      editor: "src/editor.ts",
-      index: "src/index.ts",
-      testing: "src/testing.ts",
-      unstable: "src/unstable.ts",
-    },
-  }),
-  ...getConfig({
-    input: {
-      "css-runtime": "src/css-runtime.ts",
-    },
+    input: runtimeInput,
     plugins: [
       {
         load(id) {
@@ -216,4 +227,34 @@ function stylePlugin() {
       };
     },
   };
+}
+
+/**
+ * Keeps `package.json#exports` in sync with the build inputs. CI fails if the
+ * committed file differs from what the build writes.
+ *
+ * @param {Record<string, string>} input
+ */
+function writeExports(input) {
+  const exports = Object.fromEntries(
+    [
+      ...Object.keys(input).map((name) => [
+        name === "index" ? "." : `./${name}`,
+        // `types` must stay the first condition for TypeScript to pick it up.
+        Object.fromEntries([
+          ["types", `./dist/${name}.d.ts`],
+          ["import", `./dist/esm/${name}.js`],
+          ["require", `./dist/cjs/${name}.js`],
+        ]),
+      ]),
+      ["./package.json", "./package.json"],
+    ].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)),
+  );
+  if (JSON.stringify(exports) === JSON.stringify(pkg.exports)) {
+    return;
+  }
+  writeFileSync(
+    "./package.json",
+    JSON.stringify({ ...pkg, exports }, null, 2) + "\n",
+  );
 }

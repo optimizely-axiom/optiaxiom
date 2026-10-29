@@ -143,6 +143,13 @@ jobs:
             exit 1
           }
 
+      - name: Check react exports are up-to-date
+        run: |
+          git diff --exit-code packages/react/package.json || {
+            echo "Error: @optiaxiom/react exports are out of date. Please run 'pnpm -F react build' and commit packages/react/package.json."
+            exit 1
+          }
+
       - name: Check MCP data is up-to-date
         run: |
           git diff --exit-code packages/mcp/src/data.json || {
