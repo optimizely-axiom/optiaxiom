@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { basename, dirname, resolve } from "node:path";
 import { defineConfig } from "rolldown";
@@ -15,6 +15,20 @@ const external = new RegExp(
     }).join("|") +
     ")(?:/.+)?$",
 );
+
+// Every icon also gets its own entry point (`@optiaxiom/icons/IconTrashCan`) so
+// consumers can skip loading the whole barrel. `scripts/download.mjs`
+// generates one file per icon in `src/entries`.
+const input = {
+  index: "src/index.ts",
+  ...Object.fromEntries(
+    readdirSync("src/entries").map((file) => [
+      basename(file, ".ts"),
+      `src/entries/${file}`,
+    ]),
+  ),
+};
+writeExports(Object.keys(input));
 
 /** @returns {import('rolldown').Plugin} */
 function materialSymbolsPlugin() {
@@ -101,9 +115,7 @@ function svgToComponentName(svgFileName) {
 export default defineConfig([
   {
     external,
-    input: {
-      index: "src/index.ts",
-    },
+    input,
     output: [
       {
         dir: "dist/cjs",
@@ -157,9 +169,7 @@ export default defineConfig([
   },
   {
     external,
-    input: {
-      index: "src/index.ts",
-    },
+    input,
     output: {
       dir: "dist",
       format: "es",
@@ -192,3 +202,33 @@ export default defineConfig([
     ],
   },
 ]);
+
+/**
+ * Keeps `package.json#exports` in sync with the build inputs. CI fails if the
+ * committed file differs from what the build writes.
+ *
+ * @param {string[]} names
+ */
+function writeExports(names) {
+  const exports = Object.fromEntries(
+    [
+      ...names.map((name) => [
+        name === "index" ? "." : `./${name}`,
+        // `types` must stay the first condition for TypeScript to pick it up.
+        Object.fromEntries([
+          ["types", `./dist/${name}.d.ts`],
+          ["import", `./dist/esm/${name}.js`],
+          ["require", `./dist/cjs/${name}.js`],
+        ]),
+      ]),
+      ["./package.json", "./package.json"],
+    ].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)),
+  );
+  if (JSON.stringify(exports) === JSON.stringify(pkg.exports)) {
+    return;
+  }
+  writeFileSync(
+    "./package.json",
+    JSON.stringify({ ...pkg, exports }, null, 2) + "\n",
+  );
+}
