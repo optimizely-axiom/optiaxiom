@@ -21,7 +21,8 @@ package-specific setup, testing, and conventions.
 
 Some packages commit **generated** files that CI re-runs and `git diff --exit-code`s — if you touch
 their inputs, rebuild and commit the output or CI fails: `packages/mcp/src/data.json` (from
-react/globals/icons — see `packages/mcp/README.md`) and `packages/proteus/src/schema/*.json`.
+react source and `*.spec.tsx` files, globals and icons — see `packages/mcp/README.md`) and
+`packages/proteus/src/schema/*.json`.
 
 ## Changesets (REQUIRED for every user-facing change)
 
@@ -110,6 +111,9 @@ exactly one thing without dragging unrelated changes with it.
   use `surface` not `white`; `z` from the token scale.
 - Empty variant branches are `{}`, not `style({})`. Don't mix `style()` and sprinkle props in one
   recipe entry. CSS vars get a `Var` suffix; cross-component selectors use a scoped marker class.
+- A new sprinkle prop in `properties.css.ts` also goes in the static lists in
+  `packages/shared/.eslintplugin/consistent-recipe-sprinkles.js` and `no-sprinkles-style-conflict.js`,
+  and gets a docs props page (`apps/docs/props.config.mjs`, `apps/docs/app/_meta.global.tsx`).
 
 **Stories**
 

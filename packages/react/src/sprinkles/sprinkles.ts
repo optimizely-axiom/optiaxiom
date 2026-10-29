@@ -1,3 +1,5 @@
+// rolldown.config.mjs rewrites this exact import block to the runtime-only
+// entry points; add other imports from this package on a separate line.
 import {
   createMapValueFn,
   createNormalizeValueFn,
