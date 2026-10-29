@@ -45,7 +45,7 @@ Toasts and managed dialogs are persisted globally which can cause tests to affec
 Use the `cleanup` method to clear out toasts and dialogs in your test setup/teardown hooks.
 
 ```ts
-import { cleanup } from "@optiaxiom/react";
+import { cleanup } from "@optiaxiom/react/testing";
 
 beforeEach(() => {
   cleanup();

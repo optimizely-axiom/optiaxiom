@@ -29,6 +29,7 @@ export default defineConfig([
     input: {
       editor: "src/editor.ts",
       index: "src/index.ts",
+      testing: "src/testing.ts",
       unstable: "src/unstable.ts",
     },
   }),
