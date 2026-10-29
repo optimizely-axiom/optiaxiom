@@ -163,8 +163,6 @@ pnpm -F docs... --parallel dev
 
 This will spin up Next.js instance on port `5055`.
 
-`next dev` rewrites `next-env.d.ts`; don't commit that change.
-
 ### Building
 
 Run the following to build docs:
