@@ -5,6 +5,7 @@ export type ComponentDoc = {
   displayName: string;
   entryPoint?: string;
   props: Prop[];
+  source: string;
   tags: {
     [key: string]: string | undefined;
     example?: string;

@@ -28,14 +28,7 @@ export async function PropsTable({ component }: { component: AllComponents }) {
   const isBox = component === "Box";
   const virtual = !propItems.find((prop) => prop.name === "asChild");
 
-  const imports = [
-    component in Components
-      ? "@optiaxiom/react"
-      : component in UnstableComponents
-        ? "@optiaxiom/react/unstable"
-        : undefined,
-    doc.entryPoint,
-  ]
+  const imports = [...new Set([doc.entryPoint, doc.source])]
     .filter(Boolean)
     .map((source) => `import { ${component} } from "${source}";`)
     .join("\n// or\n");

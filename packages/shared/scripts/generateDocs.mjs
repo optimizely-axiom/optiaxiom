@@ -62,7 +62,8 @@ function expandTypeReferences(rawType, expansions) {
 }
 
 function generateDocs() {
-  const { entryPoints, exportedComponents } = getExportedComponentsFromSource();
+  const { entryPoints, exportedComponents, sources } =
+    getExportedComponentsFromSource();
   const reactSrcPath = path.resolve(__dirname, "../../react/src");
   const reactTsconfigPath = path.resolve(
     __dirname,
@@ -159,10 +160,13 @@ function generateDocs() {
       },
     )
     .map((doc) => {
-      const entryPoint = entryPoints.get(
-        doc.displayName.replace("@optiaxiom/react/", ""),
-      );
-      return entryPoint ? { ...doc, entryPoint } : doc;
+      const name = doc.displayName.replace("@optiaxiom/react/", "");
+      const entryPoint = entryPoints.get(name);
+      return {
+        ...doc,
+        ...(entryPoint && { entryPoint }),
+        source: sources.get(name),
+      };
     })
     .filter((doc) => doc.displayName.startsWith("@optiaxiom/react/"))
     .filter((doc) =>
@@ -192,6 +196,15 @@ function getExportedComponentsFromSource() {
   /** @type {Map<string, string>} */
   const entryPoints = new Map();
   const exportedComponents = new Set();
+  /** @type {Map<string, string>} */
+  const sources = new Map();
+  /** @param {string} source */
+  const rank = (source) =>
+    source === "@optiaxiom/react"
+      ? 0
+      : source === "@optiaxiom/react/unstable"
+        ? 1
+        : 2;
 
   for (const exportKey of Object.keys(pkg.exports)) {
     const entry = exportKey === "." ? "index" : exportKey;
@@ -215,16 +228,26 @@ function getExportedComponentsFromSource() {
         !name.endsWith("Props")
       ) {
         exportedComponents.add(name);
+        const source =
+          exportKey === "."
+            ? "@optiaxiom/react"
+            : `@optiaxiom/react/${exportKey.slice(2)}`;
         // The narrowest entry that exports the component, for consumers who
         // skip the barrel. `unstable` is the only entry for its components.
         if (exportKey !== "." && exportKey !== "./unstable") {
-          entryPoints.set(name, `@optiaxiom/react/${exportKey.slice(2)}`);
+          entryPoints.set(name, source);
+        }
+        // Where the component is imported from by default: the barrel, else
+        // `unstable`, else its own entry (`RichTextEditor` from `editor`).
+        const current = sources.get(name);
+        if (!current || rank(source) < rank(current)) {
+          sources.set(name, source);
         }
       }
     });
   }
 
-  return { entryPoints, exportedComponents };
+  return { entryPoints, exportedComponents, sources };
 }
 
 // Generate and write to file
