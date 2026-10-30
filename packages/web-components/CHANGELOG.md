@@ -1,5 +1,18 @@
 # @optiaxiom/web-components
 
+## 3.4.0
+
+### Minor Changes
+
+- 373b5ea: added `minW` prop for `0` and `auto` min-width
+- 2d69894: added responsive values to padding and margin props
+- cfe8e3e: made `textAlign`, `fontSize` and `rounded` responsive
+
+### Patch Changes
+
+- c371ded: upgraded `react-day-picker` to v10 to stop loading all of `date-fns`
+- 88e4cff: stopped loading every icon in components that render one
+
 ## 3.3.3
 
 ### Patch Changes

@@ -1,5 +1,29 @@
 # @optiaxiom/proteus
 
+## 3.11.0
+
+### Minor Changes
+
+- 373b5ea: added `minW` prop for `0` and `auto` min-width
+- 2d75645: added `validationMessage` to `Input`, `Textarea` and `DateInput`
+
+### Patch Changes
+
+- 17b368e: show native validation errors on `Field` inputs
+- 35f20d9: stopped loading every react component in proteus components
+- 88e4cff: stopped loading every icon in components that render one
+- Updated dependencies [1adf1e1]
+- Updated dependencies [373b5ea]
+- Updated dependencies [3e9ec7a]
+- Updated dependencies [c371ded]
+- Updated dependencies [88e4cff]
+- Updated dependencies [472f4c0]
+- Updated dependencies [2d69894]
+- Updated dependencies [cfe8e3e]
+- Updated dependencies [2d69894]
+  - @optiaxiom/icons@1.12.0
+  - @optiaxiom/react@3.5.0
+
 ## 3.10.0
 
 ### Minor Changes

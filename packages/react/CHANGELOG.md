@@ -1,5 +1,23 @@
 # @optiaxiom/react
 
+## 3.5.0
+
+### Minor Changes
+
+- 373b5ea: added `minW` prop for `0` and `auto` min-width
+- 3e9ec7a: added per-component entry points like `@optiaxiom/react/button`
+- 472f4c0: added `@optiaxiom/react/testing` entry point for `cleanup`
+- 2d69894: added responsive values to padding and margin props
+- cfe8e3e: made `textAlign`, `fontSize` and `rounded` responsive
+- 2d69894: changed `sprinkles()` to return `className` and `style`
+
+### Patch Changes
+
+- c371ded: upgraded `react-day-picker` to v10 to stop loading all of `date-fns`
+- 88e4cff: stopped loading every icon in components that render one
+- Updated dependencies [1adf1e1]
+  - @optiaxiom/icons@1.12.0
+
 ## 3.4.3
 
 ### Patch Changes
