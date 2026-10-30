@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { Code, Heading } from "@optiaxiom/react";
 import { useMDXComponents as getThemeComponents } from "nextra-theme-docs";
 
-import { HeadingLink } from "./components/mdx";
+import { CodeBlock, HeadingLink } from "./components/mdx";
 
 const themeComponents = getThemeComponents();
 
@@ -46,6 +46,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         className={`${("className" in props && props.className) || ""} x:not-first:mt-4`}
       />
     ),
+    pre: (props) => <CodeBlock {...props} />,
     table: ({ border: _border, color: _color, ...props }) => (
       <Table {...props} />
     ),

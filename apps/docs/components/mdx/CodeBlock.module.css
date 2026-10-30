@@ -1,0 +1,19 @@
+.root {
+  position: relative;
+
+  /* Nextra spaces code blocks on its own wrapper, which is now our first child. */
+  &:not(:first-child) {
+    margin-top: 1.25em;
+  }
+}
+
+.toolbar {
+  opacity: 0;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+
+:is(.root:hover, .root:focus-within) .toolbar {
+  opacity: 1;
+}
