@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.12.0
+
+### Minor Changes
+
+- 1adf1e1: added per-icon entry points like `@optiaxiom/icons/IconTrashCan`
+
 ## 1.11.1
 
 ### Patch Changes

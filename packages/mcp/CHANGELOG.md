@@ -1,5 +1,21 @@
 # @optiaxiom/mcp
 
+## 3.3.0
+
+### Minor Changes
+
+- 1adf1e1: added per-icon entry points like `@optiaxiom/icons/IconTrashCan`
+- ddac140: added breakpoint widths to `get_tokens`
+- fe8e828: added `entryPoint` to `get_component`
+- 2483654: marked responsive style props with `responsive: true`
+
+### Patch Changes
+
+- 6d5faa7: fixed import statements for unstable and editor components
+- 3e9ec7a: added per-component entry points like `@optiaxiom/react/button`
+- 472f4c0: added `@optiaxiom/react/testing` entry point for `cleanup`
+- 2d69894: regenerated component data for responsive padding and margin
+
 ## 3.2.4
 
 ### Patch Changes
