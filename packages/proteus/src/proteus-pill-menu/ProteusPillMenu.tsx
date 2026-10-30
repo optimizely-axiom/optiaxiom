@@ -1,4 +1,4 @@
-import { type MenuOption } from "@optiaxiom/react";
+import { type MenuOption } from "@optiaxiom/react/menu";
 import {
   PillMenu,
   PillMenuContent,

@@ -7,6 +7,7 @@
       "@optiaxiom/icons/*": ["../../packages/icons/src/entries/*"],
       "@optiaxiom/proteus": ["../../packages/proteus/src"],
       "@optiaxiom/react": ["../../packages/react/src"],
+      "@optiaxiom/react/*": ["../../packages/react/src/*"],
       "@optiaxiom/react/editor": ["../../packages/react/src/editor.ts"],
       "@optiaxiom/react/unstable": ["../../packages/react/src/unstable.ts"]
     }

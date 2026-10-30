@@ -1,4 +1,4 @@
-import { theme } from "@optiaxiom/react";
+import { theme } from "@optiaxiom/react/theme";
 
 /**
  * A partial of the Axiom `theme` token contract: any subset of any category

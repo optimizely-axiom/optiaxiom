@@ -1,4 +1,4 @@
-import { Field, type FieldProps } from "@optiaxiom/react";
+import { Field, type FieldProps } from "@optiaxiom/react/field";
 import { useCallback, useState } from "react";
 
 import { ProteusFieldProvider } from "./ProteusFieldContext";

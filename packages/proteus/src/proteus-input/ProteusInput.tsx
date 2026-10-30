@@ -1,4 +1,4 @@
-import { Input, type InputProps } from "@optiaxiom/react";
+import { Input, type InputProps } from "@optiaxiom/react/input";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";

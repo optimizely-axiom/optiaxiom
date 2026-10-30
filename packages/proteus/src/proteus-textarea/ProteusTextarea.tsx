@@ -1,4 +1,4 @@
-import { Textarea, type TextareaProps } from "@optiaxiom/react";
+import { Textarea, type TextareaProps } from "@optiaxiom/react/textarea";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";

@@ -1,10 +1,10 @@
+import { Cover } from "@optiaxiom/react/cover";
 import {
-  Cover,
   DataTable,
   DataTableBody,
   DataTableCheckbox,
   DataTableLabel,
-} from "@optiaxiom/react";
+} from "@optiaxiom/react/data-table";
 import {
   createColumnHelper,
   getCoreRowModel,

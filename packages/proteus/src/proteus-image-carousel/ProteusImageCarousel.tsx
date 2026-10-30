@@ -1,12 +1,8 @@
-import {
-  Box,
-  Button,
-  Group,
-  Menu,
-  MenuContent,
-  MenuTrigger,
-  Text,
-} from "@optiaxiom/react";
+import { Box } from "@optiaxiom/react/box";
+import { Button } from "@optiaxiom/react/button";
+import { Group } from "@optiaxiom/react/group";
+import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/menu";
+import { Text } from "@optiaxiom/react/text";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 

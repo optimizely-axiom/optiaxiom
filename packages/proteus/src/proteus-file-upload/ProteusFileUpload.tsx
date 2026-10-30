@@ -1,5 +1,6 @@
 import { IconPlus } from "@optiaxiom/icons/IconPlus";
-import { Flex, toaster } from "@optiaxiom/react";
+import { Flex } from "@optiaxiom/react/flex";
+import { toaster } from "@optiaxiom/react/toast";
 import {
   FileUpload,
   FileUploadDropzone,

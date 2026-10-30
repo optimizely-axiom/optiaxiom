@@ -1,4 +1,5 @@
-import { Box, type BoxProps, Spinner } from "@optiaxiom/react";
+import { Box, type BoxProps } from "@optiaxiom/react/box";
+import { Spinner } from "@optiaxiom/react/spinner";
 import { useState } from "react";
 
 export type ProteusImageProps = BoxProps<"img">;

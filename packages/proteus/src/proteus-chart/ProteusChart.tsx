@@ -1,4 +1,5 @@
-import { Box, theme } from "@optiaxiom/react";
+import { Box } from "@optiaxiom/react/box";
+import { theme } from "@optiaxiom/react/theme";
 import { get } from "jsonpointer";
 import { useRef } from "react";
 import {
