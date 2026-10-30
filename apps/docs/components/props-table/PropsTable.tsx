@@ -28,8 +28,10 @@ export async function PropsTable({ component }: { component: AllComponents }) {
   const isBox = component === "Box";
   const virtual = !propItems.find((prop) => prop.name === "asChild");
 
-  const imports = [...new Set([doc.entryPoint, doc.source])]
-    .filter(Boolean)
+  // A plain array keeps the barrel import first: perfectionist's sort-sets
+  // would reorder a Set literal alphabetically.
+  const imports = [doc.source, doc.entryPoint]
+    .filter((source, index, all) => source && all.indexOf(source) === index)
     .map((source) => `import { ${component} } from "${source}";`)
     .join("\n// or\n");
 
