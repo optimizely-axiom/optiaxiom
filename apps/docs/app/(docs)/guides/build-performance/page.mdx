@@ -6,6 +6,8 @@ Some tools load every module behind a barrel even when you import a single compo
 
 ## Component entry points
 
+### Components
+
 Every component is also available from its own entry point, named after its folder. That's usually the component name in kebab-case, though a few differ: `RadioGroup` comes from `@optiaxiom/react/radio`. Sub-components come from the same entry:
 
 ```ts
@@ -15,13 +17,19 @@ import { AlertDialog, AlertDialogContent } from "@optiaxiom/react/alert-dialog";
 
 Each component's Props section lists the entry point to import it from.
 
-Icons work the same way: every icon has an entry point named after it, like `@optiaxiom/icons/IconTrashCan`.
+Both styles share the same modules, so contexts and providers work across them, but pick one per project so imports stay consistent.
+
+### Icons
+
+Every icon has an entry point named after it, like `@optiaxiom/icons/IconTrashCan`.
+
+### Other exports
 
 `toaster` and `createToaster` come from `@optiaxiom/react/toast`, and `theme` and `tokens` from `@optiaxiom/react/theme`.
 
-Both styles share the same modules, so contexts and providers work across them, but pick one per project so imports stay consistent.
-
 ## Enforcing entry points
+
+### ESLint
 
 If a project uses entry points, disallow the root import with ESLint, so every import follows the same style, including code written by AI assistants:
 
