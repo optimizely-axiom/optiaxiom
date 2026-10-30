@@ -111,7 +111,7 @@ All documentation pages must follow this hierarchical structure:
 
 **H2 sections must always be immediately followed by an H3 subsection**
 
-This is a design requirement due to how H2 headings are styled (smaller than typical). Never have content directly under an H2 - always add an H3 first.
+This is a design requirement due to how H2 headings are styled (smaller than typical). Never have content directly under an H2 - always add an H3 first. `next dev` and `next build` fail on a page that breaks this.
 
 ```mdx
 ✅ CORRECT:
