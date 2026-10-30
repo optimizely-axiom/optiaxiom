@@ -1,4 +1,4 @@
-import { Select, type SelectProps } from "@optiaxiom/react";
+import { Select, type SelectProps } from "@optiaxiom/react/select";
 import { useRef } from "react";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";

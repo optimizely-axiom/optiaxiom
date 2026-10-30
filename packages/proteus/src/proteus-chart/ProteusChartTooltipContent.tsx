@@ -1,6 +1,7 @@
 import type { TooltipContentProps } from "recharts";
 
-import { Box, Group } from "@optiaxiom/react";
+import { Box } from "@optiaxiom/react/box";
+import { Group } from "@optiaxiom/react/group";
 import { useRef } from "react";
 
 import { applyFormatter } from "../proteus-document/getProteusValue";

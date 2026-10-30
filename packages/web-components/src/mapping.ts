@@ -1,4 +1,4 @@
-import * as Components from "@optiaxiom/react";
+import type * as Components from "@optiaxiom/react";
 
 import { exports } from "../package.json";
 

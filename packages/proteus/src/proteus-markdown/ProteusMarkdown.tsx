@@ -1,20 +1,19 @@
 import type { ReactNode } from "react";
 import type { Components } from "react-markdown";
 
+import { Box, type BoxProps } from "@optiaxiom/react/box";
+import { Heading } from "@optiaxiom/react/heading";
+import { Link } from "@optiaxiom/react/link";
+import { Separator } from "@optiaxiom/react/separator";
 import {
-  Box,
-  type BoxProps,
-  Heading,
-  Link,
-  Separator,
   Table,
   TableBody,
   TableCell,
   TableHeader,
   TableHeaderCell,
   TableRow,
-  Text,
-} from "@optiaxiom/react";
+} from "@optiaxiom/react/table";
+import { Text } from "@optiaxiom/react/text";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 

@@ -1,22 +1,19 @@
+import { Alert } from "@optiaxiom/react/alert";
+import { Avatar, AvatarGroup } from "@optiaxiom/react/avatar";
+import { Badge } from "@optiaxiom/react/badge";
+import { Box } from "@optiaxiom/react/box";
+import { Card, CardHeader } from "@optiaxiom/react/card";
 import {
-  Alert,
-  Avatar,
-  AvatarGroup,
-  Badge,
-  Box,
-  Card,
-  CardHeader,
   Disclosure,
   DisclosureContent,
   DisclosureTrigger,
-  Group,
-  Heading,
-  Link,
-  SelectContent,
-  SelectTrigger,
-  Separator,
-  Text,
-} from "@optiaxiom/react";
+} from "@optiaxiom/react/disclosure";
+import { Group } from "@optiaxiom/react/group";
+import { Heading } from "@optiaxiom/react/heading";
+import { Link } from "@optiaxiom/react/link";
+import { SelectContent, SelectTrigger } from "@optiaxiom/react/select";
+import { Separator } from "@optiaxiom/react/separator";
+import { Text } from "@optiaxiom/react/text";
 import { Range, Time } from "@optiaxiom/react/unstable";
 import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 

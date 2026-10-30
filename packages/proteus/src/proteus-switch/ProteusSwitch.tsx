@@ -1,4 +1,4 @@
-import { Switch, type SwitchProps } from "@optiaxiom/react";
+import { Switch, type SwitchProps } from "@optiaxiom/react/switch";
 import { useEffect } from "react";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";

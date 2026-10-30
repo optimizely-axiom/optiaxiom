@@ -1,4 +1,4 @@
-import { DateInput, type DateInputProps } from "@optiaxiom/react";
+import { DateInput, type DateInputProps } from "@optiaxiom/react/date-input";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";

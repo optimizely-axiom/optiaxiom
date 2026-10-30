@@ -1,6 +1,6 @@
-import type { CardLinkProps } from "@optiaxiom/react";
+import type { CardLinkProps } from "@optiaxiom/react/card";
 
-import { CardLink } from "@optiaxiom/react";
+import { CardLink } from "@optiaxiom/react/card";
 import { useState } from "react";
 
 import type { ProteusEventHandler } from "../proteus-document/schemas";

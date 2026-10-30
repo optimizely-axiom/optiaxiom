@@ -1,4 +1,4 @@
-import type { BoxProps } from "@optiaxiom/react";
+import type { BoxProps } from "@optiaxiom/react/box";
 
 import { IconCode } from "@optiaxiom/icons/IconCode";
 import { IconFile } from "@optiaxiom/icons/IconFile";
@@ -9,7 +9,7 @@ import { IconFileZipper } from "@optiaxiom/icons/IconFileZipper";
 import { IconMusic } from "@optiaxiom/icons/IconMusic";
 import { IconPresentationScreen } from "@optiaxiom/icons/IconPresentationScreen";
 import { IconTableLayout } from "@optiaxiom/icons/IconTableLayout";
-import { Box } from "@optiaxiom/react";
+import { Box } from "@optiaxiom/react/box";
 import { type ComponentType } from "react";
 
 const mimeIconMap: Array<[RegExp, ComponentType]> = [

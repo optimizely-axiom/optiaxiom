@@ -464,6 +464,11 @@
                 "message": "Published packages support React 16 and 17, which lack this API. Use a polyfill such as `@radix-ui/react-id` for `useId`."
               },
               {
+                "name": "@optiaxiom/react",
+                "allowTypeImports": true,
+                "message": "Import from the component's own entry point (`@optiaxiom/react/button`) so consumers don't load the whole barrel."
+              },
+              {
                 "name": "@optiaxiom/icons",
                 "message": "Import each icon from its own entry point (`@optiaxiom/icons/IconTrashCan`) so consumers don't load the whole icons barrel."
               }

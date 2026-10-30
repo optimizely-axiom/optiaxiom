@@ -1,16 +1,16 @@
 import { IconArrowDown } from "@optiaxiom/icons/IconArrowDown";
 import { IconArrowRight } from "@optiaxiom/icons/IconArrowRight";
 import { IconPen } from "@optiaxiom/icons/IconPen";
+import { Box } from "@optiaxiom/react/box";
+import { Button } from "@optiaxiom/react/button";
+import { Checkbox } from "@optiaxiom/react/checkbox";
+import { Cover } from "@optiaxiom/react/cover";
 import {
-  Box,
-  Button,
-  Checkbox,
-  Cover,
   DisclosureContent,
   DisclosureTrigger,
-  Group,
-  Text,
-} from "@optiaxiom/react";
+} from "@optiaxiom/react/disclosure";
+import { Group } from "@optiaxiom/react/group";
+import { Text } from "@optiaxiom/react/text";
 import { InlineInput } from "@optiaxiom/react/unstable";
 import { useId } from "@radix-ui/react-id";
 import * as RovingFocus from "@radix-ui/react-roving-focus";

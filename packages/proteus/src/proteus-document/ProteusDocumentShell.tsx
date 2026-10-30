@@ -1,14 +1,14 @@
 import { IconArrowDown } from "@optiaxiom/icons/IconArrowDown";
+import { Box } from "@optiaxiom/react/box";
 import {
-  Box,
   Disclosure,
   DisclosureContent,
   DisclosureTrigger,
-  Group,
-  Heading,
-  Text,
-  Tooltip,
-} from "@optiaxiom/react";
+} from "@optiaxiom/react/disclosure";
+import { Group } from "@optiaxiom/react/group";
+import { Heading } from "@optiaxiom/react/heading";
+import { Text } from "@optiaxiom/react/text";
+import { Tooltip } from "@optiaxiom/react/tooltip";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { get, set } from "jsonpointer";
 import {

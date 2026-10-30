@@ -1,26 +1,26 @@
+import type { AlertProps } from "@optiaxiom/react/alert";
+import type { AvatarGroupProps, AvatarProps } from "@optiaxiom/react/avatar";
+import type { BadgeProps } from "@optiaxiom/react/badge";
+import type { BoxProps } from "@optiaxiom/react/box";
+import type { CardHeaderProps, CardProps } from "@optiaxiom/react/card";
+import type { CheckboxProps } from "@optiaxiom/react/checkbox";
 import type {
-  AlertProps,
-  AvatarGroupProps,
-  AvatarProps,
-  BadgeProps,
-  BoxProps,
-  CardHeaderProps,
-  CardProps,
-  CheckboxProps,
   DisclosureContentProps,
   DisclosureProps,
   DisclosureTriggerProps,
-  FieldProps,
-  GroupProps,
-  HeadingProps,
-  LinkProps,
+} from "@optiaxiom/react/disclosure";
+import type { RichTextEditorProps } from "@optiaxiom/react/editor";
+import type { FieldProps } from "@optiaxiom/react/field";
+import type { GroupProps } from "@optiaxiom/react/group";
+import type { HeadingProps } from "@optiaxiom/react/heading";
+import type { LinkProps } from "@optiaxiom/react/link";
+import type {
   SelectContentProps,
   SelectTriggerProps,
-  SeparatorProps,
-  SwitchProps,
-  TextProps,
-} from "@optiaxiom/react";
-import type { RichTextEditorProps } from "@optiaxiom/react/editor";
+} from "@optiaxiom/react/select";
+import type { SeparatorProps } from "@optiaxiom/react/separator";
+import type { SwitchProps } from "@optiaxiom/react/switch";
+import type { TextProps } from "@optiaxiom/react/text";
 import type { RangeProps, TimeProps } from "@optiaxiom/react/unstable";
 
 import { Validator } from "@cfworker/json-schema";

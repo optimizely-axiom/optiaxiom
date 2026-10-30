@@ -1,6 +1,6 @@
-import type { ButtonProps } from "@optiaxiom/react";
+import type { ButtonProps } from "@optiaxiom/react/button";
 
-import { Button } from "@optiaxiom/react";
+import { Button } from "@optiaxiom/react/button";
 import { useId } from "@radix-ui/react-id";
 
 import type { ProteusEventHandler } from "../proteus-document/schemas";

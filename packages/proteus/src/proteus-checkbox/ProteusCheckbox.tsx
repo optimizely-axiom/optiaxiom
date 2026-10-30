@@ -1,4 +1,4 @@
-import { Checkbox, type CheckboxProps } from "@optiaxiom/react";
+import { Checkbox, type CheckboxProps } from "@optiaxiom/react/checkbox";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
