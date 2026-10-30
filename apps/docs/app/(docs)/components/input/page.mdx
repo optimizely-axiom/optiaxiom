@@ -137,11 +137,13 @@ Add a copy button in the addon to let users copy the input value to their clipbo
 
 ## Accessibility
 
-Input automatically handles accessibility attributes when wrapped in `Field`:
+### Labels and errors
 
-- Properly associates labels via `Field`
-- Supports ARIA attributes for error states
-- Manages focus states appropriately
+Wrap Input in `Field` to connect it to its label, description and error message:
+
+- The label's `for` points at the input's `id`.
+- `aria-describedby` references the description and error message.
+- `aria-invalid` is set when the field has an error.
 
 ### Keyboard interactions
 
