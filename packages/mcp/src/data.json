@@ -35042,7 +35042,7 @@
     },
     "DetailsPanelBody": {
       "description": "DetailsPanelBody component from Axiom Design System",
-      "import": "import { DetailsPanelBody } from '@optiaxiom/react';",
+      "import": "import { DetailsPanelBody } from '@optiaxiom/react/unstable';",
       "name": "DetailsPanelBody",
       "props": {
         "alignItems": {
@@ -35871,7 +35871,7 @@
     },
     "DetailsPanelFooter": {
       "description": "DetailsPanelFooter component from Axiom Design System",
-      "import": "import { DetailsPanelFooter } from '@optiaxiom/react';",
+      "import": "import { DetailsPanelFooter } from '@optiaxiom/react/unstable';",
       "name": "DetailsPanelFooter",
       "props": {
         "alignItems": {
@@ -36700,7 +36700,7 @@
     },
     "DetailsPanelHeader": {
       "description": "DetailsPanelHeader component from Axiom Design System",
-      "import": "import { DetailsPanelHeader } from '@optiaxiom/react';",
+      "import": "import { DetailsPanelHeader } from '@optiaxiom/react/unstable';",
       "name": "DetailsPanelHeader",
       "props": {
         "addonAfter": {
@@ -57597,7 +57597,7 @@
     },
     "FileUploadDropzone": {
       "description": "FileUploadDropzone component from Axiom Design System",
-      "import": "import { FileUploadDropzone } from '@optiaxiom/react';",
+      "import": "import { FileUploadDropzone } from '@optiaxiom/react/unstable';",
       "name": "FileUploadDropzone",
       "props": {
         "alignItems": {
@@ -58440,7 +58440,7 @@
     },
     "FileUploadList": {
       "description": "FileUploadList component from Axiom Design System",
-      "import": "import { FileUploadList } from '@optiaxiom/react';",
+      "import": "import { FileUploadList } from '@optiaxiom/react/unstable';",
       "name": "FileUploadList",
       "props": {
         "alignItems": {
@@ -59276,7 +59276,7 @@
     },
     "FileUploadTrigger": {
       "description": "FileUploadTrigger component from Axiom Design System",
-      "import": "import { FileUploadTrigger } from '@optiaxiom/react';",
+      "import": "import { FileUploadTrigger } from '@optiaxiom/react/unstable';",
       "name": "FileUploadTrigger",
       "props": {
         "addonAfter": {
@@ -64573,7 +64573,7 @@
     },
     "HoverCardContent": {
       "description": "HoverCardContent component from Axiom Design System",
-      "import": "import { HoverCardContent } from '@optiaxiom/react';",
+      "import": "import { HoverCardContent } from '@optiaxiom/react/unstable';",
       "name": "HoverCardContent",
       "props": {
         "align": {
@@ -65429,7 +65429,7 @@
     },
     "HoverCardTrigger": {
       "description": "HoverCardTrigger component from Axiom Design System",
-      "import": "import { HoverCardTrigger } from '@optiaxiom/react';",
+      "import": "import { HoverCardTrigger } from '@optiaxiom/react/unstable';",
       "name": "HoverCardTrigger",
       "props": {
         "alignItems": {
@@ -71672,7 +71672,7 @@
     },
     "LayoutContent": {
       "description": "LayoutContent component from Axiom Design System",
-      "import": "import { LayoutContent } from '@optiaxiom/react';",
+      "import": "import { LayoutContent } from '@optiaxiom/react/unstable';",
       "name": "LayoutContent",
       "props": {
         "alignItems": {
@@ -87366,7 +87366,7 @@
     },
     "PillGroup": {
       "description": "PillGroup component from Axiom Design System",
-      "import": "import { PillGroup } from '@optiaxiom/react';",
+      "import": "import { PillGroup } from '@optiaxiom/react/unstable';",
       "name": "PillGroup",
       "props": {
         "alignItems": {
@@ -89089,7 +89089,7 @@
     },
     "PillMenuContent": {
       "description": "PillMenuContent component from Axiom Design System",
-      "import": "import { PillMenuContent } from '@optiaxiom/react';",
+      "import": "import { PillMenuContent } from '@optiaxiom/react/unstable';",
       "name": "PillMenuContent",
       "props": {
         "align": { "type": "enum", "values": ["center", "end", "start"] },
@@ -89931,7 +89931,7 @@
     },
     "PillMenuTrigger": {
       "description": "PillMenuTrigger component from Axiom Design System",
-      "import": "import { PillMenuTrigger } from '@optiaxiom/react';",
+      "import": "import { PillMenuTrigger } from '@optiaxiom/react/unstable';",
       "name": "PillMenuTrigger",
       "props": {
         "alignItems": {
@@ -96978,7 +96978,7 @@
     "RichTextEditor": {
       "description": "Rich text editor with a toolbar for basic formatting (bold, italic, lists, links).",
       "entryPoint": "@optiaxiom/react/editor",
-      "import": "import { RichTextEditor } from '@optiaxiom/react/unstable';",
+      "import": "import { RichTextEditor } from '@optiaxiom/react/editor';",
       "name": "RichTextEditor",
       "props": {
         "alignItems": {
@@ -106815,7 +106815,7 @@
     },
     "SortableGroup": {
       "description": "SortableGroup component from Axiom Design System",
-      "import": "import { SortableGroup } from '@optiaxiom/react';",
+      "import": "import { SortableGroup } from '@optiaxiom/react/unstable';",
       "name": "SortableGroup",
       "props": {
         "alignItems": {
@@ -107657,7 +107657,7 @@
     },
     "SortableHandle": {
       "description": "SortableHandle component from Axiom Design System",
-      "import": "import { SortableHandle } from '@optiaxiom/react';",
+      "import": "import { SortableHandle } from '@optiaxiom/react/unstable';",
       "name": "SortableHandle",
       "props": {
         "alignItems": {
@@ -108486,7 +108486,7 @@
     },
     "SortableItem": {
       "description": "SortableItem component from Axiom Design System",
-      "import": "import { SortableItem } from '@optiaxiom/react';",
+      "import": "import { SortableItem } from '@optiaxiom/react/unstable';",
       "name": "SortableItem",
       "props": {
         "alignItems": {
@@ -110254,7 +110254,7 @@
     },
     "SpotlightContent": {
       "description": "SpotlightContent component from Axiom Design System",
-      "import": "import { SpotlightContent } from '@optiaxiom/react';",
+      "import": "import { SpotlightContent } from '@optiaxiom/react/unstable';",
       "name": "SpotlightContent",
       "props": {
         "align": { "type": "enum", "values": ["center", "end", "start"] },
@@ -111094,7 +111094,7 @@
     },
     "SpotlightTrigger": {
       "description": "SpotlightTrigger component from Axiom Design System",
-      "import": "import { SpotlightTrigger } from '@optiaxiom/react';",
+      "import": "import { SpotlightTrigger } from '@optiaxiom/react/unstable';",
       "name": "SpotlightTrigger",
       "props": {
         "addonAfter": {
@@ -130146,7 +130146,7 @@
     },
     "VisuallyHidden": {
       "description": "VisuallyHidden component from Axiom Design System",
-      "import": "import { VisuallyHidden } from '@optiaxiom/react';",
+      "import": "import { VisuallyHidden } from '@optiaxiom/react/unstable';",
       "name": "VisuallyHidden",
       "props": {
         "asChild": { "type": "boolean" },

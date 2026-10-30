@@ -15,6 +15,7 @@ const __dirname = path.dirname(__filename);
  * @property {string} displayName
  * @property {string} [entryPoint]
  * @property {Prop[]} props
+ * @property {string} source
  * @property {Object} tags
  * @property {string} [tags.example]
  * @property {string} [tags.extends]
