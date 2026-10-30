@@ -3,6 +3,7 @@ import type { Props } from "react-docgen-typescript";
 
 import { Box } from "@optiaxiom/react";
 import { promises as fs } from "fs";
+import { useMDXComponents as getThemeComponents } from "nextra-theme-docs";
 import { compileMdx } from "nextra/compile";
 import { Tabs } from "nextra/components";
 import { MDXRemote } from "nextra/mdx-remote";
@@ -106,7 +107,8 @@ export async function Demo({
               .join("\n"),
             nextraOptions,
           )}
-          components={{ Tabs }}
+          // DemoCode has its own toolbar with a copy button.
+          components={{ pre: getThemeComponents().pre, Tabs }}
         />
       </DemoCode>
     </Box>
