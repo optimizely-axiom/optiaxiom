@@ -85,6 +85,12 @@ export type ProteusDocumentShellProps = {
    */
   onDownload?: (urls: string[]) => Promise<void> | void;
   /**
+   * Callback when user triggers an edit file action; receives the file to
+   * edit. The image carousel shows Edit only when this is set. Without it, an
+   * `editFile` action does nothing, as `preview` does without `onPreview`.
+   */
+  onEditFile?: (file: ProteusPreviewFile) => Promise<void> | void;
+  /**
    * Callback when user clicks a Action button with interaction handler.
    *
    * `mode` tells the host who owns the state that follows the call: `"update"`
@@ -201,6 +207,7 @@ export function ProteusDocumentShell({
   icons,
   onDataChange,
   onDownload,
+  onEditFile,
   onInteraction,
   onMessage,
   onOpenChange,
@@ -318,6 +325,8 @@ export function ProteusDocumentShell({
       } else if (strict) {
         throw new Error(`openLink: unsafe URL "${String(event.url)}"`);
       }
+    } else if (event.action === "editFile") {
+      await onEditFile?.(event.file);
     } else if (event.action === "preview") {
       await onPreview?.(event.file);
     } else if (event.action === "requestModal") {
@@ -409,6 +418,7 @@ export function ProteusDocumentShell({
 
   return (
     <ProteusDocumentProvider
+      canEditFile={!!onEditFile}
       collapsible={bodyCollapsible}
       data={data}
       icons={icons}

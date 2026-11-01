@@ -83,8 +83,8 @@ variant touches three places:
    operations use `onDataChange` with a functional updater) or forward it to a host callback prop.
 3. The `ProteusEventHandler` definition in the schema generator, then rebuild.
 
-Host callbacks are props on the shell (`onInteraction`, `onMessage`, `onDownload`, `onOpenLink`,
-`onPreview`, `onRequestModal`, `onTrack`, `onUpload`). Client-side actions (`setValue`, `pushValue`,
+Host callbacks are props on the shell (`onInteraction`, `onMessage`, `onDownload`, `onEditFile`,
+`onOpenLink`, `onPreview`, `onRequestModal`, `onTrack`, `onUpload`). Client-side actions (`setValue`, `pushValue`,
 `removeValue`, `download`, `openLink`) are handled in-package; only `interaction` returns a value to
 the caller.
 

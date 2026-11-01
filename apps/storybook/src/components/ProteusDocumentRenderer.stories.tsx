@@ -12,7 +12,7 @@ import { ProteusDocumentRenderer, ProteusElement } from "@optiaxiom/proteus";
 import { Box, Group, Heading } from "@optiaxiom/react";
 import { useEffect, useRef, useState } from "react";
 import { action } from "storybook/actions";
-import { expect, userEvent, waitFor } from "storybook/test";
+import { expect, fn, userEvent, waitFor } from "storybook/test";
 
 export default {
   args: {
@@ -495,6 +495,35 @@ export const WithImageCarousel: Story = {
       subtitle: "Created Jan 15, 2025",
       title: "Images created",
     },
+  },
+  play: async ({ canvas }) => {
+    await canvas.findByRole("button", { name: "Next image" });
+    await expect(
+      canvas.queryByRole("button", { name: "Edit" }),
+    ).not.toBeInTheDocument();
+  },
+};
+
+export const WithImageCarouselEdit: Story = {
+  args: {
+    ...WithImageCarousel.args,
+    onEditFile: fn(),
+  },
+  play: async ({ args, canvas }) => {
+    await userEvent.click(
+      await canvas.findByRole("button", { name: "Next image" }),
+    );
+    await waitFor(() => expect(canvas.getByText("2 / 8")).toBeInTheDocument());
+
+    await userEvent.click(canvas.getByRole("button", { name: "Edit" }));
+    await waitFor(() =>
+      expect(args.onEditFile).toHaveBeenCalledWith(
+        expect.objectContaining({
+          file_link: "https://placehold.co/600x400",
+          full_name: "Chicken with lemon sauce and broccoli",
+        }),
+      ),
+    );
   },
 };
 

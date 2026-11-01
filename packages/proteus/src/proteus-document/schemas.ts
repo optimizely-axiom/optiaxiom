@@ -108,6 +108,10 @@ export type ProteusEventHandler =
       url: (ProteusValueProps & { $type: "Value" }) | string | string[];
     }
   | {
+      action: "editFile";
+      file: ProteusPreviewFile;
+    }
+  | {
       action: "openLink";
       url: (ProteusValueProps & { $type: "Value" }) | string;
     }
