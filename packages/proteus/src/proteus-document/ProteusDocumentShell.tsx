@@ -85,6 +85,12 @@ export type ProteusDocumentShellProps = {
    */
   onDownload?: (urls: string[]) => Promise<void> | void;
   /**
+   * Callback when user clicks Edit on an image carousel; receives the
+   * selected image. The carousel shows Edit only when this is set, so leave it
+   * out on hosts that cannot edit images.
+   */
+  onEdit?: (file: ProteusPreviewFile) => Promise<void> | void;
+  /**
    * Callback when user clicks a Action button with interaction handler.
    *
    * `mode` tells the host who owns the state that follows the call: `"update"`
@@ -201,6 +207,7 @@ export function ProteusDocumentShell({
   icons,
   onDataChange,
   onDownload,
+  onEdit,
   onInteraction,
   onMessage,
   onOpenChange,
@@ -416,6 +423,7 @@ export function ProteusDocumentShell({
           return next;
         });
       })}
+      onEdit={onEdit}
       onEvent={onEvent}
       onTrack={useEvent((event: string, properties: Record<string, string>) => {
         onTrack?.(event, properties);

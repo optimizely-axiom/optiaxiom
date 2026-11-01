@@ -4,7 +4,7 @@ import type { ComponentType } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
-import type { ProteusEventHandler } from "./schemas";
+import type { ProteusEventHandler, ProteusPreviewFile } from "./schemas";
 
 export type FileUploadMetadata = {
   link: string;
@@ -35,6 +35,11 @@ export const [ProteusDocumentProvider, useProteusDocumentContext] =
     data: Record<string, unknown>;
     icons: ProteusIconMap | undefined;
     onDataChange: (path: string, value: unknown) => void;
+    /**
+     * The host's image editor, when it has one. Called straight from the
+     * button rather than through `onEvent`, so no script can fire it.
+     */
+    onEdit?: (file: ProteusPreviewFile) => Promise<void> | void;
     onEvent: (event: ProteusEventHandler) => Promise<unknown>;
     onTrack?: (event: string, properties: Record<string, string>) => void;
     onUpload?: UploadFile;
