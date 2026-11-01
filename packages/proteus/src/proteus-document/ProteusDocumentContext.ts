@@ -28,6 +28,11 @@ export type UseResource = (resource: string) => {
 export const [ProteusDocumentProvider, useProteusDocumentContext] =
   createContext<{
     /**
+     * Whether the host handles `editFile`; the image carousel shows Edit only
+     * then.
+     */
+    canEditFile: boolean;
+    /**
      * Set when the document is collapsible but has no `appName` header, so the
      * body element renders its own `DisclosureTrigger`/`DisclosureContent`.
      */

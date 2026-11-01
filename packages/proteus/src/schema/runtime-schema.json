@@ -1515,6 +1515,26 @@
           "type": "object"
         },
         {
+          "description": "Client-side component action - for opening a file in the host's editor",
+          "properties": {
+            "action": {
+              "const": "editFile",
+              "description": "The action type",
+              "type": "string"
+            },
+            "file": {
+              "anyOf": [
+                { "$ref": "#/definitions/ProteusExpression" },
+                { "type": "object" },
+                { "type": "string" }
+              ],
+              "description": "The file object to edit"
+            }
+          },
+          "required": ["action", "file"],
+          "type": "object"
+        },
+        {
           "description": "Client-side component action - for previewing a file inline",
           "properties": {
             "action": {
