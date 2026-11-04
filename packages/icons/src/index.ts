@@ -77,6 +77,7 @@ export { IconContentCopy as IconCopy } from "../svg/content_copy.svg";
 export { IconContentCut as IconScissors } from "../svg/content_cut.svg";
 export { IconContentPaste as IconClipboard } from "../svg/content_paste.svg";
 export { IconContentPaste as IconPaste } from "../svg/content_paste.svg";
+export { IconContextualTokenAdd as IconContextualTokenAdd } from "../svg/contextual_token_add.svg";
 export { IconContrastFill as IconCircleHalfStrokeSolid } from "../svg/contrast-fill.svg";
 export { IconCreateNewFolder as IconFolderPlus } from "../svg/create_new_folder.svg";
 export { IconCropLandscape as IconRectangleWide } from "../svg/crop_landscape.svg";

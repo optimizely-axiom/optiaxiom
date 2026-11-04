@@ -664,6 +664,11 @@
       "import": "./dist/esm/IconComments.js",
       "require": "./dist/cjs/IconComments.js"
     },
+    "./IconContextualTokenAdd": {
+      "types": "./dist/IconContextualTokenAdd.d.ts",
+      "import": "./dist/esm/IconContextualTokenAdd.js",
+      "require": "./dist/cjs/IconContextualTokenAdd.js"
+    },
     "./IconCopy": {
       "types": "./dist/IconCopy.d.ts",
       "import": "./dist/esm/IconCopy.js",

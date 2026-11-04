@@ -65,6 +65,7 @@
   "content_copy": ["Clone", "Copy"],
   "content_cut": ["Scissors"],
   "content_paste": ["Clipboard", "Paste"],
+  "contextual_token_add": ["ContextualTokenAdd"],
   "contrast": ["CircleHalfStrokeSolid"],
   "create_new_folder": ["FolderPlus"],
   "crop_landscape": ["RectangleWide"],
