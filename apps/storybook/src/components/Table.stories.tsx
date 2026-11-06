@@ -14,7 +14,7 @@ import {
   TableRow,
 } from "@optiaxiom/react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { expect, screen, userEvent } from "storybook/test";
+import { expect, screen, userEvent, waitFor } from "storybook/test";
 
 export default {
   component: Table,
@@ -68,6 +68,11 @@ const invoices = [
 ];
 
 export const Basic: Story = {
+  play: async ({ canvas }) => {
+    // #1852: a table that fits shouldn't add a Tab stop.
+    await userEvent.tab();
+    await expect(canvas.getByRole("table").parentElement).not.toHaveFocus();
+  },
   render: () => (
     <Table>
       <TableHeader>
@@ -204,6 +209,38 @@ export const Actions: Story = {
                 <MenuContent />
               </Menu>
             </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  ),
+};
+
+export const Scrollable: Story = {
+  play: async ({ canvas }) => {
+    // #1852: a table that scrolls is a Tab stop so keyboard users can scroll it.
+    const wrapper = canvas.getByRole("table").parentElement;
+    await waitFor(() => expect(wrapper).toHaveAttribute("tabindex", "0"));
+    await userEvent.tab();
+    await expect(wrapper).toHaveFocus();
+  },
+  render: () => (
+    <Table maxH="xs">
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Invoice</TableHeaderCell>
+          <TableHeaderCell>Status</TableHeaderCell>
+          <TableHeaderCell>Method</TableHeaderCell>
+          <TableHeaderCell>Amount</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {[...invoices, ...invoices].map((invoice, index) => (
+          <TableRow key={index}>
+            <TableCell>{invoice.invoice}</TableCell>
+            <TableCell>{invoice.paymentStatus}</TableCell>
+            <TableCell>{invoice.paymentMethod}</TableCell>
+            <TableCell>{invoice.totalAmount}</TableCell>
           </TableRow>
         ))}
       </TableBody>
