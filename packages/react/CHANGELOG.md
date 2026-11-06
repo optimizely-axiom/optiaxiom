@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 3.5.1
+
+### Patch Changes
+
+- c1f6dfb: showed a focus ring on scrollable `Table`
+- 7e8a5e2: made `Table` a Tab stop only when it scrolls
+
 ## 3.5.0
 
 ### Minor Changes
