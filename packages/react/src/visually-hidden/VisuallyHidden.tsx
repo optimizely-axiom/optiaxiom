@@ -19,7 +19,7 @@ export const VisuallyHidden = forwardRef<HTMLSpanElement, VisuallyHiddenProps>(
         asChild
         ref={ref}
         style={{
-          position: "fixed",
+          position: "absolute",
           ...style,
         }}
         {...props}
