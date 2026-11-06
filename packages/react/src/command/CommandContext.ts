@@ -53,7 +53,7 @@ export type CommandOption = {
    */
   intent?: "danger" | "neutral";
   /**
-   * Return a unique key for each item (otherwise label is used).
+   * A unique key for the item, used to track its row. Defaults to the label, so pass a unique `key` whenever labels can repeat (e.g. options built from data).
    */
   key?: string;
   /**
