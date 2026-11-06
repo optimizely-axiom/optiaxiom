@@ -1,5 +1,14 @@
 # @optiaxiom/proteus
 
+## 3.11.1
+
+### Patch Changes
+
+- 3edeb98: versioned class names so multiple releases can share a page
+- Updated dependencies [c1f6dfb]
+- Updated dependencies [7e8a5e2]
+  - @optiaxiom/react@3.5.1
+
 ## 3.11.0
 
 ### Minor Changes
