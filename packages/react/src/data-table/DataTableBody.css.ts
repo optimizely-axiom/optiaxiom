@@ -1,10 +1,12 @@
 import { theme } from "@optiaxiom/globals";
 
+import * as tableStyles from "../table/Table.css";
 import * as styles from "../table/TableRow.css";
 import { rem } from "../utils";
 import { createVar, getVarName, recipe, style } from "../vanilla-extract";
 
 const row = styles.className;
+const table = tableStyles.className;
 
 export const cellSizeVar = createVar();
 export const cellOffsetVar = createVar();
@@ -58,6 +60,14 @@ export const root = recipe({
         },
         '&[data-scroll-timeline]:not([data-scroll-timeline="right"])::after': {
           opacity: 1,
+        },
+        /**
+         * The root's `overflow: hidden` clips the table's own focus ring, so
+         * draw it here instead.
+         */
+        [`&:has(> ${table}:focus-visible)`]: {
+          outline: `2px solid ${theme.colors["border.focus"]}`,
+          outlineOffset: "2px",
         },
       },
     }),

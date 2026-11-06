@@ -1,3 +1,5 @@
+import { theme } from "@optiaxiom/globals";
+
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const table = recipe({
@@ -38,8 +40,11 @@ export const table = recipe({
   },
 });
 
+export const className = style({});
+
 export const wrapper = recipe({
   base: [
+    className,
     {
       bg: "bg.default",
       border: "1",
@@ -53,7 +58,8 @@ export const wrapper = recipe({
 
       selectors: {
         "&:focus-visible": {
-          outline: "none",
+          outline: `2px solid ${theme.colors["border.focus"]}`,
+          outlineOffset: "2px",
         },
       },
     }),
