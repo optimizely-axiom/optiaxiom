@@ -1,3 +1,4 @@
+import { IconPen } from "@optiaxiom/icons/IconPen";
 import { Box } from "@optiaxiom/react/box";
 import { Button } from "@optiaxiom/react/button";
 import { Group } from "@optiaxiom/react/group";
@@ -51,7 +52,7 @@ export function ProteusImageCarousel({
   images,
   title,
 }: ProteusImageCarouselProps) {
-  const { onEvent } = useProteusDocumentContext(
+  const { onEdit, onEvent } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusImageCarousel",
   );
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel({
@@ -184,48 +185,56 @@ export function ProteusImageCarousel({
           </Text>
         )}
 
-        {images.length > 1 ? (
-          <Menu
-            options={[
-              {
-                execute: () =>
-                  onEvent({
-                    action: "download",
-                    url:
-                      images[selectedIndex].file_link ??
-                      images[selectedIndex].src,
-                  }),
-                label: "Download this image",
-              },
-              {
-                execute: () =>
-                  onEvent({
-                    action: "download",
-                    url: images.map((image) => image.file_link ?? image.src),
-                  }),
-                label: "Download all images",
-              },
-            ]}
-          >
-            <MenuTrigger appearance="primary" ml="auto">
+        <Group gap="8" ml="auto">
+          {onEdit && (
+            <Button
+              icon={<IconPen />}
+              onClick={() => onEdit(toPreviewFile(images[selectedIndex]))}
+            >
+              Edit
+            </Button>
+          )}
+
+          {images.length > 1 ? (
+            <Menu
+              options={[
+                {
+                  execute: () =>
+                    onEvent({
+                      action: "download",
+                      url:
+                        images[selectedIndex].file_link ??
+                        images[selectedIndex].src,
+                    }),
+                  label: "Download this image",
+                },
+                {
+                  execute: () =>
+                    onEvent({
+                      action: "download",
+                      url: images.map((image) => image.file_link ?? image.src),
+                    }),
+                  label: "Download all images",
+                },
+              ]}
+            >
+              <MenuTrigger appearance="primary">Download</MenuTrigger>
+              <MenuContent align="end" />
+            </Menu>
+          ) : (
+            <Button
+              appearance="primary"
+              onClick={() =>
+                onEvent({
+                  action: "download",
+                  url: images[0].file_link ?? images[0].src,
+                })
+              }
+            >
               Download
-            </MenuTrigger>
-            <MenuContent align="end" />
-          </Menu>
-        ) : (
-          <Button
-            appearance="primary"
-            ml="auto"
-            onClick={() =>
-              onEvent({
-                action: "download",
-                url: images[0].file_link ?? images[0].src,
-              })
-            }
-          >
-            Download
-          </Button>
-        )}
+            </Button>
+          )}
+        </Group>
       </Group>
     </Group>
   );
