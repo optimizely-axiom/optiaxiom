@@ -96,9 +96,14 @@ export function Command({
     onHighlightedIndexChange({ highlightedIndex, type }) {
       setHighlightedIndex(highlightedIndex);
 
-      if (highlightedIndex !== -1) {
+      /**
+       * A row left mounted from an earlier render (e.g. duplicate keys) can
+       * report an index past the end of the filtered items.
+       */
+      const item = items[highlightedIndex];
+      if (item) {
         onHover?.(
-          items[highlightedIndex],
+          item,
           type === useCombobox.stateChangeTypes.FunctionSetHighlightedIndex ||
             type === useCombobox.stateChangeTypes.ItemMouseMove,
         );
