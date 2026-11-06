@@ -1,4 +1,5 @@
-import { forwardRef } from "react";
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { forwardRef, useEffect, useRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import * as styles from "./Table.css";
@@ -36,14 +37,64 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(
       children,
       className,
       layout = "auto",
+      tabIndex,
       ...props
     },
-    ref,
+    outerRef,
   ) => {
+    const innerRef = useRef<HTMLDivElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
+    const tableRef = useRef<HTMLTableElement>(null);
+
+    /**
+     * A scrollable region must be keyboard focusable so it can be scrolled
+     * without a mouse, but one that doesn't scroll would be a dead Tab stop.
+     * Observe the table too: rows added inside a fixed-height wrapper overflow
+     * it without resizing it. jsdom has no `ResizeObserver`, so skip there.
+     *
+     * The attribute is set directly so resizes never re-render the table. A
+     * consumer `tabIndex` is left to React.
+     */
+    useEffect(() => {
+      const wrapper = innerRef.current;
+      const table = tableRef.current;
+      if (
+        !wrapper ||
+        !table ||
+        tabIndex !== undefined ||
+        typeof ResizeObserver === "undefined"
+      ) {
+        return;
+      }
+
+      const observer = new ResizeObserver(() => {
+        if (
+          wrapper.scrollWidth > wrapper.clientWidth ||
+          wrapper.scrollHeight > wrapper.clientHeight
+        ) {
+          wrapper.tabIndex = 0;
+        } else {
+          wrapper.removeAttribute("tabindex");
+        }
+      });
+      observer.observe(wrapper);
+      observer.observe(table);
+      return () => observer.disconnect();
+    }, [tabIndex]);
+
     return (
-      <Box ref={ref} tabIndex={0} {...styles.wrapper({}, className)} {...props}>
+      <Box
+        ref={ref}
+        tabIndex={tabIndex}
+        {...styles.wrapper({}, className)}
+        {...props}
+      >
         <Box asChild {...styles.table({ layout })}>
-          <table aria-colcount={ariaColCount} aria-rowcount={ariaRowCount}>
+          <table
+            aria-colcount={ariaColCount}
+            aria-rowcount={ariaRowCount}
+            ref={tableRef}
+          >
             {children}
           </table>
         </Box>
