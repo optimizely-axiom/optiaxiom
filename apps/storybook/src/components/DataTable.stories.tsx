@@ -309,6 +309,19 @@ export const VerticalScroll: Story = {
   },
 };
 
+export const ScrollableFocusRing: Story = {
+  play: async ({ canvas }) => {
+    // #1852: the scroll container takes Tab focus and shows a ring.
+    const scrollContainer = canvas.getByRole("table").parentElement!;
+    await waitFor(() =>
+      expect(scrollContainer).toHaveAttribute("tabindex", "0"),
+    );
+    await userEvent.tab();
+    await expect(scrollContainer).toHaveFocus();
+  },
+  render: VerticalScroll.render,
+};
+
 export const Pinned: Story = {
   render: function Render(args) {
     return (
