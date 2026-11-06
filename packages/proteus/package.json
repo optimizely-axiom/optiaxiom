@@ -29,7 +29,7 @@
   ],
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rolldown -c",
+    "build": "rm -rf dist && NODE_ENV=production rolldown -c",
     "dev": "rm -rf dist && wait-on ../../packages/react/dist/index.d.ts ../../packages/react/dist/unstable.d.ts ../../packages/react/dist/css-runtime.d.ts ../../packages/shared/data/docs.json && rolldown -wc"
   },
   "dependencies": {
