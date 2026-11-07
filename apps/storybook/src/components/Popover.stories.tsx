@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Popover, PopoverContent, PopoverTrigger } from "@optiaxiom/react";
+import { IconPen } from "@optiaxiom/icons";
+import {
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@optiaxiom/react";
 import { expect, screen, userEvent } from "storybook/test";
 
 type Story = StoryObj<typeof Popover>;
@@ -43,6 +49,23 @@ export const Disabled: Story = {
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole("button"));
     await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  },
+};
+
+export const NarrowContent: Story = {
+  args: {
+    children: (
+      <>
+        <PopoverTrigger>Toggle Popover</PopoverTrigger>
+        <PopoverContent aria-label="Edit link" p="4">
+          <Button
+            appearance="subtle"
+            aria-label="Edit link"
+            icon={<IconPen />}
+          />
+        </PopoverContent>
+      </>
+    ),
   },
 };
 
