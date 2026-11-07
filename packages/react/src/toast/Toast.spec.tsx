@@ -4,16 +4,6 @@ import { render, screen, waitFor, within } from "../../vitest.rtl";
 import { Button } from "../button";
 import { createToaster, toaster, ToastProvider } from "./index";
 
-async function findToast() {
-  const region = await screen.findByRole("region", { name: /notifications/i });
-  const toast = await within(region).findByRole("listitem");
-  // The viewport accepts clicks one render after the toast appears.
-  await waitFor(() =>
-    expect(region).not.toHaveStyle({ pointerEvents: "none" }),
-  );
-  return toast;
-}
-
 function SaveButton() {
   return <Button onClick={() => toaster.create("Changes saved")}>Save</Button>;
 }
@@ -23,11 +13,17 @@ describe("Toast", () => {
     const { user } = render(<SaveButton />);
 
     await user.click(screen.getByRole("button", { name: "Save" }));
-    expect(await findToast()).toHaveTextContent("Changes saved");
+    expect(
+      await within(
+        screen.getByRole("region", { name: /notifications/i }),
+      ).findByText("Changes saved"),
+    ).toBeVisible();
 
     vi.advanceTimersByTime(5000);
     await waitFor(() =>
-      expect(screen.queryByRole("listitem")).not.toBeInTheDocument(),
+      expect(
+        screen.queryByRole("region", { name: /notifications/i }),
+      ).not.toBeInTheDocument(),
     );
   });
 
@@ -35,11 +31,16 @@ describe("Toast", () => {
     const { user } = render(<SaveButton />);
 
     await user.click(screen.getByRole("button", { name: "Save" }));
-    const toast = await findToast();
+    const notifications = within(
+      screen.getByRole("region", { name: /notifications/i }),
+    );
+    await notifications.findByText("Changes saved");
 
-    await user.click(within(toast).getByRole("button", { name: "close" }));
+    await user.click(notifications.getByRole("button", { name: "close" }));
     await waitFor(() =>
-      expect(screen.queryByRole("listitem")).not.toBeInTheDocument(),
+      expect(
+        screen.queryByRole("region", { name: /notifications/i }),
+      ).not.toBeInTheDocument(),
     );
   });
 
@@ -63,7 +64,9 @@ describe("Toast", () => {
     const { unmount, user } = render(<SaveButton />);
 
     await user.click(screen.getByRole("button", { name: "Save" }));
-    await findToast();
+    await within(
+      screen.getByRole("region", { name: /notifications/i }),
+    ).findByText("Changes saved");
 
     // A timer left running would fire after the test environment is torn down.
     unmount();

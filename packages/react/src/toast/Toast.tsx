@@ -48,6 +48,9 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
       <Box
         asChild
         style={{
+          // Inline so it holds without our CSS (jsdom, stubbed CSS): Radix
+          // leaves `pointer-events: none` on the viewport for the first render.
+          pointerEvents: "auto",
           ...style,
           ...assignInlineVars({
             [styles.offsetVar]: `${context.offset}px`,
