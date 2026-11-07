@@ -19,7 +19,7 @@ import { useDialogContext } from "./DialogContext";
 
 export type DialogContentProps = ExcludeProps<
   BoxProps<typeof RadixDialog.Content, styles.DialogVariants>,
-  "forceMount"
+  "deferPointerDownOutside" | "forceMount"
 >;
 
 /**

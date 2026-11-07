@@ -14,7 +14,7 @@
     "@optiaxiom/proteus": "workspace:^",
     "@optiaxiom/react": "workspace:^",
     "@optiaxiom/shared": "workspace:^",
-    "@radix-ui/react-visually-hidden": "^1.2.4",
+    "@radix-ui/react-visually-hidden": "1.2.12",
     "@storybook/addon-a11y": "^10.6.0",
     "@storybook/addon-designs": "^11.1.4",
     "@storybook/addon-themes": "^10.6.0",

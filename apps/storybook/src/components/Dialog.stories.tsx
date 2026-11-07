@@ -17,6 +17,9 @@ import {
   MenuContent,
   type MenuOption,
   MenuTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
   Select,
   SelectContent,
   SelectTrigger,
@@ -129,6 +132,37 @@ export const Basic: Story = {
     await expect(
       await screen.findByRole("dialog", { name: "Dialog" }),
     ).toBeInTheDocument();
+  },
+};
+
+export const WithPopover: Story = {
+  args: {
+    content: (
+      <Popover>
+        <PopoverTrigger>Toggle Popover</PopoverTrigger>
+        <PopoverContent aria-label="Popover">
+          <Box data-testid="popover-scroll" maxH="xs" overflow="auto">
+            {largeText}
+          </Box>
+        </PopoverContent>
+      </Popover>
+    ),
+  },
+  play: async () => {
+    await userEvent.click(
+      await screen.findByRole("button", { name: "Toggle Popover" }),
+    );
+
+    // Synthetic wheel events don't scroll, so check the scroll lock didn't
+    // cancel it: a cancelled wheel means the user can't scroll the popover.
+    const scroller = await screen.findByTestId("popover-scroll");
+    const wheel = new WheelEvent("wheel", {
+      bubbles: true,
+      cancelable: true,
+      deltaY: 100,
+    });
+    scroller.dispatchEvent(wheel);
+    await expect(wheel.defaultPrevented).toBe(false);
   },
 };
 
