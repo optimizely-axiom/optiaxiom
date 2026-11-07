@@ -26,6 +26,8 @@ export interface ComponentInfo {
   name: string;
   /** Component props definition */
   props: Record<string, PropDefinition>;
+  /** Names of the props that must be passed */
+  required?: string[];
   /** Version this component was introduced */
   since?: string;
 }
@@ -112,23 +114,17 @@ export interface IconInfo {
 }
 
 /**
- * Component prop definition
+ * Component prop definition: JSON Schema keywords plus docs
  */
-export interface PropDefinition {
+export interface PropDefinition extends TypeSchema {
   /** Default value if not provided */
   default?: boolean | number | string;
   /** If deprecated, migration info */
   deprecated?: DeprecationInfo;
   /** Description of what this prop does */
   description?: string;
-  /** Is this prop required? */
-  required?: boolean;
   /** Accepts per-breakpoint values: `{ base, sm, md }` or `[base, sm, md]` */
   responsive?: boolean;
-  /** TypeScript type */
-  type: string;
-  /** For enum types, possible values */
-  values?: Array<boolean | number | string>;
 }
 
 /**
@@ -143,3 +139,27 @@ export interface TestInfo {
   /** Test file source code */
   source: string;
 }
+
+/**
+ * JSON Schema keywords describing a type
+ */
+export interface TypeSchema {
+  /** Matches any of these schemas */
+  anyOf?: TypeSchema[];
+  /** Allowed literal values */
+  enum?: Array<boolean | number | string>;
+  /** Schema of each array element */
+  items?: TypeSchema;
+  /** TypeScript type, where JSON Schema can't express it (functions, `ReactNode`, generics) */
+  tsType?: string;
+  /** JSON type, a `TypeSchemaType` (typed `string` because JSON imports widen literals) */
+  type?: string | string[];
+}
+
+export type TypeSchemaType =
+  | "array"
+  | "boolean"
+  | "null"
+  | "number"
+  | "object"
+  | "string";

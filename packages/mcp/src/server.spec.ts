@@ -53,4 +53,71 @@ describe("createServer", () => {
 
     await client.close();
   });
+
+  it("lists required props among the requested prop definitions", async () => {
+    const client = await connect(createServer());
+
+    const result = await client.callTool({
+      arguments: { name: "Select", props: "options" },
+      name: "get_component",
+    });
+    const { props, required } = JSON.parse(
+      (result.content as Array<{ text: string }>)[0].text,
+    );
+
+    expect(props.options).toMatchObject({ type: "array" });
+    expect(required).toEqual(["options"]);
+
+    await client.close();
+  });
+
+  it("lists every required prop even when the props query doesn't match it", async () => {
+    const client = await connect(createServer());
+
+    const result = await client.callTool({
+      arguments: { name: "Select", props: "disabled" },
+      name: "get_component",
+    });
+    const { props, required } = JSON.parse(
+      (result.content as Array<{ text: string }>)[0].text,
+    );
+
+    expect(props).not.toHaveProperty("options");
+    expect(required).toEqual(["options"]);
+
+    await client.close();
+  });
+
+  it("returns prop names and every required prop without a props query", async () => {
+    const client = await connect(createServer());
+
+    const result = await client.callTool({
+      arguments: { name: "Select" },
+      name: "get_component",
+    });
+    const { props, required } = JSON.parse(
+      (result.content as Array<{ text: string }>)[0].text,
+    );
+
+    expect(props).toContain("options");
+    expect(required).toEqual(["options"]);
+
+    await client.close();
+  });
+
+  it("omits required when a component has no required props", async () => {
+    const client = await connect(createServer());
+
+    const result = await client.callTool({
+      arguments: { name: "Button" },
+      name: "get_component",
+    });
+    const { required } = JSON.parse(
+      (result.content as Array<{ text: string }>)[0].text,
+    );
+
+    expect(required).toBeUndefined();
+
+    await client.close();
+  });
 });

@@ -8,7 +8,8 @@ import type {
 
 import data from "./data.json";
 
-const { components, guides, icons, tests, tokens } = data;
+const { guides, icons, tests, tokens } = data;
+const components: Record<string, ComponentInfo> = data.components;
 
 export function getAllComponents(): ComponentInfo[] {
   return Object.values(components);
@@ -27,7 +28,7 @@ export function getAllTests(): TestInfo[] {
 }
 
 export function getComponent(name: string): ComponentInfo | null {
-  return components[name as keyof typeof components] || null;
+  return components[name] ?? null;
 }
 
 export function getGuide(name: string): Guide | null {
