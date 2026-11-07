@@ -112,8 +112,11 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const instant =
       typeof value === "string" ? (toInstant(value) ?? null) : null;
 
-    const max = maxProp || "2100-12-31";
-    const min = minProp || "1900-01-01";
+    // Bounds keep Chrome's year segment to 4 digits. A `datetime-local` input
+    // ignores a date-only bound, so its defaults carry a time.
+    const withTime = type === "datetime-local";
+    const max = maxProp || `2100-12-31${withTime ? "T23:59" : ""}`;
+    const min = minProp || `1900-01-01${withTime ? "T00:00" : ""}`;
     const maxDate = max ? toInstant(max) : undefined;
     const minDate = min ? toInstant(min) : undefined;
 
