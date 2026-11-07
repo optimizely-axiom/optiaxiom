@@ -13,6 +13,7 @@ import { RemoveScroll } from "react-remove-scroll";
 import type { MenuContent } from "./MenuContent";
 
 import { useFieldContext } from "../field/internals";
+import { listMinWidth } from "../modal/internals";
 import { PopoverContent } from "../popover";
 import { VisuallyHidden } from "../visually-hidden";
 import { useMenuContext } from "./MenuContext";
@@ -26,7 +27,7 @@ export type MenuPopoverContentProps = ComponentPropsWithoutRef<
 export const MenuPopoverContent = forwardRef<
   HTMLDivElement,
   MenuPopoverContentProps
->(({ align, "aria-label": ariaLabel, children, ...props }, ref) => {
+>(({ align, "aria-label": ariaLabel, children, className, ...props }, ref) => {
   const { shardRef } = useModalContext("@optiaxiom/react/MenuPopoverContent");
   const { labelId: fieldLabelId } = useFieldContext(
     "@optiaxiom/react/MenuPopoverContent",
@@ -47,6 +48,7 @@ export const MenuPopoverContent = forwardRef<
     <PopoverContent
       align={align ?? resolvedAlign}
       aria-labelledby={clsx(fieldLabelId ?? triggerRef.current?.id, labelId)}
+      {...listMinWidth({}, className)}
       ref={ref}
       {...props}
     >

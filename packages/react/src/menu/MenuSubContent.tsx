@@ -8,6 +8,7 @@ import type { ExcludeProps } from "../utils";
 import { type BoxProps } from "../box";
 import { Command } from "../command";
 import { resolveItemProperty, useCommandContext } from "../command/internals";
+import { listMinWidth } from "../modal/internals";
 import { PopoverAnchor, PopoverContent } from "../popover";
 import { usePopoverContext } from "../popover/internals";
 import { VisuallyHidden } from "../visually-hidden";
@@ -22,7 +23,7 @@ export type MenuSubContentProps = ExcludeProps<
 >;
 
 export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
-  ({ align = "start", side = "right", ...props }, outerRef) => {
+  ({ align = "start", className, side = "right", ...props }, outerRef) => {
     const {
       onSelect,
       setFocusVisible,
@@ -85,6 +86,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
           align={align}
           alignOffset={item.subOptionsInputVisible ? -46 : -4}
           aria-labelledby={clsx(parentItemRef.current?.id, labelId)}
+          {...listMinWidth({}, className)}
           maxH="lg"
           onCloseAutoFocus={(event) => {
             event.preventDefault();

@@ -13,7 +13,7 @@ import { useFieldContext } from "../field/internals";
 import { ListboxItemized, ListboxLabel, ListboxSeparator } from "../listbox";
 import { shouldShowGroup, shouldShowSeparator } from "../listbox/utils";
 import { ModalLayer } from "../modal";
-import { ModalListbox } from "../modal/internals";
+import { listMinWidth, ModalListbox } from "../modal/internals";
 import { Portal } from "../portal";
 import { Text } from "../text";
 import { Tooltip } from "../tooltip";
@@ -54,6 +54,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
       align = "start",
       "aria-label": ariaLabel,
       children,
+      className,
       onPointerDown,
       side = "bottom",
       size,
@@ -83,6 +84,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
             <ModalListbox
               aria-label={ariaLabel || "Menu"}
               asChild
+              {...listMinWidth({}, className)}
               maxH="sm"
               minW="trigger"
               onPointerDown={(event) => {

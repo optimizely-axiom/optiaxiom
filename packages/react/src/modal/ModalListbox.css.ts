@@ -10,6 +10,25 @@ import {
 } from "../vanilla-extract";
 
 const maxHeightVar = createVar();
+// Not inherited, so a listbox nested inside list content doesn't pick up its
+// floor.
+const minWidthVar = createVar({
+  inherits: false,
+  initialValue: "0px",
+  syntax: "<length>",
+});
+
+/**
+ * Minimum width for list content (menus, selects) so short option lists don't
+ * shrink to a sliver.
+ */
+export const list = recipe({
+  base: style({
+    vars: {
+      [minWidthVar]: rem("120px"),
+    },
+  }),
+});
 
 export const listbox = recipe({
   base: [
@@ -30,7 +49,7 @@ export const listbox = recipe({
           ${fallbackVar(maxHeightVar, "100vh")}
         )
       `,
-      minWidth: rem("120px"),
+      minWidth: minWidthVar,
     }),
   ],
 
@@ -78,7 +97,7 @@ export const listbox = recipe({
                 var(--radix-popper-anchor-width)
               )
             ),
-            ${rem("120px")}
+            ${minWidthVar}
           )
         `,
       }),
