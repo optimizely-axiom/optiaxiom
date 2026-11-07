@@ -444,6 +444,7 @@
     {
       "files": ["**/packages/*/src/**"],
       "rules": {
+        "local/no-unguarded-dom-api": "error",
         "no-restricted-imports": [
           "error",
           {

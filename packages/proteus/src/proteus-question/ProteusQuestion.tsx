@@ -414,7 +414,7 @@ export function ProteusQuestion({
         while (row.parentElement && row.parentElement !== event.currentTarget) {
           row = row.parentElement;
         }
-        row.scrollIntoView({ block: "nearest" });
+        row.scrollIntoView?.({ block: "nearest" });
       }}
       ref={collapsible ? scroller.ref : undefined}
       {...styles.options({ capped: !!collapsible })}
@@ -714,13 +714,16 @@ function useCanScroll() {
     updateRef.current = update;
     update();
 
-    const observer = new ResizeObserver(update);
-    observer.observe(node);
+    const observer =
+      typeof ResizeObserver === "undefined"
+        ? undefined
+        : new ResizeObserver(update);
+    observer?.observe(node);
     node.addEventListener("scroll", update, { passive: true });
     // Images change the content height without resizing the element.
     node.addEventListener("load", update, true);
     cleanupRef.current = () => {
-      observer.disconnect();
+      observer?.disconnect();
       node.removeEventListener("scroll", update);
       node.removeEventListener("load", update, true);
     };

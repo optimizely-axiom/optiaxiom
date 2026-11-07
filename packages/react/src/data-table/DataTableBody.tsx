@@ -96,7 +96,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
       calculateScrollTimeline();
 
       const node = scrollContainerRef.current;
-      if (!node) return;
+      if (!node || typeof ResizeObserver === "undefined") return;
 
       const observer = new ResizeObserver(calculateScrollTimeline);
       observer.observe(node);
