@@ -1,7 +1,7 @@
 import { getDocs } from "@optiaxiom/shared";
 import { describe, expect, it } from "vitest";
 
-import { parsePropDefinition } from "./parsers.mjs";
+import { parsePropDefinition, parseTypeSchema } from "./parsers.mjs";
 
 const docs = getDocs();
 
@@ -18,60 +18,102 @@ function getProp(displayName, propName) {
 }
 
 describe("parsePropDefinition", () => {
-  it("should extract enum values from simple union types", () => {
+  it("should describe literal unions as enum", () => {
     const result = parsePropDefinition(
       getProp("@optiaxiom/react/Button", "size"),
     );
 
-    expect(result.type).toBe("enum");
-    expect(result.values).toContain("sm");
-    expect(result.values).toContain("md");
-    expect(result.values).toContain("lg");
+    expect(result.type).toBeUndefined();
+    expect(result.enum).toContain("sm");
+    expect(result.enum).toContain("md");
+    expect(result.enum).toContain("lg");
   });
 
-  it("should skip enum extraction for expanded array types", () => {
+  it("should describe object arrays as array with their TypeScript type", () => {
     const result = parsePropDefinition(
       getProp("@optiaxiom/react/Select", "options"),
     );
 
-    expect(result.type).toContain("label: string");
-    expect(result.type).toContain("value: string");
-    expect(result.type).not.toBe("enum");
-    expect(result.values).toBeUndefined();
-    expect(result.required).toBe(true);
+    expect(result.type).toBe("array");
+    expect(result.tsType).toContain("label: string");
+    expect(result.enum).toBeUndefined();
   });
 
-  it("should skip enum extraction for Menu options array type", () => {
+  it("should describe Menu options as array", () => {
     const result = parsePropDefinition(
       getProp("@optiaxiom/react/Menu", "options"),
     );
 
-    expect(result.type).toContain("label:");
-    expect(result.type).toContain("execute?:");
-    expect(result.type).not.toBe("enum");
-    expect(result.values).toBeUndefined();
-    expect(result.required).toBe(true);
+    expect(result.type).toBe("array");
+    expect(result.tsType).toContain("execute?:");
+    expect(result.enum).toBeUndefined();
   });
 
-  it("should still extract enum values from mixed union types", () => {
+  it("should describe primitive arrays with items", () => {
+    expect(
+      parsePropDefinition(getProp("@optiaxiom/react/FileUpload", "accept")),
+    ).toMatchObject({ items: { type: "string" }, type: "array" });
+  });
+
+  it("should include boolean literals in mixed literal unions", () => {
     const result = parsePropDefinition(
       getProp("@optiaxiom/react/Menu", "loading"),
     );
 
-    expect(result.type).toBe("enum");
-    expect(result.values).toContain(false);
-    expect(result.values).toContain(true);
-    expect(result.values).toContain("spinner");
-    expect(result.values).toContain("skeleton");
+    expect(result.enum).toEqual(
+      expect.arrayContaining([false, true, "spinner", "skeleton"]),
+    );
   });
 
-  it("should use raw type for simple types without enum values", () => {
+  it("should list primitive unions as types, not enum values", () => {
+    expect(
+      parsePropDefinition(getProp("@optiaxiom/react/Calendar", "step")),
+    ).toMatchObject({ type: ["string", "number"] });
+  });
+
+  it("should describe nullable primitives with a null type", () => {
+    expect(
+      parsePropDefinition(getProp("@optiaxiom/react/Progress", "value")).type,
+    ).toEqual(expect.arrayContaining(["null", "number"]));
+  });
+
+  it("should keep the values of a literal union that also takes an array of them", () => {
+    const { anyOf } = parsePropDefinition(
+      getProp("@optiaxiom/react/Kbd", "modifiers"),
+    );
+
+    expect(anyOf?.[0]?.enum).toContain("shift");
+    expect(anyOf?.[1]).toMatchObject({
+      items: { enum: expect.arrayContaining(["shift"]) },
+      type: "array",
+    });
+  });
+
+  it("should keep suggested values of open string unions", () => {
+    const { anyOf } = parsePropDefinition(
+      getProp("@optiaxiom/react/Input", "type"),
+    );
+
+    expect(anyOf?.[0]?.enum).toContain("email");
+    expect(anyOf?.[1]).toEqual({ type: "string" });
+  });
+
+  it("should keep the TypeScript type of functions and nodes", () => {
+    expect(
+      parsePropDefinition(getProp("@optiaxiom/react/Alert", "onDismiss")),
+    ).toMatchObject({ tsType: "(() => void)" });
+    expect(
+      parsePropDefinition(getProp("@optiaxiom/react/Button", "addonAfter")),
+    ).toMatchObject({ tsType: "ReactNode" });
+  });
+
+  it("should use JSON types for primitives", () => {
     const result = parsePropDefinition(
       getProp("@optiaxiom/react/Button", "disabled"),
     );
 
     expect(result.type).toBe("boolean");
-    expect(result.values).toBeUndefined();
+    expect(result.enum).toBeUndefined();
   });
 
   it("should include default value when present", () => {
@@ -79,16 +121,52 @@ describe("parsePropDefinition", () => {
       getProp("@optiaxiom/react/Alert", "intent"),
     );
 
-    expect(result.type).toBe("enum");
+    expect(result.enum).toContain("neutral");
     expect(result.default).toBe("neutral");
   });
 
-  it("should handle ConditionalStyleWithResponsiveArray types", () => {
+  it("should list the values of responsive style props", () => {
     const result = parsePropDefinition(getProp("@optiaxiom/react/Box", "p"));
 
-    expect(result.type).toBe("enum");
-    expect(result.values).toBeDefined();
-    expect(result.values?.length).toBeGreaterThan(0);
+    expect(result.enum).toContain("16");
+    expect(result.tsType).toBeUndefined();
+  });
+
+  it("should keep falsy values of responsive style props", () => {
+    const prop = {
+      defaultValue: null,
+      description: "",
+      name: "z",
+      required: false,
+      type: {
+        name: 'ConditionalStyleWithResponsiveArray<0 | false | "auto">',
+        value: [{ value: "0" }, { value: "false" }, { value: '"auto"' }],
+      },
+    };
+
+    expect(parsePropDefinition(prop)).toMatchObject({
+      enum: [0, false, "auto"],
+      responsive: true,
+    });
+  });
+
+  it("should narrow a prop intersected with literals to those literals", () => {
+    const result = parsePropDefinition(
+      getProp("@optiaxiom/react/MenuContent", "maxH"),
+    );
+
+    expect(result.enum).toEqual(["xs", "sm", "md", "lg", "full"]);
+    expect(result.tsType).toBeUndefined();
+    expect(
+      parsePropDefinition(getProp("@optiaxiom/react/MenuContent", "minW")).enum,
+    ).toEqual(["0", "trigger"]);
+  });
+
+  it("should not split union members inside string literals", () => {
+    expect(parseTypeSchema({ name: '("a|b" | "c\\"|(")[]' })).toEqual({
+      items: { enum: ["a|b", 'c"|('] },
+      type: "array",
+    });
   });
 
   it("should mark responsive style props", () => {
