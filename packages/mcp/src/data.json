@@ -27964,7 +27964,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/data-table"
     },
     "DataTableCheckbox": {
-      "description": "DataTableCheckbox component from Axiom Design System",
+      "description": "Selects its row, or every row on the page when rendered in a header.\n\nWhen the checkbox is the only content of its cell, wrap it in\n`<Cover asChild>` so the whole cell toggles selection. Otherwise a click on\nthe cell's padding selects only this row and clears the rest.",
       "entryPoint": "@optiaxiom/react/data-table",
       "import": "import { DataTableCheckbox } from '@optiaxiom/react';",
       "name": "DataTableCheckbox",
