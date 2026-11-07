@@ -31,7 +31,7 @@ import {
 import { dialogkit, SurfaceProvider } from "@optiaxiom/react/unstable";
 import { useMemo, useRef, useState } from "react";
 import { action } from "storybook/actions";
-import { expect, screen, userEvent, waitFor } from "storybook/test";
+import { expect, screen, userEvent, waitFor, within } from "storybook/test";
 
 type Story = StoryObj<typeof Menu>;
 
@@ -711,6 +711,71 @@ export const NestedAndSearchable: Story = {
         await expect(
           screen.queryByRole("option", { name: "Favorite" }),
         ).not.toBeInTheDocument(),
+    );
+  },
+};
+
+export const NestedAsyncLoading: Story = {
+  play: async () => {
+    await userEvent.hover(
+      await screen.findByRole("option", { name: "Set language" }),
+    );
+    const input = within(
+      await screen.findByRole("dialog", { name: "Set language Submenu" }),
+    ).getByRole("combobox");
+    await userEvent.type(input, "ban");
+    await waitFor(
+      async () =>
+        await expect(
+          screen.queryByRole("option", { name: "Afrikaans" }),
+        ).not.toBeInTheDocument(),
+    );
+    await expect(input).toHaveValue("ban");
+  },
+  render: function NestedAsyncLoading(args) {
+    const [items, setItems] = useState(languages);
+    const [value, setValue] = useState("Bangla");
+
+    const queryRef = useRef("");
+    const timerRef = useRef(0);
+    const fetchData = (query: string) => {
+      if (query === queryRef.current) {
+        return;
+      }
+      queryRef.current = query;
+      clearTimeout(timerRef.current);
+      timerRef.current = window.setTimeout(() => {
+        setItems(
+          languages.filter((lang) =>
+            lang.toLowerCase().includes(query.toLowerCase()),
+          ),
+        );
+      }, 500);
+    };
+
+    return (
+      <Menu
+        {...args}
+        options={[
+          { label: "Detect language" },
+          {
+            label: "Set language",
+            subOptions: ({ inputValue = "" }) => {
+              fetchData(inputValue);
+              return items.map((language) => ({
+                execute: () => setValue(language),
+                label: language,
+                selected: () => value === language,
+                visible: true,
+              }));
+            },
+            subOptionsInputVisible: true,
+          },
+        ]}
+      >
+        <MenuTrigger>Translate</MenuTrigger>
+        <MenuContent />
+      </Menu>
     );
   },
 };
