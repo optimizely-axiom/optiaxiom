@@ -8,6 +8,7 @@ import { useSyncExternalStore } from "use-sync-external-store/shim";
 import { type BoxProps, extractBoxProps } from "../box";
 import { Group } from "../group";
 import { Portal } from "../portal";
+import { usePortalContext } from "../portal/internals";
 import { Toast } from "./Toast";
 import { ToastAction } from "./ToastAction";
 import * as styles from "./ToastProvider.css";
@@ -16,7 +17,10 @@ import { useOverflowAnchor } from "./useOverflowAnchor";
 
 export type ToastProviderProps = BoxProps<
   typeof RadixToast.Viewport,
-  ComponentPropsWithoutRef<typeof RadixToast.ToastProvider> &
+  Omit<
+    ComponentPropsWithoutRef<typeof RadixToast.ToastProvider>,
+    "announcerContainer"
+  > &
     Pick<ComponentPropsWithoutRef<typeof Portal>, "container"> &
     styles.ViewportVariants & {
       children?: never;
@@ -63,6 +67,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProviderProps>(
   ) => {
     const { boxProps, restProps } = extractBoxProps(props);
     const toasts = useSyncExternalStore(...toasterProp.store);
+    const portal = usePortalContext("@optiaxiom/react/ToastProvider");
 
     const innerRef = useRef<HTMLOListElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -79,6 +84,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProviderProps>(
 
     return (
       <RadixToast.ToastProvider
+        announcerContainer={(container ?? portal.container) || undefined}
         duration={duration}
         label={label}
         swipeDirection={swipeDirection ?? mapPositionToSwipeDirection[position]}

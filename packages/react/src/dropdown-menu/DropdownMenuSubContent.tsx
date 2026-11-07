@@ -14,6 +14,7 @@ export type DropdownMenuSubContentProps = ExcludeProps<
     typeof RadixMenu.SubContent,
     Pick<ComponentPropsWithoutRef<typeof ModalListbox>, "maxH" | "minW">
   >,
+  | "align"
   | "alignOffset"
   | "arrowPadding"
   | "avoidCollisions"

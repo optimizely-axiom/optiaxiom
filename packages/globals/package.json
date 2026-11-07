@@ -39,7 +39,7 @@
     "@fontsource-variable/roboto": "^5.2.10",
     "@fontsource-variable/roboto-condensed": "^5.2.8",
     "@fontsource-variable/roboto-mono": "^5.2.8",
-    "@radix-ui/react-context": "^1.1.2"
+    "@radix-ui/react-context": "1.1.4"
   },
   "devDependencies": {
     "@optiaxiom/shared": "workspace:^",

@@ -20,6 +20,7 @@ export type PopoverContentProps = ExcludeProps<
   | "avoidCollisions"
   | "collisionBoundary"
   | "collisionPadding"
+  | "deferPointerDownOutside"
   | "forceMount"
   | "hideWhenDetached"
   | "sticky"

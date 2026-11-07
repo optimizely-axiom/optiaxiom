@@ -19,7 +19,7 @@ import { useAlertDialogContext } from "./AlertDialogContext";
 
 export type AlertDialogContentProps = ExcludeProps<
   BoxProps<typeof RadixDialog.Content, styles.DialogVariants>,
-  "forceMount"
+  "deferPointerDownOutside" | "forceMount"
 >;
 
 /**

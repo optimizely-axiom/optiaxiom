@@ -72,7 +72,7 @@ const SidebarExample = () => (
             asChild
             icon={<IconBookOpen />}
           >
-            Tutorial
+            <a href="/">Tutorial</a>
           </NavItem>
         </NavList>
       </NavBody>
@@ -320,7 +320,7 @@ const SidebarWithSubnavExample = () => (
             asChild
             icon={<IconBookOpen />}
           >
-            Tutorial
+            <a href="/">Tutorial</a>
           </NavItem>
         </NavList>
       </NavBody>
