@@ -121,8 +121,6 @@ export interface PropDefinition extends TypeSchema {
   default?: boolean | number | string;
   /** If deprecated, migration info */
   deprecated?: DeprecationInfo;
-  /** Description of what this prop does */
-  description?: string;
   /** Accepts per-breakpoint values: `{ base, sm, md }` or `[base, sm, md]` */
   responsive?: boolean;
 }
@@ -146,10 +144,18 @@ export interface TestInfo {
 export interface TypeSchema {
   /** Matches any of these schemas */
   anyOf?: TypeSchema[];
+  /** What this prop or field does */
+  description?: string;
   /** Allowed literal values */
   enum?: Array<boolean | number | string>;
   /** Schema of each array element */
   items?: TypeSchema;
+  /** Fields of an object, one level deep */
+  properties?: Record<string, PropDefinition>;
+  /** Names of the fields an object must have */
+  required?: string[];
+  /** Name of an object type (e.g. `SelectOption`) */
+  title?: string;
   /** TypeScript type, where JSON Schema can't express it (functions, `ReactNode`, generics) */
   tsType?: string;
   /** JSON type, a `TypeSchemaType` (typed `string` because JSON imports widen literals) */

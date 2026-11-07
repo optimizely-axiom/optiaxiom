@@ -29,24 +29,69 @@ describe("parsePropDefinition", () => {
     expect(result.enum).toContain("lg");
   });
 
-  it("should describe object arrays as array with their TypeScript type", () => {
+  it("should describe Select options by their SelectOption fields", () => {
     const result = parsePropDefinition(
       getProp("@optiaxiom/react/Select", "options"),
     );
 
-    expect(result.type).toBe("array");
-    expect(result.tsType).toContain("label: string");
-    expect(result.enum).toBeUndefined();
+    expect(result).toMatchObject({
+      items: {
+        required: ["label", "value"],
+        title: "SelectOption",
+        type: "object",
+      },
+      type: "array",
+    });
+    expect(result.tsType).toBeUndefined();
+    expect(result.items?.properties?.value).toMatchObject({ type: "string" });
+    expect(result.items?.properties?.disabledReason).toEqual({
+      description: expect.stringContaining("disabled"),
+      tsType: "string | (() => string)",
+    });
   });
 
-  it("should describe Menu options as array", () => {
-    const result = parsePropDefinition(
+  it("should keep the full type of optional callback fields", () => {
+    const { items } = parsePropDefinition(
       getProp("@optiaxiom/react/Menu", "options"),
     );
 
-    expect(result.type).toBe("array");
-    expect(result.tsType).toContain("execute?:");
-    expect(result.enum).toBeUndefined();
+    expect(items?.properties?.execute?.tsType).toBe(
+      "((context: { dismiss: boolean; inputValue: string | undefined; }) => void)",
+    );
+  });
+
+  it("should describe inline object types by their fields", () => {
+    expect(
+      parsePropDefinition(getProp("@optiaxiom/react/Breadcrumb", "items")),
+    ).toMatchObject({
+      items: {
+        properties: {
+          href: { description: expect.any(String), type: "string" },
+        },
+        required: ["label"],
+        type: "object",
+      },
+      type: "array",
+    });
+  });
+
+  it("should describe Menu options by their CommandOption fields", () => {
+    const { items } = parsePropDefinition(
+      getProp("@optiaxiom/react/Menu", "options"),
+    );
+
+    expect(items?.title).toBe("CommandOption");
+    expect(items?.properties?.intent?.enum).toEqual(["danger", "neutral"]);
+    expect(items?.properties?.key?.description).toContain("unique");
+  });
+
+  it("should keep the TypeScript type of object arrays without fields", () => {
+    expect(
+      parsePropDefinition(getProp("@optiaxiom/react/Range", "marks")),
+    ).toMatchObject({
+      tsType: expect.stringContaining("label: string"),
+      type: "array",
+    });
   });
 
   it("should describe primitive arrays with items", () => {

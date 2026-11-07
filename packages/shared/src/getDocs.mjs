@@ -22,13 +22,29 @@ const __dirname = path.dirname(__filename);
  */
 
 /**
+ * @typedef {Object} Field
+ * @property {PropItem['defaultValue']} [defaultValue]
+ * @property {PropItem['description']} [description]
+ * @property {PropItem['required']} [required]
+ * @property {PropItem['type']} type
+ */
+
+/**
  * @typedef {Object} Prop
  * @property {PropItem['defaultValue']} [defaultValue]
  * @property {PropItem['description']} description
  * @property {PropItem['name']} name
  * @property {PropItem['required']} required
+ * @property {Properties} [properties] Fields of an object-typed prop, one level deep
  * @property {PropItem['type']} type
  * @property {true} [sprinkle]
+ */
+
+/**
+ * @typedef {Object} Properties
+ * @property {true} [array] The prop holds an array of this object type
+ * @property {Record<string, Field>} fields
+ * @property {string} [name] Name of the object type, when it has one
  */
 
 /**

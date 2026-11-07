@@ -13,11 +13,26 @@ export type ComponentDoc = {
   };
 };
 
+export type Field = Partial<
+  Pick<PropItem, "defaultValue" | "description" | "required">
+> &
+  Pick<PropItem, "type">;
+
 export type Prop = Pick<
   PropItem,
   "defaultValue" | "description" | "name" | "required" | "type"
 > & {
+  /** Fields of an object-typed prop, one level deep */
+  properties?: Properties;
   sprinkle?: true;
+};
+
+export type Properties = {
+  /** The prop holds an array of this object type */
+  array?: true;
+  fields: Record<string, Field>;
+  /** Name of the object type, when it has one */
+  name?: string;
 };
 
 export function getDocs(): ComponentDoc[];

@@ -65,7 +65,10 @@ describe("createServer", () => {
       (result.content as Array<{ text: string }>)[0].text,
     );
 
-    expect(props.options).toMatchObject({ type: "array" });
+    expect(props.options).toMatchObject({
+      items: { title: "SelectOption", type: "object" },
+      type: "array",
+    });
     expect(required).toEqual(["options"]);
 
     await client.close();
