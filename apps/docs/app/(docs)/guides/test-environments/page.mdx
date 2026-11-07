@@ -52,6 +52,22 @@ beforeEach(() => {
 });
 ```
 
+## jsdom
+
+### Stub ResizeObserver
+
+jsdom (Jest's default environment) doesn't implement `ResizeObserver`. Axiom components work without it, but `Tooltip` positions its arrow with a Radix hook that requires it.
+
+Stub it in your global test setup file. Don't mock Axiom components to work around it: query them by role and drive them with `user-event` instead.
+
+```ts
+globalThis.ResizeObserver ??= class {
+  disconnect() {}
+  observe() {}
+  unobserve() {}
+};
+```
+
 ## Jest
 
 ### Mock CSS imports
