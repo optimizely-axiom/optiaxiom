@@ -59,30 +59,13 @@ function buildDocTypes(docs) {
  * formatted by docgen, the same as props. Returns `(filePath, componentName,
  * propName) => properties | undefined`.
  *
- * @param {string} tsconfigPath
- * @param {string[]} filePaths
- * @param {docgen.ParserOptions} parserOptions
+ * @param {ts.Program} program
+ * @param {docgen.Parser} parser
  * @param {string} srcPath
  * @param {ReturnType<typeof buildDocTypes>} docTypes
  */
-function createPropertiesResolver(
-  tsconfigPath,
-  filePaths,
-  parserOptions,
-  srcPath,
-  docTypes,
-) {
-  const { config } = ts.readConfigFile(tsconfigPath, ts.sys.readFile);
-  const { options } = ts.parseJsonConfigFileContent(
-    config,
-    ts.sys,
-    path.dirname(tsconfigPath),
-    {},
-    tsconfigPath,
-  );
-  const program = ts.createProgram(filePaths, options);
+function createPropertiesResolver(program, parser, srcPath, docTypes) {
   const checker = program.getTypeChecker();
-  const parser = new docgen.Parser(program, parserOptions);
 
   // TypeScript file names always use `/`.
   const ownPrefix = `${srcPath.split(path.sep).join("/")}/`;
@@ -265,13 +248,31 @@ function expandTypeReferences(rawType, expansions) {
 }
 
 function generateDocs() {
-  const { entryPoints, exportedComponents, sources } =
-    getExportedComponentsFromSource();
-  const reactSrcPath = path.resolve(__dirname, "../../react/src");
-  const reactTsconfigPath = path.resolve(
-    __dirname,
-    "../../react/tsconfig.json",
+  const reactPath = path.resolve(__dirname, "../../react");
+  const reactSrcPath = path.join(reactPath, "src");
+  const reactTsconfigPath = path.join(reactPath, "tsconfig.json");
+  const { config } = ts.readConfigFile(reactTsconfigPath, ts.sys.readFile);
+  const { options } = ts.parseJsonConfigFileContent(
+    config,
+    ts.sys,
+    reactPath,
+    {},
+    reactTsconfigPath,
   );
+
+  const filePaths = fg.globSync(
+    path.join(reactSrcPath, "**/{*.css.ts,sprinkles.ts,*.tsx}"),
+    { ignore: ["**/*.spec.*"] },
+  );
+  const entryFiles = getEntryFiles(reactPath);
+  // One program serves docgen, the props resolver and the export scan:
+  // building it is most of this script's run time.
+  const program = ts.createProgram(
+    [...filePaths, ...entryFiles.values()],
+    options,
+  );
+  const { entryPoints, exportedComponents, sources } =
+    getExportedComponentsFromSource(program, entryFiles);
 
   /** @type {docgen.ParserOptions} */
   const parserOptions = {
@@ -280,22 +281,16 @@ function generateDocs() {
     shouldRemoveUndefinedFromOptional: true,
     skipChildrenPropWithoutDoc: false,
   };
-  const parser = docgen.withCustomConfig(reactTsconfigPath, parserOptions);
-
-  const filePaths = fg.globSync(
-    path.join(reactSrcPath, "**/{*.css.ts,sprinkles.ts,*.tsx}"),
-    { ignore: ["**/*.spec.*"] },
-  );
-  const docs = parser.parse(filePaths);
+  const parser = docgen.withCompilerOptions(options, parserOptions);
+  const docs = parser.parseWithProgramProvider(filePaths, () => program);
   const sprinkles = docs.find((doc) => doc.displayName === "sprinkles");
   if (!sprinkles) {
     throw new Error("Could not find sprinkles docgen");
   }
   const docTypes = buildDocTypes(docs);
   const getProperties = createPropertiesResolver(
-    reactTsconfigPath,
-    filePaths,
-    parserOptions,
+    program,
+    new docgen.Parser(program, parserOptions),
     reactSrcPath,
     docTypes,
   );
@@ -368,24 +363,37 @@ function generateDocs() {
     );
 }
 
-function getExportedComponentsFromSource() {
-  const reactPath = path.resolve(__dirname, "../../react");
+/**
+ * The source file of each package export, keyed by export path (`"."`,
+ * `"./unstable"`): `src/<entry>.ts`, else `src/<entry>/index.ts`.
+ *
+ * @param {string} reactPath
+ * @returns {Map<string, string>}
+ */
+function getEntryFiles(reactPath) {
   const pkg = JSON.parse(
     fs.readFileSync(path.join(reactPath, "package.json"), "utf-8"),
   );
+  /** @type {Map<string, string>} */
+  const entryFiles = new Map();
+  for (const exportKey of Object.keys(pkg.exports)) {
+    const entry = exportKey === "." ? "index" : exportKey;
+    const file = [
+      path.join(reactPath, "src", `${entry}.ts`),
+      path.join(reactPath, "src", entry, "index.ts"),
+    ].find((candidate) => fs.existsSync(candidate));
+    if (file) {
+      entryFiles.set(exportKey, file);
+    }
+  }
+  return entryFiles;
+}
 
-  const program = ts.createProgram(
-    fg.globSync(path.join(reactPath, "src/**/*.{ts,tsx}"), {
-      ignore: ["**/*.spec.*"],
-    }),
-    {
-      allowJs: true,
-      esModuleInterop: true,
-      moduleResolution: ts.ModuleResolutionKind.Node10,
-      target: ts.ScriptTarget.Latest,
-    },
-  );
-
+/**
+ * @param {ts.Program} program
+ * @param {Map<string, string>} entryFiles
+ */
+function getExportedComponentsFromSource(program, entryFiles) {
   const typeChecker = program.getTypeChecker();
   /** @type {Map<string, string>} */
   const entryPoints = new Map();
@@ -400,11 +408,8 @@ function getExportedComponentsFromSource() {
         ? 1
         : 2;
 
-  for (const exportKey of Object.keys(pkg.exports)) {
-    const entry = exportKey === "." ? "index" : exportKey;
-    const sourceFile =
-      program.getSourceFile(path.join(reactPath, "src", `${entry}.ts`)) ??
-      program.getSourceFile(path.join(reactPath, "src", entry, "index.ts"));
+  for (const [exportKey, file] of entryFiles) {
+    const sourceFile = program.getSourceFile(file);
     if (!sourceFile) {
       continue;
     }
