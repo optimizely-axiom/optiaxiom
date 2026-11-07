@@ -41,7 +41,13 @@ export type SelectOption = {
    */
   label: string;
   /**
-   * Return a unique key for each item.
+   * The value submitted with the form and passed to `onValueChange`. Must be
+   * unique.
+   *
+   * Use `""` for a "none" option: selecting it clears the value, so the
+   * trigger shows its `placeholder` and `required` treats the field as empty.
+   * Give the option a non-empty value (e.g. `"all"`) when its label should
+   * show in the trigger, such as an "All" filter.
    */
   value: string;
 };

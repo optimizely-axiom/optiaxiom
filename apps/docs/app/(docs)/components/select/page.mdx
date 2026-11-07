@@ -49,6 +49,12 @@ The trigger can be provided a `placeholder` to display in case no values have be
 
 <Demo component="select/usage" />
 
+### Empty option
+
+An option with `value: ""` is the "none" choice. Selecting it clears the value, so the trigger shows its `placeholder` and a `required` select treats the field as empty, the same as a native `<select>`. The demo above uses this for "No priority".
+
+Give the option a non-empty value (e.g. `"all"`) when its label should show in the trigger, such as an "All" filter.
+
 ### Content
 
 Select options use the `label` property as the display text. We can add the `addon` and `description` properties to show additional content inside the items.
