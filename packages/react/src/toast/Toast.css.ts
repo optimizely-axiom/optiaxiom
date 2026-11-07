@@ -58,7 +58,6 @@ export const root = recipe({
 
       animationDuration: theme.duration.lg,
       animationTimingFunction: "ease",
-      pointerEvents: "auto",
       transitionDuration: theme.duration.lg,
       transitionProperty: "opacity",
       transitionTimingFunction: "ease",
