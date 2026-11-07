@@ -43,7 +43,11 @@ function buildDocTypes(docs) {
       expansions[match[1]] = `{ ${props
         .map((prop) => {
           const type = prop.type.raw || prop.type.name || "unknown";
-          return `${prop.name}${prop.required ? "" : "?"}: ${type}`;
+          // Quote names that aren't identifiers, like `aria-label`.
+          const name = /^[A-Za-z_$][\w$]*$/.test(prop.name)
+            ? prop.name
+            : JSON.stringify(prop.name);
+          return `${name}${prop.required ? "" : "?"}: ${type}`;
         })
         .join("; ")} }`;
       fields.set(match[1], new Set(props.map((prop) => prop.name)));

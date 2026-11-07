@@ -93160,7 +93160,7 @@
           "enum": ["2", "0", "1"]
         },
         "children": {
-          "tsType": "ReactNode | ((item: { addon?: ReactNode; aria-label?: string; description?: ReactNode; detail?: ReactNode; disabledReason?: string | (() => string); group?: { hidden?: boolean; label: string; priority?: number; separator?: boolean }; label: string; value: string }) => ReactNode)"
+          "tsType": "ReactNode | ((item: { addon?: ReactNode; \"aria-label\"?: string; description?: ReactNode; detail?: ReactNode; disabledReason?: string | (() => string); group?: { hidden?: boolean; label: string; priority?: number; separator?: boolean }; label: string; value: string }) => ReactNode)"
         },
         "className": { "type": "string" },
         "color": {

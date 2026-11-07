@@ -54,6 +54,12 @@ describe("docs.json type expansions", () => {
     expect(raw).not.toContain("hiddenInSearchContext");
     expect(raw).not.toContain("surface");
   });
+
+  it("should quote expanded field names that aren't identifiers", () => {
+    const raw = getOptionsPropRaw("@optiaxiom/react/Select", "options");
+
+    expect(raw).toContain('"aria-label"?: string');
+  });
 });
 
 /**
