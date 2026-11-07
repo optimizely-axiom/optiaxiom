@@ -92,6 +92,15 @@ export const ButtonRoot = forwardRef<HTMLButtonElement, ButtonRootProps>(
     const Comp = asChild ? Slot : "button";
     const { boxProps, restProps } = extractBoxProps(props);
 
+    if (!(appearance in appearances)) {
+      throw new Error(
+        `\`@optiaxiom/react/Button\` has no appearance "${appearance}". Possible values are ${Object.keys(
+          appearances,
+        )
+          .map((value) => `"${value}"`)
+          .join(", ")}.`,
+      );
+    }
     const { intent, variant: resolvedVariant } = appearances[appearance];
     const variant =
       TransitionGlobalConfig.skipAnimations && resolvedVariant in staticVariant
