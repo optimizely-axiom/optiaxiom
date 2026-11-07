@@ -59,14 +59,15 @@ Use the \`import\` statement. \`entryPoint\` names the component's own entry poi
 
 Use the optional "props" parameter to search for specific props by name or description. Searches both component-specific props and style props — you don't need to know shorthand names, just describe what you want (e.g., "padding" finds the "p" prop).
 
-Each prop definition uses JSON Schema keywords: \`type\`, \`enum\` for literal values, \`items\` for array elements, \`default\`, \`description\`. \`tsType\` holds the TypeScript type where JSON Schema can't express it (functions, ReactNode, generics). \`required\` lists every prop that must be passed, whether or not the props query matched it.
+Each prop definition uses JSON Schema keywords: \`type\`, \`enum\` for literal values, \`items\` for array elements, \`properties\` and \`required\` for the fields of object types like options, \`default\`, \`description\`. \`tsType\` holds the TypeScript type where JSON Schema can't express it (functions, ReactNode, generics). \`required\` lists every prop that must be passed, whether or not the props query matched it.
 
 Props marked \`responsive: true\` also accept per-breakpoint values: an object like \`{ base: "16", sm: "32" }\` or an array in \`[base, sm, md]\` order. Breakpoint widths come from get_tokens({ categories: ['breakpoints'] }).
 
 Examples:
   get_component({ name: "Dialog" }) → description, import, sub-components, prop names, required props
   get_component({ name: "Button", props: "appearance size" }) → + matching prop definitions
-  get_component({ name: "Box", props: "padding background" }) → + p and bg prop definitions`,
+  get_component({ name: "Box", props: "padding background" }) → + p and bg prop definitions
+  get_component({ name: "Select", props: "options" }) → + options, with each SelectOption field`,
       inputSchema: {
         name: z
           .string()

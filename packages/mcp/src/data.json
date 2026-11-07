@@ -8707,7 +8707,13 @@
         "children": { "tsType": "ReactNode" },
         "dialog": {
           "description": "Props for the `DialogKitProvider` component\n\n{@link https://optimizely-axiom.github.io/optiaxiom/components/dialog/ Documentation}",
-          "tsType": "Omit<DialogKitProviderProps, \"children\">"
+          "properties": {
+            "kit": {
+              "description": "An instance of dialogkit returned from the `createDialogKit` method.",
+              "tsType": "DialogKit"
+            }
+          },
+          "type": "object"
         },
         "locale": {
           "description": "BCP-47 language tag (e.g. `\"fr-FR\"`) used to localize date/time components\nsuch as `Calendar`, `DateRangePicker`, `Clock`, and `Time`. Defaults to the\nbrowser locale.",
@@ -11421,8 +11427,29 @@
         },
         "items": {
           "description": "The items we want to render.",
-          "type": "array",
-          "tsType": "{ addonAfter?: ReactNode; execute?: (() => void) | undefined; href?: string | undefined; label: string; }[]"
+          "items": {
+            "properties": {
+              "addonAfter": {
+                "description": "Display content inside the item after the label.",
+                "tsType": "ReactNode"
+              },
+              "execute": {
+                "description": "Handler that is called when an item is selected either via keyboard or mouse.",
+                "tsType": "(() => void)"
+              },
+              "href": {
+                "description": "Render a link with the given value as the `href` attribute.",
+                "type": "string"
+              },
+              "label": {
+                "description": "The content of the item.",
+                "type": "string"
+              }
+            },
+            "required": ["label"],
+            "type": "object"
+          },
+          "type": "array"
         },
         "justifyContent": {
           "description": "Set the element's `justify-content` CSS property",
@@ -27065,8 +27092,21 @@
         "pageSizeOptions": {
           "description": "Specify a custom set of page size options.",
           "default": "[\"10\", \"20\", \"30\", \"50\", \"100\"].map((size) => ({\n  label: size,\n  value: size,\n}))",
-          "type": "array",
-          "tsType": "{ label: string; value: string; }[]"
+          "items": {
+            "properties": {
+              "label": {
+                "description": "String representation of page size option.",
+                "type": "string"
+              },
+              "value": {
+                "description": "The unique key/value for each page size option.",
+                "type": "string"
+              }
+            },
+            "required": ["label", "value"],
+            "type": "object"
+          },
+          "type": "array"
         },
         "pb": {
           "description": "Set the element's bottom padding. Only accepts predefined spacing tokens.",
@@ -54109,8 +54149,21 @@
         },
         "items": {
           "description": "The list of file items to be previewed.",
-          "type": "array",
-          "tsType": "{ file: File; status: \"error\" | \"complete\" | \"uploading\"; }[]"
+          "items": {
+            "properties": {
+              "file": {
+                "description": "The file object to be previewed.",
+                "tsType": "File"
+              },
+              "status": {
+                "description": "The current upload status of the file.",
+                "enum": ["error", "complete", "uploading"]
+              }
+            },
+            "required": ["file", "status"],
+            "type": "object"
+          },
+          "type": "array"
         },
         "justifyContent": {
           "description": "Set the element's `justify-content` CSS property",
@@ -67656,8 +67709,90 @@
         },
         "options": {
           "description": "The items we want to render.",
-          "type": "array",
-          "tsType": "{ visible?: boolean | ((context: { inputValue: string; }) => boolean | undefined) | undefined; label: string | ((context: { inputValue: string | undefined; }) => string); switch?: boolean; key?: string; group?: { hidden?: boolean; label: string; priority?: number; separator?: boolean }; execute?: ((context: { dismiss: boolean; inputValue: string; }) => void) | undefined; intent?: \"danger\" | \"neutral\"; addon?: ReactNode | ((context: { inputValue: string; }) => ReactNode); selected?: boolean | (() => boolean); description?: ReactNode | ((context: { inputValue: string; }) => ReactNode); external?: boolean; href?: string; detail?: ReactNode | ((context: { inputValue: string; }) => ReactNode); disabledReason?: string | (() => string); keywords?: string; multi?: boolean; skipFilterScoring?: boolean; subOptions?: CommandOption[] | ((context: { inputValue: string; }) => CommandOption[]) | undefined; subOptionsInputVisible?: boolean }[] | readonly { visible?: boolean | ((context: { inputValue: string; }) => boolean | undefined) | undefined; label: string | ((context: { inputValue: string | undefined; }) => string); switch?: boolean; key?: string; group?: { hidden?: boolean; label: string; priority?: number; separator?: boolean }; execute?: ((context: { dismiss: boolean; inputValue: string; }) => void) | undefined; intent?: \"danger\" | \"neutral\"; addon?: ReactNode | ((context: { inputValue: string; }) => ReactNode); selected?: boolean | (() => boolean); description?: ReactNode | ((context: { inputValue: string; }) => ReactNode); external?: boolean; href?: string; detail?: ReactNode | ((context: { inputValue: string; }) => ReactNode); disabledReason?: string | (() => string); keywords?: string; multi?: boolean; skipFilterScoring?: boolean; subOptions?: CommandOption[] | ((context: { inputValue: string; }) => CommandOption[]) | undefined; subOptionsInputVisible?: boolean }[]"
+          "items": {
+            "properties": {
+              "addon": {
+                "description": "Images, icons, or avatars to be displayed before the item label.",
+                "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
+              },
+              "description": {
+                "description": "Add secondary text after the label.",
+                "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
+              },
+              "detail": {
+                "description": "Secondary text displayed next to the label.",
+                "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
+              },
+              "disabledReason": {
+                "description": "Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.",
+                "tsType": "string | (() => string)"
+              },
+              "execute": {
+                "description": "Handler that is called when an item is selected either via keyboard or mouse.",
+                "tsType": "((context: { dismiss: boolean; inputValue: string | undefined; }) => void)"
+              },
+              "external": {
+                "description": "Shows an external link icon and sets the correct rel/target attributes if `href` is also passed.",
+                "type": "boolean"
+              },
+              "group": {
+                "description": "Group item belongs to.",
+                "tsType": "{ hidden?: boolean; label: string; priority?: number; separator?: boolean }"
+              },
+              "href": {
+                "description": "Render a link with the given value as the `href` attribute.",
+                "type": "string"
+              },
+              "intent": {
+                "description": "Control the appearance by selecting between the different item types.",
+                "enum": ["danger", "neutral"]
+              },
+              "key": {
+                "description": "A unique key for the item, used to track its row. Defaults to the label, so pass a unique `key` whenever labels can repeat (e.g. options built from data).",
+                "type": "string"
+              },
+              "keywords": {
+                "description": "Additional text to use for filtering items based on input value.",
+                "type": "string"
+              },
+              "label": {
+                "description": "Return a string representation of item.",
+                "tsType": "string | ((context: { inputValue: string | undefined; }) => string)"
+              },
+              "multi": {
+                "description": "Whether item is multi-selectable.",
+                "type": "boolean"
+              },
+              "selected": {
+                "description": "Return true if item needs to be marked as selected.",
+                "tsType": "boolean | (() => boolean)"
+              },
+              "skipFilterScoring": {
+                "description": "Whether to skip scoring when filtering and sorting by the score.",
+                "type": "boolean"
+              },
+              "subOptions": {
+                "description": "Nested menu items (same shape as the top-level options) displayed\nas a sub-menu when this item is selected.",
+                "tsType": "CommandOption[] | ((context: { inputValue: string | undefined; }) => CommandOption[])"
+              },
+              "subOptionsInputVisible": {
+                "description": "Allow filtering through sub-options independent of the parent menu.",
+                "type": "boolean"
+              },
+              "switch": {
+                "description": "Whether to show a switch toggle instead of a check mark.",
+                "type": "boolean"
+              },
+              "visible": {
+                "description": "Override the default filtering logic and fully control when an item is\nvisible based on the current inputValue.",
+                "tsType": "boolean | ((context: { inputValue: string | undefined; }) => boolean | undefined)"
+              }
+            },
+            "required": ["label"],
+            "title": "CommandOption",
+            "type": "object"
+          },
+          "type": "array"
         },
         "placeholder": {
           "description": "The placeholder for the search input.",
@@ -81734,8 +81869,90 @@
         },
         "options": {
           "description": "The candidate options shown in the popup. Defaults to `value` when omitted.",
-          "type": "array",
-          "tsType": "{ visible?: boolean | ((context: { inputValue: string; }) => boolean | undefined) | undefined; label: string | ((context: { inputValue: string | undefined; }) => string); switch?: boolean; key?: string; group?: { hidden?: boolean; label: string; priority?: number; separator?: boolean }; execute?: ((context: { dismiss: boolean; inputValue: string; }) => void) | undefined; intent?: \"danger\" | \"neutral\"; addon?: ReactNode | ((context: { inputValue: string; }) => ReactNode); selected?: boolean | (() => boolean); description?: ReactNode | ((context: { inputValue: string; }) => ReactNode); external?: boolean; href?: string; detail?: ReactNode | ((context: { inputValue: string; }) => ReactNode); disabledReason?: string | (() => string); keywords?: string; multi?: boolean; skipFilterScoring?: boolean; subOptions?: CommandOption[] | ((context: { inputValue: string; }) => CommandOption[]) | undefined; subOptionsInputVisible?: boolean }[]"
+          "items": {
+            "properties": {
+              "addon": {
+                "description": "Images, icons, or avatars to be displayed before the item label.",
+                "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
+              },
+              "description": {
+                "description": "Add secondary text after the label.",
+                "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
+              },
+              "detail": {
+                "description": "Secondary text displayed next to the label.",
+                "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
+              },
+              "disabledReason": {
+                "description": "Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.",
+                "tsType": "string | (() => string)"
+              },
+              "execute": {
+                "description": "Handler that is called when an item is selected either via keyboard or mouse.",
+                "tsType": "((context: { dismiss: boolean; inputValue: string | undefined; }) => void)"
+              },
+              "external": {
+                "description": "Shows an external link icon and sets the correct rel/target attributes if `href` is also passed.",
+                "type": "boolean"
+              },
+              "group": {
+                "description": "Group item belongs to.",
+                "tsType": "{ hidden?: boolean; label: string; priority?: number; separator?: boolean }"
+              },
+              "href": {
+                "description": "Render a link with the given value as the `href` attribute.",
+                "type": "string"
+              },
+              "intent": {
+                "description": "Control the appearance by selecting between the different item types.",
+                "enum": ["danger", "neutral"]
+              },
+              "key": {
+                "description": "A unique key for the item, used to track its row. Defaults to the label, so pass a unique `key` whenever labels can repeat (e.g. options built from data).",
+                "type": "string"
+              },
+              "keywords": {
+                "description": "Additional text to use for filtering items based on input value.",
+                "type": "string"
+              },
+              "label": {
+                "description": "Return a string representation of item.",
+                "tsType": "string | ((context: { inputValue: string | undefined; }) => string)"
+              },
+              "multi": {
+                "description": "Whether item is multi-selectable.",
+                "type": "boolean"
+              },
+              "selected": {
+                "description": "Return true if item needs to be marked as selected.",
+                "tsType": "boolean | (() => boolean)"
+              },
+              "skipFilterScoring": {
+                "description": "Whether to skip scoring when filtering and sorting by the score.",
+                "type": "boolean"
+              },
+              "subOptions": {
+                "description": "Nested menu items (same shape as the top-level options) displayed\nas a sub-menu when this item is selected.",
+                "tsType": "CommandOption[] | ((context: { inputValue: string | undefined; }) => CommandOption[])"
+              },
+              "subOptionsInputVisible": {
+                "description": "Allow filtering through sub-options independent of the parent menu.",
+                "type": "boolean"
+              },
+              "switch": {
+                "description": "Whether to show a switch toggle instead of a check mark.",
+                "type": "boolean"
+              },
+              "visible": {
+                "description": "Override the default filtering logic and fully control when an item is\nvisible based on the current inputValue.",
+                "tsType": "boolean | ((context: { inputValue: string | undefined; }) => boolean | undefined)"
+              }
+            },
+            "required": ["label"],
+            "title": "CommandOption",
+            "type": "object"
+          },
+          "type": "array"
         },
         "overflow": {
           "description": "Set the element's `overflow` CSS property",
@@ -81970,8 +82187,90 @@
         },
         "value": {
           "description": "The currently selected options rendered as pills in the trigger.",
-          "type": "array",
-          "tsType": "CommandOption[]"
+          "items": {
+            "properties": {
+              "addon": {
+                "description": "Images, icons, or avatars to be displayed before the item label.",
+                "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
+              },
+              "description": {
+                "description": "Add secondary text after the label.",
+                "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
+              },
+              "detail": {
+                "description": "Secondary text displayed next to the label.",
+                "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
+              },
+              "disabledReason": {
+                "description": "Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.",
+                "tsType": "string | (() => string)"
+              },
+              "execute": {
+                "description": "Handler that is called when an item is selected either via keyboard or mouse.",
+                "tsType": "((context: { dismiss: boolean; inputValue: string | undefined; }) => void)"
+              },
+              "external": {
+                "description": "Shows an external link icon and sets the correct rel/target attributes if `href` is also passed.",
+                "type": "boolean"
+              },
+              "group": {
+                "description": "Group item belongs to.",
+                "tsType": "{ hidden?: boolean; label: string; priority?: number; separator?: boolean }"
+              },
+              "href": {
+                "description": "Render a link with the given value as the `href` attribute.",
+                "type": "string"
+              },
+              "intent": {
+                "description": "Control the appearance by selecting between the different item types.",
+                "enum": ["danger", "neutral"]
+              },
+              "key": {
+                "description": "A unique key for the item, used to track its row. Defaults to the label, so pass a unique `key` whenever labels can repeat (e.g. options built from data).",
+                "type": "string"
+              },
+              "keywords": {
+                "description": "Additional text to use for filtering items based on input value.",
+                "type": "string"
+              },
+              "label": {
+                "description": "Return a string representation of item.",
+                "tsType": "string | ((context: { inputValue: string | undefined; }) => string)"
+              },
+              "multi": {
+                "description": "Whether item is multi-selectable.",
+                "type": "boolean"
+              },
+              "selected": {
+                "description": "Return true if item needs to be marked as selected.",
+                "tsType": "boolean | (() => boolean)"
+              },
+              "skipFilterScoring": {
+                "description": "Whether to skip scoring when filtering and sorting by the score.",
+                "type": "boolean"
+              },
+              "subOptions": {
+                "description": "Nested menu items (same shape as the top-level options) displayed\nas a sub-menu when this item is selected.",
+                "tsType": "CommandOption[] | ((context: { inputValue: string | undefined; }) => CommandOption[])"
+              },
+              "subOptionsInputVisible": {
+                "description": "Allow filtering through sub-options independent of the parent menu.",
+                "type": "boolean"
+              },
+              "switch": {
+                "description": "Whether to show a switch toggle instead of a check mark.",
+                "type": "boolean"
+              },
+              "visible": {
+                "description": "Override the default filtering logic and fully control when an item is\nvisible based on the current inputValue.",
+                "tsType": "boolean | ((context: { inputValue: string | undefined; }) => boolean | undefined)"
+              }
+            },
+            "required": ["label"],
+            "title": "CommandOption",
+            "type": "object"
+          },
+          "type": "array"
         },
         "w": {
           "description": "Set the element's width. Only accepts predefined size tokens.",
@@ -92571,8 +92870,46 @@
         },
         "options": {
           "description": "The select items/options we want to render.",
-          "type": "array",
-          "tsType": "readonly { addon?: ReactNode; aria-label?: string; description?: ReactNode; detail?: ReactNode; disabledReason?: string | (() => string); group?: { hidden?: boolean; label: string; priority?: number; separator?: boolean }; label: string; value: string }[] | { addon?: ReactNode; aria-label?: string; description?: ReactNode; detail?: ReactNode; disabledReason?: string | (() => string); group?: { hidden?: boolean; label: string; priority?: number; separator?: boolean }; label: string; value: string }[]"
+          "items": {
+            "properties": {
+              "addon": {
+                "description": "Addons such as avatars or icons to show beside each item label.",
+                "tsType": "ReactNode"
+              },
+              "aria-label": {
+                "description": "Override the ARIA label of the current element.",
+                "type": "string"
+              },
+              "description": {
+                "description": "Add secondary text after the label.",
+                "tsType": "ReactNode"
+              },
+              "detail": {
+                "description": "Secondary text displayed next to the label.",
+                "tsType": "ReactNode"
+              },
+              "disabledReason": {
+                "description": "Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.",
+                "tsType": "string | (() => string)"
+              },
+              "group": {
+                "description": "Provide an optional group that item belongs to.",
+                "tsType": "{ hidden?: boolean; label: string; priority?: number; separator?: boolean }"
+              },
+              "label": {
+                "description": "String representation of items.",
+                "type": "string"
+              },
+              "value": {
+                "description": "The value submitted with the form and passed to `onValueChange`. Must be\nunique.\n\nUse `\"\"` for a \"none\" option: selecting it clears the value, so the\ntrigger shows its `placeholder` and `required` treats the field as empty.\nGive the option a non-empty value (e.g. `\"all\"`) when its label should\nshow in the trigger, such as an \"All\" filter.",
+                "type": "string"
+              }
+            },
+            "required": ["label", "value"],
+            "title": "SelectOption",
+            "type": "object"
+          },
+          "type": "array"
         },
         "required": {
           "description": "Whether the select value is required.",
@@ -101520,8 +101857,90 @@
         },
         "options": {
           "description": "The items we want to render.",
-          "type": "array",
-          "tsType": "{ visible?: boolean | ((context: { inputValue: string; }) => boolean | undefined) | undefined; label: string | ((context: { inputValue: string | undefined; }) => string); switch?: boolean; key?: string; group?: { hidden?: boolean; label: string; priority?: number; separator?: boolean }; execute?: ((context: { dismiss: boolean; inputValue: string; }) => void) | undefined; intent?: \"danger\" | \"neutral\"; addon?: ReactNode | ((context: { inputValue: string; }) => ReactNode); selected?: boolean | (() => boolean); description?: ReactNode | ((context: { inputValue: string; }) => ReactNode); external?: boolean; href?: string; detail?: ReactNode | ((context: { inputValue: string; }) => ReactNode); disabledReason?: string | (() => string); keywords?: string; multi?: boolean; skipFilterScoring?: boolean; subOptions?: CommandOption[] | ((context: { inputValue: string; }) => CommandOption[]) | undefined; subOptionsInputVisible?: boolean }[] | readonly { visible?: boolean | ((context: { inputValue: string; }) => boolean | undefined) | undefined; label: string | ((context: { inputValue: string | undefined; }) => string); switch?: boolean; key?: string; group?: { hidden?: boolean; label: string; priority?: number; separator?: boolean }; execute?: ((context: { dismiss: boolean; inputValue: string; }) => void) | undefined; intent?: \"danger\" | \"neutral\"; addon?: ReactNode | ((context: { inputValue: string; }) => ReactNode); selected?: boolean | (() => boolean); description?: ReactNode | ((context: { inputValue: string; }) => ReactNode); external?: boolean; href?: string; detail?: ReactNode | ((context: { inputValue: string; }) => ReactNode); disabledReason?: string | (() => string); keywords?: string; multi?: boolean; skipFilterScoring?: boolean; subOptions?: CommandOption[] | ((context: { inputValue: string; }) => CommandOption[]) | undefined; subOptionsInputVisible?: boolean }[]"
+          "items": {
+            "properties": {
+              "addon": {
+                "description": "Images, icons, or avatars to be displayed before the item label.",
+                "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
+              },
+              "description": {
+                "description": "Add secondary text after the label.",
+                "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
+              },
+              "detail": {
+                "description": "Secondary text displayed next to the label.",
+                "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
+              },
+              "disabledReason": {
+                "description": "Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.",
+                "tsType": "string | (() => string)"
+              },
+              "execute": {
+                "description": "Handler that is called when an item is selected either via keyboard or mouse.",
+                "tsType": "((context: { dismiss: boolean; inputValue: string | undefined; }) => void)"
+              },
+              "external": {
+                "description": "Shows an external link icon and sets the correct rel/target attributes if `href` is also passed.",
+                "type": "boolean"
+              },
+              "group": {
+                "description": "Group item belongs to.",
+                "tsType": "{ hidden?: boolean; label: string; priority?: number; separator?: boolean }"
+              },
+              "href": {
+                "description": "Render a link with the given value as the `href` attribute.",
+                "type": "string"
+              },
+              "intent": {
+                "description": "Control the appearance by selecting between the different item types.",
+                "enum": ["danger", "neutral"]
+              },
+              "key": {
+                "description": "A unique key for the item, used to track its row. Defaults to the label, so pass a unique `key` whenever labels can repeat (e.g. options built from data).",
+                "type": "string"
+              },
+              "keywords": {
+                "description": "Additional text to use for filtering items based on input value.",
+                "type": "string"
+              },
+              "label": {
+                "description": "Return a string representation of item.",
+                "tsType": "string | ((context: { inputValue: string | undefined; }) => string)"
+              },
+              "multi": {
+                "description": "Whether item is multi-selectable.",
+                "type": "boolean"
+              },
+              "selected": {
+                "description": "Return true if item needs to be marked as selected.",
+                "tsType": "boolean | (() => boolean)"
+              },
+              "skipFilterScoring": {
+                "description": "Whether to skip scoring when filtering and sorting by the score.",
+                "type": "boolean"
+              },
+              "subOptions": {
+                "description": "Nested menu items (same shape as the top-level options) displayed\nas a sub-menu when this item is selected.",
+                "tsType": "CommandOption[] | ((context: { inputValue: string | undefined; }) => CommandOption[])"
+              },
+              "subOptionsInputVisible": {
+                "description": "Allow filtering through sub-options independent of the parent menu.",
+                "type": "boolean"
+              },
+              "switch": {
+                "description": "Whether to show a switch toggle instead of a check mark.",
+                "type": "boolean"
+              },
+              "visible": {
+                "description": "Override the default filtering logic and fully control when an item is\nvisible based on the current inputValue.",
+                "tsType": "boolean | ((context: { inputValue: string | undefined; }) => boolean | undefined)"
+              }
+            },
+            "required": ["label"],
+            "title": "CommandOption",
+            "type": "object"
+          },
+          "type": "array"
         },
         "placeholder": {
           "description": "The placeholder for the search input.",

@@ -2,4 +2,4 @@
 "@optiaxiom/mcp": minor
 ---
 
-described props with JSON Schema keywords
+described props with JSON Schema, including option fields
