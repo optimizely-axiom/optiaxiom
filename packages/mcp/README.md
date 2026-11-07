@@ -112,7 +112,7 @@ Get information about an Axiom component. Returns the component's description, i
 - `name` (string, required): Component name (e.g., "Badge", "Button", "Alert")
 - `props` (string, optional): Search query to find specific props by name or description (e.g., "appearance size", "loading", "padding background"). Omit to get just the component description, import, and sub-components without any props.
 
-**Returns:** Component metadata with description, import statement, sub-components, examples, and optionally matching prop definitions. Props that accept per-breakpoint values (`{ base, sm, md }` or `[base, sm, md]`) are marked `responsive: true`.
+**Returns:** Component metadata with description, import statement, sub-components, examples, prop names or, with `props`, the matching prop definitions, and a `required` list of the props that must be passed (only those among the matching definitions when `props` is given; omitted when there are none). Prop definitions use JSON Schema keywords (`type`, `enum`, `anyOf`, `items`, `default`, `description`); `tsType` holds the TypeScript type where JSON Schema can't express it (functions, `ReactNode`, generics). Props that accept per-breakpoint values (`{ base, sm, md }` or `[base, sm, md]`) are marked `responsive: true`.
 
 ### `search_components`
 
