@@ -18,6 +18,12 @@ export type DataTableCheckboxProps = ComponentPropsWithoutRef<typeof Checkbox> &
   Pick<ComponentPropsWithoutRef<typeof DataTableAction>, "visible">;
 
 /**
+ * Selects its row, or every row on the page when rendered in a header.
+ *
+ * When the checkbox is the only content of its cell, wrap it in
+ * `<Cover asChild>` so the whole cell toggles selection. Otherwise a click on
+ * the cell's padding selects only this row and clears the rest.
+ *
  * @group DataTable
  */
 export const DataTableCheckbox = forwardRef<
