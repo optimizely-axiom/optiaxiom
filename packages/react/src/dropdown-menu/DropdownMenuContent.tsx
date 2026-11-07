@@ -4,7 +4,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import type { ExcludeProps } from "../utils";
 
 import { Box, type BoxProps } from "../box";
-import { ModalListbox } from "../modal/internals";
+import { listMinWidth, ModalListbox } from "../modal/internals";
 import { Portal } from "../portal";
 import { Spinner } from "../spinner";
 import { TransitionGroup } from "../transition";
@@ -39,7 +39,7 @@ export type DropdownMenuContentProps = ExcludeProps<
 export const DropdownMenuContent = forwardRef<
   HTMLDivElement,
   DropdownMenuContentProps
->(({ align = "start", children, loading, ...props }, ref) => {
+>(({ align = "start", children, className, loading, ...props }, ref) => {
   const { open, presence, setPresence } = useDropdownMenuContext(
     "@optiaxiom/react/DropdownMenuContent",
   );
@@ -51,7 +51,7 @@ export const DropdownMenuContent = forwardRef<
       presence={presence}
     >
       <Portal asChild>
-        <ModalListbox asChild {...props}>
+        <ModalListbox asChild {...listMinWidth({}, className)} {...props}>
           <RadixMenu.Content
             align={align}
             data-state={presence ? "open" : "closed"}
