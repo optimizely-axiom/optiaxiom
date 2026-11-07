@@ -80,7 +80,9 @@ export const Pill = forwardRef<HTMLButtonElement, PillProps>(
           ref={ref}
           {...restProps}
         >
-          <Text truncate>{children}</Text>
+          <Text asChild truncate>
+            <span>{children}</span>
+          </Text>
 
           {onDismiss && !readOnly && (
             <Icon asChild h="12" ml="auto">
