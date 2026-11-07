@@ -505,6 +505,7 @@
     {
       "files": ["**/*.spec.{ts,tsx}"],
       "rules": {
+        "local/no-redundant-test-setup": "error",
         "local/prefer-testing-library": "error",
         "testing-library/await-async-events": [
           "error",
