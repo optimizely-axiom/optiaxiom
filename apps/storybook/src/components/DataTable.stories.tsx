@@ -6,7 +6,9 @@ import {
   DataTable,
   DataTableAction,
   DataTableBody,
+  DataTableCheckbox,
   DataTableFooter,
+  DataTableLabel,
 } from "@optiaxiom/react";
 import {
   DataTableExpandableCell,
@@ -458,8 +460,31 @@ export const ArrowKeysFollowRowAfterDataChange: Story = {
     );
     await expect(rowOf("order-005")).toHaveFocus();
 
+    // Arrow keys select only the focused row, so none on a row that can't be.
     await userEvent.keyboard("{ArrowDown}");
     await waitFor(() => expect(rowOf("order-006")).toHaveFocus());
+    await expect(rowOf("order-006")).not.toHaveAttribute("data-selected");
+
+    await userEvent.keyboard("{ArrowDown}");
+    await waitFor(() => expect(rowOf("order-007")).toHaveFocus());
+    await expect(rowOf("order-007")).toHaveAttribute("aria-selected", "true");
+
+    await userEvent.keyboard("{ArrowUp}");
+    await waitFor(() => expect(rowOf("order-006")).toHaveFocus());
+    await expect(rowOf("order-006")).not.toHaveAttribute("data-selected");
+    await expect(rowOf("order-007")).toHaveAttribute("aria-selected", "false");
+
+    // Shift extends past the row that can't be selected, and shrinks back.
+    await userEvent.keyboard("{ArrowUp}");
+    await userEvent.keyboard("{Shift>}{ArrowDown}{ArrowDown}{/Shift}");
+    await waitFor(() => expect(rowOf("order-007")).toHaveFocus());
+    await expect(rowOf("order-005")).toHaveAttribute("aria-selected", "true");
+    await expect(rowOf("order-007")).toHaveAttribute("aria-selected", "true");
+
+    await userEvent.keyboard("{Shift>}{ArrowUp}{ArrowUp}{/Shift}");
+    await waitFor(() => expect(rowOf("order-005")).toHaveFocus());
+    await expect(rowOf("order-005")).toHaveAttribute("aria-selected", "true");
+    await expect(rowOf("order-007")).toHaveAttribute("aria-selected", "false");
   },
   render: function Render(args) {
     const [rows, setRows] = useState(() => largeData.slice(0, 10));
@@ -476,9 +501,17 @@ export const ArrowKeysFollowRowAfterDataChange: Story = {
         table={useReactTable({
           columns: [
             {
+              cell: () => <DataTableCheckbox />,
+              header: () => <DataTableCheckbox />,
+              id: "select",
+              size: 48,
+            },
+            {
               cell: ({ row }) => (
                 <DataTableAction primary>
-                  <Button>{row.original.id}</Button>
+                  <Button>
+                    <DataTableLabel>{row.original.id}</DataTableLabel>
+                  </Button>
                 </DataTableAction>
               ),
               header: "ID",
@@ -486,6 +519,7 @@ export const ArrowKeysFollowRowAfterDataChange: Story = {
             },
           ],
           data: rows,
+          enableRowSelection: (row) => row.id !== "order-006",
           getCoreRowModel: getCoreRowModel(),
           getRowId: (row) => row.id,
         })}

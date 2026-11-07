@@ -175,33 +175,39 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
             focusManaged &&
             (event.key === "ArrowDown" || event.key === "ArrowUp")
           ) {
-            const nextIndex =
-              event.key === "ArrowDown"
-                ? highlightedIndex + 1
-                : highlightedIndex - 1;
+            const step = event.key === "ArrowDown" ? 1 : -1;
+            const nextIndex = highlightedIndex + step;
             if (nextIndex >= 0 && nextIndex <= rows.length - 1) {
               event.preventDefault();
               focusRequestRef.current = true;
               setHighlightedIndex(nextIndex);
 
+              // `setRowSelection` ignores `getCanSelect()`, so every selection
+              // change below checks it.
+              const nextRow = rows[nextIndex];
               if (selector) {
-                const nextRow = rows[nextIndex];
                 if (event.shiftKey && row.getCanMultiSelect()) {
+                  // Look past rows that can't be selected: moving toward a
+                  // selected row shrinks the range from the row being left.
+                  const ahead = findSelectableRow(rows, nextIndex, step);
+                  const behind = findSelectableRow(
+                    rows,
+                    highlightedIndex,
+                    -step,
+                  );
                   table.setRowSelection((selection) =>
-                    selection[nextRow.id]
-                      ? {
-                          ...selection,
-                          [row.id]: false,
-                        }
-                      : {
-                          ...selection,
-                          [nextRow.id]: true,
-                        },
+                    ahead && selection[ahead.id]
+                      ? behind
+                        ? { ...selection, [behind.id]: false }
+                        : selection
+                      : nextRow.getCanSelect()
+                        ? { ...selection, [nextRow.id]: true }
+                        : selection,
                   );
                 } else {
-                  table.setRowSelection({
-                    [nextRow.id]: true,
-                  });
+                  table.setRowSelection(
+                    nextRow.getCanSelect() ? { [nextRow.id]: true } : {},
+                  );
                 }
               }
             }
@@ -259,6 +265,19 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
 );
 
 DataTableRow.displayName = "@optiaxiom/react/DataTableRow";
+
+const findSelectableRow = (
+  rows: Array<ReturnType<typeof fakeRow>>,
+  from: number,
+  step: number,
+) => {
+  for (let i = from; i >= 0 && i < rows.length; i += step) {
+    if (rows[i].getCanSelect()) {
+      return rows[i];
+    }
+  }
+  return;
+};
 
 const getAssociatedControl = (event: MouseEvent) => {
   if (event.target instanceof Element) {
