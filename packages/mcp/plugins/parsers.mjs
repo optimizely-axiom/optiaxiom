@@ -6,10 +6,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 /**
+ * @typedef {import('@optiaxiom/shared').Field} Field
  * @typedef {import('@optiaxiom/shared').Prop} PropItem
+ * @typedef {import('@optiaxiom/shared').Properties} Properties
  * @typedef {import('../src/types.js').Example} Example
  * @typedef {import('../src/types.js').ExampleFile} ExampleFile
  * @typedef {import('../src/types.js').PropDefinition} PropDefinition
+ * @typedef {import('../src/types.js').TypeSchema} TypeSchema
+ * @typedef {import('../src/types.js').TypeSchemaType} TypeSchemaType
  */
 
 /**
@@ -126,93 +130,48 @@ export function parseLightDark(value) {
 }
 
 /**
- * @param {PropItem} prop
+ * Describe a docgen prop, or a field of an object-typed prop, with JSON Schema
+ * keywords.
+ *
+ * @param {Field & Pick<PropItem, "properties">} prop
  * @returns {PropDefinition}
  */
 export function parsePropDefinition(prop) {
-  let type = prop.type.raw || prop.type.name || "unknown";
-  /** @type {Array<boolean | number | string> | undefined} */
-  let extractedValues = undefined;
+  const responsive = (prop.type.raw || prop.type.name || "").startsWith(
+    "ConditionalStyleWithResponsiveArray<",
+  );
 
-  // Helper to parse a value (handles JSON-stringified values)
-  /** @param {string} val */
-  const parseValue = (val) => {
-    try {
-      return JSON.parse(val);
-    } catch {
-      return val;
-    }
+  return {
+    ...(prop.description && { description: prop.description }),
+    ...(prop.defaultValue && { default: prop.defaultValue.value }),
+    ...(prop.properties
+      ? parsePropertiesSchema(prop.properties)
+      : responsive
+        ? parseResponsiveSchema(prop.type)
+        : parseTypeSchema(prop.type)),
+    ...(responsive && { responsive: true }),
   };
+}
 
-  const responsive = type.startsWith("ConditionalStyleWithResponsiveArray<");
-
-  // For responsive/conditional style props, extract the union values instead of the complex type
-  if (responsive && prop.type.value) {
-    const values = /** @type {Array<{value: string, description?: string}>} */ (
-      prop.type.value
-    )
-      .filter((v) => !("description" in v)) // Skip values with descriptions (they're not actual values)
-      .map((v) => parseValue(v.value))
-      .filter(Boolean);
-
-    if (values.length > 0) {
-      type = values.map((v) => JSON.stringify(v)).join(" | ");
-      extractedValues = values;
-    }
-  }
-
-  // Extract values from union types (e.g., "sm" | "md" | "lg")
-  // Skip simple types like boolean, ReactNode, etc that aren't useful as enum values
-  // Also skip complex array/object types — those are shapes, not enum values
-  const skipTypes = [
-    "boolean",
-    "ReactNode",
-    "ReactElement",
-    "string",
-    "number",
-  ];
-  if (
-    !extractedValues &&
-    !skipTypes.includes(type) &&
-    prop.type.value &&
-    Array.isArray(prop.type.value) &&
-    !prop.type.value.every((v) => String(v.value).includes("[]"))
-  ) {
-    const values = /** @type {Array<{value: string, description?: string}>} */ (
-      prop.type.value
-    )
-      .filter((v) => !("description" in v)) // Skip values with descriptions
-      .map((v) => parseValue(v.value))
-      .filter((v) => v !== undefined && v !== null && v !== "");
-
-    if (values.length > 0) {
-      extractedValues = values;
-    }
-  }
-
-  /** @type {PropDefinition} */
-  const propDef = {
-    description: prop.description || undefined,
-    type: extractedValues && extractedValues.length > 0 ? "enum" : type,
-  };
-
-  if (extractedValues && extractedValues.length > 0) {
-    propDef.values = extractedValues;
-  }
-
-  if (prop.defaultValue) {
-    propDef.default = prop.defaultValue.value;
-  }
-
-  if (prop.required) {
-    propDef.required = true;
-  }
-
-  if (responsive) {
-    propDef.responsive = true;
-  }
-
-  return propDef;
+/**
+ * Describe a docgen type with JSON Schema keywords. Whatever JSON Schema
+ * can't express (functions, `ReactNode`, generics, unions mixing kinds) keeps
+ * its TypeScript type string in `tsType`.
+ *
+ * @param {PropItem["type"]} type
+ * @returns {TypeSchema}
+ */
+export function parseTypeSchema(type) {
+  const raw = type.raw || type.name || "unknown";
+  // docgen lists union members in `value` only for unions (`name: "enum"`).
+  return parseUnionSchema(
+    type.name === "enum" && Array.isArray(type.value)
+      ? /** @type {Array<{ value: string }>} */ (type.value).map(
+          (member) => member.value,
+        )
+      : [raw],
+    raw,
+  );
 }
 
 /**
@@ -233,4 +192,251 @@ export function remToPx(rem) {
  */
 export function toKebabCase(str) {
   return str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+}
+
+/**
+ * Call `callback` with the index of each character of a type string that sits
+ * outside brackets and quoted literals, so `"(" | ")"` or
+ * `{ fn: () => void }` don't read as structure.
+ *
+ * @param {string} value
+ * @param {(index: number) => boolean | void} callback - return `true` to stop
+ */
+function forEachTopLevel(value, callback) {
+  let depth = 0;
+  for (let i = 0; i < value.length; i++) {
+    const char = value[i] ?? "";
+    if (char === '"' || char === "'" || char === "`") {
+      // Skip to the closing quote, past escaped ones.
+      for (i++; i < value.length && value[i] !== char; i++) {
+        if (value[i] === "\\") {
+          i++;
+        }
+      }
+    } else if ("([{<".includes(char)) {
+      depth++;
+    } else if (")]}".includes(char) || (char === ">" && value[i - 1] !== "=")) {
+      depth--;
+    } else if (depth === 0 && callback(i)) {
+      return;
+    }
+  }
+}
+
+/**
+ * Whether a type string is a function type, i.e. has a `=>` outside any
+ * brackets: `() => string[]` is, `{ fn: () => void }[]` isn't.
+ *
+ * @param {string} value
+ */
+function isFunction(value) {
+  let found = false;
+  forEachTopLevel(value, (i) => {
+    found = value[i] === "=" && value[i + 1] === ">";
+    return found;
+  });
+  return found;
+}
+
+/**
+ * The value of a JSON literal type string (`"sm"`, `0`, `false`), else
+ * `undefined`.
+ *
+ * @param {string} value
+ * @returns {boolean | number | string | undefined}
+ */
+function parseLiteral(value) {
+  try {
+    const literal = JSON.parse(value);
+    if (
+      typeof literal === "boolean" ||
+      typeof literal === "number" ||
+      typeof literal === "string"
+    ) {
+      return literal;
+    }
+  } catch {
+    // Not a literal
+  }
+  return undefined;
+}
+
+/**
+ * @typedef {{ kind: "const"; value: boolean | number | string }
+ *   | { kind: "scalar"; type: TypeSchemaType }
+ *   | { kind: "array"; items?: TypeSchema }
+ *   | { kind: "other" }} Member
+ */
+
+/**
+ * Classify one union member's type string.
+ *
+ * @param {string} value
+ * @returns {Member}
+ */
+function parseMember(value) {
+  if (value === "null") {
+    return { kind: "scalar", type: "null" };
+  }
+  const literal = parseLiteral(value);
+  if (literal !== undefined) {
+    return { kind: "const", value: literal };
+  }
+
+  // A type intersected with a literal accepts at most that literal, e.g. a
+  // recipe variant narrowing a sprinkle: `{ base?: "xs" | … } & "xs"`.
+  const intersected = splitTopLevel(value, "&").map(parseLiteral);
+  const intersectedLiteral = intersected.find((part) => part !== undefined);
+  if (
+    intersectedLiteral !== undefined &&
+    intersected.every(
+      (part) => part === undefined || part === intersectedLiteral,
+    )
+  ) {
+    return { kind: "const", value: intersectedLiteral };
+  }
+
+  // `string & {}` keeps a literal union open to any string.
+  const scalar = value === "string & {}" ? "string" : value;
+  if (scalar === "boolean" || scalar === "number" || scalar === "string") {
+    return { kind: "scalar", type: scalar };
+  }
+
+  if (value.endsWith("[]") && !isFunction(value)) {
+    const element = value.replace(/^readonly /, "").slice(0, -2);
+    const inner = /^\(.*\)$/.test(element) ? element.slice(1, -1) : element;
+    const items = parseUnionSchema(splitTopLevel(inner, "|"), inner);
+    return items.tsType ? { kind: "array" } : { items, kind: "array" };
+  }
+  return { kind: "other" };
+}
+
+/**
+ * Describe an object-typed prop by its fields, as an object schema or, for
+ * arrays of it, as the schema of each element.
+ *
+ * @param {Properties} properties
+ * @returns {TypeSchema}
+ */
+function parsePropertiesSchema(properties) {
+  const fields = Object.entries(properties.fields);
+  const required = fields.flatMap(([name, field]) =>
+    field.required ? [name] : [],
+  );
+  /** @type {TypeSchema} */
+  const object = {
+    properties: Object.fromEntries(
+      fields.map(([name, field]) => [name, parsePropDefinition(field)]),
+    ),
+    ...(required.length > 0 && { required }),
+    ...(properties.name && { title: properties.name }),
+    type: "object",
+  };
+  return properties.array ? { items: object, type: "array" } : object;
+}
+
+/**
+ * Responsive style props (`p`, `gap`, …) are typed as a vanilla-extract
+ * conditional; their literal values are the members without a description.
+ *
+ * @param {PropItem["type"]} type
+ * @returns {TypeSchema}
+ */
+function parseResponsiveSchema(type) {
+  const values = /** @type {Array<{ value: string; description?: string }>} */ (
+    type.value ?? []
+  )
+    .filter((member) => !("description" in member))
+    .map((member) => member.value);
+
+  return values.length > 0
+    ? parseUnionSchema(values, type.raw || type.name)
+    : { tsType: type.raw || type.name };
+}
+
+/**
+ * Describe a union from its members' type strings; `raw` is the whole type,
+ * kept as `tsType` when a member has no JSON Schema form.
+ *
+ * @param {string[]} values
+ * @param {string} raw
+ * @returns {TypeSchema}
+ */
+function parseUnionSchema(values, raw) {
+  const members = values.map(parseMember);
+  /** @type {Array<boolean | number | string>} */
+  const consts = [];
+  /** @type {TypeSchemaType[]} */
+  const scalars = [];
+  /** @type {TypeSchema[]} */
+  const arrays = [];
+  for (const member of members) {
+    if (member.kind === "const") {
+      if (!consts.includes(member.value)) {
+        consts.push(member.value);
+      }
+    } else if (member.kind === "scalar") {
+      if (!scalars.includes(member.type)) {
+        scalars.push(member.type);
+      }
+    } else if (member.kind === "array" && member.items) {
+      const array = {
+        items: member.items,
+        type: /** @type {const} */ ("array"),
+      };
+      // `readonly string[] | string[]` is one array type written twice.
+      if (
+        !arrays.some((other) => JSON.stringify(other) === JSON.stringify(array))
+      ) {
+        arrays.push(array);
+      }
+    } else {
+      return {
+        ...(members.every((other) => other.kind === "array") && {
+          type: /** @type {const} */ ("array"),
+        }),
+        tsType: raw,
+      };
+    }
+  }
+
+  // docgen spells `boolean` as `false | true`.
+  if (consts.length === 2 && consts.includes(false) && consts.includes(true)) {
+    consts.length = 0;
+    if (!scalars.includes("boolean")) {
+      scalars.unshift("boolean");
+    }
+  }
+
+  /** @type {TypeSchema[]} */
+  const schemas = [
+    ...(consts.length > 0 ? [{ enum: consts }] : []),
+    ...(scalars.length > 0
+      ? [{ type: scalars.length === 1 ? scalars[0] : scalars }]
+      : []),
+    ...arrays,
+  ];
+  // e.g. `"text" | (string & {})`, or `"alt" | "ctrl" | ("alt" | "ctrl")[]`
+  return schemas.length === 1 && schemas[0] ? schemas[0] : { anyOf: schemas };
+}
+
+/**
+ * Split a type string on a `|` or `&` operator, skipping any inside brackets
+ * or quoted literals.
+ *
+ * @param {string} value
+ * @param {"&" | "|"} operator
+ */
+function splitTopLevel(value, operator) {
+  /** @type {string[]} */
+  const members = [];
+  let start = 0;
+  forEachTopLevel(value, (i) => {
+    if (value[i] === operator) {
+      members.push(value.slice(start, i).trim());
+      start = i + 1;
+    }
+  });
+  members.push(value.slice(start).trim());
+  return members;
 }

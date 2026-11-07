@@ -67,6 +67,13 @@ export async function generateComponents() {
       ),
     };
 
+    const required = doc.props
+      .filter((prop) => prop.required)
+      .map((prop) => prop.name);
+    if (required.length > 0) {
+      component.required = required;
+    }
+
     if ("since" in doc.tags && typeof doc.tags.since === "string") {
       component.since = doc.tags.since;
     }
