@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { render, screen, waitFor } from "../../vitest.rtl";
+import { render, screen, waitFor, within } from "../../vitest.rtl";
 import { Menu } from "./Menu";
 import { MenuContent } from "./MenuContent";
 import { MenuTrigger } from "./MenuTrigger";
@@ -81,5 +81,32 @@ describe("Menu component", () => {
     expect(
       await screen.findByRole("option", { name: "Copy link" }),
     ).toBeVisible();
+  });
+
+  it("should filter sub-options as the user types", async () => {
+    const { user } = setup({
+      options: [
+        { label: "Edit" },
+        {
+          label: "Share",
+          subOptions: [{ label: "Email" }, { label: "Copy link" }],
+          subOptionsInputVisible: true,
+        },
+      ],
+    });
+
+    await user.click(screen.getByRole("button", { name: "Actions" }));
+    await user.hover(await screen.findByRole("option", { name: "Share" }));
+    const submenu = await screen.findByRole("dialog", {
+      name: "Share Submenu",
+    });
+    await user.type(within(submenu).getByRole("combobox"), "copy");
+
+    expect(
+      within(submenu).getByRole("option", { name: "Copy link" }),
+    ).toBeVisible();
+    expect(
+      within(submenu).queryByRole("option", { name: "Email" }),
+    ).not.toBeInTheDocument();
   });
 });

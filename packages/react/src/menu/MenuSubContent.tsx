@@ -45,6 +45,13 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
     const labelId = useId();
     const ref = useComposedRefs(parentContentRef, outerRef);
 
+    // Options are often rebuilt on every render (e.g. async search results),
+    // so the parent item's object identity can't tell a new submenu apart.
+    const itemKey =
+      item &&
+      (item.key ??
+        resolveItemProperty(item.label, { inputValue: parentInputValue }));
+
     const [inputValue, setInputValue] = useState("");
     const options = useMemo(
       () => resolveItemProperty(item?.subOptions, { inputValue }) ?? [],
@@ -65,7 +72,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
         setInputValue("");
         setSubMenuOpen(false);
       };
-    }, [item]);
+    }, [itemKey]);
 
     if (!item || !(open || presence)) {
       return null;
@@ -124,12 +131,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
           <Command
             enabled
             inputValue={inputValue}
-            key={
-              item.key ??
-              resolveItemProperty(item.label, {
-                inputValue: parentInputValue,
-              })
-            }
+            key={itemKey}
             onHover={(item, pointer) => {
               if (!pointer) {
                 setFocusVisible(true);
