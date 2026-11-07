@@ -11,6 +11,7 @@ import {
 } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { useAnimationFrame } from "../hooks";
 import { useTransitionGroupContext } from "../transition/internals";
 import { Listbox } from "./Listbox";
 
@@ -51,9 +52,8 @@ export const ListboxVirtualized = forwardRef<
    * that is actually visible in the overflow element.
    */
   const [enabled, setEnabled] = useState(false);
-  useEffect(() => {
-    requestAnimationFrame(() => requestAnimationFrame(() => setEnabled(true)));
-  }, []);
+  const requestFrame = useAnimationFrame();
+  useEffect(() => requestFrame(() => setEnabled(true), 2), [requestFrame]);
 
   const { presence } =
     useTransitionGroupContext("@optiaxiom/react/ListboxVirtualized") ?? {};

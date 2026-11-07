@@ -9,6 +9,7 @@ import {
 import { Calendar } from "../calendar";
 import { useFieldContext } from "../field/internals";
 import { Group } from "../group";
+import { useAnimationFrame } from "../hooks";
 import { PopoverContent } from "../popover";
 import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DateRangePickerContent.css";
@@ -58,6 +59,7 @@ export const DateRangePickerContent = forwardRef<
     );
     const { setFrom, setOpen, setValue, triggerRef, value } =
       useDateRangePickerContext("@optiaxiom/react/DateRangePickerContent");
+    const requestFrame = useAnimationFrame();
     const labelId = useId();
 
     return (
@@ -82,9 +84,7 @@ export const DateRangePickerContent = forwardRef<
             }}
             onValueChange={(value) => {
               setValue(value);
-              requestAnimationFrame(() => {
-                setOpen(false);
-              });
+              requestFrame(() => setOpen(false));
             }}
             today={today}
             value={value}

@@ -4,6 +4,7 @@ import { forwardRef, useEffect, useState } from "react";
 import type { ExcludeProps } from "../utils";
 
 import { Box, type BoxProps } from "../box";
+import { useAnimationFrame } from "../hooks";
 import { Transition, TransitionGroup } from "../transition";
 import * as styles from "./DisclosureContent.css";
 import { useDisclosureContext } from "./DisclosureContext";
@@ -32,11 +33,14 @@ export const DisclosureContent = forwardRef<
   const { open } = useDisclosureContext("@optiaxiom/react/DisclosureContent");
 
   const [skipAnimations, setSkipAnimations] = useState(Boolean(open));
+  const requestFrame = useAnimationFrame();
   useEffect(() => {
-    if (skipAnimations) {
-      requestAnimationFrame(() => setSkipAnimations(false));
+    if (!skipAnimations) {
+      return;
     }
-  }, [skipAnimations]);
+
+    return requestFrame(() => setSkipAnimations(false));
+  }, [requestFrame, skipAnimations]);
 
   return (
     <TransitionGroup forceMount={hiddenUntilFound} open={open}>

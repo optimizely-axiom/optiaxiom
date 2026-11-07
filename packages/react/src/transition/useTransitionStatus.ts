@@ -2,6 +2,7 @@
 
 import { type RefObject, useEffect, useState } from "react";
 
+import { useAnimationFrame } from "../hooks";
 import { useTransitionGroupContext } from "./TransitionGroupContext";
 
 export const useTransitionStatus = (ref: RefObject<HTMLElement>) => {
@@ -16,11 +17,14 @@ export const useTransitionStatus = (ref: RefObject<HTMLElement>) => {
   }, [register, ref]);
 
   const [mounted, setMounted] = useState(false);
+  const requestFrame = useAnimationFrame();
   useEffect(() => {
-    if (open) {
-      requestAnimationFrame(() => setMounted(true));
+    if (!open) {
+      return;
     }
-  }, [open]);
+
+    return requestFrame(() => setMounted(true));
+  }, [open, requestFrame]);
 
   return open && !mounted ? "starting" : !open ? "ending" : undefined;
 };
