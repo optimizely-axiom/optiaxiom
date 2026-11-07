@@ -6,7 +6,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 /**
+ * @typedef {import('@optiaxiom/shared').Field} Field
  * @typedef {import('@optiaxiom/shared').Prop} PropItem
+ * @typedef {import('@optiaxiom/shared').Properties} Properties
  * @typedef {import('../src/types.js').Example} Example
  * @typedef {import('../src/types.js').ExampleFile} ExampleFile
  * @typedef {import('../src/types.js').PropDefinition} PropDefinition
@@ -128,9 +130,10 @@ export function parseLightDark(value) {
 }
 
 /**
- * Describe a docgen prop with JSON Schema keywords.
+ * Describe a docgen prop, or a field of an object-typed prop, with JSON Schema
+ * keywords.
  *
- * @param {PropItem} prop
+ * @param {Field & Pick<PropItem, "properties">} prop
  * @returns {PropDefinition}
  */
 export function parsePropDefinition(prop) {
@@ -141,9 +144,11 @@ export function parsePropDefinition(prop) {
   return {
     ...(prop.description && { description: prop.description }),
     ...(prop.defaultValue && { default: prop.defaultValue.value }),
-    ...(responsive
-      ? parseResponsiveSchema(prop.type)
-      : parseTypeSchema(prop.type)),
+    ...(prop.properties
+      ? parsePropertiesSchema(prop.properties)
+      : responsive
+        ? parseResponsiveSchema(prop.type)
+        : parseTypeSchema(prop.type)),
     ...(responsive && { responsive: true }),
   };
 }
@@ -304,6 +309,30 @@ function parseMember(value) {
     return items.tsType ? { kind: "array" } : { items, kind: "array" };
   }
   return { kind: "other" };
+}
+
+/**
+ * Describe an object-typed prop by its fields, as an object schema or, for
+ * arrays of it, as the schema of each element.
+ *
+ * @param {Properties} properties
+ * @returns {TypeSchema}
+ */
+function parsePropertiesSchema(properties) {
+  const fields = Object.entries(properties.fields);
+  const required = fields.flatMap(([name, field]) =>
+    field.required ? [name] : [],
+  );
+  /** @type {TypeSchema} */
+  const object = {
+    properties: Object.fromEntries(
+      fields.map(([name, field]) => [name, parsePropDefinition(field)]),
+    ),
+    ...(required.length > 0 && { required }),
+    ...(properties.name && { title: properties.name }),
+    type: "object",
+  };
+  return properties.array ? { items: object, type: "array" } : object;
 }
 
 /**

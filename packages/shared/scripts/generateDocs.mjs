@@ -9,40 +9,242 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /**
- * Build a map of type name → expanded shape string from *Doc dummy components.
- * e.g. SelectDoc (whose props are SelectOption's fields) → "SelectOption" → "{ label: string; value: string; ... }"
+ * @typedef {import("../src/getDocs.mjs").Field} Field
+ * @typedef {import("../src/getDocs.mjs").Properties} Properties
+ */
+
+/**
+ * Read the *Doc dummy components, which describe a type by declaring its
+ * public fields as props. Returns, keyed by type name, each type's field
+ * names and its expanded shape string.
+ * e.g. SelectOptionDoc (whose props are SelectOption's fields) → "SelectOption" → "{ label: string; value: string; ... }"
  *
  * Convention: a component named `FooDoc` with displayName `@optiaxiom/react/FooDoc`
  * describes the type `Foo` (the Doc suffix is stripped to get the type name).
+ * Fields it omits (internal ones like `CommandOption.parentOption`) stay out
+ * of the docs.
  *
  * @param {docgen.ComponentDoc[]} docs
- * @returns {Record<string, string>}
  */
-function buildTypeExpansions(docs) {
+function buildDocTypes(docs) {
   /** @type {Record<string, string>} */
   const expansions = {};
+  /** @type {Map<string, Set<string>>} */
+  const fields = new Map();
 
   for (const doc of docs) {
     const match = doc.displayName.match(/^@optiaxiom\/react\/(\w+)Doc$/);
-    if (!match) continue;
+    if (!match?.[1]) continue;
 
-    const typeName = match[1];
-    const props = Object.entries(doc.props)
-      .filter(
-        ([, prop]) =>
-          prop.declarations?.length && prop.type.name !== "undefined",
-      )
-      .map(([name, prop]) => {
-        const type = prop.type.raw || prop.type.name || "unknown";
-        return `${name}${prop.required ? "" : "?"}: ${type}`;
-      });
-
+    const props = Object.values(doc.props).filter(
+      (prop) => prop.declarations?.length && prop.type.name !== "undefined",
+    );
     if (props.length > 0) {
-      expansions[typeName] = `{ ${props.join("; ")} }`;
+      expansions[match[1]] = `{ ${props
+        .map((prop) => {
+          const type = prop.type.raw || prop.type.name || "unknown";
+          return `${prop.name}${prop.required ? "" : "?"}: ${type}`;
+        })
+        .join("; ")} }`;
+      fields.set(match[1], new Set(props.map((prop) => prop.name)));
     }
   }
 
-  return expansions;
+  return { expansions, fields };
+}
+
+/**
+ * Describe the fields of object-typed props (`options: SelectOption[]`) one
+ * level deep, since docgen only gives a prop's type as a string. Fields are
+ * formatted by docgen, the same as props. Returns `(filePath, componentName,
+ * propName) => properties | undefined`.
+ *
+ * @param {string} tsconfigPath
+ * @param {string[]} filePaths
+ * @param {docgen.ParserOptions} parserOptions
+ * @param {string} srcPath
+ * @param {ReturnType<typeof buildDocTypes>} docTypes
+ */
+function createPropertiesResolver(
+  tsconfigPath,
+  filePaths,
+  parserOptions,
+  srcPath,
+  docTypes,
+) {
+  const { config } = ts.readConfigFile(tsconfigPath, ts.sys.readFile);
+  const { options } = ts.parseJsonConfigFileContent(
+    config,
+    ts.sys,
+    path.dirname(tsconfigPath),
+    {},
+    tsconfigPath,
+  );
+  const program = ts.createProgram(filePaths, options);
+  const checker = program.getTypeChecker();
+  const parser = new docgen.Parser(program, parserOptions);
+
+  // TypeScript file names always use `/`.
+  const ownPrefix = `${srcPath.split(path.sep).join("/")}/`;
+  /** @param {ts.Symbol} symbol */
+  const isOwn = (symbol) =>
+    !!symbol.declarations?.length &&
+    symbol.declarations.every((decl) =>
+      decl.getSourceFile().fileName.startsWith(ownPrefix),
+    );
+  /** @type {Map<string, ts.Type | undefined>} */
+  const propsTypes = new Map();
+
+  /**
+   * The single object type a prop holds directly or as array elements, e.g.
+   * `readonly SelectOption[] | SelectOption[]` → `SelectOption`.
+   *
+   * @param {ts.Type} type
+   */
+  const getObjectType = (type) => {
+    // Optional props add `undefined`; `null` is a value the prop accepts, so it
+    // keeps the type out.
+    const members = (type.isUnion() ? type.types : [type]).filter(
+      (member) => !(member.flags & ts.TypeFlags.Undefined),
+    );
+    const array = members.every((member) => checker.isArrayType(member));
+    const elements = members.map((member) =>
+      checker.isArrayType(member)
+        ? checker.getTypeArguments(/** @type {ts.TypeReference} */ (member))[0]
+        : member,
+    );
+    const [element] = elements;
+    if (
+      !element ||
+      (!array && members.some((member) => checker.isArrayType(member))) ||
+      elements.some((member) => member !== element) ||
+      !(element.flags & (ts.TypeFlags.Object | ts.TypeFlags.Intersection)) ||
+      element.getCallSignatures().length > 0 ||
+      checker.isArrayType(element)
+    ) {
+      return;
+    }
+    const properties = checker.getPropertiesOfType(element);
+    if (properties.length === 0 || !properties.every(isOwn)) {
+      return;
+    }
+    return { array, element };
+  };
+
+  /**
+   * A field of an object type in docgen's format.
+   *
+   * @param {ts.Symbol} field
+   * @returns {docgen.PropItem}
+   */
+  const getField = (field) => {
+    const { fullComment, tags } = parser.findDocComment(field);
+    const required = !(field.flags & ts.SymbolFlags.Optional);
+    // Not `getDocgenType(type, required)`: for an optional type it strips the
+    // first ` | undefined`, which can sit inside a callback's parameters.
+    // TypeScript prints `undefined` last, so strip it from the end instead.
+    const type = parser.getDocgenType(checker.getTypeOfSymbol(field), true);
+    /** @param {string} text */
+    const defined = (text) =>
+      required ? text : text.replace(/ \| undefined$/, "");
+    return {
+      defaultValue: tags.default ? { value: tags.default } : null,
+      description: fullComment,
+      name: field.getName(),
+      required,
+      type: {
+        ...type,
+        name: defined(type.name),
+        ...(type.raw && { raw: defined(type.raw) }),
+        ...(Array.isArray(type.value) && {
+          value: type.value.filter(
+            (/** @type {{ value: string }} */ member) =>
+              required || member.value !== "undefined",
+          ),
+        }),
+      },
+    };
+  };
+
+  /**
+   * The props type of a component exported from `filePath`.
+   *
+   * @param {string} filePath
+   * @param {string} componentName
+   */
+  const getPropsType = (filePath, componentName) => {
+    const key = `${filePath}#${componentName}`;
+    if (!propsTypes.has(key)) {
+      const sourceFile = program.getSourceFile(filePath);
+      const moduleSymbol =
+        sourceFile && checker.getSymbolAtLocation(sourceFile);
+      const component =
+        moduleSymbol &&
+        checker
+          .getExportsOfModule(moduleSymbol)
+          .find((symbol) => symbol.getName() === componentName);
+      const propsParam =
+        component &&
+        checker
+          .getTypeOfSymbol(component)
+          .getCallSignatures()[0]
+          ?.getParameters()[0];
+      propsTypes.set(key, propsParam && checker.getTypeOfSymbol(propsParam));
+    }
+    return propsTypes.get(key);
+  };
+
+  /**
+   * @param {string} filePath
+   * @param {string} componentName
+   * @param {string} propName
+   * @returns {Properties | undefined}
+   */
+  return (filePath, componentName, propName) => {
+    const prop = getPropsType(filePath, componentName)?.getProperty(propName);
+    if (!prop) {
+      return;
+    }
+
+    const objectType = getObjectType(checker.getTypeOfSymbol(prop));
+    if (!objectType) {
+      return;
+    }
+
+    const typeSymbol =
+      objectType.element.aliasSymbol ?? objectType.element.getSymbol();
+    const name =
+      typeSymbol && isOwn(typeSymbol) && !typeSymbol.getName().startsWith("__")
+        ? typeSymbol.getName()
+        : undefined;
+    // A type's own shape isn't spelled out inside its fields.
+    const expansions = Object.fromEntries(
+      Object.entries(docTypes.expansions).filter(([type]) => type !== name),
+    );
+    // A `*Doc` lists its type's public fields; other types hide theirs with
+    // `@internal` or `@private`.
+    const documented = name ? docTypes.fields.get(name) : undefined;
+    const fields = checker
+      .getPropertiesOfType(objectType.element)
+      .filter((field) =>
+        documented
+          ? documented.has(field.getName())
+          : !field
+              .getJsDocTags(checker)
+              .some((tag) => tag.name === "internal" || tag.name === "private"),
+      )
+      .map(getField)
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((field) => [field.name, toField(field, expansions)]);
+    if (fields.length === 0) {
+      return;
+    }
+    return {
+      ...(objectType.array && { array: /** @type {const} */ (true) }),
+      fields: Object.fromEntries(fields),
+      ...(name && { name }),
+    };
+  };
 }
 
 /**
@@ -56,7 +258,8 @@ function buildTypeExpansions(docs) {
 function expandTypeReferences(rawType, expansions) {
   let result = rawType;
   for (const [typeName, shape] of Object.entries(expansions)) {
-    result = result.replaceAll(typeName, shape);
+    // Whole words only: `SelectOption` must not match `SelectOptionGroup`.
+    result = result.replace(new RegExp(`\\b${typeName}\\b`, "g"), () => shape);
   }
   return result;
 }
@@ -70,37 +273,36 @@ function generateDocs() {
     "../../react/tsconfig.json",
   );
 
-  const parser = docgen.withCustomConfig(reactTsconfigPath, {
+  /** @type {docgen.ParserOptions} */
+  const parserOptions = {
     savePropValueAsString: true,
     shouldExtractValuesFromUnion: true,
     shouldRemoveUndefinedFromOptional: true,
     skipChildrenPropWithoutDoc: false,
-  });
+  };
+  const parser = docgen.withCustomConfig(reactTsconfigPath, parserOptions);
 
-  const docs = parser.parse(
-    fg.globSync(path.join(reactSrcPath, "**/{*.css.ts,sprinkles.ts,*.tsx}"), {
-      ignore: ["**/*.spec.*"],
-    }),
+  const filePaths = fg.globSync(
+    path.join(reactSrcPath, "**/{*.css.ts,sprinkles.ts,*.tsx}"),
+    { ignore: ["**/*.spec.*"] },
   );
+  const docs = parser.parse(filePaths);
   const sprinkles = docs.find((doc) => doc.displayName === "sprinkles");
   if (!sprinkles) {
     throw new Error("Could not find sprinkles docgen");
   }
-  // Build type expansion map from *Doc dummy components.
-  // e.g. SelectDoc's props describe the shape of SelectOption,
-  // so "SelectOption" → "{ label: string; value: string; ... }"
-  const typeExpansions = buildTypeExpansions(docs);
+  const docTypes = buildDocTypes(docs);
+  const getProperties = createPropertiesResolver(
+    reactTsconfigPath,
+    filePaths,
+    parserOptions,
+    reactSrcPath,
+    docTypes,
+  );
 
   return docs
     .map(
-      ({
-        description,
-        filePath: _filePath,
-        methods: _methods,
-        props,
-        tags,
-        ...doc
-      }) => {
+      ({ description, filePath, methods: _methods, props, tags, ...doc }) => {
         const filterProps = Object.fromEntries(
           Object.entries(props)
             .filter(([, prop]) =>
@@ -112,37 +314,29 @@ function generateDocs() {
                 : prop.declarations?.length && prop.type.name !== "undefined",
             )
             .filter(([, prop]) => !(prop.type.name === "never"))
-            .map(
-              ([
-                name,
-                { declarations, defaultValue, description, required, ...prop },
-              ]) => {
-                delete prop.parent;
-
-                // Expand custom type references in raw type strings
-                if (prop.type.raw) {
-                  prop.type.raw = expandTypeReferences(
-                    prop.type.raw,
-                    typeExpansions,
+            .map(([name, prop]) => {
+              const sprinkle =
+                sprinkles.props[prop.name] &&
+                sprinkles.props[prop.name]?.declarations?.[0].fileName ===
+                  prop.declarations?.[0].fileName;
+              const properties = sprinkle
+                ? undefined
+                : getProperties(
+                    filePath,
+                    doc.displayName.replace("@optiaxiom/react/", ""),
+                    name,
                   );
-                }
 
-                return [
-                  name,
-                  {
-                    ...prop,
-                    ...(defaultValue && { defaultValue }),
-                    ...(description && { description }),
-                    ...(required && { required }),
-                    ...(sprinkles.props[prop.name] &&
-                      sprinkles.props[prop.name]?.declarations?.[0].fileName ===
-                        declarations?.[0].fileName && {
-                        sprinkle: true,
-                      }),
-                  },
-                ];
-              },
-            ),
+              return [
+                name,
+                {
+                  ...toField(prop, docTypes.expansions),
+                  name: prop.name,
+                  ...(properties && { properties }),
+                  ...(sprinkle && { sprinkle: true }),
+                },
+              ];
+            }),
         );
         return {
           ...doc,
@@ -248,6 +442,25 @@ function getExportedComponentsFromSource() {
   }
 
   return { entryPoints, exportedComponents, sources };
+}
+
+/**
+ * A docgen prop or field's documentation, with documented types in its raw
+ * type string spelled out.
+ *
+ * @param {docgen.PropItem} prop
+ * @param {Record<string, string>} expansions
+ * @returns {Field}
+ */
+function toField({ defaultValue, description, required, type }, expansions) {
+  return {
+    ...(defaultValue && { defaultValue }),
+    ...(description && { description }),
+    ...(required && { required }),
+    type: type.raw
+      ? { ...type, raw: expandTypeReferences(type.raw, expansions) }
+      : type,
+  };
 }
 
 // Generate and write to file
