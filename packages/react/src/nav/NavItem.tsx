@@ -93,7 +93,12 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
               {...styles.item({}, className)}
               {...boxProps}
             >
-              <Comp disabled={disabled} ref={ref} {...restProps}>
+              <Comp
+                aria-current={active ? "page" : undefined}
+                disabled={disabled}
+                ref={ref}
+                {...restProps}
+              >
                 {children}
               </Comp>
             </Box>
