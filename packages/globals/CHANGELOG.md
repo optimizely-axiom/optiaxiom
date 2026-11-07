@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 3.0.8
+
+### Patch Changes
+
+- 1dadf17: pinned Radix dependencies to their latest React 17-compatible release
+
 ## 3.0.7
 
 ### Patch Changes
