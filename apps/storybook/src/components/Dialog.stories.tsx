@@ -68,10 +68,7 @@ export default {
       <Dialog {...args}>
         <DialogTrigger>Open Dialog</DialogTrigger>
 
-        <DialogContent
-          {...(!description && { ["aria-describedby"]: undefined })}
-          size={size}
-        >
+        <DialogContent size={size}>
           <DialogHeader addonAfter={actions} description={description}>
             {title}
           </DialogHeader>
@@ -120,6 +117,7 @@ export const Basic: Story = {
       await expect(descriptionElement).not.toBeNull();
       await expect(descriptionElement?.textContent).toBe("Dialog");
     }
+    await expect(dialog).not.toHaveAttribute("aria-describedby");
 
     await userEvent.click(screen.getByRole("button", { name: "Confirm" }));
     await waitFor(() =>
@@ -356,10 +354,7 @@ export const WithSurface: Story = {
           <Dialog {...args} onOpenChange={setOpen} open={open}>
             <DialogTrigger>Open Dialog</DialogTrigger>
 
-            <DialogContent
-              {...(!description && { ["aria-describedby"]: undefined })}
-              size={size}
-            >
+            <DialogContent size={size}>
               <DialogHeader addonAfter={actions} description={description}>
                 {title}
               </DialogHeader>
