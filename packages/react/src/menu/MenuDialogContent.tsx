@@ -4,7 +4,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { MenuContent } from "./MenuContent";
 
-import { DialogContent, DialogHeader } from "../dialog";
+import { DialogContent } from "../dialog";
 import { useFieldContext } from "../field/internals";
 import { VisuallyHidden } from "../visually-hidden";
 import { useMenuContext } from "./MenuContext";
@@ -51,14 +51,6 @@ export const MenuDialogContent = forwardRef<
 
         <VisuallyHidden asChild>
           <h2 id={labelId}>{ariaLabel || "Menu"}</h2>
-        </VisuallyHidden>
-
-        <VisuallyHidden tabIndex={-1}>
-          <DialogHeader
-          // Prevent radix from throwing warnings in development mode
-          >
-            Menu
-          </DialogHeader>
         </VisuallyHidden>
       </DialogContent>
     );

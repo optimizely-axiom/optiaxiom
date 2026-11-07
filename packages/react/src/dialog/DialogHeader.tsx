@@ -7,7 +7,6 @@ import { Box } from "../box";
 import { Group } from "../group";
 import { Heading } from "../heading";
 import { Text, type TextProps } from "../text";
-import { VisuallyHidden } from "../visually-hidden";
 import { DialogClose } from "./DialogClose";
 import { useDialogContext } from "./DialogContext";
 import * as styles from "./DialogHeader.css";
@@ -63,14 +62,10 @@ export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
           <RadixDialog.Title>{children}</RadixDialog.Title>
         </Heading>
         {addonAfter && <Group {...styles.actions()}>{addonAfter}</Group>}
-        {description ? (
+        {description && (
           <Text asChild {...styles.description()}>
             <RadixDialog.Description>{description}</RadixDialog.Description>
           </Text>
-        ) : (
-          <VisuallyHidden>
-            <RadixDialog.Description />
-          </VisuallyHidden>
         )}
       </Box>
     );
