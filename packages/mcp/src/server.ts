@@ -235,6 +235,8 @@ Examples:
   get_tests({ components: "Alert" }) → the Alert spec showing role="alert" and dismiss-button assertions
   get_tests({ components: "Button" }) → role/name queries, click + disabled + loading interactions
   get_tests({ components: "Tooltip" }) → hover/focus interactions and accessible-name assertions
+  get_tests({ components: "Menu" }) → open, pick by click or keyboard, filter and sub-menus (items are role "option")
+  get_tests({ components: "Select" }) → pick by Field label, keyboard selection and form submission
   get_tests() → list all available reference test files (and the helper note)`,
       inputSchema: {
         components: z
