@@ -1,7 +1,7 @@
 import { forwardRef, Fragment, type ReactNode, useEffect } from "react";
 
 import { type BoxProps } from "../box";
-import { useEvent } from "../hooks";
+import { useAnimationFrame, useEvent } from "../hooks";
 import { Skeleton } from "../skeleton";
 import { Listbox } from "./Listbox";
 import { ListboxEmpty } from "./ListboxEmpty";
@@ -63,17 +63,19 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
     ref,
   ) => {
     const onPlacedChangeStable = useEvent(onPlacedChange ?? (() => {}));
+    const requestFrame = useAnimationFrame();
     useEffect(() => {
       /**
        * We wait for first paint to render the menu and then another paint for
        * radix popper to place the menu and set the max-height. Otherwise we
        * cannot scroll to the item because it isn't scrollable yet.
        */
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => onPlacedChangeStable(true)),
-      );
-      return () => onPlacedChangeStable(false);
-    }, [onPlacedChangeStable]);
+      const cancel = requestFrame(() => onPlacedChangeStable(true), 2);
+      return () => {
+        cancel();
+        onPlacedChangeStable(false);
+      };
+    }, [onPlacedChangeStable, requestFrame]);
 
     return (
       <Listbox

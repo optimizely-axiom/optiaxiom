@@ -1,3 +1,4 @@
+export * from "./useAnimationFrame";
 export * from "./useEvent";
 export * from "./useFieldLabelTrigger";
 export * from "./useObserveValue";

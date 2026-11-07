@@ -478,6 +478,24 @@
       }
     },
     {
+      "files": ["**/packages/proteus/src/**", "**/packages/react/src/**"],
+      "rules": {
+        "no-restricted-globals": [
+          "error",
+          {
+            "name": "requestAnimationFrame",
+            "message": "Use `useAnimationFrame` so a pending frame is cancelled on unmount."
+          }
+        ]
+      }
+    },
+    {
+      "files": ["**/packages/react/src/hooks/useAnimationFrame.ts"],
+      "rules": {
+        "no-restricted-globals": "off"
+      }
+    },
+    {
       "files": ["**/packages/icons/src/index.ts"],
       "rules": {
         "local/consistent-icon-name": "error"
