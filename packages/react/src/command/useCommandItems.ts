@@ -24,7 +24,7 @@ export const useCommandItems = ({
     const string = resolveItemProperty(item.label, {
       inputValue,
     }).normalize();
-    return "visible" in item
+    return item.visible !== undefined
       ? resolveItemProperty(item.visible, { inputValue })
       : inputValue
         ? fuzzysearch(string, inputValue) ||
