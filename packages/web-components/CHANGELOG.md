@@ -1,5 +1,25 @@
 # @optiaxiom/web-components
 
+## 3.4.2
+
+### Patch Changes
+
+- abadc11: threw a descriptive error for an unknown Button `appearance`
+- 7a677b6: stopped animation frame callbacks running after unmount
+- ba56e9e: fixed menu options with `visible: undefined` being hidden
+- 94f2729: stopped `DataTable` arrow keys selecting unselectable rows
+- 3463df8: capped year at 4 digits in `datetime-local` `DateInput`
+- 683f82b: removed hidden empty title and description from `Dialog` and `Menu`
+- d3326be: warned on duplicate `Menu` option keys and stopped hover crash
+- 6067c81: keep submenu filter text when options refresh
+- a3abd1e: name `AxiomProvider` in missing-provider errors
+- e96c406: rendered `Pill` label as a `span` instead of a `p`
+- 1dadf17: pinned Radix dependencies to their latest React 17-compatible release
+- 472efe0: stopped components crashing without `scrollIntoView` or `ResizeObserver`
+- 601ec05: fixed `SelectTrigger` ignoring `aria-label` outside `Field`
+- 6c51162: fixed controlled `Tabs` calling `onValueChange` twice per click
+- 8175907: made new toasts clickable in tests without CSS
+
 ## 3.4.1
 
 ### Patch Changes

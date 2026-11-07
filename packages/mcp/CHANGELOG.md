@@ -1,5 +1,17 @@
 # @optiaxiom/mcp
 
+## 3.3.1
+
+### Patch Changes
+
+- 4658802: documented wrapping `DataTableCheckbox` in `Cover`
+- 89f2cf2: added jsdom `ResizeObserver` stub to test environments guide
+- 586cd47: added `Menu` and `Select` reference tests
+- 6067c81: keep submenu filter text when options refresh
+- 1dadf17: pinned Radix dependencies to their latest React 17-compatible release
+- 601ec05: added `Select` test pattern
+- 6c51162: fixed controlled `Tabs` calling `onValueChange` twice per click
+
 ## 3.3.0
 
 ### Minor Changes
