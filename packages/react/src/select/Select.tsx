@@ -1,4 +1,5 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { useId } from "@radix-ui/react-id";
 import { Popper } from "@radix-ui/react-popper";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useSelect } from "downshift";
@@ -196,6 +197,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       }
     }, [isOpen]);
 
+    const toggleButtonId = useId();
     const downshift = useSelect({
       highlightedIndex:
         highlightedIndex === -1
@@ -259,6 +261,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             return changes;
         }
       },
+      toggleButtonId,
     });
 
     /**
@@ -281,6 +284,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           onBlur={onBlur}
           selectedItem={selectedItem}
           setFocusVisible={setFocusVisible}
+          toggleButtonId={toggleButtonId}
         >
           <SelectHiddenSelect
             defaultValue={defaultValue}
