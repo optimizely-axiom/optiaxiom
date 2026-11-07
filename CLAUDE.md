@@ -47,10 +47,9 @@ incomplete. This is the most commonly missed step — check for it on every revi
 ## Testing visual changes
 
 Stories are the test for visual behavior. Chromatic snapshots every Storybook story
-(`.github/workflows/visual.yml` — runs only on demand: label the PR `visual`, or run the workflow
-manually), so a layout, spacing, alignment, or color fix needs a story that shows it, not a unit
-test pinning class names. Add a `*.spec.tsx` only for logic Chromatic can't see: behavior, state,
-accessibility, interactions.
+(`.github/workflows/visual.yml` — runs on push, or on a PR labeled `visual`), so a layout, spacing,
+alignment, or color fix needs a story that shows it, not a unit test pinning class names. Add a
+`*.spec.tsx` only for logic Chromatic can't see: behavior, state, accessibility, interactions.
 
 ## Decide the commit structure BEFORE writing code
 
