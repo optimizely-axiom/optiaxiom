@@ -10,7 +10,6 @@ import { IconSortDown } from "../icons/IconSortDown";
 import { IconSortUp } from "../icons/IconSortUp";
 import { Separator } from "../separator";
 import { TableHeaderCell } from "../table";
-import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DataTableHeaderCell.css";
 
 export type DataTableHeaderCellProps = BoxProps<
@@ -56,6 +55,7 @@ export const DataTableHeaderCell = forwardRef<
             visible={header.column.getIsResizing() ? "always" : "if-needed"}
           >
             <Separator
+              aria-hidden="true"
               onDoubleClick={() => header.column.resetSize()}
               onMouseDown={header.getResizeHandler()}
               onTouchStart={header.getResizeHandler()}
@@ -78,12 +78,6 @@ export const DataTableHeaderCell = forwardRef<
           <Cover asChild inset {...styles.button()}>
             <button onClick={() => header.column.toggleSorting()}>
               {children}
-
-              {sortDir && (
-                <VisuallyHidden>
-                  sorted {sortDir === "asc" ? "ascending" : "descending"}
-                </VisuallyHidden>
-              )}
 
               <ActionsContent
                 display="grid"
