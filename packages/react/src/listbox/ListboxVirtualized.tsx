@@ -93,7 +93,7 @@ export const ListboxVirtualized = forwardRef<
 
   const [minWidth, setMinWidth] = useState(0);
   useEffect(() => {
-    if (!innerRef.current) {
+    if (!innerRef.current || typeof ResizeObserver === "undefined") {
       return;
     }
 

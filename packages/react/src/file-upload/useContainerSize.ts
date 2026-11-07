@@ -4,7 +4,7 @@ export const useContainerSize = (ref: RefObject<HTMLElement>) => {
   const [size, setSize] = useState<number>();
 
   useEffect(() => {
-    if (!ref.current) {
+    if (!ref.current || typeof ResizeObserver === "undefined") {
       return;
     }
 

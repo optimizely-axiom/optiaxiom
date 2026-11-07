@@ -249,11 +249,14 @@ export function ProteusDocumentShell({
       }
     };
 
-    const observer = new ResizeObserver(update);
-    observer.observe(node);
+    const observer =
+      typeof ResizeObserver === "undefined"
+        ? undefined
+        : new ResizeObserver(update);
+    observer?.observe(node);
     node.addEventListener("scroll", update, { passive: true });
     return () => {
-      observer.disconnect();
+      observer?.disconnect();
       node.removeEventListener("scroll", update);
     };
   }, []);

@@ -58,7 +58,7 @@ export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
         itemToKey={(item: CommandOption) => itemToKey(item, inputValue)}
         onPlacedChange={(placed) => {
           if (placed && highlightedItemRef.current) {
-            highlightedItemRef.current.scrollIntoView({ block: "nearest" });
+            highlightedItemRef.current.scrollIntoView?.({ block: "nearest" });
           }
         }}
         size={size}

@@ -20,6 +20,10 @@ export const DialogContentImpl = forwardRef<
   const ref = useComposedRefs(innerRef, outerRef);
 
   useEffect(() => {
+    if (typeof ResizeObserver === "undefined") {
+      return;
+    }
+
     const observer = new ResizeObserver((entries) => {
       if (!innerRef.current) {
         return;
