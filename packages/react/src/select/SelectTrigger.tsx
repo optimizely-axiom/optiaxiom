@@ -51,8 +51,15 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     },
     ref,
   ) => {
-    const { disabled, downshift, isOpen, items, onBlur, selectedItem } =
-      useSelectContext("@optiaxiom/react/SelectTrigger");
+    const {
+      disabled,
+      downshift,
+      isOpen,
+      items,
+      onBlur,
+      selectedItem,
+      toggleButtonId,
+    } = useSelectContext("@optiaxiom/react/SelectTrigger");
     const { boxProps, restProps } = extractBoxProps(props);
 
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -82,7 +89,15 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
           {...boxProps}
           {...downshift.getToggleButtonProps({
             ...restProps,
-            "aria-labelledby": labelId ? clsx(labelId, valueId) : valueId,
+            /**
+             * `aria-labelledby` overrides `aria-label`, so reference the
+             * trigger itself to keep its `aria-label` in the name.
+             */
+            "aria-labelledby": labelId
+              ? clsx(labelId, valueId)
+              : restProps["aria-label"]
+                ? clsx(restProps.id ?? toggleButtonId, valueId)
+                : valueId,
             disabled,
             onBlur: (event) => {
               onBlurProp?.(event as FocusEvent<HTMLButtonElement>);
