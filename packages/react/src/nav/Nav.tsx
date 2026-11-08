@@ -30,7 +30,15 @@ export type NavProps = BoxProps<
  * @since 0.4.0
  */
 export const Nav = forwardRef<HTMLDivElement, NavProps>(
-  ({ children, ...props }, ref) => {
+  (
+    {
+      "aria-label": ariaLabel = "Main",
+      "aria-labelledby": ariaLabelledBy,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     const { expanded, navId } = useSidebarContext("@optiaxiom/react/Nav");
 
     return (
@@ -43,7 +51,9 @@ export const Nav = forwardRef<HTMLDivElement, NavProps>(
         {...props}
       >
         <Group asChild id={navId} w={expanded ? "224" : "56"} {...styles.nav()}>
-          <nav aria-label="Main">{children}</nav>
+          <nav aria-label={ariaLabel} aria-labelledby={ariaLabelledBy}>
+            {children}
+          </nav>
         </Group>
       </Group>
     );

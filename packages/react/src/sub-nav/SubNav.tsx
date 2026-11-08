@@ -11,7 +11,15 @@ export type SubNavProps = BoxProps<"nav">;
  * @group Sidebar
  */
 export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
-  ({ children, ...props }, ref) => {
+  (
+    {
+      "aria-label": ariaLabel = "Secondary",
+      "aria-labelledby": ariaLabelledBy,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     return (
       <Group
         borderColor="border.secondary"
@@ -24,7 +32,7 @@ export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
         {...props}
       >
         <Group asChild {...styles.nav()}>
-          <nav aria-label="Secondary">
+          <nav aria-label={ariaLabel} aria-labelledby={ariaLabelledBy}>
             <SidebarProvider
               expanded
               navId=""
