@@ -36,7 +36,7 @@ export const button = recipe({
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "2px",
-          zIndex: "10",
+          zIndex: "1",
         },
         "&[disabled]": {
           opacity: 0.32,

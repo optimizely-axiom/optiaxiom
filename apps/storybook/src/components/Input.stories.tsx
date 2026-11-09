@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { IconCalendarDays } from "@optiaxiom/icons";
-import { Button, Group, Input, Text } from "@optiaxiom/react";
+import { Box, Button, Group, Input, Text } from "@optiaxiom/react";
 import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 import { action } from "storybook/actions";
+import { expect } from "storybook/test";
 
 export default {
   args: {
@@ -71,6 +72,34 @@ export const Error: Story = {
       <Input {...args} placeholder="Error placeholder..." />
       <Input {...args} defaultValue="Error with value" />
     </Group>
+  ),
+};
+
+export const FocusedUnderStickyHeader: Story = {
+  play: async ({ canvas }) => {
+    const input = canvas.getByRole("textbox");
+    input.focus({ preventScroll: true });
+    canvas.getByTestId("scroller").scrollTop = 32;
+    await expect(input).toHaveFocus();
+  },
+  render: (args) => (
+    <Box data-testid="scroller" maxH="xs" maxW="sm" overflow="auto">
+      <Box
+        bg="bg.default"
+        borderB="1"
+        borderColor="border.tertiary"
+        p="16"
+        style={{ position: "sticky", top: 0, zIndex: 2 }}
+      >
+        <Text fontWeight="600">Sticky header with z-index 2</Text>
+      </Box>
+      <Group flexDirection="column" gap="16" p="16">
+        <Input {...args} />
+        {Array.from({ length: 12 }, (_, index) => (
+          <Text key={index}>Scroll content</Text>
+        ))}
+      </Group>
+    </Box>
   ),
 };
 
