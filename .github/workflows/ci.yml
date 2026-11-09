@@ -152,11 +152,25 @@ jobs:
 
       - run: pnpm lint --no-fix
 
+  # Keep the job named `test`: it is a required check. A skipped job passes a
+  # required check, so test runs after a failed shard and fails.
   test:
+    if: ${{ !cancelled() && (github.event_name == 'pull_request' || github.repository_owner == 'optimizely-axiom') }}
+    needs: test-shard
+    runs-on: ubuntu-latest
+    steps:
+      - if: ${{ needs.test-shard.result != 'success' }}
+        run: exit 1
+
+  test-shard:
     env:
       LC_ALL: en_US.UTF-8
     if: ${{ github.event_name == 'pull_request' || github.repository_owner == 'optimizely-axiom' }}
+    name: test-${{ matrix.shard }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        shard: [1, 2]
     steps:
       - uses: actions/checkout@v7
         with:
@@ -175,21 +189,24 @@ jobs:
 
       - run: pnpm -F icons... -F proteus... -F web-components... -F mcp... build
 
-      - name: Check schema files are up-to-date
+      - if: ${{ matrix.shard == 1 }}
+        name: Check schema files are up-to-date
         run: |
           git diff --exit-code packages/proteus/src/schema/public-schema.json packages/proteus/src/schema/runtime-schema.json || {
             echo "Error: Schema files are out of date. Please run 'pnpm -F proteus build' and commit the changes."
             exit 1
           }
 
-      - name: Check package exports are up-to-date
+      - if: ${{ matrix.shard == 1 }}
+        name: Check package exports are up-to-date
         run: |
           git diff --exit-code packages/icons packages/react/package.json && test -z "$(git status --porcelain packages/icons)" || {
             echo "Error: generated icon files or package exports are out of date. Please run 'pnpm -F icons -F react build' and commit the changes, including new files under packages/icons."
             exit 1
           }
 
-      - name: Check MCP data is up-to-date
+      - if: ${{ matrix.shard == 1 }}
+        name: Check MCP data is up-to-date
         run: |
           git diff --exit-code packages/mcp/src/data.json || {
             echo "Error: MCP data is out of date. Please run 'pnpm -F mcp build', commit the changes, and add an @optiaxiom/mcp changeset."
@@ -197,8 +214,8 @@ jobs:
           }
 
       - if: ${{ github.event_name == 'push' }}
-        run: pnpm exec vitest run '--project=!storybook'
+        run: pnpm exec vitest run '--project=!storybook' --shard=${{ matrix.shard }}/2
 
       - if: ${{ github.event_name != 'push' }}
-        run: pnpm exec vitest run
+        run: pnpm exec vitest run --shard=${{ matrix.shard }}/2
         timeout-minutes: 3
