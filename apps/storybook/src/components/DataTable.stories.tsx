@@ -734,6 +734,8 @@ export const Pagination: Story = {
 
 export const Resizing: Story = {
   play: async ({ canvas }) => {
+    await expect(canvas.queryAllByRole("separator")).toHaveLength(0);
+
     canvas.getByRole("columnheader", { name: "Email" }).focus();
   },
   render: function Render(args) {
