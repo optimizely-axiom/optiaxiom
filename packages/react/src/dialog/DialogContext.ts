@@ -9,7 +9,9 @@ export const [DialogProvider, useDialogContext] = createContext<{
   footerRef: RefObject<HTMLDivElement>;
   headerRef: RefObject<HTMLDivElement>;
   nestedDialogCount: number;
+  onCloseAutoFocus: (event: Event) => void;
   open: boolean | undefined;
   presence: boolean | undefined;
   setPresence: (presence: boolean) => void;
+  triggerRef: RefObject<HTMLButtonElement>;
 }>("@optiaxiom/react/Dialog");

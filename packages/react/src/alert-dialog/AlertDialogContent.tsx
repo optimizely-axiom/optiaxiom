@@ -41,8 +41,14 @@ export const AlertDialogContent = forwardRef<
     },
     outerRef,
   ) => {
-    const { cancelRef, nestedDialogCount, open, presence, setPresence } =
-      useAlertDialogContext("@optiaxiom/react/AlertDialogContent");
+    const {
+      cancelRef,
+      nestedDialogCount,
+      onCloseAutoFocus: onDialogCloseAutoFocus,
+      open,
+      presence,
+      setPresence,
+    } = useAlertDialogContext("@optiaxiom/react/AlertDialogContent");
     const { onClose, onDismiss } = useContext(DialogKitContext) ?? {};
 
     const innerRef = useRef<HTMLDivElement>(null);
@@ -95,6 +101,7 @@ export const AlertDialogContent = forwardRef<
                   onCloseAutoFocus={(event) => {
                     onCloseAutoFocus?.(event);
                     onClose?.();
+                    onDialogCloseAutoFocus(event);
                   }}
                   onEscapeKeyDown={(event) => {
                     if (onDismiss) {

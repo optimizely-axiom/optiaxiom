@@ -1,9 +1,9 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { useContext, useRef, useState } from "react";
+import { useCallback, useContext, useRef, useState } from "react";
 
 import { DialogKitContext } from "../dialog-kit/internals";
-import { FocusBookmarkRestore } from "../focus-bookmark";
+import { useFocusBookmarkRestore } from "../focus-bookmark";
 import {
   NestedDialogProvider,
   useNestedDialogCount,
@@ -75,6 +75,26 @@ export function Dialog({
   const cancelRef = useRef<HTMLButtonElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  const restoreBookmark = useFocusBookmarkRestore("@optiaxiom/react/Dialog");
+  // Replaces Radix's close focus, which only targets its trigger ref: that ref
+  // is null once a conditionally rendered Dialog unmounts. Closes over refs
+  // only, so it still works after this tree has unmounted.
+  const onCloseAutoFocus = useCallback(
+    (event: Event) => {
+      if (event.defaultPrevented) {
+        return;
+      }
+
+      event.preventDefault();
+      triggerRef.current?.focus();
+      if (document.activeElement !== triggerRef.current) {
+        restoreBookmark();
+      }
+    },
+    [restoreBookmark],
+  );
 
   return (
     <NestedDialogProvider onCountChange={setNestedDialogCount}>
@@ -88,13 +108,12 @@ export function Dialog({
           footerRef={footerRef}
           headerRef={headerRef}
           nestedDialogCount={nestedDialogCount}
+          onCloseAutoFocus={onCloseAutoFocus}
           open={open}
           presence={presence}
           setPresence={setPresence}
+          triggerRef={triggerRef}
         >
-          <RadixDialog.Trigger asChild>
-            <FocusBookmarkRestore />
-          </RadixDialog.Trigger>
           {children}
         </DialogProvider>
       </RadixDialog.Root>
