@@ -382,3 +382,40 @@ export const WithSurface: Story = {
     );
   },
 };
+
+export const RenderedWhileOpen: Story = {
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Edit profile" }));
+    await expect(
+      await screen.findByRole("dialog", { name: "Edit profile" }),
+    ).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: "Close" }));
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("dialog", { name: "Edit profile" }),
+      ).not.toBeInTheDocument(),
+    );
+    await waitFor(() =>
+      expect(
+        canvas.getByRole("button", { name: "Edit profile" }),
+      ).toHaveFocus(),
+    );
+  },
+  render: function Render() {
+    const [open, setOpen] = useState(false);
+    return (
+      <>
+        <Button onClick={() => setOpen(true)}>Edit profile</Button>
+        {open && (
+          <Dialog onOpenChange={setOpen} open>
+            <DialogContent>
+              <DialogHeader>Edit profile</DialogHeader>
+              <DialogBody>The dialog unmounts as soon as it closes.</DialogBody>
+            </DialogContent>
+          </Dialog>
+        )}
+      </>
+    );
+  },
+};

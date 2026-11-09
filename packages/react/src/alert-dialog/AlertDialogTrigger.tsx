@@ -1,7 +1,9 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { forwardRef } from "react";
 
 import { Button, type ButtonProps } from "../button";
+import { useAlertDialogContext } from "./AlertDialogContext";
 
 export type AlertDialogTriggerProps = ButtonProps<typeof RadixDialog.Trigger>;
 
@@ -12,7 +14,12 @@ export type AlertDialogTriggerProps = ButtonProps<typeof RadixDialog.Trigger>;
 export const AlertDialogTrigger = forwardRef<
   HTMLButtonElement,
   AlertDialogTriggerProps
->(({ asChild, children, ...props }, ref) => {
+>(({ asChild, children, ...props }, outerRef) => {
+  const { triggerRef } = useAlertDialogContext(
+    "@optiaxiom/react/AlertDialogTrigger",
+  );
+  const ref = useComposedRefs(outerRef, triggerRef);
+
   return (
     <RadixDialog.Trigger asChild ref={ref} {...props}>
       {asChild ? children : <Button>{children}</Button>}
