@@ -485,9 +485,6 @@ importers:
         specifier: 1.1.4
         version: 1.1.4(@types/react@18.3.31)(react@18.3.1)
     devDependencies:
-      '@optiaxiom/shared':
-        specifier: workspace:^
-        version: link:../shared
       '@vanilla-extract/css':
         specifier: ^1.21.1
         version: 1.21.1(babel-plugin-macros@3.1.0)
@@ -788,9 +785,6 @@ importers:
       '@mantine/hooks':
         specifier: ^8.3.18
         version: 8.3.18(react@18.3.1)
-      '@optiaxiom/shared':
-        specifier: workspace:^
-        version: link:../shared
       '@types/node':
         specifier: ^22.20.1
         version: 22.20.1
@@ -873,9 +867,6 @@ importers:
       '@optiaxiom/react':
         specifier: workspace:^
         version: link:../react
-      '@optiaxiom/shared':
-        specifier: workspace:^
-        version: link:../shared
       '@radix-ui/react-context':
         specifier: 1.1.4
         version: 1.1.4(@types/react@18.3.31)(react@18.3.1)

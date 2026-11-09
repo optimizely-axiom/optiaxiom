@@ -42,7 +42,6 @@
     "@radix-ui/react-context": "1.1.4"
   },
   "devDependencies": {
-    "@optiaxiom/shared": "workspace:^",
     "@vanilla-extract/css": "^1.21.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
