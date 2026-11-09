@@ -21,6 +21,7 @@ const nextConfig = {
   basePath: process.env.NEXT_PUBLIC_BASE_PATH,
   experimental: {
     cssChunking: "strict",
+    turbopackFileSystemCacheForBuild: true,
   },
   images: {
     unoptimized: true,
