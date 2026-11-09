@@ -75930,7 +75930,7 @@
       "name": "NavItem",
       "props": {
         "active": {
-          "description": "Whether the nav item is currently active.",
+          "description": "Whether the nav item is currently active. Sets `aria-current=\"page\"`,\nor `aria-current=\"true\"` in the primary nav while a `SubNav` item is\nactive.",
           "type": "boolean"
         },
         "addonAfter": {
@@ -96240,7 +96240,7 @@
       "name": "SidebarToggle",
       "props": {
         "active": {
-          "description": "Whether the nav item is currently active.",
+          "description": "Whether the nav item is currently active. Sets `aria-current=\"page\"`,\nor `aria-current=\"true\"` in the primary nav while a `SubNav` item is\nactive.",
           "type": "boolean"
         },
         "addonAfter": {
