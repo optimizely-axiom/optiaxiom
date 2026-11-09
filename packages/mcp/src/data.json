@@ -20807,7 +20807,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/card"
     },
     "Checkbox": {
-      "description": "Basic control to allow selecting one or more items from a set.",
+      "description": "Basic control to allow selecting one or more items from a set.\n\nImportant Notes:\n- The control and its focus ring reach up to 6px outside the checkbox, so a\n  scroll container (`overflow=\"auto\"`) clips them on its edge rows. Pad the\n  scroll container by at least 6px (`p=\"8\"`); to keep the checkboxes flush\n  with the content around it, cancel the padding with an equal negative\n  margin.",
       "entryPoint": "@optiaxiom/react/checkbox",
       "import": "import { Checkbox } from '@optiaxiom/react';",
       "name": "Checkbox",
@@ -87841,7 +87841,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/radio-group"
     },
     "RadioGroup": {
-      "description": "Basic control to allow selecting only one item from a set.",
+      "description": "Basic control to allow selecting only one item from a set.\n\nImportant Notes:\n- The control and its focus ring reach up to 6px outside each radio, so a\n  scroll container (`overflow=\"auto\"`) clips them on its edge rows. Pad the\n  scroll container by at least 6px (`p=\"8\"`); to keep the radios flush with\n  the content around it, cancel the padding with an equal negative margin.",
       "entryPoint": "@optiaxiom/react/radio",
       "import": "import { RadioGroup } from '@optiaxiom/react';",
       "name": "RadioGroup",
