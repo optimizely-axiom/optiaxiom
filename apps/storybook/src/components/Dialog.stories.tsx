@@ -26,7 +26,7 @@ import {
   Text,
   Textarea,
 } from "@optiaxiom/react";
-import { SurfaceProvider } from "@optiaxiom/react/unstable";
+import { dialogkit, SurfaceProvider } from "@optiaxiom/react/unstable";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,
@@ -418,4 +418,46 @@ export const RenderedWhileOpen: Story = {
       </>
     );
   },
+};
+
+export const ConfirmFromInside: Story = {
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Edit profile" }));
+    await userEvent.click(
+      await screen.findByRole("button", { name: "Discard changes" }),
+    );
+    await userEvent.click(
+      await screen.findByRole("button", { name: "Cancel" }),
+    );
+
+    await waitFor(() =>
+      expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument(),
+    );
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "Discard changes" }),
+      ).toHaveFocus(),
+    );
+  },
+  render: () => (
+    <Dialog>
+      <DialogTrigger>Edit profile</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>Edit profile</DialogHeader>
+        <DialogBody>
+          <Button
+            onClick={() =>
+              dialogkit.confirm({
+                action: "Discard",
+                body: "Your changes will be lost.",
+                header: "Discard changes?",
+              })
+            }
+          >
+            Discard changes
+          </Button>
+        </DialogBody>
+      </DialogContent>
+    </Dialog>
+  ),
 };

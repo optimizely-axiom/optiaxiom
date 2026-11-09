@@ -1,16 +1,22 @@
 import { useCallback } from "react";
 
 import { useFocusBookmarkProviderContext } from "./FocusBookmarkProviderContext";
+import { focusBookmarks } from "./focusBookmarks";
 
 /**
  * Returns a stable function that focuses the most recent bookmarked element
- * that can take focus, and reports whether one did. It only closes over the
- * provider's ref, so it keeps working after the calling component unmounts.
+ * that can take focus. It only closes over refs and the page-wide registry, so
+ * it keeps working after the calling component unmounts.
  */
 export function useFocusBookmarkRestore(consumerName: string) {
   const { bookmarksRef } = useFocusBookmarkProviderContext(consumerName);
 
   return useCallback(() => {
+    if (focusBookmarks) {
+      focusBookmarks.restore();
+      return;
+    }
+
     bookmarksRef.current = bookmarksRef.current.filter((element) =>
       document.body.contains(element),
     );
@@ -18,9 +24,8 @@ export function useFocusBookmarkRestore(consumerName: string) {
       const element = bookmarksRef.current.pop();
       element?.focus();
       if (document.activeElement === element) {
-        return true;
+        return;
       }
     }
-    return false;
   }, [bookmarksRef]);
 }

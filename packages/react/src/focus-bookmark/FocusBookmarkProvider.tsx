@@ -1,6 +1,10 @@
 import { type ReactNode, type RefObject, useEffect, useRef } from "react";
 
-import { FocusBookmarkProviderProvider } from "./FocusBookmarkProviderContext";
+import {
+  FocusBookmarkProviderProvider,
+  useFocusBookmarkProviderContext,
+} from "./FocusBookmarkProviderContext";
+import { focusBookmarks } from "./focusBookmarks";
 
 const BOOKMARK_LIMIT = 5;
 
@@ -16,7 +20,27 @@ export function FocusBookmarkProvider({
   children,
   containerRef,
 }: FocusBookmarkProviderProps) {
+  const { depth } = useFocusBookmarkProviderContext(
+    "@optiaxiom/react/FocusBookmarkProvider",
+  );
   const bookmarksRef = useRef<HTMLElement[]>([]);
+
+  const layerRef =
+    useRef<ReturnType<NonNullable<typeof focusBookmarks>["add"]>>();
+  // Separate from the listener effect so a new containerRef keeps the layer's
+  // bookmarks.
+  useEffect(() => {
+    if (!focusBookmarks) {
+      return;
+    }
+
+    const layer = focusBookmarks.add(depth);
+    layerRef.current = layer;
+    return () => {
+      layer.remove();
+      layerRef.current = undefined;
+    };
+  }, [depth]);
 
   useEffect(() => {
     const container = containerRef?.current ?? document.body;
@@ -31,6 +55,11 @@ export function FocusBookmarkProvider({
 
       if (event.target instanceof HTMLElement) {
         Object.assign(event, { preventFocusBookmarkDefault: true });
+
+        if (layerRef.current) {
+          layerRef.current.record(event.target);
+          return;
+        }
 
         if (bookmarksRef.current.includes(event.target)) {
           bookmarksRef.current = bookmarksRef.current.filter(
@@ -49,7 +78,10 @@ export function FocusBookmarkProvider({
   }, [containerRef]);
 
   return (
-    <FocusBookmarkProviderProvider bookmarksRef={bookmarksRef}>
+    <FocusBookmarkProviderProvider
+      bookmarksRef={bookmarksRef}
+      depth={depth + 1}
+    >
       {children}
     </FocusBookmarkProviderProvider>
   );
