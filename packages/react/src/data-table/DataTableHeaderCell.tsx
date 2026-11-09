@@ -55,7 +55,9 @@ export const DataTableHeaderCell = forwardRef<
           <ActionsContent
             visible={header.column.getIsResizing() ? "always" : "if-needed"}
           >
+            {/* Pointer-only: react-table's resize handler has no keyboard support, so an exposed separator would be an unusable, unnamed stop for screen readers. */}
             <Separator
+              aria-hidden="true"
               onDoubleClick={() => header.column.resetSize()}
               onMouseDown={header.getResizeHandler()}
               onTouchStart={header.getResizeHandler()}
