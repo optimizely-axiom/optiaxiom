@@ -107,7 +107,7 @@ export const buttonBase = recipe({
         "&:is(:focus-visible, :has(:focus-visible)):not([data-disabled])": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "2px",
-          zIndex: "10",
+          zIndex: "1",
         },
         "&[data-disabled]": {
           cursor: "not-allowed",
