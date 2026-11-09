@@ -38,6 +38,7 @@ import {
   SidebarToggle,
   SubNav,
 } from "@optiaxiom/react";
+import { expect, screen } from "storybook/test";
 
 const body = (
   <NavBody>
@@ -148,6 +149,11 @@ export const Expanded: Story = {
   args: {
     defaultExpanded: true,
   },
+  play: async () => {
+    await expect(
+      screen.getByRole("button", { current: "page" }),
+    ).toHaveAccessibleName("Flags");
+  },
 };
 
 export const WithSubNav: Story = {
@@ -215,5 +221,13 @@ export const WithSubNav: Story = {
         </SubNav>
       </>
     ),
+  },
+  play: async () => {
+    await expect(
+      screen.getByRole("button", { current: "page" }),
+    ).toHaveAccessibleName("CMP");
+    await expect(
+      screen.getByRole("button", { current: true }),
+    ).toHaveAccessibleName("Flags");
   },
 };

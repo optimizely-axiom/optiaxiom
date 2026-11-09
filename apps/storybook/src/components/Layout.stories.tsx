@@ -43,6 +43,7 @@ import {
   LayoutContent,
 } from "@optiaxiom/react/unstable";
 import { Fragment } from "react/jsx-runtime";
+import { expect, screen } from "storybook/test";
 
 export default {
   component: Layout,
@@ -405,5 +406,10 @@ export const WithSubnav: Story = {
     children: <ContentExample />,
     header: <HeaderExample />,
     sidebar: <SidebarWithSubnavExample />,
+  },
+  play: async () => {
+    await expect(
+      screen.getByRole("button", { current: "page" }),
+    ).toHaveAccessibleName("Flags");
   },
 };

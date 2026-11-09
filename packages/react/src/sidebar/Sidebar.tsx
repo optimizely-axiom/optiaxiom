@@ -1,8 +1,9 @@
 import { useId } from "@radix-ui/react-id";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { useEvent } from "../hooks";
 import { SidebarProvider } from "./SidebarContext";
 
 export type SidebarProps = BoxProps<
@@ -47,11 +48,18 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
       onChange: onExpandedChange,
       prop: expandedProp,
     });
+    const [subNavActiveCount, setSubNavActiveCount] = useState(0);
 
     return (
       <SidebarProvider
+        current={subNavActiveCount ? "true" : "page"}
         expanded={expanded}
         navId={useId()}
+        onActiveChange={useEvent((active: boolean, nav?: "sub-nav") => {
+          if (nav === "sub-nav") {
+            setSubNavActiveCount((count) => count + (active ? 1 : -1));
+          }
+        })}
         onExpandedChange={setExpanded}
         spacing="8"
       >

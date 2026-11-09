@@ -1,5 +1,5 @@
 import { createSlot } from "@radix-ui/react-slot";
-import { forwardRef, type ReactNode } from "react";
+import { forwardRef, type ReactNode, useEffect } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { Group } from "../group";
@@ -16,7 +16,9 @@ export type NavItemProps = BoxProps<
   "button",
   {
     /**
-     * Whether the nav item is currently active.
+     * Whether the nav item is currently active. Sets `aria-current="page"`,
+     * or `aria-current="true"` in the primary nav while a `SubNav` item is
+     * active.
      */
     active?: boolean;
     /**
@@ -50,7 +52,16 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
     const Comp = asChild ? Slot : "button";
     const { boxProps, restProps } = extractBoxProps(props);
 
-    const { expanded } = useSidebarContext("@optiaxiom/react/NavItem");
+    const { current, expanded, onActiveChange } = useSidebarContext(
+      "@optiaxiom/react/NavItem",
+    );
+    useEffect(() => {
+      if (!active) {
+        return;
+      }
+      onActiveChange(true);
+      return () => onActiveChange(false);
+    }, [active, onActiveChange]);
 
     let tooltip = null;
     children = decorateChildren({ asChild, children }, (children) => {
@@ -93,7 +104,12 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
               {...styles.item({}, className)}
               {...boxProps}
             >
-              <Comp disabled={disabled} ref={ref} {...restProps}>
+              <Comp
+                aria-current={active ? current : undefined}
+                disabled={disabled}
+                ref={ref}
+                {...restProps}
+              >
                 {children}
               </Comp>
             </Box>

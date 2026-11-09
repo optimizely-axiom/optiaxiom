@@ -2,7 +2,8 @@ import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Group } from "../group";
-import { SidebarProvider } from "../sidebar/internals";
+import { useEvent } from "../hooks";
+import { SidebarProvider, useSidebarContext } from "../sidebar/internals";
 import * as styles from "./SubNav.css";
 
 export type SubNavProps = BoxProps<"nav">;
@@ -12,6 +13,8 @@ export type SubNavProps = BoxProps<"nav">;
  */
 export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
   ({ children, ...props }, ref) => {
+    const { onActiveChange } = useSidebarContext("@optiaxiom/react/SubNav");
+
     return (
       <Group
         borderColor="border.secondary"
@@ -26,8 +29,12 @@ export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
         <Group asChild {...styles.nav()}>
           <nav aria-label="Secondary">
             <SidebarProvider
+              current="page"
               expanded
               navId=""
+              onActiveChange={useEvent((active: boolean) =>
+                onActiveChange(active, "sub-nav"),
+              )}
               onExpandedChange={() => {}}
               spacing="12"
             >
