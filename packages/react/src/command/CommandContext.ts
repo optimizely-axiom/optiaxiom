@@ -25,7 +25,8 @@ export type CommandOption = {
     | ((context: { inputValue: string | undefined }) => ReactNode)
     | ReactNode;
   /**
-   * Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.
+   * Mark the item as disabled and skip it in keyboard navigation. List items
+   * show the reason in place of their `description`.
    */
   disabledReason?: (() => string) | string;
   /**
@@ -153,6 +154,20 @@ type CommandOptionGroup = {
    */
   separator?: boolean;
 };
+
+/**
+ * The secondary text under an item's label: a disabled item shows why it's
+ * disabled in place of its usual description.
+ */
+export function resolveItemDescription(
+  item: Pick<CommandOption, "description" | "disabledReason">,
+  context: { inputValue: string | undefined } = { inputValue: undefined },
+) {
+  return (
+    resolveItemProperty(item.disabledReason) ||
+    resolveItemProperty(item.description, context)
+  );
+}
 
 export function resolveItemProperty<Value>(
   property: Value,

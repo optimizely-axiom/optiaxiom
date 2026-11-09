@@ -2,7 +2,11 @@ import { IconArrowUpRightFromSquare } from "@optiaxiom/icons/IconArrowUpRightFro
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { CommandItem } from "../command";
-import { resolveItemProperty, useCommandContext } from "../command/internals";
+import {
+  resolveItemDescription,
+  resolveItemProperty,
+  useCommandContext,
+} from "../command/internals";
 import { ListboxItem } from "../listbox";
 import { useMenuContext } from "./MenuContext";
 
@@ -32,9 +36,7 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
           data-focus-visible={
             focusVisible && highlightedItem === props.item ? "" : undefined
           }
-          description={resolveItemProperty(props.item.description, {
-            inputValue,
-          })}
+          description={resolveItemDescription(props.item, { inputValue })}
           intent={props.item.intent}
         >
           <Comp

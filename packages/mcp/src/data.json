@@ -67724,7 +67724,7 @@
                 "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
               },
               "disabledReason": {
-                "description": "Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.",
+                "description": "Mark the item as disabled and skip it in keyboard navigation. List items\nshow the reason in place of their `description`.",
                 "tsType": "string | (() => string)"
               },
               "execute": {
@@ -81884,7 +81884,7 @@
                 "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
               },
               "disabledReason": {
-                "description": "Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.",
+                "description": "Mark the item as disabled and skip it in keyboard navigation. List items\nshow the reason in place of their `description`.",
                 "tsType": "string | (() => string)"
               },
               "execute": {
@@ -82202,7 +82202,7 @@
                 "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
               },
               "disabledReason": {
-                "description": "Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.",
+                "description": "Mark the item as disabled and skip it in keyboard navigation. List items\nshow the reason in place of their `description`.",
                 "tsType": "string | (() => string)"
               },
               "execute": {
@@ -92889,7 +92889,7 @@
                 "tsType": "ReactNode"
               },
               "disabledReason": {
-                "description": "Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.",
+                "description": "Mark the item as disabled and skip it in keyboard navigation. The reason\nis shown in place of its `description`.",
                 "tsType": "string | (() => string)"
               },
               "group": {
@@ -101872,7 +101872,7 @@
                 "tsType": "ReactNode | ((context: { inputValue: string | undefined; }) => ReactNode)"
               },
               "disabledReason": {
-                "description": "Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.",
+                "description": "Mark the item as disabled and skip it in keyboard navigation. List items\nshow the reason in place of their `description`.",
                 "tsType": "string | (() => string)"
               },
               "execute": {
