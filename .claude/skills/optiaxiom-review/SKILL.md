@@ -57,6 +57,7 @@ You are reviewing code for **@optiaxiom/react**, a React design system built on 
 - **Use the existing component, not raw styles.** `<Heading level="3">` not `fontSize="3xl"`; `<Paper>` for surfaces (gets light/dark bg); `<Button>` for the dialog close (keyboard/focus); reuse `Field`/`FieldLabel`/`SearchInput`/`forceValueChange` rather than re-implementing.
 - **`asChild` + `Slot` only when consumers will realistically swap the element.** A single fixed empty element (separator) doesn't need it.
 - **Don't clone/iterate children to inject props** (`Children.map` + `cloneElement`) — children may be fragments/nested. Pass state via **context** and read it in the child instead.
+- **Write handlers inline** (`onActiveChange={(active) => …}`), not hoisted into a named `useCallback`. Stable identity is a separate concern: when the receiver needs one (an effect dependency, a context value every consumer re-renders on), wrap the inline handler at the call site with `useEvent` (`packages/react/src/hooks/useEvent.ts`): `onActiveChange={useEvent((active) => …)}`.
 - **Don't manufacture synthetic events as `any`.** Re-trigger React's native setter (`forceValueChange`) to clear/set an input value, and re-focus after; or use `useImperativeHandle` to expose native methods like `showPicker()`.
 
 ## 3. Styling system rules (vanilla-extract / sprinkles)
