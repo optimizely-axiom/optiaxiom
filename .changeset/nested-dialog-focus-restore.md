@@ -3,4 +3,4 @@
 "@optiaxiom/web-components": patch
 ---
 
-name `AxiomProvider` in missing-provider errors
+restored focus to the opener of a dialog opened from another dialog
