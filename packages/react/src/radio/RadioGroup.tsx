@@ -56,6 +56,12 @@ const mapGapToOrientation = {
 /**
  * Basic control to allow selecting only one item from a set.
  *
+ * Important Notes:
+ * - The control and its focus ring reach up to 6px outside each radio, so a
+ *   scroll container (`overflow="auto"`) clips them on its edge rows. Pad the
+ *   scroll container by at least 6px (`p="8"`); to keep the radios flush with
+ *   the content around it, cancel the padding with an equal negative margin.
+ *
  * @category form
  * @since 0.1.0
  */
