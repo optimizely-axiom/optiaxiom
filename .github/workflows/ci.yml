@@ -12,7 +12,47 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # build-base and build-head measure bundle sizes in parallel; build compares
+  # them. Keep the job named `build`: it is a required check. A skipped job
+  # passes a required check, so build runs after a failed dependency and fails.
   build:
+    if: ${{ !cancelled() && github.event_name == 'pull_request' && github.repository_owner == 'optimizely-axiom' }}
+    needs: [build-base, build-head]
+    runs-on: ubuntu-latest
+    steps:
+      - if: ${{ needs.build-base.result != 'success' || needs.build-head.result != 'success' }}
+        run: exit 1
+
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          cache: pnpm
+          node-version-file: .node-version
+
+      # compare only reads two reports, so it needs only shared's dependencies.
+      - run: pnpm install --filter @optiaxiom/shared
+
+      - uses: actions/download-artifact@v8
+        with:
+          merge-multiple: true
+          pattern: bundle-size-*
+
+      - run: |
+          mkdir ./pr
+          echo ${{ github.event.number }} > ./pr/ID
+          node packages/shared/bin/bundle-size.mjs compare bundle-size-base.json --head bundle-size-head.json > ./pr/bundle-size.md
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: pr-build
+          path: pr/
+
+  build-base:
     if: ${{ github.event_name == 'pull_request' && github.repository_owner == 'optimizely-axiom' }}
     runs-on: ubuntu-latest
     steps:
@@ -30,8 +70,6 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm exec playwright install chromium
-
       - run: |
           pnpm build
           pnpm --silent bundle-size > bundle-size-base.json
@@ -39,8 +77,13 @@ jobs:
       - uses: actions/upload-artifact@v7
         with:
           if-no-files-found: error
+          name: bundle-size-base
           path: bundle-size-base.json
 
+  build-head:
+    if: ${{ github.event_name == 'pull_request' && github.repository_owner == 'optimizely-axiom' }}
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
@@ -54,20 +97,15 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm exec playwright install chromium
-
-      - uses: actions/download-artifact@v8
-
       - run: |
-          mkdir ./pr
-          echo ${{ github.event.number }} > ./pr/ID
           pnpm build
-          pnpm --silent bundle-size compare bundle-size-base.json > ./pr/bundle-size.md
+          pnpm --silent bundle-size > bundle-size-head.json
 
       - uses: actions/upload-artifact@v7
         with:
-          name: pr-build
-          path: pr/
+          if-no-files-found: error
+          name: bundle-size-head
+          path: bundle-size-head.json
 
   docs:
     if: ${{ github.event_name != 'push' && github.repository_owner == 'optimizely-axiom' }}

@@ -15,23 +15,27 @@ const packages = [
 ];
 
 /**
- * @param {{ file: string }} options
+ * @param {string} file
+ * @returns {Promise<Array<{
+ *    gzippedSize: number;
+ *    minifiedSize: number;
+ *    name: string;
+ *    packageName: string;
+ * }>>}
  */
-async function compare({ file }) {
-  const localReport = await measure();
-  /**
-   * @type {Array<{
-   *    gzippedSize: number;
-   *    minifiedSize: number;
-   *    name: string;
-   *    packageName: string;
-   * }>}
-   */
-  const remoteReport = JSON.parse(
+const readReport = async (file) =>
+  JSON.parse(
     await readFile(resolve(process.cwd(), file), {
       encoding: "utf-8",
     }),
   );
+
+/**
+ * @param {{ file: string; head?: string }} options
+ */
+async function compare({ file, head }) {
+  const localReport = head ? await readReport(head) : await measure();
+  const remoteReport = await readReport(file);
   const { compareResultsInReports } =
     await import("monosize/src/utils/compareResultsInReports.mjs");
   return compareResultsInReports(
@@ -174,14 +178,18 @@ async function measure() {
 void yargs(hideBin(process.argv))
   .command({
     builder: {
+      head: {
+        description: "Compare against this report instead of measuring",
+        string: true,
+      },
       output: {
         choices: ["cli", "markdown"],
         default: isCI ? "markdown" : "cli",
       },
     },
     command: "compare <file>",
-    handler: async ({ file, output }) => {
-      const report = (await compare({ file })).filter(
+    handler: async ({ file, head, output }) => {
+      const report = (await compare({ file, head })).filter(
         (entry) =>
           entry.diff.empty || Math.abs(entry.diff.minified.delta) >= 50,
       );
