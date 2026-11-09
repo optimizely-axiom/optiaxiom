@@ -32,6 +32,40 @@ const input = Object.fromEntries(
   ]),
 );
 
+/** @param {import("react-docgen-typescript").PropItem} prop */
+const typeDeclarationPropFilter = (prop) =>
+  prop.parent
+    ? prop.parent.fileName.includes("@types/react")
+      ? prop.name === "ref"
+      : true
+    : true;
+/** @param {import("react-docgen-typescript").PropItem} prop */
+const webComponentPropFilter = (prop) =>
+  !(prop.name === "children" && prop.description.length === 0) &&
+  parserOptions.propFilter(prop);
+
+/**
+ * Extracting react's declarations takes about 10s, so both plugins share one
+ * parse that keeps every prop either needs, and each narrows it with its own
+ * filter.
+ */
+const reactDocs = docgen
+  .withCompilerOptions(compilerOptions, {
+    ...parserOptions,
+    propFilter: (prop) =>
+      typeDeclarationPropFilter(prop) || parserOptions.propFilter(prop),
+    skipChildrenPropWithoutDoc: false,
+  })
+  .parse(fg.globSync("../react/dist/**/*.d.ts"));
+/** @param {(prop: import("react-docgen-typescript").PropItem) => boolean} filter */
+const filterReactDocs = (filter) =>
+  reactDocs.map((doc) => ({
+    ...doc,
+    props: Object.fromEntries(
+      Object.entries(doc.props).filter(([, prop]) => filter(prop)),
+    ),
+  }));
+
 export default defineConfig([
   {
     input,
@@ -495,19 +529,7 @@ function stylePlugin({ exclude = [], include = [] } = {}) {
 /** @returns {import('rolldown').Plugin} */
 function typeDeclarationPlugin({ include = [] }) {
   const filter = createFilter(include ?? []);
-  const docs = docgen
-    .withCompilerOptions(compilerOptions, {
-      propFilter: (prop) =>
-        prop.parent
-          ? prop.parent.fileName.includes("@types/react")
-            ? prop.name === "ref"
-            : true
-          : true,
-      savePropValueAsString: true,
-      shouldExtractValuesFromUnion: true,
-      skipChildrenPropWithoutDoc: false,
-    })
-    .parse(fg.globSync("../react/dist/**/*.d.ts"));
+  const docs = filterReactDocs(typeDeclarationPropFilter);
   const box = docs.find((doc) => doc.displayName === "Box");
 
   const generateDts = (id) => {
@@ -716,9 +738,7 @@ declare module "react" {
 function webComponentPlugin({ include = [] }) {
   const prefix = `\0virtual:`;
   const filter = createFilter(include ?? []);
-  const docs = docgen
-    .withCompilerOptions(compilerOptions, parserOptions)
-    .parse(fg.globSync("../react/dist/**/*.d.ts"));
+  const docs = filterReactDocs(webComponentPropFilter);
 
   return {
     load(id) {
