@@ -203,7 +203,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         highlightedIndex === -1
           ? items.findIndex((item) => !item.disabledReason)
           : highlightedIndex,
-      isItemDisabled: (item) => !!item.disabledReason,
+      isItemDisabled: (item) => !!disabled || !!item.disabledReason,
       isOpen,
       items,
       itemToKey: (item) => (item !== null ? item.value : item),
