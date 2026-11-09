@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  merge_group:
   pull_request:
     branches: [main]
   push:
@@ -69,7 +70,7 @@ jobs:
           path: pr/
 
   docs:
-    if: ${{ github.event_name == 'pull_request' && github.repository_owner == 'optimizely-axiom' }}
+    if: ${{ github.event_name != 'push' && github.repository_owner == 'optimizely-axiom' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
