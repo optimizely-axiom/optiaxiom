@@ -50,13 +50,19 @@ describe("Button component", () => {
     ).toBeInTheDocument();
   });
 
-  it("should be disabled if loading=true", async () => {
+  it("should still call onClick while loading", async () => {
     const handleClick = vi.fn();
-    const { user } = setup({ loading: true });
+    const { user } = setup({ loading: true, onClick: handleClick });
 
     await user.click(screen.getByRole("button"));
 
-    expect(handleClick).not.toHaveBeenCalled();
+    expect(handleClick).toHaveBeenCalled();
+  });
+
+  it("should mark the button busy while loading", () => {
+    setup({ loading: true });
+
+    expect(screen.getByRole("button")).toHaveAttribute("aria-busy", "true");
   });
 
   it("should support aria-label", async () => {

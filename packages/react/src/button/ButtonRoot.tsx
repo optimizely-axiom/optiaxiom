@@ -123,7 +123,12 @@ export const ButtonRoot = forwardRef<HTMLButtonElement, ButtonRootProps>(
         )}
         {...boxProps}
       >
-        <Comp disabled={disabled} ref={ref} {...restProps}>
+        <Comp
+          aria-busy={loading || undefined}
+          disabled={disabled}
+          ref={ref}
+          {...restProps}
+        >
           {decorateChildren({ asChild, children }, (children) => (
             <>
               <TransitionGroup open={loading}>
