@@ -29,7 +29,8 @@ export type SelectOption = {
    */
   detail?: ReactNode;
   /**
-   * Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.
+   * Mark the item as disabled and skip it in keyboard navigation. The reason
+   * is shown in place of its `description`.
    */
   disabledReason?: (() => string) | string;
   /**
