@@ -10,19 +10,17 @@ export function App() {
     <Group flexDirection="column" gap="16">
       <Group gap="16">
         <Tooltip content="Loading button demo">
-          <Button appearance="primary" disabled={loading} loading={loading}>
+          <Button appearance="primary" loading={loading}>
             Primary
           </Button>
         </Tooltip>
 
         <Tooltip content="Loading button demo">
-          <Button disabled={loading} loading={loading}>
-            Default
-          </Button>
+          <Button loading={loading}>Default</Button>
         </Tooltip>
 
         <Tooltip content="Loading button demo">
-          <Button appearance="subtle" disabled={loading} loading={loading}>
+          <Button appearance="subtle" loading={loading}>
             Subtle
           </Button>
         </Tooltip>
