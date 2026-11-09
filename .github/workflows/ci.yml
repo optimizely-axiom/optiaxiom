@@ -35,7 +35,7 @@ jobs:
           node-version-file: .node-version
 
       # compare only reads two reports, so it needs only shared's dependencies.
-      - run: pnpm install --filter @optiaxiom/shared
+      - run: pnpm install --filter @optiaxiom/shared --trust-lockfile
 
       - uses: actions/download-artifact@v8
         with:
@@ -68,7 +68,7 @@ jobs:
           cache: pnpm
           node-version-file: .node-version
 
-      - run: pnpm install
+      - run: pnpm install --trust-lockfile
 
       - run: |
           pnpm build
@@ -95,7 +95,7 @@ jobs:
           cache: pnpm
           node-version-file: .node-version
 
-      - run: pnpm install
+      - run: pnpm install --trust-lockfile
 
       - run: |
           pnpm build
@@ -122,7 +122,7 @@ jobs:
           cache: pnpm
           node-version-file: .node-version
 
-      - run: pnpm install
+      - run: pnpm install --trust-lockfile
 
       - uses: actions/cache@v6
         with:
@@ -148,6 +148,8 @@ jobs:
           cache: pnpm
           node-version-file: .node-version
 
+      # The only job that verifies the lockfile against pnpm's supply-chain
+      # policies; the others pass --trust-lockfile to skip the check.
       - run: pnpm install
 
       - run: pnpm lint --no-fix
@@ -183,7 +185,7 @@ jobs:
           cache: pnpm
           node-version-file: .node-version
 
-      - run: pnpm install
+      - run: pnpm install --trust-lockfile
 
       - run: pnpm exec playwright install chromium
 
