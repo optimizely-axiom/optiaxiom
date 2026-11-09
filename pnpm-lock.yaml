@@ -168,7 +168,7 @@ overrides:
 patchedDependencies:
   '@vanilla-extract/sprinkles': 530004842e1937cf2ffe2728e2a18629c5dd638aa441e1158192285fcee2fe7e
   nextra-theme-docs: a391591b3ddb7fdaebf44d26ebcaa6ff78dad06cbb0ea8d21554d51de6d8b0d8
-  react-docgen-typescript: 8d59bedddcc0e12eb101abaf2f2b1853eab540d27f0b777e65720b67fe8f7e57
+  react-docgen-typescript: 9f29f13ed1200787937c00d09629181fa03ff282ed42effecdf82ed5472f5d68
   rolldown-plugin-dts: 0f8979c80994f4b5b1b767b1a47711d60f32905e839e8c87e3f25049daa76934
 
 importers:
@@ -357,7 +357,7 @@ importers:
         version: 18.3.1
       react-docgen-typescript:
         specifier: 2.2.2
-        version: 2.2.2(patch_hash=8d59bedddcc0e12eb101abaf2f2b1853eab540d27f0b777e65720b67fe8f7e57)(@typescript/typescript6@6.0.2)
+        version: 2.2.2(patch_hash=9f29f13ed1200787937c00d09629181fa03ff282ed42effecdf82ed5472f5d68)(@typescript/typescript6@6.0.2)
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
@@ -854,7 +854,7 @@ importers:
         version: 17.7.0
       react-docgen-typescript:
         specifier: 2.2.2
-        version: 2.2.2(patch_hash=8d59bedddcc0e12eb101abaf2f2b1853eab540d27f0b777e65720b67fe8f7e57)(@typescript/typescript6@6.0.2)
+        version: 2.2.2(patch_hash=9f29f13ed1200787937c00d09629181fa03ff282ed42effecdf82ed5472f5d68)(@typescript/typescript6@6.0.2)
       typescript-eslint:
         specifier: ^8.63.0
         version: 8.63.0(@typescript/typescript6@6.0.2)(eslint@10.6.0(jiti@2.4.2)(supports-color@10.2.2))(supports-color@10.2.2)
@@ -902,7 +902,7 @@ importers:
         version: 10.29.7
       react-docgen-typescript:
         specifier: 2.2.2
-        version: 2.2.2(patch_hash=8d59bedddcc0e12eb101abaf2f2b1853eab540d27f0b777e65720b67fe8f7e57)(@typescript/typescript6@6.0.2)
+        version: 2.2.2(patch_hash=9f29f13ed1200787937c00d09629181fa03ff282ed42effecdf82ed5472f5d68)(@typescript/typescript6@6.0.2)
 
 packages:
 
@@ -10819,7 +10819,7 @@ snapshots:
   '@joshwooding/vite-plugin-react-docgen-typescript@0.7.0(@typescript/typescript6@6.0.2)(vite@8.3.6(@types/node@22.20.1)(esbuild@0.27.7)(jiti@2.4.2)(terser@5.39.2)(tsx@4.20.6)(yaml@2.8.0))':
     dependencies:
       glob: 13.0.1
-      react-docgen-typescript: 2.2.2(patch_hash=8d59bedddcc0e12eb101abaf2f2b1853eab540d27f0b777e65720b67fe8f7e57)(@typescript/typescript6@6.0.2)
+      react-docgen-typescript: 2.2.2(patch_hash=9f29f13ed1200787937c00d09629181fa03ff282ed42effecdf82ed5472f5d68)(@typescript/typescript6@6.0.2)
       vite: 8.3.6(@types/node@22.20.1)(esbuild@0.27.7)(jiti@2.4.2)(terser@5.39.2)(tsx@4.20.6)(yaml@2.8.0)
     optionalDependencies:
       typescript: '@typescript/typescript6@6.0.2'
@@ -12541,7 +12541,7 @@ snapshots:
       '@storybook/react-dom-shim': 10.6.0(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@10.6.0(@types/react@18.3.31)(prettier@3.6.2)(react@18.3.1))
       react: 18.3.1
       react-docgen: 8.0.3(supports-color@10.2.2)
-      react-docgen-typescript: 2.2.2(patch_hash=8d59bedddcc0e12eb101abaf2f2b1853eab540d27f0b777e65720b67fe8f7e57)(@typescript/typescript6@6.0.2)
+      react-docgen-typescript: 2.2.2(patch_hash=9f29f13ed1200787937c00d09629181fa03ff282ed42effecdf82ed5472f5d68)(@typescript/typescript6@6.0.2)
       react-dom: 18.3.1(react@18.3.1)
       storybook: 10.6.0(@types/react@18.3.31)(prettier@3.6.2)(react@18.3.1)
     optionalDependencies:
@@ -17489,7 +17489,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.31
 
-  react-docgen-typescript@2.2.2(patch_hash=8d59bedddcc0e12eb101abaf2f2b1853eab540d27f0b777e65720b67fe8f7e57)(@typescript/typescript6@6.0.2):
+  react-docgen-typescript@2.2.2(patch_hash=9f29f13ed1200787937c00d09629181fa03ff282ed42effecdf82ed5472f5d68)(@typescript/typescript6@6.0.2):
     dependencies:
       typescript: '@typescript/typescript6@6.0.2'
 

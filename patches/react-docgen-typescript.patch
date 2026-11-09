@@ -1,8 +1,53 @@
 diff --git a/lib/parser.js b/lib/parser.js
-index e98cd6494df9f6f8ad2d09d6641ae2898ca8dd8a..c6952b3bd32a1be19230d833ba69bb9b2a3b63a2 100644
+index e98cd6494df9f6f8ad2d09d6641ae2898ca8dd8a..2a53ddf0053373728c74385793700f89c49faba4 100644
 --- a/lib/parser.js
 +++ b/lib/parser.js
-@@ -850,7 +850,7 @@ function getDefaultExportForFile(source) {
+@@ -376,6 +376,22 @@ var Parser = /** @class */ (function () {
+         return __assign({ value: this.getValuesFromUnionType(type) }, commentInfo);
+     };
+     Parser.prototype.getDocgenType = function (propType, isRequired) {
++        // The checker interns types, and typeToString without an enclosing node
++        // ignores context, so the result depends only on the type and whether
++        // the prop is required. Clone on the way out: callers own the result.
++        var cache = this.docgenTypeCache || (this.docgenTypeCache = new Map());
++        var entry = cache.get(propType);
++        if (!entry) {
++            entry = {};
++            cache.set(propType, entry);
++        }
++        var key = isRequired ? 'required' : 'optional';
++        if (!(key in entry)) {
++            entry[key] = this.computeDocgenType(propType, isRequired);
++        }
++        return structuredClone(entry[key]);
++    };
++    Parser.prototype.computeDocgenType = function (propType, isRequired) {
+         var _this = this;
+         // When we are going to process the type, we check if this type has a constraint (is a generic type with constraint)
+         if (propType.getConstraint()) {
+@@ -432,6 +448,12 @@ var Parser = /** @class */ (function () {
+             }
+         }
+         var result = {};
++        var basePropsByName = new Map();
++        baseProps.forEach(function (p) {
++            if (!basePropsByName.has(p.getName())) {
++                basePropsByName.set(p.getName(), p);
++            }
++        });
+         propertiesOfProps.forEach(function (prop) {
+             var propName = prop.getName();
+             // Find type of prop by looking in context of the props object itself.
+@@ -448,7 +470,7 @@ var Parser = /** @class */ (function () {
+             var parent = getParentType(prop);
+             var parents = getDeclarations(prop);
+             var declarations = prop.declarations || [];
+-            var baseProp = baseProps.find(function (p) { return p.getName() === propName; });
++            var baseProp = basePropsByName.get(propName);
+             var required = !isOptional(prop) &&
+                 !hasCodeBasedDefault &&
+                 // If in a intersection or union check original declaration for "?"
+@@ -850,7 +872,7 @@ function getDefaultExportForFile(source) {
  }
  exports.getDefaultExportForFile = getDefaultExportForFile;
  function isTypeLiteral(node) {
@@ -11,3 +56,26 @@ index e98cd6494df9f6f8ad2d09d6641ae2898ca8dd8a..c6952b3bd32a1be19230d833ba69bb9b
  }
  function getDeclarations(prop) {
      var declarations = prop.getDeclarations();
+diff --git a/lib/trimFileName.js b/lib/trimFileName.js
+index f7226b7f62f80fab97142d9af9fdaa2a1bee7f72..d5d84005e5e0e9a808388cd9cabb1d2ae7ac4b54 100644
+--- a/lib/trimFileName.js
++++ b/lib/trimFileName.js
+@@ -3,9 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.trimFileName = void 0;
+ var path = require("path");
+ var slashRegex = /[\\/]/g;
++var cache = new Map();
+ function trimFileName(fileName, cwd, platform) {
+-    var _a;
+     if (cwd === void 0) { cwd = process.cwd(); }
++    var key = fileName + '\0' + cwd + '\0' + (platform || '');
++    if (!cache.has(key)) {
++        cache.set(key, computeTrimFileName(fileName, cwd, platform));
++    }
++    return cache.get(key);
++}
++function computeTrimFileName(fileName, cwd, platform) {
++    var _a;
+     // This allows tests to run regardless of current platform
+     var pathLib = platform ? path[platform] : path;
+     // Typescript formats Windows paths with forward slashes. For easier use of
