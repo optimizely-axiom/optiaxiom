@@ -100,6 +100,8 @@ exactly one thing without dragging unrelated changes with it.
 - Don't wrap virtual Radix elements (`Portal`/`Root`) in a `Box`; `Root` can't take a `ref`.
 - Reuse existing components over raw styles (`<Heading level>`, `<Paper>`, `<Button>`).
 - Use **context** to pass state to children, not `Children.map`/`cloneElement`.
+- Write handlers inline in JSX. When the receiver needs a stable identity (an effect dependency, a
+  context value), wrap the inline handler at the call site: `onX={useEvent((v) => …)}`.
 - `asChild`/`Slot` only when consumers will realistically swap the element.
 
 **Styling (vanilla-extract / sprinkles)**
