@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IconGripVertical } from "@optiaxiom/icons";
 import {
   Avatar,
+  AxiomProvider,
   Badge,
   Box,
   Card,
@@ -13,6 +14,7 @@ import {
   Group,
   Text,
 } from "@optiaxiom/react";
+import { de } from "@optiaxiom/react/locale/de";
 import {
   Sortable,
   SortableGroup,
@@ -279,6 +281,53 @@ const announced = () =>
   Array.from(document.querySelectorAll("[aria-live]"))
     .map((element) => element.textContent)
     .join(" ");
+
+export const Locale: Story = {
+  parameters: {
+    useAxiomProvider: false,
+  },
+  play: async ({ canvas }) => {
+    const handles = await canvas.findAllByRole("button", {
+      name: "Ziehpunkt",
+    });
+    handles[1].focus();
+    await userEvent.keyboard(" ");
+    await waitFor(() =>
+      expect(announced()).toContain("Design aufgenommen, Element 2 von 3."),
+    );
+    await userEvent.keyboard("{ArrowDown}");
+    await waitFor(
+      () =>
+        expect(announced()).toContain("Design an Position 3 von 3 verschoben."),
+      { timeout: 2000 },
+    );
+    await userEvent.keyboard(" ");
+    await waitFor(() =>
+      expect(announced()).toContain("Design an Position 3 von 3 abgelegt."),
+    );
+  },
+  render: function Template() {
+    const [items, setItems] = useState(["Planning", "Design", "Review"]);
+    return (
+      <AxiomProvider locale={de}>
+        <Sortable items={items} onItemsChange={setItems}>
+          {(items) =>
+            items.map((item, index) => (
+              <SortableItem index={index} item={item} key={item}>
+                <Group gap="8">
+                  <SortableHandle>
+                    <IconGripVertical />
+                  </SortableHandle>
+                  <Text>{item}</Text>
+                </Group>
+              </SortableItem>
+            ))
+          }
+        </Sortable>
+      </AxiomProvider>
+    );
+  },
+};
 
 export const Label: Story = {
   play: async ({ canvas }) => {

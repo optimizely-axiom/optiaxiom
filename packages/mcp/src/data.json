@@ -31379,7 +31379,7 @@
           "responsive": true
         },
         "placeholder": {
-          "description": "The placeholder when there is no value.",
+          "description": "The placeholder when there is no value. The default is translated for the\n`AxiomProvider` locale.",
           "default": "Pick a date",
           "type": "string"
         },
@@ -53426,7 +53426,7 @@
           "responsive": true
         },
         "label": {
-          "description": "The label of the dropzone.",
+          "description": "The label of the dropzone. The default is translated for the\n`AxiomProvider` locale.",
           "default": "Drag and drop files here",
           "type": "string"
         },
@@ -67843,7 +67843,7 @@
           "type": "array"
         },
         "placeholder": {
-          "description": "The placeholder for the search input.",
+          "description": "The placeholder for the search input. The default is translated for\nthe `AxiomProvider` locale.",
           "default": "Filter...",
           "type": "string"
         },
@@ -82098,7 +82098,7 @@
           "responsive": true
         },
         "placeholder": {
-          "description": "The placeholder for the search input.",
+          "description": "The placeholder for the search input. The default is translated for\nthe `AxiomProvider` locale.",
           "default": "Filter...",
           "type": "string"
         },
@@ -102154,7 +102154,7 @@
           "type": "array"
         },
         "placeholder": {
-          "description": "The placeholder for the search input.",
+          "description": "The placeholder for the search input. The default is translated for\nthe `AxiomProvider` locale.",
           "default": "Filter...",
           "type": "string"
         }

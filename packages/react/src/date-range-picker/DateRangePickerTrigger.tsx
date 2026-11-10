@@ -27,7 +27,8 @@ export type DateRangePickerTriggerProps = ComponentPropsWithoutRef<
    */
   formatRange?: (startDate: Date, endDate: Date) => string;
   /**
-   * The placeholder when there is no value.
+   * The placeholder when there is no value. The default is translated for the
+   * `AxiomProvider` locale.
    *
    * @default Pick a date
    */
