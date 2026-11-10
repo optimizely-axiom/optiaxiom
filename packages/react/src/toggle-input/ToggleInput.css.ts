@@ -23,7 +23,9 @@ export const toggleInput = recipe({
         [controlColorVar]: theme.colors["border.control"],
       },
 
+      anchorScope: styles.controlAnchor,
       color: theme.colors["fg.default"],
+      isolation: "isolate",
       position: "relative",
 
       "@media": {

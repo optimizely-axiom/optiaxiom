@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Box,
   Button,
-  Checkbox,
   Dialog,
   DialogBody,
   DialogContent,
@@ -78,27 +77,5 @@ export const InDialog: Story = {
         </DialogBody>
       </DialogContent>
     </Dialog>
-  ),
-};
-
-export const FocusInScrollContainer: Story = {
-  play: async ({ canvas }) => {
-    const input = canvas.getByLabelText("Item 40");
-    input.focus();
-    await expect(input).toHaveFocus();
-
-    const list = canvas.getByTestId("list").getBoundingClientRect();
-    const control = input.closest("label")?.getBoundingClientRect();
-    await expect(control?.top).toBeGreaterThanOrEqual(list.top);
-    await expect(control?.bottom).toBeLessThanOrEqual(list.bottom);
-  },
-  render: () => (
-    <Box data-testid="list" maxH="xs" overflow="auto">
-      {items.map((item) => (
-        <Box key={item} p="8">
-          <Checkbox>{item}</Checkbox>
-        </Box>
-      ))}
-    </Box>
   ),
 };

@@ -4,7 +4,6 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import type { ExtendProps } from "../utils";
 
 import { useSurface } from "../surface";
-import { VisuallyHidden } from "../visually-hidden";
 import { useToggleInputContext } from "./ToggleInputContext";
 import * as styles from "./ToggleInputHiddenInput.css";
 
@@ -42,26 +41,24 @@ export const ToggleInputHiddenInput = forwardRef<
   const { track } = surface ?? {};
 
   return (
-    <VisuallyHidden>
-      <input
-        aria-describedby={descriptionId}
-        aria-labelledby={labelId}
-        className={clsx(className, styles.className)}
-        onChange={(event) => {
-          const checked = event.target.checked;
-          onChange?.(event);
-          onCheckedChange?.(checked);
+    <input
+      aria-describedby={descriptionId}
+      aria-labelledby={labelId}
+      className={clsx(className, styles.className)}
+      onChange={(event) => {
+        const checked = event.target.checked;
+        onChange?.(event);
+        onCheckedChange?.(checked);
 
-          track?.({
-            checked,
-            name: "toggled",
-          });
-        }}
-        ref={ref}
-        type="checkbox"
-        {...props}
-      />
-    </VisuallyHidden>
+        track?.({
+          checked,
+          name: "toggled",
+        });
+      }}
+      ref={ref}
+      type="checkbox"
+      {...props}
+    />
   );
 });
 
