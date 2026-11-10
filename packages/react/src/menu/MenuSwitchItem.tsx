@@ -1,11 +1,7 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { CommandItem } from "../command";
-import {
-  resolveItemDescription,
-  resolveItemProperty,
-  useCommandContext,
-} from "../command/internals";
+import { resolveItemProperty, useCommandContext } from "../command/internals";
 import { ListboxSwitchItem } from "../listbox";
 import { useMenuSurface } from "./useMenuSurface";
 
@@ -23,7 +19,10 @@ export const MenuSwitchItem = forwardRef<HTMLDivElement, MenuSwitchItemProps>(
         <ListboxSwitchItem
           addonBefore={resolveItemProperty(props.item.addon, { inputValue })}
           asChild
-          description={resolveItemDescription(props.item, { inputValue })}
+          description={
+            resolveItemProperty(props.item.disabledReason) ||
+            resolveItemProperty(props.item.description, { inputValue })
+          }
           onCheckedChange={() => {
             if (!resolveItemProperty(props.item.disabledReason)) {
               track(props.item);

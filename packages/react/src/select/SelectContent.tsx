@@ -9,7 +9,6 @@ import {
 } from "react";
 
 import { type BoxProps } from "../box";
-import { resolveItemDescription } from "../command/internals";
 import { useFieldContext } from "../field/internals";
 import { ListboxItemized, ListboxLabel, ListboxSeparator } from "../listbox";
 import { shouldShowGroup, shouldShowSeparator } from "../listbox/utils";
@@ -19,7 +18,11 @@ import { Portal } from "../portal";
 import { Text } from "../text";
 import { TransitionGroup } from "../transition";
 import { type ExcludeProps, fallbackSpan } from "../utils";
-import { type SelectOption, useSelectContext } from "./SelectContext";
+import {
+  resolveItemProperty,
+  type SelectOption,
+  useSelectContext,
+} from "./SelectContext";
 import { SelectRadioItem } from "./SelectRadioItem";
 
 export type SelectContentProps = ExcludeProps<
@@ -148,7 +151,10 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                           <SelectRadioItem
                             addonBefore={item.addon}
                             aria-label={item["aria-label"]}
-                            description={resolveItemDescription(item)}
+                            description={
+                              resolveItemProperty(item.disabledReason) ||
+                              item.description
+                            }
                             index={index}
                             item={item}
                             key={item.value}

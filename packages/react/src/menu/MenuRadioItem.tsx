@@ -1,11 +1,7 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { CommandItem } from "../command";
-import {
-  resolveItemDescription,
-  resolveItemProperty,
-  useCommandContext,
-} from "../command/internals";
+import { resolveItemProperty, useCommandContext } from "../command/internals";
 import { ListboxRadioItem } from "../listbox";
 
 export type MenuRadioItemProps = ComponentPropsWithoutRef<typeof CommandItem> &
@@ -21,7 +17,10 @@ export const MenuRadioItem = forwardRef<HTMLDivElement, MenuRadioItemProps>(
         <ListboxRadioItem
           addonBefore={resolveItemProperty(props.item.addon, { inputValue })}
           asChild
-          description={resolveItemDescription(props.item, { inputValue })}
+          description={
+            resolveItemProperty(props.item.disabledReason) ||
+            resolveItemProperty(props.item.description, { inputValue })
+          }
         >
           <Comp {...(props.item.href && { href: props.item.href })}>
             {children}
