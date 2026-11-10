@@ -155,20 +155,6 @@ type CommandOptionGroup = {
   separator?: boolean;
 };
 
-/**
- * The secondary text under an item's label: a disabled item shows why it's
- * disabled in place of its usual description.
- */
-export function resolveItemDescription(
-  item: Pick<CommandOption, "description" | "disabledReason">,
-  context: { inputValue: string | undefined } = { inputValue: undefined },
-) {
-  return (
-    resolveItemProperty(item.disabledReason) ||
-    resolveItemProperty(item.description, context)
-  );
-}
-
 export function resolveItemProperty<Value>(
   property: Value,
   ...context: Value extends (...context: infer Context) => unknown
