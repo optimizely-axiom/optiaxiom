@@ -7,7 +7,9 @@ export const SelectHiddenSelect = forwardRef<
   HTMLSelectElement,
   ComponentPropsWithoutRef<"select">
 >(({ defaultValue, disabled, name, onChange, required, value }, ref) => {
-  const { items } = useSelectContext("@optiaxiom/react/SelectHiddenSelect");
+  const { items, triggerRef } = useSelectContext(
+    "@optiaxiom/react/SelectHiddenSelect",
+  );
 
   const options = useMemo(
     () =>
@@ -26,6 +28,11 @@ export const SelectHiddenSelect = forwardRef<
         disabled={disabled}
         name={name}
         onChange={onChange}
+        /**
+         * Form validation and `ref.focus()` focus this hidden select, which
+         * isn't positioned at the trigger, so hand focus to the trigger.
+         */
+        onFocus={() => triggerRef.current?.focus()}
         ref={ref}
         required={required}
         tabIndex={-1}

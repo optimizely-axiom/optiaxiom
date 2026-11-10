@@ -200,6 +200,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     }, [isOpen]);
 
     const toggleButtonId = useId();
+    const triggerRef = useRef<HTMLButtonElement>(null);
     const downshift = useSelect({
       highlightedIndex:
         highlightedIndex === -1
@@ -287,6 +288,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           selectedItem={selectedItem}
           setFocusVisible={setFocusVisible}
           toggleButtonId={toggleButtonId}
+          triggerRef={triggerRef}
         >
           <SelectHiddenSelect
             defaultValue={defaultValue}
