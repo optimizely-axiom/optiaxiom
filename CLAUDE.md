@@ -134,6 +134,9 @@ exactly one thing without dragging unrelated changes with it.
 - Real `<button>` for any interactive trigger (keyboard/focus/SR) — don't style a `div`.
 - `fill="currentColor"` on icon SVGs; meaningful `aria-label`s. Generate `id` with `useId` — never
   require an `id` prop. Style off `data-*` attributes; `aria-*` expresses intent.
+- Text a component renders on its own (labels, placeholders, screen reader text) comes from
+  `useMessages()`, keyed by its English text (`messages["Next page"]`). Add a new string to every
+  catalog in `packages/react/src/locale/`; TypeScript fails if one misses a key.
 
 **Housekeeping**
 
