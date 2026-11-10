@@ -152,7 +152,7 @@ export interface TypeSchema {
   enum?: Array<boolean | number | string>;
   /** Schema of each array element */
   items?: TypeSchema;
-  /** Fields of an object, one level deep */
+  /** Fields of an object */
   properties?: Record<string, PropDefinition>;
   /** Names of the fields an object must have */
   required?: string[];

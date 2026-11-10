@@ -16,7 +16,10 @@ export type ComponentDoc = {
 export type Field = Partial<
   Pick<PropItem, "defaultValue" | "description" | "required">
 > &
-  Pick<PropItem, "type">;
+  Pick<PropItem, "type"> & {
+    /** Structure of a field holding the library's own object types */
+    shape?: Shape;
+  };
 
 export type Prop = Pick<
   PropItem,

@@ -7,6 +7,8 @@ import { locale as en, type Messages } from "./en";
 /**
  * A language for built-in labels and screen reader text, plus the locale
  * date/time components format with.
+ *
+ * @docs opaque
  */
 export type Locale = {
   /**

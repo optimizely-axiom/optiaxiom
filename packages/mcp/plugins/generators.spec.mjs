@@ -174,6 +174,27 @@ describe("docs.json prop shapes", () => {
     });
   });
 
+  it("should describe object fields of object fields", () => {
+    expect(
+      getItemFields("@optiaxiom/react/Select", "options").group?.shape,
+    ).toMatchObject({
+      fields: { label: { required: true } },
+      name: "SelectOptionGroup",
+    });
+  });
+
+  it("should show types marked @docs opaque by name", () => {
+    const dialog = getShape("@optiaxiom/react/AxiomProvider", "dialog");
+
+    expect(dialog).toMatchObject({
+      fields: { kit: { type: { raw: "DialogKit" } } },
+    });
+    expect(dialog).not.toHaveProperty("fields.kit.shape");
+    expect(
+      getShape("@optiaxiom/react/AxiomProvider", "locale"),
+    ).toBeUndefined();
+  });
+
   it("should skip functions, nodes, primitives and sprinkles", () => {
     expect(
       getShape("@optiaxiom/react/FileUploadList", "onRemove"),
