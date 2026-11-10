@@ -52,6 +52,74 @@ beforeEach(() => {
 });
 ```
 
+## Locating components
+
+### Query by role and name
+
+Find components by ARIA role and accessible name, in Playwright (`page.getByRole`) and React Testing Library (`screen.getByRole`) alike. Roles and names are the stable contract. Class names are generated per build, and `data-radix-*` attributes and wrapper elements belong to internal dependencies.
+
+Popovers, menus, dialogs, toasts and tooltips render in a portal at the end of `body`, so query them from the page, not from inside the element that opened them.
+
+### Accessible names hold more than the label
+
+A field's accessible name can include text beyond its label: `Select` adds the selected value (`"Language French"`) and a required field adds a visually hidden `"Required"`. Match the start of the name instead of the whole of it.
+
+```ts
+// Playwright matches a substring by default; avoid `exact: true` here.
+page.getByRole("combobox", { name: "Language" });
+
+// React Testing Library matches the whole name by default.
+screen.getByRole("combobox", { name: /^Language/ });
+```
+
+### Select and Menu
+
+`Select` renders a `combobox` trigger. `Menu` renders a `button` trigger named by its content. Both open a `listbox` whose items are role `option`, not `menuitem`.
+
+```ts
+await page.getByRole("combobox", { name: "Language" }).click();
+await page.getByRole("option", { name: "French" }).click();
+
+await page.getByRole("button", { name: "Actions" }).click();
+await page.getByRole("option", { name: "Duplicate" }).click();
+```
+
+### Checkbox, Radio and Switch
+
+Use the input's role with `check()`, `uncheck()` or `click()`: `checkbox`, `radio` or `switch`, named by its label.
+
+```ts
+await page.getByRole("switch", { name: "Notifications" }).check();
+```
+
+### Tables
+
+`Table` and `DataTable` header cells are role `columnheader`, and a sortable header carries `aria-sort` and holds a `button` that toggles it. Playwright before 1.57 reports header cells as `cell`, so upgrade to query them by `columnheader`.
+
+```ts
+const header = page.getByRole("columnheader", { name: "Volume" });
+await header.getByRole("button").click();
+await expect(header).toHaveAttribute("aria-sort", "ascending");
+```
+
+### Toasts
+
+Toasts render inside a `region` whose name starts with `"Notifications"`. Scope to it: a new toast's text is also repeated in a hidden live region for screen readers, so a page-wide text query can match twice.
+
+```ts
+const notifications = page.getByRole("region", { name: /notifications/i });
+await expect(notifications.getByText("Changes saved")).toBeVisible();
+```
+
+### Tooltips
+
+Hover or focus the trigger, then query the `tooltip` role.
+
+```ts
+await page.getByRole("button", { name: "Add" }).hover();
+await expect(page.getByRole("tooltip")).toHaveText("Add to library");
+```
+
 ## jsdom
 
 ### Stub missing DOM APIs

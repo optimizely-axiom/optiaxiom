@@ -235,7 +235,7 @@ Examples:
     {
       description: `Get vetted reference test files for Axiom components. When the user asks to write, generate, add, or fix a test / spec / *.spec.tsx / *.test.tsx for any Axiom component, refer to this to follow the repo's established conventions instead of generic React Testing Library habits.
 
-These reference tests show how this repo renders components, queries them by role and accessible name, and asserts accessibility (ARIA roles, labels) and interactions. The response also includes a note explaining the custom \`vitest.rtl\` render helper the tests rely on (auto-wraps in AxiomProvider and returns a \`user\` for interactions) — match it when writing new tests. For test setup in an app (providers, animations, cleanup, jsdom stubs), use get_guides({ names: "test-environments" }).
+These reference tests show how this repo renders components, queries them by role and accessible name, and asserts accessibility (ARIA roles, labels) and interactions. The response also includes a note explaining the custom \`vitest.rtl\` render helper the tests rely on (auto-wraps in AxiomProvider and returns a \`user\` for interactions) — match it when writing new tests. For test setup in an app (providers, animations, cleanup, jsdom stubs) or locating components in Playwright tests, use get_guides({ names: "test-environments" }).
 
 Examples:
   get_tests({ components: "Alert" }) → the Alert spec showing role="alert" and dismiss-button assertions
@@ -365,12 +365,12 @@ Examples:
   server.registerTool(
     "get_guides",
     {
-      description: `Get setup, configuration, and integration guides for the Axiom Design System. Refer to these when setting up Axiom, importing its CSS, configuring CSS layers, using icons, setting up unit tests (Jest, Vitest, jsdom), or integrating Axiom into a host app — instead of guessing the setup steps.
+      description: `Get setup, configuration, and integration guides for the Axiom Design System. Refer to these when setting up Axiom, importing its CSS, configuring CSS layers, using icons, integrating Axiom into a host app, or setting up tests and locating components in them (unit or Playwright) — instead of guessing the setup steps.
 
 Examples:
   get_guides({ names: "getting-started" }) → the getting-started guide content
   get_guides({ names: "css-imports css-layers" }) → both CSS setup guides
-  get_guides({ names: "test-environments" }) → test setup: AxiomProvider wrapper, animations off, cleanup, jsdom stubs
+  get_guides({ names: "test-environments" }) → test setup (AxiomProvider, animations off, cleanup, jsdom stubs) and locating components by role
   get_guides() → list all available guides (names + titles)`,
       inputSchema: {
         names: z
