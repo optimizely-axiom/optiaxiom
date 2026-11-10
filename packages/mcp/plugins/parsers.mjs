@@ -145,7 +145,7 @@ export function parsePropDefinition(prop) {
     ...(prop.description && { description: prop.description }),
     ...(prop.defaultValue && { default: prop.defaultValue.value }),
     ...(prop.properties
-      ? parsePropertiesSchema(prop.properties)
+      ? parsePropertiesSchema(prop.properties, prop.type)
       : responsive
         ? parseResponsiveSchema(prop.type)
         : parseTypeSchema(prop.type)),
@@ -159,9 +159,10 @@ export function parsePropDefinition(prop) {
  * its TypeScript type string in `tsType`.
  *
  * @param {PropItem["type"]} type
+ * @param {TypeSchema} [object] - schema of the type's one object member
  * @returns {TypeSchema}
  */
-export function parseTypeSchema(type) {
+export function parseTypeSchema(type, object) {
   const raw = type.raw || type.name || "unknown";
   // docgen lists union members in `value` only for unions (`name: "enum"`).
   return parseUnionSchema(
@@ -171,6 +172,7 @@ export function parseTypeSchema(type) {
         )
       : [raw],
     raw,
+    object,
   );
 }
 
@@ -265,6 +267,7 @@ function parseLiteral(value) {
  * @typedef {{ kind: "const"; value: boolean | number | string }
  *   | { kind: "scalar"; type: TypeSchemaType }
  *   | { kind: "array"; items?: TypeSchema }
+ *   | { kind: "object" }
  *   | { kind: "other" }} Member
  */
 
@@ -272,9 +275,10 @@ function parseLiteral(value) {
  * Classify one union member's type string.
  *
  * @param {string} value
+ * @param {TypeSchema} [object]
  * @returns {Member}
  */
-function parseMember(value) {
+function parseMember(value, object) {
   if (value === "null") {
     return { kind: "scalar", type: "null" };
   }
@@ -305,10 +309,10 @@ function parseMember(value) {
   if (value.endsWith("[]") && !isFunction(value)) {
     const element = value.replace(/^readonly /, "").slice(0, -2);
     const inner = /^\(.*\)$/.test(element) ? element.slice(1, -1) : element;
-    const items = parseUnionSchema(splitTopLevel(inner, "|"), inner);
+    const items = parseUnionSchema(splitTopLevel(inner, "|"), inner, object);
     return items.tsType ? { kind: "array" } : { items, kind: "array" };
   }
-  return { kind: "other" };
+  return object ? { kind: "object" } : { kind: "other" };
 }
 
 /**
@@ -316,9 +320,10 @@ function parseMember(value) {
  * arrays of it, as the schema of each element.
  *
  * @param {Properties} properties
+ * @param {PropItem["type"]} type
  * @returns {TypeSchema}
  */
-function parsePropertiesSchema(properties) {
+function parsePropertiesSchema(properties, type) {
   const fields = Object.entries(properties.fields);
   const required = fields.flatMap(([name, field]) =>
     field.required ? [name] : [],
@@ -332,6 +337,17 @@ function parsePropertiesSchema(properties) {
     ...(properties.name && { title: properties.name }),
     type: "object",
   };
+  if (properties.union) {
+    // e.g. `string | Item` or `(number | Mark)[]`: the generator only sets
+    // `union` when every other member is a primitive or literal, so the one
+    // member without a JSON Schema form is this object.
+    const schema = parseTypeSchema(type, object);
+    const anyOf = properties.array ? schema.items?.anyOf : schema.anyOf;
+    // An aliased type (`Marks`) hides the members; keep the TypeScript type.
+    return anyOf && (schema.type === "array") === !!properties.array
+      ? schema
+      : parseTypeSchema(type);
+  }
   return properties.array ? { items: object, type: "array" } : object;
 }
 
@@ -360,16 +376,19 @@ function parseResponsiveSchema(type) {
  *
  * @param {string[]} values
  * @param {string} raw
+ * @param {TypeSchema} [object] - schema of the union's one object member
  * @returns {TypeSchema}
  */
-function parseUnionSchema(values, raw) {
-  const members = values.map(parseMember);
+function parseUnionSchema(values, raw, object) {
+  const members = values.map((value) => parseMember(value, object));
   /** @type {Array<boolean | number | string>} */
   const consts = [];
   /** @type {TypeSchemaType[]} */
   const scalars = [];
   /** @type {TypeSchema[]} */
   const arrays = [];
+  /** @type {TypeSchema | undefined} */
+  let objectMember;
   for (const member of members) {
     if (member.kind === "const") {
       if (!consts.includes(member.value)) {
@@ -379,6 +398,8 @@ function parseUnionSchema(values, raw) {
       if (!scalars.includes(member.type)) {
         scalars.push(member.type);
       }
+    } else if (member.kind === "object") {
+      objectMember = object;
     } else if (member.kind === "array" && member.items) {
       const array = {
         items: member.items,
@@ -415,6 +436,7 @@ function parseUnionSchema(values, raw) {
       ? [{ type: scalars.length === 1 ? scalars[0] : scalars }]
       : []),
     ...arrays,
+    ...(objectMember ? [objectMember] : []),
   ];
   // e.g. `"text" | (string & {})`, or `"alt" | "ctrl" | ("alt" | "ctrl")[]`
   return schemas.length === 1 && schemas[0] ? schemas[0] : { anyOf: schemas };

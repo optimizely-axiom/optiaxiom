@@ -85,13 +85,42 @@ describe("parsePropDefinition", () => {
     expect(items?.properties?.key?.description).toContain("unique");
   });
 
-  it("should keep the TypeScript type of object arrays without fields", () => {
-    expect(
-      parsePropDefinition(getProp("@optiaxiom/react/Range", "marks")),
-    ).toMatchObject({
-      tsType: expect.stringContaining("label: string"),
+  it("should describe arrays mixing primitives and objects as anyOf items", () => {
+    const result = parsePropDefinition(
+      getProp("@optiaxiom/react/Range", "marks"),
+    );
+
+    expect(result).toMatchObject({
+      items: {
+        anyOf: [
+          { type: "number" },
+          {
+            properties: {
+              label: { description: expect.any(String), type: "string" },
+              value: { type: "number" },
+            },
+            required: ["label", "value"],
+            type: "object",
+          },
+        ],
+      },
       type: "array",
     });
+    expect(result.tsType).toBeUndefined();
+  });
+
+  it("should describe nullable objects as anyOf null and the object", () => {
+    const result = parsePropDefinition(
+      getProp("@optiaxiom/react/DateRangePicker", "value"),
+    );
+
+    expect(result).toMatchObject({
+      anyOf: [
+        { type: "null" },
+        { required: ["from", "to"], title: "DateRange", type: "object" },
+      ],
+    });
+    expect(result.tsType).toBeUndefined();
   });
 
   it("should describe primitive arrays with items", () => {

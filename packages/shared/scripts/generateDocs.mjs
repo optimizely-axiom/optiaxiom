@@ -84,30 +84,51 @@ function createPropertiesResolver(program, parser, srcPath, docTypes) {
 
   /**
    * The single object type a prop holds directly or as array elements, e.g.
-   * `readonly SelectOption[] | SelectOption[]` → `SelectOption`.
+   * `readonly SelectOption[] | SelectOption[]` → `SelectOption`. Primitive
+   * members beside it (`string | Item`, `(number | Mark)[]`) set `union`.
    *
    * @param {ts.Type} type
    */
   const getObjectType = (type) => {
-    // Optional props add `undefined`; `null` is a value the prop accepts, so it
-    // keeps the type out.
+    // Optional props add `undefined`.
     const members = (type.isUnion() ? type.types : [type]).filter(
       (member) => !(member.flags & ts.TypeFlags.Undefined),
     );
-    const array = members.every((member) => checker.isArrayType(member));
-    const elements = members.map((member) =>
-      checker.isArrayType(member)
+    const array =
+      members.length > 0 &&
+      members.every((member) => checker.isArrayType(member));
+    if (!array && members.some((member) => checker.isArrayType(member))) {
+      return;
+    }
+    const elements = members.flatMap((member) => {
+      const element = array
         ? checker.getTypeArguments(/** @type {ts.TypeReference} */ (member))[0]
-        : member,
-    );
-    const [element] = elements;
+        : member;
+      return element?.isUnion() ? element.types : element ? [element] : [];
+    });
+    /** @param {ts.Type} member */
+    const isObject = (member) =>
+      !!(member.flags & (ts.TypeFlags.Object | ts.TypeFlags.Intersection)) &&
+      member.getCallSignatures().length === 0 &&
+      !checker.isArrayType(member);
+    const objects = [...new Set(elements.filter(isObject))];
+    const [element] = objects;
     if (
       !element ||
-      (!array && members.some((member) => checker.isArrayType(member))) ||
-      elements.some((member) => member !== element) ||
-      !(element.flags & (ts.TypeFlags.Object | ts.TypeFlags.Intersection)) ||
-      element.getCallSignatures().length > 0 ||
-      checker.isArrayType(element)
+      objects.length > 1 ||
+      !elements.every(
+        (member) =>
+          isObject(member) ||
+          // Only members the MCP parser reads as JSON Schema: it takes any
+          // other member string for the object.
+          member.flags &
+            (ts.TypeFlags.BooleanLike |
+              ts.TypeFlags.Null |
+              ts.TypeFlags.Number |
+              ts.TypeFlags.NumberLiteral |
+              ts.TypeFlags.String |
+              ts.TypeFlags.StringLiteral),
+      )
     ) {
       return;
     }
@@ -115,7 +136,11 @@ function createPropertiesResolver(program, parser, srcPath, docTypes) {
     if (properties.length === 0 || !properties.every(isOwn)) {
       return;
     }
-    return { array, element };
+    return {
+      array,
+      element,
+      union: elements.some((member) => !isObject(member)),
+    };
   };
 
   /**
@@ -230,6 +255,7 @@ function createPropertiesResolver(program, parser, srcPath, docTypes) {
       ...(objectType.array && { array: /** @type {const} */ (true) }),
       fields: Object.fromEntries(fields),
       ...(name && { name }),
+      ...(objectType.union && { union: /** @type {const} */ (true) }),
     };
   };
 }

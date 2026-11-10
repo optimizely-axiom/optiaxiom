@@ -33,6 +33,8 @@ export type Properties = {
   fields: Record<string, Field>;
   /** Name of the object type, when it has one */
   name?: string;
+  /** The prop also accepts primitives or `null` */
+  union?: true;
 };
 
 export function getDocs(): ComponentDoc[];

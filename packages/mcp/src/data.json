@@ -29845,7 +29845,18 @@
         "defaultValue": {
           "description": "The initial selected value in uncontrolled mode.",
           "default": "null",
-          "tsType": "DateRange | null"
+          "anyOf": [
+            { "type": "null" },
+            {
+              "properties": {
+                "from": { "tsType": "Date" },
+                "to": { "tsType": "Date" }
+              },
+              "required": ["from", "to"],
+              "title": "DateRange",
+              "type": "object"
+            }
+          ]
         },
         "disabled": {
           "description": "Whether the date range picker is disabled.",
@@ -29869,7 +29880,18 @@
         },
         "value": {
           "description": "The selected value in controlled mode.",
-          "tsType": "DateRange | null"
+          "anyOf": [
+            { "type": "null" },
+            {
+              "properties": {
+                "from": { "tsType": "Date" },
+                "to": { "tsType": "Date" }
+              },
+              "required": ["from", "to"],
+              "title": "DateRange",
+              "type": "object"
+            }
+          ]
         }
       },
       "since": "1.4.0",
@@ -89078,8 +89100,26 @@
         },
         "marks": {
           "description": "The marks to display on the range steps.",
-          "type": "array",
-          "tsType": "(number | { label: string; value: number; })[]"
+          "items": {
+            "anyOf": [
+              { "type": "number" },
+              {
+                "properties": {
+                  "label": {
+                    "description": "The label for the mark.",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "The value for the mark.",
+                    "type": "number"
+                  }
+                },
+                "required": ["label", "value"],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
         },
         "max": {
           "description": "The maximum value for the range.",
@@ -100545,7 +100585,20 @@
         },
         "item": {
           "description": "The item that is being rendered: its ID, or an object with a `label`.",
-          "tsType": "string | { id: string; label: string; }"
+          "anyOf": [
+            { "type": "string" },
+            {
+              "properties": {
+                "id": { "description": "ID of the item.", "type": "string" },
+                "label": {
+                  "description": "Name screen readers announce while the item is dragged.",
+                  "type": "string"
+                }
+              },
+              "required": ["id", "label"],
+              "type": "object"
+            }
+          ]
         },
         "justifyContent": {
           "description": "Set the element's `justify-content` CSS property",
