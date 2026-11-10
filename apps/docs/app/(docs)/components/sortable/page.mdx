@@ -38,7 +38,7 @@ export default () => (
 
 ### Basic
 
-`Sortable` works with a list of items provided via the `items` prop. Each item must be a unique string identifying the sortable item within the list.
+`Sortable` works with a list of items provided via the `items` prop. Each item is a unique string identifying the sortable item within the list, or an object with a unique `id` and a `label` (see [Screen reader announcements](#screen-reader-announcements)).
 
 Next we provide a render prop in `children` that has the same `items` as an argument but representing the live state as they are being sorted.
 
@@ -75,9 +75,15 @@ By default the whole item acts as the drag handle, but we can use the `SortableH
 
 Use the `SortableGroup` component to swap items between lists in addition to sorting with each other.
 
-We also need to change the `items` prop to an object where the key is the ID of the group and the value is the ID of items within that list.
+We also need to change the `items` prop to an object where the key is the ID of the group and the value is the list of items in that group.
 
 <Demo component="sortable/list-usage" />
+
+### Screen reader announcements
+
+While an item is dragged, screen readers announce its name and position, such as "Design moved to position 3 of 5". A string item is its own name. When IDs aren't readable, pass items as `{ id, label }` objects instead and the `label` is announced. A list must be all strings or all objects.
+
+<Demo component="sortable/label-usage" />
 
 ### Card example
 
