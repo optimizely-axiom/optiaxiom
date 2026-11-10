@@ -26,6 +26,19 @@ Use the `locale` prop to set a [BCP-47 language tag](https://developer.mozilla.o
 <AxiomProvider locale="fr-FR">{/* Your app code here */}</AxiomProvider>
 ```
 
+A string leaves the text components render on their own, such as close buttons, `Pagination` labels and screen reader announcements, in English. To translate that text too, pass a `Locale` instead: a `code` used for dates, and `messages` with every built-in label keyed by its English text. TypeScript checks that a `Locale` you build has every key.
+
+```tsx
+import { AxiomProvider, type Locale } from "@optiaxiom/react";
+
+const sv: Locale = {
+  code: "sv-SE",
+  messages: { "Next page": "Nästa sida" /* … */ },
+};
+
+<AxiomProvider locale={sv}>{/* Your app code here */}</AxiomProvider>;
+```
+
 ### Related
 
 <Cards items={["Toast", "Tooltip"]} />
@@ -37,6 +50,10 @@ Use the `locale` prop to set a [BCP-47 language tag](https://developer.mozilla.o
 <PropsTable component="AxiomProvider" />
 
 ## Changelog
+
+### 3.6.0
+
+- Accept a `Locale` in the `locale` prop to translate built-in labels
 
 ### 3.1.2
 
