@@ -97981,7 +97981,10 @@
           "description": "Set the element's `border-top-width` CSS property",
           "enum": ["2", "0", "1"]
         },
-        "children": { "tsType": "((items: T) => ReactNode)" },
+        "children": {
+          "description": "Render the current items, in the shape passed to `items`.",
+          "tsType": "((items: T) => ReactNode)"
+        },
         "className": { "type": "string" },
         "color": {
           "description": "Set the element's text color. Only accepts predefined color tokens starting with `fg.` (e.g., `fg.default`, `fg.accent`, `fg.error`), or the special values `current` and `transparent`.",
@@ -98157,7 +98160,7 @@
           "responsive": true
         },
         "items": {
-          "description": "The items in controlled mode: IDs, or objects whose `label` names the\nitem in screen reader announcements.",
+          "description": "The items in controlled mode: IDs, or objects whose `label` names the\nitem in screen reader announcements. For several lists that items move\nbetween, pass an object of such lists keyed by group ID and render a\n`SortableGroup` for each key.",
           "tsType": "Items"
         },
         "justifyContent": {
@@ -98359,7 +98362,7 @@
           "tsType": "((data: { items: T; source: string; }) => void)"
         },
         "onItemsChange": {
-          "description": "Handler that is called when the item IDs are re-sorted.",
+          "description": "Handler that is called with the re-sorted items, in the shape passed to\n`items`.",
           "tsType": "((value: T) => void)"
         },
         "overflow": {
@@ -98758,7 +98761,7 @@
       ]
     },
     "SortableGroup": {
-      "description": "SortableGroup component from Axiom Design System",
+      "description": "A list that items can be dragged into and out of, holding the items under\nits `group` key. Pass a function as children to style the group while an\nitem is dragged over it.",
       "import": "import { SortableGroup } from '@optiaxiom/react/unstable';",
       "name": "SortableGroup",
       "props": {
@@ -99530,7 +99533,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/sortable"
     },
     "SortableHandle": {
-      "description": "SortableHandle component from Axiom Design System",
+      "description": "The part of a `SortableItem` that starts a drag. Without one, the whole item\nis draggable.",
       "import": "import { SortableHandle } from '@optiaxiom/react/unstable';",
       "name": "SortableHandle",
       "props": {
@@ -100291,7 +100294,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/sortable"
     },
     "SortableItem": {
-      "description": "SortableItem component from Axiom Design System",
+      "description": "One draggable item, rendered inside `Sortable` or a `SortableGroup`.",
       "import": "import { SortableItem } from '@optiaxiom/react/unstable';",
       "name": "SortableItem",
       "props": {
@@ -100580,7 +100583,7 @@
           "responsive": true
         },
         "index": {
-          "description": "Array index of the item that is being rendered.",
+          "description": "Array index of the item within its list.",
           "type": "number"
         },
         "item": {

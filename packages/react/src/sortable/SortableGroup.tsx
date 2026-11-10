@@ -22,6 +22,10 @@ export type SortableGroupProps = BoxProps<
 >;
 
 /**
+ * A list that items can be dragged into and out of, holding the items under
+ * its `group` key. Pass a function as children to style the group while an
+ * item is dragged over it.
+ *
  * @group Sortable
  */
 export const SortableGroup = forwardRef<HTMLDivElement, SortableGroupProps>(

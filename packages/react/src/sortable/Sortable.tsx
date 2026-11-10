@@ -26,10 +26,15 @@ import { type SortableItemProps } from "./SortableItem";
 export type SortableProps<T extends Items> = BoxProps<
   "div",
   {
+    /**
+     * Render the current items, in the shape passed to `items`.
+     */
     children?: (items: T) => ReactNode;
     /**
      * The items in controlled mode: IDs, or objects whose `label` names the
-     * item in screen reader announcements.
+     * item in screen reader announcements. For several lists that items move
+     * between, pass an object of such lists keyed by group ID and render a
+     * `SortableGroup` for each key.
      */
     items: T;
     /**
@@ -37,7 +42,7 @@ export type SortableProps<T extends Items> = BoxProps<
      */
     onChange?: (data: {
       /**
-       * The re-sorted item IDs.
+       * The re-sorted items.
        */
       items: T;
       /**
@@ -46,7 +51,8 @@ export type SortableProps<T extends Items> = BoxProps<
       source: string;
     }) => void;
     /**
-     * Handler that is called when the item IDs are re-sorted.
+     * Handler that is called with the re-sorted items, in the shape passed to
+     * `items`.
      */
     onItemsChange?: (value: T) => void;
   }

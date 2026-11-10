@@ -9,6 +9,9 @@ import { useSortableItemContext } from "./SortableItemContext";
 export type SortableHandleProps = BoxProps;
 
 /**
+ * The part of a `SortableItem` that starts a drag. Without one, the whole item
+ * is draggable.
+ *
  * @group Sortable
  */
 export const SortableHandle = forwardRef<HTMLDivElement, SortableHandleProps>(

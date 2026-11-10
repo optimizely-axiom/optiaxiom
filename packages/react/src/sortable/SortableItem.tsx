@@ -14,7 +14,7 @@ export type SortableItemProps = BoxProps<
   "div",
   {
     /**
-     * Array index of the item that is being rendered.
+     * Array index of the item within its list.
      */
     index: number;
     /**
@@ -36,6 +36,8 @@ export type SortableItemProps = BoxProps<
 >;
 
 /**
+ * One draggable item, rendered inside `Sortable` or a `SortableGroup`.
+ *
  * @group Sortable
  */
 export const SortableItem = forwardRef<HTMLDivElement, SortableItemProps>(
