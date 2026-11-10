@@ -3,7 +3,7 @@ import { type RefObject, useEffect } from "react";
 import { useFieldContext } from "../field/internals";
 
 export const useFieldLabelTrigger = (
-  ref: RefObject<HTMLButtonElement>,
+  ref: RefObject<HTMLElement>,
   ariaLabelledBy: string | undefined,
 ) => {
   const { labelId = ariaLabelledBy } = useFieldContext("useFieldLabelTrigger");
