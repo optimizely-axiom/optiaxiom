@@ -82,8 +82,8 @@ function createShapeResolver(program, parser, srcPath, docTypes) {
     );
   /** @type {Map<string, ts.Type | undefined>} */
   const propsTypes = new Map();
-  // Object types being described, so a recursive type (`subOptions:
-  // CommandOption[]`) keeps its type string.
+  // Object types being described, so a type that contains itself keeps its
+  // type string there instead of recursing forever.
   /** @type {Set<ts.Type>} */
   const expanding = new Set();
 
@@ -130,9 +130,10 @@ function createShapeResolver(program, parser, srcPath, docTypes) {
    */
   const getObjectShape = (type) => {
     const properties = checker.getPropertiesOfType(type);
+    const typeSymbol = type.aliasSymbol ?? type.getSymbol();
     // `@docs opaque` marks a type consumers get from the library and pass
     // along (`Locale`, `DialogKit`): its name says more than its fields.
-    const opaque = (type.aliasSymbol ?? type.getSymbol())
+    const opaque = typeSymbol
       ?.getJsDocTags(checker)
       .some(
         (tag) =>
@@ -147,21 +148,7 @@ function createShapeResolver(program, parser, srcPath, docTypes) {
     ) {
       return;
     }
-    expanding.add(type);
-    try {
-      return describeObject(type, properties);
-    } finally {
-      expanding.delete(type);
-    }
-  };
 
-  /**
-   * @param {ts.Type} type
-   * @param {ts.Symbol[]} properties
-   * @returns {Shape | undefined}
-   */
-  const describeObject = (type, properties) => {
-    const typeSymbol = type.aliasSymbol ?? type.getSymbol();
     const name =
       typeSymbol && isOwn(typeSymbol) && !typeSymbol.getName().startsWith("__")
         ? typeSymbol.getName()
@@ -173,34 +160,35 @@ function createShapeResolver(program, parser, srcPath, docTypes) {
     // A `*Doc` lists its type's public fields; other types hide theirs with
     // `@internal` or `@private`.
     const documented = name ? docTypes.fields.get(name) : undefined;
-    const fields = properties
-      .filter((field) =>
-        documented
-          ? documented.has(field.getName())
-          : !field
-              .getJsDocTags(checker)
-              .some((tag) => tag.name === "internal" || tag.name === "private"),
-      )
-      .sort((a, b) => a.getName().localeCompare(b.getName()))
-      .map((field) => ({
-        field,
-        shape: getShape(checker.getTypeOfSymbol(field), true),
-      }));
-    if (fields.length === 0) {
-      return;
+    expanding.add(type);
+    try {
+      const fields = properties
+        .filter((field) =>
+          documented
+            ? documented.has(field.getName())
+            : !field
+                .getJsDocTags(checker)
+                .some(
+                  (tag) => tag.name === "internal" || tag.name === "private",
+                ),
+        )
+        .sort((a, b) => a.getName().localeCompare(b.getName()))
+        .map((field) => {
+          const shape = getShape(checker.getTypeOfSymbol(field), true);
+          return [
+            field.getName(),
+            {
+              ...toField(getField(field), expansions),
+              ...(shape && hasObject(shape) && { shape }),
+            },
+          ];
+        });
+      return fields.length > 0
+        ? { fields: Object.fromEntries(fields), ...(name && { name }) }
+        : undefined;
+    } finally {
+      expanding.delete(type);
     }
-    return {
-      fields: Object.fromEntries(
-        fields.map(({ field, shape }) => [
-          field.getName(),
-          {
-            ...toField(getField(field), expansions),
-            ...(shape && hasObject(shape) && { shape }),
-          },
-        ]),
-      ),
-      ...(name && { name }),
-    };
   };
 
   /**
