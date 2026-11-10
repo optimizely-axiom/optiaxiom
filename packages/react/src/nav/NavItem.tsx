@@ -1,5 +1,6 @@
 import { createSlot } from "@radix-ui/react-slot";
-import { forwardRef, type ReactNode, useEffect } from "react";
+import { useLayoutEffect } from "@radix-ui/react-use-layout-effect";
+import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { Group } from "../group";
@@ -55,7 +56,10 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
     const { current, expanded, onActiveChange } = useSidebarContext(
       "@optiaxiom/react/NavItem",
     );
-    useEffect(() => {
+    // A layout effect so the Sidebar re-renders with the corrected `current`
+    // before paint; a passive effect leaves a frame where both the primary and
+    // `SubNav` items say `aria-current="page"`.
+    useLayoutEffect(() => {
       if (!active) {
         return;
       }
