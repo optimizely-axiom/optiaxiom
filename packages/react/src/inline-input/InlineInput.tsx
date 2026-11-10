@@ -7,6 +7,7 @@ import { Box, type BoxProps } from "../box";
 import { useFieldContext } from "../field/internals";
 import { useFieldLabelTrigger } from "../hooks";
 import * as styles from "./InlineInput.css";
+import { getText, insertText, setText } from "./text";
 
 export type InlineInputProps = BoxProps<
   "div",
@@ -90,17 +91,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
           ? value
           : value?.slice(0, value.indexOf("\n"));
       if (getText(editorRef.current) !== clippedValue) {
-        if (document.activeElement === editorRef.current) {
-          const selection = window.getSelection();
-          if (!selection) {
-            return;
-          }
-
-          selection.getRangeAt(0).selectNodeContents(editorRef.current);
-          document.execCommand("insertHTML", false, clippedValue);
-        } else {
-          editorRef.current.innerText = clippedValue ?? "null";
-        }
+        setText(editorRef.current, clippedValue ?? "null");
       }
     }, [multiline, value]);
 
@@ -131,7 +122,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
               event.preventDefault();
 
               const clippedValue = value.slice(0, value.indexOf("\n"));
-              document.execCommand("insertHTML", false, clippedValue);
+              insertText(clippedValue);
               setValue(getText(event.currentTarget));
             }
           }}
@@ -164,12 +155,4 @@ function extractAriaProps<P extends Record<string, unknown>>(props: P) {
     }
   }
   return { ariaProps, restProps: restProps as Omit<P, `aria-${string}`> };
-}
-
-function getText(element: HTMLElement) {
-  const text = element.innerText;
-  if (text.endsWith("\n")) {
-    return text.slice(0, -1);
-  }
-  return text;
 }
