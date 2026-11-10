@@ -274,3 +274,53 @@ export const TallItems: Story = {
     );
   },
 };
+
+const announced = () =>
+  Array.from(document.querySelectorAll("[aria-live]"))
+    .map((element) => element.textContent)
+    .join(" ");
+
+export const Label: Story = {
+  play: async ({ canvas }) => {
+    const handles = await canvas.findAllByRole("button", {
+      name: "draggable",
+    });
+    handles[1].focus();
+    await userEvent.keyboard(" ");
+    await waitFor(() =>
+      expect(announced()).toContain("Picked up Design, item 2 of 3."),
+    );
+    await userEvent.keyboard("{ArrowDown}");
+    await waitFor(
+      () => expect(announced()).toContain("Design moved to position 3 of 3."),
+      { timeout: 2000 },
+    );
+    await userEvent.keyboard(" ");
+    await waitFor(() =>
+      expect(announced()).toContain("Design dropped at position 3 of 3."),
+    );
+  },
+  render: function Template() {
+    const [items, setItems] = useState([
+      { id: "task-1", label: "Planning" },
+      { id: "task-2", label: "Design" },
+      { id: "task-3", label: "Review" },
+    ]);
+    return (
+      <Sortable items={items} onItemsChange={setItems}>
+        {(items) =>
+          items.map((item, index) => (
+            <SortableItem index={index} item={item} key={item.id}>
+              <Group gap="8">
+                <SortableHandle>
+                  <IconGripVertical />
+                </SortableHandle>
+                <Text>{item.label}</Text>
+              </Group>
+            </SortableItem>
+          ))
+        }
+      </Sortable>
+    );
+  },
+};

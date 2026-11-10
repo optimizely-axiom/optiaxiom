@@ -22,6 +22,9 @@ export const en = {
   Done: "Done",
   "Drag and drop files here": "Drag and drop files here",
   draggable: "draggable",
+  "Dragging was cancelled. {label} returned to position {position} of {count}.":
+    (label: string, position: number, count: number) =>
+      `Dragging was cancelled. ${label} returned to position ${position} of ${count}.`,
   Error: "Error",
   Expand: "Expand",
   "Filter...": "Filter...",
@@ -49,6 +52,11 @@ export const en = {
   "Page Size": "Page Size",
   pagination: "pagination",
   "Pick a date": "Pick a date",
+  "Picked up {label}, item {position} of {count}.": (
+    label: string,
+    position: number,
+    count: number,
+  ) => `Picked up ${label}, item ${position} of ${count}.`,
   Prev: "Prev",
   "Previous page": "Previous page",
   "Quick search": "Quick search",
@@ -69,9 +77,21 @@ export const en = {
   "Suggested:": "Suggested:",
   Suggestion: "Suggestion",
   "Toggle row": "Toggle row",
+  "To pick up a draggable item, press the space bar. While dragging, use the arrow keys to move the item in a given direction. Press space again to drop the item in its new position, or press escape to cancel.":
+    "To pick up a draggable item, press the space bar. While dragging, use the arrow keys to move the item in a given direction. Press space again to drop the item in its new position, or press escape to cancel.",
   Unknown: "Unknown",
   "Upload failed": "Upload failed",
   "Why this was suggested": "Why this was suggested",
+  "{label} dropped at position {position} of {count}.": (
+    label: string,
+    position: number,
+    count: number,
+  ) => `${label} dropped at position ${position} of ${count}.`,
+  "{label} moved to position {position} of {count}.": (
+    label: string,
+    position: number,
+    count: number,
+  ) => `${label} moved to position ${position} of ${count}.`,
   "{start} - {end} of {total}": (start: number, end: number, total: number) =>
     `${start} - ${end} of ${total}`,
   "{type} is not an accepted file type": (type: string) =>

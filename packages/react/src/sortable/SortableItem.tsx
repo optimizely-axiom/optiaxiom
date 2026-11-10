@@ -18,9 +18,20 @@ export type SortableItemProps = BoxProps<
      */
     index: number;
     /**
-     * ID of the item that is being rendered.
+     * The item that is being rendered: its ID, or an object with a `label`.
      */
-    item: string;
+    item:
+      | string
+      | {
+          /**
+           * ID of the item.
+           */
+          id: string;
+          /**
+           * Name screen readers announce while the item is dragged.
+           */
+          label: string;
+        };
   }
 >;
 
@@ -28,7 +39,8 @@ export type SortableItemProps = BoxProps<
  * @group Sortable
  */
 export const SortableItem = forwardRef<HTMLDivElement, SortableItemProps>(
-  ({ children, className, index, item: id, ...props }, outerRef) => {
+  ({ children, className, index, item, ...props }, outerRef) => {
+    const id = typeof item === "string" ? item : item.id;
     const { cacheRef, isSorting } = useSortableContext(
       "@optiaxiom/react/SortableItem",
     );
@@ -47,6 +59,7 @@ export const SortableItem = forwardRef<HTMLDivElement, SortableItemProps>(
       // intersection would keep tall sources as the target until the pointer
       // exits them.
       collisionDetector: shapeIntersection,
+      data: { label: typeof item === "string" ? item : item.label },
       group,
       handle: handleRef,
       id,

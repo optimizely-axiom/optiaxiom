@@ -98117,7 +98117,7 @@
           "responsive": true
         },
         "items": {
-          "description": "An array of item IDs in controlled mode.",
+          "description": "The items in controlled mode: IDs, or objects whose `label` names the\nitem in screen reader announcements.",
           "tsType": "Items"
         },
         "justifyContent": {
@@ -98678,6 +98678,16 @@
           ],
           "components": ["Sortable", "SortableHandle", "SortableItem"],
           "title": "handle-usage"
+        },
+        {
+          "code": [
+            {
+              "content": "\"use client\";\n\nimport { IconGrip } from \"@optiaxiom/icons\";\nimport {\n  Sortable,\n  SortableHandle,\n  SortableItem,\n} from \"@optiaxiom/react/unstable\";\nimport { useState } from \"react\";\n\nexport function App() {\n  const [items, setItems] = useState([\n    { id: \"task-1\", label: \"Planning\" },\n    { id: \"task-2\", label: \"Design\" },\n    { id: \"task-3\", label: \"Review\" },\n  ]);\n\n  return (\n    <Sortable items={items} onItemsChange={setItems}>\n      {(items) =>\n        items.map((item, index) => (\n          <SortableItem\n            alignItems=\"center\"\n            border=\"1\"\n            display=\"flex\"\n            index={index}\n            item={item}\n            key={item.id}\n          >\n            <SortableHandle>\n              <IconGrip />\n            </SortableHandle>\n            {item.label}\n          </SortableItem>\n        ))\n      }\n    </Sortable>\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": ["Sortable", "SortableHandle", "SortableItem"],
+          "title": "label-usage"
         },
         {
           "code": [
@@ -100534,8 +100544,8 @@
           "type": "number"
         },
         "item": {
-          "description": "ID of the item that is being rendered.",
-          "type": "string"
+          "description": "The item that is being rendered: its ID, or an object with a `label`.",
+          "tsType": "string | { id: string; label: string; }"
         },
         "justifyContent": {
           "description": "Set the element's `justify-content` CSS property",
