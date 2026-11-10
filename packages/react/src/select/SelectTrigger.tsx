@@ -8,7 +8,6 @@ import {
   forwardRef,
   type KeyboardEvent,
   useEffect,
-  useRef,
   useState,
 } from "react";
 
@@ -65,19 +64,18 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     const { boxProps, restProps } = extractBoxProps(props);
 
     const ref = useComposedRefs(triggerRef, outerRef);
-    const buttonRef = useRef<HTMLButtonElement>(null);
-    const labelId = useFieldLabelTrigger(buttonRef, ariaLabelledBy);
+    const labelId = useFieldLabelTrigger(triggerRef, ariaLabelledBy);
     const valueId = useId();
 
     // Focus the toggle button on first render if defaultOpen is enabled.
     const [focusOnOpen] = useState(isOpen);
     useEffect(
       function () {
-        if (focusOnOpen && buttonRef.current) {
-          buttonRef.current.focus();
+        if (focusOnOpen && triggerRef.current) {
+          triggerRef.current.focus();
         }
       },
-      [focusOnOpen],
+      [focusOnOpen, triggerRef],
     );
 
     const value = selectedItem?.value
@@ -164,7 +162,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
                 ),
             )
           ) : (
-            <AngleMenuButton ref={buttonRef}>
+            <AngleMenuButton>
               <Text asChild truncate>
                 <span id={valueId}>{children ?? value}</span>
               </Text>
