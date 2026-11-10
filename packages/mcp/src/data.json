@@ -8717,24 +8717,7 @@
         },
         "locale": {
           "description": "A BCP-47 tag (e.g. `\"fr-FR\"`) localizes date/time components such as\n`Calendar`, `DateRangePicker`, `Clock`, and `Time`, falling back to the\nbrowser locale; built-in labels stay English. Pass a `Locale` instead\n(`import { locale } from \"@optiaxiom/react/locale/en\"`, or your own) to\nalso translate built-in labels and screen reader text.",
-          "anyOf": [
-            { "type": "string" },
-            {
-              "properties": {
-                "code": {
-                  "description": "BCP-47 tag date/time components format with, e.g. `\"de-AT\"`.",
-                  "type": "string"
-                },
-                "messages": {
-                  "description": "Every built-in label, keyed by its English text.",
-                  "tsType": "{ \"(first page)\": string; \"(last page)\": string; Accept: string; \"App companion suggestion\": string; Bold: string; Breadcrumb: string; \"Bullet list\": string; Calendar: string; Cancel: string; \"change month\": string; ... 66 more ...; \"{type} is not an accepted file type\": (type: string) => string; }"
-                }
-              },
-              "required": ["code", "messages"],
-              "title": "Locale",
-              "type": "object"
-            }
-          ]
+          "tsType": "string | Locale"
         },
         "toast": {
           "description": "Props for the `ToastProvider` component\n\n{@link https://optimizely-axiom.github.io/optiaxiom/components/toast/ Documentation}",
@@ -67782,7 +67765,27 @@
               },
               "group": {
                 "description": "Group item belongs to.",
-                "tsType": "{ hidden?: boolean; label: string; priority?: number; separator?: boolean }"
+                "properties": {
+                  "hidden": {
+                    "description": "Whether to hide the group label.",
+                    "type": "boolean"
+                  },
+                  "label": {
+                    "description": "Return a string representation of the group.",
+                    "type": "string"
+                  },
+                  "priority": {
+                    "description": "The sorting priority of the group (default: 0).\nGroups with higher priority are sorted first.",
+                    "type": "number"
+                  },
+                  "separator": {
+                    "description": "Whether to show separators around the whole group.",
+                    "type": "boolean"
+                  }
+                },
+                "required": ["label"],
+                "title": "CommandOptionGroup",
+                "type": "object"
               },
               "href": {
                 "description": "Render a link with the given value as the `href` attribute.",
@@ -81942,7 +81945,27 @@
               },
               "group": {
                 "description": "Group item belongs to.",
-                "tsType": "{ hidden?: boolean; label: string; priority?: number; separator?: boolean }"
+                "properties": {
+                  "hidden": {
+                    "description": "Whether to hide the group label.",
+                    "type": "boolean"
+                  },
+                  "label": {
+                    "description": "Return a string representation of the group.",
+                    "type": "string"
+                  },
+                  "priority": {
+                    "description": "The sorting priority of the group (default: 0).\nGroups with higher priority are sorted first.",
+                    "type": "number"
+                  },
+                  "separator": {
+                    "description": "Whether to show separators around the whole group.",
+                    "type": "boolean"
+                  }
+                },
+                "required": ["label"],
+                "title": "CommandOptionGroup",
+                "type": "object"
               },
               "href": {
                 "description": "Render a link with the given value as the `href` attribute.",
@@ -82261,7 +82284,27 @@
               },
               "group": {
                 "description": "Group item belongs to.",
-                "tsType": "{ hidden?: boolean; label: string; priority?: number; separator?: boolean }"
+                "properties": {
+                  "hidden": {
+                    "description": "Whether to hide the group label.",
+                    "type": "boolean"
+                  },
+                  "label": {
+                    "description": "Return a string representation of the group.",
+                    "type": "string"
+                  },
+                  "priority": {
+                    "description": "The sorting priority of the group (default: 0).\nGroups with higher priority are sorted first.",
+                    "type": "number"
+                  },
+                  "separator": {
+                    "description": "Whether to show separators around the whole group.",
+                    "type": "boolean"
+                  }
+                },
+                "required": ["label"],
+                "title": "CommandOptionGroup",
+                "type": "object"
               },
               "href": {
                 "description": "Render a link with the given value as the `href` attribute.",
@@ -92958,7 +93001,27 @@
               },
               "group": {
                 "description": "Provide an optional group that item belongs to.",
-                "tsType": "{ hidden?: boolean; label: string; priority?: number; separator?: boolean }"
+                "properties": {
+                  "hidden": {
+                    "description": "Whether the group label should be hidden or not.",
+                    "type": "boolean"
+                  },
+                  "label": {
+                    "description": "The label group.",
+                    "type": "string"
+                  },
+                  "priority": {
+                    "description": "The sorting priority of the group (default: 0).\nGroups with higher priority are sorted first.",
+                    "type": "number"
+                  },
+                  "separator": {
+                    "description": "Whether to display a separator before this group.",
+                    "type": "boolean"
+                  }
+                },
+                "required": ["label"],
+                "title": "SelectOptionGroup",
+                "type": "object"
               },
               "label": {
                 "description": "String representation of items.",
@@ -102013,7 +102076,27 @@
               },
               "group": {
                 "description": "Group item belongs to.",
-                "tsType": "{ hidden?: boolean; label: string; priority?: number; separator?: boolean }"
+                "properties": {
+                  "hidden": {
+                    "description": "Whether to hide the group label.",
+                    "type": "boolean"
+                  },
+                  "label": {
+                    "description": "Return a string representation of the group.",
+                    "type": "string"
+                  },
+                  "priority": {
+                    "description": "The sorting priority of the group (default: 0).\nGroups with higher priority are sorted first.",
+                    "type": "number"
+                  },
+                  "separator": {
+                    "description": "Whether to show separators around the whole group.",
+                    "type": "boolean"
+                  }
+                },
+                "required": ["label"],
+                "title": "CommandOptionGroup",
+                "type": "object"
               },
               "href": {
                 "description": "Render a link with the given value as the `href` attribute.",

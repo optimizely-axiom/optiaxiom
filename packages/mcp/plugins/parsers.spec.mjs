@@ -50,6 +50,22 @@ describe("parsePropDefinition", () => {
     });
   });
 
+  it("should describe the group field of options by its fields", () => {
+    const { items } = parsePropDefinition(
+      getProp("@optiaxiom/react/Select", "options"),
+    );
+
+    expect(items?.properties?.group).toMatchObject({
+      properties: {
+        label: { type: "string" },
+        separator: { type: "boolean" },
+      },
+      required: ["label"],
+      title: "SelectOptionGroup",
+      type: "object",
+    });
+  });
+
   it("should keep the full type of optional callback fields", () => {
     const { items } = parsePropDefinition(
       getProp("@optiaxiom/react/Menu", "options"),

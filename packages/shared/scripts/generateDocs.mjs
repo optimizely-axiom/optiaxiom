@@ -82,6 +82,10 @@ function createShapeResolver(program, parser, srcPath, docTypes) {
     );
   /** @type {Map<string, ts.Type | undefined>} */
   const propsTypes = new Map();
+  // Object types being described, so a recursive type (`subOptions:
+  // CommandOption[]`) keeps its type string.
+  /** @type {Set<ts.Type>} */
+  const expanding = new Set();
 
   /**
    * A field of an object type in docgen's format.
@@ -126,9 +130,37 @@ function createShapeResolver(program, parser, srcPath, docTypes) {
    */
   const getObjectShape = (type) => {
     const properties = checker.getPropertiesOfType(type);
-    if (properties.length === 0 || !properties.every(isOwn)) {
+    // `@docs opaque` marks a type consumers get from the library and pass
+    // along (`Locale`, `DialogKit`): its name says more than its fields.
+    const opaque = (type.aliasSymbol ?? type.getSymbol())
+      ?.getJsDocTags(checker)
+      .some(
+        (tag) =>
+          tag.name === "docs" &&
+          ts.displayPartsToString(tag.text).trim() === "opaque",
+      );
+    if (
+      properties.length === 0 ||
+      !properties.every(isOwn) ||
+      opaque ||
+      expanding.has(type)
+    ) {
       return;
     }
+    expanding.add(type);
+    try {
+      return describeObject(type, properties);
+    } finally {
+      expanding.delete(type);
+    }
+  };
+
+  /**
+   * @param {ts.Type} type
+   * @param {ts.Symbol[]} properties
+   * @returns {Shape | undefined}
+   */
+  const describeObject = (type, properties) => {
     const typeSymbol = type.aliasSymbol ?? type.getSymbol();
     const name =
       typeSymbol && isOwn(typeSymbol) && !typeSymbol.getName().startsWith("__")
@@ -149,13 +181,26 @@ function createShapeResolver(program, parser, srcPath, docTypes) {
               .getJsDocTags(checker)
               .some((tag) => tag.name === "internal" || tag.name === "private"),
       )
-      .map(getField)
-      .sort((a, b) => a.name.localeCompare(b.name))
-      .map((field) => [field.name, toField(field, expansions)]);
+      .sort((a, b) => a.getName().localeCompare(b.getName()))
+      .map((field) => ({
+        field,
+        shape: getShape(checker.getTypeOfSymbol(field), true),
+      }));
     if (fields.length === 0) {
       return;
     }
-    return { fields: Object.fromEntries(fields), ...(name && { name }) };
+    return {
+      fields: Object.fromEntries(
+        fields.map(({ field, shape }) => [
+          field.getName(),
+          {
+            ...toField(getField(field), expansions),
+            ...(shape && hasObject(shape) && { shape }),
+          },
+        ]),
+      ),
+      ...(name && { name }),
+    };
   };
 
   /**

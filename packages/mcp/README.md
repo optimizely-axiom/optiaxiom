@@ -243,6 +243,7 @@ Use these tags in component JSDoc comments:
 - **`@group`**: Groups related components together (e.g., `@group Table` groups Table, TableRow, TableCell, etc.)
 - **`@since`**: Documents the version when the component was introduced (e.g., `@since 1.4.0`)
 - **`@experimental`**: Marks components as experimental/unstable
+- **`@docs opaque`**: Goes on a type rather than a component. Props and fields of that type show its name instead of its fields. Use it for types consumers get from the library and pass along rather than build themselves, such as `Locale` (imported from `@optiaxiom/react/locale/en`) and `DialogKit` (returned by `createDialogKit()`). Other object types the library owns are described field by field.
 - **`@deprecated`**: Marks a component as deprecated and points to its replacement. Follow the pattern `@deprecated since <version> use {@link Replacement} instead` — the version and the `{@link}` replacement are parsed out and surfaced by `get_component` (and should steer the AI away from the deprecated component). Pair with `@see Replacement`.
 
 Example:

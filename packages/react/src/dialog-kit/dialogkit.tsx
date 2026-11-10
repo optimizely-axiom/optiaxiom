@@ -30,6 +30,9 @@ const genId = () => {
   return "t" + id++;
 };
 
+/**
+ * @docs opaque
+ */
 type DialogKit = {
   clear: () => void;
   confirm: (

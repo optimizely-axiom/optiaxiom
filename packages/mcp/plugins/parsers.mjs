@@ -133,7 +133,7 @@ export function parseLightDark(value) {
  * Describe a docgen prop, or a field of an object-typed prop, with JSON Schema
  * keywords.
  *
- * @param {Field & Pick<PropItem, "shape">} prop
+ * @param {Field} prop
  * @returns {PropDefinition}
  */
 export function parsePropDefinition(prop) {

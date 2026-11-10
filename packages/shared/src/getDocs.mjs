@@ -27,6 +27,7 @@ const __dirname = path.dirname(__filename);
  * @property {PropItem['description']} [description]
  * @property {PropItem['required']} [required]
  * @property {PropItem['type']} type
+ * @property {Shape} [shape] Structure of a field holding the library's own object types
  */
 
 /**
