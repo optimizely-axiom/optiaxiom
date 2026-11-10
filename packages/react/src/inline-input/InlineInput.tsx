@@ -1,8 +1,11 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import clsx from "clsx";
 import { forwardRef, useEffect, useRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { useFieldContext } from "../field/internals";
+import { useFieldLabelTrigger } from "../hooks";
 import * as styles from "./InlineInput.css";
 
 export type InlineInputProps = BoxProps<
@@ -49,6 +52,7 @@ export type InlineInputProps = BoxProps<
 export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
   (
     {
+      "aria-labelledby": ariaLabelledBy,
       className,
       defaultValue = "",
       disabled,
@@ -61,6 +65,11 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
     },
     outerRef,
   ) => {
+    const { ariaProps, restProps } = extractAriaProps(props);
+    const { descriptionId, error, errorId, inputId } = useFieldContext(
+      "@optiaxiom/react/InlineInput",
+    );
+
     const [value, setValue] = useControllableState({
       caller: "@optiaxiom/react/InlineInput",
       defaultProp: defaultValue,
@@ -70,6 +79,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
 
     const editorRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(editorRef, outerRef);
+    const labelId = useFieldLabelTrigger(editorRef, ariaLabelledBy);
     useEffect(() => {
       if (!editorRef.current) {
         return;
@@ -95,12 +105,18 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
     }, [multiline, value]);
 
     return (
-      <Box {...styles.input({}, className)} {...props}>
+      <Box {...styles.input({}, className)} {...restProps}>
         <Box
+          aria-describedby={
+            errorId || descriptionId ? clsx(errorId, descriptionId) : undefined
+          }
+          aria-invalid={error ? true : undefined}
+          aria-labelledby={labelId}
           aria-multiline={multiline}
           aria-readonly={disabled}
           contentEditable={!disabled && "plaintext-only"}
           data-placeholder={placeholder ?? label}
+          id={inputId}
           onInput={(event) => {
             setValue(getText(event.currentTarget));
           }}
@@ -124,6 +140,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
           spellCheck="true"
           {...(label && { "aria-label": label })}
           {...styles.editor({ empty: !value?.length })}
+          {...ariaProps}
         />
       </Box>
     );
@@ -131,6 +148,23 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
 );
 
 InlineInput.displayName = "@optiaxiom/react/InlineInput";
+
+/**
+ * Splits off `aria-*` props for the textbox. The rest stay on the wrapper,
+ * where consumers' handlers and `data-*` have always landed.
+ */
+function extractAriaProps<P extends Record<string, unknown>>(props: P) {
+  const ariaProps: Record<string, unknown> = {};
+  const restProps: Record<string, unknown> = {};
+  for (const [name, value] of Object.entries(props)) {
+    if (name.startsWith("aria-")) {
+      ariaProps[name] = value;
+    } else {
+      restProps[name] = value;
+    }
+  }
+  return { ariaProps, restProps: restProps as Omit<P, `aria-${string}`> };
+}
 
 function getText(element: HTMLElement) {
   const text = element.innerText;
