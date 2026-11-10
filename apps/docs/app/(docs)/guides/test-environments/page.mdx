@@ -54,11 +54,15 @@ beforeEach(() => {
 
 ## jsdom
 
-### Stub ResizeObserver
+### Stub missing DOM APIs
 
-jsdom (Jest's default environment) doesn't implement `ResizeObserver`. Axiom components work without it, but `Tooltip` positions its arrow with a Radix hook that requires it.
+jsdom (Jest's default environment) leaves out some DOM APIs. Axiom components work without them, but a few dependencies call them unguarded:
 
-Stub it in your global test setup file. Don't mock Axiom components to work around it: query them by role and drive them with `user-event` instead.
+- `ResizeObserver`: `Tooltip` positions its arrow with a Radix hook that requires it.
+- `Element.prototype.hasPointerCapture`: `Toast` calls it on pointer up.
+- `document.elementFromPoint`: `RichTextEditor` calls it when clicked.
+
+Stub them in your global test setup file. Don't mock Axiom components to work around them: query them by role and drive them with `user-event` instead.
 
 ```ts
 globalThis.ResizeObserver ??= class {
@@ -66,6 +70,8 @@ globalThis.ResizeObserver ??= class {
   observe() {}
   unobserve() {}
 };
+Element.prototype.hasPointerCapture ??= () => false;
+Document.prototype.elementFromPoint ??= () => null;
 ```
 
 ### Don't answer every matchMedia query with false
@@ -103,6 +109,12 @@ window.matchMedia = (query) => ({
   removeListener: () => {},
 });
 ```
+
+### "Could not parse CSS stylesheet"
+
+jsdom 25 and older can't parse CSS cascade layers (`@layer`) or `@property`, which Axiom's styles use. When those styles reach the test document, jsdom logs `Error: Could not parse CSS stylesheet` with a stack trace for each stylesheet. Tests still pass: jsdom skips the stylesheet, and it doesn't compute layout anyway.
+
+Jest 29 bundles jsdom 20. Upgrade to Jest 30 (jsdom 26), or jsdom 26 or later in Vitest, to stop the errors.
 
 ## Jest
 
