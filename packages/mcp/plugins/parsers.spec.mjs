@@ -123,6 +123,31 @@ describe("parsePropDefinition", () => {
     expect(result.tsType).toBeUndefined();
   });
 
+  it("should describe records of lists with additionalProperties", () => {
+    const item = {
+      properties: {
+        id: { description: expect.any(String), type: "string" },
+        label: { description: expect.any(String), type: "string" },
+      },
+      required: ["id", "label"],
+      type: "object",
+    };
+    const lists = [
+      { items: item, type: "array" },
+      { items: { type: "string" }, type: "array" },
+    ];
+
+    expect(
+      parsePropDefinition(getProp("@optiaxiom/react/Sortable", "items")),
+    ).toEqual({
+      anyOf: [
+        ...lists,
+        { additionalProperties: { anyOf: lists }, type: "object" },
+      ],
+      description: expect.any(String),
+    });
+  });
+
   it("should describe primitive arrays with items", () => {
     expect(
       parsePropDefinition(getProp("@optiaxiom/react/FileUpload", "accept")),

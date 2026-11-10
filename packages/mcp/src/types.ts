@@ -142,6 +142,8 @@ export interface TestInfo {
  * JSON Schema keywords describing a type
  */
 export interface TypeSchema {
+  /** Schema of each value of a record keyed by strings */
+  additionalProperties?: TypeSchema;
   /** Matches any of these schemas */
   anyOf?: TypeSchema[];
   /** What this prop or field does */

@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 
 /**
  * @typedef {import("../src/getDocs.mjs").Field} Field
- * @typedef {import("../src/getDocs.mjs").Properties} Properties
+ * @typedef {import("../src/getDocs.mjs").Shape} Shape
  */
 
 /**
@@ -58,17 +58,18 @@ function buildDocTypes(docs) {
 }
 
 /**
- * Describe the fields of object-typed props (`options: SelectOption[]`) one
- * level deep, since docgen only gives a prop's type as a string. Fields are
- * formatted by docgen, the same as props. Returns `(filePath, componentName,
- * propName) => properties | undefined`.
+ * Describe the structure of props that hold the library's own object types
+ * (`options: SelectOption[]`, `items: List | Record<string, List>`), since
+ * docgen only gives a prop's type as a string. Fields are formatted by docgen,
+ * the same as props. Returns `(filePath, componentName, propName) => shape |
+ * undefined`.
  *
  * @param {ts.Program} program
  * @param {docgen.Parser} parser
  * @param {string} srcPath
  * @param {ReturnType<typeof buildDocTypes>} docTypes
  */
-function createPropertiesResolver(program, parser, srcPath, docTypes) {
+function createShapeResolver(program, parser, srcPath, docTypes) {
   const checker = program.getTypeChecker();
 
   // TypeScript file names always use `/`.
@@ -81,67 +82,6 @@ function createPropertiesResolver(program, parser, srcPath, docTypes) {
     );
   /** @type {Map<string, ts.Type | undefined>} */
   const propsTypes = new Map();
-
-  /**
-   * The single object type a prop holds directly or as array elements, e.g.
-   * `readonly SelectOption[] | SelectOption[]` → `SelectOption`. Primitive
-   * members beside it (`string | Item`, `(number | Mark)[]`) set `union`.
-   *
-   * @param {ts.Type} type
-   */
-  const getObjectType = (type) => {
-    // Optional props add `undefined`.
-    const members = (type.isUnion() ? type.types : [type]).filter(
-      (member) => !(member.flags & ts.TypeFlags.Undefined),
-    );
-    const array =
-      members.length > 0 &&
-      members.every((member) => checker.isArrayType(member));
-    if (!array && members.some((member) => checker.isArrayType(member))) {
-      return;
-    }
-    const elements = members.flatMap((member) => {
-      const element = array
-        ? checker.getTypeArguments(/** @type {ts.TypeReference} */ (member))[0]
-        : member;
-      return element?.isUnion() ? element.types : element ? [element] : [];
-    });
-    /** @param {ts.Type} member */
-    const isObject = (member) =>
-      !!(member.flags & (ts.TypeFlags.Object | ts.TypeFlags.Intersection)) &&
-      member.getCallSignatures().length === 0 &&
-      !checker.isArrayType(member);
-    const objects = [...new Set(elements.filter(isObject))];
-    const [element] = objects;
-    if (
-      !element ||
-      objects.length > 1 ||
-      !elements.every(
-        (member) =>
-          isObject(member) ||
-          // Only members the MCP parser reads as JSON Schema: it takes any
-          // other member string for the object.
-          member.flags &
-            (ts.TypeFlags.BooleanLike |
-              ts.TypeFlags.Null |
-              ts.TypeFlags.Number |
-              ts.TypeFlags.NumberLiteral |
-              ts.TypeFlags.String |
-              ts.TypeFlags.StringLiteral),
-      )
-    ) {
-      return;
-    }
-    const properties = checker.getPropertiesOfType(element);
-    if (properties.length === 0 || !properties.every(isOwn)) {
-      return;
-    }
-    return {
-      array,
-      element,
-      union: elements.some((member) => !isObject(member)),
-    };
-  };
 
   /**
    * A field of an object type in docgen's format.
@@ -179,6 +119,138 @@ function createPropertiesResolver(program, parser, srcPath, docTypes) {
   };
 
   /**
+   * The library's own object type as its documented fields.
+   *
+   * @param {ts.Type} type
+   * @returns {Shape | undefined}
+   */
+  const getObjectShape = (type) => {
+    const properties = checker.getPropertiesOfType(type);
+    if (properties.length === 0 || !properties.every(isOwn)) {
+      return;
+    }
+    const typeSymbol = type.aliasSymbol ?? type.getSymbol();
+    const name =
+      typeSymbol && isOwn(typeSymbol) && !typeSymbol.getName().startsWith("__")
+        ? typeSymbol.getName()
+        : undefined;
+    // A type's own shape isn't spelled out inside its fields.
+    const expansions = Object.fromEntries(
+      Object.entries(docTypes.expansions).filter(([type]) => type !== name),
+    );
+    // A `*Doc` lists its type's public fields; other types hide theirs with
+    // `@internal` or `@private`.
+    const documented = name ? docTypes.fields.get(name) : undefined;
+    const fields = properties
+      .filter((field) =>
+        documented
+          ? documented.has(field.getName())
+          : !field
+              .getJsDocTags(checker)
+              .some((tag) => tag.name === "internal" || tag.name === "private"),
+      )
+      .map(getField)
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((field) => [field.name, toField(field, expansions)]);
+    if (fields.length === 0) {
+      return;
+    }
+    return { fields: Object.fromEntries(fields), ...(name && { name }) };
+  };
+
+  /**
+   * The structure of a type, or `undefined` where JSON Schema can't express
+   * a part of it (functions, `ReactNode`, other libraries' types).
+   *
+   * @param {ts.Type} type
+   * @param {boolean} [optional] The type of an optional prop or field, whose
+   *   `undefined` marks it optional rather than being a value it holds
+   * @returns {Shape | undefined}
+   */
+  const getShape = (type, optional = false) => {
+    if (type.flags & ts.TypeFlags.TypeParameter) {
+      // A generic prop (`items: T`) is described by its constraint.
+      const constraint = checker.getBaseConstraintOfType(type);
+      return constraint && constraint !== type
+        ? getShape(constraint, optional)
+        : undefined;
+    }
+    if (type.isUnion()) {
+      const members = type.types
+        .filter(
+          (member) => !(optional && member.flags & ts.TypeFlags.Undefined),
+        )
+        .map((member) => getShape(member));
+      if (!members.every((member) => member !== undefined)) {
+        return;
+      }
+      // `readonly SelectOption[] | SelectOption[]` is one shape written twice.
+      const anyOf = [
+        ...new Map(
+          /** @type {Shape[]} */ (members).map((member) => [
+            JSON.stringify(member),
+            member,
+          ]),
+        ).values(),
+      ];
+      return anyOf.length === 1 ? anyOf[0] : { anyOf };
+    }
+    if (type.flags & ts.TypeFlags.BooleanLiteral) {
+      return { const: checker.typeToString(type) === "true" };
+    }
+    if (type.isStringLiteral() || type.isNumberLiteral()) {
+      return { const: type.value };
+    }
+    for (const [flag, name] of /** @type {const} */ ([
+      [ts.TypeFlags.Null, "null"],
+      [ts.TypeFlags.Number, "number"],
+      [ts.TypeFlags.String, "string"],
+    ])) {
+      if (type.flags & flag) {
+        return { type: name };
+      }
+    }
+    if (checker.isArrayType(type)) {
+      const [element] = checker.getTypeArguments(
+        /** @type {ts.TypeReference} */ (type),
+      );
+      const items = element && getShape(element);
+      return items && { items };
+    }
+    if (
+      !(type.flags & (ts.TypeFlags.Object | ts.TypeFlags.Intersection)) ||
+      type.getCallSignatures().length > 0
+    ) {
+      return;
+    }
+    const [index, ...otherIndexes] = checker.getIndexInfosOfType(type);
+    if (index) {
+      // e.g. `Record<string, List>`.
+      const values =
+        otherIndexes.length === 0 &&
+        index.keyType.flags & ts.TypeFlags.String &&
+        checker.getPropertiesOfType(type).length === 0
+          ? getShape(index.type)
+          : undefined;
+      return values && { values };
+    }
+    return getObjectShape(type);
+  };
+
+  /**
+   * Whether a shape holds an object, which docgen's type string can't
+   * describe.
+   *
+   * @param {Shape} shape
+   * @returns {boolean}
+   */
+  const hasObject = (shape) =>
+    "fields" in shape ||
+    "values" in shape ||
+    ("items" in shape && hasObject(shape.items)) ||
+    ("anyOf" in shape && shape.anyOf.some(hasObject));
+
+  /**
    * The props type of a component exported from `filePath`.
    *
    * @param {string} filePath
@@ -210,53 +282,14 @@ function createPropertiesResolver(program, parser, srcPath, docTypes) {
    * @param {string} filePath
    * @param {string} componentName
    * @param {string} propName
-   * @returns {Properties | undefined}
+   * @returns {Shape | undefined}
    */
   return (filePath, componentName, propName) => {
     const prop = getPropsType(filePath, componentName)?.getProperty(propName);
-    if (!prop) {
-      return;
-    }
-
-    const objectType = getObjectType(checker.getTypeOfSymbol(prop));
-    if (!objectType) {
-      return;
-    }
-
-    const typeSymbol =
-      objectType.element.aliasSymbol ?? objectType.element.getSymbol();
-    const name =
-      typeSymbol && isOwn(typeSymbol) && !typeSymbol.getName().startsWith("__")
-        ? typeSymbol.getName()
-        : undefined;
-    // A type's own shape isn't spelled out inside its fields.
-    const expansions = Object.fromEntries(
-      Object.entries(docTypes.expansions).filter(([type]) => type !== name),
-    );
-    // A `*Doc` lists its type's public fields; other types hide theirs with
-    // `@internal` or `@private`.
-    const documented = name ? docTypes.fields.get(name) : undefined;
-    const fields = checker
-      .getPropertiesOfType(objectType.element)
-      .filter((field) =>
-        documented
-          ? documented.has(field.getName())
-          : !field
-              .getJsDocTags(checker)
-              .some((tag) => tag.name === "internal" || tag.name === "private"),
-      )
-      .map(getField)
-      .sort((a, b) => a.name.localeCompare(b.name))
-      .map((field) => [field.name, toField(field, expansions)]);
-    if (fields.length === 0) {
-      return;
-    }
-    return {
-      ...(objectType.array && { array: /** @type {const} */ (true) }),
-      fields: Object.fromEntries(fields),
-      ...(name && { name }),
-      ...(objectType.union && { union: /** @type {const} */ (true) }),
-    };
+    const shape = prop && getShape(checker.getTypeOfSymbol(prop), true);
+    // Props without objects keep docgen's type string, which the MCP parser
+    // already describes.
+    return shape && hasObject(shape) ? shape : undefined;
   };
 }
 
@@ -318,7 +351,7 @@ function generateDocs() {
     throw new Error("Could not find sprinkles docgen");
   }
   const docTypes = buildDocTypes(docs);
-  const getProperties = createPropertiesResolver(
+  const getShape = createShapeResolver(
     program,
     new docgen.Parser(program, parserOptions),
     reactSrcPath,
@@ -344,9 +377,9 @@ function generateDocs() {
                 sprinkles.props[prop.name] &&
                 sprinkles.props[prop.name]?.declarations?.[0].fileName ===
                   prop.declarations?.[0].fileName;
-              const properties = sprinkle
+              const shape = sprinkle
                 ? undefined
-                : getProperties(
+                : getShape(
                     filePath,
                     doc.displayName.replace("@optiaxiom/react/", ""),
                     name,
@@ -357,7 +390,7 @@ function generateDocs() {
                 {
                   ...toField(prop, docTypes.expansions),
                   name: prop.name,
-                  ...(properties && { properties }),
+                  ...(shape && { shape }),
                   ...(sprinkle && { sprinkle: true }),
                 },
               ];

@@ -25347,7 +25347,13 @@
         },
         "loading": {
           "description": "Whether to show skeleton for the whole table or specific rows.",
-          "tsType": "boolean | Record<string, false | \"sub-rows\">"
+          "anyOf": [
+            { "type": "boolean" },
+            {
+              "additionalProperties": { "enum": [false, "sub-rows"] },
+              "type": "object"
+            }
+          ]
         },
         "m": {
           "description": "Set the element's margin on all sides. Only accepts predefined spacing tokens.",
@@ -98175,7 +98181,48 @@
         },
         "items": {
           "description": "The items in controlled mode: IDs, or objects whose `label` names the\nitem in screen reader announcements.",
-          "tsType": "Items"
+          "anyOf": [
+            {
+              "items": {
+                "properties": {
+                  "id": { "description": "ID of the item.", "type": "string" },
+                  "label": {
+                    "description": "Name screen readers announce while the item is dragged.",
+                    "type": "string"
+                  }
+                },
+                "required": ["id", "label"],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            { "items": { "type": "string" }, "type": "array" },
+            {
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "properties": {
+                        "id": {
+                          "description": "ID of the item.",
+                          "type": "string"
+                        },
+                        "label": {
+                          "description": "Name screen readers announce while the item is dragged.",
+                          "type": "string"
+                        }
+                      },
+                      "required": ["id", "label"],
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  { "items": { "type": "string" }, "type": "array" }
+                ]
+              },
+              "type": "object"
+            }
+          ]
         },
         "justifyContent": {
           "description": "Set the element's `justify-content` CSS property",
