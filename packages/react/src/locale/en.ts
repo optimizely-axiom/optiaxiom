@@ -1,7 +1,9 @@
+import type { Locale } from "./LocaleContext";
+
 /**
  * Built-in labels and messages. Every other locale supplies the same keys.
  */
-export const en = {
+const messages = {
   "(first page)": "(first page)",
   "(last page)": "(last page)",
   Accept: "Accept",
@@ -98,4 +100,9 @@ export const en = {
     `${type} is not an accepted file type`,
 };
 
-export type Messages = typeof en;
+export type Messages = typeof messages;
+
+/**
+ * English, the default language of built-in labels.
+ */
+export const locale: Locale = { code: "en", messages };
