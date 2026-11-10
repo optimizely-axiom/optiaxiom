@@ -92,7 +92,7 @@ The project uses a modern, type-safe stack optimized for design system developme
 
 **Development & Testing:**
 
-- [Vitest](https://vitest.dev/) - Unit testing
+- [Vitest](https://vitest.dev/) - Unit testing, in happy-dom and again in [jsdom](https://github.com/jsdom/jsdom). `jsdom` stays on the major that Jest's `jest-environment-jsdom` bundles (26 for Jest 30), because newer jsdom fixes bugs consumers still hit. Don't bump it ahead of Jest.
 - [Testing Library](https://testing-library.com/) - Component testing
 - [Storybook](https://storybook.js.org/) - Component development & documentation
 - [Chromatic](https://www.chromatic.com/) - Visual regression testing
