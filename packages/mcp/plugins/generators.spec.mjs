@@ -129,15 +129,22 @@ describe("docs.json prop properties", () => {
     expect(properties?.fields.label).toMatchObject({ required: true });
   });
 
-  it("should skip functions, nodes, nullable objects and sprinkles", () => {
+  it("should mark object props that also accept primitives or null", () => {
+    expect(
+      getProperties("@optiaxiom/react/DateRangePicker", "value"),
+    ).toMatchObject({ name: "DateRange", union: true });
+    expect(getProperties("@optiaxiom/react/Range", "marks")).toMatchObject({
+      array: true,
+      union: true,
+    });
+  });
+
+  it("should skip functions, nodes and sprinkles", () => {
     expect(
       getProperties("@optiaxiom/react/FileUploadList", "onRemove"),
     ).toBeUndefined();
     expect(
       getProperties("@optiaxiom/react/Button", "addonAfter"),
-    ).toBeUndefined();
-    expect(
-      getProperties("@optiaxiom/react/DateRangePicker", "value"),
     ).toBeUndefined();
     expect(getProperties("@optiaxiom/react/Box", "p")).toBeUndefined();
   });

@@ -45,6 +45,7 @@ const __dirname = path.dirname(__filename);
  * @property {true} [array] The prop holds an array of this object type
  * @property {Record<string, Field>} fields
  * @property {string} [name] Name of the object type, when it has one
+ * @property {true} [union] The prop also accepts primitives or `null`
  */
 
 /**
