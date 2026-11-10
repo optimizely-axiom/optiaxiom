@@ -44,6 +44,10 @@ export type TooltipProps = ExcludeProps<
  * Popup with brief information shown when user interacts with an element using
  * keyboard focus or mouse hover.
  *
+ * Keep content to a short plain-text label of a few words. For longer, rich or
+ * interactive help use Popover opened from a labelled button instead: a
+ * tooltip closes when the pointer moves onto it and doesn't open on tap.
+ *
  * @category overlay
  * @since 0.1.0
  */
