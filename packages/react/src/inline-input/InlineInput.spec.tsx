@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
-import { render, screen } from "../../vitest.rtl";
+import { fireEvent, render, screen } from "../../vitest.rtl";
 import { Field } from "../field";
 import { InlineInput } from "./InlineInput";
 
@@ -11,6 +11,20 @@ describe("InlineInput component", () => {
     expect(screen.getByRole("textbox", { name: "Title" })).toHaveTextContent(
       "Write release notes",
     );
+  });
+
+  it("reports the text written into it", () => {
+    const onValueChange = vi.fn();
+    render(<InlineInput label="Title" onValueChange={onValueChange} />);
+
+    // Not user.type: user-event only types into contenteditable="true", and
+    // InlineInput is contenteditable="plaintext-only".
+    const textbox = screen.getByRole("textbox", { name: "Title" });
+    textbox.textContent = "Write release notes";
+    // oxlint-disable-next-line testing-library/prefer-user-event
+    fireEvent.input(textbox);
+
+    expect(onValueChange).toHaveBeenCalledWith("Write release notes");
   });
 
   it("takes its name, description and error from the Field", () => {
