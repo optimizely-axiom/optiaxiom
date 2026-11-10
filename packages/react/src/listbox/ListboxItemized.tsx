@@ -52,7 +52,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
   (
     {
       children,
-      empty = "No results found.",
+      empty,
       highlightedItem,
       items,
       itemToKey,

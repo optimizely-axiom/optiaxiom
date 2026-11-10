@@ -8,6 +8,7 @@ import type { ExcludeProps } from "../utils";
 import { type BoxProps } from "../box";
 import { Command } from "../command";
 import { resolveItemProperty, useCommandContext } from "../command/internals";
+import { useMessages } from "../locale";
 import { listMinWidth } from "../modal/internals";
 import { PopoverAnchor, PopoverContent } from "../popover";
 import { usePopoverContext } from "../popover/internals";
@@ -44,6 +45,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
     );
 
     const labelId = useId();
+    const messages = useMessages();
     const ref = useComposedRefs(parentContentRef, outerRef);
 
     // Options are often rebuilt on every render (e.g. async search results),
@@ -128,7 +130,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
           {...props}
         >
           <VisuallyHidden asChild>
-            <h2 id={labelId}>Submenu</h2>
+            <h2 id={labelId}>{messages["Submenu"]}</h2>
           </VisuallyHidden>
           <Command
             enabled
@@ -166,7 +168,10 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
             options={options}
           >
             <VisuallyHidden disabled={item.subOptionsInputVisible}>
-              <MenuSubInput placeholder="Filter..." ref={inputRef} />
+              <MenuSubInput
+                placeholder={messages["Filter..."]}
+                ref={inputRef}
+              />
             </VisuallyHidden>
             <MenuSubProvider
               contentRef={contentRef}

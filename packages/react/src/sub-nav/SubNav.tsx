@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 import { type BoxProps } from "../box";
 import { Group } from "../group";
 import { useEvent } from "../hooks";
+import { useMessages } from "../locale";
 import { SidebarProvider, useSidebarContext } from "../sidebar/internals";
 import * as styles from "./SubNav.css";
 
@@ -13,6 +14,7 @@ export type SubNavProps = BoxProps<"nav">;
  */
 export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
   ({ children, ...props }, ref) => {
+    const messages = useMessages();
     const { onActiveChange } = useSidebarContext("@optiaxiom/react/SubNav");
 
     return (
@@ -27,7 +29,7 @@ export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
         {...props}
       >
         <Group asChild {...styles.nav()}>
-          <nav aria-label="Secondary">
+          <nav aria-label={messages["Secondary"]}>
             <SidebarProvider
               current="page"
               expanded

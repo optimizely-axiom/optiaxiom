@@ -6,6 +6,7 @@ import type { MenuContent } from "./MenuContent";
 
 import { DialogContent } from "../dialog";
 import { useFieldContext } from "../field/internals";
+import { useMessages } from "../locale";
 import { VisuallyHidden } from "../visually-hidden";
 import { useMenuContext } from "./MenuContext";
 import * as styles from "./MenuDialogContent.css";
@@ -36,6 +37,7 @@ export const MenuDialogContent = forwardRef<
     );
     const { triggerRef } = useMenuContext("@optiaxiom/react/MenuDialogContent");
     const labelId = useId();
+    const messages = useMessages();
 
     return (
       <DialogContent
@@ -50,7 +52,7 @@ export const MenuDialogContent = forwardRef<
         {children}
 
         <VisuallyHidden asChild>
-          <h2 id={labelId}>{ariaLabel || "Menu"}</h2>
+          <h2 id={labelId}>{ariaLabel || messages["Menu"]}</h2>
         </VisuallyHidden>
       </DialogContent>
     );

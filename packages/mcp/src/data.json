@@ -2666,7 +2666,7 @@
           "description": "Set the element's `border-top-width` CSS property",
           "enum": ["2", "0", "1"]
         },
-        "children": { "default": "Cancel", "tsType": "ReactNode" },
+        "children": { "tsType": "ReactNode" },
         "className": { "type": "string" },
         "color": {
           "description": "Set the element's text color. Only accepts predefined color tokens starting with `fg.` (e.g., `fg.default`, `fg.accent`, `fg.error`), or the special values `current` and `transparent`.",
@@ -82031,6 +82031,7 @@
         },
         "placeholder": {
           "description": "The placeholder for the search input.",
+          "default": "Filter...",
           "type": "string"
         },
         "placeItems": {
@@ -101944,6 +101945,7 @@
         },
         "placeholder": {
           "description": "The placeholder for the search input.",
+          "default": "Filter...",
           "type": "string"
         }
       },

@@ -4,7 +4,7 @@ import { IconAngleDown } from "@optiaxiom/icons/IconAngleDown";
 import { CaptionLabel } from "react-day-picker";
 
 import { Button } from "../button";
-import { useLocaleContext } from "../locale";
+import { useLocaleContext, useMessages } from "../locale";
 import { formatDate } from "../utils";
 import { VisuallyHidden } from "../visually-hidden";
 import { useCalendarContext } from "./CalendarContext";
@@ -22,6 +22,7 @@ export function CalendarCaptionLabel({
     "@optiaxiom/react/CalendarCaptionLabel",
   );
   const { locale } = useLocaleContext("@optiaxiom/react/CalendarCaptionLabel");
+  const messages = useMessages();
 
   return (
     <Button
@@ -53,7 +54,7 @@ export function CalendarCaptionLabel({
         )}
       </CaptionLabel>
       <VisuallyHidden>
-        {view === "month" ? "change year" : "change month"}
+        {view === "month" ? messages["change year"] : messages["change month"]}
       </VisuallyHidden>
     </Button>
   );

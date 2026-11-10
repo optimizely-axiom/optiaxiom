@@ -4,6 +4,7 @@ import { forwardRef, useContext } from "react";
 
 import { Button, type ButtonProps } from "../button";
 import { DialogKitContext } from "../dialog-kit/internals";
+import { useMessages } from "../locale";
 import { useAlertDialogContext } from "./AlertDialogContext";
 
 export type AlertDialogCancelProps = ButtonProps<typeof RadixDialog.Close>;
@@ -17,9 +18,10 @@ export const AlertDialogCancel = forwardRef<
   AlertDialogCancelProps
 >(
   (
-    { appearance = "subtle", asChild, children = "Cancel", onClick, ...props },
+    { appearance = "subtle", asChild, children, onClick, ...props },
     outerRef,
   ) => {
+    const messages = useMessages();
     const { cancelRef } = useAlertDialogContext(
       "@optiaxiom/react/AlertDialogCancel",
     );
@@ -44,7 +46,9 @@ export const AlertDialogCancel = forwardRef<
         {asChild ? (
           children
         ) : (
-          <Button appearance={appearance}>{children}</Button>
+          <Button appearance={appearance}>
+            {children ?? messages["Cancel"]}
+          </Button>
         )}
       </RadixDialog.Close>
     );

@@ -13,6 +13,7 @@ import {
 
 import { Button } from "../button";
 import { Group } from "../group";
+import { useMessages } from "../locale";
 import { Portal } from "../portal";
 import { Text } from "../text";
 import { Transition } from "../transition";
@@ -38,6 +39,7 @@ type StoredSuggestion = {
 
 export function SuggestionProvider({ children }: SuggestionProviderProps) {
   const id = useId();
+  const messages = useMessages();
   const [suggestions, setSuggestions] = useState<StoredSuggestion[]>([]);
 
   return (
@@ -78,7 +80,7 @@ export function SuggestionProvider({ children }: SuggestionProviderProps) {
               <Transition data-side="top" key={suggestion.id} type="pop">
                 <Group
                   aria-describedby={id + "-" + suggestion.id}
-                  aria-label="App companion suggestion"
+                  aria-label={messages["App companion suggestion"]}
                   bg="bg.default"
                   color="fg.default"
                   fontSize="md"
@@ -100,7 +102,7 @@ export function SuggestionProvider({ children }: SuggestionProviderProps) {
                         suggestion.text
                       ) : (
                         <>
-                          <strong>Suggested:</strong>{" "}
+                          <strong>{messages["Suggested:"]}</strong>{" "}
                           {surface.renderSuggestionValue
                             ? surface.renderSuggestionValue(suggestion.value)
                             : String(suggestion.value)}
@@ -125,11 +127,11 @@ export function SuggestionProvider({ children }: SuggestionProviderProps) {
                     }}
                     size="sm"
                   >
-                    Accept
+                    {messages["Accept"]}
                   </Button>
                   <Button
                     appearance="subtle"
-                    aria-label="close"
+                    aria-label={messages["close"]}
                     color="fg.default"
                     flex="none"
                     icon={<IconXmark />}

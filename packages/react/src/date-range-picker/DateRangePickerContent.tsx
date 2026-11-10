@@ -10,6 +10,7 @@ import { Calendar } from "../calendar";
 import { useFieldContext } from "../field/internals";
 import { Group } from "../group";
 import { useAnimationFrame } from "../hooks";
+import { useMessages } from "../locale";
 import { PopoverContent } from "../popover";
 import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DateRangePickerContent.css";
@@ -61,6 +62,7 @@ export const DateRangePickerContent = forwardRef<
       useDateRangePickerContext("@optiaxiom/react/DateRangePickerContent");
     const requestFrame = useAnimationFrame();
     const labelId = useId();
+    const messages = useMessages();
 
     return (
       <PopoverContent
@@ -70,7 +72,9 @@ export const DateRangePickerContent = forwardRef<
         ref={ref}
         {...props}
       >
-        <VisuallyHidden id={labelId}>{ariaLabel || "Calendar"}</VisuallyHidden>
+        <VisuallyHidden id={labelId}>
+          {ariaLabel || messages["Calendar"]}
+        </VisuallyHidden>
         <Group {...styles.panels()}>
           {addonBefore}
           <Calendar

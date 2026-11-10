@@ -85,7 +85,10 @@ export function AxiomProvider({
 
   return (
     <AxiomVersionContext.Provider value={version}>
-      <LocaleProvider locale={resolvedLocale}>
+      <LocaleProvider
+        language={locale?.split("-")[0].toLowerCase() ?? "en"}
+        locale={resolvedLocale}
+      >
         <TooltipProvider {...tooltip}>
           <FocusBookmarkProvider>
             {children}

@@ -2,6 +2,7 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { useMessages } from "../locale";
 import * as styles from "./SortableHandle.css";
 import { useSortableItemContext } from "./SortableItemContext";
 
@@ -16,10 +17,11 @@ export const SortableHandle = forwardRef<HTMLDivElement, SortableHandleProps>(
       "@optiaxiom/react/SortableHandle",
     );
     const ref = useComposedRefs(handleRef, outerRef);
+    const messages = useMessages();
 
     return (
       <Box
-        aria-label="draggable"
+        aria-label={messages["draggable"]}
         data-state={isDragging ? "active" : undefined}
         ref={ref}
         {...styles.handle({}, className)}

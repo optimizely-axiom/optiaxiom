@@ -9,6 +9,7 @@ import { Cover } from "../cover";
 import { Flex } from "../flex";
 import { Group } from "../group";
 import { Icon } from "../icon";
+import { useMessages } from "../locale";
 import { Spinner } from "../spinner";
 import { Text } from "../text";
 import * as styles from "./FileUploadListItem.css";
@@ -77,6 +78,7 @@ export const FileUploadListItem = forwardRef<
   FileUploadListItemProps
 >(({ className, item, onRemove, ...props }, ref) => {
   const { file, status } = item;
+  const messages = useMessages();
 
   return (
     <Flex ref={ref} {...styles.item({}, className)} {...props}>
@@ -109,13 +111,15 @@ export const FileUploadListItem = forwardRef<
           <Text color="fg.tertiary">
             {formatFileType(file)} • {formatFileSize(file.size)}
           </Text>
-          {status === "error" && <Text color="fg.error">Upload failed</Text>}
+          {status === "error" && (
+            <Text color="fg.error">{messages["Upload failed"]}</Text>
+          )}
         </Group>
       </Flex>
       {onRemove && (
         <Button
           appearance="subtle"
-          aria-label="Remove file"
+          aria-label={messages["Remove file"]}
           disabled={status === "uploading"}
           icon={<IconTrashCan />}
           onClick={onRemove}

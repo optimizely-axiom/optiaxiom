@@ -16,6 +16,7 @@ import { Calendar } from "../calendar";
 import { useFieldContext } from "../field/internals";
 import { useObserveValue } from "../hooks";
 import { Input } from "../input";
+import { useMessages } from "../locale";
 import {
   Popover,
   PopoverAnchor,
@@ -95,6 +96,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       "@optiaxiom/react/DateInput",
     );
     const labelId = useId();
+    const messages = useMessages();
 
     const [open, setOpen] = useState(false);
     const hasInteractedOutsideRef = useRef(false);
@@ -130,7 +132,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               !props.required && (
                 <Button
                   appearance="subtle"
-                  aria-label="Clear"
+                  aria-label={messages["Clear"]}
                   icon={<IconXmark />}
                   onPointerDown={(event) => {
                     event.preventDefault();
@@ -143,7 +145,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             }
             addonBefore={
               <PopoverTrigger
-                aria-label="Show date picker"
+                aria-label={messages["Show date picker"]}
                 asChild
                 onClick={(event) => {
                   if (props.readOnly) {
@@ -215,7 +217,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           }}
         >
           <VisuallyHidden asChild id={labelId}>
-            <h2>Calendar</h2>
+            <h2>{messages["Calendar"]}</h2>
           </VisuallyHidden>
           <Calendar
             holiday={holiday}
@@ -247,7 +249,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               justifyContent="center"
               onClick={() => setOpen(false)}
             >
-              Done
+              {messages["Done"]}
             </Button>
           )}
         </PopoverContent>

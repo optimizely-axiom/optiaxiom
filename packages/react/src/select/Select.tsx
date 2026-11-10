@@ -17,6 +17,7 @@ import {
 import { Avatar } from "../avatar";
 import { useHighlightedIndex } from "../downshift";
 import { useObserveValue } from "../hooks";
+import { useMessages } from "../locale";
 import { useSurface } from "../surface";
 import { useSuggestions } from "../surface/internals";
 import { type SelectOption, SelectProvider } from "./SelectContext";
@@ -118,6 +119,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ) => {
     const innerRef = useRef<HTMLSelectElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
+    const messages = useMessages();
 
     const surface = useSurface("property");
     const suggestions = useSuggestions("property", "value");
@@ -152,7 +154,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
                 detail: <Avatar fallback="opal" size="2xs" />,
                 group: {
                   hidden: true,
-                  label: "Suggested",
+                  label: messages["Suggested"],
                   priority: 1000,
                 },
               }
@@ -161,7 +163,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         .sort((a, b) => {
           return (b.group?.priority ?? 0) - (a.group?.priority ?? 0);
         });
-    }, [options, suggestion]);
+    }, [messages, options, suggestion]);
 
     const selectedItem = useMemo(
       () =>

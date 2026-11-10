@@ -9,6 +9,7 @@ import { type ReactNode } from "react";
 import { Box } from "../box";
 import { Button } from "../button";
 import { Group } from "../group";
+import { useMessages } from "../locale";
 import { useDataTableRowContext } from "./DataTableRowContext";
 
 export type DataTableExpandableCellProps<TData, TValue> = CellContext<
@@ -30,6 +31,7 @@ export function DataTableExpandableCell<TData, TValue>({
   row,
 }: DataTableExpandableCellProps<TData, TValue>) {
   const labelPrefixId = useId();
+  const messages = useMessages();
   const { labelId } = useDataTableRowContext(
     "@optiaxiom/react/DataTableExpandableCell",
   );
@@ -42,7 +44,7 @@ export function DataTableExpandableCell<TData, TValue>({
         <Button
           appearance="subtle"
           aria-expanded={row.getIsExpanded()}
-          aria-label="Toggle row"
+          aria-label={messages["Toggle row"]}
           aria-labelledby={clsx(labelPrefixId, labelId)}
           flex="none"
           icon={row.getIsExpanded() ? <IconAngleDown /> : <IconChevronRight />}

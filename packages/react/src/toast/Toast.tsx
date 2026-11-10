@@ -14,6 +14,7 @@ import type { ExcludeProps } from "../utils";
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { Button } from "../button";
 import { Icon } from "../icon";
+import { useMessages } from "../locale";
 import * as styles from "./Toast.css";
 
 export type ToastProps = ExcludeProps<
@@ -40,6 +41,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
     outerRef,
   ) => {
     const { boxProps, restProps } = extractBoxProps(props);
+    const messages = useMessages();
     const context = useToastProviderContext("@optiaxiom/react/Toast");
 
     const ref = useComposedRefs(outerRef, context.toastRef);
@@ -78,7 +80,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
           <RadixToast.Close asChild>
             <Button
               appearance="inverse"
-              aria-label="close"
+              aria-label={messages["close"]}
               icon={<IconXmark />}
               size="sm"
             />

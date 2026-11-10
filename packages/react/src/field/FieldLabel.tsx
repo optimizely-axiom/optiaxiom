@@ -6,6 +6,7 @@ import { forwardRef, type ReactNode } from "react";
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { Group } from "../group";
+import { useMessages } from "../locale";
 import { Text } from "../text";
 import { Tooltip } from "../tooltip";
 import { VisuallyHidden } from "../visually-hidden";
@@ -49,6 +50,7 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
   ) => {
     const inputId = useId(inputIdProp);
     const labelId = useId(labelIdProp);
+    const messages = useMessages();
 
     return (
       <Group gap="4" ref={ref} {...props}>
@@ -74,7 +76,7 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
                 >
                   <span>*</span>
                 </Text>
-                <VisuallyHidden>Required</VisuallyHidden>
+                <VisuallyHidden>{messages["Required"]}</VisuallyHidden>
               </>
             )}
           </RadixLabel.Root>
@@ -82,7 +84,7 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
         {info && (
           <Tooltip content={info} delayDuration={0}>
             <Button
-              aria-label="Information hover"
+              aria-label={messages["Information hover"]}
               bg="transparent"
               border="0"
               color="fg.secondary"

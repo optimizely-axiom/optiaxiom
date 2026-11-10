@@ -10,6 +10,7 @@ import { type BoxProps } from "../box";
 import { Button } from "../button";
 import { Group } from "../group";
 import { Icon } from "../icon";
+import { useMessages } from "../locale";
 import * as styles from "./Banner.css";
 
 export type BannerProps = BoxProps<
@@ -40,6 +41,7 @@ const mapIntentToIcon = {
 export const Banner = forwardRef<HTMLDivElement, BannerProps>(
   ({ children, className, intent = "neutral", onDismiss, ...props }, ref) => {
     const labelId = useId();
+    const messages = useMessages();
 
     return (
       <Group
@@ -58,7 +60,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(
         {!!onDismiss && (
           <Button
             appearance="subtle"
-            aria-label="close"
+            aria-label={messages["close"]}
             color="fg.default"
             flex="none"
             icon={<IconXmark />}

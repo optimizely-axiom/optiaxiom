@@ -8,6 +8,7 @@ import { Icon } from "../icon";
 import { IconSort } from "../icons/IconSort";
 import { IconSortDown } from "../icons/IconSortDown";
 import { IconSortUp } from "../icons/IconSortUp";
+import { useMessages } from "../locale";
 import { Separator } from "../separator";
 import { TableHeaderCell } from "../table";
 import { VisuallyHidden } from "../visually-hidden";
@@ -34,6 +35,7 @@ export const DataTableHeaderCell = forwardRef<
   DataTableHeaderCellProps
 >(({ children, header, ...props }, ref) => {
   const sortDir = header.column.getIsSorted();
+  const messages = useMessages();
 
   return (
     <ActionsRoot asChild>
@@ -85,7 +87,9 @@ export const DataTableHeaderCell = forwardRef<
               {sortDir && " "}
               {sortDir && (
                 <VisuallyHidden>
-                  sorted {sortDir === "asc" ? "ascending" : "descending"}
+                  {sortDir === "asc"
+                    ? messages["sorted ascending"]
+                    : messages["sorted descending"]}
                 </VisuallyHidden>
               )}
 

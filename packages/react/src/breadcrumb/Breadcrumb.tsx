@@ -3,6 +3,7 @@ import { forwardRef, Fragment, type ReactNode } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { Link } from "../link";
+import { useMessages } from "../locale";
 import { Menu, MenuContent, MenuTrigger } from "../menu";
 import { Text } from "../text";
 import { Tooltip } from "../tooltip";
@@ -49,43 +50,49 @@ export type BreadcrumbProps = BoxProps<
 export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
   ({ className, items, maxItems = 3, ...props }, ref) => {
     const { boxProps, restProps } = extractBoxProps(props);
+    const messages = useMessages();
 
     return (
       <Box asChild className={className} {...boxProps}>
-        <nav aria-label="Breadcrumb" ref={ref} {...restProps}>
+        <nav aria-label={messages["Breadcrumb"]} ref={ref} {...restProps}>
           <Box asChild {...styles.list()}>
             <ol>
-              {renderItems(items, maxItems, (item, index) => (
-                <BreadcrumbNode addonAfter={item.addonAfter}>
-                  <Tooltip auto content={item.label}>
-                    <Text asChild truncate>
-                      {index === items.length - 1 ? (
-                        <Box
-                          aria-current={
-                            index === items.length - 1 ? "page" : undefined
-                          }
-                        >
-                          {item.label}
-                        </Box>
-                      ) : item.href ? (
-                        <Link
-                          appearance="subtle"
-                          href={item.href}
-                          {...styles.link()}
-                        >
-                          {item.label}
-                        </Link>
-                      ) : item.execute ? (
-                        <Link appearance="subtle" asChild {...styles.link()}>
-                          <button onClick={() => item.execute?.()}>
+              {renderItems(
+                items,
+                maxItems,
+                messages["More items"],
+                (item, index) => (
+                  <BreadcrumbNode addonAfter={item.addonAfter}>
+                    <Tooltip auto content={item.label}>
+                      <Text asChild truncate>
+                        {index === items.length - 1 ? (
+                          <Box
+                            aria-current={
+                              index === items.length - 1 ? "page" : undefined
+                            }
+                          >
                             {item.label}
-                          </button>
-                        </Link>
-                      ) : null}
-                    </Text>
-                  </Tooltip>
-                </BreadcrumbNode>
-              ))}
+                          </Box>
+                        ) : item.href ? (
+                          <Link
+                            appearance="subtle"
+                            href={item.href}
+                            {...styles.link()}
+                          >
+                            {item.label}
+                          </Link>
+                        ) : item.execute ? (
+                          <Link appearance="subtle" asChild {...styles.link()}>
+                            <button onClick={() => item.execute?.()}>
+                              {item.label}
+                            </button>
+                          </Link>
+                        ) : null}
+                      </Text>
+                    </Tooltip>
+                  </BreadcrumbNode>
+                ),
+              )}
             </ol>
           </Box>
         </nav>
@@ -99,6 +106,7 @@ Breadcrumb.displayName = "@optiaxiom/react/Breadcrumb";
 const renderItems = (
   items: BreadcrumbProps["items"],
   limit = items.length,
+  moreLabel: string,
   renderItem: (
     item: BreadcrumbProps["items"][number],
     index: number,
@@ -128,7 +136,7 @@ const renderItems = (
         <Menu options={items.slice(boundaries[1], boundaries[2])}>
           <MenuTrigger
             appearance="subtle"
-            aria-label="More items"
+            aria-label={moreLabel}
             icon={
               <Box asChild color="fg.tertiary">
                 <IconEllipsisStroke />

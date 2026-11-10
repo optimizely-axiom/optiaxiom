@@ -15,6 +15,7 @@ import { forwardRef, useEffect } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Group } from "../group";
+import { useMessages } from "../locale";
 import { ToggleButton } from "../toggle-button";
 import { Tooltip } from "../tooltip";
 import * as styles from "./RichTextEditor.css";
@@ -59,7 +60,7 @@ export type RichTextEditorProps = BoxProps<
 export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(
   (
     {
-      "aria-label": ariaLabel = "Rich text editor",
+      "aria-label": ariaLabel,
       "aria-labelledby": ariaLabelledBy,
       className,
       defaultValue,
@@ -71,6 +72,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(
     },
     ref,
   ) => {
+    const messages = useMessages();
     const editor = useEditor({
       content: value ?? defaultValue ?? "",
       editable: !readOnly,
@@ -79,7 +81,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(
           role: "textbox",
           ...(ariaLabelledBy
             ? { "aria-labelledby": ariaLabelledBy }
-            : { "aria-label": ariaLabel }),
+            : { "aria-label": ariaLabel ?? messages["Rich text editor"] }),
         },
       },
       extensions: [
@@ -134,10 +136,10 @@ export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(
       <Box ref={ref} {...styles.editor({}, className)} {...props}>
         {!readOnly && (
           <Group {...styles.toolbar()}>
-            <Tooltip content="Bold">
+            <Tooltip content={messages["Bold"]}>
               <ToggleButton
                 appearance="subtle"
-                aria-label="Bold"
+                aria-label={messages["Bold"]}
                 icon={<IconBold />}
                 onPressedChange={() =>
                   editor.chain().focus().toggleBold().run()
@@ -146,10 +148,10 @@ export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(
                 size="sm"
               />
             </Tooltip>
-            <Tooltip content="Italic">
+            <Tooltip content={messages["Italic"]}>
               <ToggleButton
                 appearance="subtle"
-                aria-label="Italic"
+                aria-label={messages["Italic"]}
                 icon={<IconItalic />}
                 onPressedChange={() =>
                   editor.chain().focus().toggleItalic().run()
@@ -158,10 +160,10 @@ export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(
                 size="sm"
               />
             </Tooltip>
-            <Tooltip content="Bullet list">
+            <Tooltip content={messages["Bullet list"]}>
               <ToggleButton
                 appearance="subtle"
-                aria-label="Bullet list"
+                aria-label={messages["Bullet list"]}
                 icon={<IconList />}
                 onPressedChange={() =>
                   editor.chain().focus().toggleBulletList().run()
@@ -170,10 +172,10 @@ export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(
                 size="sm"
               />
             </Tooltip>
-            <Tooltip content="Numbered list">
+            <Tooltip content={messages["Numbered list"]}>
               <ToggleButton
                 appearance="subtle"
-                aria-label="Numbered list"
+                aria-label={messages["Numbered list"]}
                 icon={<IconListOl />}
                 onPressedChange={() =>
                   editor.chain().focus().toggleOrderedList().run()
@@ -182,10 +184,10 @@ export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(
                 size="sm"
               />
             </Tooltip>
-            <Tooltip content="Link">
+            <Tooltip content={messages["Link"]}>
               <ToggleButton
                 appearance="subtle"
-                aria-label="Link"
+                aria-label={messages["Link"]}
                 icon={<IconLink />}
                 onClick={setLink}
                 pressed={editor.isActive("link")}

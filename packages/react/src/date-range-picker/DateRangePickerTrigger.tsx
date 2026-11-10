@@ -5,7 +5,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Box } from "../box";
 import { useFieldLabelTrigger } from "../hooks";
-import { useLocaleContext } from "../locale";
+import { useLocaleContext, useMessages } from "../locale";
 import { PopoverTrigger } from "../popover";
 import { memoize } from "../utils";
 import { useDateRangePickerContext } from "./DateRangePickerContext";
@@ -28,6 +28,8 @@ export type DateRangePickerTriggerProps = ComponentPropsWithoutRef<
   formatRange?: (startDate: Date, endDate: Date) => string;
   /**
    * The placeholder when there is no value.
+   *
+   * @default Pick a date
    */
   placeholder?: string;
 };
@@ -45,7 +47,7 @@ export const DateRangePickerTrigger = forwardRef<
       "aria-labelledby": ariaLabelledBy,
       children,
       formatRange,
-      placeholder = "Pick a date",
+      placeholder,
       ...props
     },
     outerRef,
@@ -56,6 +58,7 @@ export const DateRangePickerTrigger = forwardRef<
     const { locale } = useLocaleContext(
       "@optiaxiom/react/DateRangePickerTrigger",
     );
+    const messages = useMessages();
 
     const id = useId();
     const ref = useComposedRefs(outerRef, triggerRef);
@@ -77,7 +80,9 @@ export const DateRangePickerTrigger = forwardRef<
           (value ? (
             formatter.formatRange(value.from, value.to)
           ) : (
-            <Box color="fg.tertiary">{placeholder}</Box>
+            <Box color="fg.tertiary">
+              {placeholder ?? messages["Pick a date"]}
+            </Box>
           ))}
       </PopoverTrigger>
     );

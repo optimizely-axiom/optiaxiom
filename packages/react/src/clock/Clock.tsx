@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 import type { BoxProps } from "../box";
 
 import { Group } from "../group";
-import { useLocaleContext } from "../locale";
+import { useLocaleContext, useMessages } from "../locale";
 import { Select, SelectContent, SelectTrigger } from "../select";
 import {
   format,
@@ -49,6 +49,7 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
     ref,
   ) => {
     const { locale } = useLocaleContext("@optiaxiom/react/Clock");
+    const messages = useMessages();
     const hour24 = is24Hour(locale);
 
     const [value, setValue] = useControllableState({
@@ -81,7 +82,11 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
           }))}
           value={parsed.hour}
         >
-          <SelectTrigger aria-label="Select hour" flex="1" placeholder="HH" />
+          <SelectTrigger
+            aria-label={messages["Select hour"]}
+            flex="1"
+            placeholder={messages["HH"]}
+          />
           <SelectContent />
         </Select>
         <Select
@@ -95,7 +100,11 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
           }))}
           value={parsed.minute}
         >
-          <SelectTrigger aria-label="Select minute" flex="1" placeholder="MM" />
+          <SelectTrigger
+            aria-label={messages["Select minute"]}
+            flex="1"
+            placeholder={messages["MM"]}
+          />
           <SelectContent />
         </Select>
         {!hour24 && (
@@ -111,7 +120,7 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
             value={parsed.meridiem}
           >
             <SelectTrigger
-              aria-label="Select AM or PM"
+              aria-label={messages["Select AM or PM"]}
               flex="1"
               placeholder="--"
             />

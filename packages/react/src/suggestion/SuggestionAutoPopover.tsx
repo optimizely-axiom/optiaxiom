@@ -5,6 +5,7 @@ import { Avatar } from "../avatar";
 import { Button, type ButtonProps } from "../button";
 import { Heading } from "../heading";
 import { useEvent } from "../hooks";
+import { useMessages } from "../locale";
 import { Popover, PopoverContent, PopoverTrigger } from "../popover";
 import { Separator } from "../separator";
 import { useSurface } from "../surface";
@@ -18,6 +19,7 @@ export const SuggestionAutoPopover = forwardRef<
   SuggestionAutoPopoverProps
 >((props, ref) => {
   const surface = useSurface("property");
+  const messages = useMessages();
 
   const register = useEvent(surface?.suggestionPopover.register ?? (() => {}));
   useEffect(() => {
@@ -39,19 +41,24 @@ export const SuggestionAutoPopover = forwardRef<
     <Popover>
       <PopoverTrigger
         appearance="subtle"
-        aria-label="Opal suggestion"
+        aria-label={messages["Opal suggestion"]}
         icon={<Avatar fallback="opal" size="2xs" />}
         ref={ref}
         size="sm"
         {...props}
       />
-      <PopoverContent aria-label="Suggestion" fontSize="sm" gap="4" p="12">
+      <PopoverContent
+        aria-label={messages["Suggestion"]}
+        fontSize="sm"
+        gap="4"
+        p="12"
+      >
         <Text>{text}</Text>
         {suggestion.reason && (
           <>
             <Separator my="8" />
             <Heading fontSize="sm" level="4">
-              Why this was suggested
+              {messages["Why this was suggested"]}
             </Heading>
             <Text color="fg.secondary">{suggestion.reason}</Text>
           </>
@@ -65,7 +72,7 @@ export const SuggestionAutoPopover = forwardRef<
           }}
           size="sm"
         >
-          Accept
+          {messages["Accept"]}
         </Button>
       </PopoverContent>
     </Popover>

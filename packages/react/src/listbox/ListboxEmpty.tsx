@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { useMessages } from "../locale";
 
 export type ListboxEmptyProps = BoxProps;
 
@@ -8,7 +9,8 @@ export type ListboxEmptyProps = BoxProps;
  * @group Listbox
  */
 export const ListboxEmpty = forwardRef<HTMLDivElement, ListboxEmptyProps>(
-  ({ children = "No results found.", ...props }, ref) => {
+  ({ children, ...props }, ref) => {
+    const messages = useMessages();
     return (
       <Box
         alignItems="center"
@@ -21,7 +23,8 @@ export const ListboxEmpty = forwardRef<HTMLDivElement, ListboxEmptyProps>(
         ref={ref}
         {...props}
       >
-        {children}
+        {/* Not `??`: `empty={null}` hides the message. */}
+        {children === undefined ? messages["No results found."] : children}
       </Box>
     );
   },

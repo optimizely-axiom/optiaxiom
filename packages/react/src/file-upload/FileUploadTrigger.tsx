@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 
 import { Box, extractBoxProps } from "../box";
 import { Button, type ButtonProps } from "../button";
+import { useMessages } from "../locale";
 import { useFileUploadContext } from "./FileUploadContext";
 import { useFileUploadTrigger } from "./useFileUploadTrigger";
 
@@ -25,6 +26,7 @@ export const FileUploadTrigger = forwardRef<
     "@optiaxiom/react/FileUploadTrigger",
   );
   const open = useFileUploadTrigger();
+  const messages = useMessages();
 
   return (
     <Box asChild {...boxProps}>
@@ -42,7 +44,7 @@ export const FileUploadTrigger = forwardRef<
         {...(asChild ? {} : { type: "button" })}
         {...restProps}
       >
-        {children || "Select files"}
+        {children || messages["Select files"]}
       </Comp>
     </Box>
   );

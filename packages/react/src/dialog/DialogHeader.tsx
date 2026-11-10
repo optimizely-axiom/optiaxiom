@@ -6,6 +6,7 @@ import { forwardRef, type ReactNode } from "react";
 import { Box } from "../box";
 import { Group } from "../group";
 import { Heading } from "../heading";
+import { useMessages } from "../locale";
 import { Text, type TextProps } from "../text";
 import { DialogClose } from "./DialogClose";
 import { useDialogContext } from "./DialogContext";
@@ -43,12 +44,13 @@ export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
   ) => {
     const { headerRef } = useDialogContext("@optiaxiom/react/DialogHeader");
     const ref = useComposedRefs(headerRef, outerRef);
+    const messages = useMessages();
 
     return (
       <Box ref={ref} {...styles.header({}, className)} {...props}>
         <DialogClose
           appearance="subtle"
-          aria-label="Close"
+          aria-label={messages["Close"]}
           icon={<IconXmark />}
           {...styles.close()}
         />

@@ -10,6 +10,7 @@ import { Button } from "../button";
 import { ButtonRoot } from "../button/ButtonRoot";
 import { Group } from "../group";
 import { Icon } from "../icon";
+import { useMessages } from "../locale";
 import { Tooltip } from "../tooltip";
 import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./Pagination.css";
@@ -58,6 +59,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
     },
     ref,
   ) => {
+    const messages = useMessages();
     const [value, setValue] = useControllableState({
       caller: "@optiaxiom/react/Pagination",
       defaultProp: defaultPage,
@@ -87,7 +89,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
 
     return (
       <Box asChild {...props}>
-        <nav aria-label="pagination" ref={ref}>
+        <nav aria-label={messages["pagination"]} ref={ref}>
           <Group asChild {...styles.list()}>
             <ul>
               <ButtonRoot
@@ -103,10 +105,13 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
               </ButtonRoot>
 
               <li>
-                <Tooltip content="Prev" disabled={disabled || active === 1}>
+                <Tooltip
+                  content={messages["Prev"]}
+                  disabled={disabled || active === 1}
+                >
                   <Button
                     appearance="subtle"
-                    aria-label="Previous page"
+                    aria-label={messages["Previous page"]}
                     disabled={disabled || active === 1}
                     icon={<IconChevronLeft />}
                     onClick={previous}
@@ -149,11 +154,15 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                       ref={active === page ? activeRef : undefined}
                       {...styles.button()}
                     >
-                      <VisuallyHidden>page</VisuallyHidden> {page}
+                      <VisuallyHidden>{messages["page"]}</VisuallyHidden> {page}
                       {page === 1 ? (
-                        <VisuallyHidden>(first page)</VisuallyHidden>
+                        <VisuallyHidden>
+                          {messages["(first page)"]}
+                        </VisuallyHidden>
                       ) : page === total ? (
-                        <VisuallyHidden>(last page)</VisuallyHidden>
+                        <VisuallyHidden>
+                          {messages["(last page)"]}
+                        </VisuallyHidden>
                       ) : null}
                     </ButtonRoot>
                   )}
@@ -161,10 +170,13 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
               ))}
 
               <li>
-                <Tooltip content="Next" disabled={disabled || active === total}>
+                <Tooltip
+                  content={messages["Next"]}
+                  disabled={disabled || active === total}
+                >
                   <Button
                     appearance="subtle"
-                    aria-label="Next page"
+                    aria-label={messages["Next page"]}
                     disabled={disabled || active === total}
                     icon={<IconChevronRight />}
                     onClick={next}

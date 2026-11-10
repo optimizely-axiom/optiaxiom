@@ -5,6 +5,7 @@ import { forwardRef, useRef, useState } from "react";
 import { type BoxProps } from "../box";
 import { Group } from "../group";
 import { Icon } from "../icon";
+import { useMessages } from "../locale";
 import { Text } from "../text";
 import { VisuallyHidden } from "../visually-hidden";
 import { useFileUploadContext } from "./FileUploadContext";
@@ -25,6 +26,8 @@ export type FileUploadDropzoneProps = BoxProps<
     description?: string;
     /**
      * The label of the dropzone.
+     *
+     * @default Drag and drop files here
      */
     label?: string;
     /**
@@ -47,7 +50,7 @@ export const FileUploadDropzone = forwardRef<
       children,
       className,
       description,
-      label = "Drag and drop files here",
+      label: labelProp,
       overlay = false,
       ...props
     },
@@ -58,6 +61,8 @@ export const FileUploadDropzone = forwardRef<
     );
 
     const [isDragging, setIsDragging] = useState(false);
+    const messages = useMessages();
+    const label = labelProp ?? messages["Drag and drop files here"];
     const isDraggingOverBody = useDraggingOverBody();
 
     const innerRef = useRef<HTMLDivElement>(null);
