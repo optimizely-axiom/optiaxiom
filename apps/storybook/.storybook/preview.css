@@ -2,3 +2,12 @@
   background-color: var(--ax-colors-bg-default);
   color-scheme: dark;
 }
+
+/*
+ * Containing block for pinned `VisuallyHidden` content: without it the hidden
+ * node sits at the page corner and Chromatic captures the empty space between
+ * it and the story.
+ */
+#storybook-root {
+  position: relative;
+}
