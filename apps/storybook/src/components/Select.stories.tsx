@@ -103,6 +103,29 @@ export const WithLabel: Story = {
   },
 };
 
+export const Required: Story = {
+  args: {
+    defaultOpen: false,
+    defaultValue: undefined,
+    name: "language",
+    required: true,
+  },
+  decorators: (Story) => (
+    <form onSubmit={(event) => event.preventDefault()}>
+      <Field label="Language" required>
+        <Story />
+      </Field>
+      <Button mt="16" type="submit">
+        Submit
+      </Button>
+    </form>
+  ),
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Submit" }));
+    await expect(canvas.getByLabelText(/Language/)).toHaveFocus();
+  },
+};
+
 export const Disabled: Story = {
   args: {
     defaultOpen: false,

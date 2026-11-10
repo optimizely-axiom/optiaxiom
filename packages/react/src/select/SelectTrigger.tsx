@@ -1,3 +1,4 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useId } from "@radix-ui/react-id";
 import { PopperAnchor } from "@radix-ui/react-popper";
 import { createSlot } from "@radix-ui/react-slot";
@@ -49,7 +50,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       placeholder,
       ...props
     },
-    ref,
+    outerRef,
   ) => {
     const {
       disabled,
@@ -59,9 +60,11 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       onBlur,
       selectedItem,
       toggleButtonId,
+      triggerRef,
     } = useSelectContext("@optiaxiom/react/SelectTrigger");
     const { boxProps, restProps } = extractBoxProps(props);
 
+    const ref = useComposedRefs(triggerRef, outerRef);
     const buttonRef = useRef<HTMLButtonElement>(null);
     const labelId = useFieldLabelTrigger(buttonRef, ariaLabelledBy);
     const valueId = useId();

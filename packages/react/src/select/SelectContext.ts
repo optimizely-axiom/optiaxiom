@@ -98,4 +98,5 @@ export const [SelectProvider, useSelectContext] = createContext<{
   selectedItem: SelectOption | undefined;
   setFocusVisible: Dispatch<SetStateAction<boolean>>;
   toggleButtonId: string;
+  triggerRef: RefObject<HTMLButtonElement>;
 }>("@optiaxiom/react/Select");
