@@ -14,6 +14,8 @@ Popup with brief information shown when user interacts with an element using key
 
 Keep tooltip content to a short plain-text label of a few words. A tooltip closes when the pointer moves onto it and doesn't open on tap, so longer, rich or interactive help belongs in a [Popover](/components/popover/) opened from a labelled button.
 
+Keyboard users open a tooltip by focusing its trigger, so the trigger must be focusable or contain a focusable element. Don't put information users need only in a tooltip on static content such as a card or a label.
+
 ### Controlled
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.

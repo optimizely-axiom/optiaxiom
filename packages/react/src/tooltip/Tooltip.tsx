@@ -48,6 +48,9 @@ export type TooltipProps = ExcludeProps<
  * interactive help use Popover opened from a labelled button instead: a
  * tooltip closes when the pointer moves onto it and doesn't open on tap.
  *
+ * The child must be focusable or contain a focusable element, otherwise
+ * keyboard users can't open the tooltip.
+ *
  * @category overlay
  * @since 0.1.0
  */
