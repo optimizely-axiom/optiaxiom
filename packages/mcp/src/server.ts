@@ -22,7 +22,8 @@ import {
 const testHelperNote = `These tests use the repo's custom render helper, imported as \`../../vitest.rtl\` (packages/react/vitest.rtl.ts). It differs from stock @testing-library/react in two ways you must preserve when writing new tests:
 1. \`render()\` automatically wraps the tree in \`AxiomProvider\` — Axiom components rely on this context, so never wrap them yourself.
 2. \`render()\` returns \`{ user }\` (a configured \`userEvent\` instance) in addition to the usual RTL result — use \`const { user } = render(...)\` for interactions instead of calling \`userEvent.setup()\`.
-Everything else (\`screen\`, \`waitFor\`, queries, matchers) is re-exported from @testing-library/react. Prefer role/name queries (getByRole("alert"), getByRole("button", { name: "close" })) to assert accessibility, mirroring these examples.`;
+Everything else (\`screen\`, \`waitFor\`, queries, matchers) is re-exported from @testing-library/react. Prefer role/name queries (getByRole("alert"), getByRole("button", { name: "close" })) to assert accessibility, mirroring these examples.
+To set up tests in an app that uses Axiom (Jest or Vitest, jsdom or happy-dom), call get_guides({ names: "test-environments" }): it covers wrapping in AxiomProvider, turning off animations, \`cleanup\` from @optiaxiom/react/testing between tests, and the stubs jsdom needs. Don't mock Axiom components: render them and query by role as these tests do.`;
 
 const tokenCategories = [
   "borderRadius",
@@ -234,7 +235,7 @@ Examples:
     {
       description: `Get vetted reference test files for Axiom components. When the user asks to write, generate, add, or fix a test / spec / *.spec.tsx / *.test.tsx for any Axiom component, refer to this to follow the repo's established conventions instead of generic React Testing Library habits.
 
-These reference tests show how this repo renders components, queries them by role and accessible name, and asserts accessibility (ARIA roles, labels) and interactions. The response also includes a note explaining the custom \`vitest.rtl\` render helper the tests rely on (auto-wraps in AxiomProvider and returns a \`user\` for interactions) — match it when writing new tests.
+These reference tests show how this repo renders components, queries them by role and accessible name, and asserts accessibility (ARIA roles, labels) and interactions. The response also includes a note explaining the custom \`vitest.rtl\` render helper the tests rely on (auto-wraps in AxiomProvider and returns a \`user\` for interactions) — match it when writing new tests. For test setup in an app (providers, animations, cleanup, jsdom stubs), use get_guides({ names: "test-environments" }).
 
 Examples:
   get_tests({ components: "Alert" }) → the Alert spec showing role="alert" and dismiss-button assertions
@@ -364,11 +365,12 @@ Examples:
   server.registerTool(
     "get_guides",
     {
-      description: `Get setup, configuration, and integration guides for the Axiom Design System. Refer to these when setting up Axiom, importing its CSS, configuring CSS layers, using icons, or integrating Axiom into a host app — instead of guessing the setup steps.
+      description: `Get setup, configuration, and integration guides for the Axiom Design System. Refer to these when setting up Axiom, importing its CSS, configuring CSS layers, using icons, setting up unit tests (Jest, Vitest, jsdom), or integrating Axiom into a host app — instead of guessing the setup steps.
 
 Examples:
   get_guides({ names: "getting-started" }) → the getting-started guide content
   get_guides({ names: "css-imports css-layers" }) → both CSS setup guides
+  get_guides({ names: "test-environments" }) → test setup: AxiomProvider wrapper, animations off, cleanup, jsdom stubs
   get_guides() → list all available guides (names + titles)`,
       inputSchema: {
         names: z
