@@ -81,6 +81,8 @@ export const DataTableHeaderCell = forwardRef<
             <button onClick={() => header.column.toggleSorting()}>
               {children}
 
+              {/* Browsers already separate flex items in the accessible name; the explicit space keeps the source readable as "Name sorted ascending". */}
+              {sortDir && " "}
               {sortDir && (
                 <VisuallyHidden>
                   sorted {sortDir === "asc" ? "ascending" : "descending"}
