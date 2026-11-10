@@ -1,6 +1,5 @@
 import { IconSearch } from "@optiaxiom/icons/IconSearch";
 import { IconXmark } from "@optiaxiom/icons/IconXmark";
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithRef, forwardRef, useRef } from "react";
 
@@ -29,14 +28,17 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
   ({ addonBefore, className, onChange, onValueClear, ...props }, outerRef) => {
     const innerRef = useRef<HTMLInputElement>(null);
     const messages = useMessages();
-    const ref = useComposedRefs(innerRef, outerRef);
 
     const [value, setValue] = useControllableState({
       caller: "@optiaxiom/react/SearchInput",
       defaultProp: props.defaultValue,
       prop: props.value,
     });
-    const forceValueChange = useObserveValue(innerRef, setValue);
+    const [ref, forceValueChange] = useObserveValue(
+      innerRef,
+      outerRef,
+      setValue,
+    );
 
     return (
       <Input

@@ -1,4 +1,3 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useId } from "@radix-ui/react-id";
 import { Popper } from "@radix-ui/react-popper";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
@@ -118,7 +117,6 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     outerRef,
   ) => {
     const innerRef = useRef<HTMLSelectElement>(null);
-    const ref = useComposedRefs(innerRef, outerRef);
     const messages = useMessages();
 
     const surface = useSurface("property");
@@ -142,8 +140,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       },
       prop: value,
     });
-    const forceValueChange = useObserveValue(innerRef, setShadowValue);
     useObserveReset(innerRef, setShadowValue);
+    const [ref, forceValueChange] = useObserveValue(
+      innerRef,
+      outerRef,
+      setShadowValue,
+    );
 
     const items = useMemo(() => {
       return options

@@ -1,6 +1,5 @@
 import { IconCalendar } from "@optiaxiom/icons/IconCalendar";
 import { IconXmark } from "@optiaxiom/icons/IconXmark";
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useId } from "@radix-ui/react-id";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import clsx from "clsx";
@@ -103,14 +102,17 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const pickerRef = useRef<HTMLButtonElement>(null);
 
     const innerRef = useRef<HTMLInputElement>(null);
-    const ref = useComposedRefs(innerRef, outerRef);
 
     const [value, setValue] = useControllableState({
       caller: "@optiaxiom/react/DateInput",
       defaultProp: props.defaultValue,
       prop: props.value,
     });
-    const forceValueChange = useObserveValue(innerRef, setValue);
+    const [ref, forceValueChange] = useObserveValue(
+      innerRef,
+      outerRef,
+      setValue,
+    );
     const instant =
       typeof value === "string" ? (toInstant(value) ?? null) : null;
 
