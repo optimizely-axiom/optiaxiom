@@ -199,10 +199,30 @@
       "import": "./dist/esm/listbox.js",
       "require": "./dist/cjs/listbox.js"
     },
+    "./locale/de": {
+      "types": "./dist/locale/de.d.ts",
+      "import": "./dist/esm/locale/de.js",
+      "require": "./dist/cjs/locale/de.js"
+    },
     "./locale/en": {
       "types": "./dist/locale/en.d.ts",
       "import": "./dist/esm/locale/en.js",
       "require": "./dist/cjs/locale/en.js"
+    },
+    "./locale/es": {
+      "types": "./dist/locale/es.d.ts",
+      "import": "./dist/esm/locale/es.js",
+      "require": "./dist/cjs/locale/es.js"
+    },
+    "./locale/fr": {
+      "types": "./dist/locale/fr.d.ts",
+      "import": "./dist/esm/locale/fr.js",
+      "require": "./dist/cjs/locale/fr.js"
+    },
+    "./locale/ja": {
+      "types": "./dist/locale/ja.d.ts",
+      "import": "./dist/esm/locale/ja.js",
+      "require": "./dist/cjs/locale/ja.js"
     },
     "./menu": {
       "types": "./dist/menu.d.ts",

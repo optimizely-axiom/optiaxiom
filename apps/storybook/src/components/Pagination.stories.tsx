@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { AxiomProvider, Pagination } from "@optiaxiom/react";
-import { en } from "@optiaxiom/react/locale/en";
+import { de } from "@optiaxiom/react/locale/de";
+import { ja } from "@optiaxiom/react/locale/ja";
 import { useState } from "react";
 import { expect, userEvent } from "storybook/test";
 
@@ -55,7 +56,7 @@ export const Disabled: Story = {
   },
 };
 
-export const CustomLocale: Story = {
+export const Locale: Story = {
   args: {
     defaultPage: 1,
   },
@@ -64,23 +65,39 @@ export const CustomLocale: Story = {
   },
   play: async ({ canvas }) => {
     await expect(
-      await canvas.findByRole("navigation", { name: "pages" }),
+      await canvas.findByRole("navigation", { name: "Seitennavigation" }),
     ).toBeInTheDocument();
     await expect(
-      await canvas.findByRole("button", { name: "Forward" }),
-    ).toBeInTheDocument();
+      await canvas.findByRole("button", { name: "Seite 1 (erste Seite)" }),
+    ).toHaveAttribute("aria-current", "page");
+    await userEvent.click(
+      await canvas.findByRole("button", { name: "Nächste Seite" }),
+    );
+    await expect(
+      await canvas.findByRole("button", { name: "Seite 2" }),
+    ).toHaveAttribute("aria-current", "page");
   },
   render: (args) => (
-    <AxiomProvider
-      locale={{
-        code: "en-GB",
-        messages: {
-          ...en.messages,
-          "Next page": "Forward",
-          pagination: "pages",
-        },
-      }}
-    >
+    <AxiomProvider locale={de}>
+      <Pagination {...args} />
+    </AxiomProvider>
+  ),
+};
+
+export const JapaneseLocale: Story = {
+  args: {
+    defaultPage: 1,
+  },
+  parameters: {
+    useAxiomProvider: false,
+  },
+  play: async ({ canvas }) => {
+    await expect(
+      await canvas.findByRole("button", { name: "1ページ (最初のページ)" }),
+    ).toHaveAttribute("aria-current", "page");
+  },
+  render: (args) => (
+    <AxiomProvider locale={ja}>
       <Pagination {...args} />
     </AxiomProvider>
   ),

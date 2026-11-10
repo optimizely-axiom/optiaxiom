@@ -44,7 +44,8 @@ export type MenuProps = ExcludeProps<
        */
       open?: boolean;
       /**
-       * The placeholder for the search input.
+       * The placeholder for the search input. The default is translated for
+       * the `AxiomProvider` locale.
        *
        * @default Filter...
        */

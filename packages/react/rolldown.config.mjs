@@ -37,7 +37,11 @@ const input = {
   ...components,
   editor: "src/editor.ts",
   index: "src/index.ts",
+  "locale/de": "src/locale/de.ts",
   "locale/en": "src/locale/en.ts",
+  "locale/es": "src/locale/es.ts",
+  "locale/fr": "src/locale/fr.ts",
+  "locale/ja": "src/locale/ja.ts",
   unstable: "src/unstable.ts",
 };
 const runtimeInput = {

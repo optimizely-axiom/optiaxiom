@@ -25,7 +25,8 @@ export type FileUploadDropzoneProps = BoxProps<
      */
     description?: string;
     /**
-     * The label of the dropzone.
+     * The label of the dropzone. The default is translated for the
+     * `AxiomProvider` locale.
      *
      * @default Drag and drop files here
      */
