@@ -32,6 +32,7 @@ export * from "./label-menu-button";
 export * from "./layers";
 export * from "./link";
 export * from "./listbox";
+export type { Locale } from "./locale";
 export * from "./menu";
 export * from "./modal";
 export * from "./nav";

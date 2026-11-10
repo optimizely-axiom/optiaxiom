@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Pagination } from "@optiaxiom/react";
+import { AxiomProvider, Pagination } from "@optiaxiom/react";
+import { locale as en } from "@optiaxiom/react/locale/en";
 import { useState } from "react";
 import { expect, userEvent } from "storybook/test";
 
@@ -52,4 +53,35 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
+};
+
+export const CustomLocale: Story = {
+  args: {
+    defaultPage: 1,
+  },
+  parameters: {
+    useAxiomProvider: false,
+  },
+  play: async ({ canvas }) => {
+    await expect(
+      await canvas.findByRole("navigation", { name: "pages" }),
+    ).toBeInTheDocument();
+    await expect(
+      await canvas.findByRole("button", { name: "Forward" }),
+    ).toBeInTheDocument();
+  },
+  render: (args) => (
+    <AxiomProvider
+      locale={{
+        code: "en-GB",
+        messages: {
+          ...en.messages,
+          "Next page": "Forward",
+          pagination: "pages",
+        },
+      }}
+    >
+      <Pagination {...args} />
+    </AxiomProvider>
+  ),
 };

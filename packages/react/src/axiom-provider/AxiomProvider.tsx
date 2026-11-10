@@ -8,7 +8,8 @@ import {
 import { version } from "../../package.json";
 import { DialogKitProvider } from "../dialog-kit/internals";
 import { FocusBookmarkProvider } from "../focus-bookmark";
-import { LocaleProvider } from "../locale";
+import { type Locale, LocaleProvider } from "../locale";
+import { locale as en } from "../locale/en";
 import { SuggestionProvider } from "../suggestion/internals";
 import { ThemeProvider } from "../theme-provider";
 import { ToastProvider } from "../toast";
@@ -23,11 +24,13 @@ export type AxiomProviderProps = {
    */
   dialog?: Omit<DialogKitProviderProps, "children">;
   /**
-   * BCP-47 language tag (e.g. `"fr-FR"`) used to localize date/time components
-   * such as `Calendar`, `DateRangePicker`, `Clock`, and `Time`. Defaults to the
-   * browser locale.
+   * A BCP-47 tag (e.g. `"fr-FR"`) localizes date/time components such as
+   * `Calendar`, `DateRangePicker`, `Clock`, and `Time`, falling back to the
+   * browser locale; built-in labels stay English. Pass a `Locale` instead
+   * (`import { locale } from "@optiaxiom/react/locale/en"`, or your own) to
+   * also translate built-in labels and screen reader text.
    */
-  locale?: string;
+  locale?: Locale | string;
   /**
    * Props for the `ToastProvider` component
    *
@@ -67,8 +70,9 @@ export function AxiomProvider({
   toast,
   tooltip,
 }: AxiomProviderProps) {
+  const code = typeof locale === "string" ? locale : locale?.code;
   const resolvedLocale =
-    locale ?? (typeof navigator !== "undefined" ? navigator.language : "en-US");
+    code ?? (typeof navigator !== "undefined" ? navigator.language : "en-US");
 
   const axiom = useContext(AxiomVersionContext);
   if (!axiom) {
@@ -86,8 +90,10 @@ export function AxiomProvider({
   return (
     <AxiomVersionContext.Provider value={version}>
       <LocaleProvider
-        language={locale?.split("-")[0].toLowerCase() ?? "en"}
         locale={resolvedLocale}
+        messages={
+          typeof locale === "string" ? en.messages : (locale ?? en).messages
+        }
       >
         <TooltipProvider {...tooltip}>
           <FocusBookmarkProvider>

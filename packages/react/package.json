@@ -199,6 +199,11 @@
       "import": "./dist/esm/listbox.js",
       "require": "./dist/cjs/listbox.js"
     },
+    "./locale/en": {
+      "types": "./dist/locale/en.d.ts",
+      "import": "./dist/esm/locale/en.js",
+      "require": "./dist/cjs/locale/en.js"
+    },
     "./menu": {
       "types": "./dist/menu.d.ts",
       "import": "./dist/esm/menu.js",
