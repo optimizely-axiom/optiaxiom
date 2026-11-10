@@ -116,6 +116,9 @@ exactly one thing without dragging unrelated changes with it.
   use `surface` not `white`; `z` from the token scale.
 - Empty variant branches are `{}`, not `style({})`. Don't mix `style()` and sprinkle props in one
   recipe entry. CSS vars get a `Var` suffix; cross-component selectors use a scoped marker class.
+- Generate custom property and `--` names with `createVar()`, never a hand-written `"--name"`; where
+  a bare name is needed (`anchor-name`), use `getVarName(createVar())`. Only names another library
+  owns stay literal.
 - A new sprinkle prop in `properties.css.ts` also goes in the static lists in
   `packages/shared/.eslintplugin/consistent-recipe-sprinkles.js` and `no-sprinkles-style-conflict.js`,
   and gets a docs props page (`apps/docs/props.config.mjs`, `apps/docs/app/_meta.global.tsx`).
