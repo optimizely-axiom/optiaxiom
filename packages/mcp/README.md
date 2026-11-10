@@ -161,7 +161,7 @@ Search for icons from the `@optiaxiom/icons` package.
 
 ### `get_tests`
 
-Get vetted reference test files showing the repo's testing conventions (the custom `vitest.rtl` render helper, role/name queries, accessibility assertions).
+Get vetted reference test files showing the repo's testing conventions (the custom `vitest.rtl` render helper, role/name queries, accessibility assertions). For end-to-end (Playwright) locators, the description points callers at `get_guides({ names: "test-environments" })`.
 
 **Parameters:**
 
