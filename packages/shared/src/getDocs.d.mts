@@ -22,19 +22,21 @@ export type Prop = Pick<
   PropItem,
   "defaultValue" | "description" | "name" | "required" | "type"
 > & {
-  /** Fields of an object-typed prop, one level deep */
-  properties?: Properties;
+  /** Structure of a prop holding the library's own object types */
+  shape?: Shape;
   sprinkle?: true;
 };
 
-export type Properties = {
-  /** The prop holds an array of this object type */
-  array?: true;
-  fields: Record<string, Field>;
-  /** Name of the object type, when it has one */
-  name?: string;
-  /** The prop also accepts primitives or `null` */
-  union?: true;
-};
+/**
+ * A type's structure: a union, a literal, an object's fields (and its type
+ * name), an array's elements, a primitive, or a string-keyed record's values
+ */
+export type Shape =
+  | { anyOf: Shape[] }
+  | { const: boolean | number | string }
+  | { fields: Record<string, Field>; name?: string }
+  | { items: Shape }
+  | { type: "boolean" | "null" | "number" | "string" }
+  | { values: Shape };
 
 export function getDocs(): ComponentDoc[];

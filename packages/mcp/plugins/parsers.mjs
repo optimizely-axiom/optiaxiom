@@ -8,7 +8,7 @@ const __dirname = dirname(__filename);
 /**
  * @typedef {import('@optiaxiom/shared').Field} Field
  * @typedef {import('@optiaxiom/shared').Prop} PropItem
- * @typedef {import('@optiaxiom/shared').Properties} Properties
+ * @typedef {import('@optiaxiom/shared').Shape} Shape
  * @typedef {import('../src/types.js').Example} Example
  * @typedef {import('../src/types.js').ExampleFile} ExampleFile
  * @typedef {import('../src/types.js').PropDefinition} PropDefinition
@@ -133,7 +133,7 @@ export function parseLightDark(value) {
  * Describe a docgen prop, or a field of an object-typed prop, with JSON Schema
  * keywords.
  *
- * @param {Field & Pick<PropItem, "properties">} prop
+ * @param {Field & Pick<PropItem, "shape">} prop
  * @returns {PropDefinition}
  */
 export function parsePropDefinition(prop) {
@@ -144,8 +144,8 @@ export function parsePropDefinition(prop) {
   return {
     ...(prop.description && { description: prop.description }),
     ...(prop.defaultValue && { default: prop.defaultValue.value }),
-    ...(prop.properties
-      ? parsePropertiesSchema(prop.properties, prop.type)
+    ...(prop.shape
+      ? parseShape(prop.shape)
       : responsive
         ? parseResponsiveSchema(prop.type)
         : parseTypeSchema(prop.type)),
@@ -159,10 +159,9 @@ export function parsePropDefinition(prop) {
  * its TypeScript type string in `tsType`.
  *
  * @param {PropItem["type"]} type
- * @param {TypeSchema} [object] - schema of the type's one object member
  * @returns {TypeSchema}
  */
-export function parseTypeSchema(type, object) {
+export function parseTypeSchema(type) {
   const raw = type.raw || type.name || "unknown";
   // docgen lists union members in `value` only for unions (`name: "enum"`).
   return parseUnionSchema(
@@ -172,7 +171,6 @@ export function parseTypeSchema(type, object) {
         )
       : [raw],
     raw,
-    object,
   );
 }
 
@@ -194,6 +192,14 @@ export function remToPx(rem) {
  */
 export function toKebabCase(str) {
   return str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+}
+
+/**
+ * @param {TypeSchema} a
+ * @param {TypeSchema} b
+ */
+function compare(a, b) {
+  return JSON.stringify(a).localeCompare(JSON.stringify(b));
 }
 
 /**
@@ -226,6 +232,22 @@ function forEachTopLevel(value, callback) {
 }
 
 /**
+ * @param {TypeSchema} a
+ * @param {TypeSchema} b
+ */
+function isEqual(a, b) {
+  return JSON.stringify(a) === JSON.stringify(b);
+}
+
+/**
+ * @typedef {{ kind: "const"; value: boolean | number | string }
+ *   | { kind: "scalar"; type: TypeSchemaType }
+ *   | { kind: "array"; items?: TypeSchema }
+ *   | { kind: "object"; schema: TypeSchema }
+ *   | { kind: "other" }} Member
+ */
+
+/**
  * Whether a type string is a function type, i.e. has a `=>` outside any
  * brackets: `() => string[]` is, `{ fn: () => void }[]` isn't.
  *
@@ -238,6 +260,83 @@ function isFunction(value) {
     return found;
   });
   return found;
+}
+
+/**
+ * Describe a union from its classified members: literals as one `enum`,
+ * primitives as one `type`, and arrays and objects as further `anyOf`
+ * branches. A member JSON Schema can't express keeps the union's TypeScript
+ * type `raw`.
+ *
+ * @param {Member[]} members
+ * @param {string} [raw] Omitted for a generator shape, whose members all
+ *   have a JSON Schema form
+ * @returns {TypeSchema}
+ */
+function mergeMembers(members, raw) {
+  /** @type {Array<boolean | number | string>} */
+  const consts = [];
+  /** @type {TypeSchemaType[]} */
+  const scalars = [];
+  /** @type {TypeSchema[]} */
+  const arrays = [];
+  /** @type {TypeSchema[]} */
+  const objects = [];
+  for (const member of members) {
+    if (member.kind === "const") {
+      if (!consts.includes(member.value)) {
+        consts.push(member.value);
+      }
+    } else if (member.kind === "scalar") {
+      if (!scalars.includes(member.type)) {
+        scalars.push(member.type);
+      }
+    } else if (member.kind === "object") {
+      if (!objects.some((other) => isEqual(other, member.schema))) {
+        objects.push(member.schema);
+      }
+    } else if (member.kind === "array" && member.items) {
+      const array = {
+        items: member.items,
+        type: /** @type {const} */ ("array"),
+      };
+      // `readonly string[] | string[]` is one array type written twice.
+      if (!arrays.some((other) => isEqual(other, array))) {
+        arrays.push(array);
+      }
+    } else {
+      if (raw === undefined) {
+        throw new Error("A shape member has no JSON Schema form");
+      }
+      return {
+        ...(members.every((other) => other.kind === "array") && {
+          type: /** @type {const} */ ("array"),
+        }),
+        tsType: raw,
+      };
+    }
+  }
+
+  // docgen spells `boolean` as `false | true`.
+  if (consts.length === 2 && consts.includes(false) && consts.includes(true)) {
+    consts.length = 0;
+    if (!scalars.includes("boolean")) {
+      scalars.unshift("boolean");
+    }
+  }
+
+  /** @type {TypeSchema[]} */
+  const schemas = [
+    ...(consts.length > 0 ? [{ enum: consts }] : []),
+    ...(scalars.length > 0
+      ? [{ type: scalars.length === 1 ? scalars[0] : scalars }]
+      : []),
+    // TypeScript doesn't keep union members in a stable order.
+    ...arrays.sort(compare),
+    ...objects.sort(compare),
+  ];
+  // e.g. `"text" | (string & {})`, or `"alt" | "ctrl" | ("alt" | "ctrl")[]`
+  return schemas.length === 1 && schemas[0] ? schemas[0] : { anyOf: schemas };
 }
 
 /**
@@ -264,21 +363,12 @@ function parseLiteral(value) {
 }
 
 /**
- * @typedef {{ kind: "const"; value: boolean | number | string }
- *   | { kind: "scalar"; type: TypeSchemaType }
- *   | { kind: "array"; items?: TypeSchema }
- *   | { kind: "object" }
- *   | { kind: "other" }} Member
- */
-
-/**
  * Classify one union member's type string.
  *
  * @param {string} value
- * @param {TypeSchema} [object]
  * @returns {Member}
  */
-function parseMember(value, object) {
+function parseMember(value) {
   if (value === "null") {
     return { kind: "scalar", type: "null" };
   }
@@ -309,46 +399,10 @@ function parseMember(value, object) {
   if (value.endsWith("[]") && !isFunction(value)) {
     const element = value.replace(/^readonly /, "").slice(0, -2);
     const inner = /^\(.*\)$/.test(element) ? element.slice(1, -1) : element;
-    const items = parseUnionSchema(splitTopLevel(inner, "|"), inner, object);
+    const items = parseUnionSchema(splitTopLevel(inner, "|"), inner);
     return items.tsType ? { kind: "array" } : { items, kind: "array" };
   }
-  return object ? { kind: "object" } : { kind: "other" };
-}
-
-/**
- * Describe an object-typed prop by its fields, as an object schema or, for
- * arrays of it, as the schema of each element.
- *
- * @param {Properties} properties
- * @param {PropItem["type"]} type
- * @returns {TypeSchema}
- */
-function parsePropertiesSchema(properties, type) {
-  const fields = Object.entries(properties.fields);
-  const required = fields.flatMap(([name, field]) =>
-    field.required ? [name] : [],
-  );
-  /** @type {TypeSchema} */
-  const object = {
-    properties: Object.fromEntries(
-      fields.map(([name, field]) => [name, parsePropDefinition(field)]),
-    ),
-    ...(required.length > 0 && { required }),
-    ...(properties.name && { title: properties.name }),
-    type: "object",
-  };
-  if (properties.union) {
-    // e.g. `string | Item` or `(number | Mark)[]`: the generator only sets
-    // `union` when every other member is a primitive or literal, so the one
-    // member without a JSON Schema form is this object.
-    const schema = parseTypeSchema(type, object);
-    const anyOf = properties.array ? schema.items?.anyOf : schema.anyOf;
-    // An aliased type (`Marks`) hides the members; keep the TypeScript type.
-    return anyOf && (schema.type === "array") === !!properties.array
-      ? schema
-      : parseTypeSchema(type);
-  }
-  return properties.array ? { items: object, type: "array" } : object;
+  return { kind: "other" };
 }
 
 /**
@@ -371,75 +425,70 @@ function parseResponsiveSchema(type) {
 }
 
 /**
+ * Describe a type from the structure the docs generator read off it.
+ *
+ * @param {Shape} shape
+ * @returns {TypeSchema}
+ */
+function parseShape(shape) {
+  if ("anyOf" in shape) {
+    return mergeMembers(shape.anyOf.map(parseShapeMember));
+  }
+  if ("const" in shape) {
+    return { enum: [shape.const] };
+  }
+  if ("type" in shape) {
+    return { type: shape.type };
+  }
+  if ("items" in shape) {
+    return { items: parseShape(shape.items), type: "array" };
+  }
+  if ("values" in shape) {
+    return { additionalProperties: parseShape(shape.values), type: "object" };
+  }
+  const fields = Object.entries(shape.fields);
+  const required = fields.flatMap(([name, field]) =>
+    field.required ? [name] : [],
+  );
+  return {
+    properties: Object.fromEntries(
+      fields.map(([name, field]) => [name, parsePropDefinition(field)]),
+    ),
+    ...(required.length > 0 && { required }),
+    ...(shape.name && { title: shape.name }),
+    type: "object",
+  };
+}
+
+/**
+ * Classify one union member's structure.
+ *
+ * @param {Shape} shape
+ * @returns {Member}
+ */
+function parseShapeMember(shape) {
+  if ("const" in shape) {
+    return { kind: "const", value: shape.const };
+  }
+  if ("type" in shape) {
+    return { kind: "scalar", type: shape.type };
+  }
+  if ("items" in shape) {
+    return { items: parseShape(shape.items), kind: "array" };
+  }
+  return { kind: "object", schema: parseShape(shape) };
+}
+
+/**
  * Describe a union from its members' type strings; `raw` is the whole type,
  * kept as `tsType` when a member has no JSON Schema form.
  *
  * @param {string[]} values
  * @param {string} raw
- * @param {TypeSchema} [object] - schema of the union's one object member
  * @returns {TypeSchema}
  */
-function parseUnionSchema(values, raw, object) {
-  const members = values.map((value) => parseMember(value, object));
-  /** @type {Array<boolean | number | string>} */
-  const consts = [];
-  /** @type {TypeSchemaType[]} */
-  const scalars = [];
-  /** @type {TypeSchema[]} */
-  const arrays = [];
-  /** @type {TypeSchema | undefined} */
-  let objectMember;
-  for (const member of members) {
-    if (member.kind === "const") {
-      if (!consts.includes(member.value)) {
-        consts.push(member.value);
-      }
-    } else if (member.kind === "scalar") {
-      if (!scalars.includes(member.type)) {
-        scalars.push(member.type);
-      }
-    } else if (member.kind === "object") {
-      objectMember = object;
-    } else if (member.kind === "array" && member.items) {
-      const array = {
-        items: member.items,
-        type: /** @type {const} */ ("array"),
-      };
-      // `readonly string[] | string[]` is one array type written twice.
-      if (
-        !arrays.some((other) => JSON.stringify(other) === JSON.stringify(array))
-      ) {
-        arrays.push(array);
-      }
-    } else {
-      return {
-        ...(members.every((other) => other.kind === "array") && {
-          type: /** @type {const} */ ("array"),
-        }),
-        tsType: raw,
-      };
-    }
-  }
-
-  // docgen spells `boolean` as `false | true`.
-  if (consts.length === 2 && consts.includes(false) && consts.includes(true)) {
-    consts.length = 0;
-    if (!scalars.includes("boolean")) {
-      scalars.unshift("boolean");
-    }
-  }
-
-  /** @type {TypeSchema[]} */
-  const schemas = [
-    ...(consts.length > 0 ? [{ enum: consts }] : []),
-    ...(scalars.length > 0
-      ? [{ type: scalars.length === 1 ? scalars[0] : scalars }]
-      : []),
-    ...arrays,
-    ...(objectMember ? [objectMember] : []),
-  ];
-  // e.g. `"text" | (string & {})`, or `"alt" | "ctrl" | ("alt" | "ctrl")[]`
-  return schemas.length === 1 && schemas[0] ? schemas[0] : { anyOf: schemas };
+function parseUnionSchema(values, raw) {
+  return mergeMembers(values.map(parseMember), raw);
 }
 
 /**

@@ -35,17 +35,20 @@ const __dirname = path.dirname(__filename);
  * @property {PropItem['description']} description
  * @property {PropItem['name']} name
  * @property {PropItem['required']} required
- * @property {Properties} [properties] Fields of an object-typed prop, one level deep
  * @property {PropItem['type']} type
+ * @property {Shape} [shape] Structure of a prop holding the library's own object types
  * @property {true} [sprinkle]
  */
 
 /**
- * @typedef {Object} Properties
- * @property {true} [array] The prop holds an array of this object type
- * @property {Record<string, Field>} fields
- * @property {string} [name] Name of the object type, when it has one
- * @property {true} [union] The prop also accepts primitives or `null`
+ * @typedef {{ anyOf: Shape[] }
+ *   | { const: boolean | number | string }
+ *   | { fields: Record<string, Field>; name?: string }
+ *   | { items: Shape }
+ *   | { type: "boolean" | "null" | "number" | "string" }
+ *   | { values: Shape }} Shape
+ *   A type's structure: a union, a literal, an object's fields (and its type
+ *   name), an array's elements, a primitive, or a string-keyed record's values
  */
 
 /**
