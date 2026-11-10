@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Checkbox, Group, Text } from "@optiaxiom/react";
+import { Box, Button, Checkbox, Group, Text } from "@optiaxiom/react";
 import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 import { action } from "storybook/actions";
-import { screen, userEvent } from "storybook/test";
+import { expect, screen, userEvent } from "storybook/test";
 
 export default {
   args: {
@@ -54,6 +54,19 @@ export const Sizes: Story = {
 export const Checked: Story = {
   args: {
     defaultChecked: true,
+  },
+  play: async ({ canvas }) => {
+    // Browser test runners click the centre of an enabled input and expect the
+    // input itself to receive the event.
+    for (const input of canvas.getAllByRole("checkbox")) {
+      if (input.matches(":disabled")) {
+        continue;
+      }
+      const { height, left, top, width } = input.getBoundingClientRect();
+      await expect(
+        document.elementFromPoint(left + width / 2, top + height / 2),
+      ).toBe(input);
+    }
   },
   render: (args) => (
     <Group flexDirection="column" gap="16">
@@ -170,4 +183,28 @@ export const WithSuggestion: Story = {
       </SurfaceProvider>
     );
   },
+};
+
+const items = Array.from({ length: 40 }, (_, index) => `Item ${index + 1}`);
+
+export const FocusInScrollContainer: Story = {
+  play: async ({ canvas }) => {
+    const input = canvas.getByLabelText("Item 40");
+    input.focus();
+    await expect(input).toHaveFocus();
+
+    const list = canvas.getByTestId("list").getBoundingClientRect();
+    const control = input.closest("label")?.getBoundingClientRect();
+    await expect(control?.top).toBeGreaterThanOrEqual(list.top);
+    await expect(control?.bottom).toBeLessThanOrEqual(list.bottom);
+  },
+  render: () => (
+    <Box data-testid="list" maxH="xs" overflow="auto">
+      {items.map((item) => (
+        <Box key={item} p="8">
+          <Checkbox>{item}</Checkbox>
+        </Box>
+      ))}
+    </Box>
+  ),
 };

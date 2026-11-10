@@ -4,6 +4,7 @@ import { Button, Group, Switch, Text, Tooltip } from "@optiaxiom/react";
 import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 import { action } from "storybook/actions";
+import { expect } from "storybook/test";
 
 export default {
   args: {
@@ -61,6 +62,19 @@ export const WithTooltip: Story = {
 export const Checked: Story = {
   args: {
     defaultChecked: true,
+  },
+  play: async ({ canvas }) => {
+    // Browser test runners click the centre of an enabled input and expect the
+    // input itself to receive the event.
+    for (const input of canvas.getAllByRole("switch")) {
+      if (input.matches(":disabled")) {
+        continue;
+      }
+      const { height, left, top, width } = input.getBoundingClientRect();
+      await expect(
+        document.elementFromPoint(left + width / 2, top + height / 2),
+      ).toBe(input);
+    }
   },
   render: (args) => (
     <Group flexDirection="column" gap="16">
