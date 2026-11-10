@@ -8,6 +8,7 @@ import { Button } from "../button";
 import { Group } from "../group";
 import { useObserveValue } from "../hooks";
 import { Input } from "../input";
+import { useMessages } from "../locale";
 import * as styles from "./SearchInput.css";
 
 export type SearchInputProps = ComponentPropsWithRef<typeof Input> & {
@@ -27,6 +28,7 @@ export type SearchInputProps = ComponentPropsWithRef<typeof Input> & {
 export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
   ({ addonBefore, className, onChange, onValueClear, ...props }, outerRef) => {
     const innerRef = useRef<HTMLInputElement>(null);
+    const messages = useMessages();
     const ref = useComposedRefs(innerRef, outerRef);
 
     const [value, setValue] = useControllableState({
@@ -42,7 +44,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
           value && (
             <Button
               appearance="subtle"
-              aria-label="Clear"
+              aria-label={messages["Clear"]}
               icon={value && <IconXmark />}
               onPointerDown={(event) => {
                 event.preventDefault();

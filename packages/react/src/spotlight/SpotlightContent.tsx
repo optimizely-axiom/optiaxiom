@@ -1,5 +1,6 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
+import { useMessages } from "../locale";
 import { MenuContent } from "../menu";
 
 export type SpotlightContentProps = ComponentPropsWithoutRef<
@@ -13,7 +14,10 @@ export const SpotlightContent = forwardRef<
   HTMLDivElement,
   SpotlightContentProps
 >((props, ref) => {
-  return <MenuContent aria-label="Quick search" ref={ref} {...props} />;
+  const messages = useMessages();
+  return (
+    <MenuContent aria-label={messages["Quick search"]} ref={ref} {...props} />
+  );
 });
 
 SpotlightContent.displayName = "@optiaxiom/react/SpotlightContent";

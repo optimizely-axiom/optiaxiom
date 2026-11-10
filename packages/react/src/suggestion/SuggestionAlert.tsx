@@ -4,6 +4,7 @@ import { Alert } from "../alert";
 import { Button } from "../button";
 import { Group } from "../group";
 import { useEvent } from "../hooks";
+import { useMessages } from "../locale";
 import { useSurface } from "../surface";
 import { useSuggestions } from "../surface/internals";
 import { Text } from "../text";
@@ -15,6 +16,7 @@ export type SuggestionAlertProps = ComponentPropsWithoutRef<typeof Alert>;
  */
 export function SuggestionAlert({ ...props }: SuggestionAlertProps) {
   const surface = useSurface("property");
+  const messages = useMessages();
   const hasPopover = surface?.suggestionPopover.registered;
   const messageSuggestions = useSuggestions("property", "message");
   const valueSuggestions = useSuggestions("property", "value");
@@ -75,7 +77,7 @@ export function SuggestionAlert({ ...props }: SuggestionAlertProps) {
           }}
           size="sm"
         >
-          Accept
+          {messages["Accept"]}
         </Button>
       </Group>
     </Alert>

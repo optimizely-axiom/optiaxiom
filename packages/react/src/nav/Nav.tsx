@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Group } from "../group";
+import { useMessages } from "../locale";
 import { useSidebarContext } from "../sidebar/internals";
 import * as styles from "./Nav.css";
 
@@ -32,6 +33,7 @@ export type NavProps = BoxProps<
 export const Nav = forwardRef<HTMLDivElement, NavProps>(
   ({ children, ...props }, ref) => {
     const { expanded, navId } = useSidebarContext("@optiaxiom/react/Nav");
+    const messages = useMessages();
 
     return (
       <Group
@@ -43,7 +45,7 @@ export const Nav = forwardRef<HTMLDivElement, NavProps>(
         {...props}
       >
         <Group asChild id={navId} w={expanded ? "224" : "56"} {...styles.nav()}>
-          <nav aria-label="Main">{children}</nav>
+          <nav aria-label={messages["Main"]}>{children}</nav>
         </Group>
       </Group>
     );

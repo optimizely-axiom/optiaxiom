@@ -12,6 +12,7 @@ import { type BoxProps } from "../box";
 import { useFieldContext } from "../field/internals";
 import { ListboxItemized, ListboxLabel, ListboxSeparator } from "../listbox";
 import { shouldShowGroup, shouldShowSeparator } from "../listbox/utils";
+import { useMessages } from "../locale";
 import { ModalLayer } from "../modal";
 import { listMinWidth, ModalListbox } from "../modal/internals";
 import { Portal } from "../portal";
@@ -75,6 +76,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     } = useSelectContext("@optiaxiom/react/SelectContent");
 
     const labelId = useId();
+    const messages = useMessages();
     const [placed, setPlaced] = useState(false);
 
     return (
@@ -82,7 +84,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
         <Portal asChild>
           <ModalLayer asChild>
             <ModalListbox
-              aria-label={ariaLabel || "Menu"}
+              aria-label={ariaLabel || messages["Menu"]}
               asChild
               {...listMinWidth({}, className)}
               maxH="sm"

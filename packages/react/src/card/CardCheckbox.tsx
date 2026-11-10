@@ -6,6 +6,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import type { ExcludeProps } from "../utils";
 
 import { Checkbox } from "../checkbox";
+import { useMessages } from "../locale";
 import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./CardCheckbox.css";
 import { useCardContext } from "./CardContext";
@@ -22,6 +23,7 @@ export type CardCheckboxProps = ExcludeProps<
 export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
   ({ className, onChange, ...props }, ref) => {
     const labelPrefixId = useId();
+    const messages = useMessages();
     const { labelId } = useCardContext("@optiaxiom/react/CardCheckbox");
 
     const [checked, setChecked] = useControllableState({
@@ -33,7 +35,9 @@ export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
     return (
       <>
         <VisuallyHidden id={labelPrefixId}>
-          Check to {checked ? "unselect" : "select"}
+          {checked
+            ? messages["Check to unselect"]
+            : messages["Check to select"]}
         </VisuallyHidden>
         <Checkbox
           aria-labelledby={clsx(labelPrefixId, labelId)}

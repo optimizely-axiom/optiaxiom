@@ -10,6 +10,7 @@ import {
 } from "react";
 
 import { Checkbox } from "../checkbox";
+import { useMessages } from "../locale";
 import { DataTableAction } from "./DataTableAction";
 import { useDataTableContext } from "./DataTableContext";
 import { useDataTableRowContext } from "./DataTableRowContext";
@@ -36,6 +37,7 @@ export const DataTableCheckbox = forwardRef<
   );
 
   const labelPrefixId = useId();
+  const messages = useMessages();
 
   const innerRef = useRef<HTMLInputElement>(null);
   const ref = useComposedRefs(innerRef, outerRef);
@@ -54,7 +56,9 @@ export const DataTableCheckbox = forwardRef<
     <>
       {row && (
         <VisuallyHidden id={labelPrefixId}>
-          Check to {row.getIsSelected() ? "unselect" : "select"}
+          {row.getIsSelected()
+            ? messages["Check to unselect"]
+            : messages["Check to select"]}
         </VisuallyHidden>
       )}
       <DataTableAction
@@ -65,7 +69,7 @@ export const DataTableCheckbox = forwardRef<
         }
       >
         <Checkbox
-          aria-label={!row ? "Select all" : undefined}
+          aria-label={!row ? messages["Select all"] : undefined}
           aria-labelledby={row && clsx(labelPrefixId, labelId)}
           checked={
             row

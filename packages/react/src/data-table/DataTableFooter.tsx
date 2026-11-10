@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Group } from "../group";
+import { useMessages } from "../locale";
 import { Pagination } from "../pagination";
 import { Select, SelectContent, SelectTrigger } from "../select";
 import { Text } from "../text";
@@ -49,6 +50,7 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
 
     const { pagination } = table.getState();
     const pageSizeId = useId();
+    const messages = useMessages();
 
     return (
       <Group
@@ -64,7 +66,7 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
           {showPageSizeOptions && (
             <Group gap="8">
               <Text color="fg.secondary" id={pageSizeId}>
-                Page Size
+                {messages["Page Size"]}
               </Text>
               <Select
                 onValueChange={(value) =>
@@ -90,16 +92,15 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
           />
         )}
         <Text {...styles.addon({ slot: "after" })}>
-          {table.getRowCount() > 0 && (
-            <>
-              {pagination.pageIndex * pagination.pageSize + 1} -{" "}
-              {Math.min(
+          {table.getRowCount() > 0 &&
+            messages["{start} - {end} of {total}"](
+              pagination.pageIndex * pagination.pageSize + 1,
+              Math.min(
                 (pagination.pageIndex + 1) * pagination.pageSize,
                 table.getRowCount(),
-              )}{" "}
-              of {table.getRowCount()}
-            </>
-          )}
+              ),
+              table.getRowCount(),
+            )}
         </Text>
       </Group>
     );

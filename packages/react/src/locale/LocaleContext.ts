@@ -10,10 +10,12 @@ const browserLocale =
   typeof navigator !== "undefined" ? navigator.language : "en-US";
 
 /**
- * Holds the BCP-47 locale used by date/time components (Calendar,
- * DateRangePicker, Clock, Time). The default value is the browser locale, so
- * `useLocaleContext` always returns a usable value even without a provider.
+ * `locale` is the BCP-47 tag date/time components (Calendar, DateRangePicker,
+ * Clock, Time) format with; it falls back to the browser locale. `language` is
+ * the subtag built-in labels are translated into; it falls back to English, so
+ * labels never follow the browser into an English-only product.
  */
 export const [LocaleProvider, useLocaleContext] = createContext<{
+  language: string;
   locale: string;
-}>("@optiaxiom/react/Locale", { locale: browserLocale });
+}>("@optiaxiom/react/Locale", { language: "en", locale: browserLocale });

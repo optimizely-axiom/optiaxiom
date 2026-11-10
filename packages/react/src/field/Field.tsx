@@ -8,6 +8,7 @@ import {
 
 import { Box, type BoxProps } from "../box";
 import { Group } from "../group";
+import { useMessages } from "../locale";
 import { SuggestionAlert } from "../suggestion";
 import { fallbackSpan } from "../utils";
 import { FieldProvider } from "./FieldContext";
@@ -59,6 +60,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     const descriptionId = useId();
     const errorId = useId();
     const labelId = useId(labelIdProp);
+    const messages = useMessages();
 
     return (
       <Group flexDirection="column" gap="4" ref={ref} {...props}>
@@ -91,7 +93,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             role="alert"
           >
             <Box asChild flex="none" size="16">
-              <IconTriangleExclamation aria-label="Error" />
+              <IconTriangleExclamation aria-label={messages["Error"]} />
             </Box>
             {error}
           </Group>

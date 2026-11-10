@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Group } from "../group";
+import { useMessages } from "../locale";
 import * as styles from "./Spinner.css";
 
 export type SpinnerProps = BoxProps<
@@ -31,7 +32,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
     {
       alignItems = "center",
       appearance = "default",
-      "aria-label": ariaLabel = "Loading",
+      "aria-label": ariaLabel,
       children,
       display = "inline-flex",
       justifyContent = "center",
@@ -41,10 +42,11 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
     },
     ref,
   ) => {
+    const messages = useMessages();
     return (
       <Group
         alignItems={alignItems}
-        aria-label={ariaLabel}
+        aria-label={ariaLabel ?? messages["Loading"]}
         display={display}
         flexDirection="column"
         gap="16"

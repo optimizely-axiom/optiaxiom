@@ -14,6 +14,7 @@ import { Command } from "../command";
 import { type CommandOption, resolveItemProperty } from "../command/internals";
 import { Dialog } from "../dialog";
 import { useResponsiveMatches } from "../hooks";
+import { useMessages } from "../locale";
 import { MenuProvider } from "./MenuContext";
 import { MenuPopover } from "./MenuPopover";
 import { MenuSubProvider } from "./MenuSubContext";
@@ -44,6 +45,8 @@ export type MenuProps = ExcludeProps<
       open?: boolean;
       /**
        * The placeholder for the search input.
+       *
+       * @default Filter...
        */
       placeholder?: string;
       /**
@@ -88,10 +91,11 @@ export function Menu({
   onOpenChange,
   open: openProp,
   options: optionsProp,
-  placeholder = "Filter...",
+  placeholder,
   size: sizeProp,
   ...props
 }: MenuProps) {
+  const messages = useMessages();
   const size = useResponsiveMatches({
     base: "lg",
     sm: sizeProp ?? "sm",
@@ -226,7 +230,7 @@ export function Menu({
                 activeItemStack[activeItemStack.length - 1].label,
                 { inputValue },
               )
-            : placeholder
+            : (placeholder ?? messages["Filter..."])
         }
         setActiveItemStack={setActiveItemStack}
         setFocusVisible={setFocusVisible}

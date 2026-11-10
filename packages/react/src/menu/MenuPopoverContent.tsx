@@ -13,6 +13,7 @@ import { RemoveScroll } from "react-remove-scroll";
 import type { MenuContent } from "./MenuContent";
 
 import { useFieldContext } from "../field/internals";
+import { useMessages } from "../locale";
 import { listMinWidth } from "../modal/internals";
 import { PopoverContent } from "../popover";
 import { VisuallyHidden } from "../visually-hidden";
@@ -34,6 +35,7 @@ export const MenuPopoverContent = forwardRef<
   );
   const { triggerRef } = useMenuContext("@optiaxiom/react/MenuPopoverContent");
   const labelId = useId();
+  const messages = useMessages();
 
   const [resolvedAlign, setResolvedAlign] = useState(align);
   useLayoutEffect(() => {
@@ -52,7 +54,9 @@ export const MenuPopoverContent = forwardRef<
       ref={ref}
       {...props}
     >
-      <VisuallyHidden id={labelId}>{ariaLabel || "Menu"}</VisuallyHidden>
+      <VisuallyHidden id={labelId}>
+        {ariaLabel || messages["Menu"]}
+      </VisuallyHidden>
       {children}
     </PopoverContent>
   );

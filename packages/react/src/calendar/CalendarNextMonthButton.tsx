@@ -1,6 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 
 import { Button } from "../button";
+import { useMessages } from "../locale";
 import { Tooltip } from "../tooltip";
 import { useCalendarContext } from "./CalendarContext";
 import * as styles from "./CalendarNextMonthButton.css";
@@ -19,13 +20,13 @@ export function CalendarNextMonthButton({
   const { month, setMonth, view } = useCalendarContext(
     "@optiaxiom/react/CalendarNextMonthButton",
   );
+  const messages = useMessages();
   const label =
-    "Go to the " +
-    (view === "year"
-      ? "next year range"
+    view === "year"
+      ? messages["Go to the next year range"]
       : view === "month"
-        ? "next year"
-        : "next month");
+        ? messages["Go to the next year"]
+        : messages["Go to the next month"];
 
   return (
     <Tooltip content={label}>

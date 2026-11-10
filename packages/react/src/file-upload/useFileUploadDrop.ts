@@ -3,6 +3,7 @@ import { toaster } from "@optiaxiom/globals";
 import type { BoxProps } from "../box";
 
 import { useAuthContext } from "../auth-provider";
+import { type Messages, useMessages } from "../locale";
 import { useFileUploadContext } from "./FileUploadContext";
 
 export const useFileUploadDrop = ({
@@ -14,6 +15,7 @@ export const useFileUploadDrop = ({
     "@optiaxiom/react/useFileUploadDrop",
   );
   const auth = useAuthContext();
+  const messages = useMessages();
 
   return {
     ...props,
@@ -41,7 +43,7 @@ export const useFileUploadDrop = ({
                     const file = item.getAsFile();
                     const valid = file && isValidFile(file, accept);
                     if (!valid) {
-                      toaster.create(invalidFileTypeMessage(file), {
+                      toaster.create(invalidFileTypeMessage(messages, file), {
                         intent: "danger",
                       });
                     }
@@ -84,7 +86,7 @@ export const useFileUploadDrop = ({
           : Array.from(event.dataTransfer.files).filter((file) => {
               const valid = isValidFile(file, accept);
               if (!valid) {
-                toaster.create(invalidFileTypeMessage(file), {
+                toaster.create(invalidFileTypeMessage(messages, file), {
                   intent: "danger",
                 });
               }
@@ -143,12 +145,13 @@ async function getRemoteFile(
   }
 }
 
-function invalidFileTypeMessage(file: File | null): string {
+function invalidFileTypeMessage(messages: Messages, file: File | null): string {
   const ext = file?.name.includes(".")
     ? `.${file.name.split(".").pop()}`
     : undefined;
-  const label = ext || file?.type || "Unknown";
-  return `${label} is not an accepted file type`;
+  return messages["{type} is not an accepted file type"](
+    ext || file?.type || messages["Unknown"],
+  );
 }
 
 /**

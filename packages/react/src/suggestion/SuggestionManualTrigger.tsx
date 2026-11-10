@@ -5,6 +5,7 @@ import type { PopoverTrigger } from "../popover";
 import { Avatar } from "../avatar";
 import { Button, type ButtonProps } from "../button";
 import { useEvent } from "../hooks";
+import { useMessages } from "../locale";
 import { useSurface } from "../surface";
 import { useSuggestions } from "../surface/internals";
 
@@ -15,6 +16,7 @@ export const SuggestionManualTrigger = forwardRef<
   SuggestionManualTriggerProps
 >((props, ref) => {
   const surface = useSurface("property");
+  const messages = useMessages();
 
   const register = useEvent(surface?.suggestionPopover.register ?? (() => {}));
   useEffect(() => {
@@ -43,7 +45,7 @@ export const SuggestionManualTrigger = forwardRef<
   return (
     <Button
       appearance="subtle"
-      aria-label="Opal suggestion"
+      aria-label={messages["Opal suggestion"]}
       icon={<Avatar fallback="opal" size="2xs" />}
       loading={pending}
       onClick={() => {

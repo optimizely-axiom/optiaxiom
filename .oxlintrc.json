@@ -442,6 +442,12 @@
       }
     },
     {
+      "files": ["**/packages/react/src/**"],
+      "rules": {
+        "local/no-hardcoded-text": "error"
+      }
+    },
+    {
       "files": ["**/packages/*/src/**"],
       "rules": {
         "local/no-unguarded-dom-api": "error",

@@ -11,6 +11,7 @@ import { Button } from "../button";
 import { Group } from "../group";
 import { Icon } from "../icon";
 import { IconOpal } from "../icons/IconOpal";
+import { useMessages } from "../locale";
 import * as styles from "./Alert.css";
 
 export type AlertProps = BoxProps<
@@ -47,6 +48,7 @@ const mapIntentToIcon = {
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(
   ({ children, className, intent = "neutral", onDismiss, ...props }, ref) => {
     const labelId = useId();
+    const messages = useMessages();
 
     return (
       <Group
@@ -69,7 +71,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         {!!onDismiss && (
           <Button
             appearance="subtle"
-            aria-label="close"
+            aria-label={messages["close"]}
             color="fg.default"
             flex="none"
             icon={<IconXmark />}
