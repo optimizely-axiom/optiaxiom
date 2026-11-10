@@ -18,8 +18,18 @@ export const VisuallyHidden = forwardRef<HTMLSpanElement, VisuallyHiddenProps>(
       <RadixVisuallyHidden.Root
         asChild
         ref={ref}
+        /**
+         * Pinned to the containing block's corner: without `top`/`left` the box
+         * keeps its in-flow position, which can sit outside a scroll container
+         * between it and its containing block and stretch the outer scroll
+         * area. Not `fixed`: a transformed ancestor such as `Dialog` becomes
+         * its containing block anyway, and it would escape positioned parents
+         * such as the toggle root that keep hidden inputs on their control.
+         */
         style={{
-          position: "fixed",
+          left: 0,
+          position: "absolute",
+          top: 0,
           ...style,
         }}
         {...props}
