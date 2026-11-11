@@ -3,6 +3,10 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Box,
   Button,
+  Dialog,
+  DialogBody,
+  DialogContent,
+  DialogHeader,
   Field,
   Group,
   LabelMenuButton,
@@ -14,9 +18,24 @@ import {
 import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { useEffect, useMemo, useState } from "react";
 import { action } from "storybook/actions";
-import { expect, screen, userEvent } from "storybook/test";
+import { expect, screen, userEvent, waitFor, within } from "storybook/test";
 
 type Story = StoryObj<typeof Select>;
+
+/**
+ * The browser draws its "Please select an item" message at the hidden native
+ * `<select>`, which the test runner can't see. Assert that the hidden select
+ * sits on the trigger's bottom edge instead.
+ */
+const expectHiddenSelectAtTrigger = async (container: HTMLElement) => {
+  const select = container.querySelector('select[name="language"]');
+  await expect(select).not.toBeNull();
+  const trigger = within(container).getByRole("combobox", { name: /Language/ });
+  const hidden = select!.getBoundingClientRect();
+  const visible = trigger.getBoundingClientRect();
+  await expect(Math.abs(hidden.top - visible.bottom)).toBeLessThanOrEqual(1);
+  await expect(Math.abs(hidden.left - visible.left)).toBeLessThanOrEqual(1);
+};
 
 const languages = [
   "Afrikaans",
@@ -120,9 +139,55 @@ export const Required: Story = {
       </Button>
     </form>
   ),
-  play: async ({ canvas }) => {
+  play: async ({ canvas, canvasElement }) => {
     await userEvent.click(canvas.getByRole("button", { name: "Submit" }));
     await expect(canvas.getByLabelText(/Language/)).toHaveFocus();
+    await expectHiddenSelectAtTrigger(canvasElement);
+  },
+};
+
+export const RequiredInDialog: Story = {
+  args: {
+    defaultOpen: false,
+    defaultValue: undefined,
+    name: "language",
+    required: true,
+  },
+  decorators: (Story) => (
+    <Dialog open>
+      <DialogContent>
+        <DialogHeader>Preferences</DialogHeader>
+        <DialogBody>
+          <Box data-testid="list" maxH="xs" overflow="auto">
+            {languages.map((language) => (
+              <Text key={language} p="8">
+                {language}
+              </Text>
+            ))}
+            <form onSubmit={(event) => event.preventDefault()}>
+              <Field label="Language" required>
+                <Story />
+              </Field>
+              <Button mt="16" type="submit">
+                Submit
+              </Button>
+            </form>
+          </Box>
+        </DialogBody>
+      </DialogContent>
+    </Dialog>
+  ),
+  play: async () => {
+    const dialog = await screen.findByRole("dialog");
+    await waitFor(() => expect(document.getAnimations()).toHaveLength(0));
+    const list = within(dialog).getByTestId("list");
+    dialog.querySelector("form")!.checkValidity();
+    await expect(list.scrollTop).toBe(0);
+    await userEvent.click(
+      within(dialog).getByRole("button", { name: "Submit" }),
+    );
+    await expectHiddenSelectAtTrigger(dialog);
+    await expect(dialog.scrollHeight).toBe(dialog.clientHeight);
   },
 };
 
