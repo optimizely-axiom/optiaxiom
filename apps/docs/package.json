@@ -9,7 +9,6 @@
   },
   "devDependencies": {
     "@cfworker/json-schema": "^4.1.1",
-    "@dnd-kit/react": "^0.5.0",
     "@faker-js/faker": "^10.6.0",
     "@monaco-editor/react": "^4.7.0",
     "@optiaxiom/icons": "workspace:^",
