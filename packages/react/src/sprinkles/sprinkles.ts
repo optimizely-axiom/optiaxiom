@@ -54,6 +54,7 @@ export type LonghandProps = keyof Pick<
   | "marginTop"
   | "maxHeight"
   | "maxWidth"
+  | "minHeight"
   | "minWidth"
   | "paddingBottom"
   | "paddingLeft"

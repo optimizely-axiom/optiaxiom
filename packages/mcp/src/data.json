@@ -377,6 +377,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -501,7 +506,7 @@
           "tsType": "(() => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -1395,6 +1400,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -1515,7 +1525,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -2132,6 +2142,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -2252,7 +2267,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -2932,6 +2947,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -3052,7 +3072,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -3669,6 +3689,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -3813,7 +3838,7 @@
           "tsType": "((event: PointerDownOutsideEvent) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -4423,6 +4448,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -4543,7 +4573,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -5189,6 +5219,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -5309,7 +5344,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -5988,6 +6023,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -6108,7 +6148,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -6762,6 +6802,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -6882,7 +6927,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -7535,6 +7580,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -7659,7 +7709,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -8333,6 +8383,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -8453,7 +8508,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -9114,6 +9169,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -9234,7 +9294,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -9921,6 +9981,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -10045,7 +10110,7 @@
           "tsType": "(() => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -10728,6 +10793,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -10848,7 +10918,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -11531,6 +11601,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -11651,7 +11726,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -12373,6 +12448,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -12493,7 +12573,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -13222,6 +13302,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -13347,7 +13432,7 @@
           "enum": ["horizontal", "vertical"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -14005,6 +14090,11 @@
           "description": "The earliest date that is allowed.",
           "tsType": "Date"
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -14138,7 +14228,7 @@
           "tsType": "((value: DateRange | null) => void) | ((value: Date | null) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -14816,6 +14906,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -14936,7 +15031,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -15786,6 +15881,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -15906,7 +16006,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -16556,6 +16656,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -16684,7 +16789,7 @@
           "tsType": "((checked: boolean) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -17304,6 +17409,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -17424,7 +17534,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -18082,6 +18192,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -18202,7 +18317,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -18848,6 +18963,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -18968,7 +19088,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -19627,6 +19747,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -19751,7 +19876,7 @@
           "tsType": "MouseEventHandler<HTMLAnchorElement>"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -20409,6 +20534,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -20529,7 +20659,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -21179,6 +21309,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -21307,7 +21442,7 @@
           "tsType": "((checked: boolean) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -22019,6 +22154,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -22139,7 +22279,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -22802,6 +22942,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -22922,7 +23067,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -23575,6 +23720,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -23695,7 +23845,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -24607,6 +24757,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -24727,7 +24882,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -25392,6 +25547,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -25512,7 +25672,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -26162,6 +26322,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -26290,7 +26455,7 @@
           "tsType": "((checked: boolean) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -26943,6 +27108,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -27063,7 +27233,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -27731,6 +27901,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -27851,7 +28026,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -28498,6 +28673,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -28618,7 +28798,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -29296,6 +29476,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -29424,7 +29609,7 @@
           "tsType": "((value: string) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -30348,6 +30533,11 @@
           "description": "The earliest date that is allowed.",
           "tsType": "Date"
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Whether to set the min-width to the width of the trigger.",
           "enum": ["0", "trigger"]
@@ -30491,7 +30681,7 @@
           "tsType": "((event: PointerDownOutsideEvent) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -31184,6 +31374,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -31304,7 +31499,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -31925,6 +32120,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -32045,7 +32245,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -32711,6 +32911,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -32831,7 +33036,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -33472,6 +33677,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -33592,7 +33802,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -34245,6 +34455,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -34365,7 +34580,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -35231,6 +35446,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -35351,7 +35571,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -36031,6 +36251,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -36151,7 +36376,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -36768,6 +36993,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -36912,7 +37142,7 @@
           "tsType": "((event: PointerDownOutsideEvent) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -37522,6 +37752,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -37642,7 +37877,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -38284,6 +38519,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -38404,7 +38644,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -39058,6 +39298,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -39178,7 +39423,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -39861,6 +40106,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -39981,7 +40231,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -40604,6 +40854,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -40732,7 +40987,7 @@
           "type": "boolean"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -41456,6 +41711,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -41576,7 +41836,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -42231,6 +42491,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -42351,7 +42616,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -43295,6 +43560,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -43417,7 +43687,7 @@
         "onCheckedChange": { "tsType": "((checked: boolean) => void)" },
         "onSelect": { "tsType": "((event: Event) => void)" },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -44064,6 +44334,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Whether to set the min-width to the width of the trigger.",
           "enum": ["0", "trigger"]
@@ -44195,7 +44470,7 @@
           "tsType": "((event: PointerDownOutsideEvent) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -44838,6 +45113,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -44958,7 +45238,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -45621,6 +45901,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -45742,7 +46027,7 @@
         },
         "onSelect": { "tsType": "((event: Event) => void)" },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -46385,6 +46670,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -46505,7 +46795,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -47147,6 +47437,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -47267,7 +47562,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -47934,6 +48229,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Whether to set the min-width to the width of the trigger.",
           "enum": ["0", "trigger"]
@@ -48061,7 +48361,7 @@
           "tsType": "((event: PointerDownOutsideEvent) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -48724,6 +49024,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -48844,7 +49149,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -49524,6 +49829,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -49644,7 +49954,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -50298,6 +50608,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -50418,7 +50733,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -51059,6 +51374,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -51179,7 +51499,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -51925,6 +52245,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -52045,7 +52370,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -52699,6 +53024,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -52823,7 +53153,7 @@
           "tsType": "((files: File[]) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -53484,6 +53814,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -53604,7 +53939,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -54268,6 +54603,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -54392,7 +54732,7 @@
           "tsType": "((item: { file: File; status: \"error\" | \"complete\" | \"uploading\"; }) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -55069,6 +55409,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -55189,7 +55534,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -55809,6 +56154,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -55929,7 +56279,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -56645,6 +56995,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -56765,7 +57120,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -57470,6 +57825,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -57590,7 +57950,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -58291,6 +58651,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -58411,7 +58776,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -59084,6 +59449,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -59204,7 +59574,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -59917,6 +60287,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -60053,7 +60428,7 @@
           "tsType": "((event: PointerDownOutsideEvent) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -60696,6 +61071,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -60816,7 +61196,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -61481,6 +61861,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -61606,7 +61991,7 @@
           "type": "boolean"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -62318,6 +62703,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -62446,7 +62836,7 @@
           "tsType": "((value: string) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -63201,6 +63591,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -63329,7 +63724,7 @@
           "tsType": "((value: string) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -64150,6 +64545,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -64280,7 +64680,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -64974,6 +65374,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -65094,7 +65499,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -65715,6 +66120,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -65835,7 +66245,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -66463,6 +66873,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -66583,7 +66998,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -67243,6 +67658,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -67367,7 +67787,7 @@
           "tsType": "MouseEventHandler<HTMLAnchorElement>"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -68620,6 +69040,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.\nWhether to set the min-width to the width of the trigger.",
           "enum": ["0", "trigger"]
@@ -68763,7 +69188,7 @@
           "tsType": "((event: PointerDownOutsideEvent) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -69407,6 +69832,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -69527,7 +69957,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -70197,6 +70627,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -70321,7 +70756,7 @@
           "tsType": "((expanded: boolean) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -70963,6 +71398,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -71088,7 +71528,7 @@
           "type": "string"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -71734,6 +72174,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -71854,7 +72299,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -72496,6 +72941,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -72616,7 +73066,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -73268,6 +73718,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -73396,7 +73851,7 @@
           "type": "boolean"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -74038,6 +74493,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -74158,7 +74618,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -74812,6 +75272,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -74932,7 +75397,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -75574,6 +76039,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -75694,7 +76164,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -76348,6 +76818,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -76468,7 +76943,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -77110,6 +77585,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -77230,7 +77710,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -77876,6 +78356,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -78001,7 +78486,7 @@
           "responsive": true
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -78652,6 +79137,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -78776,7 +79266,7 @@
           "tsType": "((offset: number) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -79453,6 +79943,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -79573,7 +80068,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -80213,6 +80708,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -80337,7 +80837,7 @@
           "tsType": "(() => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -81001,6 +81501,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -81121,7 +81626,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -81784,6 +82289,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -82023,7 +82533,7 @@
           "type": "array"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -82794,6 +83304,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.\nWhether to set the min-width to the width of the trigger.",
           "enum": ["0", "trigger"]
@@ -82937,7 +83452,7 @@
           "tsType": "((event: PointerDownOutsideEvent) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -83543,6 +84058,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -83663,7 +84183,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -84387,6 +84907,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -84507,7 +85032,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -85155,6 +85680,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Whether to set the min-width to the width of the trigger.",
           "enum": ["0", "trigger"]
@@ -85298,7 +85828,7 @@
           "tsType": "((event: PointerDownOutsideEvent) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -85979,6 +86509,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -86099,7 +86634,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -86725,6 +87260,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -86845,7 +87385,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -87513,6 +88053,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -87641,7 +88186,7 @@
           "tsType": "((checked: boolean) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -88303,6 +88848,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -88439,7 +88989,7 @@
           "tsType": "((value: string) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -89229,6 +89779,11 @@
           "default": "0",
           "type": "number"
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -89353,7 +89908,7 @@
           "tsType": "((value: number) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -90062,6 +90617,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -90190,7 +90750,7 @@
           "tsType": "((value: string) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -90876,6 +91436,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -91008,7 +91573,7 @@
           "tsType": "(() => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -91701,6 +92266,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -91826,7 +92396,7 @@
         },
         "orientation": { "enum": ["horizontal", "vertical"] },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -92550,6 +93120,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -92670,7 +93245,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -93537,6 +94112,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Whether to set the min-width to the width of the trigger.",
           "enum": ["0", "trigger"]
@@ -93656,7 +94236,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -94335,6 +94915,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -94455,7 +95040,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -95080,6 +95665,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -95206,7 +95796,7 @@
           "responsive": true
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -95888,6 +96478,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -96012,7 +96607,7 @@
           "tsType": "((expanded: boolean) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -96738,6 +97333,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -96858,7 +97458,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -97507,6 +98107,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -97627,7 +98232,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -98362,6 +98967,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -98490,7 +99100,7 @@
           "tsType": "((value: T) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -99258,6 +99868,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -99378,7 +99993,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -100020,6 +100635,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -100140,7 +100760,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -100802,6 +101422,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -100922,7 +101547,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -101573,6 +102198,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -101693,7 +102323,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -102528,6 +103158,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.\nWhether to set the min-width to the width of the trigger.",
           "enum": ["0", "trigger"]
@@ -102671,7 +103306,7 @@
           "tsType": "((event: PointerDownOutsideEvent) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -103312,6 +103947,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -103432,7 +104072,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -104047,6 +104687,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -104167,7 +104812,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -104819,6 +105464,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -104943,7 +105593,7 @@
           "tsType": "(() => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -105619,6 +106269,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -105739,7 +106394,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -106358,6 +107013,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -106486,7 +107146,7 @@
           "tsType": "((checked: boolean) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -107193,6 +107853,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -107313,7 +107978,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -107988,6 +108653,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -108108,7 +108778,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -108754,6 +109424,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -108874,7 +109549,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -109516,6 +110191,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -109636,7 +110316,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -110283,6 +110963,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -110403,7 +111088,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -111049,6 +111734,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -111169,7 +111859,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -111818,6 +112508,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -111938,7 +112633,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -112592,6 +113287,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -112720,7 +113420,7 @@
           "enum": ["horizontal", "vertical"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -113385,6 +114085,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -113505,7 +114210,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -114150,6 +114855,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -114270,7 +114980,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -114920,6 +115630,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -115040,7 +115755,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -115688,6 +116403,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -115808,7 +116528,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -116529,6 +117249,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -116657,7 +117382,7 @@
           "tsType": "((value: string) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -117422,6 +118147,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -117542,7 +118272,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -118211,6 +118941,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -118331,7 +119066,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -119070,6 +119805,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -119194,7 +119934,7 @@
           "tsType": "((pressed: boolean) => void)"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {
@@ -119891,6 +120631,11 @@
           ],
           "responsive": true
         },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
         "minW": {
           "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
           "enum": ["auto", "0"],
@@ -120027,7 +120772,7 @@
           "type": "boolean"
         },
         "overflow": {
-          "description": "Set the element's `overflow` CSS property",
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
           "enum": ["auto", "hidden", "visible"]
         },
         "overflowX": {

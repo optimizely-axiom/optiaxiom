@@ -47,6 +47,8 @@ const SPRINKLE_PROPERTIES = new Set([
   "maxW",
   "maxWidth",
   "mb",
+  "minH",
+  "minHeight",
   "minW",
   "minWidth",
   "ml",
