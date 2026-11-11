@@ -2,6 +2,8 @@
  * Complete metadata for a single component
  */
 export interface ComponentInfo {
+  /** Accessibility section of the docs page: keyboard interactions and what the consumer must provide */
+  accessibility?: string;
   /** Component categories for grouping and discovery (e.g., ["form", "input"]) */
   category?: string[];
   /** All components in this group (only present on primary component) */
