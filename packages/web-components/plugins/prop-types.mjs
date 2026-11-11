@@ -23,12 +23,31 @@ export const parserOptions = {
 };
 
 /**
+ * Form-associated elements (`formAssociated` in src/factory.ts) own a live
+ * accessor for their state that reads and writes the inner input. A prop of
+ * the same name would shadow it, so `el.value` would stop tracking typing.
+ *
+ * @type {Record<string, string>}
+ */
+const formStateProps = {
+  Checkbox: "checked",
+  Input: "value",
+  Radio: "checked",
+  SearchInput: "value",
+  Switch: "checked",
+  Textarea: "value",
+};
+
+/**
  * @param {import('react-docgen-typescript').ComponentDoc | undefined} doc
  * @returns {Record<string, "boolean" | "function" | "number" | "object" | "string">}
  */
 export const getPropTypes = (doc) =>
   Object.fromEntries(
     Object.entries(doc?.props ?? {}).flatMap(([name, value]) => {
+      if (doc && formStateProps[doc.displayName] === name) {
+        return [];
+      }
       const type = name.startsWith("on") ? "function" : getPropType(value.type);
       return type ? [[name, type]] : [];
     }),

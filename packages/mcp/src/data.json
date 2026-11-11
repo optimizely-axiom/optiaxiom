@@ -16500,6 +16500,10 @@
           "description": "Set the element's `border-top-width` CSS property",
           "enum": ["2", "0", "1"]
         },
+        "checked": {
+          "description": "Whether the input is checked. Use with `onCheckedChange` to control it.",
+          "type": "boolean"
+        },
         "children": { "tsType": "ReactNode" },
         "className": { "type": "string" },
         "color": {
@@ -16547,6 +16551,14 @@
         "cursor": {
           "description": "Set the element's `cursor` CSS property",
           "enum": ["text", "default", "pointer"]
+        },
+        "defaultChecked": {
+          "description": "Whether the input is checked initially, when uncontrolled.",
+          "type": "boolean"
+        },
+        "disabled": {
+          "description": "Whether the input is disabled.",
+          "type": "boolean"
         },
         "display": {
           "description": "Set the element's `display` CSS property",
@@ -21149,6 +21161,10 @@
           "description": "Set the element's `border-top-width` CSS property",
           "enum": ["2", "0", "1"]
         },
+        "checked": {
+          "description": "Whether the input is checked. Use with `onCheckedChange` to control it.",
+          "type": "boolean"
+        },
         "children": { "tsType": "ReactNode" },
         "className": { "type": "string" },
         "color": {
@@ -21197,9 +21213,17 @@
           "description": "Set the element's `cursor` CSS property",
           "enum": ["text", "default", "pointer"]
         },
+        "defaultChecked": {
+          "description": "Whether the input is checked initially, when uncontrolled.",
+          "type": "boolean"
+        },
         "description": {
           "description": "Add secondary text after the label.",
           "tsType": "ReactNode"
+        },
+        "disabled": {
+          "description": "Whether the input is disabled.",
+          "type": "boolean"
         },
         "display": {
           "description": "Set the element's `display` CSS property",
@@ -26264,6 +26288,10 @@
           "description": "Set the element's `border-top-width` CSS property",
           "enum": ["2", "0", "1"]
         },
+        "checked": {
+          "description": "Whether the input is checked. Use with `onCheckedChange` to control it.",
+          "type": "boolean"
+        },
         "children": { "tsType": "ReactNode" },
         "className": { "type": "string" },
         "color": {
@@ -26312,9 +26340,17 @@
           "description": "Set the element's `cursor` CSS property",
           "enum": ["text", "default", "pointer"]
         },
+        "defaultChecked": {
+          "description": "Whether the input is checked initially, when uncontrolled.",
+          "type": "boolean"
+        },
         "description": {
           "description": "Add secondary text after the label.",
           "tsType": "ReactNode"
+        },
+        "disabled": {
+          "description": "Whether the input is disabled.",
+          "type": "boolean"
         },
         "display": {
           "description": "Set the element's `display` CSS property",
@@ -29458,6 +29494,13 @@
           "description": "Set the element's `cursor` CSS property",
           "enum": ["text", "default", "pointer"]
         },
+        "defaultValue": {
+          "description": "The initial value of the input, when uncontrolled.",
+          "anyOf": [
+            { "type": ["string", "number"] },
+            { "items": { "type": "string" }, "type": "array" }
+          ]
+        },
         "disabled": {
           "description": "Whether the input is disabled.",
           "type": "boolean"
@@ -29648,6 +29691,10 @@
           "description": "Set the element's maximum height. Only accepts predefined maxSize tokens.",
           "enum": ["xs", "sm", "md", "lg", "full"],
           "responsive": true
+        },
+        "maxLength": {
+          "description": "The maximum number of characters allowed in a text input or textarea.\nWrap it in a `Field` with `showCount` to show the character count.",
+          "type": "number"
         },
         "maxW": {
           "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.",
@@ -30014,6 +30061,13 @@
           "description": "Control whether the input allows only date or both date and time.",
           "default": "date",
           "enum": ["date", "datetime-local"]
+        },
+        "value": {
+          "description": "The value of the input. Use with `onValueChange` to control it.",
+          "anyOf": [
+            { "type": ["string", "number"] },
+            { "items": { "type": "string" }, "type": "array" }
+          ]
         },
         "w": {
           "description": "Set the element's width. Only accepts predefined size tokens.",
@@ -63760,6 +63814,13 @@
           "description": "Set the element's `cursor` CSS property",
           "enum": ["text", "default", "pointer"]
         },
+        "defaultValue": {
+          "description": "The initial value of the input, when uncontrolled.",
+          "anyOf": [
+            { "type": ["string", "number"] },
+            { "items": { "type": "string" }, "type": "array" }
+          ]
+        },
         "disabled": {
           "description": "Whether the input is disabled.",
           "type": "boolean"
@@ -63946,6 +64007,10 @@
           "description": "Set the element's maximum height. Only accepts predefined maxSize tokens.",
           "enum": ["xs", "sm", "md", "lg", "full"],
           "responsive": true
+        },
+        "maxLength": {
+          "description": "The maximum number of characters allowed in a text input or textarea.\nWrap it in a `Field` with `showCount` to show the character count.",
+          "type": "number"
         },
         "maxW": {
           "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.",
@@ -64339,6 +64404,13 @@
               ]
             },
             { "type": "string" }
+          ]
+        },
+        "value": {
+          "description": "The value of the input. Use with `onValueChange` to control it.",
+          "anyOf": [
+            { "type": ["string", "number"] },
+            { "items": { "type": "string" }, "type": "array" }
           ]
         },
         "w": {
@@ -88309,6 +88381,10 @@
           "description": "Set the element's `border-top-width` CSS property",
           "enum": ["2", "0", "1"]
         },
+        "checked": {
+          "description": "Whether the input is checked. Use with `onCheckedChange` to control it.",
+          "type": "boolean"
+        },
         "children": { "tsType": "ReactNode" },
         "className": { "type": "string" },
         "color": {
@@ -88357,9 +88433,17 @@
           "description": "Set the element's `cursor` CSS property",
           "enum": ["text", "default", "pointer"]
         },
+        "defaultChecked": {
+          "description": "Whether the input is checked initially, when uncontrolled.",
+          "type": "boolean"
+        },
         "description": {
           "description": "Add secondary text after the label.",
           "tsType": "ReactNode"
+        },
+        "disabled": {
+          "description": "Whether the input is disabled.",
+          "type": "boolean"
         },
         "display": {
           "description": "Set the element's `display` CSS property",
@@ -91765,6 +91849,13 @@
           "description": "Set the element's `cursor` CSS property",
           "enum": ["text", "default", "pointer"]
         },
+        "defaultValue": {
+          "description": "The initial value of the input, when uncontrolled.",
+          "anyOf": [
+            { "type": ["string", "number"] },
+            { "items": { "type": "string" }, "type": "array" }
+          ]
+        },
         "disabled": {
           "description": "Whether the input is disabled.",
           "type": "boolean"
@@ -91951,6 +92042,10 @@
           "description": "Set the element's maximum height. Only accepts predefined maxSize tokens.",
           "enum": ["xs", "sm", "md", "lg", "full"],
           "responsive": true
+        },
+        "maxLength": {
+          "description": "The maximum number of characters allowed in a text input or textarea.\nWrap it in a `Field` with `showCount` to show the character count.",
+          "type": "number"
         },
         "maxW": {
           "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.",
@@ -92347,6 +92442,13 @@
               ]
             },
             { "type": "string" }
+          ]
+        },
+        "value": {
+          "description": "The value of the input. Use with `onValueChange` to control it.",
+          "anyOf": [
+            { "type": ["string", "number"] },
+            { "items": { "type": "string" }, "type": "array" }
           ]
         },
         "w": {
@@ -107364,6 +107466,10 @@
           "description": "Set the element's `border-top-width` CSS property",
           "enum": ["2", "0", "1"]
         },
+        "checked": {
+          "description": "Whether the input is checked. Use with `onCheckedChange` to control it.",
+          "type": "boolean"
+        },
         "children": { "tsType": "ReactNode" },
         "className": { "type": "string" },
         "color": {
@@ -107412,9 +107518,17 @@
           "description": "Set the element's `cursor` CSS property",
           "enum": ["text", "default", "pointer"]
         },
+        "defaultChecked": {
+          "description": "Whether the input is checked initially, when uncontrolled.",
+          "type": "boolean"
+        },
         "description": {
           "description": "Add secondary text after the label.",
           "tsType": "ReactNode"
+        },
+        "disabled": {
+          "description": "Whether the input is disabled.",
+          "type": "boolean"
         },
         "display": {
           "description": "Set the element's `display` CSS property",
@@ -117666,6 +117780,13 @@
           "description": "Set the element's `cursor` CSS property",
           "enum": ["text", "default", "pointer"]
         },
+        "defaultValue": {
+          "description": "The initial value of the input, when uncontrolled.",
+          "anyOf": [
+            { "type": ["string", "number"] },
+            { "items": { "type": "string" }, "type": "array" }
+          ]
+        },
         "disabled": {
           "description": "Whether the input is disabled.",
           "type": "boolean"
@@ -117848,6 +117969,10 @@
           "description": "Set the element's maximum height. Only accepts predefined maxSize tokens.",
           "enum": ["xs", "sm", "md", "lg", "full"],
           "responsive": true
+        },
+        "maxLength": {
+          "description": "The maximum number of characters allowed in a text input or textarea.\nWrap it in a `Field` with `showCount` to show the character count.",
+          "type": "number"
         },
         "maxRows": {
           "description": "Limits the height of the textarea when `resize=auto` is used.",
@@ -118217,6 +118342,13 @@
         "transition": {
           "description": "Control which CSS properties should transition. Each value is a preset:\n`colors` transitions color-related properties (background, border,\ncolor, fill, stroke, text-decoration); `opacity` and `transform`\ntransition just that property; `all` transitions everything; `none`\ndisables transitions.",
           "enum": ["opacity", "transform", "all", "none", "colors"]
+        },
+        "value": {
+          "description": "The value of the input. Use with `onValueChange` to control it.",
+          "anyOf": [
+            { "type": ["string", "number"] },
+            { "items": { "type": "string" }, "type": "array" }
+          ]
         },
         "w": {
           "description": "Set the element's width. Only accepts predefined size tokens.",

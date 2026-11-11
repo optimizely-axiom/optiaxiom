@@ -37,6 +37,12 @@ export type InputControlProps<
   ExtendProps<
     styles.ControlVariants & {
       /**
+       * The initial value of the input, when uncontrolled.
+       */
+      defaultValue?: ComponentPropsWithoutRef<
+        "input" | "textarea"
+      >["defaultValue"];
+      /**
        * Whether the input is disabled.
        */
       disabled?: boolean;
@@ -45,6 +51,11 @@ export type InputControlProps<
        * inside a Field component with an error prop.
        */
       error?: boolean;
+      /**
+       * The maximum number of characters allowed in a text input or textarea.
+       * Wrap it in a `Field` with `showCount` to show the character count.
+       */
+      maxLength?: ComponentPropsWithoutRef<"input" | "textarea">["maxLength"];
       /**
        * The name of the form control element.
        */
@@ -63,6 +74,10 @@ export type InputControlProps<
        * Whether selecting this input is required.
        */
       required?: ComponentPropsWithoutRef<"input" | "textarea">["required"];
+      /**
+       * The value of the input. Use with `onValueChange` to control it.
+       */
+      value?: ComponentPropsWithoutRef<"input" | "textarea">["value"];
     },
     P
   >
