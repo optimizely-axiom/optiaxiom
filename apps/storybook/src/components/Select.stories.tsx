@@ -221,7 +221,10 @@ export const DisabledItems: Story = {
 
     await userEvent.keyboard("{Enter}");
     await expect(canvas.getByRole("combobox")).toHaveTextContent("Starter");
-    await expect(screen.getByRole("listbox")).toBeVisible();
+    await expect(canvas.getByRole("combobox")).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
   },
 };
 

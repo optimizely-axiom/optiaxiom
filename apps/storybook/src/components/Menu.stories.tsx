@@ -926,7 +926,9 @@ export const DisabledItems: Story = {
 
     await userEvent.keyboard("{Enter}");
     await expect(args.options?.[1].execute).not.toHaveBeenCalled();
-    await expect(screen.getByRole("listbox")).toBeVisible();
+    await expect(
+      screen.getByRole("button", { name: "Actions" }),
+    ).toHaveAttribute("aria-expanded", "true");
   },
 };
 
