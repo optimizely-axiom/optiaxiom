@@ -1,10 +1,12 @@
+import type { ComponentPropsWithoutRef } from "react";
+
 import { describe, expect, it, vi } from "vitest";
 
 import { render, screen } from "../../vitest.rtl";
-import { Alert, type AlertProps } from "./Alert";
+import { Alert } from "./Alert";
 
 describe("Alert component", () => {
-  function setup(overrides: AlertProps = {}) {
+  function setup(overrides: ComponentPropsWithoutRef<typeof Alert> = {}) {
     return render(
       <Alert
         {...{

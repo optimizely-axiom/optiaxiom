@@ -1,12 +1,16 @@
+import type { ComponentPropsWithoutRef } from "react";
+
 import { describe, expect, it, vi } from "vitest";
 
 import { fireEvent, render, screen } from "../../vitest.rtl";
-import { Field, type FieldProps } from "../field";
-import { InlineInput, type InlineInputProps } from "./InlineInput";
+import { Field } from "../field";
+import { InlineInput } from "./InlineInput";
 
 describe("InlineInput component", () => {
   describe("outside a Field", () => {
-    function setup(overrides: Partial<InlineInputProps> = {}) {
+    function setup(
+      overrides: Partial<ComponentPropsWithoutRef<typeof InlineInput>> = {},
+    ) {
       return render(<InlineInput label="Title" {...overrides} />);
     }
 
@@ -34,7 +38,7 @@ describe("InlineInput component", () => {
   });
 
   describe("inside a Field", () => {
-    function setup(overrides: FieldProps = {}) {
+    function setup(overrides: ComponentPropsWithoutRef<typeof Field> = {}) {
       return render(
         <Field label="Task title" {...overrides}>
           <InlineInput label="Title" />

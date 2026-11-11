@@ -1,16 +1,24 @@
+import type { ComponentPropsWithoutRef } from "react";
+
 import { describe, expect, it, vi } from "vitest";
 
 import { render, screen } from "../../vitest.rtl";
 import { RichTextEditor } from "./RichTextEditor";
 
 describe("RichTextEditor component", () => {
+  function setup(
+    overrides: ComponentPropsWithoutRef<typeof RichTextEditor> = {},
+  ) {
+    return render(<RichTextEditor {...overrides} />);
+  }
+
   it("should render the editor with initial value", async () => {
-    render(<RichTextEditor defaultValue="<p>Hello world</p>" />);
+    setup({ defaultValue: "<p>Hello world</p>" });
     expect(await screen.findByText("Hello world")).toBeInTheDocument();
   });
 
   it("should render the toolbar when not read-only", async () => {
-    render(<RichTextEditor defaultValue="<p>Hi</p>" />);
+    setup({ defaultValue: "<p>Hi</p>" });
     expect(
       await screen.findByRole("button", { name: "Bold" }),
     ).toBeInTheDocument();
@@ -19,7 +27,7 @@ describe("RichTextEditor component", () => {
   });
 
   it("should hide the toolbar when read-only", async () => {
-    render(<RichTextEditor defaultValue="<p>Locked</p>" readOnly />);
+    setup({ defaultValue: "<p>Locked</p>", readOnly: true });
     expect(await screen.findByText("Locked")).toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "Bold" }),
@@ -28,9 +36,7 @@ describe("RichTextEditor component", () => {
 
   it("should toggle bold when the bold button is clicked", async () => {
     const onValueChange = vi.fn();
-    const { user } = render(
-      <RichTextEditor defaultValue="<p>x</p>" onValueChange={onValueChange} />,
-    );
+    const { user } = setup({ defaultValue: "<p>x</p>", onValueChange });
     const editor = screen.getByRole("textbox");
     await user.click(editor);
     await user.keyboard("{Control>}a{/Control}");
