@@ -1,7 +1,7 @@
 "use client";
 
+import { IconCheck } from "@optiaxiom/icons";
 import { Box, Field, Group, Input, Spinner } from "@optiaxiom/react";
-import { IconCheck } from "@tabler/icons-react";
 import { useRef, useState } from "react";
 
 const takenUsernames = ["admin", "user", "test"];
