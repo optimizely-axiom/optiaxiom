@@ -20,6 +20,9 @@ export type DataTableProps = BoxProps<
 /**
  * Easy to use table and datagrids built using [TanStack Table](https://tanstack.com/table/latest).
  *
+ * Pass `loading` and `empty` to `DataTableBody` to show a loading state while
+ * rows load and an empty state when there are no results.
+ *
  * @category data-display
  * @group DataTable
  * @since 1.4.0

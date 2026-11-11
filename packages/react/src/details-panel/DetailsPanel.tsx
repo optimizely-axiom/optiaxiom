@@ -11,7 +11,8 @@ const Slot = createSlot("@optiaxiom/react/DetailsPanel");
 export type DetailsPanelProps = BoxProps<"aside">;
 
 /**
- * Panel for showing additional content on the right side of the page.
+ * Side panel for showing additional content on the right side of the page. It
+ * sits in the page layout beside the main content; there is no overlay drawer.
  *
  * @group DetailsPanel
  * @since 1.6.0
