@@ -142,6 +142,12 @@ To implement manual server-side sorting we can use `manualSorting`. Then combine
 
 <Demo component="data-table/sorting-server-usage" />
 
+### List view
+
+A collection page combines a search input and filter menus above the table with a primary create action. Wire search to `globalFilter` and each menu to its column's filter value, add `getFilteredRowModel` and `getPaginationRowModel`, and TanStack resets to the first page whenever the criteria change. Put row commands in a trailing column behind one `EllipsisMenuButton`, and use `empty` to offer a way out when nothing matches.
+
+<Demo component="data-table/list-view-usage" />
+
 ### Expanding rows <Badge intent="primary">ALPHA</Badge>
 
 Follow the [expanding guide](https://tanstack.com/table/latest/docs/guide/expanding) to allow expanding and collapsing rows.
