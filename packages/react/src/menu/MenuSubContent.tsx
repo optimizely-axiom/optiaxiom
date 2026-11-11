@@ -20,7 +20,7 @@ import { MenuSubInput } from "./MenuSubInput";
 
 export type MenuSubContentProps = ExcludeProps<
   BoxProps<typeof PopoverContent>,
-  "alignOffset" | "maxH" | "minW" | "sideOffset"
+  "alignOffset" | "maxH" | "maxW" | "minW" | "sideOffset"
 >;
 
 export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(

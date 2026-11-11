@@ -13,12 +13,12 @@ export type ModalListboxProps = BoxProps<
 >;
 
 export const ModalListbox = forwardRef<HTMLDivElement, ModalListboxProps>(
-  ({ children, className, maxH, minW, ...props }, ref) => (
+  ({ children, className, maxH, maxW, minW, ...props }, ref) => (
     <Transition duration="sm" type="pop">
       <Paper asChild>
         <Listbox
           ref={ref}
-          {...styles.listbox({ maxH, minW }, className)}
+          {...styles.listbox({ maxH, maxW, minW }, className)}
           {...props}
         >
           {children}

@@ -4766,7 +4766,6 @@
         },
         "justifyItems": { "$ref": "#/definitions/SprinkleProp_justifyItems" },
         "m": { "$ref": "#/definitions/SprinkleProp_m" },
-        "maxW": { "$ref": "#/definitions/SprinkleProp_maxW" },
         "mb": { "$ref": "#/definitions/SprinkleProp_mb" },
         "minH": { "$ref": "#/definitions/SprinkleProp_minH" },
         "ml": { "$ref": "#/definitions/SprinkleProp_ml" },

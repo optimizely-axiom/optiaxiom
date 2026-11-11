@@ -68,7 +68,7 @@ export const DateRangePickerContent = forwardRef<
       <PopoverContent
         aria-labelledby={clsx(fieldLabelId ?? triggerRef.current?.id, labelId)}
         gap="8"
-        maxW={undefined}
+        maxW="full"
         ref={ref}
         {...props}
       >

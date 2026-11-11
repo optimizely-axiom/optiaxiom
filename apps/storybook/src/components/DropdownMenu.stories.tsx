@@ -219,6 +219,53 @@ export const Nested: Story = {
   },
 };
 
+export const NestedNarrowViewport: Story = {
+  args: {
+    children: (
+      <>
+        <DropdownMenuTrigger>Profile</DropdownMenuTrigger>
+
+        <DropdownMenuContent>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>Settings</DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem>
+                Privacy and data sharing preferences
+              </DropdownMenuItem>
+              <DropdownMenuItem>Security</DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+          <DropdownMenuItem>Logout</DropdownMenuItem>
+        </DropdownMenuContent>
+      </>
+    ),
+  },
+  globals: {
+    viewport: { value: "reflow" },
+  },
+  play: async () => {
+    await expect(window.innerWidth).toBe(320);
+    await waitFor(
+      async () =>
+        await expect(
+          screen.getByRole("menuitem", { name: "Settings" }),
+        ).not.toHaveStyle("pointer-events: none"),
+    );
+
+    await userEvent.hover(screen.getByRole("menuitem", { name: "Settings" }));
+    await waitFor(async () => {
+      const rect = screen
+        .getByRole("menuitem", { name: "Privacy and data sharing preferences" })
+        .closest("[role=menu]")!
+        .getBoundingClientRect();
+      // Radix parks the content above the viewport until it's positioned.
+      await expect(rect.top).toBeGreaterThanOrEqual(0);
+      await expect(rect.left).toBeGreaterThanOrEqual(0);
+      await expect(rect.right).toBeLessThanOrEqual(window.innerWidth);
+    });
+  },
+};
+
 export const TriggerWidth: Story = {
   render: (args) => (
     <Group gap="16">

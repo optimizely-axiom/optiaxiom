@@ -13,7 +13,10 @@ import { useDropdownMenuContext } from "./DropdownMenuContext";
 export type DropdownMenuContentProps = ExcludeProps<
   BoxProps<
     typeof RadixMenu.Content,
-    Pick<ComponentPropsWithoutRef<typeof ModalListbox>, "maxH" | "minW"> & {
+    Pick<
+      ComponentPropsWithoutRef<typeof ModalListbox>,
+      "maxH" | "maxW" | "minW"
+    > & {
       /**
        * Whether to show loading spinner inside the menu.
        */

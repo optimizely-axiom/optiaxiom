@@ -14,7 +14,10 @@ import { usePopoverScope } from "./usePopoverScope";
 export type PopoverContentProps = ExcludeProps<
   BoxProps<
     typeof RadixPopover.Content,
-    Pick<ComponentPropsWithoutRef<typeof ModalListbox>, "maxH" | "minW">
+    Pick<
+      ComponentPropsWithoutRef<typeof ModalListbox>,
+      "maxH" | "maxW" | "minW"
+    >
   >,
   | "arrowPadding"
   | "avoidCollisions"

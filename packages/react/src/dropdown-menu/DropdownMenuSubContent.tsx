@@ -12,7 +12,10 @@ import { useDropdownMenuSubContext } from "./DropdownMenuSubContext";
 export type DropdownMenuSubContentProps = ExcludeProps<
   BoxProps<
     typeof RadixMenu.SubContent,
-    Pick<ComponentPropsWithoutRef<typeof ModalListbox>, "maxH" | "minW">
+    Pick<
+      ComponentPropsWithoutRef<typeof ModalListbox>,
+      "maxH" | "maxW" | "minW"
+    >
   >,
   | "align"
   | "alignOffset"

@@ -30791,9 +30791,8 @@
           "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "maxW": {
-          "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.",
-          "enum": ["xs", "sm", "md", "lg", "full"],
-          "responsive": true
+          "description": "Whether to restrict the max-width of the content.\n\nContent is also restricted by the available width in the screen.",
+          "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "mb": {
           "description": "Set the element's bottom margin. Only accepts predefined spacing tokens.",
@@ -44651,9 +44650,8 @@
           "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "maxW": {
-          "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.",
-          "enum": ["xs", "sm", "md", "lg", "full"],
-          "responsive": true
+          "description": "Whether to restrict the max-width of the content.\n\nContent is also restricted by the available width in the screen.",
+          "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "mb": {
           "description": "Set the element's bottom margin. Only accepts predefined spacing tokens.",
@@ -48546,9 +48544,8 @@
           "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "maxW": {
-          "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.",
-          "enum": ["xs", "sm", "md", "lg", "full"],
-          "responsive": true
+          "description": "Whether to restrict the max-width of the content.\n\nContent is also restricted by the available width in the screen.",
+          "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "mb": {
           "description": "Set the element's bottom margin. Only accepts predefined spacing tokens.",
@@ -69572,9 +69569,8 @@
           "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "maxW": {
-          "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.",
-          "enum": ["xs", "sm", "md", "lg", "full"],
-          "responsive": true
+          "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.\nWhether to restrict the max-width of the content.\n\nContent is also restricted by the available width in the screen.",
+          "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "mb": {
           "description": "Set the element's bottom margin. Only accepts predefined spacing tokens.",
@@ -83851,9 +83847,8 @@
           "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "maxW": {
-          "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.",
-          "enum": ["xs", "sm", "md", "lg", "full"],
-          "responsive": true
+          "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.\nWhether to restrict the max-width of the content.\n\nContent is also restricted by the available width in the screen.",
+          "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "mb": {
           "description": "Set the element's bottom margin. Only accepts predefined spacing tokens.",
@@ -86233,9 +86228,8 @@
           "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "maxW": {
-          "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.",
-          "enum": ["xs", "sm", "md", "lg", "full"],
-          "responsive": true
+          "description": "Whether to restrict the max-width of the content.\n\nContent is also restricted by the available width in the screen.",
+          "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "mb": {
           "description": "Set the element's bottom margin. Only accepts predefined spacing tokens.",
@@ -94758,9 +94752,8 @@
           "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "maxW": {
-          "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.",
-          "enum": ["xs", "sm", "md", "lg", "full"],
-          "responsive": true
+          "description": "Whether to restrict the max-width of the content.\n\nContent is also restricted by the available width in the screen.",
+          "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "mb": {
           "description": "Set the element's bottom margin. Only accepts predefined spacing tokens.",
@@ -103839,9 +103832,8 @@
           "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "maxW": {
-          "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.",
-          "enum": ["xs", "sm", "md", "lg", "full"],
-          "responsive": true
+          "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.\nWhether to restrict the max-width of the content.\n\nContent is also restricted by the available width in the screen.",
+          "enum": ["xs", "sm", "md", "lg", "full"]
         },
         "mb": {
           "description": "Set the element's bottom margin. Only accepts predefined spacing tokens.",
