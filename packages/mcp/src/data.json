@@ -118436,7 +118436,7 @@
       "examples": []
     },
     "Time": {
-      "description": "A flexbox layout component for grouping items horizontally or vertically.",
+      "description": "Displays a date, and optionally its time, formatted for the current locale\ninside a semantic `<time>` element.",
       "import": "import { Time } from '@optiaxiom/react/unstable';",
       "name": "Time",
       "props": {
