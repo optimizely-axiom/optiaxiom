@@ -7,80 +7,91 @@ import { SelectContent } from "./SelectContent";
 import { SelectTrigger } from "./SelectTrigger";
 
 describe("Select component", () => {
-  function setup(overrides = {}) {
-    const onSubmit = vi.fn();
-    const props = {
-      onValueChange: vi.fn(),
-      options: [
-        { label: "English", value: "en" },
-        { label: "French", value: "fr" },
-        { label: "German", value: "de" },
-      ],
-      ...overrides,
-    };
+  describe("inside a Field", () => {
+    function setup(overrides = {}) {
+      const onSubmit = vi.fn();
+      const props = {
+        onValueChange: vi.fn(),
+        options: [
+          { label: "English", value: "en" },
+          { label: "French", value: "fr" },
+          { label: "German", value: "de" },
+        ],
+        ...overrides,
+      };
 
-    return {
-      ...render(
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            onSubmit(Object.fromEntries(new FormData(event.currentTarget)));
-          }}
-        >
-          <Field label="Language">
-            <Select name="language" {...props}>
-              <SelectTrigger placeholder="Select a language" />
-              <SelectContent />
-            </Select>
-          </Field>
-          <button type="submit">Save</button>
-        </form>,
-      ),
-      onSubmit,
-      onValueChange: props.onValueChange,
-    };
-  }
+      return {
+        ...render(
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              onSubmit(Object.fromEntries(new FormData(event.currentTarget)));
+            }}
+          >
+            <Field label="Language">
+              <Select name="language" {...props}>
+                <SelectTrigger placeholder="Select a language" />
+                <SelectContent />
+              </Select>
+            </Field>
+            <button type="submit">Save</button>
+          </form>,
+        ),
+        onSubmit,
+        onValueChange: props.onValueChange,
+      };
+    }
 
-  it("names the trigger by its aria-label and value outside a Field", () => {
-    render(
-      <Select
-        defaultValue="15"
-        options={["5", "15", "30"].map((value) => ({ label: value, value }))}
-      >
-        <SelectTrigger aria-label="Minutes" />
-      </Select>,
-    );
+    it("should select the clicked option and submit it with its form", async () => {
+      const { onSubmit, onValueChange, user } = setup();
 
-    expect(
-      screen.getByRole("combobox", { name: "Minutes 15" }),
-    ).toBeInTheDocument();
+      await user.click(
+        screen.getByRole("combobox", { name: "Language Select a language" }),
+      );
+      await user.click(await screen.findByRole("option", { name: "French" }));
+
+      expect(onValueChange).toHaveBeenCalledWith("fr");
+      expect(
+        screen.getByRole("combobox", { name: "Language French" }),
+      ).toBeInTheDocument();
+
+      await user.click(screen.getByRole("button", { name: "Save" }));
+      expect(onSubmit).toHaveBeenCalledWith({ language: "fr" });
+    });
+
+    it("should select an option with the keyboard", async () => {
+      const { onValueChange, user } = setup({ defaultValue: "en" });
+
+      await user.tab();
+      await user.keyboard("{Enter}");
+      expect(await screen.findByRole("listbox")).toBeInTheDocument();
+      await user.keyboard("{ArrowDown}{Enter}");
+
+      expect(onValueChange).toHaveBeenCalledWith("fr");
+    });
   });
 
-  it("should select the clicked option and submit it with its form", async () => {
-    const { onSubmit, onValueChange, user } = setup();
+  describe("outside a Field", () => {
+    function setup(overrides = {}) {
+      const props = {
+        defaultValue: "15",
+        options: ["5", "15", "30"].map((value) => ({ label: value, value })),
+        ...overrides,
+      };
 
-    await user.click(
-      screen.getByRole("combobox", { name: "Language Select a language" }),
-    );
-    await user.click(await screen.findByRole("option", { name: "French" }));
+      return render(
+        <Select {...props}>
+          <SelectTrigger aria-label="Minutes" />
+        </Select>,
+      );
+    }
 
-    expect(onValueChange).toHaveBeenCalledWith("fr");
-    expect(
-      screen.getByRole("combobox", { name: "Language French" }),
-    ).toBeInTheDocument();
+    it("names the trigger by its aria-label and value", () => {
+      setup();
 
-    await user.click(screen.getByRole("button", { name: "Save" }));
-    expect(onSubmit).toHaveBeenCalledWith({ language: "fr" });
-  });
-
-  it("should select an option with the keyboard", async () => {
-    const { onValueChange, user } = setup({ defaultValue: "en" });
-
-    await user.tab();
-    await user.keyboard("{Enter}");
-    expect(await screen.findByRole("listbox")).toBeInTheDocument();
-    await user.keyboard("{ArrowDown}{Enter}");
-
-    expect(onValueChange).toHaveBeenCalledWith("fr");
+      expect(
+        screen.getByRole("combobox", { name: "Minutes 15" }),
+      ).toBeInTheDocument();
+    });
   });
 });

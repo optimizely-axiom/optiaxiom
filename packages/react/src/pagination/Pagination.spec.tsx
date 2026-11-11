@@ -4,35 +4,41 @@ import { describe, expect, it, vi } from "vitest";
 import { render, screen, within } from "../../vitest.rtl";
 import { Pagination } from "./index";
 
-const orders = Array.from({ length: 50 }, (_, i) => `Order ${i + 1}`);
-const pageSize = 10;
-
-function Orders({ onPageChange }: { onPageChange?: (page: number) => void }) {
-  const [page, setPage] = useState(1);
-
-  return (
-    <>
-      <ul aria-label="Orders">
-        {orders.slice((page - 1) * pageSize, page * pageSize).map((order) => (
-          <li key={order}>{order}</li>
-        ))}
-      </ul>
-      <Pagination
-        onPageChange={(page) => {
-          setPage(page);
-          onPageChange?.(page);
-        }}
-        page={page}
-        total={orders.length / pageSize}
-      />
-    </>
-  );
-}
-
 describe("Pagination", () => {
-  it("shows the page the user clicks", async () => {
+  function setup() {
     const onPageChange = vi.fn();
-    const { user } = render(<Orders onPageChange={onPageChange} />);
+    const orders = Array.from({ length: 50 }, (_, i) => `Order ${i + 1}`);
+    const pageSize = 10;
+
+    function Orders() {
+      const [page, setPage] = useState(1);
+
+      return (
+        <>
+          <ul aria-label="Orders">
+            {orders
+              .slice((page - 1) * pageSize, page * pageSize)
+              .map((order) => (
+                <li key={order}>{order}</li>
+              ))}
+          </ul>
+          <Pagination
+            onPageChange={(page) => {
+              setPage(page);
+              onPageChange(page);
+            }}
+            page={page}
+            total={orders.length / pageSize}
+          />
+        </>
+      );
+    }
+
+    return { ...render(<Orders />), onPageChange };
+  }
+
+  it("shows the page the user clicks", async () => {
+    const { onPageChange, user } = setup();
 
     await user.click(screen.getByRole("button", { name: "page 3" }));
 
@@ -48,7 +54,7 @@ describe("Pagination", () => {
   });
 
   it("steps through pages with the next and previous buttons", async () => {
-    const { user } = render(<Orders />);
+    const { user } = setup();
 
     expect(
       screen.getByRole("button", { name: "Previous page" }),
