@@ -120165,7 +120165,7 @@
       },
       "since": "0.1.0",
       "category": ["provider", "feedback", "overlay"],
-      "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/toast-provider",
+      "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/toast",
       "examples": [
         {
           "code": [
