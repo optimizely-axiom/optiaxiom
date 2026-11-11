@@ -24141,6 +24141,20 @@
         {
           "code": [
             {
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data: [],\n    getCoreRowModel: getCoreRowModel(),\n  });\n\n  return (\n    <DataTable table={table}>\n      <DataTableBody empty=\"No payments yet.\" />\n    </DataTable>\n  );\n}\n",
+              "filename": "App.tsx"
+            },
+            {
+              "content": "import { createColumnHelper } from \"@tanstack/react-table\";\n\nconst columnHelper = createColumnHelper<{\n  amount: string;\n  firstName: string;\n  id: number;\n  lastName: string;\n}>();\n\nexport const columns = [\n  columnHelper.accessor(\"id\", {\n    header: \"ID\",\n    size: 60,\n  }),\n  columnHelper.accessor(\"firstName\", {\n    header: \"First Name\",\n  }),\n  columnHelper.accessor(\"lastName\", {\n    header: \"Last Name\",\n  }),\n  columnHelper.accessor(\"amount\", {\n    cell: ({ renderValue }) => `$${renderValue()}`,\n    header: \"Amount\",\n  }),\n];\n",
+              "filename": "columns.ts"
+            }
+          ],
+          "components": ["DataTable", "DataTableBody"],
+          "title": "empty-usage"
+        },
+        {
+          "code": [
+            {
               "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport {\n  getCoreRowModel,\n  getExpandedRowModel,\n  useReactTable,\n} from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n    getExpandedRowModel: getExpandedRowModel(),\n    getSubRows: (row) => row.items,\n  });\n  return (\n    <DataTable table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
               "filename": "App.tsx"
             },
@@ -25345,6 +25359,10 @@
             "inline-flex"
           ],
           "responsive": true
+        },
+        "empty": {
+          "description": "Content to show in a full-width row when the table has no rows and isn't\nloading.",
+          "tsType": "ReactNode"
         },
         "estimatedRowHeight": {
           "description": "The estimated height of rows in pixels when virtualization is enabled.",
