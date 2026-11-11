@@ -137,6 +137,9 @@ exactly one thing without dragging unrelated changes with it.
 - Text a component renders on its own (labels, placeholders, screen reader text) comes from
   `useMessages()`, keyed by its English text (`messages["Next page"]`). Add a new string to every
   catalog in `packages/react/src/locale/`; TypeScript fails if one misses a key.
+- Before opening a PR that adds or rewords translations, have a fresh subagent review them. Give it
+  the catalogs, where each string shows up (on screen, or only spoken by a screen reader) and the
+  catalog's existing phrasing to match, not your reasoning for the translations.
 
 **Housekeeping**
 
