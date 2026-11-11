@@ -43,6 +43,66 @@ export function extractAxiomImports(code) {
 }
 
 /**
+ * Map each `<Demo component="x/y" />` on a docs page to the heading it sits
+ * under and the prose that introduces it. The heading is the path below the
+ * page's `##` section (`Pagination > Client side`), or the section itself for
+ * a demo directly under it. When several demos share a heading, each gets the
+ * prose since the previous demo, falling back to the heading's own intro when
+ * there is none.
+ *
+ * @param {string} mdx - Docs page source
+ * @returns {Map<string, { description?: string; heading: string }>}
+ */
+export function parseDemoContext(mdx) {
+  /** @type {Map<string, { description?: string; heading: string }>} */
+  const context = new Map();
+  const tokens = mdx.matchAll(
+    /^(#{2,6})\s+(.+)$|<Demo\b[\s\S]*?\bcomponent="([^"]+)"[\s\S]*?\/>|^[ \t]*```[\s\S]*?^[ \t]*```/gm,
+  );
+
+  /** @type {string[]} */
+  const headings = [];
+  let intro = "";
+  let demosUnderHeading = 0;
+  let last = 0;
+  // Prose since the last heading or demo; code fences are skipped, not
+  // boundaries, so text on either side of a fence stays together.
+  let buffer = "";
+  for (const match of tokens) {
+    buffer += mdx.slice(last, match.index) + "\n\n";
+    last = match.index + match[0].length;
+    if (!match[1] && !match[3]) {
+      continue;
+    }
+    const prose = cleanProse(buffer);
+    buffer = "";
+
+    if (match[1]) {
+      const level = match[1].length;
+      headings.length = level - 1;
+      headings[level - 2] = cleanProse(match[2] ?? "");
+      intro = "";
+      demosUnderHeading = 0;
+    } else if (match[3]) {
+      if (demosUnderHeading++ === 0) {
+        intro = prose;
+      }
+      const description = prose || intro;
+      const heading =
+        headings.slice(1).filter(Boolean).join(" > ") || headings[0];
+      if (heading && !context.has(match[3])) {
+        context.set(match[3], {
+          ...(description && { description }),
+          heading,
+        });
+      }
+    }
+  }
+
+  return context;
+}
+
+/**
  * Parse demo files from apps/docs/demos/{component-name}/ folders
  * @param {string} componentName - The component name (will be converted to kebab-case)
  * @returns {Promise<Example[]>}
@@ -192,6 +252,43 @@ export function remToPx(rem) {
  */
 export function toKebabCase(str) {
   return str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+}
+
+/**
+ * Reduce a stretch of MDX prose to plain paragraphs: drop imports, JSX tags
+ * (keeping their text) and link targets. Inline code is kept verbatim so
+ * `<ButtonGroup />` survives, and list items keep their own lines.
+ *
+ * @param {string} value
+ */
+function cleanProse(value) {
+  return value
+    .replace(/^import .+$/gm, "")
+    .split(/(`[^`\n]*`)/)
+    .map((segment, index) =>
+      index % 2
+        ? segment
+        : segment
+            .replace(/<\/?[A-Za-z][^>]*>/g, "")
+            .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1"),
+    )
+    .join("")
+    .split(/\n\s*\n/)
+    .map((paragraph) =>
+      paragraph
+        .split("\n")
+        .map((line) => line.replace(/\s+/g, " ").trim())
+        .filter(Boolean)
+        .reduce(
+          (text, line) =>
+            !text
+              ? line
+              : `${text}${/^([-*]|\d+\.) /.test(line) ? "\n" : " "}${line}`,
+          "",
+        ),
+    )
+    .filter(Boolean)
+    .join("\n\n");
 }
 
 /**

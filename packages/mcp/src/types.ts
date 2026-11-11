@@ -76,7 +76,11 @@ export interface Example {
   code: ExampleFile[];
   /** Axiom component names imported in this example */
   components: string[];
-  /** Example title */
+  /** Docs prose introducing the example */
+  description?: string;
+  /** Docs heading the example sits under (e.g. "Pagination > Client side") */
+  heading?: string;
+  /** Example title (its demo folder name) */
   title: string;
 }
 

@@ -136,10 +136,7 @@ export function searchExamples({
         const matches = requested.filter(
           (c) => c === component.name || example.components.includes(c),
         ).length;
-        const queryMatches =
-          queryTerms?.filter((term) =>
-            example.title.toLowerCase().includes(term),
-          ).length ?? 0;
+        const queryMatches = scoreExampleQuery(example, queryTerms);
         return matches > 0 && (!queryTerms?.length || queryMatches > 0)
           ? [
               {
@@ -350,7 +347,7 @@ function calculateRelevanceScore({
 }
 
 /**
- * Rank examples by, in order: query terms matched in the title, requested
+ * Rank examples by, in order: query-term matches, requested
  * components the example contains, then the tie-breakers. Compared key by key
  * so a tie-breaker can never lift an example that covers fewer of the
  * requested components above one that covers more; only
@@ -365,6 +362,10 @@ function compareExamples(
     b.matches - a.matches ||
     b.tieBreak - a.tieBreak
   );
+}
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 /**
@@ -396,6 +397,27 @@ function promoteUsageDemos<
     start = end;
   }
   return result;
+}
+
+/**
+ * Weigh each query term by where it matches: the demo slug or the docs
+ * heading counts double a match only in the heading's intro prose, so an
+ * example named for the query outranks one that merely mentions it. Prose
+ * matches at word starts so "list" skips "listen".
+ */
+function scoreExampleQuery(example: Example, queryTerms?: string[]): number {
+  const name = `${example.title} ${example.heading ?? ""}`.toLowerCase();
+  const description = example.description?.toLowerCase() ?? "";
+  return (queryTerms ?? []).reduce(
+    (score, term) =>
+      score +
+      (name.includes(term)
+        ? 2
+        : new RegExp(`\\b${escapeRegExp(term)}`).test(description)
+          ? 1
+          : 0),
+    0,
+  );
 }
 
 function scoreExampleTieBreak(
