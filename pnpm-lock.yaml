@@ -169,7 +169,7 @@ patchedDependencies:
   '@vanilla-extract/sprinkles': 530004842e1937cf2ffe2728e2a18629c5dd638aa441e1158192285fcee2fe7e
   nextra-theme-docs: a391591b3ddb7fdaebf44d26ebcaa6ff78dad06cbb0ea8d21554d51de6d8b0d8
   react-docgen-typescript: 9f29f13ed1200787937c00d09629181fa03ff282ed42effecdf82ed5472f5d68
-  rolldown-plugin-dts: 0f8979c80994f4b5b1b767b1a47711d60f32905e839e8c87e3f25049daa76934
+  rolldown-plugin-dts: ac65b13515c62fe899c2e175a6b2d355982e9234a3e0326dac17ea84f708819f
 
 importers:
 
@@ -264,7 +264,7 @@ importers:
         version: 1.3.0
       rolldown-plugin-dts:
         specifier: ^0.30.1
-        version: 0.30.1(patch_hash=0f8979c80994f4b5b1b767b1a47711d60f32905e839e8c87e3f25049daa76934)(@typescript/typescript6@6.0.2)(oxc-resolver@11.23.0)(rolldown@1.3.0)
+        version: 0.30.1(patch_hash=ac65b13515c62fe899c2e175a6b2d355982e9234a3e0326dac17ea84f708819f)(@typescript/typescript6@6.0.2)(oxc-resolver@11.23.0)(rolldown@1.3.0)
       typescript:
         specifier: npm:@typescript/typescript6@^6.0.2
         version: '@typescript/typescript6@6.0.2'
@@ -17778,7 +17778,7 @@ snapshots:
 
   robust-predicates@3.0.2: {}
 
-  rolldown-plugin-dts@0.30.1(patch_hash=0f8979c80994f4b5b1b767b1a47711d60f32905e839e8c87e3f25049daa76934)(@typescript/typescript6@6.0.2)(oxc-resolver@11.23.0)(rolldown@1.3.0):
+  rolldown-plugin-dts@0.30.1(patch_hash=ac65b13515c62fe899c2e175a6b2d355982e9234a3e0326dac17ea84f708819f)(@typescript/typescript6@6.0.2)(oxc-resolver@11.23.0)(rolldown@1.3.0):
     dependencies:
       dts-resolver: 3.0.0(oxc-resolver@11.23.0)
       get-tsconfig: 5.0.0-beta.6
