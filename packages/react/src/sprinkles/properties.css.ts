@@ -274,6 +274,10 @@ export const unresponsiveProps = defineProperties({
 
     /**
      * Set the element's `overflow` CSS property
+     *
+     * Inside nested flex columns, every flex item between the scroll container
+     * and the fixed-height ancestor also needs `minH="0"`, or it grows to fit
+     * the content and nothing scrolls.
      */
     overflow: ["overflowX", "overflowY"],
 
@@ -496,6 +500,12 @@ export const responsiveProps = defineProperties({
      */
     maxWidth: maxSizes,
     /**
+     * Set the element's minimum height. `0` lets a flex item shrink below its
+     * content, e.g. so a flex column wrapping a scrolling list stays within its
+     * parent and the list scrolls; `auto` restores the default.
+     */
+    minHeight: ["0", "auto"] as const,
+    /**
      * Set the element's minimum width. `0` lets a flex item shrink below its
      * content, e.g. so a `Text` with `truncate` inside it can truncate; `auto`
      * restores the default.
@@ -523,6 +533,12 @@ export const responsiveProps = defineProperties({
      * Set the element's maximum width. Only accepts predefined maxSize tokens.
      */
     maxW: ["maxWidth"],
+    /**
+     * Set the element's minimum height. `0` lets a flex item shrink below its
+     * content, e.g. so a flex column wrapping a scrolling list stays within its
+     * parent and the list scrolls; `auto` restores the default.
+     */
+    minH: ["minHeight"],
     /**
      * Set the element's minimum width. `0` lets a flex item shrink below its
      * content, e.g. so a `Text` with `truncate` inside it can truncate; `auto`

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Flex, Text } from "@optiaxiom/react";
+import { Box, Flex, Text } from "@optiaxiom/react";
+import { expect } from "storybook/test";
 
 export default {
   component: Flex,
@@ -75,5 +76,32 @@ export const Grow: Story = {
     flexDirection: "row",
     flexWrap: "wrap",
     style: { width: "200px" },
+  },
+};
+
+export const ScrollInNestedColumn: Story = {
+  args: {
+    border: "1",
+    children: (
+      <>
+        <Text fontWeight="600">Assets</Text>
+        <Flex flex="1" minH="0">
+          <Box aria-label="Assets" overflow="auto" role="region" tabIndex={0}>
+            {Array.from({ length: 20 }, (_, i) => (
+              <Text key={i} py="4">
+                Asset {i + 1}
+              </Text>
+            ))}
+          </Box>
+        </Flex>
+      </>
+    ),
+    h: "224",
+    p: "16",
+    w: "224",
+  },
+  play: async ({ canvas }) => {
+    const list = canvas.getByRole("region", { name: "Assets" });
+    await expect(list.scrollHeight).toBeGreaterThan(list.clientHeight);
   },
 };
