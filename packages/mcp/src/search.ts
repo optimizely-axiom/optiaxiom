@@ -128,32 +128,38 @@ export function searchExamples({
       .map((c) => [c.name, c.deprecated as DeprecationInfo]),
   );
 
-  return data
+  const ranked = data
     .flatMap((component) =>
       (component.examples ?? []).flatMap((example) => {
-        const matches = requested.filter((c) =>
-          example.components.includes(c),
+        // A component's own demos match it even when their code reaches it
+        // indirectly (e.g. ToastProvider demos only import `toaster`).
+        const matches = requested.filter(
+          (c) => c === component.name || example.components.includes(c),
         ).length;
-        return matches > 0 &&
-          (!queryTerms?.length ||
-            queryTerms.some((term) =>
-              example.title.toLowerCase().includes(term),
-            ))
+        const queryMatches =
+          queryTerms?.filter((term) =>
+            example.title.toLowerCase().includes(term),
+          ).length ?? 0;
+        return matches > 0 && (!queryTerms?.length || queryMatches > 0)
           ? [
               {
                 component: component.name,
                 example,
                 matches,
+                queryMatches,
+                tieBreak: scoreExampleTieBreak(
+                  component.name,
+                  example,
+                  requested,
+                ),
               },
             ]
           : [];
       }),
     )
-    .map((entry) => ({
-      ...entry,
-      score: calculateExampleScore(entry, requested, queryTerms),
-    }))
-    .sort((a, b) => b.score - a.score)
+    .sort(compareExamples);
+
+  return promoteUsageDemos(ranked, requested)
     .slice(0, limit)
     .map(({ component, example }) => {
       const deprecated = example.components
@@ -256,43 +262,6 @@ export function searchTests({
     .map((entry) => entry.test);
 }
 
-function calculateExampleScore(
-  entry: {
-    component: string;
-    example: { components: string[]; title: string };
-    matches: number;
-  },
-  requested: string[],
-  queryTerms?: string[],
-): number {
-  let score = 0;
-
-  // Query match is the strongest signal — user explicitly asked for it
-  if (queryTerms?.length) {
-    const title = entry.example.title.toLowerCase();
-    const matched = queryTerms.filter((term) => title.includes(term)).length;
-    score += matched * 50;
-  }
-
-  // More requested components matched in the example
-  score += entry.matches * 20;
-
-  // Example is owned by a requested component (not just importing it)
-  if (requested.includes(entry.component)) {
-    score += 15;
-  }
-
-  // Canonical "usage" examples are the primary docs demos
-  if (entry.example.title === "usage") {
-    score += 10;
-  }
-
-  // Prefer focused examples (fewer unrelated components)
-  score -= entry.example.components.length;
-
-  return score;
-}
-
 function calculateRelevanceScore({
   deprecated,
   description,
@@ -376,6 +345,78 @@ function calculateRelevanceScore({
   if (deprecated) {
     score -= 20;
   }
+
+  return score;
+}
+
+/**
+ * Rank examples by, in order: query terms matched in the title, requested
+ * components the example contains, then the tie-breakers. Compared key by key
+ * so a tie-breaker can never lift an example that covers fewer of the
+ * requested components above one that covers more; only
+ * {@link promoteUsageDemos} does that, for usage demos.
+ */
+function compareExamples(
+  a: { matches: number; queryMatches: number; tieBreak: number },
+  b: { matches: number; queryMatches: number; tieBreak: number },
+): number {
+  return (
+    b.queryMatches - a.queryMatches ||
+    b.matches - a.matches ||
+    b.tieBreak - a.tieBreak
+  );
+}
+
+/**
+ * Keep each requested component's own `usage` demo in view: within each run
+ * of equal query matches, the best-ranked example leads, then those usage
+ * demos in the order the components were requested, then the rest. A usage
+ * demo the query filtered out is never added back.
+ */
+function promoteUsageDemos<
+  T extends { component: string; example: Example; queryMatches: number },
+>(ranked: T[], requested: string[]): T[] {
+  const result: T[] = [];
+  for (let start = 0; start < ranked.length;) {
+    let end = start;
+    while (ranked[end]?.queryMatches === ranked[start]?.queryMatches) {
+      end++;
+    }
+    const [best, ...rest] = ranked.slice(start, end);
+    const usage = [...new Set(requested)].flatMap((name) =>
+      rest.filter(
+        (entry) => entry.component === name && entry.example.title === "usage",
+      ),
+    );
+    result.push(
+      ...(best ? [best] : []),
+      ...usage,
+      ...rest.filter((entry) => !usage.includes(entry)),
+    );
+    start = end;
+  }
+  return result;
+}
+
+function scoreExampleTieBreak(
+  component: string,
+  example: Example,
+  requested: string[],
+): number {
+  let score = 0;
+
+  // Example is owned by a requested component (not just importing it)
+  if (requested.includes(component)) {
+    score += 15;
+  }
+
+  // Canonical "usage" examples are the primary docs demos
+  if (example.title === "usage") {
+    score += 10;
+  }
+
+  // Prefer focused examples (fewer unrelated components)
+  score -= example.components.length;
 
   return score;
 }
