@@ -36,7 +36,7 @@ jobs:
           fi
 
   # Private workspaces only: which packages and how far each moves is in
-  # packages/shared/bin/update-dev-deps.mjs.
+  # packages/shared/bin/update-deps.mjs.
   dev:
     needs: busy
     if: ${{ needs.busy.outputs.busy == 'false' }}
@@ -63,7 +63,7 @@ jobs:
       - name: Bump dev dependencies
         env:
           PNPM_CONFIG_MINIMUM_RELEASE_AGE_STRICT: "true"
-        run: node packages/shared/bin/update-dev-deps.mjs
+        run: node packages/shared/bin/update-deps.mjs
 
       # A bumped patched package whose patch no longer applies fails the
       # install. The PR still opens with the bump, naming the patch for an agent
@@ -107,7 +107,7 @@ jobs:
           finish='pnpm install, pnpm -F icons... -F proteus... -F web-components... -F mcp... build and pnpm lint'
           {
             cat <<'EOF'
-          Automated by `packages/shared/bin/update-dev-deps.mjs`: bumps every package that never reaches consumers, `^0.x` ranges to latest and other ranges within range. Exact pins and runtime dependencies of published packages stay put.
+          Automated by `packages/shared/bin/update-deps.mjs`: bumps the dependencies of the root, apps and shared, `^0.x` ranges to latest and other ranges within range. Exact pins and anything named in a published manifest stay put.
 
           EOF
             if [ -n "$PATCH" ]; then
