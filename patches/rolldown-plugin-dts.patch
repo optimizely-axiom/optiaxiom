@@ -1,13 +1,22 @@
 diff --git a/dist/index.mjs b/dist/index.mjs
-index 35d0f3433d586855feaeee40f905fe7c5f7a7ba5..cdb221a5662ef640c6341231666d71f739a2b0e8 100644
+index f086bb27666807ff5ebe12cc8b7d43dc516d9e5d..cd667e895ecc598a03fd0676df3c8c3c870dbbef 100644
 --- a/dist/index.mjs
 +++ b/dist/index.mjs
-@@ -234,7 +234,7 @@ const spawnAsync = (...args) => new Promise((resolve, reject) => {
+@@ -83,7 +83,7 @@ function tryLoadTsgoApi(moduleUrl, compiler = "tsgo") {
+ * @deprecated Remove together with the CLI backend in the next minor.
+ */
+ function isLegacyTsgo(moduleUrl) {
+-	return moduleUrl != null && moduleUrl === getDefaultTsgoModuleUrl() && !!getPackageInfo("typescript")?.version.startsWith("7.0.") && !tryLoadTsgoApi(moduleUrl);
++	return moduleUrl != null && moduleUrl === getDefaultTsgoModuleUrl() && !!(getPackageInfo("@typescript/native") ?? getPackageInfo("typescript"))?.version.startsWith("7.0.") && !tryLoadTsgoApi(moduleUrl);
+ }
+ function loadTsgoApi(moduleUrl, logger, compiler = "tsgo") {
+ 	moduleUrl ??= getDefaultTsgoModuleUrl(compiler);
+@@ -297,7 +297,7 @@ const spawnAsync = (...args) => new Promise((resolve, reject) => {
  let tsgoPathCache;
  function resolveTsgoPath(logger) {
  	if (tsgoPathCache) return tsgoPathCache;
--	const pkgName = isTS70Installed() ? "typescript" : "@typescript/native-preview";
-+	const pkgName = isTS70Installed() ? "typescript" : tryResolve("@typescript/native/package.json") ? "@typescript/native" : "@typescript/native-preview";
- 	const pkgJsonPath = tryResolve(`${pkgName}/package.json`);
- 	if (!pkgJsonPath) throw new Error("TypeScript Go is not installed. Please install the `typescript@7.0` or `@typescript/native-preview` package to use the `tsgo` generator.");
+-	const pkgJsonPath = tryResolve("typescript/package.json");
++	const pkgJsonPath = tryResolve("@typescript/native/package.json") ?? tryResolve("typescript/package.json");
+ 	if (!pkgJsonPath) throw new Error("TypeScript Go is not installed. Please install the `typescript@7.0` package to use the `tsgo` generator.");
  	const { version } = require(pkgJsonPath);
+ 	logger.info(`Emit types with ${styleText("underline", `typescript@${version}`)}`);
