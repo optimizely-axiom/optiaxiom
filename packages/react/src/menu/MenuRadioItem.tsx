@@ -17,10 +17,9 @@ export const MenuRadioItem = forwardRef<HTMLDivElement, MenuRadioItemProps>(
         <ListboxRadioItem
           addonBefore={resolveItemProperty(props.item.addon, { inputValue })}
           asChild
-          description={
-            resolveItemProperty(props.item.disabledReason) ||
-            resolveItemProperty(props.item.description, { inputValue })
-          }
+          description={resolveItemProperty(props.item.description, {
+            inputValue,
+          })}
         >
           <Comp {...(props.item.href && { href: props.item.href })}>
             {children}

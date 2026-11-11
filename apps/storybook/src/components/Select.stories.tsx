@@ -133,26 +133,6 @@ export const Disabled: Story = {
   },
 };
 
-export const DisabledItems: Story = {
-  args: {
-    defaultValue: undefined,
-    options: [
-      { description: "Monthly billing", label: "Starter", value: "starter" },
-      {
-        description: "Annual billing",
-        disabledReason: "Requires an admin",
-        label: "Enterprise",
-        value: "enterprise",
-      },
-    ],
-  },
-  play: async () => {
-    await expect(
-      await screen.findByRole("option", { name: "Enterprise" }),
-    ).toHaveAccessibleDescription("Requires an admin");
-  },
-};
-
 const groups = {
   fruits: { label: "Fruits", separator: true },
   meats: { label: "Meats", priority: 10, separator: true },

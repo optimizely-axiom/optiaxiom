@@ -892,38 +892,6 @@ export const SwitchItem: Story = {
   },
 };
 
-export const DisabledItems: Story = {
-  args: {
-    children: (
-      <>
-        <MenuTrigger>Actions</MenuTrigger>
-        <MenuContent />
-      </>
-    ),
-    options: [
-      { description: "Change name and folder", label: "Edit details" },
-      {
-        description: "Create a copy of this template",
-        disabledReason: "Save your changes first",
-        label: "Duplicate",
-      },
-      {
-        disabledReason: "Used by a contract",
-        intent: "danger",
-        label: "Delete",
-      },
-    ],
-  },
-  play: async () => {
-    await expect(
-      await screen.findByRole("option", { name: "Duplicate" }),
-    ).toHaveAccessibleDescription("Save your changes first");
-    await expect(
-      screen.getByRole("option", { name: "Delete" }),
-    ).toHaveAccessibleDescription("Used by a contract");
-  },
-};
-
 export const SearchRank: Story = {
   args: {
     children: (
