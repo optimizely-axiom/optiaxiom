@@ -13,6 +13,21 @@ async function connect(server: ReturnType<typeof createServer>) {
   return client;
 }
 
+async function getPatterns(args: Record<string, unknown>) {
+  const client = await connect(createServer());
+  const result = await client.callTool({
+    arguments: args,
+    name: "get_patterns",
+  });
+  await client.close();
+  return JSON.parse(
+    (result.content as Array<{ text: string }>)[0].text,
+  ) as Array<{
+    code: Array<{ content: string; filename: string }>;
+    title: string;
+  }>;
+}
+
 describe("createServer", () => {
   it("lets a host connect one server per request concurrently", async () => {
     const a = createServer();
@@ -142,5 +157,49 @@ describe("createServer", () => {
     expect(required).toBeUndefined();
 
     await client.close();
+  });
+});
+
+describe("get_patterns", () => {
+  it("leads with an example using every requested component", async () => {
+    const [first] = await getPatterns({ components: "Menu LabelMenuButton" });
+
+    for (const tag of [/<Menu[\s>]/, /<LabelMenuButton[\s/>]/]) {
+      expect(first.code.some(({ content }) => tag.test(content))).toBe(true);
+    }
+  });
+
+  it("keeps each requested component's usage example", async () => {
+    const results = await getPatterns({ components: "Field Input Button" });
+
+    expect(results.map(({ title }) => title)).toEqual(
+      expect.arrayContaining(["Field/usage", "Input/usage", "Button/usage"]),
+    );
+  });
+
+  it("finds a component's own examples even when they don't import it", async () => {
+    const results = await getPatterns({
+      components: "AlertDialog",
+      query: "managed",
+    });
+
+    expect(results.map(({ title }) => title)).toEqual(
+      expect.arrayContaining(["AlertDialog/managed-usage"]),
+    );
+  });
+
+  it("puts a component's own usage example first", async () => {
+    const results = await getPatterns({ components: "Select" });
+
+    expect(results[0].title).toBe("Select/usage");
+  });
+
+  it("returns only examples matching the query", async () => {
+    const results = await getPatterns({ components: "Input", query: "addon" });
+
+    expect(results.length).toBeGreaterThan(0);
+    for (const { title } of results) {
+      expect(title).toMatch(/^Input\/.*addon/);
+    }
   });
 });
