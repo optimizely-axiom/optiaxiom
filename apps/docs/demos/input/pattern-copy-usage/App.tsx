@@ -1,7 +1,7 @@
 "use client";
 
+import { IconCheck, IconCopy } from "@optiaxiom/icons";
 import { Button, Field, Input } from "@optiaxiom/react";
-import { IconCheck, IconCopy } from "@tabler/icons-react";
 import { useState } from "react";
 
 export function App() {
