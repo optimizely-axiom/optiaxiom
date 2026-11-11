@@ -68,6 +68,42 @@ globalThis.ResizeObserver ??= class {
 };
 ```
 
+### Don't answer every matchMedia query with false
+
+jsdom doesn't implement `window.matchMedia`, and Axiom doesn't need it: without it, responsive components render their desktop layout.
+
+A common stub answers every query with `matches: false`. Axiom reads that as a screen narrower than the `sm` breakpoint, so components render their mobile layout instead. `Menu` opens as a dialog, and its sub-menus don't open on hover, so tests written against the desktop menu fail.
+
+Remove the stub if nothing else in your tests needs it. Otherwise answer width queries against the window width, which jsdom sets to 1024px:
+
+```ts
+const matchesWidth = (query: string) => {
+  const bounds = [
+    ...query.matchAll(/\((min|max)-width:\s*([\d.]+)(px|em|rem)\)/g),
+  ];
+  return (
+    bounds.length > 0 &&
+    bounds.every(([, bound, value, unit]) => {
+      const px = Number(value) * (unit === "px" ? 1 : 16);
+      return bound === "min"
+        ? window.innerWidth >= px
+        : window.innerWidth <= px;
+    })
+  );
+};
+
+window.matchMedia = (query) => ({
+  addEventListener: () => {},
+  addListener: () => {},
+  dispatchEvent: () => false,
+  matches: matchesWidth(query),
+  media: query,
+  onchange: null,
+  removeEventListener: () => {},
+  removeListener: () => {},
+});
+```
+
 ## Jest
 
 ### Mock CSS imports

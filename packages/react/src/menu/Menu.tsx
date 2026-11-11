@@ -50,7 +50,7 @@ export type MenuProps = ExcludeProps<
        */
       placeholder?: string;
       /**
-       * Whether to show a small popover or a dialog. Defaults to popover on large screens and dialog on mobile screens.
+       * Whether to show a small popover or a dialog on screens at least as wide as the `sm` breakpoint. Defaults to popover. Narrower screens always show a dialog.
        */
       size?: "lg" | "sm";
     }
