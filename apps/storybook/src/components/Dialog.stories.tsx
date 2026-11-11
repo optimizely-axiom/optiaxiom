@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { IconExpand } from "@optiaxiom/icons";
 import {
+  AxiomProvider,
   Box,
   Button,
   Dialog,
@@ -26,7 +27,11 @@ import {
   Text,
   Textarea,
 } from "@optiaxiom/react";
-import { dialogkit, SurfaceProvider } from "@optiaxiom/react/unstable";
+import {
+  createDialogKit,
+  dialogkit,
+  SurfaceProvider,
+} from "@optiaxiom/react/unstable";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,
@@ -459,5 +464,35 @@ export const ConfirmFromInside: Story = {
         </DialogBody>
       </DialogContent>
     </Dialog>
+  ),
+};
+
+const kit = createDialogKit();
+
+export const CustomKit: Story = {
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Delete" }));
+    await userEvent.click(
+      await screen.findByRole("button", { name: "Cancel" }),
+    );
+
+    await waitFor(() =>
+      expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument(),
+    );
+  },
+  render: () => (
+    <AxiomProvider dialog={{ kit }}>
+      <Button
+        onClick={() =>
+          kit.confirm({
+            action: "Delete",
+            body: "This item will be permanently deleted.",
+            header: "Delete item?",
+          })
+        }
+      >
+        Delete
+      </Button>
+    </AxiomProvider>
   ),
 };

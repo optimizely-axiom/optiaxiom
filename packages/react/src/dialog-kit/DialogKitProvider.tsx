@@ -28,7 +28,7 @@ export function DialogKitProvider({ kit = dialogkit }: DialogKitProviderProps) {
                 return;
               }
 
-              dialogkit.remove(item.id);
+              kit.remove(item.id);
             },
           }}
         >
