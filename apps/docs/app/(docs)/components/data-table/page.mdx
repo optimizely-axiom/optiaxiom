@@ -196,6 +196,16 @@ Columns will be virtualized when there are more than 20 columns in a table and r
 
 <PropsTable component="DataTableLabel" />
 
+## Accessibility
+
+### Labels
+
+- Put `DataTableLabel` in each row's primary cell. It names the row and its selection checkbox for screen readers.
+
+### Keyboard navigation
+
+- Mark one `DataTableAction` per row as `primary` to enable arrow key navigation between rows and actions.
+
 ## Changelog
 
 ### 1.5.0

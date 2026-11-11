@@ -28,7 +28,7 @@ Use the `size` prop to modify the size of the button.
 
 Set the `disabled` prop to `true` to disable buttons and prevent any interactions.
 
-For accessibility please make sure to include text that explains why the button is disabled or use a tooltip.
+Include visible text that explains why it's disabled: a disabled button leaves the tab order, so keyboard and screen reader users can't reach a tooltip on it.
 
 <Demo component="button/disabled-usage" />
 
@@ -99,6 +99,17 @@ We can create a simple file upload button by rendering the button as a `label` a
 ### ButtonGroup
 
 <PropsTable component="ButtonGroup" />
+
+## Accessibility
+
+### Labels
+
+- Give an icon only button an `aria-label`, since it has no visible text. Button logs a console error when the label is missing.
+- A disabled button leaves the tab order, so keyboard and screen reader users can't reach a tooltip on it. Explain why it's disabled in visible text nearby.
+
+### Loading
+
+`loading` marks the button `aria-busy` and keeps it focusable and clickable. Ignore repeat clicks in your handler when the action shouldn't run twice.
 
 ## Changelog
 

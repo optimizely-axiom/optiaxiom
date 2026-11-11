@@ -28,7 +28,7 @@ Use the `onDismiss` prop to show a close button inside the pill.
 
 Set the `disabled` prop to `true` to disable pills and prevent any interactions.
 
-For accessibility please make sure to include text that explains why the button is disabled or use a tooltip.
+Include visible text that explains why it's disabled: a disabled pill leaves the tab order, so keyboard and screen reader users can't reach a tooltip on it.
 
 <Demo component="pill/disabled-usage" />
 
@@ -51,6 +51,12 @@ Use the `<PillGroup />` component to group related pills together.
 ### PillGroup
 
 <PropsTable component="PillGroup" />
+
+## Accessibility
+
+### Labels
+
+- A disabled pill leaves the tab order. Explain why it's disabled in visible text nearby.
 
 ## Changelog
 
