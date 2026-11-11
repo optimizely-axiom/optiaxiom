@@ -160,11 +160,43 @@ jobs:
   # required check, so test runs after a failed shard and fails.
   test:
     if: ${{ !cancelled() && (github.event_name == 'pull_request' || github.repository_owner == 'optimizely-axiom') }}
-    needs: test-shard
+    needs: [test-react-17, test-shard]
     runs-on: ubuntu-latest
     steps:
-      - if: ${{ needs.test-shard.result != 'success' }}
+      - if: ${{ needs.test-shard.result != 'success' || needs.test-react-17.result != 'success' }}
         run: exit 1
+
+  # The peer range reaches back to React 16.14, and a dependency bump can break
+  # React 16/17 while every React 18 spec passes (see "Pinned dependencies" in
+  # packages/react/README.md).
+  test-react-17:
+    env:
+      LC_ALL: en_US.UTF-8
+    if: ${{ github.event_name == 'pull_request' || github.repository_owner == 'optimizely-axiom' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          cache: pnpm
+          node-version-file: .node-version
+
+      - run: pnpm install --trust-lockfile
+
+      # Installed into the react package the way a consumer installs them, so
+      # pnpm resolves Radix and the other dependencies against React 17.
+      # Testing Library 12 pairs with dom 8, which user-event then shares.
+      - run: pnpm add -D react@^17.0.2 react-dom@^17.0.2 @testing-library/react@^12.1.5 @testing-library/dom@^8 --filter @optiaxiom/react
+
+      - run: pnpm -F icons -F globals build
+
+      - run: pnpm -F @optiaxiom/react exec vitest run --config vitest.react17.config.ts
+        timeout-minutes: 3
 
   test-shard:
     env:
