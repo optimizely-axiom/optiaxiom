@@ -99142,7 +99142,7 @@
       ]
     },
     "Sortable": {
-      "description": "Basic building blocks for sortable interfaces.",
+      "description": "Basic building blocks for sortable interfaces.\n\nRequires React 18 or later: the underlying `@dnd-kit/react` calls React 18\nAPIs, so it throws on React 16 and 17.",
       "import": "import { Sortable } from '@optiaxiom/react/unstable';",
       "name": "Sortable",
       "props": {
@@ -100088,6 +100088,7 @@
           ],
           "components": ["Sortable", "SortableItem"],
           "title": "usage",
+          "description": "`Sortable` requires React 18 or later. The underlying `@dnd-kit/react` calls React 18 APIs, so it throws on React 16 and 17.",
           "heading": "Usage"
         }
       ]

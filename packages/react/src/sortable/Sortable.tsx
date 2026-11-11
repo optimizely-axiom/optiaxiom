@@ -59,6 +59,9 @@ type List = Exclude<SortableItemProps["item"], string>[] | string[];
 /**
  * Basic building blocks for sortable interfaces.
  *
+ * Requires React 18 or later: the underlying `@dnd-kit/react` calls React 18
+ * APIs, so it throws on React 16 and 17.
+ *
  * @group Sortable
  * @category actions
  * @since 1.5.0
