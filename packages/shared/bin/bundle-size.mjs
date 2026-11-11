@@ -31,22 +31,49 @@ const readReport = async (file) =>
   );
 
 /**
+ * monosize's `exports` map exposes only its CLI, which reads reports from its
+ * own storage adapters and can't filter entries, so the comparison and
+ * reporters are imported from its `dist` by file URL.
+ *
+ * @param {string} module path under monosize's `dist`, without extension
+ */
+const importMonosize = (module) =>
+  import(
+    new URL(`dist/${module}.mjs`, import.meta.resolve("monosize/package.json"))
+      .href
+  );
+
+/**
+ * Give each entry a single-type breakdown so monosize's reporters don't flag
+ * every changed entry as missing one.
+ *
+ * @param {Awaited<ReturnType<typeof readReport>>} report
+ * @returns {import("monosize").BundleSizeReport}
+ */
+const toMonosizeReport = (report) =>
+  report.map((value) => ({
+    ...value,
+    assets: {
+      js: { gzippedSize: value.gzippedSize, minifiedSize: value.minifiedSize },
+    },
+    path: value.name,
+  }));
+
+/**
  * @param {{ file: string; head?: string }} options
+ * @returns {Promise<Array<import("monosize").BundleSizeReportEntry & {
+ *    diff: { empty: boolean; minified: { delta: number } };
+ * }>>}
  */
 async function compare({ file, head }) {
   const localReport = head ? await readReport(head) : await measure();
   const remoteReport = await readReport(file);
-  const { compareResultsInReports } =
-    await import("monosize/src/utils/compareResultsInReports.mjs");
+  const { compareResultsInReports } = await importMonosize(
+    "utils/compareResultsInReports",
+  );
   return compareResultsInReports(
-    localReport.map((value) => ({
-      ...value,
-      path: value.name,
-    })),
-    remoteReport.map((value) => ({
-      ...value,
-      path: value.name,
-    })),
+    toMonosizeReport(localReport),
+    toMonosizeReport(remoteReport),
     {
       size: 10,
       type: "percent",
@@ -195,8 +222,8 @@ void yargs(hideBin(process.argv))
       );
       const reporter =
         output === "cli"
-          ? (await import("monosize/src/reporters/cliReporter.mjs")).cliReporter
-          : (await import("monosize/src/reporters/markdownReporter.mjs"))
+          ? (await importMonosize("reporters/cliReporter")).cliReporter
+          : (await importMonosize("reporters/markdownReporter"))
               .markdownReporter;
       reporter(report, {
         commitSHA: `${process.env.GITHUB_SHA}`,
