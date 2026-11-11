@@ -258,6 +258,7 @@
     "**/.claude/worktrees/**",
     "**/.next/**",
     "**/.playwright-mcp/**",
+    "apps/docs/stackblitz/**",
     "**/components/demo/demos.d.ts",
     "**/dist/**",
     "**/lib/**",
