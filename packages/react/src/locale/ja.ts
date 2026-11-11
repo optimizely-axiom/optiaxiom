@@ -13,6 +13,7 @@ const messages: Messages = {
   Cancel: "キャンセル",
   "change month": "月を変更",
   "change year": "年を変更",
+  "Character limit reached": "文字数の上限に達しました",
   "Check to select": "チェックして選択",
   "Check to unselect": "チェックを外して選択解除",
   Clear: "クリア",
@@ -79,6 +80,7 @@ const messages: Messages = {
   Unknown: "不明",
   "Upload failed": "アップロードに失敗しました",
   "Why this was suggested": "この提案の理由",
+  "{count} of {max} characters": (count, max) => `${count}/${max}文字`,
   "{label} dropped at position {position} of {count}.": (
     label,
     position,

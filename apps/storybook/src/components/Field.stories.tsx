@@ -13,6 +13,7 @@ import {
 import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 import { action } from "storybook/actions";
+import { expect, userEvent } from "storybook/test";
 
 export default {
   args: {
@@ -118,6 +119,67 @@ export const WithTextarea: Story = {
     label: "Label",
     required: true,
   },
+};
+
+export const MaxLength: Story = {
+  args: {
+    children: <Textarea maxLength={20} placeholder="Enter text..." />,
+    description: "Shown on the card",
+    showCount: true,
+    w: "224",
+  },
+  play: async ({ canvas }) => {
+    const textarea = canvas.getByRole("textbox");
+    await expect(textarea).toHaveAccessibleDescription(
+      "Shown on the card 0 of 20 characters",
+    );
+
+    await userEvent.type(textarea, "A".repeat(25));
+    await expect(textarea).toHaveValue("A".repeat(20));
+    await expect(canvas.getByRole("status")).toHaveTextContent(
+      "Character limit reached",
+    );
+  },
+};
+
+export const MaxLengthControlled: Story = {
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Clear" }));
+    await expect(canvas.getByRole("textbox")).toHaveAccessibleDescription(
+      "0 of 30 characters",
+    );
+  },
+  render: function MaxLengthControlled(args) {
+    const [value, setValue] = useState("Quarterly launch plan");
+
+    return (
+      <Group alignItems="end" gap="8">
+        <Field {...args} label="Title" showCount w="224">
+          <Input maxLength={30} onValueChange={setValue} value={value} />
+        </Field>
+        <Button onClick={() => setValue("")}>Clear</Button>
+      </Group>
+    );
+  },
+};
+
+export const MaxLengthFormReset: Story = {
+  play: async ({ canvas }) => {
+    const textarea = canvas.getByRole("textbox");
+    await userEvent.type(textarea, "Draft");
+    await userEvent.click(canvas.getByRole("button", { name: "Reset" }));
+    await expect(textarea).toHaveAccessibleDescription("0 of 20 characters");
+  },
+  render: (args) => (
+    <Group asChild flexDirection="column" gap="8">
+      <form>
+        <Field {...args} label="Note" showCount w="224">
+          <Textarea maxLength={20} />
+        </Field>
+        <Button type="reset">Reset</Button>
+      </form>
+    </Group>
+  ),
 };
 
 export const WithMessageSuggestion: Story = {

@@ -1,5 +1,6 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { createSlot } from "@radix-ui/react-slot";
+import { useLayoutEffect } from "@radix-ui/react-use-layout-effect";
 import clsx from "clsx";
 import {
   type ChangeEvent,
@@ -18,6 +19,15 @@ import { useInputContext } from "./InputContext";
 import * as styles from "./InputControl.css";
 
 const Slot = createSlot("@optiaxiom/react/InputControl");
+
+const countableTypes = new Set([
+  "email",
+  "password",
+  "search",
+  "tel",
+  "text",
+  "url",
+]);
 
 export type InputControlProps<
   T extends ElementType = "input" | "textarea",
@@ -83,13 +93,51 @@ export const InputControl = forwardRef<
     const disabled = props.disabled;
     const readOnly = props.readOnly;
 
-    const { descriptionId, error, errorId, inputId } = useFieldContext(
-      "@optiaxiom/react/InputControl",
-    );
+    const { countId, descriptionId, error, errorId, inputId, onCountChange } =
+      useFieldContext("@optiaxiom/react/InputControl");
     const { boxProps, restProps } = extractBoxProps(props);
 
     const { inputRef } = useInputContext("@optiaxiom/react/InputControl");
     const ref = useComposedRefs(inputRef, outerRef);
+
+    // Browsers ignore `maxLength` on other input types.
+    const { type } = restProps as ComponentPropsWithoutRef<"input">;
+    const maxLength =
+      type === undefined || countableTypes.has(type)
+        ? restProps.maxLength
+        : undefined;
+    const controlled = props.value !== undefined;
+    useLayoutEffect(() => {
+      const input = inputRef.current;
+      if (!input || !onCountChange || maxLength === undefined) {
+        return;
+      }
+
+      const sync = () =>
+        onCountChange({ length: input.value.length, maxLength });
+      sync();
+
+      // `reset` fires before the form restores the values.
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const onReset = () => {
+        timer = setTimeout(sync);
+      };
+      const form = input.form;
+      form?.addEventListener("reset", onReset);
+      return () => {
+        clearTimeout(timer);
+        form?.removeEventListener("reset", onReset);
+        onCountChange(undefined);
+      };
+    }, [inputRef, maxLength, onCountChange]);
+    useLayoutEffect(() => {
+      if (controlled && maxLength !== undefined) {
+        onCountChange?.({
+          length: inputRef.current?.value.length ?? 0,
+          maxLength,
+        });
+      }
+    }, [controlled, inputRef, maxLength, onCountChange, props.value]);
 
     const surface = useSurface("property");
     const { track } = surface ?? {};
@@ -101,7 +149,9 @@ export const InputControl = forwardRef<
     return (
       <Box
         aria-describedby={
-          errorId || descriptionId ? clsx(errorId, descriptionId) : undefined
+          errorId || descriptionId || (countId && maxLength !== undefined)
+            ? clsx(errorId, descriptionId, maxLength !== undefined && countId)
+            : undefined
         }
         aria-disabled={disabled}
         aria-invalid={error || errorProp ? true : undefined}
@@ -132,6 +182,11 @@ export const InputControl = forwardRef<
             ) {
               const newValue = event.target.value;
               onValueChange?.(newValue);
+              // A controlled parent may reject the change, so its count
+              // follows `value` instead.
+              if (!controlled && maxLength !== undefined) {
+                onCountChange?.({ length: newValue.length, maxLength });
+              }
 
               if (!surface?.manualSuggestion) {
                 debouncedTrack?.(newValue);
