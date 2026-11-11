@@ -1,4 +1,4 @@
-import { IconGallery } from "@/components";
+import { Demo, IconGallery } from "@/components";
 
 # Icons
 
@@ -41,3 +41,19 @@ import { IconTrashCan } from "@optiaxiom/icons";
 
 <IconTrashCan filled />;
 ```
+
+### Color
+
+Icons fill with `currentColor`, so they take the color of the text around them.
+
+An icon inside a component such as `Button` inherits the component's color, so don't color it yourself:
+
+<Demo component="icons/component-usage" />
+
+To color an icon together with its label, set `color` on the `Group` that lays them out:
+
+<Demo component="icons/inherit-color-usage" />
+
+To color an icon on its own, wrap it in `Box asChild` with a `color` token:
+
+<Demo component="icons/color-usage" />
