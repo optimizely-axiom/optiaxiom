@@ -45,6 +45,18 @@ const mapPositionToSwipeDirection = {
  * by default - you only need to use this component directly for advanced
  * customization. Use `toaster.create()` to display toast messages.
  *
+ * A toast briefly confirms something that already happened, like "Changes
+ * saved". It closes on its own, so nothing can depend on the user reading it or
+ * clicking its action, and whatever the action does must be reachable
+ * elsewhere too. Toasts with an action stay open 1.5× the provider's
+ * `duration`. Don't use a toast for:
+ *
+ * - Undo windows that hold a change back: apply the change right away and make
+ *   the action restore it, without a confirmation dialog beforehand.
+ * - Progress on running work: show it on the control that started it, with
+ *   `Button` `loading` or an inline `Spinner`.
+ * - Long or persistent messages: use `Banner` or `Alert`.
+ *
  * @category provider
  * @category feedback
  * @category overlay

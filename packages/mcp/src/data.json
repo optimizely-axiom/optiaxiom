@@ -117829,7 +117829,7 @@
       "examples": []
     },
     "ToastProvider": {
-      "description": "Provider component for toast notifications. This is included in AxiomProvider\nby default - you only need to use this component directly for advanced\ncustomization. Use `toaster.create()` to display toast messages.",
+      "description": "Provider component for toast notifications. This is included in AxiomProvider\nby default - you only need to use this component directly for advanced\ncustomization. Use `toaster.create()` to display toast messages.\n\nA toast briefly confirms something that already happened, like \"Changes\nsaved\". It closes on its own, so nothing can depend on the user reading it or\nclicking its action, and whatever the action does must be reachable\nelsewhere too. Toasts with an action stay open 1.5× the provider's\n`duration`. Don't use a toast for:\n\n- Undo windows that hold a change back: apply the change right away and make\n  the action restore it, without a confirmation dialog beforehand.\n- Progress on running work: show it on the control that started it, with\n  `Button` `loading` or an inline `Spinner`.\n- Long or persistent messages: use `Banner` or `Alert`.",
       "entryPoint": "@optiaxiom/react/toast",
       "import": "import { ToastProvider } from '@optiaxiom/react';",
       "name": "ToastProvider",
