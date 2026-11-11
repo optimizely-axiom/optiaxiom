@@ -136,6 +136,14 @@ Use the `onOpenChange` handler to trigger the nested callback instead of an expl
 
 ## Accessibility
 
+### Labels
+
+- Render a `DialogHeader`: its children become the dialog's accessible name. Use its `description` prop to add an accessible description.
+
+### Focus
+
+Focus moves into the dialog when it opens, stays inside while it's open, and returns to the trigger, or the element focused before it opened, when it closes.
+
 ### Keyboard interactions
 
 <KeyboardTable

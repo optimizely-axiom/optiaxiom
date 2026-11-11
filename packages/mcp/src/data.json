@@ -12899,7 +12899,7 @@
           ],
           "components": ["Button", "Group", "Tooltip"],
           "title": "disabled-usage",
-          "description": "Set the `disabled` prop to `true` to disable buttons and prevent any interactions.\n\nFor accessibility please make sure to include text that explains why the button is disabled or use a tooltip.",
+          "description": "Set the `disabled` prop to `true` to disable buttons and prevent any interactions.\n\nInclude visible text that explains why it's disabled: a disabled button leaves the tab order, so keyboard and screen reader users can't reach a tooltip on it.",
           "heading": "Disabled state"
         },
         {
@@ -13009,7 +13009,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Labels\n\n- Give an icon only button an `aria-label`, since it has no visible text. Button logs a console error when the label is missing.\n- A disabled button leaves the tab order, so keyboard and screen reader users can't reach a tooltip on it. Explain why it's disabled in visible text nearby.\n\n### Loading\n\n`loading` marks the button `aria-busy` and keeps it focusable and clickable. Ignore repeat clicks in your handler when the action shouldn't run twice."
     },
     "ButtonGroup": {
       "description": "ButtonGroup component from Axiom Design System",
@@ -24613,7 +24614,8 @@
           "description": "Table automatically uses virtualized rendering when rows and columns cross a certain threshold to improve rendering performance.\n\nColumns will be virtualized when there are more than 20 columns in a table and rows will be virtualized when there are more than 20 rows rendered or if columns are also being virtualized.",
           "heading": "Virtualized"
         }
-      ]
+      ],
+      "accessibility": "### Labels\n\n- Put `DataTableLabel` in each row's primary cell. It names the row and its selection checkbox for screen readers.\n\n### Keyboard navigation\n\n- Mark one `DataTableAction` per row as `primary` to enable arrow key navigation between rows and actions."
     },
     "DataTableAction": {
       "description": "DataTableAction component from Axiom Design System",
@@ -35390,7 +35392,7 @@
           "heading": "Usage"
         }
       ],
-      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space`, `Enter` | When focus is on `DialogTrigger`, opens the dialog. |\n| `Esc` | Closes the dialog and moves focus to `DialogTrigger`. |"
+      "accessibility": "### Labels\n\n- Render a `DialogHeader`: its children become the dialog's accessible name. Use its `description` prop to add an accessible description.\n\n### Focus\n\nFocus moves into the dialog when it opens, stays inside while it's open, and returns to the trigger, or the element focused before it opened, when it closes.\n\n### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space`, `Enter` | When focus is on `DialogTrigger`, opens the dialog. |\n| `Esc` | Closes the dialog and moves focus to `DialogTrigger`. |"
     },
     "DialogBody": {
       "description": "DialogBody component from Axiom Design System",
@@ -52245,7 +52247,8 @@
           "description": "Wrap your actual input controls with `Field` to show additional context for the input.",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Labels and errors\n\nField automatically handles accessibility attributes for you:\n\n- Associates labels with inputs using `htmlFor` and `id`\n- Connects error and description text using `aria-describedby`\n- Generates unique IDs for labels and inputs\n\nYou can override the auto-generated IDs using the `inputId` and `labelId` props if needed for custom integrations."
     },
     "FieldLabel": {
       "description": "FieldLabel component from Axiom Design System",
@@ -81662,7 +81665,7 @@
           ],
           "components": ["Pill", "Tooltip"],
           "title": "disabled-usage",
-          "description": "Set the `disabled` prop to `true` to disable pills and prevent any interactions.\n\nFor accessibility please make sure to include text that explains why the button is disabled or use a tooltip.",
+          "description": "Set the `disabled` prop to `true` to disable pills and prevent any interactions.\n\nInclude visible text that explains why it's disabled: a disabled pill leaves the tab order, so keyboard and screen reader users can't reach a tooltip on it.",
           "heading": "Disabled state"
         },
         {
@@ -81712,7 +81715,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Labels\n\n- A disabled pill leaves the tab order. Explain why it's disabled in visible text nearby."
     },
     "PillGroup": {
       "description": "PillGroup component from Axiom Design System",
@@ -90879,7 +90883,7 @@
           "heading": "Usage"
         }
       ],
-      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `ArrowUp`, `ArrowLeft` | Increments by the `step` value. |\n| `ArrowDown`, `ArrowRight` | Decrements by the `step` value. |\n| `PageUp`, `PageDown` | Increments/decrements by a larger step value. |\n| `Home` | Sets the value to its minimum. |\n| `End` | Sets the value to its maximum. |"
+      "accessibility": "### Labels\n\n- Wrap Range in `Field` for a visible label, or pass `aria-label` when there isn't one.\n\n### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `ArrowUp`, `ArrowLeft` | Increments by the `step` value. |\n| `ArrowDown`, `ArrowRight` | Decrements by the `step` value. |\n| `PageUp`, `PageDown` | Increments/decrements by a larger step value. |\n| `Home` | Sets the value to its minimum. |\n| `End` | Sets the value to its maximum. |"
     },
     "RichTextEditor": {
       "description": "Rich text editor with a toolbar for basic formatting (bold, italic, lists, links).",
@@ -100199,7 +100203,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Announcements\n\n- While an item is dragged, screen readers announce its name and new position. Pass items as `{ id, label }` objects when the IDs aren't readable."
     },
     "SortableGroup": {
       "description": "SortableGroup component from Axiom Design System",
@@ -120210,7 +120215,8 @@
           "description": "Use `toaster.create()` to add toasts. The method takes two arguments `message` and `options`.",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Announcements\n\n- Toasts are announced to screen readers when they appear. Keep the message short and self-contained.\n- Keyboard users press `F8` to move focus to the toasts. The timer pauses while focus or the pointer is on a toast.\n- A toast closes on its own, so keep whatever its action does reachable elsewhere too."
     },
     "ToggleButton": {
       "description": "`ToggleButton` component represents a button that can be toggled on or off.",
@@ -121026,7 +121032,7 @@
           ],
           "components": ["ToggleButton", "Tooltip"],
           "title": "disabled-usage",
-          "description": "Set the `disabled` prop to `true` to disable buttons and prevent any interactions.\n\nFor accessibility please make sure to include text that explains why the button is disabled or use a tooltip.",
+          "description": "Set the `disabled` prop to `true` to disable buttons and prevent any interactions.\n\nInclude visible text that explains why it's disabled: a disabled button leaves the tab order, so keyboard and screen reader users can't reach a tooltip on it.",
           "heading": "Disabled state"
         },
         {
@@ -121039,7 +121045,7 @@
           "components": ["ToggleButton", "Tooltip"],
           "title": "tooltip-usage",
           "description": "When using icon only buttons please make sure to always include an `aria-label` prop for screen readers and optionally use tooltips to visually denote the button's intent.",
-          "heading": "Accessibility"
+          "heading": "Icon only"
         },
         {
           "code": [
@@ -121052,7 +121058,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Labels\n\n- Give an icon only toggle button an `aria-label`. ToggleButton exposes its state with `aria-pressed`, so keep the label the same in both states.\n- A disabled toggle button leaves the tab order. Explain why it's disabled in visible text nearby."
     },
     "Tooltip": {
       "description": "Popup with brief information shown when user interacts with an element using\nkeyboard focus or mouse hover.\n\nKeep content to a short plain-text label of a few words. For longer, rich or\ninteractive help use Popover opened from a labelled button instead: a\ntooltip closes when the pointer moves onto it and doesn't open on tap.\n\nThe child must be focusable or contain a focusable element, otherwise\nkeyboard users can't open the tooltip.",
@@ -121922,7 +121929,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Trigger and content\n\n- The trigger must be focusable or contain a focusable element, since keyboard users open the tooltip by focusing it.\n- Keep content to a short plain-text label. A tooltip doesn't open on tap and closes when the pointer moves onto it, so put longer or interactive help in a [Popover](https://optimizely-axiom.github.io/optiaxiom/components/popover/)."
     },
     "TooltipProvider": {
       "description": "Provider component for tooltips. This is included in AxiomProvider by default - you only need to use this component directly for advanced customization.",

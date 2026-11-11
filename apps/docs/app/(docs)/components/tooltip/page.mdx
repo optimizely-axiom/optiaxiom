@@ -52,6 +52,13 @@ Use the `delayDuration` prop to control how long to wait to open the tooltip aft
 ### TooltipProvider
 <PropsTable component="TooltipProvider" />
 
+## Accessibility
+
+### Trigger and content
+
+- The trigger must be focusable or contain a focusable element, since keyboard users open the tooltip by focusing it.
+- Keep content to a short plain-text label. A tooltip doesn't open on tap and closes when the pointer moves onto it, so put longer or interactive help in a [Popover](/components/popover/).
+
 ## Changelog
 
 ### 0.1.0

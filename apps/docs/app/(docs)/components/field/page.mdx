@@ -66,16 +66,6 @@ Field works with any form input component, not just Input.
 
 <Demo component="field/different-inputs-usage" />
 
-### Accessibility
-
-Field automatically handles accessibility attributes for you:
-
-- Associates labels with inputs using `htmlFor` and `id`
-- Connects error and description text using `aria-describedby`
-- Generates unique IDs for labels and inputs
-
-You can override the auto-generated IDs using the `inputId` and `labelId` props if needed for custom integrations.
-
 ### Common Patterns
 
 Here are some common real-world patterns using Field:
@@ -91,6 +81,18 @@ Here are some common real-world patterns using Field:
 ### Field
 
 <PropsTable component="Field" />
+
+## Accessibility
+
+### Labels and errors
+
+Field automatically handles accessibility attributes for you:
+
+- Associates labels with inputs using `htmlFor` and `id`
+- Connects error and description text using `aria-describedby`
+- Generates unique IDs for labels and inputs
+
+You can override the auto-generated IDs using the `inputId` and `labelId` props if needed for custom integrations.
 
 ## Changelog
 
