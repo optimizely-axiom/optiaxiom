@@ -33,8 +33,8 @@ function App() {
 Use your favorite CDN to import the package:
 
 ```html
+<!-- Make sure to replace `latest` with a fixed version number. -->
 <script
-  <!-- Make sure to replace `latest` with a fixed version number. -->
   src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/index.js"
   type="module"
 ></script>
@@ -53,8 +53,9 @@ Wrap your application with `ax-axiom-provider` element and then use all componen
 By default the index entry of the library lazy loads components to avoid loading the full bundle on page load.
 
 ```html
+<!-- `index.js` entry -->
 <script
-  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/index.js" <!-- `index.js` entry -->
+  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/index.js"
   type="module"
 ></script>
 
@@ -84,8 +85,9 @@ function App() {
 #### CDN
 
 ```html
+<!-- `Button.js` entry -->
 <script
-  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/components/Button.js" <!-- `Button.js` entry -->
+  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/components/Button.js"
   type="module"
 ></script>
 
