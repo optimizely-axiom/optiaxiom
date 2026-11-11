@@ -80,7 +80,7 @@ const messages: Messages = {
   Unknown: "不明",
   "Upload failed": "アップロードに失敗しました",
   "Why this was suggested": "この提案の理由",
-  "{count} of {max} characters": (count, max) => `${count}/${max}文字`,
+  "{count} of {max} characters": (count, max) => `${max}文字中${count}文字`,
   "{label} dropped at position {position} of {count}.": (
     label,
     position,
