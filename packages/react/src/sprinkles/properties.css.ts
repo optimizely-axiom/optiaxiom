@@ -37,9 +37,11 @@ const colors = <P extends string>(prefix: P) =>
     Object.fromEntries(
       Object.entries(theme.colors).filter(([name]) => name.startsWith(prefix)),
     ) as {
-      [Key in keyof typeof theme.colors as Key extends `${P}${string}`
-        ? Key
-        : never]: (typeof theme.colors)[Key];
+      [
+        Key in keyof typeof theme.colors as Key extends `${P}${string}`
+          ? Key
+          : never
+      ]: (typeof theme.colors)[Key];
     },
     {
       current: "currentColor",

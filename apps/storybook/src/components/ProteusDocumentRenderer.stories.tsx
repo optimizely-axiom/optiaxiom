@@ -3385,13 +3385,11 @@ function createTasks(data: Record<string, unknown>): Record<string, unknown> {
     ? (data.selection as Array<Record<string, unknown>>)
     : [];
   const base = (data.nextRef as number) ?? 47;
-  const created = selection.map(
-    (row, index): Record<string, unknown> => ({
-      ...row,
-      ref: `TSK-${base + index}`,
-      url: `https://cmp.example.com/tasks/TSK-${base + index}`,
-    }),
-  );
+  const created = selection.map((row, index): Record<string, unknown> => ({
+    ...row,
+    ref: `TSK-${base + index}`,
+    url: `https://cmp.example.com/tasks/TSK-${base + index}`,
+  }));
   const createdNames = new Set(created.map((row) => row.name));
   const tasks = Array.isArray(data.tasks)
     ? (data.tasks as Array<Record<string, unknown>>)
