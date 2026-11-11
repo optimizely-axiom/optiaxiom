@@ -19,6 +19,9 @@ import {
   searchTests,
 } from "./search.js";
 
+const propsNote = `Each prop definition uses JSON Schema keywords: \`type\`, \`enum\` for literal values, \`anyOf\` for unions, \`items\` for array elements, \`properties\` and \`required\` for the fields of object types like options, \`additionalProperties\` for the values of records keyed by any string, \`default\`, \`description\`. \`tsType\` holds the TypeScript type where JSON Schema can't express it (functions, ReactNode, generics).
+Props marked \`responsive: true\` also accept per-breakpoint values: an object like \`{ base: "16", sm: "32" }\` or an array in \`[base, sm, md]\` order. Breakpoint widths come from get_tokens({ categories: ['breakpoints'] }).`;
+
 const testHelperNote = `These tests use the repo's custom render helper, imported as \`../../vitest.rtl\` (packages/react/vitest.rtl.ts). It differs from stock @testing-library/react in two ways you must preserve when writing new tests:
 1. \`render()\` automatically wraps the tree in \`AxiomProvider\` — Axiom components rely on this context, so never wrap them yourself.
 2. \`render()\` returns \`{ user }\` (a configured \`userEvent\` instance) in addition to the usual RTL result — use \`const { user } = render(...)\` for interactions instead of calling \`userEvent.setup()\`.
@@ -58,17 +61,11 @@ export function createServer() {
 
 Use the \`import\` statement. \`entryPoint\` names the component's own entry point; use it instead only when the project imports from entry points (e.g. a lint rule bans the \`@optiaxiom/react\` barrel). Never mix both styles in one project.
 
-Use the optional "props" parameter to search for specific props by name or description. Searches both component-specific props and style props — you don't need to know shorthand names, just describe what you want (e.g., "padding" finds the "p" prop).
-
-Each prop definition uses JSON Schema keywords: \`type\`, \`enum\` for literal values, \`anyOf\` for unions, \`items\` for array elements, \`properties\` and \`required\` for the fields of object types like options, \`additionalProperties\` for the values of records keyed by any string, \`default\`, \`description\`. \`tsType\` holds the TypeScript type where JSON Schema can't express it (functions, ReactNode, generics). \`required\` lists every prop that must be passed, whether or not the props query matched it.
-
-Props marked \`responsive: true\` also accept per-breakpoint values: an object like \`{ base: "16", sm: "32" }\` or an array in \`[base, sm, md]\` order. Breakpoint widths come from get_tokens({ categories: ['breakpoints'] }).
+Use the optional "props" parameter to search for specific props by name or description. Searches both component-specific props and style props — you don't need to know shorthand names, just describe what you want (e.g., "padding" finds the "p" prop). \`required\` lists every prop that must be passed, whether or not the props query matched it.
 
 Examples:
   get_component({ name: "Dialog" }) → description, import, sub-components, prop names, required props
-  get_component({ name: "Button", props: "appearance size" }) → + matching prop definitions
-  get_component({ name: "Box", props: "padding background" }) → + p and bg prop definitions
-  get_component({ name: "Select", props: "options" }) → + options, with each SelectOption field`,
+  get_component({ name: "Box", props: "padding background" }) → + p and bg prop definitions`,
       inputSchema: {
         name: z
           .string()
@@ -77,7 +74,7 @@ Examples:
           .string()
           .optional()
           .describe(
-            "Search query to find specific props by name or description (e.g., 'appearance size', 'loading', 'padding background'). Omit to get just the component description, import, and sub-components without any props.",
+            "Props to return definitions for, by name or description (e.g., 'loading', 'padding background'). Omit for prop names only.",
           ),
       },
       title: "Get Component",
@@ -111,6 +108,7 @@ Examples:
               examples: component.examples?.map((e) => e.title),
               import: component.import,
               name: component.name,
+              note: props ? propsNote : undefined,
               props: props ?? Object.keys(component.props),
               required: component.required?.length
                 ? component.required
@@ -139,7 +137,7 @@ Examples:
           .number()
           .optional()
           .default(5)
-          .describe("Maximum results to return (default: 5)"),
+          .describe("Maximum results to return"),
         query: z
           .string()
           .optional()
@@ -186,7 +184,6 @@ Returns real examples that demonstrate component composition (which sub-componen
 
 Examples:
   get_patterns({ components: "Field Input Button" }) → examples showing forms with fields and buttons
-  get_patterns({ components: "Dialog" }) → examples showing full Dialog composition with sub-components
   get_patterns({ components: "Input", query: "addon" }) → examples showing Input with addons`,
       inputSchema: {
         components: z
@@ -200,7 +197,7 @@ Examples:
           .max(10)
           .optional()
           .default(5)
-          .describe("Maximum number of examples to return (default: 5)."),
+          .describe("Maximum number of examples to return."),
         query: z
           .string()
           .optional()
@@ -238,11 +235,7 @@ Examples:
 These reference tests show how this repo renders components, queries them by role and accessible name, and asserts accessibility (ARIA roles, labels) and interactions. The response also includes a note explaining the custom \`vitest.rtl\` render helper the tests rely on (auto-wraps in AxiomProvider and returns a \`user\` for interactions) — match it when writing new tests. For test setup in an app (providers, animations, cleanup, jsdom stubs) or locating components in Playwright tests, use get_guides({ names: "test-environments" }).
 
 Examples:
-  get_tests({ components: "Alert" }) → the Alert spec showing role="alert" and dismiss-button assertions
-  get_tests({ components: "Button" }) → role/name queries, click + disabled + loading interactions
-  get_tests({ components: "Tooltip" }) → hover/focus interactions and accessible-name assertions
-  get_tests({ components: "Menu" }) → open, pick by click or keyboard, filter and sub-menus (items are role "option")
-  get_tests({ components: "Select" }) → pick by Field label, keyboard selection and form submission
+  get_tests({ components: "Menu" }) → the Menu spec: open, pick by click or keyboard, filter
   get_tests() → list all available reference test files (and the helper note)`,
       inputSchema: {
         components: z
@@ -258,7 +251,7 @@ Examples:
           .optional()
           .default(5)
           .describe(
-            "Maximum number of reference tests to return when searching by component (default: 5). Ignored when listing all tests.",
+            "Maximum number of reference tests to return when searching by component. Ignored when listing all tests.",
           ),
       },
       title: "Get Tests",
@@ -330,7 +323,7 @@ Examples:
           .number()
           .optional()
           .default(10)
-          .describe("Maximum results to return (default: 10)"),
+          .describe("Maximum results to return"),
         query: z
           .string()
           .describe(
@@ -368,9 +361,7 @@ Examples:
       description: `Get setup, configuration, and integration guides for the Axiom Design System. Refer to these when setting up Axiom, importing its CSS, configuring CSS layers, using icons, integrating Axiom into a host app, or setting up tests and locating components in them (unit or Playwright) — instead of guessing the setup steps.
 
 Examples:
-  get_guides({ names: "getting-started" }) → the getting-started guide content
   get_guides({ names: "css-imports css-layers" }) → both CSS setup guides
-  get_guides({ names: "test-environments" }) → test setup (AxiomProvider, animations off, cleanup, jsdom stubs) and locating components by role
   get_guides() → list all available guides (names + titles)`,
       inputSchema: {
         names: z

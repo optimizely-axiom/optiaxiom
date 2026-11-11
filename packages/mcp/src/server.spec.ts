@@ -54,6 +54,26 @@ describe("createServer", () => {
     await client.close();
   });
 
+  it("explains the prop definition format only alongside prop definitions", async () => {
+    const client = await connect(createServer());
+
+    const [names, definitions] = await Promise.all(
+      [{ name: "Box" }, { name: "Box", props: "padding" }].map(async (args) =>
+        JSON.parse(
+          (
+            (await client.callTool({ arguments: args, name: "get_component" }))
+              .content as Array<{ text: string }>
+          )[0].text,
+        ),
+      ),
+    );
+
+    expect(names).not.toHaveProperty("note");
+    expect(definitions.note).toContain("responsive: true");
+
+    await client.close();
+  });
+
   it("lists required props among the requested prop definitions", async () => {
     const client = await connect(createServer());
 
