@@ -50671,7 +50671,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/button"
     },
     "Field": {
-      "description": "Wrapper for inputs to provide context such as label/help/required etc.\n\nSize the `Field` (for example with `w`), not the input inside it. The input\nstretches to the field's width, so the description and error line up with\nit.",
+      "description": "Wrapper for inputs to provide context such as label/help/required etc.\n\nSize the `Field` (for example with `w`), not the input inside it. The input\nstretches to the field's width, so the description, error and character\ncount line up with it.\n\nWhen the input sets `maxLength`, add `showCount` so users see how close they\nare to the limit. Typing otherwise stops at the limit with no feedback.",
       "entryPoint": "@optiaxiom/react/field",
       "import": "import { Field } from '@optiaxiom/react';",
       "name": "Field",
@@ -51359,6 +51359,10 @@
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
           "enum": ["none", "sm", "md", "lg", "xl"]
         },
+        "showCount": {
+          "description": "Show the input's character count against its `maxLength`.",
+          "type": "boolean"
+        },
         "size": {
           "description": "Set the element's width and height. Only accepts predefined size tokens.\n\nWhen width and height are the same, use `size` instead of setting both\n`w` and `h` separately (e.g., prefer `size=\"24\"` over `w=\"24\" h=\"24\"`).",
           "enum": [
@@ -51505,6 +51509,16 @@
           ],
           "components": ["Field", "Input"],
           "title": "info-usage"
+        },
+        {
+          "code": [
+            {
+              "content": "import { Field, Textarea } from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Field description=\"Shown on the card\" label=\"Summary\" showCount w=\"384\">\n      <Textarea maxLength={120} placeholder=\"Enter a summary...\" />\n    </Field>\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": ["Field", "Textarea"],
+          "title": "max-length-usage"
         },
         {
           "code": [
@@ -62804,7 +62818,7 @@
       ]
     },
     "Input": {
-      "description": "Basic text field for capturing user input.",
+      "description": "Basic text field for capturing user input.\n\nWith `maxLength`, wrap it in a `Field` with `showCount` to show the\ncharacter count.",
       "entryPoint": "@optiaxiom/react/input",
       "import": "import { Input } from '@optiaxiom/react';",
       "name": "Input",
@@ -63706,7 +63720,7 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { Field, Input } from \"@optiaxiom/react\";\nimport { useState } from \"react\";\n\nexport function App() {\n  const [value, setValue] = useState(\"\");\n  const maxLength = 50;\n\n  return (\n    <Field\n      description={`${value.length}/${maxLength}`}\n      label=\"Project description\"\n    >\n      <Input\n        maxLength={maxLength}\n        onValueChange={setValue}\n        placeholder=\"Enter description...\"\n        value={value}\n      />\n    </Field>\n  );\n}\n",
+              "content": "import { Field, Input } from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Field label=\"Project description\" showCount>\n      <Input maxLength={50} placeholder=\"Enter description...\" />\n    </Field>\n  );\n}\n",
               "filename": "App.tsx"
             }
           ],
@@ -116141,7 +116155,7 @@
       ]
     },
     "Textarea": {
-      "description": "Multi-line text field for capturing user input.",
+      "description": "Multi-line text field for capturing user input.\n\nWith `maxLength`, wrap it in a `Field` with `showCount` to show the\ncharacter count.",
       "entryPoint": "@optiaxiom/react/textarea",
       "import": "import { Textarea } from '@optiaxiom/react';",
       "name": "Textarea",

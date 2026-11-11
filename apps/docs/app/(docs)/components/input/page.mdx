@@ -107,7 +107,7 @@ Use the `appearance` prop to select between the different input appearances.
 
 ### Character limit
 
-Use the `maxLength` prop to limit the number of characters users can enter. Combine with a character counter in the Field description for better UX.
+Use the `maxLength` prop to limit the number of characters users can enter. Enable `showCount` on the surrounding `Field` to show a [character count](/components/field/#character-count).
 
 <Demo component="input/maxlength-usage" />
 
@@ -158,6 +158,10 @@ Wrap Input in `Field` to connect it to its label, description and error message:
 />
 
 ## Changelog
+
+### 3.6.0
+
+- `maxLength` can show a [character count](/components/field/#character-count) through `Field`'s `showCount`
 
 ### 0.1.0
 

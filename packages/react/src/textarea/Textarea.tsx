@@ -47,6 +47,9 @@ export type TextareaProps = InputControlProps<
 /**
  * Multi-line text field for capturing user input.
  *
+ * With `maxLength`, wrap it in a `Field` with `showCount` to show the
+ * character count.
+ *
  * @category form
  * @since 0.1.0
  */

@@ -13,6 +13,7 @@ const messages: Messages = {
   Cancel: "Annuler",
   "change month": "changer de mois",
   "change year": "changer d’année",
+  "Character limit reached": "Limite de caractères atteinte",
   "Check to select": "Cocher pour sélectionner",
   "Check to unselect": "Décocher pour désélectionner",
   Clear: "Effacer",
@@ -79,6 +80,8 @@ const messages: Messages = {
   Unknown: "Inconnu",
   "Upload failed": "Échec du téléversement",
   "Why this was suggested": "Pourquoi cette suggestion",
+  "{count} of {max} characters": (count, max) =>
+    `${count} sur ${max} caractères`,
   "{label} dropped at position {position} of {count}.": (
     label,
     position,

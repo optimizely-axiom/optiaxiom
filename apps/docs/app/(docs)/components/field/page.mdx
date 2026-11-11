@@ -34,6 +34,14 @@ Use the `error` prop to display validation or other errors for the input.
 
 The `error` prop will be available as a boolean to the input element via a `FieldContext`.
 
+### Character count
+
+When the input sets `maxLength`, enable `showCount` to show how many characters it holds out of the limit. It also tells screen reader users when typing stops at the limit.
+
+Set the width on `Field`, not on the input, so the input stretches and the count lines up with its edge.
+
+<Demo component="field/max-length-usage" />
+
 ### Information
 
 Use the `info` prop to display a help icon with additional context for the input.
@@ -85,6 +93,10 @@ Here are some common real-world patterns using Field:
 <PropsTable component="Field" />
 
 ## Changelog
+
+### 3.6.0
+
+- Added `showCount` to show a [character count](#character-count) for inputs with `maxLength`
 
 ### 0.1.0
 

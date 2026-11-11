@@ -4,6 +4,7 @@ import {
   type ComponentPropsWithoutRef,
   forwardRef,
   type ReactNode,
+  useState,
 } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -12,6 +13,7 @@ import { useMessages } from "../locale";
 import { SuggestionAlert } from "../suggestion";
 import { fallbackSpan } from "../utils";
 import { FieldProvider } from "./FieldContext";
+import { FieldCount } from "./FieldCount";
 import { FieldLabel } from "./FieldLabel";
 
 export type FieldProps = BoxProps<
@@ -32,6 +34,10 @@ export type FieldProps = BoxProps<
      * The label of the field.
      */
     label?: ReactNode;
+    /**
+     * Show the input's character count against its `maxLength`.
+     */
+    showCount?: boolean;
   }
 >;
 
@@ -39,8 +45,11 @@ export type FieldProps = BoxProps<
  * Wrapper for inputs to provide context such as label/help/required etc.
  *
  * Size the `Field` (for example with `w`), not the input inside it. The input
- * stretches to the field's width, so the description and error line up with
- * it.
+ * stretches to the field's width, so the description, error and character
+ * count line up with it.
+ *
+ * When the input sets `maxLength`, add `showCount` so users see how close they
+ * are to the limit. Typing otherwise stops at the limit with no feedback.
  *
  * @category form
  * @since 0.1.0
@@ -56,6 +65,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
       label,
       labelId: labelIdProp,
       required,
+      showCount,
       ...props
     },
     ref,
@@ -64,7 +74,25 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     const descriptionId = useId();
     const errorId = useId();
     const labelId = useId(labelIdProp);
+    const countId = useId();
     const messages = useMessages();
+    const [countState, setCount] = useState<{
+      length: number;
+      maxLength: number;
+    }>();
+    const count = showCount ? countState : undefined;
+
+    const descriptionNode = description && (
+      <Box
+        asChild
+        color="fg.tertiary"
+        flex={count ? "1" : undefined}
+        fontSize="sm"
+        id={descriptionId}
+      >
+        {fallbackSpan(description)}
+      </Box>
+    );
 
     return (
       <Group flexDirection="column" gap="4" ref={ref} {...props}>
@@ -79,11 +107,13 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
           </FieldLabel>
         )}
         <FieldProvider
+          countId={count ? countId : undefined}
           descriptionId={description ? descriptionId : undefined}
           error={!!error}
           errorId={error ? errorId : undefined}
           inputId={inputId}
           labelId={label ? labelId : undefined}
+          onCountChange={showCount ? setCount : undefined}
         >
           {children}
         </FieldProvider>
@@ -102,10 +132,19 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             {error}
           </Group>
         )}
-        {description && (
-          <Box asChild color="fg.tertiary" fontSize="sm" id={descriptionId}>
-            {fallbackSpan(description)}
-          </Box>
+        {count ? (
+          <Group alignItems="start" gap="8">
+            {descriptionNode}
+            <FieldCount
+              color="fg.tertiary"
+              fontSize="sm"
+              id={countId}
+              length={count.length}
+              maxLength={count.maxLength}
+            />
+          </Group>
+        ) : (
+          descriptionNode
         )}
         <SuggestionAlert />
       </Group>

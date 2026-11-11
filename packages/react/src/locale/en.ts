@@ -15,6 +15,7 @@ const messages = {
   Cancel: "Cancel",
   "change month": "change month",
   "change year": "change year",
+  "Character limit reached": "Character limit reached",
   "Check to select": "Check to select",
   "Check to unselect": "Check to unselect",
   Clear: "Clear",
@@ -84,6 +85,8 @@ const messages = {
   Unknown: "Unknown",
   "Upload failed": "Upload failed",
   "Why this was suggested": "Why this was suggested",
+  "{count} of {max} characters": (count: number, max: number) =>
+    `${count} of ${max} characters`,
   "{label} dropped at position {position} of {count}.": (
     label: string,
     position: number,
