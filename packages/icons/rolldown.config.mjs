@@ -194,7 +194,7 @@ export default defineConfig([
         },
       },
       dts({
-        emitDtsOnly: true,
+        dtsOnly: true,
         generator: watch ? "tsc" : "tsgo",
         sourcemap: false,
         tsconfig: "tsconfig.build.json",
