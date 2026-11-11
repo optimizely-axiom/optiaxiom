@@ -24178,6 +24178,41 @@
         {
           "code": [
             {
+              "content": "\"use client\";\n\nimport { IconPlus } from \"@optiaxiom/icons\";\nimport {\n  Button,\n  DataTable,\n  DataTableBody,\n  DataTableFooter,\n  Flex,\n  Group,\n  LabelMenuButton,\n  Menu,\n  MenuContent,\n  MenuTrigger,\n  SearchInput,\n  toaster,\n} from \"@optiaxiom/react\";\nimport {\n  type ColumnFiltersState,\n  getCoreRowModel,\n  getFilteredRowModel,\n  getPaginationRowModel,\n  useReactTable,\n} from \"@tanstack/react-table\";\nimport { useRef, useState } from \"react\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nconst filters = [\n  { id: \"status\", label: \"Status\", values: [\"Draft\", \"Ready\"] },\n  {\n    id: \"owner\",\n    label: \"Owner\",\n    values: [...new Set(data.map((item) => item.owner))].sort(),\n  },\n];\n\nexport function App() {\n  const searchRef = useRef<HTMLInputElement>(null);\n  const [globalFilter, setGlobalFilter] = useState(\"\");\n  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n    getFilteredRowModel: getFilteredRowModel(),\n    getPaginationRowModel: getPaginationRowModel(),\n    globalFilterFn: \"includesString\",\n    initialState: { pagination: { pageIndex: 0, pageSize: 10 } },\n    onColumnFiltersChange: setColumnFilters,\n    onGlobalFilterChange: setGlobalFilter,\n    state: { columnFilters, globalFilter },\n  });\n\n  return (\n    <Flex maxW=\"full\" w=\"full\">\n      <Group flexWrap=\"wrap\" gap=\"12\" justifyContent=\"space-between\">\n        <Group flexWrap=\"wrap\" gap=\"8\">\n          <SearchInput\n            aria-label=\"Search items\"\n            onValueChange={setGlobalFilter}\n            placeholder=\"Search items\"\n            ref={searchRef}\n            size=\"lg\"\n            value={globalFilter}\n          />\n          {filters.map((filter) => {\n            const column = table.getColumn(filter.id);\n            const value = column?.getFilterValue() as string | undefined;\n            return (\n              <Menu\n                key={filter.id}\n                options={[undefined, ...filter.values].map((option) => ({\n                  execute: () => column?.setFilterValue(option),\n                  label: option ?? \"All\",\n                  selected: value === option,\n                }))}\n              >\n                <MenuTrigger asChild>\n                  <LabelMenuButton label={filter.label}>\n                    {value ?? \"All\"}\n                  </LabelMenuButton>\n                </MenuTrigger>\n                <MenuContent />\n              </Menu>\n            );\n          })}\n        </Group>\n        <Button\n          appearance=\"primary\"\n          icon={<IconPlus />}\n          onClick={() => toaster.create(\"Create item\")}\n          size=\"lg\"\n        >\n          Create item\n        </Button>\n      </Group>\n\n      <DataTable table={table}>\n        <DataTableBody\n          empty={\n            <>\n              No items match your filters.\n              <Button\n                appearance=\"subtle\"\n                mt=\"8\"\n                onClick={() => {\n                  setGlobalFilter(\"\");\n                  setColumnFilters([]);\n                  searchRef.current?.focus();\n                }}\n              >\n                Clear filters\n              </Button>\n            </>\n          }\n        />\n        <DataTableFooter />\n      </DataTable>\n    </Flex>\n  );\n}\n",
+              "filename": "App.tsx"
+            },
+            {
+              "content": "import {\n  DataTableAction,\n  DataTableLabel,\n  EllipsisMenuButton,\n  Menu,\n  MenuContent,\n  MenuTrigger,\n  toaster,\n} from \"@optiaxiom/react\";\nimport { VisuallyHidden } from \"@optiaxiom/react/unstable\";\nimport { createColumnHelper } from \"@tanstack/react-table\";\n\nimport type { Item } from \"./data\";\n\nconst columnHelper = createColumnHelper<Item>();\n\nexport const columns = [\n  columnHelper.accessor(\"name\", {\n    cell: ({ renderValue }) => <DataTableLabel>{renderValue()}</DataTableLabel>,\n    header: \"Name\",\n  }),\n  columnHelper.accessor(\"status\", {\n    enableGlobalFilter: false,\n    filterFn: \"equals\",\n    header: \"Status\",\n  }),\n  columnHelper.accessor(\"owner\", {\n    enableGlobalFilter: false,\n    filterFn: \"equals\",\n    header: \"Owner\",\n  }),\n  columnHelper.display({\n    cell: ({ row }) => (\n      <Menu\n        options={[\n          {\n            execute: () => toaster.create(`Edit ${row.original.name}`),\n            label: \"Edit\",\n          },\n          {\n            execute: () => toaster.create(`Delete ${row.original.name}`),\n            intent: \"danger\",\n            label: \"Delete\",\n          },\n        ]}\n      >\n        <DataTableAction>\n          <MenuTrigger asChild>\n            <EllipsisMenuButton\n              appearance=\"subtle\"\n              aria-label={`Actions for ${row.original.name}`}\n              size=\"sm\"\n            />\n          </MenuTrigger>\n        </DataTableAction>\n        <MenuContent />\n      </Menu>\n    ),\n    enableResizing: false,\n    header: () => <VisuallyHidden>Actions</VisuallyHidden>,\n    id: \"actions\",\n    size: 64,\n  }),\n];\n",
+              "filename": "columns.tsx"
+            },
+            {
+              "content": "export type Item = {\n  id: number;\n  name: string;\n  owner: string;\n  status: \"Draft\" | \"Ready\";\n};\n\nconst owners = [\"Ada Lovelace\", \"Grace Hopper\", \"Alan Turing\"];\n\nexport const data: Item[] = Array.from({ length: 24 }, (_, index) => ({\n  id: index + 1,\n  name: `Item ${index + 1}`,\n  owner: owners[index % owners.length],\n  status: index % 3 === 0 ? \"Draft\" : \"Ready\",\n}));\n",
+              "filename": "data.ts"
+            }
+          ],
+          "components": [
+            "Button",
+            "DataTable",
+            "DataTableAction",
+            "DataTableBody",
+            "DataTableFooter",
+            "DataTableLabel",
+            "EllipsisMenuButton",
+            "Flex",
+            "Group",
+            "LabelMenuButton",
+            "Menu",
+            "MenuContent",
+            "MenuTrigger",
+            "SearchInput",
+            "VisuallyHidden",
+            "toaster"
+          ],
+          "title": "list-view-usage"
+        },
+        {
+          "code": [
+            {
               "content": "\"use client\";\n\nimport { DataTable, DataTableBody, Group, Switch } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\nimport { useState } from \"react\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n    getRowId: (row) => row.id.toString(),\n  });\n\n  const [loading, setLoading] = useState<Record<string, \"sub-rows\" | false>>({\n    \"1\": \"sub-rows\",\n  });\n\n  return (\n    <Group alignItems=\"start\" flexDirection=\"column\" gap=\"16\" maxW=\"full\">\n      <Switch\n        checked={loading[\"1\"] === \"sub-rows\"}\n        onCheckedChange={(checked) =>\n          setLoading({ \"1\": checked ? \"sub-rows\" : false })\n        }\n      >\n        Loading\n      </Switch>\n      <DataTable maxH=\"xs\" table={table}>\n        <DataTableBody loading={loading} />\n      </DataTable>\n    </Group>\n  );\n}\n",
               "filename": "App.tsx"
             },
