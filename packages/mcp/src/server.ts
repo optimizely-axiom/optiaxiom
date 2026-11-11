@@ -57,14 +57,14 @@ export function createServer() {
   server.registerTool(
     "get_component",
     {
-      description: `Get information about an Axiom component. Returns the component's description, import statement, and sub-components by default — no props.
+      description: `Get information about an Axiom component. Returns the component's description, import statement, sub-components, and accessibility notes (keyboard interactions, and what the consumer must provide such as labels) by default — no props.
 
 Use the \`import\` statement. \`entryPoint\` names the component's own entry point; use it instead only when the project imports from entry points (e.g. a lint rule bans the \`@optiaxiom/react\` barrel). Never mix both styles in one project.
 
 Use the optional "props" parameter to search for specific props by name or description. Searches both component-specific props and style props — you don't need to know shorthand names, just describe what you want (e.g., "padding" finds the "p" prop). \`required\` lists every prop that must be passed, whether or not the props query matched it.
 
 Examples:
-  get_component({ name: "Dialog" }) → description, import, sub-components, prop names, required props
+  get_component({ name: "Dialog" }) → description, import, sub-components, accessibility, prop names, required props
   get_component({ name: "Box", props: "padding background" }) → + p and bg prop definitions`,
       inputSchema: {
         name: z
@@ -101,6 +101,10 @@ Examples:
         content: [
           {
             text: JSON.stringify({
+              accessibility:
+                component.accessibility ??
+                (component.group &&
+                  getComponent(component.group)?.accessibility),
               components: component.components,
               deprecated: component.deprecated,
               description: component.description,

@@ -18,6 +18,8 @@ import {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const docsSite = "https://optimizely-axiom.github.io/optiaxiom";
+
 /**
  * @typedef {import('../src/types.js').ComponentInfo} ComponentInfo
  * @typedef {import('../src/types.js').DeprecationInfo} DeprecationInfo
@@ -129,10 +131,10 @@ export async function generateComponents() {
       }
 
       // Set docsUrl to point to the group component
-      component.docsUrl = `https://optimizely-axiom.github.io/optiaxiom/components/${toKebabCase(component.group)}`;
+      component.docsUrl = `${docsSite}/components/${toKebabCase(component.group)}`;
     } else {
       // No group, use own name for docsUrl
-      component.docsUrl = `https://optimizely-axiom.github.io/optiaxiom/components/${toKebabCase(component.name)}`;
+      component.docsUrl = `${docsSite}/components/${toKebabCase(component.name)}`;
     }
   }
 
@@ -145,7 +147,7 @@ export async function generateComponents() {
         (component) => !component.group || component.name === component.group,
       )
       .map(async (component) => {
-        // Special case: ToastProvider demos are in "toast" folder
+        // Special case: ToastProvider demos and docs page are in "toast" folder
         const demos =
           component.name === "ToastProvider" ? "Toast" : component.name;
         component.examples = (await parseDemosFromFiles(demos)).map(
@@ -154,6 +156,13 @@ export async function generateComponents() {
             ...demoContext.get(`${toKebabCase(demos)}/${example.title}`),
           }),
         );
+
+        const accessibility = await parseAccessibilitySection(
+          toKebabCase(demos),
+        );
+        if (accessibility) {
+          component.accessibility = accessibility;
+        }
       }),
   );
 
@@ -361,6 +370,50 @@ function langForFile(filename) {
 }
 
 /**
+ * Read the `## Accessibility` section of a component's docs page as markdown,
+ * with its relative links made absolute so they resolve outside the docs site.
+ *
+ * @param {string} page - Docs page folder, e.g. `alert-dialog`.
+ * @returns {Promise<string | undefined>}
+ */
+async function parseAccessibilitySection(page) {
+  const path = join(
+    __dirname,
+    "..",
+    "..",
+    "..",
+    "apps",
+    "docs",
+    "app",
+    "(docs)",
+    "components",
+    page,
+    "page.mdx",
+  );
+  const content = await readFile(path, "utf-8").catch(() => null);
+  const section = content?.match(
+    /^## Accessibility\n([\s\S]*?)(?=^## |$(?![\s\S]))/m,
+  )?.[1];
+  if (!section) {
+    return undefined;
+  }
+
+  return stripMDXComponents(
+    section
+      .replace(
+        /<KeyboardTable\s+interactions=\{([\s\S]*?)\}\s*\/>/g,
+        (_, interactions) => renderKeyboardTable(interactions),
+      )
+      .replace(/\]\((?!https?:)([^)]+)\)/g, (_, href) =>
+        // Site-absolute docs links omit the `/optiaxiom` base path.
+        href.startsWith("/")
+          ? `](${docsSite}${href})`
+          : `](${new URL(href, `${docsSite}/components/${page}/`)})`,
+      ),
+  );
+}
+
+/**
  * Index the heading and intro prose of every `<Demo>` across the docs pages.
  * A demo shown on several pages takes its context from its own component's
  * page (`components/<demo folder>/page.mdx`) when it appears there, else from
@@ -477,6 +530,45 @@ async function parseGuidesFromMeta(metaPath) {
   }
 
   return entries;
+}
+
+/**
+ * Render a `<KeyboardTable interactions={...} />` as a markdown table.
+ *
+ * @param {string} source - The `interactions` array literal from the MDX page.
+ * @returns {string}
+ */
+function renderKeyboardTable(source) {
+  // Kbd renders `mod` and `meta` per platform.
+  /** @type {Record<string, string>} */
+  const modifierNames = {
+    alt: "Alt",
+    ctrl: "Ctrl",
+    meta: "Cmd/Win",
+    mod: "Cmd/Ctrl",
+    shift: "Shift",
+  };
+
+  /** @type {Array<{ description: string; keys: string | string[] | Array<{ key: string; modifiers?: string | string[] }> }>} */
+  const interactions = new Function(`return (${source});`)();
+
+  return [
+    "| Key | Description |",
+    "| --- | --- |",
+    ...interactions.map(({ description, keys }) => {
+      const cell = (Array.isArray(keys) ? keys : [keys])
+        .map((key) =>
+          typeof key === "string"
+            ? `\`${key}\``
+            : `\`${[key.modifiers ?? []]
+                .flat()
+                .map((m) => `${modifierNames[m] ?? m}+`)
+                .join("")}${key.key}\``,
+        )
+        .join(", ");
+      return `| ${cell} | ${description.replace(/\|/g, "\\|")} |`;
+    }),
+  ].join("\n");
 }
 
 /**

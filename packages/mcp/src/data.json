@@ -1015,7 +1015,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space`, `Enter` | When focus is on `AlertDialogTrigger`, opens the dialog. |\n| `Esc` | Closes the dialog and moves focus to `AlertDialogTrigger`. |"
     },
     "AlertDialogAction": {
       "description": "AlertDialogAction component from Axiom Design System",
@@ -14614,7 +14615,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space` | Selects the focused day. |\n| `Enter` | Selects the focused day. |\n| `ArrowUp`, `ArrowDown`, `ArrowRight`, `ArrowLeft` | Navigate between days in the calendar. |\n| `PageUp`, `PageDown` | Navigate between months in the calendar. |\n| `Shift+PageUp`, `Shift+PageDown` | Navigate between years in the calendar. |"
     },
     "Card": {
       "description": "Generic container for grouping related components together.",
@@ -21926,7 +21928,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space` | Toggles the checkbox between checked and unchecked |\n| `Tab` | Moves focus to or away from the checkbox |\n| `Shift + Tab` | Moves focus to the previous focusable element |\n\nCheckbox automatically handles accessibility:\n\n- Uses proper `role=\"checkbox\"` and ARIA attributes\n- Supports `aria-checked` for checked/unchecked/indeterminate states\n- Associates label text with the checkbox control"
     },
     "Code": {
       "description": "Display inline code.",
@@ -30302,7 +30305,8 @@
           "description": "Use the `weekend` prop to provide one or more matchers to denote weekends on the calendar.",
           "heading": "Weekend"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space` | When focus is on `DateInput`, opens the calendar and focuses the selected day (or today's date). When focus is on a day, selects the focused day. |\n| `Enter` | Selects the focused day in the calendar. |\n| `ArrowUp`, `ArrowDown`, `ArrowRight`, `ArrowLeft` | Navigate between days in the calendar. |\n| `PageUp`, `PageDown` | Navigate between months in the calendar. |\n| `Shift+PageUp`, `Shift+PageDown` | Navigate between years in the calendar. |\n| `Esc` | Closes the calendar popover and moves focus back to `DateInput`. |"
     },
     "DateRangePicker": {
       "description": "Calendar popover that lets user pick date ranges.",
@@ -30433,7 +30437,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space` | When focus is on `DateRangePickerTrigger`, opens the calendar and focuses the selected day (or today's date). When focus is on a day, selects the focused day. |\n| `Enter` | When focus is on `DateRangePickerTrigger`, opens the calendar and focuses the selected day (or today's date). When focus is on a day, selects the focused day. |\n| `ArrowUp`, `ArrowDown`, `ArrowRight`, `ArrowLeft` | Navigate between days in the calendar. |\n| `PageUp`, `PageDown` | Navigate between months in the calendar. |\n| `Shift+PageUp`, `Shift+PageDown` | Navigate between years in the calendar. |\n| `Esc` | Closes the calendar popover and moves focus back to `DateRangePickerTrigger`. |"
     },
     "DateRangePickerContent": {
       "description": "DateRangePickerContent component from Axiom Design System",
@@ -35384,7 +35389,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space`, `Enter` | When focus is on `DialogTrigger`, opens the dialog. |\n| `Esc` | Closes the dialog and moves focus to `DialogTrigger`. |"
     },
     "DialogBody": {
       "description": "DialogBody component from Axiom Design System",
@@ -41654,7 +41660,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space`, `Enter` | Opens/closes the panel. |"
     },
     "DisclosureContent": {
       "description": "DisclosureContent component from Axiom Design System",
@@ -64663,7 +64670,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Labels and errors\n\nWrap Input in `Field` to connect it to its label, description and error message:\n\n- The label's `for` points at the input's `id`.\n- `aria-describedby` references the description and error message.\n- `aria-invalid` is set when the field has an error.\n\n### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Tab` | Moves focus to or away from the input |\n| `Shift + Tab` | Moves focus to the previous focusable element |"
     },
     "Kbd": {
       "description": "Inline text representing keyboard input.",
@@ -69227,7 +69235,8 @@
           "description": "Menu automatically uses virtualization to improve performance when rendering a large number of items.",
           "heading": "Virtualized"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space` | When focus is on `MenuTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, activates the focused item. |\n| `Enter` | When focus is on `MenuTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, activates the focused item and closes the menu. |\n| `ArrowDown` | When focus is on `MenuTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, moves focus to the next item. |\n| `ArrowUp` | When focus is on an item, moves focus to the previous item. |\n| `PageUp`, `PageDown` | Moves focus up/down by 10 items at a time. |\n| `Home`, `End` | Moves focus to the first/last item. |\n| `ArrowRight`, `ArrowLeft` | When focus is on an item with a submenu, opens/closes the submenu. |\n| `A - Z` | When focus is on an item, filter and display matching items as you type. |\n| `Esc` | Closes the menu and moves focus back to `MenuTrigger`. |"
     },
     "MenuContent": {
       "description": "Menu content rendered in a portal with absolute positioning.\n\nRendered as a popover in larger screens and in a dialog in smaller screens by\ndefault.",
@@ -85114,7 +85123,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space`, `Enter` | When focus is on `PopoverTrigger`, opens the popover. |\n| `Esc` | Closes the popover and moves focus to `PopoverTrigger`. |"
     },
     "PopoverAnchor": {
       "description": "PopoverAnchor component from Axiom Design System",
@@ -89972,7 +89982,8 @@
           "description": "Use `RadioGroup` and `Radio` components together to create sets of radio buttons.",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Tab` | Moves focus into and out of the radio group |\n| `Space` | Selects the focused radio if not already selected |\n| `ArrowDown`, `ArrowRight` | Moves focus to and selects the next radio |\n| `ArrowUp`, `ArrowLeft` | Moves focus to and selects the previous radio |\n\nRadioGroup automatically handles accessibility:\n\n- Uses proper `role=\"radiogroup\"` and individual `role=\"radio\"` attributes\n- Supports `aria-checked` for selected state\n- Groups radios with proper keyboard navigation"
     },
     "Range": {
       "description": "Allow users to select a numeric value within a range.",
@@ -90867,7 +90878,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `ArrowUp`, `ArrowLeft` | Increments by the `step` value. |\n| `ArrowDown`, `ArrowRight` | Decrements by the `step` value. |\n| `PageUp`, `PageDown` | Increments/decrements by a larger step value. |\n| `Home` | Sets the value to its minimum. |\n| `End` | Sets the value to its maximum. |"
     },
     "RichTextEditor": {
       "description": "Rich text editor with a toolbar for basic formatting (bold, italic, lists, links).",
@@ -93365,7 +93377,8 @@
           "description": "Use `SegmentedControl` and `SegmentedControlItem` components together to create sets of toggle buttons.\n\n`SegmentedControlItem` extends the Button component.",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Tab` | Moves focus to either the pressed item or the first item in the group. |\n| `Space`, `Enter` | Activates/deactivates the item. |\n| `ArrowDown`, `ArrowRight` | Moves focus to the next item in the group. |\n| `ArrowUp`, `ArrowLeft` | Moves focus to the previous item in the group. |\n| `Home`, `End` | Moves focus to the first/last item. |"
     },
     "SegmentedControlItem": {
       "description": "SegmentedControlItem component from Axiom Design System",
@@ -94409,7 +94422,8 @@
           "description": "Select works with lists of items provided via the `options` prop. The basic structure includes the main component provider, a trigger, and the content.\n\n- `Select`\n- `SelectTrigger`\n- `SelectContent`\n\nItems must be an array of objects of `SelectOption` type and at minimum must contain the following two properties:\n\n- `label`\n- `value`\n\nThe trigger can be provided a `placeholder` to display in case no values have been selected yet (or if an empty value is selected).",
           "heading": "Structure"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space`, `Enter` | When focus is on `SelectTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, activates the focused item and closes the menu. |\n| `ArrowDown` | When focus is on `SelectTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, moves focus to the next item. |\n| `ArrowUp` | When focus is on `SelectTrigger`, opens the menu and focuses the last item (or selected item). When focus is on an item, moves focus to the previous item. |\n| `PageUp`, `PageDown` | Moves focus up/down by 10 items at a time. |\n| `Home`, `End` | Moves focus to the first/last item. |\n| `Esc` | Closes the menu and moves focus back to `SelectTrigger`. |"
     },
     "SelectContent": {
       "description": "SelectContent component from Axiom Design System",
@@ -108207,7 +108221,8 @@
           "title": "usage",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space` | Toggles the switch between on and off |\n| `Enter` | Toggles the switch between on and off |\n| `Tab` | Moves focus to or away from the switch |\n| `Shift + Tab` | Moves focus to the previous focusable element |\n\nSwitch automatically handles accessibility:\n\n- Uses proper `role=\"switch\"` and ARIA attributes\n- Supports `aria-checked` for on/off states\n- Associates label text with the switch control"
     },
     "Table": {
       "description": "Display tabular data using rows and columns.\n\n⚠️ **IMPORTANT**: Consider using `DataTable` instead for displaying tabular\ndata.\n\n`DataTable` provides built-in support for:\n- Sorting (client-side and server-side)\n- Pagination (client-side and server-side)\n- Row selection with checkboxes\n- Column pinning (sticky columns)\n- Row expansion\n- Loading states\n- Virtualization for large datasets\n\n`Table` is a low-level primitive and should only be used for very specific\ncustom table layouts. For most use cases, `DataTable` is the recommended\nchoice.",
@@ -114447,7 +114462,8 @@
           "description": "Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Tab` | When focus moves onto the tabs, focuses the active trigger. When a trigger is focused, moves focus to the active content. |\n| `ArrowDown`, `ArrowRight` | Moves focus to the next trigger depending on `orientation` and activates its associated content. |\n| `ArrowUp`, `ArrowLeft` | Moves focus to the previous trigger depending on `orientation` and activates its associated content. |\n| `Home`, `End` | Moves focus to the first/last trigger and activates its associated content. |"
     },
     "TabsContent": {
       "description": "TabsContent component from Axiom Design System",

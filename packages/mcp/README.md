@@ -105,14 +105,14 @@ The MCP server provides the following tools that AI assistants can use:
 
 ### `get_component`
 
-Get information about an Axiom component. Returns the component's description, import statement, and sub-components by default — no props. Use the optional `props` parameter to search for specific props by name or description.
+Get information about an Axiom component. Returns the component's description, import statement, sub-components, and accessibility notes by default — no props. Use the optional `props` parameter to search for specific props by name or description.
 
 **Parameters:**
 
 - `name` (string, required): Component name (e.g., "Badge", "Button", "Alert")
 - `props` (string, optional): Search query to find specific props by name or description (e.g., "appearance size", "loading", "padding background"). Omit to get just the component description, import, and sub-components without any props.
 
-**Returns:** Component metadata with description, import statement, sub-components, examples, prop names or, with `props`, the matching prop definitions, and a `required` list of every prop that must be passed, whether or not `props` matched it (omitted when there are none). With `props`, a `note` explains the definition format, which the tool description leaves out to stay small: prop definitions use JSON Schema keywords (`type`, `enum`, `anyOf`, `items`, `default`, `description`), and object-typed props such as `options` list their fields under `properties` with a `required` list; `tsType` holds the TypeScript type where JSON Schema can't express it (functions, `ReactNode`, generics). Props that accept per-breakpoint values (`{ base, sm, md }` or `[base, sm, md]`) are marked `responsive: true`.
+**Returns:** Component metadata with description, import statement, sub-components, examples, `accessibility` (the `## Accessibility` section of the component's docs page, or of its group's page for a sub-component; a `### Accessibility` subsection isn't picked up), prop names or, with `props`, the matching prop definitions, and a `required` list of every prop that must be passed, whether or not `props` matched it (omitted when there are none). With `props`, a `note` explains the definition format, which the tool description leaves out to stay small: prop definitions use JSON Schema keywords (`type`, `enum`, `anyOf`, `items`, `default`, `description`), and object-typed props such as `options` list their fields under `properties` with a `required` list; `tsType` holds the TypeScript type where JSON Schema can't express it (functions, `ReactNode`, generics). Props that accept per-breakpoint values (`{ base, sm, md }` or `[base, sm, md]`) are marked `responsive: true`.
 
 ### `search_components`
 

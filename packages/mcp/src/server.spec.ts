@@ -143,6 +143,40 @@ describe("createServer", () => {
     await client.close();
   });
 
+  it("returns the accessibility section of the component's docs page", async () => {
+    const client = await connect(createServer());
+
+    const result = await client.callTool({
+      arguments: { name: "Calendar" },
+      name: "get_component",
+    });
+    const { accessibility } = JSON.parse(
+      (result.content as Array<{ text: string }>)[0].text,
+    );
+
+    expect(accessibility).toContain(
+      "| `Shift+PageUp`, `Shift+PageDown` | Navigate between years in the calendar. |",
+    );
+
+    await client.close();
+  });
+
+  it("returns the group's accessibility section for a sub-component", async () => {
+    const client = await connect(createServer());
+
+    const result = await client.callTool({
+      arguments: { name: "DialogContent" },
+      name: "get_component",
+    });
+    const { accessibility } = JSON.parse(
+      (result.content as Array<{ text: string }>)[0].text,
+    );
+
+    expect(accessibility).toContain("| `Esc` | Closes the dialog");
+
+    await client.close();
+  });
+
   it("omits required when a component has no required props", async () => {
     const client = await connect(createServer());
 
