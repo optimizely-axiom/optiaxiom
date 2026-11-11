@@ -3,6 +3,7 @@ import type { Preview } from "@storybook/react-vite";
 import { AxiomProvider, TransitionGlobalConfig } from "@optiaxiom/react";
 import { withThemeByClassName } from "@storybook/addon-themes";
 import isChromatic from "chromatic/isChromatic";
+import { MINIMAL_VIEWPORTS } from "storybook/viewport";
 
 import "./preview.css";
 
@@ -45,5 +46,15 @@ export default {
       },
     },
     useAxiomProvider: true,
+    viewport: {
+      options: {
+        ...MINIMAL_VIEWPORTS,
+        // WCAG 1.4.10 Reflow: a 1280px window at 400% zoom.
+        reflow: {
+          name: "Reflow (320px)",
+          styles: { height: "640px", width: "320px" },
+        },
+      },
+    },
   },
 } satisfies Preview;

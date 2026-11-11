@@ -7,7 +7,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@optiaxiom/react";
-import { expect, screen, userEvent } from "storybook/test";
+import { expect, screen, userEvent, waitFor } from "storybook/test";
 
 type Story = StoryObj<typeof Popover>;
 
@@ -86,6 +86,33 @@ export const TriggerWidth: Story = {
     await expect(
       canvas.getByRole("button", { hidden: true }).offsetWidth,
     ).toBeLessThan(120);
+  },
+};
+
+export const NarrowViewport: Story = {
+  args: {
+    children: (
+      <>
+        <PopoverTrigger>Toggle Popover</PopoverTrigger>
+        <PopoverContent aria-label="Toggle Popover Popover" maxW="sm">
+          This popover is wider than a 320px viewport, so it shrinks to the
+          space the window has instead of being cut off.
+        </PopoverContent>
+      </>
+    ),
+  },
+  globals: {
+    viewport: { value: "reflow" },
+  },
+  play: async () => {
+    await expect(window.innerWidth).toBe(320);
+    await waitFor(async () => {
+      const rect = screen.getByRole("dialog").getBoundingClientRect();
+      // Radix parks the content above the viewport until it's positioned.
+      await expect(rect.top).toBeGreaterThanOrEqual(0);
+      await expect(rect.left).toBeGreaterThanOrEqual(0);
+      await expect(rect.right).toBeLessThanOrEqual(window.innerWidth);
+    });
   },
 };
 

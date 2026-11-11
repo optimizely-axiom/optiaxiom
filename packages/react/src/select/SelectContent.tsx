@@ -25,7 +25,10 @@ import { SelectRadioItem } from "./SelectRadioItem";
 export type SelectContentProps = ExcludeProps<
   BoxProps<
     typeof PopperContent,
-    Pick<ComponentPropsWithoutRef<typeof ModalListbox>, "maxH" | "minW"> & {
+    Pick<
+      ComponentPropsWithoutRef<typeof ModalListbox>,
+      "maxH" | "maxW" | "minW"
+    > & {
       children?: ((item: SelectOption) => ReactNode) | ReactNode;
     }
   >,

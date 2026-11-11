@@ -10,6 +10,7 @@ import {
 } from "../vanilla-extract";
 
 const maxHeightVar = createVar();
+const maxWidthVar = createVar();
 // Not inherited, so a listbox nested inside list content doesn't pick up its
 // floor.
 const minWidthVar = createVar({
@@ -33,7 +34,6 @@ export const list = recipe({
 export const listbox = recipe({
   base: [
     {
-      maxW: "xs",
       p: "4",
     },
     style({
@@ -47,6 +47,12 @@ export const listbox = recipe({
             )
           ),
           ${fallbackVar(maxHeightVar, "100vh")}
+        )
+      `,
+      maxWidth: `
+        min(
+          var(--radix-popper-available-width),
+          ${fallbackVar(maxWidthVar, theme.maxSize.xs)}
         )
       `,
       minWidth: minWidthVar,
@@ -81,6 +87,38 @@ export const listbox = recipe({
         },
       }),
       full: {},
+    },
+    /**
+     * Whether to restrict the max-width of the content.
+     *
+     * Content is also restricted by the available width in the screen.
+     */
+    maxW: {
+      xs: style({
+        vars: {
+          [maxWidthVar]: theme.maxSize.xs,
+        },
+      }),
+      sm: style({
+        vars: {
+          [maxWidthVar]: theme.maxSize.sm,
+        },
+      }),
+      md: style({
+        vars: {
+          [maxWidthVar]: theme.maxSize.md,
+        },
+      }),
+      lg: style({
+        vars: {
+          [maxWidthVar]: theme.maxSize.lg,
+        },
+      }),
+      full: style({
+        vars: {
+          [maxWidthVar]: "100%",
+        },
+      }),
     },
     /**
      * Whether to set the min-width to the width of the trigger.
