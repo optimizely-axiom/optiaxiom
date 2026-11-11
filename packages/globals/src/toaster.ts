@@ -65,7 +65,7 @@ export const createToaster = (): Toaster => {
     create: (message, options) => {
       const id = genId();
 
-      queue = queue.then(async () => {
+      queue = queue.then(() => {
         const item = {
           id,
           open: true,
@@ -77,8 +77,6 @@ export const createToaster = (): Toaster => {
         };
         snapshot = [...snapshot, item];
         emit();
-
-        await waitForAnimation(item.ref.current);
       });
 
       return id;
