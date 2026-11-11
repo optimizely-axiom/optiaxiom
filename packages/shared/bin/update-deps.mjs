@@ -17,7 +17,7 @@
 // Updates are lockfile-only so that a patched package whose patch no longer
 // applies still gets bumped: the install that follows reports the patch.
 //
-// Usage: node packages/shared/bin/update-dev-deps.mjs
+// Usage: node packages/shared/bin/update-deps.mjs
 
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
