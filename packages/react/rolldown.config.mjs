@@ -196,7 +196,7 @@ function getConfig({ input, plugins = [] }) {
       },
       plugins: [
         dts({
-          emitDtsOnly: true,
+          dtsOnly: true,
           generator: watch ? "tsc" : "tsgo",
           sourcemap: false,
           tsconfig: "tsconfig.build.json",

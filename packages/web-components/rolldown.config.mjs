@@ -22,7 +22,6 @@ const external = new RegExp(
 );
 const require = createRequire(import.meta.url);
 const env = process.env.NODE_ENV ?? "development";
-const watch = process.env.ROLLDOWN_WATCH === "true";
 const pkg = JSON.parse(readFileSync("./package.json"));
 
 const input = Object.fromEntries(
@@ -465,9 +464,13 @@ export { Portal, Portal as Root };`;
         include: ["src/components/**/*.d.ts", "src/index.d.ts"],
       }),
       dts({
-        dtsInput: true,
-        emitDtsOnly: true,
-        generator: watch ? "tsc" : "tsgo",
+        dtsOnly: true,
+        /**
+         * The inputs are already declarations, so nothing needs generating.
+         * Not tsgo or tsc: both compile the whole project at build start,
+         * and the tests import the built JS, which fails declaration emit.
+         */
+        generator: "oxc",
         sourcemap: false,
         tsconfig: "tsconfig.build.json",
       }),
