@@ -8,11 +8,13 @@ type AllComponents = {
 
 type ComponentNames = Exclude<
   keyof {
-    [Key in keyof typeof Components as Key extends `${infer C}${string}`
-      ? C extends Uppercase<C>
-        ? Key
+    [
+      Key in keyof typeof Components as Key extends `${infer C}${string}`
+        ? C extends Uppercase<C>
+          ? Key
+          : never
         : never
-      : never]: never;
+    ]: never;
   },
   "FieldContext" | "TransitionGlobalConfig"
 >;
@@ -25,9 +27,11 @@ type KebabCase<
   : A;
 
 type WebComponents = {
-  [Key in Exclude<keyof typeof exports, "."> extends `./${infer S}`
-    ? `ax${KebabCase<S>}`
-    : never]: true;
+  [
+    Key in Exclude<keyof typeof exports, "."> extends `./${infer S}`
+      ? `ax${KebabCase<S>}`
+      : never
+  ]: true;
 };
 
 const exported = Object.fromEntries(

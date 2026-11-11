@@ -438,12 +438,15 @@ void yargs(hideBin(process.argv))
         ];
         for (const [name, light, dark, variable] of report
           .filter(([, value]) => !value.light.startsWith("#"))
-          .map(([name, value]) => /** @type {const} */ ([
-            name,
-            value.light,
-            value.dark,
-            value.variable,
-          ]))) {
+          .map(
+            ([name, value]) =>
+              /** @type {const} */ ([
+                name,
+                value.light,
+                value.dark,
+                value.variable,
+              ]),
+          )) {
           const parts = name.split(".");
           table.push(
             debug
