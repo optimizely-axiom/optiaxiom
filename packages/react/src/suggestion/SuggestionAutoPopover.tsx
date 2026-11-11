@@ -41,7 +41,7 @@ export const SuggestionAutoPopover = forwardRef<
     <Popover>
       <PopoverTrigger
         appearance="subtle"
-        aria-label={messages["Opal suggestion"]}
+        aria-label={messages["Mark suggestion"]}
         icon={<Avatar fallback="opal" size="2xs" />}
         ref={ref}
         size="sm"

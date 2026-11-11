@@ -45,7 +45,7 @@ export const SuggestionManualTrigger = forwardRef<
   return (
     <Button
       appearance="subtle"
-      aria-label={messages["Opal suggestion"]}
+      aria-label={messages["Mark suggestion"]}
       icon={<Avatar fallback="opal" size="2xs" />}
       loading={pending}
       onClick={() => {
