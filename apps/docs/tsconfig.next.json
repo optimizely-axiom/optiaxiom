@@ -1,11 +1,10 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@/components": ["components"],
-      "@/components/*": ["components/*"],
-      "@/demos/*": ["demos/*"],
+      "@/components": ["./components"],
+      "@/components/*": ["./components/*"],
+      "@/demos/*": ["./demos/*"],
       "@optiaxiom/globals": ["../../packages/globals/dist"],
       "@optiaxiom/icons": ["../../packages/icons/dist"],
       "@optiaxiom/icons/*": ["../../packages/icons/dist/*"],
