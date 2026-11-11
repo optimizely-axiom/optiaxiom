@@ -1,6 +1,6 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useCombobox } from "downshift";
-import { type ReactNode, useRef } from "react";
+import { type ReactNode, useEffect, useRef } from "react";
 
 import { useHighlightedIndex } from "../downshift";
 import {
@@ -72,6 +72,31 @@ export function Command({
     prop: inputValueProp,
   });
   const items = useCommandItems({ inputValue, options });
+
+  const warnedLabelsRef = useRef(new Set<string>());
+  useEffect(() => {
+    if (process.env.NODE_ENV === "production") {
+      return;
+    }
+
+    for (const option of options) {
+      if (
+        !("disabled" in option) ||
+        !option.disabled ||
+        resolveItemProperty(option.disabledReason)
+      ) {
+        continue;
+      }
+
+      const label = resolveItemProperty(option.label, { inputValue });
+      if (!warnedLabelsRef.current.has(label)) {
+        warnedLabelsRef.current.add(label);
+        console.error(
+          `Option "${label}" sets \`disabled\`, which has no effect. Did you mean \`disabledReason\`?`,
+        );
+      }
+    }
+  }, [inputValue, options]);
 
   const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex(enabled);
 

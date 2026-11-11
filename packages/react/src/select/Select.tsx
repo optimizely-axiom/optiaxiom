@@ -167,6 +167,27 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         });
     }, [messages, options, suggestion]);
 
+    const warnedLabelsRef = useRef(new Set<string>());
+    useEffect(() => {
+      if (process.env.NODE_ENV === "production") {
+        return;
+      }
+
+      for (const option of options) {
+        if (
+          "disabled" in option &&
+          option.disabled &&
+          !option.disabledReason &&
+          !warnedLabelsRef.current.has(option.label)
+        ) {
+          warnedLabelsRef.current.add(option.label);
+          console.error(
+            `Option "${option.label}" sets \`disabled\`, which has no effect. Did you mean \`disabledReason\`?`,
+          );
+        }
+      }
+    }, [options]);
+
     const selectedItem = useMemo(
       () =>
         shadowValue !== undefined
