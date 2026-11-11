@@ -2,7 +2,7 @@
 
 import { createContext } from "@radix-ui/react-context";
 
-import { locale as en, type Messages } from "./en";
+import { en, type Messages } from "./en";
 
 /**
  * A language for built-in labels and screen reader text, plus the locale

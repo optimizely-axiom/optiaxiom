@@ -8716,7 +8716,7 @@
           "type": "object"
         },
         "locale": {
-          "description": "A BCP-47 tag (e.g. `\"fr-FR\"`) localizes date/time components such as\n`Calendar`, `DateRangePicker`, `Clock`, and `Time`, falling back to the\nbrowser locale; built-in labels stay English. Pass a `Locale` instead\n(`import { locale } from \"@optiaxiom/react/locale/en\"`, or your own) to\nalso translate built-in labels and screen reader text.",
+          "description": "A BCP-47 tag (e.g. `\"fr-FR\"`) localizes date/time components such as\n`Calendar`, `DateRangePicker`, `Clock`, and `Time`, falling back to the\nbrowser locale; built-in labels stay English. Pass a `Locale` instead\n(`import { en } from \"@optiaxiom/react/locale/en\"`, or your own) to\nalso translate built-in labels and screen reader text.",
           "tsType": "string | Locale"
         },
         "toast": {
