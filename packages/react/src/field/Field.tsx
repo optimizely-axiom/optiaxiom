@@ -38,6 +38,10 @@ export type FieldProps = BoxProps<
 /**
  * Wrapper for inputs to provide context such as label/help/required etc.
  *
+ * Size the `Field` (for example with `w`), not the input inside it. The input
+ * stretches to the field's width, so the description and error line up with
+ * it.
+ *
  * @category form
  * @since 0.1.0
  */

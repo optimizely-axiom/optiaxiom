@@ -51039,7 +51039,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/button"
     },
     "Field": {
-      "description": "Wrapper for inputs to provide context such as label/help/required etc.",
+      "description": "Wrapper for inputs to provide context such as label/help/required etc.\n\nSize the `Field` (for example with `w`), not the input inside it. The input\nstretches to the field's width, so the description and error line up with\nit.",
       "entryPoint": "@optiaxiom/react/field",
       "import": "import { Field } from '@optiaxiom/react';",
       "name": "Field",
