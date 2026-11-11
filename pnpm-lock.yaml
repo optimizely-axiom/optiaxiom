@@ -827,9 +827,6 @@ importers:
       gzip-size:
         specifier: ^7.0.0
         version: 7.0.0
-      monosize:
-        specifier: ^0.10.0
-        version: 0.10.0
       pretty-bytes:
         specifier: ^7.2.0
         version: 7.2.0
@@ -7453,10 +7450,6 @@ packages:
 
   monaco-editor@0.55.1:
     resolution: {integrity: sha512-jz4x+TJNFHwHtwuV9vA9rMujcZRb0CEilTEwG2rRSpe/A7Jdkuj8xPKttCgOh+v/lkHy7HsZ64oj+q3xoAFl9A==}
-
-  monosize@0.10.0:
-    resolution: {integrity: sha512-kdDFB4Ujzh72JvTbJGUHxrSV8YH7TyEzbn0MKMvuMg7jml37BWSQiMbIdTqtP/ffecUUv8gd1Ew2eVNnUeMOxQ==}
-    hasBin: true
 
   mrmime@2.0.1:
     resolution: {integrity: sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ==}
@@ -16433,17 +16426,6 @@ snapshots:
     dependencies:
       dompurify: 3.2.7
       marked: 14.0.0
-
-  monosize@0.10.0:
-    dependencies:
-      acorn: 8.17.0
-      ci-info: 4.5.0
-      cli-table3: 0.6.5
-      empathic: 2.0.0
-      pretty-bytes: 7.2.0
-      tinyglobby: 0.2.17
-      tslib: 2.8.1
-      yargs: 18.2.0
 
   mrmime@2.0.1: {}
 

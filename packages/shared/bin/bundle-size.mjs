@@ -3,8 +3,13 @@ import Table from "cli-table3";
 import esbuild from "esbuild";
 import { access, readFile } from "fs/promises";
 import { basename, parse, resolve } from "path";
+import prettyBytes from "pretty-bytes";
+import { styleText } from "util";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
+
+const commitSHA = `${process.env.GITHUB_SHA}`;
+const repository = `https://github.com/${process.env.GITHUB_REPOSITORY}`;
 
 const packages = [
   "packages/globals",
@@ -31,54 +36,50 @@ const readReport = async (file) =>
   );
 
 /**
- * monosize's `exports` map exposes only its CLI, which reads reports from its
- * own storage adapters and can't filter entries, so the comparison and
- * reporters are imported from its `dist` by file URL.
+ * Pairs each head entry with its base entry and drops changes under 50
+ * bytes. Entries only in the base report are not listed.
  *
- * @param {string} module path under monosize's `dist`, without extension
- */
-const importMonosize = (module) =>
-  import(
-    new URL(`dist/${module}.mjs`, import.meta.resolve("monosize/package.json"))
-      .href
-  );
-
-/**
- * Give each entry a single-type breakdown so monosize's reporters don't flag
- * every changed entry as missing one.
- *
- * @param {Awaited<ReturnType<typeof readReport>>} report
- * @returns {import("monosize").BundleSizeReport}
- */
-const toMonosizeReport = (report) =>
-  report.map((value) => ({
-    ...value,
-    assets: {
-      js: { gzippedSize: value.gzippedSize, minifiedSize: value.minifiedSize },
-    },
-    path: value.name,
-  }));
-
-/**
  * @param {{ file: string; head?: string }} options
- * @returns {Promise<Array<import("monosize").BundleSizeReportEntry & {
- *    diff: { empty: boolean; minified: { delta: number } };
- * }>>}
  */
 async function compare({ file, head }) {
-  const localReport = head ? await readReport(head) : await measure();
-  const remoteReport = await readReport(file);
-  const { compareResultsInReports } = await importMonosize(
-    "utils/compareResultsInReports",
+  const headReport = head ? await readReport(head) : await measure();
+  const baseReport = new Map(
+    (await readReport(file)).map((entry) => [
+      `${entry.packageName}/${entry.name}`,
+      entry,
+    ]),
   );
-  return compareResultsInReports(
-    toMonosizeReport(localReport),
-    toMonosizeReport(remoteReport),
-    {
-      size: 10,
-      type: "percent",
-    },
-  );
+  return headReport
+    .map((entry) => {
+      const base = baseReport.get(`${entry.packageName}/${entry.name}`);
+      if (!base) {
+        return {
+          ...entry,
+          base,
+          gzippedDelta: 0,
+          minifiedDelta: 0,
+          overThreshold: false,
+        };
+      }
+      const minifiedDelta = entry.minifiedSize - base.minifiedSize;
+      return {
+        ...entry,
+        base,
+        gzippedDelta: entry.gzippedSize - base.gzippedSize,
+        minifiedDelta,
+        // A zero-byte baseline has no meaningful percentage, so it never trips.
+        overThreshold:
+          base.minifiedSize > 0 &&
+          minifiedDelta > 0 &&
+          minifiedDelta / base.minifiedSize >= 0.1,
+      };
+    })
+    .filter((entry) => !entry.base || Math.abs(entry.minifiedDelta) >= 50)
+    .sort(
+      (a, b) =>
+        a.packageName.localeCompare(b.packageName) ||
+        a.name.localeCompare(b.name),
+    );
 }
 
 async function measure() {
@@ -202,6 +203,97 @@ async function measure() {
   return data;
 }
 
+/** @param {number} value */
+const formatBytes = (value) => prettyBytes(value, { maximumFractionDigits: 3 });
+
+/**
+ * @param {number} delta
+ * @param {(delta: number) => string} format
+ */
+const formatDelta = (delta, format) => (delta === 0 ? "" : format(delta));
+
+/** @param {Awaited<ReturnType<typeof compare>>} report */
+function printCli(report) {
+  if (report.length === 0) {
+    console.log(styleText("green", "[✔]"), "No changes found");
+    return;
+  }
+
+  /** @param {number} delta */
+  const delta = (delta) =>
+    styleText(
+      delta > 0 ? "red" : "green",
+      formatBytes(delta) + (delta > 0 ? "↑" : "↓"),
+    );
+  const table = new Table({
+    colAligns: ["left", "right", "right"],
+    head: ["Fixture", "Before", "After (minified/GZIP)"],
+  });
+  for (const entry of report) {
+    table.push([
+      [
+        styleText("bold", entry.packageName),
+        entry.name + (entry.base ? "" : styleText("cyan", " (new)")),
+        ...(entry.overThreshold
+          ? [styleText("red", `(${styleText("bold", "!")} over threshold)`)]
+          : []),
+      ].join("\n"),
+      entry.base
+        ? `${formatBytes(entry.base.minifiedSize)}\n${formatBytes(entry.base.gzippedSize)}`
+        : "N/A\nN/A",
+      `${formatDelta(entry.minifiedDelta, delta)} ${formatBytes(entry.minifiedSize)}\n` +
+        `${formatDelta(entry.gzippedDelta, delta)} ${formatBytes(entry.gzippedSize)}`,
+    ]);
+  }
+  console.log(table.toString());
+  console.log();
+  console.log(
+    `🤖 This report was generated against '${repository}/commit/${commitSHA}'`,
+  );
+}
+
+/** @param {Awaited<ReturnType<typeof compare>>} report */
+function printMarkdown(report) {
+  const output = ["## 📊 Bundle size report", ""];
+  if (report.length === 0) {
+    output.push("✅ No changes found");
+    console.log(output.join("\n"));
+    return;
+  }
+
+  /** @param {number} minified @param {number} gzipped */
+  const sizes = (minified, gzipped) =>
+    `\`${formatBytes(minified)}\`<br />\`${formatBytes(gzipped)}\``;
+  /** @param {number} delta */
+  const delta = (delta) =>
+    `\`${formatBytes(delta)}\` ${delta > 0 ? "🔴" : "🟢"}`;
+  output.push(
+    "| Package & Exports | Baseline (minified/GZIP) | PR | Change |",
+    "| :--- | ---: | ---: | ---: |",
+  );
+  for (const entry of report) {
+    const name = [
+      `<samp>${entry.packageName}</samp>`,
+      entry.name,
+      ...(entry.overThreshold ? ["⚠️ over threshold"] : []),
+    ].join(" <br /> ");
+    const before = sizes(
+      entry.base?.minifiedSize ?? 0,
+      entry.base?.gzippedSize ?? 0,
+    );
+    const after = sizes(entry.minifiedSize, entry.gzippedSize);
+    const change = entry.base
+      ? `${formatDelta(entry.minifiedDelta, delta)}<br />${formatDelta(entry.gzippedDelta, delta)}`
+      : "🆕 New entry";
+    output.push(`| ${name} | ${before} | ${after} | ${change} |`);
+  }
+  output.push(
+    "",
+    `<sub>🤖 This report was generated against <a href='${repository}/commit/${commitSHA}'>${commitSHA}</a></sub>`,
+  );
+  console.log(output.join("\n"));
+}
+
 void yargs(hideBin(process.argv))
   .command({
     builder: {
@@ -216,21 +308,12 @@ void yargs(hideBin(process.argv))
     },
     command: "compare <file>",
     handler: async ({ file, head, output }) => {
-      const report = (await compare({ file, head })).filter(
-        (entry) =>
-          entry.diff.empty || Math.abs(entry.diff.minified.delta) >= 50,
-      );
-      const reporter =
-        output === "cli"
-          ? (await importMonosize("reporters/cliReporter")).cliReporter
-          : (await importMonosize("reporters/markdownReporter"))
-              .markdownReporter;
-      reporter(report, {
-        commitSHA: `${process.env.GITHUB_SHA}`,
-        deltaFormat: "delta",
-        repository: `https://github.com/${process.env.GITHUB_REPOSITORY}`,
-        showUnchanged: false,
-      });
+      const report = await compare({ file, head });
+      if (output === "cli") {
+        printCli(report);
+      } else {
+        printMarkdown(report);
+      }
     },
   })
   .command({
@@ -241,7 +324,6 @@ void yargs(hideBin(process.argv))
       if (json) {
         console.log(JSON.stringify(result));
       } else {
-        const { default: prettyBytes } = await import("pretty-bytes");
         const table = new Table({
           colAligns: ["left", "right", "right"],
           head: ["Export", "Minified size", "GZIP size"],
