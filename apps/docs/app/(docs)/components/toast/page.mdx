@@ -24,6 +24,8 @@ Use the `intent` option in the second argument to select between the different t
 
 Use the `action` and `onAction` options to include a short action button associated with the toast.
 
+Toasts with an action stay open 1.5 times the provider's `duration`. They still close on their own, so keep whatever the action does reachable elsewhere too. For undo, apply the change right away and make the action restore it, like the demo below.
+
 <Demo component="toast/action-usage" />
 
 ### Dismiss
@@ -31,6 +33,14 @@ Use the `action` and `onAction` options to include a short action button associa
 Use `toaster.remove()` to remove toasts. The `create()` method returns a unique ID for the toast which can then be passed to the `remove()` method.
 
 <Demo component="toast/dismiss-usage" />
+
+### When not to use a toast
+
+A toast briefly confirms something that already happened. Use something else for:
+
+- **Undo windows that hold a change back:** apply the change right away and make the toast action restore it, without a confirmation dialog beforehand.
+- **Progress on running work:** show it on the control that started it, with `Button` `loading` or an inline `Spinner`.
+- **Long or persistent messages:** use `Banner` or `Alert`.
 
 ### Related
 
