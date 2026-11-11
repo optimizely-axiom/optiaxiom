@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { IconFilterSlash, IconPlus } from "@optiaxiom/icons";
 import {
   Button,
   Checkbox,
@@ -9,6 +10,10 @@ import {
   DataTableCheckbox,
   DataTableFooter,
   DataTableLabel,
+  Flex,
+  Group,
+  Heading,
+  Text,
 } from "@optiaxiom/react";
 import {
   DataTableExpandableCell,
@@ -692,6 +697,55 @@ export const EmptyRows: Story = {
         })}
       >
         <DataTableBody />
+      </DataTable>
+    );
+  },
+};
+
+export const EmptyRowsCustom: Story = {
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole("table")).toHaveAttribute(
+      "aria-rowcount",
+      "2",
+    );
+    await expect(
+      within(canvas.getByRole("cell")).getByRole("button", {
+        name: "Clear filters",
+      }),
+    ).toBeInTheDocument();
+  },
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columns,
+          data: [],
+          getCoreRowModel: getCoreRowModel(),
+        })}
+      >
+        <DataTableBody
+          empty={
+            <Flex alignItems="center" py="48" textAlign="center">
+              <IconFilterSlash size="80" />
+              <Flex alignItems="center" gap="8">
+                <Heading color="fg.default" level="4">
+                  No orders match your filters
+                </Heading>
+                <Text color="fg.secondary" maxW="sm">
+                  Try a different search, or clear the filters to see every
+                  order.
+                </Text>
+              </Flex>
+              <Group gap="8" mt="8">
+                <Button>Clear filters</Button>
+                <Button appearance="primary" icon={<IconPlus />}>
+                  Create order
+                </Button>
+              </Group>
+            </Flex>
+          }
+        />
       </DataTable>
     );
   },

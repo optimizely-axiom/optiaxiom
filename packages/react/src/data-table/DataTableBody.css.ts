@@ -3,7 +3,13 @@ import { theme } from "@optiaxiom/globals";
 import * as tableStyles from "../table/Table.css";
 import * as styles from "../table/TableRow.css";
 import { rem } from "../utils";
-import { createVar, getVarName, recipe, style } from "../vanilla-extract";
+import {
+  createVar,
+  fallbackVar,
+  getVarName,
+  recipe,
+  style,
+} from "../vanilla-extract";
 
 const row = styles.className;
 const table = tableStyles.className;
@@ -13,6 +19,7 @@ export const cellOffsetVar = createVar();
 export const leftTotalSizeVar = createVar();
 export const rightTotalSizeVar = createVar();
 export const totalSizeVar = createVar();
+export const visibleWidthVar = createVar();
 
 const bgHoverColor = createVar({
   inherits: false,
@@ -138,4 +145,46 @@ export const cell = recipe({
       }),
     },
   },
+});
+
+export const emptyRow = recipe({
+  base: [
+    {
+      display: "flex",
+    },
+    style({
+      "@media": {
+        "(hover: hover)": {
+          selectors: {
+            "&:hover": {
+              backgroundColor: "transparent",
+            },
+          },
+        },
+      },
+    }),
+  ],
+});
+
+/**
+ * Sized to the scroll container and stuck to its left edge so the message
+ * stays in view when the header is wider than the table.
+ */
+export const empty = recipe({
+  base: [
+    {
+      alignItems: "center",
+      color: "fg.tertiary",
+      display: "flex",
+      flexDirection: "column",
+      fontSize: "md",
+      justifyContent: "center",
+      p: "16",
+    },
+    style({
+      left: 0,
+      position: "sticky",
+      width: fallbackVar(visibleWidthVar, "100%"),
+    }),
+  ],
 });

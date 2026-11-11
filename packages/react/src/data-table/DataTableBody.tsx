@@ -1,12 +1,20 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { useLayoutEffect } from "@radix-ui/react-use-layout-effect";
 import { type Column, flexRender } from "@tanstack/react-table";
 import {
   defaultRangeExtractor,
   type Range,
   useVirtualizer,
 } from "@tanstack/react-virtual";
-import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { forwardRef, useCallback, useEffect, useMemo, useRef } from "react";
+import { assignInlineVars, setElementVars } from "@vanilla-extract/dynamic";
+import {
+  forwardRef,
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "../table";
@@ -19,6 +27,11 @@ import { fakeRow } from "./DataTableRowContext";
 export type DataTableBodyProps = BoxProps<
   "div",
   {
+    /**
+     * Content to show in a full-width row when the table has no rows and isn't
+     * loading.
+     */
+    empty?: ReactNode;
     /**
      * The estimated height of rows in pixels when virtualization is enabled.
      */
@@ -39,7 +52,7 @@ const SKELETON_ROW_COUNT = 10;
  */
 export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
   (
-    { className, estimatedRowHeight = 52, loading, style, ...props },
+    { className, empty, estimatedRowHeight = 52, loading, style, ...props },
     outerRef,
   ) => {
     const innerRef = useRef<HTMLDivElement>(null);
@@ -92,13 +105,21 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
         delete innerRef.current.dataset.scrollTimeline;
       }
     };
-    useEffect(() => {
-      calculateScrollTimeline();
+    useLayoutEffect(() => {
+      const onResize = () => {
+        if (innerRef.current && scrollContainerRef.current) {
+          setElementVars(innerRef.current, {
+            [styles.visibleWidthVar]: `${scrollContainerRef.current.clientWidth}px`,
+          });
+        }
+        calculateScrollTimeline();
+      };
+      onResize();
 
       const node = scrollContainerRef.current;
       if (!node || typeof ResizeObserver === "undefined") return;
 
-      const observer = new ResizeObserver(calculateScrollTimeline);
+      const observer = new ResizeObserver(onResize);
       observer.observe(node);
       return () => observer.disconnect();
     }, []);
@@ -140,6 +161,13 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
       rangeExtractor,
     });
     const virtualRows = rowVirtualizer.getVirtualItems();
+    const showEmpty =
+      loading !== true &&
+      rows.length === 0 &&
+      empty !== undefined &&
+      empty !== null &&
+      empty !== false &&
+      empty !== "";
 
     /**
      * Virtualized rows and columns are missing from the DOM, so assistive
@@ -193,7 +221,11 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
           aria-colcount={columnIndexes.size}
           aria-rowcount={
             headerGroups.length +
-            (loading === true ? SKELETON_ROW_COUNT : rows.length)
+            (loading === true
+              ? SKELETON_ROW_COUNT
+              : showEmpty
+                ? 1
+                : rows.length)
           }
           layout="fixed"
           onScroll={calculateScrollTimeline}
@@ -241,7 +273,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
           <TableBody
             display="grid"
             style={
-              rowVirtualizer.options.enabled
+              rowVirtualizer.options.enabled && !showEmpty
                 ? { height: `${rowVirtualizer.getTotalSize()}px` }
                 : undefined
             }
@@ -361,6 +393,22 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                 ))}
               </DataTableRow>
             ))}
+
+            {showEmpty && (
+              <TableRow
+                aria-rowindex={headerGroups.length + 1}
+                {...styles.emptyRow()}
+              >
+                <TableCell
+                  aria-colindex={1}
+                  colSpan={columnIndexes.size}
+                  flex="1"
+                  p="0"
+                >
+                  <Box {...styles.empty()}>{empty}</Box>
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </Box>
