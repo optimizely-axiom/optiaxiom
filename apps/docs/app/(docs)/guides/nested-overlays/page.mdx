@@ -89,3 +89,48 @@ A Material UI `Dialog` opened from inside an Axiom `Dialog` renders behind it by
      },
    });
    ```
+
+## Overlays from outside React
+
+### When you choose the container
+
+Some overlays are DOM appended by a script, such as an AngularJS overlay service. There's no React subtree to wrap in `ModalLayer`, but you can give the script somewhere to append: render a container inside `ModalLayer` and have the script append its overlay there. The overlay then joins the dialog's focus, scroll and pointer handling like any portalled React content.
+
+```jsx
+import { ModalLayer } from "@optiaxiom/react";
+import { createPortal } from "react-dom";
+
+function OverlayContainer({ onContainer }) {
+  return createPortal(
+    <ModalLayer asChild>
+      <div ref={onContainer} />
+    </ModalLayer>,
+    document.body,
+  );
+}
+```
+
+Render it inside `DialogContent` when the overlay opens, then pass the node to the script. A `ModalLayer` that mounts in the same render as its `DialogContent` doesn't join the dialog.
+
+```jsx
+const [container, setContainer] = useState(null);
+
+<DialogContent>
+  {overlayOpen && <OverlayContainer onContainer={setContainer} />}
+</DialogContent>;
+```
+
+### When the script appends to `body`
+
+Some scripts, like Google's file picker, always append their own iframe to `body`. The dialog sets `pointer-events: none` outside itself, so the iframe shows but can't be clicked. Set `pointer-events: auto` on the overlay's root elements:
+
+```css
+.picker-dialog,
+.picker-dialog-bg {
+  pointer-events: auto;
+}
+```
+
+The class names belong to the third-party script, so check them in your browser's devtools. If the overlay renders behind the dialog, also raise its `z-index` above the `popover` token.
+
+This only works for iframes, because the dialog lets focus move into them. Plain DOM appended to `body` gets clicks this way but still loses focus and scrolling to the dialog: give it a container instead.

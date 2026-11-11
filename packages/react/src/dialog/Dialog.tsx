@@ -40,6 +40,11 @@ export type DialogProps = {
  * For forms, wrap DialogBody and DialogFooter in DialogForm and use
  * type="submit" on the primary action button.
  *
+ * A modal Dialog blocks pointer and focus outside itself, so overlays from
+ * other libraries or scripts (react-select menus, MUI dialogs, Google's file
+ * picker) need setup to stay usable. Keep the Dialog modal and follow the
+ * {@link https://optimizely-axiom.github.io/optiaxiom/guides/nested-overlays/ Nested Overlays guide}.
+ *
  * @category overlay
  * @group Dialog
  * @since 0.1.0
