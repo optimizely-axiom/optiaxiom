@@ -134,7 +134,7 @@ export async function generateComponents() {
       component.docsUrl = `${docsSite}/components/${toKebabCase(component.group)}`;
     } else {
       // No group, use own name for docsUrl
-      component.docsUrl = `${docsSite}/components/${toKebabCase(component.name)}`;
+      component.docsUrl = `${docsSite}/components/${toKebabCase(docsName(component.name))}`;
     }
   }
 
@@ -147,9 +147,7 @@ export async function generateComponents() {
         (component) => !component.group || component.name === component.group,
       )
       .map(async (component) => {
-        // Special case: ToastProvider demos and docs page are in "toast" folder
-        const demos =
-          component.name === "ToastProvider" ? "Toast" : component.name;
+        const demos = docsName(component.name);
         component.examples = (await parseDemosFromFiles(demos)).map(
           (example) => ({
             ...example,
@@ -167,6 +165,17 @@ export async function generateComponents() {
   );
 
   return components;
+}
+
+/**
+ * Name of the docs page and demos folder for a component. ToastProvider's live
+ * under "toast".
+ *
+ * @param {string} name
+ * @returns {string}
+ */
+function docsName(name) {
+  return name === "ToastProvider" ? "Toast" : name;
 }
 
 // Guides that exist as docs pages but should not be surfaced via the MCP.
