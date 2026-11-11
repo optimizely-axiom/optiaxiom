@@ -24,7 +24,8 @@ export type TimeProps = BoxProps<
 >;
 
 /**
- * A flexbox layout component for grouping items horizontally or vertically.
+ * Displays a date, and optionally its time, formatted for the current locale
+ * inside a semantic `<time>` element.
  *
  * @category data-display
  * @experimental
