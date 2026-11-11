@@ -119,7 +119,7 @@ export const VerticalAlignment: Story = {
 export const WithSuggestion: Story = {
   play: async () => {
     await userEvent.click(
-      await screen.findByRole("button", { name: "Opal suggestion" }),
+      await screen.findByRole("button", { name: "Mark suggestion" }),
     );
   },
   render: function WithSuggestion() {
