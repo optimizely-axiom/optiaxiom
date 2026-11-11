@@ -69,7 +69,8 @@ export type MenuProps = ExcludeProps<
  * with custom buttons like EllipsisMenuButton for overflow menus.
  *
  * Use Menu when: action menus (edit/delete/archive), multi-select dropdowns,
- * filterable lists, nested menus, or items with links/navigation.
+ * filterable lists, nested menus, items with links/navigation, or view filters
+ * that apply immediately (e.g. on a list page).
  *
  * Use Select instead when: you need a simple single-select form input
  * with `value`/`onChange` and form submission support.

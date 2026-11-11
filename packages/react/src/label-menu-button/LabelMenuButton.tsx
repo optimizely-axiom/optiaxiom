@@ -22,8 +22,11 @@ export type LabelMenuButtonProps = ComponentPropsWithoutRef<
 };
 
 /**
- * Button displaying both a label and value, used as the trigger for Select
- * components.
+ * Button displaying both a label and value, used as the trigger for Select or
+ * Menu. Use it with Select when the choice is a form value. Use it with Menu
+ * (via `MenuTrigger asChild`) when picking applies immediately as view state,
+ * such as a filter on a list page, with `selected` options and `execute`
+ * handlers.
  *
  * @group Button
  */

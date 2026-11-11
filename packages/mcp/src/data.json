@@ -65047,7 +65047,7 @@
       ]
     },
     "LabelMenuButton": {
-      "description": "Button displaying both a label and value, used as the trigger for Select\ncomponents.",
+      "description": "Button displaying both a label and value, used as the trigger for Select or\nMenu. Use it with Select when the choice is a form value. Use it with Menu\n(via `MenuTrigger asChild`) when picking applies immediately as view state,\nsuch as a filter on a list page, with `selected` options and `execute`\nhandlers.",
       "entryPoint": "@optiaxiom/react/label-menu-button",
       "import": "import { LabelMenuButton } from '@optiaxiom/react';",
       "name": "LabelMenuButton",
@@ -68169,7 +68169,7 @@
       ]
     },
     "Menu": {
-      "description": "Dropdown menu for actions, multi-select, and complex interactions.\nSupports filtering/search, checkbox/radio items, nested sub-menus,\nlinks, and action handlers via `execute`.\n\nMust be used with MenuTrigger and MenuContent sub-components. MenuTrigger\nautomatically renders a button with chevron icon, or use MenuTrigger asChild\nwith custom buttons like EllipsisMenuButton for overflow menus.\n\nUse Menu when: action menus (edit/delete/archive), multi-select dropdowns,\nfilterable lists, nested menus, or items with links/navigation.\n\nUse Select instead when: you need a simple single-select form input\nwith `value`/`onChange` and form submission support.\n\nNote: Menu is not a form control - it has no `value`/`onChange` and does\nnot integrate with `Field`. For a single-select form field, use Select\n(which does not support filtering). There is currently no built-in\nfilterable single-select form input.",
+      "description": "Dropdown menu for actions, multi-select, and complex interactions.\nSupports filtering/search, checkbox/radio items, nested sub-menus,\nlinks, and action handlers via `execute`.\n\nMust be used with MenuTrigger and MenuContent sub-components. MenuTrigger\nautomatically renders a button with chevron icon, or use MenuTrigger asChild\nwith custom buttons like EllipsisMenuButton for overflow menus.\n\nUse Menu when: action menus (edit/delete/archive), multi-select dropdowns,\nfilterable lists, nested menus, items with links/navigation, or view filters\nthat apply immediately (e.g. on a list page).\n\nUse Select instead when: you need a simple single-select form input\nwith `value`/`onChange` and form submission support.\n\nNote: Menu is not a form control - it has no `value`/`onChange` and does\nnot integrate with `Field`. For a single-select form field, use Select\n(which does not support filtering). There is currently no built-in\nfilterable single-select form input.",
       "entryPoint": "@optiaxiom/react/menu",
       "import": "import { Menu } from '@optiaxiom/react';",
       "name": "Menu",
