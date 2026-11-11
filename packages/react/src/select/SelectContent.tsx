@@ -17,14 +17,9 @@ import { ModalLayer } from "../modal";
 import { listMinWidth, ModalListbox } from "../modal/internals";
 import { Portal } from "../portal";
 import { Text } from "../text";
-import { Tooltip } from "../tooltip";
 import { TransitionGroup } from "../transition";
 import { type ExcludeProps, fallbackSpan } from "../utils";
-import {
-  resolveItemProperty,
-  type SelectOption,
-  useSelectContext,
-} from "./SelectContext";
+import { type SelectOption, useSelectContext } from "./SelectContext";
 import { SelectRadioItem } from "./SelectRadioItem";
 
 export type SelectContentProps = ExcludeProps<
@@ -151,25 +146,21 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                           {shouldShowGroup(group, prevItem) && (
                             <ListboxLabel>{group.label}</ListboxLabel>
                           )}
-                          <Tooltip
-                            content={resolveItemProperty(item.disabledReason)}
+                          <SelectRadioItem
+                            addonBefore={item.addon}
+                            aria-label={item["aria-label"]}
+                            description={item.description}
+                            index={index}
+                            item={item}
+                            key={item.value}
                           >
-                            <SelectRadioItem
-                              addonBefore={item.addon}
-                              aria-label={item["aria-label"]}
-                              description={item.description}
-                              index={index}
-                              item={item}
-                              key={item.value}
-                            >
-                              {item.label}
-                              {item.detail && (
-                                <Text asChild color="fg.secondary" truncate>
-                                  {fallbackSpan(item.detail)}
-                                </Text>
-                              )}
-                            </SelectRadioItem>
-                          </Tooltip>
+                            {item.label}
+                            {item.detail && (
+                              <Text asChild color="fg.secondary" truncate>
+                                {fallbackSpan(item.detail)}
+                              </Text>
+                            )}
+                          </SelectRadioItem>
                         </>
                       );
                     })}

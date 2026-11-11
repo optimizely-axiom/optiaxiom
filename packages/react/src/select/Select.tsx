@@ -206,7 +206,6 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         highlightedIndex === -1
           ? items.findIndex((item) => !item.disabledReason)
           : highlightedIndex,
-      isItemDisabled: (item) => !!item.disabledReason,
       isOpen,
       items,
       itemToKey: (item) => (item !== null ? item.value : item),
@@ -249,6 +248,23 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       selectedItem: selectedItem ?? null,
       stateReducer: (state, actionAndChanges) => {
         const { changes, type } = actionAndChanges;
+
+        /**
+         * Items with a disabled reason stay reachable by keyboard so their
+         * reason can be read, but no action may select them.
+         */
+        if (
+          type !== useSelect.stateChangeTypes.ToggleButtonBlur &&
+          changes.selectedItem !== state.selectedItem &&
+          changes.selectedItem?.disabledReason
+        ) {
+          return {
+            ...changes,
+            highlightedIndex: state.highlightedIndex,
+            isOpen: state.isOpen,
+            selectedItem: state.selectedItem,
+          };
+        }
 
         switch (type) {
           case useSelect.stateChangeTypes.ToggleButtonBlur:

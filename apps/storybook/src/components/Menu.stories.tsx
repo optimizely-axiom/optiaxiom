@@ -31,7 +31,7 @@ import {
 import { dialogkit, SurfaceProvider } from "@optiaxiom/react/unstable";
 import { useMemo, useRef, useState } from "react";
 import { action } from "storybook/actions";
-import { expect, screen, userEvent, waitFor, within } from "storybook/test";
+import { expect, fn, screen, userEvent, waitFor, within } from "storybook/test";
 
 type Story = StoryObj<typeof Menu>;
 
@@ -889,6 +889,44 @@ export const SwitchItem: Story = {
         <MenuContent />
       </Menu>
     );
+  },
+};
+
+export const DisabledItems: Story = {
+  args: {
+    children: (
+      <>
+        <MenuTrigger>Actions</MenuTrigger>
+        <MenuContent />
+      </>
+    ),
+    options: [
+      { label: "Edit details" },
+      {
+        disabledReason: "Save your changes first",
+        execute: fn(),
+        label: "Duplicate",
+      },
+      {
+        disabledReason: "Used by a contract",
+        intent: "danger",
+        label: "Delete",
+      },
+    ],
+  },
+  play: async ({ args }) => {
+    await waitFor(() => expect(screen.getByRole("combobox")).toHaveFocus());
+    await userEvent.keyboard("{ArrowDown}");
+    await expect(await screen.findByRole("tooltip")).toHaveTextContent(
+      "Save your changes first",
+    );
+    await expect(
+      screen.getByRole("option", { name: "Duplicate" }),
+    ).toHaveAccessibleDescription("Save your changes first");
+
+    await userEvent.keyboard("{Enter}");
+    await expect(args.options?.[1].execute).not.toHaveBeenCalled();
+    await expect(screen.getByRole("listbox")).toBeVisible();
   },
 };
 

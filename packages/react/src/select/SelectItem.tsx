@@ -2,7 +2,12 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, type MouseEvent } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { type SelectOption, useSelectContext } from "./SelectContext";
+import { ListboxItemTooltip } from "../listbox/ListboxItemTooltip";
+import {
+  resolveItemProperty,
+  type SelectOption,
+  useSelectContext,
+} from "./SelectContext";
 
 export type SelectItemProps = BoxProps<
   "div",
@@ -35,6 +40,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
     );
 
     const itemProps = downshift.getItemProps({
+      "aria-disabled": item.disabledReason ? true : undefined,
       "aria-posinset": index + 1,
       "aria-setsize": items.length,
       index,
@@ -52,8 +58,10 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
          * But since we use exit animations downshift menu is present in DOM
          * while closing - and we need to prevent triggering mousemove during
          * that time.
+         *
+         * Disabled items are only highlighted by keyboard.
          */
-        if (!isOpen) {
+        if (!isOpen || item.disabledReason) {
           event.preventDefault();
           Object.assign(event.nativeEvent, {
             preventDownshiftDefault: true,
@@ -65,18 +73,23 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
     });
 
     return (
-      <Box
-        data-disabled={itemProps["aria-disabled"] ? "" : undefined}
-        data-focus-visible={
-          focusVisible && highlightedItem === item ? "" : undefined
-        }
-        data-highlighted={highlightedItem === item ? "" : undefined}
-        data-selected={selectedItem === item ? "" : undefined}
-        size={size}
-        {...itemProps}
+      <ListboxItemTooltip
+        content={resolveItemProperty(item.disabledReason)}
+        highlighted={highlightedItem === item}
       >
-        {children}
-      </Box>
+        <Box
+          data-disabled={itemProps["aria-disabled"] ? "" : undefined}
+          data-focus-visible={
+            focusVisible && highlightedItem === item ? "" : undefined
+          }
+          data-highlighted={highlightedItem === item ? "" : undefined}
+          data-selected={selectedItem === item ? "" : undefined}
+          size={size}
+          {...itemProps}
+        >
+          {children}
+        </Box>
+      </ListboxItemTooltip>
     );
   },
 );
