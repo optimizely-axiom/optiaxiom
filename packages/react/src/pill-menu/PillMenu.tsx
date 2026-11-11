@@ -40,7 +40,8 @@ export type PillMenuProps = BoxProps<
 >;
 
 /**
- * Dropdown menu for making selection with pills showing the selected items.
+ * Multi-select dropdown menu that shows the selected items as pills, e.g. for
+ * picking tags.
  *
  * @since 1.6.2
  * @experimental

@@ -23497,7 +23497,7 @@
       ]
     },
     "DataTable": {
-      "description": "Easy to use table and datagrids built using [TanStack Table](https://tanstack.com/table/latest).",
+      "description": "Easy to use table and datagrids built using [TanStack Table](https://tanstack.com/table/latest).\n\nPass `loading` and `empty` to `DataTableBody` to show a loading state while\nrows load and an empty state when there are no results.",
       "entryPoint": "@optiaxiom/react/data-table",
       "import": "import { DataTable } from '@optiaxiom/react';",
       "name": "DataTable",
@@ -32045,7 +32045,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/date-range-picker"
     },
     "DetailsPanel": {
-      "description": "Panel for showing additional content on the right side of the page.",
+      "description": "Side panel for showing additional content on the right side of the page. It\nsits in the page layout beside the main content; there is no overlay drawer.",
       "import": "import { DetailsPanel } from '@optiaxiom/react/unstable';",
       "name": "DetailsPanel",
       "props": {
@@ -68619,7 +68619,7 @@
       ]
     },
     "Menu": {
-      "description": "Dropdown menu for actions, multi-select, and complex interactions.\nSupports filtering/search, checkbox/radio items, nested sub-menus,\nlinks, and action handlers via `execute`.\n\nMust be used with MenuTrigger and MenuContent sub-components. MenuTrigger\nautomatically renders a button with chevron icon, or use MenuTrigger asChild\nwith custom buttons like EllipsisMenuButton for overflow menus.\n\nUse Menu when: action menus (edit/delete/archive), multi-select dropdowns,\nfilterable lists, nested menus, items with links/navigation, or view filters\nthat apply immediately (e.g. on a list page).\n\nUse Select instead when: you need a simple single-select form input\nwith `value`/`onChange` and form submission support.\n\nNote: Menu is not a form control - it has no `value`/`onChange` and does\nnot integrate with `Field`. For a single-select form field, use Select\n(which does not support filtering). There is currently no built-in\nfilterable single-select form input.",
+      "description": "Dropdown menu for actions, multi-select, and complex interactions.\nSupports a search input that filters options as the user types\n(autocomplete), options that create a new item from the typed text,\ncheckbox/radio items, nested sub-menus, links, and action handlers via\n`execute`.\n\nMust be used with MenuTrigger and MenuContent sub-components. MenuTrigger\nautomatically renders a button with chevron icon, or use MenuTrigger asChild\nwith custom buttons like EllipsisMenuButton for overflow menus.\n\nUse Menu when: action menus (edit/delete/archive), multi-select dropdowns,\nfilterable lists, nested menus, items with links/navigation, or view filters\nthat apply immediately (e.g. on a list page).\n\nUse Select instead when: you need a simple single-select form input\nwith `value`/`onChange` and form submission support.\n\nNote: Menu is not a form control - it has no `value`/`onChange` and does\nnot integrate with `Field`. For a single-select form field, use Select\n(which does not support filtering). There is currently no built-in\ncombobox (a filterable single-select form input).",
       "entryPoint": "@optiaxiom/react/menu",
       "import": "import { Menu } from '@optiaxiom/react';",
       "name": "Menu",
@@ -82476,7 +82476,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/pill"
     },
     "PillMenu": {
-      "description": "Dropdown menu for making selection with pills showing the selected items.",
+      "description": "Multi-select dropdown menu that shows the selected items as pills, e.g. for\npicking tags.",
       "import": "import { PillMenu } from '@optiaxiom/react/unstable';",
       "name": "PillMenu",
       "props": {

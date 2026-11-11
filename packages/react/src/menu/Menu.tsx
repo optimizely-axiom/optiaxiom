@@ -61,8 +61,10 @@ export type MenuProps = ExcludeProps<
 
 /**
  * Dropdown menu for actions, multi-select, and complex interactions.
- * Supports filtering/search, checkbox/radio items, nested sub-menus,
- * links, and action handlers via `execute`.
+ * Supports a search input that filters options as the user types
+ * (autocomplete), options that create a new item from the typed text,
+ * checkbox/radio items, nested sub-menus, links, and action handlers via
+ * `execute`.
  *
  * Must be used with MenuTrigger and MenuContent sub-components. MenuTrigger
  * automatically renders a button with chevron icon, or use MenuTrigger asChild
@@ -78,7 +80,7 @@ export type MenuProps = ExcludeProps<
  * Note: Menu is not a form control - it has no `value`/`onChange` and does
  * not integrate with `Field`. For a single-select form field, use Select
  * (which does not support filtering). There is currently no built-in
- * filterable single-select form input.
+ * combobox (a filterable single-select form input).
  *
  * @category overlay
  * @group Menu
