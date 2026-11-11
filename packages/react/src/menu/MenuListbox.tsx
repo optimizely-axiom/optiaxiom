@@ -1,15 +1,10 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { CommandListbox } from "../command";
-import {
-  type CommandOption,
-  resolveItemProperty,
-  useCommandContext,
-} from "../command/internals";
+import { type CommandOption, useCommandContext } from "../command/internals";
 import { ListboxLabel, ListboxSeparator } from "../listbox";
 import { shouldShowGroup, shouldShowSeparator } from "../listbox/utils";
 import { Popover } from "../popover";
-import { Tooltip } from "../tooltip";
 import { MenuCheckboxItem } from "./MenuCheckboxItem";
 import { useMenuContext } from "./MenuContext";
 import { MenuItem } from "./MenuItem";
@@ -55,15 +50,7 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
                   {shouldShowGroup(group, prevItem) && (
                     <ListboxLabel>{group.label}</ListboxLabel>
                   )}
-                  {Comp === MenuSubTrigger ? (
-                    <Tooltip content={resolveItemProperty(item.disabledReason)}>
-                      <MenuSubTrigger index={index} item={item} />
-                    </Tooltip>
-                  ) : (
-                    <Tooltip content={resolveItemProperty(item.disabledReason)}>
-                      <Comp index={index} item={item} />
-                    </Tooltip>
-                  )}
+                  <Comp index={index} item={item} />
                 </>
               );
             })}

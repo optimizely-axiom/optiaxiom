@@ -54,6 +54,13 @@ export const item = recipe({
         "&[data-disabled]": {
           opacity: 0.3,
         },
+        /**
+         * Only the keyboard highlights a disabled item.
+         */
+        "&[data-disabled][data-highlighted]": {
+          outline: `2px solid ${theme.colors["fg.default"]}`,
+          outlineOffset: "-2px",
+        },
       },
     }),
   ],

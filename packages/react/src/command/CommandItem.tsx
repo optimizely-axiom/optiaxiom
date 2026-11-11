@@ -4,6 +4,7 @@ import { forwardRef, type MouseEvent } from "react";
 
 import { Avatar } from "../avatar";
 import { Box, type BoxProps } from "../box";
+import { ListboxItemTooltip } from "../listbox/ListboxItemTooltip";
 import { useSurface } from "../surface";
 import { filterSuggestionsBySurface } from "../surface/internals";
 import { Text } from "../text";
@@ -87,7 +88,9 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
       }) &&
       !resolveItemProperty(item.selected);
 
+    const disabledReason = resolveItemProperty(item.disabledReason);
     const itemProps = downshift.getItemProps({
+      "aria-disabled": disabledReason ? true : undefined,
       "aria-posinset": index + 1,
       "aria-selected": selected ?? resolveItemProperty(item.selected),
       "aria-setsize": items.length,
@@ -95,7 +98,9 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
       item,
       onClick: (event: MouseEvent<HTMLDivElement>) => {
         onClick?.(event);
-        if (event.currentTarget instanceof HTMLAnchorElement) {
+        if (disabledReason) {
+          event.preventDefault();
+        } else if (event.currentTarget instanceof HTMLAnchorElement) {
           if (event.altKey || event.metaKey || event.shiftKey) {
             Object.assign(event, {
               preventDownshiftDefault: true,
@@ -131,7 +136,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
          * DOM while closing - and we need to prevent triggering mousemove
          * during that time.
          */
-        if (!enabled || resolveItemProperty(item.disabledReason)) {
+        if (!enabled || disabledReason) {
           event.preventDefault();
           Object.assign(event.nativeEvent, {
             preventDownshiftDefault: true,
@@ -169,44 +174,49 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
     const detail = resolveItemProperty(item.detail, { inputValue });
 
     return (
-      <Box
-        asChild={asChild}
-        data-disabled={itemProps["aria-disabled"] ? "" : undefined}
-        data-highlighted={highlightedItem === item ? "" : undefined}
-        size={size}
-        tabIndex={-1}
-        {...itemProps}
-        {...(item.href && { href: item.href })}
+      <ListboxItemTooltip
+        content={disabledReason}
+        highlighted={highlightedItem === item}
       >
-        {decorateChildren(
-          { asChild, children },
-          (children) =>
-            children ?? (
-              <>
-                {item.parentOption &&
-                  !item.parentOption.hiddenInSearchContext && (
-                    <>
-                      <Text color="fg.secondary">
-                        {resolveItemProperty(item.parentOption.label, {
-                          inputValue,
-                        })}
-                      </Text>
-                      <Box asChild h="10" w="auto">
-                        <IconChevronRight />
-                      </Box>
-                    </>
+        <Box
+          asChild={asChild}
+          data-disabled={itemProps["aria-disabled"] ? "" : undefined}
+          data-highlighted={highlightedItem === item ? "" : undefined}
+          size={size}
+          tabIndex={-1}
+          {...itemProps}
+          {...(item.href && { href: item.href })}
+        >
+          {decorateChildren(
+            { asChild, children },
+            (children) =>
+              children ?? (
+                <>
+                  {item.parentOption &&
+                    !item.parentOption.hiddenInSearchContext && (
+                      <>
+                        <Text color="fg.secondary">
+                          {resolveItemProperty(item.parentOption.label, {
+                            inputValue,
+                          })}
+                        </Text>
+                        <Box asChild h="10" w="auto">
+                          <IconChevronRight />
+                        </Box>
+                      </>
+                    )}
+                  {resolveItemProperty(item.label, { inputValue })}
+                  {isSuggested && <Avatar fallback="opal" size="2xs" />}
+                  {detail && (
+                    <Text asChild truncate {...styles.detail()}>
+                      {fallbackSpan(detail)}
+                    </Text>
                   )}
-                {resolveItemProperty(item.label, { inputValue })}
-                {isSuggested && <Avatar fallback="opal" size="2xs" />}
-                {detail && (
-                  <Text asChild truncate {...styles.detail()}>
-                    {fallbackSpan(detail)}
-                  </Text>
-                )}
-              </>
-            ),
-        )}
-      </Box>
+                </>
+              ),
+          )}
+        </Box>
+      </ListboxItemTooltip>
     );
   },
 );

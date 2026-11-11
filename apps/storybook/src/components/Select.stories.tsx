@@ -198,6 +198,33 @@ export const Disabled: Story = {
   },
 };
 
+export const DisabledItems: Story = {
+  args: {
+    defaultValue: "starter",
+    options: [
+      { label: "Starter", value: "starter" },
+      {
+        disabledReason: "Requires an admin",
+        label: "Enterprise",
+        value: "enterprise",
+      },
+    ],
+  },
+  play: async ({ canvas }) => {
+    await userEvent.keyboard("{ArrowDown}");
+    await expect(await screen.findByRole("tooltip")).toHaveTextContent(
+      "Requires an admin",
+    );
+    await expect(
+      screen.getByRole("option", { name: "Enterprise" }),
+    ).toHaveAccessibleDescription("Requires an admin");
+
+    await userEvent.keyboard("{Enter}");
+    await expect(canvas.getByRole("combobox")).toHaveTextContent("Starter");
+    await expect(screen.getByRole("listbox")).toBeVisible();
+  },
+};
+
 const groups = {
   fruits: { label: "Fruits", separator: true },
   meats: { label: "Meats", priority: 10, separator: true },

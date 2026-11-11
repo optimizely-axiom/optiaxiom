@@ -9,7 +9,7 @@ import {
 import { useEvent } from "../hooks";
 import { Input } from "../input";
 import { SurfaceProvider } from "../surface";
-import { useCommandContext } from "./CommandContext";
+import { resolveItemProperty, useCommandContext } from "./CommandContext";
 
 export type CommandInputProps = ComponentPropsWithoutRef<typeof Input>;
 
@@ -66,6 +66,7 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
               if (
                 highlightedItemRef.current instanceof HTMLAnchorElement &&
                 !highlightedItem.execute &&
+                !resolveItemProperty(highlightedItem.disabledReason) &&
                 (selectedWithSpace || event.key === "Enter")
               ) {
                 const { view: _view, ...eventInit } = event;

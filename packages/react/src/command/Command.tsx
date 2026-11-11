@@ -87,8 +87,6 @@ export function Command({
         ? items.findIndex((item) => !resolveItemProperty(item.disabledReason))
         : highlightedIndex,
     inputValue,
-    isItemDisabled: (item) =>
-      Boolean(resolveItemProperty(item?.disabledReason)),
     isOpen: !!enabled,
     items,
     itemToString: (item) =>
@@ -135,6 +133,23 @@ export function Command({
     selectedItem: null,
     stateReducer: (state, actionAndChanges) => {
       const { changes, type } = actionAndChanges;
+
+      /**
+       * Items with a disabled reason stay reachable by keyboard so their
+       * reason can be read, but no action (Enter, click, `selectItem`) may
+       * select them.
+       */
+      if (
+        changes.selectedItem &&
+        resolveItemProperty(changes.selectedItem.disabledReason)
+      ) {
+        return {
+          ...changes,
+          highlightedIndex: state.highlightedIndex,
+          inputValue: state.inputValue,
+          selectedItem: state.selectedItem,
+        };
+      }
 
       switch (type) {
         case useCombobox.stateChangeTypes.InputBlur:

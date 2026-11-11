@@ -69,12 +69,20 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
 
     return (
       <Group
-        aria-describedby={description ? descriptionId : undefined}
         aria-labelledby={labelId}
         asChild
         ref={ref}
         {...styles.item({ intent }, className)}
         {...props}
+        /**
+         * Merged rather than overridden: a wrapping Tooltip passes its own
+         * `aria-describedby`, which would otherwise hide the description.
+         */
+        aria-describedby={
+          [description ? descriptionId : undefined, props["aria-describedby"]]
+            .filter(Boolean)
+            .join(" ") || undefined
+        }
         {...(!isHoverSupported && {
           "data-highlighted": undefined,
         })}
