@@ -9,7 +9,7 @@ import { version } from "../../package.json";
 import { DialogKitProvider } from "../dialog-kit/internals";
 import { FocusBookmarkProvider } from "../focus-bookmark";
 import { type Locale, LocaleProvider } from "../locale";
-import { locale as en } from "../locale/en";
+import { en } from "../locale/en";
 import { SuggestionProvider } from "../suggestion/internals";
 import { ThemeProvider } from "../theme-provider";
 import { ToastProvider } from "../toast";
@@ -27,7 +27,7 @@ export type AxiomProviderProps = {
    * A BCP-47 tag (e.g. `"fr-FR"`) localizes date/time components such as
    * `Calendar`, `DateRangePicker`, `Clock`, and `Time`, falling back to the
    * browser locale; built-in labels stay English. Pass a `Locale` instead
-   * (`import { locale } from "@optiaxiom/react/locale/en"`, or your own) to
+   * (`import { en } from "@optiaxiom/react/locale/en"`, or your own) to
    * also translate built-in labels and screen reader text.
    */
   locale?: Locale | string;

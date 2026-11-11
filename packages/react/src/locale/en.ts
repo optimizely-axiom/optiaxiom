@@ -105,4 +105,4 @@ export type Messages = typeof messages;
 /**
  * English, the default language of built-in labels.
  */
-export const locale: Locale = { code: "en", messages };
+export const en: Locale = { code: "en", messages };

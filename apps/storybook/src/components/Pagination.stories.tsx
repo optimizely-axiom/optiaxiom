@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { AxiomProvider, Pagination } from "@optiaxiom/react";
-import { locale as en } from "@optiaxiom/react/locale/en";
+import { en } from "@optiaxiom/react/locale/en";
 import { useState } from "react";
 import { expect, userEvent } from "storybook/test";
 
