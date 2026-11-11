@@ -111,6 +111,18 @@ For comprehensive guides, component API reference, and more examples:
 - [Styling Guide](https://optimizely-axiom.github.io/optiaxiom/guides/styling)
 - [Icons Guide](https://optimizely-axiom.github.io/optiaxiom/guides/icons)
 
+## Pinned dependencies
+
+Every `@radix-ui/*` dependency is pinned to an exact version. Radix packages pin each other exactly, so ranges would let an install mix release waves and duplicate internals such as the dismissable layer stack, which only works within one copy. Move them together, and only past these holds:
+
+| Package                   | Held at  | Why                                                                                                                                                                                                                                       | Lift when                                                                                      |
+| ------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `@radix-ui/react-toast`   | `1.2.24` | 1.3.x renders no toasts on React 16/17: its `startTransition` fallback drops the updates ([radix-ui/primitives#4228](https://github.com/radix-ui/primitives/issues/4228)). The rest of the Radix packages stay on Toast 1.2.24's release. | The fix ([#4231](https://github.com/radix-ui/primitives/pull/4231)) ships.                     |
+| `@radix-ui/react-tabs`    | `1.1.21` | 1.1.22 calls `onValueChange` twice per click ([radix-ui/primitives#4266](https://github.com/radix-ui/primitives/issues/4266)).                                                                                                            | A release fixes the double call.                                                               |
+| `@radix-ui/react-context` | `1.1.4`  | 1.2.0 and later type its hooks with interfaces it doesn't export, so our exported context hooks fail declaration emit (TS4023, [radix-ui/primitives#4098](https://github.com/radix-ui/primitives/issues/4098)).                           | The fix ([#4204](https://github.com/radix-ui/primitives/pull/4204)) ships in a stable release. |
+
+CI runs the specs on React 17 as well as 18, so a bump that breaks React 17 fails there.
+
 ## Contributing
 
 See the [main repository](https://github.com/optimizely-axiom/optiaxiom) for contribution guidelines.
