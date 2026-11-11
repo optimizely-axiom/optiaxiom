@@ -23,6 +23,9 @@ export type TextProps<T extends ElementType = "p", P = unknown> = BoxProps<
  *
  * Use this for paragraphs, captions, descriptions, and non-heading text.
  *
+ * Set the font size with `fontSize`. `size` sets width and height, so
+ * `<Text size="sm">` squeezes the text into a 24px box.
+ *
  * When not to use:
  * - For headings and titles use Heading instead.
  * - For form labels use Label instead.

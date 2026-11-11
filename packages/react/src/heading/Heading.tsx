@@ -67,6 +67,9 @@ const mapLevelToTracking = {
  * ⚠️ All heading levels (1-4) default to fontWeight="700". If your design shows
  * lighter headings, explicitly set fontWeight="500" or "600".
  *
+ * Set the font size with `fontSize`. `size` sets width and height, not font
+ * size.
+ *
  * Don't use Text component for headings - it lacks semantic meaning.
  *
  * @category typography

@@ -58682,7 +58682,7 @@
       ]
     },
     "Heading": {
-      "description": "Renders semantic heading elements (h1-h4) for document structure and\naccessibility.\n\nUse this for page titles, section headings, and any text that represents a\nheading in the document outline. Don't use Text with large fontSize and bold\nfontWeight for headings - Heading provides proper semantics for screen\nreaders and improves accessibility.\n\nWhen to use:\n- Page titles\n- Section headings\n- Card/panel titles\n- Any text with fontSize='xl'+ and fontWeight='500'+\n\n⚠️ All heading levels (1-4) default to fontWeight=\"700\". If your design shows\nlighter headings, explicitly set fontWeight=\"500\" or \"600\".\n\nDon't use Text component for headings - it lacks semantic meaning.",
+      "description": "Renders semantic heading elements (h1-h4) for document structure and\naccessibility.\n\nUse this for page titles, section headings, and any text that represents a\nheading in the document outline. Don't use Text with large fontSize and bold\nfontWeight for headings - Heading provides proper semantics for screen\nreaders and improves accessibility.\n\nWhen to use:\n- Page titles\n- Section headings\n- Card/panel titles\n- Any text with fontSize='xl'+ and fontWeight='500'+\n\n⚠️ All heading levels (1-4) default to fontWeight=\"700\". If your design shows\nlighter headings, explicitly set fontWeight=\"500\" or \"600\".\n\nSet the font size with `fontSize`. `size` sets width and height, not font\nsize.\n\nDon't use Text component for headings - it lacks semantic meaning.",
       "entryPoint": "@optiaxiom/react/heading",
       "import": "import { Heading } from '@optiaxiom/react';",
       "name": "Heading",
@@ -116764,7 +116764,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/tabs"
     },
     "Text": {
-      "description": "Renders text content for body copy, descriptions, and general text without\nsemantic meaning.\n\n🚨 Renders a `<p>` tag by default, which cannot be nested inside another\n`<p>` tag. For inline text styling within a paragraph, use `asChild` with a\n`<span>` element.\n\nUse this for paragraphs, captions, descriptions, and non-heading text.\n\nWhen not to use:\n- For headings and titles use Heading instead.\n- For form labels use Label instead.\n- Don't combine large fontSize ('xl'+) with bold fontWeight ('500'+) - that\n  indicates a heading.",
+      "description": "Renders text content for body copy, descriptions, and general text without\nsemantic meaning.\n\n🚨 Renders a `<p>` tag by default, which cannot be nested inside another\n`<p>` tag. For inline text styling within a paragraph, use `asChild` with a\n`<span>` element.\n\nUse this for paragraphs, captions, descriptions, and non-heading text.\n\nSet the font size with `fontSize`. `size` sets width and height, so\n`<Text size=\"sm\">` squeezes the text into a 24px box.\n\nWhen not to use:\n- For headings and titles use Heading instead.\n- For form labels use Label instead.\n- Don't combine large fontSize ('xl'+) with bold fontWeight ('500'+) - that\n  indicates a heading.",
       "entryPoint": "@optiaxiom/react/text",
       "import": "import { Text } from '@optiaxiom/react';",
       "name": "Text",
