@@ -9,6 +9,12 @@ export type TableHeaderCellProps = BoxProps<
 >;
 
 /**
+ * Header cell for a `Table` column.
+ *
+ * Children are laid out in a flex row, so `textAlign` on the cell does not
+ * move them. To align a header, wrap its content in a box that fills the row:
+ * `<TableHeaderCell><Box flex="1" textAlign="end">Price</Box></TableHeaderCell>`.
+ *
  * @group Table
  */
 export const TableHeaderCell = forwardRef<

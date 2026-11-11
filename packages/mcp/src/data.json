@@ -110685,7 +110685,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/table"
     },
     "TableHeaderCell": {
-      "description": "TableHeaderCell component from Axiom Design System",
+      "description": "Header cell for a `Table` column.\n\nChildren are laid out in a flex row, so `textAlign` on the cell does not\nmove them. To align a header, wrap its content in a box that fills the row:\n`<TableHeaderCell><Box flex=\"1\" textAlign=\"end\">Price</Box></TableHeaderCell>`.",
       "entryPoint": "@optiaxiom/react/table",
       "import": "import { TableHeaderCell } from '@optiaxiom/react';",
       "name": "TableHeaderCell",
