@@ -509,6 +509,12 @@
       }
     },
     {
+      "files": ["**/packages/react/src/**/*.spec.tsx"],
+      "rules": {
+        "local/prefer-setup-render": "error"
+      }
+    },
+    {
       "files": ["**/*.spec.{ts,tsx}"],
       "rules": {
         "local/no-redundant-test-setup": "error",
