@@ -1,7 +1,11 @@
 import { getDocs } from "@optiaxiom/shared";
 import { describe, expect, it } from "vitest";
 
-import { parsePropDefinition, parseTypeSchema } from "./parsers.mjs";
+import {
+  parseDemoContext,
+  parsePropDefinition,
+  parseTypeSchema,
+} from "./parsers.mjs";
 
 const docs = getDocs();
 
@@ -294,5 +298,61 @@ describe("parsePropDefinition", () => {
     expect(
       parsePropDefinition(getProp("@optiaxiom/react/Box", "bg")).responsive,
     ).toBeUndefined();
+  });
+});
+
+describe("parseDemoContext", () => {
+  const mdx = [
+    'import { Demo } from "@/components";',
+    "",
+    "## Documentation",
+    "",
+    "### Usage",
+    "",
+    '<Demo component="table/usage" />',
+    "",
+    "### Pagination",
+    "",
+    "Pick client or server pagination.",
+    "",
+    "#### Client side",
+    "",
+    "Use the [pagination guide](https://example.com) and `pagination`.",
+    "",
+    "<Demo",
+    '  component="table/client-usage"',
+    '  meta="/pagination/"',
+    "/>",
+    "",
+    '<Demo component="table/client-alt-usage" />',
+    "",
+    'Expanding <Badge intent="primary">ALPHA</Badge> rows too.',
+    "- `<Row />` rows",
+    "- nested rows",
+    "",
+    "```tsx",
+    "<Table />",
+    "```",
+    "",
+    '<Demo component="table/expand-usage" />',
+  ].join("\n");
+
+  it("should attach the heading path and intro prose to each demo", () => {
+    expect(Object.fromEntries(parseDemoContext(mdx))).toEqual({
+      "table/client-alt-usage": {
+        description: "Use the pagination guide and `pagination`.",
+        heading: "Pagination > Client side",
+      },
+      "table/client-usage": {
+        description: "Use the pagination guide and `pagination`.",
+        heading: "Pagination > Client side",
+      },
+      "table/expand-usage": {
+        description:
+          "Expanding ALPHA rows too.\n- `<Row />` rows\n- nested rows",
+        heading: "Pagination > Client side",
+      },
+      "table/usage": { heading: "Usage" },
+    });
   });
 });

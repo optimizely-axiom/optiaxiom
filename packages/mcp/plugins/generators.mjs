@@ -2,11 +2,12 @@ import { tokens } from "@optiaxiom/globals";
 import { getDocs } from "@optiaxiom/shared";
 import { transform } from "esbuild";
 import { readdir, readFile } from "node:fs/promises";
-import { basename, dirname, join } from "node:path";
+import { basename, dirname, join, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import {
   extractAxiomImports,
+  parseDemoContext,
   parseDemosFromFiles,
   parseLightDark,
   parsePropDefinition,
@@ -136,6 +137,7 @@ export async function generateComponents() {
   }
 
   // Third pass: Parse all component demos in parallel
+  const demoContext = await parseDemoContextFromPages();
   await Promise.all(
     Object.values(components)
       .filter(
@@ -143,9 +145,14 @@ export async function generateComponents() {
         (component) => !component.group || component.name === component.group,
       )
       .map(async (component) => {
-        component.examples = await parseDemosFromFiles(
-          // Special case: ToastProvider demos are in "toast" folder
-          component.name === "ToastProvider" ? "Toast" : component.name,
+        // Special case: ToastProvider demos are in "toast" folder
+        const demos =
+          component.name === "ToastProvider" ? "Toast" : component.name;
+        component.examples = (await parseDemosFromFiles(demos)).map(
+          (example) => ({
+            ...example,
+            ...demoContext.get(`${toKebabCase(demos)}/${example.title}`),
+          }),
         );
       }),
   );
@@ -351,6 +358,39 @@ function langForFile(filename) {
     return "tsx";
   }
   return "ts";
+}
+
+/**
+ * Index the heading and intro prose of every `<Demo>` across the docs pages.
+ * A demo shown on several pages takes its context from its own component's
+ * page (`components/<demo folder>/page.mdx`) when it appears there, else from
+ * the first page that shows it.
+ *
+ * @returns {Promise<Map<string, { description?: string; heading: string }>>}
+ */
+async function parseDemoContextFromPages() {
+  const docsDir = join(__dirname, "..", "..", "..", "apps", "docs", "app");
+  const pages = (await readdir(docsDir, { recursive: true }))
+    .filter((path) => basename(path) === "page.mdx")
+    .sort();
+
+  /** @type {Map<string, { description?: string; heading: string }>} */
+  const context = new Map();
+  for (const page of pages) {
+    const ownFolder = page
+      .split(sep)
+      .join("/")
+      .match(/components\/([^/]+)\/page\.mdx$/)?.[1];
+    const demos = parseDemoContext(
+      await readFile(join(docsDir, page), "utf-8"),
+    );
+    for (const [ref, value] of demos) {
+      if (!context.has(ref) || ref.startsWith(`${ownFolder}/`)) {
+        context.set(ref, value);
+      }
+    }
+  }
+  return context;
 }
 
 /**

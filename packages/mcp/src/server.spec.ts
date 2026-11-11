@@ -194,12 +194,17 @@ describe("get_patterns", () => {
     expect(results[0].title).toBe("Select/usage");
   });
 
-  it("returns only examples matching the query", async () => {
+  it("ranks examples named for the query first", async () => {
     const results = await getPatterns({ components: "Input", query: "addon" });
+    const named = results.map(({ title }) => /^Input\/.*addon/.test(title));
 
-    expect(results.length).toBeGreaterThan(0);
-    for (const { title } of results) {
-      expect(title).toMatch(/^Input\/.*addon/);
-    }
+    expect(named[0]).toBe(true);
+    expect(named).toEqual([...named].sort((a, b) => +b - +a));
+  });
+
+  it("matches the query against the docs heading an example sits under", async () => {
+    const results = await getPatterns({ components: "Menu", query: "filter" });
+
+    expect(results[0].title).toBe("Menu/keyword-usage");
   });
 });

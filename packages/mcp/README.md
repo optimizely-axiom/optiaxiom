@@ -133,10 +133,10 @@ Find usage examples showing how Axiom components work together. Returns real wor
 **Parameters:**
 
 - `components` (string, required): Space-separated component names to find patterns for (e.g., "Field Input Button"). Returns examples that use these components together.
-- `query` (string, optional): Search within example titles to find specific patterns (e.g., "addon", "form", "disabled").
+- `query` (string, optional): Search example titles and the docs headings and prose that introduce them (e.g., "addon", "filter", "empty").
 - `limit` (number, optional): Maximum number of examples to return (default: 5, max: 10)
 
-**Returns:** Array of matching examples with code (filename → file contents) and title.
+**Returns:** Array of matching examples with code (filename → file contents) and title. Query matches rank first, then examples using more of the requested components; each requested component's own `usage` demo follows the top result.
 
 ### `get_tokens`
 
@@ -217,7 +217,7 @@ The MCP server serves pre-generated component metadata that is automatically ext
 
 - **Component descriptions** come from JSDoc comments on component exports (e.g., `packages/react/src/table/Table.tsx`)
 - **Props and types** are extracted from TypeScript definitions
-- **Examples** are pulled from demo files in `apps/docs/demos/`
+- **Examples** are pulled from demo files in `apps/docs/demos/`, with the heading and prose each sits under on its docs page (`apps/docs/app/**/page.mdx`)
 - **Usage warnings** are embedded in JSDoc and automatically included in the `description` field
 - **Grouping and versioning** use JSDoc tags (`@group` and `@since`)
 
@@ -225,7 +225,7 @@ All data is bundled into the published package — there is no filesystem or net
 
 The generated metadata is committed to the repo as `src/data.json` and re-verified in CI with
 `git diff --exit-code`. Any change to an upstream source (a `@optiaxiom/react` component, a
-`@optiaxiom/globals` token, or a `@optiaxiom/icons` icon) therefore requires you to rebuild
+`@optiaxiom/globals` token, a `@optiaxiom/icons` icon, or the prose around a `<Demo>` on a docs page) therefore requires you to rebuild
 (`pnpm -F mcp... build`), commit the regenerated `src/data.json`, and add an `@optiaxiom/mcp` `patch`
 changeset — otherwise the CI diff check fails.
 

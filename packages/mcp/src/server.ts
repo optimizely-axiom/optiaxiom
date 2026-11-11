@@ -202,7 +202,7 @@ Examples:
           .string()
           .optional()
           .describe(
-            "Search within example titles to find specific patterns (e.g., 'addon', 'form', 'disabled').",
+            "Search example titles and the docs headings and prose that introduce them (e.g., 'addon', 'filter', 'empty').",
           ),
       },
       title: "Get Patterns",

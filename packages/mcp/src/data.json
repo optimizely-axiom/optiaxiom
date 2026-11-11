@@ -790,7 +790,9 @@
             }
           ],
           "components": ["Alert", "Group"],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "Use the `intent` prop to select between the different alert types.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -800,7 +802,9 @@
             }
           ],
           "components": ["Alert", "Button"],
-          "title": "close-usage"
+          "title": "close-usage",
+          "description": "Use the `onDismiss` prop to show a close button to the top right of the alert.",
+          "heading": "Dismissible"
         },
         {
           "code": [
@@ -810,7 +814,8 @@
             }
           ],
           "components": ["Alert", "Link", "Text"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -866,7 +871,9 @@
             "AlertDialogHeader",
             "AlertDialogTrigger"
           ],
-          "title": "async-usage"
+          "title": "async-usage",
+          "description": "We can prevent closing the dialog in the action button's `onClick` handler to perform async operations.\n\nMake sure to use the controlled props and call `event.preventDefault()` in your action to stop the modal from being dismissed.",
+          "heading": "Handling async events"
         },
         {
           "code": [
@@ -887,7 +894,9 @@
             "Group",
             "Text"
           ],
-          "title": "confirmation-usage"
+          "title": "confirmation-usage",
+          "description": "Add an `onClick` handler to `AlertDialogAction` to perform an action on confirmation.",
+          "heading": "Handling confirmation"
         },
         {
           "code": [
@@ -906,7 +915,9 @@
             "AlertDialogHeader",
             "AlertDialogTrigger"
           ],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -916,7 +927,9 @@
             }
           ],
           "components": ["Button", "dialogkit", "toaster"],
-          "title": "managed-confirm-usage"
+          "title": "managed-confirm-usage",
+          "description": "We can also use the `await dialogkit.confirm()` shortcut method to show an alert dialog and get a boolean result based on whether the user confirms or cancels the dialog.",
+          "heading": "Managed ALPHA"
         },
         {
           "code": [
@@ -936,7 +949,9 @@
             "dialogkit",
             "toaster"
           ],
-          "title": "managed-usage"
+          "title": "managed-usage",
+          "description": "Use `dialogkit.create()` to create alert dialogs in managed mode. In managed mode you must omit the `AlertDialog` element and only send the `AlertDialogContent` element and its children.",
+          "heading": "Managed ALPHA"
         },
         {
           "code": [
@@ -955,7 +970,9 @@
             "AlertDialogHeader",
             "AlertDialogTrigger"
           ],
-          "title": "size-usage"
+          "title": "size-usage",
+          "description": "Use the `size` prop to change the size of the dialog box.",
+          "heading": "Sizes"
         },
         {
           "code": [
@@ -974,7 +991,9 @@
             "AlertDialogHeader",
             "AlertDialogTrigger"
           ],
-          "title": "trigger-usage"
+          "title": "trigger-usage",
+          "description": "By default we use the `Button` component for the dialog trigger which accepts all of the existing button props.\n\nWe can also completely change the trigger by using `asChild` and passing our own component.",
+          "heading": "Customize trigger"
         },
         {
           "code": [
@@ -993,7 +1012,8 @@
             "AlertDialogHeader",
             "AlertDialogTrigger"
           ],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -7964,7 +7984,9 @@
             }
           ],
           "components": ["Avatar"],
-          "title": "fallback-children-usage"
+          "title": "fallback-children-usage",
+          "description": "Render `children` prop if `src` is not provided.",
+          "heading": "Fallback > Children"
         },
         {
           "code": [
@@ -7974,7 +7996,9 @@
             }
           ],
           "components": ["Avatar", "Group"],
-          "title": "fallback-icon-usage"
+          "title": "fallback-icon-usage",
+          "description": "Render an icon based on `fallback` prop if neither `src`, `children`, and `name` are given or fails to load.\n\nBy default `fallback` is set to `user`.",
+          "heading": "Fallback > Icon"
         },
         {
           "code": [
@@ -7984,7 +8008,9 @@
             }
           ],
           "components": ["Avatar"],
-          "title": "fallback-name-usage"
+          "title": "fallback-name-usage",
+          "description": "Generate initials from the `name` prop if `src` and `children` are not provided or fails to load.",
+          "heading": "Fallback > Name"
         },
         {
           "code": [
@@ -7994,7 +8020,9 @@
             }
           ],
           "components": ["Avatar", "AvatarGroup"],
-          "title": "group-usage"
+          "title": "group-usage",
+          "description": "Use the `<AvatarGroup />` component to stack avatars together.",
+          "heading": "Grouping avatars"
         },
         {
           "code": [
@@ -8004,7 +8032,9 @@
             }
           ],
           "components": ["Avatar"],
-          "title": "size-usage"
+          "title": "size-usage",
+          "description": "Use the `size` prop to modify the size of the avatar.",
+          "heading": "Different sizes"
         },
         {
           "code": [
@@ -8014,7 +8044,9 @@
             }
           ],
           "components": ["Avatar"],
-          "title": "usage"
+          "title": "usage",
+          "description": "Provide the `src` and an optional `name` prop to render an avatar.",
+          "heading": "Usage"
         }
       ]
     },
@@ -9587,7 +9619,9 @@
             }
           ],
           "components": ["Badge", "Group"],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "Use the `intent` and `variant` props to fine tune the appearance of the badge.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -9597,7 +9631,9 @@
             }
           ],
           "components": ["Badge"],
-          "title": "link-usage"
+          "title": "link-usage",
+          "description": "Set `asChild` to `true` and wrap children in an `<a>` element to render badge as links.",
+          "heading": "Badge as links"
         },
         {
           "code": [
@@ -9607,7 +9643,8 @@
             }
           ],
           "components": ["Badge", "Group"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -10394,7 +10431,9 @@
             }
           ],
           "components": ["Banner", "Group"],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "Use the `intent` prop to select between the different banner types.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -10404,7 +10443,9 @@
             }
           ],
           "components": ["Banner", "Button", "Group", "Link", "toaster"],
-          "title": "button-usage"
+          "title": "button-usage",
+          "description": "Display with customizable interactive actions.",
+          "heading": "Action"
         },
         {
           "code": [
@@ -10414,7 +10455,9 @@
             }
           ],
           "components": ["Banner", "Button"],
-          "title": "close-usage"
+          "title": "close-usage",
+          "description": "Use the `onDismiss` prop to show a close button to the top right of the banner.",
+          "heading": "Dismissible"
         },
         {
           "code": [
@@ -10424,7 +10467,8 @@
             }
           ],
           "components": ["Banner", "Link", "Text"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -11201,7 +11245,9 @@
             }
           ],
           "components": ["Box"],
-          "title": "composition-usage"
+          "title": "composition-usage",
+          "description": "`Box` component uses the Radix Composition approach and accepts an `asChild` prop. By default it renders a `<div>` element but when `asChild` is enabled it will forward all of its own props to its child and only render the child element instead.",
+          "heading": "Composition"
         }
       ]
     },
@@ -12011,7 +12057,9 @@
             }
           ],
           "components": ["Breadcrumb", "Button"],
-          "title": "addon-usage"
+          "title": "addon-usage",
+          "description": "We can use the `addonAfter` property to show additional content inside the items.",
+          "heading": "Addons"
         },
         {
           "code": [
@@ -12021,7 +12069,9 @@
             }
           ],
           "components": ["Breadcrumb", "toaster"],
-          "title": "button-usage"
+          "title": "button-usage",
+          "description": "Alternatively we can provide an `execute` property if the breadcrumb doesn't point to an actual link and instead requires programmatic navigation.",
+          "heading": "Structure > Buttons"
         },
         {
           "code": [
@@ -12031,7 +12081,9 @@
             }
           ],
           "components": ["Breadcrumb"],
-          "title": "collapse-usage"
+          "title": "collapse-usage",
+          "description": "`Breadcrumb` will by default only show 3 items and collapse the rest into a dropdown menu.\n\nThis can be configured using the `maxItems` prop.",
+          "heading": "Collapsed items"
         },
         {
           "code": [
@@ -12041,7 +12093,8 @@
             }
           ],
           "components": ["Breadcrumb"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -12832,7 +12885,9 @@
             }
           ],
           "components": ["Button", "Group"],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "Use the `appearance` prop to select between the different button appearances.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -12842,7 +12897,9 @@
             }
           ],
           "components": ["Button", "Group", "Tooltip"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Set the `disabled` prop to `true` to disable buttons and prevent any interactions.\n\nFor accessibility please make sure to include text that explains why the button is disabled or use a tooltip.",
+          "heading": "Disabled state"
         },
         {
           "code": [
@@ -12852,7 +12909,9 @@
             }
           ],
           "components": ["Button"],
-          "title": "file-upload-usage"
+          "title": "file-upload-usage",
+          "description": "We can create a simple file upload button by rendering the button as a `label` and including a visually hidden file input.",
+          "heading": "File upload"
         },
         {
           "code": [
@@ -12862,7 +12921,9 @@
             }
           ],
           "components": ["Button", "ButtonGroup"],
-          "title": "group-usage"
+          "title": "group-usage",
+          "description": "Use the `<ButtonGroup />` component to group related buttons together.",
+          "heading": "Grouping buttons"
         },
         {
           "code": [
@@ -12872,7 +12933,9 @@
             }
           ],
           "components": ["Button", "Group", "Tooltip"],
-          "title": "icon-only-usage"
+          "title": "icon-only-usage",
+          "description": "Use the `icon` prop and omit the `children` to display an icon only button.\n\nFor accessibility please make sure to always include an `aria-label` prop for screen readers and optionally use tooltips to visually denote the button's intent.",
+          "heading": "Icons > Icon only button"
         },
         {
           "code": [
@@ -12882,7 +12945,9 @@
             }
           ],
           "components": ["Button"],
-          "title": "icon-usage"
+          "title": "icon-usage",
+          "description": "Icons are placed to the left by default but can be placed to the right using the `iconPosition` prop.",
+          "heading": "Icons > Left and right icons"
         },
         {
           "code": [
@@ -12892,7 +12957,9 @@
             }
           ],
           "components": ["Button", "Link", "Tooltip"],
-          "title": "link-disabled-usage"
+          "title": "link-disabled-usage",
+          "description": "Make sure to prevent interactions manually using `event.preventDefault()` since `<a>` elements do not support the `disabled` prop.\n\nAlternatively you can use our `Link` component which supports the `disabled` prop.",
+          "heading": "Links > Disabled button links"
         },
         {
           "code": [
@@ -12902,7 +12969,9 @@
             }
           ],
           "components": ["Button"],
-          "title": "link-usage"
+          "title": "link-usage",
+          "description": "Set `asChild` to `true` and wrap children in an `<a>` element to render buttons as links.",
+          "heading": "Links > Button as links"
         },
         {
           "code": [
@@ -12912,7 +12981,9 @@
             }
           ],
           "components": ["Button", "Group", "Switch", "Tooltip"],
-          "title": "loading-usage"
+          "title": "loading-usage",
+          "description": "Set the `loading` prop to `true` to show a loading spinner and mark the button `aria-busy`.\n\nDon't also set `disabled`: a disabled button loses keyboard focus mid-action. The button stays clickable while loading, so ignore repeat clicks in your `onClick` handler if the action shouldn't run twice.",
+          "heading": "Loading state"
         },
         {
           "code": [
@@ -12922,7 +12993,9 @@
             }
           ],
           "components": ["Button", "Group"],
-          "title": "size-usage"
+          "title": "size-usage",
+          "description": "Use the `size` prop to modify the size of the button.",
+          "heading": "Different sizes"
         },
         {
           "code": [
@@ -12932,7 +13005,8 @@
             }
           ],
           "components": ["Button"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -14537,7 +14611,8 @@
             }
           ],
           "components": ["Calendar"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -15335,7 +15410,9 @@
             "MenuContent",
             "MenuTrigger"
           ],
-          "title": "addon-after-usage"
+          "title": "addon-after-usage",
+          "description": "Use the `addonAfter` prop on `CardHeader` to add menus and other secondary actions after the title.",
+          "heading": "Header > Addons"
         },
         {
           "code": [
@@ -15345,7 +15422,9 @@
             }
           ],
           "components": ["Box", "Card", "CardHeader"],
-          "title": "addon-before-usage"
+          "title": "addon-before-usage",
+          "description": "Use the `addonBefore` prop on `CardHeader` to add icons or other visuals before the title.",
+          "heading": "Header > Addons"
         },
         {
           "code": [
@@ -15371,7 +15450,9 @@
             }
           ],
           "components": ["Box", "Card", "CardHeader"],
-          "title": "description-usage"
+          "title": "description-usage",
+          "description": "Use the `description` prop on `CardHeader` to add short descriptions to cards.",
+          "heading": "Header > Description"
         },
         {
           "code": [
@@ -15388,7 +15469,9 @@
             "Text",
             "Tooltip"
           ],
-          "title": "link-truncate-usage"
+          "title": "link-truncate-usage",
+          "description": "We can combine this with the Text and Tooltip component to truncate header titles while also showing the full title in a tooltip.\n\nUse the `auto` prop on `Tooltip` to only show a tooltip if the text is actually clipped.",
+          "heading": "Links > Tooltip"
         },
         {
           "code": [
@@ -15407,7 +15490,9 @@
             "MenuContent",
             "MenuTrigger"
           ],
-          "title": "link-usage"
+          "title": "link-usage",
+          "description": "Use the `CardLink` component to render links and make the whole card clickable.",
+          "heading": "Links"
         },
         {
           "code": [
@@ -15427,7 +15512,9 @@
             "CardPreview",
             "Group"
           ],
-          "title": "overlay-action-usage"
+          "title": "overlay-action-usage",
+          "description": "Include the `CardAction` component if you'd like the checkbox to be hidden until hovered or interacted with.\n\nHover over the card to see the checkbox:",
+          "heading": "Overlay"
         },
         {
           "code": [
@@ -15446,7 +15533,9 @@
             "CardPreview",
             "Group"
           ],
-          "title": "overlay-usage"
+          "title": "overlay-usage",
+          "description": "Use the `addonTopLeft`/`addonTopRight`/`addonBottomRight`/`addonBottomLeft` props on `CardPreview` to add checkbox and other tertiary actions to cards.",
+          "heading": "Overlay"
         },
         {
           "code": [
@@ -15462,7 +15551,9 @@
             "CardImage",
             "CardPreview"
           ],
-          "title": "preview-image-usage"
+          "title": "preview-image-usage",
+          "description": "We can also use the `CardImage` component to add thumbnail images for cards.",
+          "heading": "Preview"
         },
         {
           "code": [
@@ -15472,7 +15563,9 @@
             }
           ],
           "components": ["Card", "CardHeader", "CardPreview"],
-          "title": "preview-usage"
+          "title": "preview-usage",
+          "description": "Use the `CardPreview` component to add a preview section for cards.",
+          "heading": "Preview"
         },
         {
           "code": [
@@ -15482,7 +15575,9 @@
             }
           ],
           "components": ["Box", "Card", "CardHeader"],
-          "title": "title-usage"
+          "title": "title-usage",
+          "description": "Use the `CardHeader` component to add a title to cards.",
+          "heading": "Header"
         },
         {
           "code": [
@@ -15492,7 +15587,9 @@
             }
           ],
           "components": ["Box", "Card", "CardHeader", "Text"],
-          "title": "truncate-usage"
+          "title": "truncate-usage",
+          "description": "We can use the Text component to truncate header titles.",
+          "heading": "Header > Truncate"
         },
         {
           "code": [
@@ -15512,7 +15609,8 @@
             "MenuContent",
             "MenuTrigger"
           ],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -21705,7 +21803,9 @@
             }
           ],
           "components": ["Button", "Checkbox", "Group"],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `checked` and `defaultChecked` props to toggle between controlled and uncontrolled usage. And combine it with `onCheckedChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -21715,7 +21815,9 @@
             }
           ],
           "components": ["Checkbox"],
-          "title": "description-usage"
+          "title": "description-usage",
+          "description": "Use the `description` prop to add helper text after the label.",
+          "heading": "Description"
         },
         {
           "code": [
@@ -21725,7 +21827,9 @@
             }
           ],
           "components": ["Checkbox", "Group"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Enable the `disabled` prop to toggle the disabled state of the checkbox control.",
+          "heading": "Disabled state"
         },
         {
           "code": [
@@ -21735,7 +21839,9 @@
             }
           ],
           "components": ["Button", "Checkbox", "Field", "Group", "Input"],
-          "title": "form-integration-usage"
+          "title": "form-integration-usage",
+          "description": "Integrate with form libraries like react-hook-form for validation and error handling.",
+          "heading": "Form integration"
         },
         {
           "code": [
@@ -21745,7 +21851,9 @@
             }
           ],
           "components": ["Checkbox"],
-          "title": "indeterminate-usage"
+          "title": "indeterminate-usage",
+          "description": "Enable the `indeterminate` prop to toggle the indeterminate state of the checkbox control.",
+          "heading": "Indeterminate"
         },
         {
           "code": [
@@ -21755,7 +21863,9 @@
             }
           ],
           "components": ["Checkbox", "Group", "Separator"],
-          "title": "label-usage"
+          "title": "label-usage",
+          "description": "The `children` prop is used as the label of the checkbox control.",
+          "heading": "Label"
         },
         {
           "code": [
@@ -21765,7 +21875,9 @@
             }
           ],
           "components": ["Checkbox", "Group"],
-          "title": "pattern-select-all-usage"
+          "title": "pattern-select-all-usage",
+          "description": "Implement a \"select all\" checkbox that shows indeterminate state when some items are selected.",
+          "heading": "Common patterns > Select all with indeterminate state"
         },
         {
           "code": [
@@ -21775,7 +21887,9 @@
             }
           ],
           "components": ["Checkbox"],
-          "title": "size-usage"
+          "title": "size-usage",
+          "description": "Use the `size` prop to control the size of the checkbox control and label.",
+          "heading": "Sizes"
         },
         {
           "code": [
@@ -21785,7 +21899,8 @@
             }
           ],
           "components": ["Checkbox"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -22563,7 +22678,8 @@
             }
           ],
           "components": ["Code", "Text"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -23351,7 +23467,8 @@
             }
           ],
           "components": ["Button", "Cover", "Group", "Link"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -24150,7 +24267,9 @@
             }
           ],
           "components": ["DataTable", "DataTableBody"],
-          "title": "empty-usage"
+          "title": "empty-usage",
+          "description": "Use the `empty` prop on `DataTableBody` to show content in a full-width row when the table has no rows.",
+          "heading": "Empty state"
         },
         {
           "code": [
@@ -24173,7 +24292,9 @@
             "DataTableExpandableCell",
             "DataTableExpandableHeader"
           ],
-          "title": "expanding-rows-usage"
+          "title": "expanding-rows-usage",
+          "description": "Follow the expanding guide to allow expanding and collapsing rows.\n\nUse the `DataTableExpandableHeader` and `DataTableExpandableCell` components to render columns with built-in buttons for toggling rows.\n\nFinally, combine it with the `loading` prop to show a loading state while expanded rows are being fetched.",
+          "heading": "Expanding rows ALPHA"
         },
         {
           "code": [
@@ -24208,7 +24329,9 @@
             "VisuallyHidden",
             "toaster"
           ],
-          "title": "list-view-usage"
+          "title": "list-view-usage",
+          "description": "A collection page combines a search input and filter menus above the table with a primary create action. Wire search to `globalFilter` and each menu to its column's filter value, add `getFilteredRowModel` and `getPaginationRowModel`, and TanStack resets to the first page whenever the criteria change. Put row commands in a trailing column behind one `EllipsisMenuButton`, and use `empty` to offer a way out when nothing matches.",
+          "heading": "List view"
         },
         {
           "code": [
@@ -24226,7 +24349,9 @@
             }
           ],
           "components": ["DataTable", "DataTableBody", "Group", "Switch"],
-          "title": "loading-row-usage"
+          "title": "loading-row-usage",
+          "description": "Alternatively you can provide an object to the `loading` prop to denote individual loading state of sub rows.",
+          "heading": "Loading state"
         },
         {
           "code": [
@@ -24240,7 +24365,9 @@
             }
           ],
           "components": ["DataTable", "DataTableBody", "Group", "Switch"],
-          "title": "loading-usage"
+          "title": "loading-usage",
+          "description": "Set the `loading` prop to `true` to show a loading skeleton while your table data is loading.",
+          "heading": "Loading state"
         },
         {
           "code": [
@@ -24258,7 +24385,9 @@
             }
           ],
           "components": ["DataTable", "DataTableBody", "DataTableFooter"],
-          "title": "pagination-client-usage"
+          "title": "pagination-client-usage",
+          "description": "Simply provide the `getPaginationRowModel` and `pagination` options to use client-side pagination.",
+          "heading": "Pagination > Client side"
         },
         {
           "code": [
@@ -24276,7 +24405,9 @@
             }
           ],
           "components": ["DataTable", "DataTableBody", "DataTableFooter"],
-          "title": "pagination-server-usage"
+          "title": "pagination-server-usage",
+          "description": "To implement manual server-side pagination we can use `manualPagination` and `rowCount`. Then combine it with `onPaginationChange` and `state.pagination` to control pagination and react to changes.",
+          "heading": "Pagination > Server side"
         },
         {
           "code": [
@@ -24309,7 +24440,9 @@
             "Text",
             "toaster"
           ],
-          "title": "row-action-usage"
+          "title": "row-action-usage",
+          "description": "Use the `DataTableAction` component to show links, buttons, or dropdown menus within rows that are only visible when the user hovers over the row.\n\nYou can enable the `primary` prop on any one of those actions to mark that as the primary action. This will automatically enable keyboard navigation within the table:\n\n- Double click on row to perform primary action.\n- Use up/down/left/right arrow keys to navigate between rows and actions.\n\nFinally, make sure to use the `DataTableLabel` in your primary cell to set the label of the row for screen readers.\n\nHover over the rows to perform more actions:",
+          "heading": "Row actions"
         },
         {
           "code": [
@@ -24333,7 +24466,9 @@
             "DataTableCheckbox",
             "DataTableLabel"
           ],
-          "title": "row-selection-usage"
+          "title": "row-selection-usage",
+          "description": "Follow the row selection guide to allow selecting and highlighting rows.\n\nUse the `DataTableCheckbox` component to automatically attach selection handlers and make the whole row selectable.\n\nCombine `Checkbox`/`DataTableCheckbox` with `Cover` to make them easier to interact with by spanning the whole cell.\n\nFinally, make sure to use the `DataTableLabel` in your primary cell to set the label of the row and the checkbox for screen readers.\n\nHover over the rows to see the checkboxes:",
+          "heading": "Row selection"
         },
         {
           "code": [
@@ -24351,7 +24486,9 @@
             }
           ],
           "components": ["DataTable", "DataTableBody"],
-          "title": "sorting-client-usage"
+          "title": "sorting-client-usage",
+          "description": "Simply provide `getSortedRowModel` on table and optionally use `enableSorting` to control which columns you'd like to be sortable to use client-side sorting.\n\nHover over and click the table headers to sort by columns:",
+          "heading": "Sorting > Client side"
         },
         {
           "code": [
@@ -24369,7 +24506,9 @@
             }
           ],
           "components": ["DataTable", "DataTableBody"],
-          "title": "sorting-server-usage"
+          "title": "sorting-server-usage",
+          "description": "To implement manual server-side sorting we can use `manualSorting`. Then combine it with `onSortingChange` and `state.sorting` to control sorting and react to changes.\n\nHover over and click the table headers to sort by columns:",
+          "heading": "Sorting > Server side"
         },
         {
           "code": [
@@ -24387,7 +24526,9 @@
             }
           ],
           "components": ["DataTable", "DataTableBody"],
-          "title": "sticky-column-usage"
+          "title": "sticky-column-usage",
+          "description": "Follow the column pinning guide and use the `columnPinning` option to pin columns either to the left or right side of the table.",
+          "heading": "Column pinning"
         },
         {
           "code": [
@@ -24405,7 +24546,9 @@
             }
           ],
           "components": ["DataTable", "DataTableBody"],
-          "title": "sticky-header-usage"
+          "title": "sticky-header-usage",
+          "description": "Headers in `DataTable` are sticky by default. Set a height on the component to allow scrolling vertically when a large number of rows are present.",
+          "heading": "Vertical scrolling"
         },
         {
           "code": [
@@ -24423,7 +24566,9 @@
             }
           ],
           "components": ["Badge", "DataTable", "DataTableBody"],
-          "title": "usage"
+          "title": "usage",
+          "description": "Use the `table` prop to pass a table instance returned from `useReactTable()` hook. At minimum make sure to include `columns`, `data`, and `getCoreRowModel` when using the hook.",
+          "heading": "Usage"
         },
         {
           "code": [
@@ -24437,7 +24582,9 @@
             }
           ],
           "components": ["DataTable", "DataTableBody", "Group", "Text"],
-          "title": "virtualized-usage"
+          "title": "virtualized-usage",
+          "description": "Table automatically uses virtualized rendering when rows and columns cross a certain threshold to improve rendering performance.\n\nColumns will be virtualized when there are more than 20 columns in a table and rows will be virtualized when there are more than 20 rows rendered or if columns are also being virtualized.",
+          "heading": "Virtualized"
         }
       ]
     },
@@ -29930,7 +30077,9 @@
             }
           ],
           "components": ["DateInput", "Field"],
-          "title": "addon-usage"
+          "title": "addon-usage",
+          "description": "Use the `addonAfter` prop to display content inside the input at the end.\n\nNote: `addonBefore` should not be used as it will override the calendar icon that opens the date picker popover. If you need to use `addonBefore`, you must ensure it forwards clicks to focus the input.",
+          "heading": "Addons"
         },
         {
           "code": [
@@ -29940,7 +30089,9 @@
             }
           ],
           "components": ["DateInput", "Group", "Text"],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` / `onChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -29950,7 +30101,9 @@
             }
           ],
           "components": ["DateInput"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Enable the `disabled` prop to toggle the disabled state of the input field.",
+          "heading": "Disabled state"
         },
         {
           "code": [
@@ -29960,7 +30113,9 @@
             }
           ],
           "components": ["DateInput"],
-          "title": "error-usage"
+          "title": "error-usage",
+          "description": "Enable the `error` prop to display the error state of the input field.",
+          "heading": "Error state"
         },
         {
           "code": [
@@ -29970,7 +30125,9 @@
             }
           ],
           "components": ["DateInput"],
-          "title": "holiday-usage"
+          "title": "holiday-usage",
+          "description": "Use the `holiday` prop to provide one or more matchers to denote holidays on the calendar.",
+          "heading": "Holiday"
         },
         {
           "code": [
@@ -29980,7 +30137,9 @@
             }
           ],
           "components": ["DateInput", "Field", "Group"],
-          "title": "matchers-usage"
+          "title": "matchers-usage",
+          "description": "The `holiday` and `weekend` props support various matcher types including specific dates, date ranges, date intervals, day of week, and custom functions. You can also combine multiple matchers.",
+          "heading": "Date matchers"
         },
         {
           "code": [
@@ -29990,7 +30149,9 @@
             }
           ],
           "components": ["DateInput"],
-          "title": "max-usage"
+          "title": "max-usage",
+          "description": "Use the `max` prop to specify the latest date the user can enter. Will disable all dates after the specified date.",
+          "heading": "Max"
         },
         {
           "code": [
@@ -30000,7 +30161,9 @@
             }
           ],
           "components": ["DateInput"],
-          "title": "min-usage"
+          "title": "min-usage",
+          "description": "Use the `min` prop to specify the earliest date the user can enter. Will disable all dates prior to the specified date.",
+          "heading": "Min"
         },
         {
           "code": [
@@ -30010,7 +30173,9 @@
             }
           ],
           "components": ["DateInput", "Field", "Group"],
-          "title": "placeholder-usage"
+          "title": "placeholder-usage",
+          "description": "Use the `placeholder` prop to specify a placeholder date or time. The value format must be an Instant, PlainDate, PlainDateTime, or PlainTime.",
+          "heading": "Placeholder"
         },
         {
           "code": [
@@ -30020,7 +30185,9 @@
             }
           ],
           "components": ["DateInput", "Field"],
-          "title": "required-usage"
+          "title": "required-usage",
+          "description": "By default we show a clear button when there is value but this can be removed by toggling the `required` prop.",
+          "heading": "Required"
         },
         {
           "code": [
@@ -30030,7 +30197,9 @@
             }
           ],
           "components": ["DateInput", "Group"],
-          "title": "size-usage"
+          "title": "size-usage",
+          "description": "Use the `size` prop to control the size of the input.",
+          "heading": "Sizes"
         },
         {
           "code": [
@@ -30040,7 +30209,9 @@
             }
           ],
           "components": ["DateInput"],
-          "title": "time-usage"
+          "title": "time-usage",
+          "description": "Use the `type` prop to switch between `date` and `datetime-local` inputs.",
+          "heading": "Date and time"
         },
         {
           "code": [
@@ -30050,7 +30221,8 @@
             }
           ],
           "components": ["DateInput", "Field"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         },
         {
           "code": [
@@ -30060,7 +30232,9 @@
             }
           ],
           "components": ["DateInput", "Group", "Text"],
-          "title": "value-format-usage"
+          "title": "value-format-usage",
+          "description": "The `value` prop accepts date strings in specific formats. For `type=\"date\"`, use `YYYY-MM-DD` format. For `type=\"datetime-local\"`, use `YYYY-MM-DDTHH:MM` format.",
+          "heading": "Value formats"
         },
         {
           "code": [
@@ -30070,7 +30244,9 @@
             }
           ],
           "components": ["DateInput"],
-          "title": "weekend-usage"
+          "title": "weekend-usage",
+          "description": "Use the `weekend` prop to provide one or more matchers to denote weekends on the calendar.",
+          "heading": "Weekend"
         }
       ]
     },
@@ -30166,7 +30342,9 @@
             "SegmentedControl",
             "SegmentedControlItem"
           ],
-          "title": "addon-usage"
+          "title": "addon-usage",
+          "description": "Use the `addonBefore` and `addonAfter` prop on `DateRangePickerContent` to add content to either side of the calendar.",
+          "heading": "Addons"
         },
         {
           "code": [
@@ -30182,7 +30360,9 @@
             "Group",
             "Text"
           ],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -30196,7 +30376,8 @@
             "DateRangePickerContent",
             "DateRangePickerTrigger"
           ],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -32596,7 +32777,8 @@
             "DetailsPanelFooter",
             "DetailsPanelHeader"
           ],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -34973,7 +35155,9 @@
             "DialogTrigger",
             "Textarea"
           ],
-          "title": "alert-dialog-usage"
+          "title": "alert-dialog-usage",
+          "description": "Combine `Dialog` with `AlertDialog` to show nested confirmation dialogs.\n\nUse the `onOpenChange` handler to trigger the nested callback instead of an explicit trigger.\n\nType something into the text field and then attempt to cancel the dialog:",
+          "heading": "Nested alert dialogs"
         },
         {
           "code": [
@@ -34991,7 +35175,9 @@
             "DialogHeader",
             "DialogTrigger"
           ],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -35008,7 +35194,9 @@
             "DialogHeader",
             "DialogTrigger"
           ],
-          "title": "description-usage"
+          "title": "description-usage",
+          "description": "You can add accessible description to the modal using the `description` prop on `DialogHeader` component.",
+          "heading": "Description"
         },
         {
           "code": [
@@ -35031,7 +35219,9 @@
             "Input",
             "Textarea"
           ],
-          "title": "form-usage"
+          "title": "form-usage",
+          "description": "Wrap `DialogBody` and `DialogFooter` with the `DialogForm` component to use forms in dialogs.",
+          "heading": "Form dialogs"
         },
         {
           "code": [
@@ -35058,7 +35248,9 @@
             "toaster",
             "useDialogKit"
           ],
-          "title": "managed-usage"
+          "title": "managed-usage",
+          "description": "Use `dialogkit.create()` to create dialogs in managed mode. In managed mode you must omit the `Dialog` element and only send the `DialogContent` element and its children.",
+          "heading": "Managed ALPHA"
         },
         {
           "code": [
@@ -35076,7 +35268,9 @@
             "DialogHeader",
             "DialogTrigger"
           ],
-          "title": "nested-usage"
+          "title": "nested-usage",
+          "description": "Combine dialogs to show nested dialogs.",
+          "heading": "Nested dialogs"
         },
         {
           "code": [
@@ -35094,7 +35288,9 @@
             "DialogHeader",
             "DialogTrigger"
           ],
-          "title": "size-usage"
+          "title": "size-usage",
+          "description": "Use the `size` prop to change the size of the dialog box.",
+          "heading": "Sizes"
         },
         {
           "code": [
@@ -35112,7 +35308,9 @@
             "DialogHeader",
             "DialogTrigger"
           ],
-          "title": "trigger-usage"
+          "title": "trigger-usage",
+          "description": "By default we use the `Button` component for the dialog trigger which accepts all of the existing button props.\n\nWe can also completely change the trigger by using `asChild` and passing our own component.",
+          "heading": "Customize trigger"
         },
         {
           "code": [
@@ -35130,7 +35328,8 @@
             "DialogHeader",
             "DialogTrigger"
           ],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -41332,7 +41531,9 @@
             "Pill",
             "toaster"
           ],
-          "title": "addon-usage"
+          "title": "addon-usage",
+          "description": "Use the `addonBefore` and `addonAfter` prop to add icons, text, or any other interactive elements to the start or end of the trigger.",
+          "heading": "Addons"
         },
         {
           "code": [
@@ -41346,7 +41547,9 @@
             "DisclosureContent",
             "DisclosureTrigger"
           ],
-          "title": "chevron-position-usage"
+          "title": "chevron-position-usage",
+          "description": "Use the `chevronPosition` prop on `DisclosureTrigger` to control which side the chevron is placed.",
+          "heading": "Indicator position"
         },
         {
           "code": [
@@ -41362,7 +41565,9 @@
             "Group",
             "Text"
           ],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -41377,7 +41582,9 @@
             "DisclosureContent",
             "DisclosureTrigger"
           ],
-          "title": "trigger-usage"
+          "title": "trigger-usage",
+          "description": "By default we use a `button` for the disclosure trigger which always shows a chevron indicator.\n\nWe can also completely change the trigger by using `asChild` and passing our own component.",
+          "heading": "Customize trigger"
         },
         {
           "code": [
@@ -41391,7 +41598,8 @@
             "DisclosureContent",
             "DisclosureTrigger"
           ],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -42992,7 +43200,9 @@
             "DropdownMenuTrigger",
             "Kbd"
           ],
-          "title": "addon-usage"
+          "title": "addon-usage",
+          "description": "Use the `icon`, `addonBefore`, and `addonAfter` props to add icons, text, or any other element to the start or end of the menu items.",
+          "heading": "Item > Left and right addons"
         },
         {
           "code": [
@@ -43014,7 +43224,9 @@
             "DropdownMenuItem",
             "DropdownMenuTrigger"
           ],
-          "title": "alert-dialog-usage"
+          "title": "alert-dialog-usage",
+          "description": "Combine dropdown menus with dialog to show alerts when selecting an item.\n\nMake sure to use `AlertDialog` or `Dialog` in controlled mode since there is no actual trigger.",
+          "heading": "Dialogs inside menus"
         },
         {
           "code": [
@@ -43029,7 +43241,9 @@
             "DropdownMenuItem",
             "DropdownMenuTrigger"
           ],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "Use the `intent` prop to control the appearance of items.",
+          "heading": "Item > Appearance"
         },
         {
           "code": [
@@ -43045,7 +43259,9 @@
             "DropdownMenuLabel",
             "DropdownMenuTrigger"
           ],
-          "title": "checkbox-usage"
+          "title": "checkbox-usage",
+          "description": "Use the `DropdownMenuCheckboxItem` component to render a checkbox and add the `checked` and `onCheckedChange` props to control the state.",
+          "heading": "CheckboxItem"
         },
         {
           "code": [
@@ -43064,7 +43280,9 @@
             "Group",
             "Switch"
           ],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -43080,7 +43298,9 @@
             "DropdownMenuSeparator",
             "DropdownMenuTrigger"
           ],
-          "title": "description-usage"
+          "title": "description-usage",
+          "description": "Use the `description` prop to add secondary text to items.",
+          "heading": "Item > Description"
         },
         {
           "code": [
@@ -43097,7 +43317,9 @@
             "DropdownMenuSeparator",
             "DropdownMenuTrigger"
           ],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Use the `disabled` prop on menu items to disable them.",
+          "heading": "Item > Disabled items"
         },
         {
           "code": [
@@ -43115,7 +43337,9 @@
             "DropdownMenuTrigger",
             "EllipsisMenuButton"
           ],
-          "title": "ellipsis-trigger-usage"
+          "title": "ellipsis-trigger-usage",
+          "description": "We can also use `asChild` to render a completely different component. We provide two built-in buttons:\n\n- `AngleMenuButton` (default)\n- `EllipsisMenuButton`",
+          "heading": "Trigger > Ellipsis trigger"
         },
         {
           "code": [
@@ -43132,7 +43356,9 @@
             "DropdownMenuSeparator",
             "DropdownMenuTrigger"
           ],
-          "title": "modal-usage"
+          "title": "modal-usage",
+          "description": "By default scrolling and interactions with outside elements is disabled when menu is open. Set `modal` prop to `false` in order to render a non-modal dropdown.",
+          "heading": "Non modal usage"
         },
         {
           "code": [
@@ -43152,7 +43378,9 @@
             "DropdownMenuSubTrigger",
             "DropdownMenuTrigger"
           ],
-          "title": "nested-usage"
+          "title": "nested-usage",
+          "description": "Use `DropdownMenuSub`, `DropdownMenuSubTrigger`, and `DropdownMenuSubContent` to render a submenus.",
+          "heading": "Submenus"
         },
         {
           "code": [
@@ -43169,7 +43397,9 @@
             "DropdownMenuSeparator",
             "DropdownMenuTrigger"
           ],
-          "title": "position-usage"
+          "title": "position-usage",
+          "description": "Use the `align` and `side` props on `DropdownMenuContent` to change the default position of the dropdown.",
+          "heading": "Content > Menu position"
         },
         {
           "code": [
@@ -43188,7 +43418,9 @@
             "Group",
             "Text"
           ],
-          "title": "select-usage"
+          "title": "select-usage",
+          "description": "Use the `onSelect` prop to handle selection of items.",
+          "heading": "Item > Selection"
         },
         {
           "code": [
@@ -43205,7 +43437,9 @@
             "DropdownMenuSeparator",
             "DropdownMenuTrigger"
           ],
-          "title": "trigger-usage"
+          "title": "trigger-usage",
+          "description": "By default we use the `Button` component for the menu trigger which accepts all of the existing button props.",
+          "heading": "Trigger > Customize trigger"
         },
         {
           "code": [
@@ -43222,7 +43456,9 @@
             "DropdownMenuSeparator",
             "DropdownMenuTrigger"
           ],
-          "title": "usage"
+          "title": "usage",
+          "description": "Use the `DropdownMenu`, `DropdownMenuTrigger`, and `DropdownMenuContent` components to build out menus.",
+          "heading": "Usage"
         }
       ]
     },
@@ -51844,7 +52080,9 @@
             }
           ],
           "components": ["Field", "Input"],
-          "title": "description-usage"
+          "title": "description-usage",
+          "description": "Use the `description` prop to provide help text for the input.",
+          "heading": "Description"
         },
         {
           "code": [
@@ -51861,7 +52099,9 @@
             "SelectTrigger",
             "Textarea"
           ],
-          "title": "different-inputs-usage"
+          "title": "different-inputs-usage",
+          "description": "Field works with any form input component, not just Input.",
+          "heading": "With Different Inputs"
         },
         {
           "code": [
@@ -51871,7 +52111,9 @@
             }
           ],
           "components": ["Field", "Input"],
-          "title": "error-usage"
+          "title": "error-usage",
+          "description": "Use the `error` prop to display validation or other errors for the input.",
+          "heading": "Error"
         },
         {
           "code": [
@@ -51881,7 +52123,9 @@
             }
           ],
           "components": ["Field", "Input"],
-          "title": "info-usage"
+          "title": "info-usage",
+          "description": "Use the `info` prop to display a help icon with additional context for the input.",
+          "heading": "Information"
         },
         {
           "code": [
@@ -51891,7 +52135,9 @@
             }
           ],
           "components": ["Field", "Textarea"],
-          "title": "max-length-usage"
+          "title": "max-length-usage",
+          "description": "When the input sets `maxLength`, enable `showCount` to show how many characters it holds out of the limit. It also tells screen reader users when typing stops at the limit.\n\nSet the width on `Field`, not on the input, so the input stretches and the count lines up with its edge.",
+          "heading": "Character count"
         },
         {
           "code": [
@@ -51901,7 +52147,9 @@
             }
           ],
           "components": ["Field", "Group", "Input"],
-          "title": "patterns-usage"
+          "title": "patterns-usage",
+          "description": "Here are some common real-world patterns using Field:",
+          "heading": "Common Patterns"
         },
         {
           "code": [
@@ -51911,7 +52159,9 @@
             }
           ],
           "components": ["Field", "Input"],
-          "title": "required-usage"
+          "title": "required-usage",
+          "description": "Enable the `required` prop to display an asterisk for required inputs.",
+          "heading": "Required"
         },
         {
           "code": [
@@ -51921,7 +52171,9 @@
             }
           ],
           "components": ["Field", "Group", "Input", "Link"],
-          "title": "rich-content-usage"
+          "title": "rich-content-usage",
+          "description": "The `label`, `description`, `error`, and `info` props all accept `ReactNode`, allowing you to pass rich content beyond simple strings.",
+          "heading": "Rich Content"
         },
         {
           "code": [
@@ -51931,7 +52183,9 @@
             }
           ],
           "components": ["Field", "Input"],
-          "title": "usage"
+          "title": "usage",
+          "description": "Wrap your actual input controls with `Field` to show additional context for the input.",
+          "heading": "Usage"
         }
       ]
     },
@@ -53504,7 +53758,8 @@
             }
           ],
           "components": ["FileUpload", "FileUploadDropzone", "toaster"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -56630,7 +56885,9 @@
             }
           ],
           "components": ["Box", "Flex", "theme"],
-          "title": "alignment-usage"
+          "title": "alignment-usage",
+          "description": "Use `alignItems` and `justifyContent` prop to control the layout and alignment of flex items.\n\nThe Flex component provides smart `alignItems` defaults:\n\n- When `flexDirection=\"column\"`: defaults to `alignItems=\"stretch\"`\n- When `flexDirection=\"row\"`: defaults to `alignItems=\"center\"`",
+          "heading": "Alignment"
         },
         {
           "code": [
@@ -56640,7 +56897,8 @@
             }
           ],
           "components": ["Box", "theme"],
-          "title": "flex-responsive-usage"
+          "title": "flex-responsive-usage",
+          "heading": "Responsive"
         },
         {
           "code": [
@@ -56650,7 +56908,9 @@
             }
           ],
           "components": ["Box", "theme"],
-          "title": "flex-usage"
+          "title": "flex-usage",
+          "description": "- `initial`: allow flex item to shrink but not grow, taking into account the initial size.\n- `none`: prevent flex items from shrinking or growing.\n- `auto`: allow flex items to grow and shrink taking into account the initial size.\n- `1`: allow flex items to grow and shrink ignoring the initial size.",
+          "heading": "Usage"
         },
         {
           "code": [
@@ -56660,7 +56920,9 @@
             }
           ],
           "components": ["Box", "Flex"],
-          "title": "gap-usage"
+          "title": "gap-usage",
+          "description": "Use `gap` prop to control the gap between flex items.",
+          "heading": "Gap"
         },
         {
           "code": [
@@ -56670,7 +56932,9 @@
             }
           ],
           "components": ["Box", "Flex"],
-          "title": "horizontal-usage"
+          "title": "horizontal-usage",
+          "description": "Use `flexDirection` prop to control whether children are stacked vertically or horizontally. By default `flexDirection` is set to `column`.\n\nUse `flexDirection=\"row\"` or `flexDirection=\"row-reverse\"` to stack items horizontally:",
+          "heading": "Direction"
         },
         {
           "code": [
@@ -56680,7 +56944,8 @@
             }
           ],
           "components": ["Box", "Flex"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         },
         {
           "code": [
@@ -56690,7 +56955,9 @@
             }
           ],
           "components": ["Box", "Flex"],
-          "title": "vertical-usage"
+          "title": "vertical-usage",
+          "description": "Use `flexDirection=\"column\"` or `flexDirection=\"column-reverse\"` to stack items vertically:",
+          "heading": "Direction"
         }
       ]
     },
@@ -57471,7 +57738,8 @@
             }
           ],
           "components": ["Box", "Grid"],
-          "title": "cols-responsive-usage"
+          "title": "cols-responsive-usage",
+          "heading": "Responsive"
         },
         {
           "code": [
@@ -57481,7 +57749,8 @@
             }
           ],
           "components": ["Box", "Grid"],
-          "title": "cols-usage"
+          "title": "cols-usage",
+          "heading": "Usage"
         },
         {
           "code": [
@@ -57491,7 +57760,9 @@
             }
           ],
           "components": ["Box", "Grid"],
-          "title": "gap-usage"
+          "title": "gap-usage",
+          "description": "Use `gap` prop to control the gap between grid items.",
+          "heading": "Gap"
         },
         {
           "code": [
@@ -57501,7 +57772,8 @@
             }
           ],
           "components": ["Box", "Grid"],
-          "title": "span-responsive-usage"
+          "title": "span-responsive-usage",
+          "heading": "Responsive"
         },
         {
           "code": [
@@ -57511,7 +57783,9 @@
             }
           ],
           "components": ["Box", "Grid"],
-          "title": "span-usage"
+          "title": "span-usage",
+          "description": "Use the `gridColumn` prop on children to make them span across multiple columns.",
+          "heading": "Spanning columns"
         },
         {
           "code": [
@@ -57521,7 +57795,9 @@
             }
           ],
           "components": ["Box", "Grid"],
-          "title": "usage"
+          "title": "usage",
+          "description": "Use `gridTemplateColumns` prop to create equally sized columns in a grid layout.",
+          "heading": "Usage"
         }
       ]
     },
@@ -58300,7 +58576,9 @@
             }
           ],
           "components": ["Box", "Group", "theme"],
-          "title": "alignment-usage"
+          "title": "alignment-usage",
+          "description": "Use `alignItems` and `justifyContent` prop to control the layout and alignment of group items.\n\nThe Group component provides smart `alignItems` defaults:\n\n- When `flexDirection=\"row\"`: defaults to `alignItems=\"center\"`\n- When `flexDirection=\"column\"`: defaults to `alignItems=\"stretch\"`",
+          "heading": "Alignment"
         },
         {
           "code": [
@@ -58310,7 +58588,9 @@
             }
           ],
           "components": ["Box", "Group"],
-          "title": "gap-usage"
+          "title": "gap-usage",
+          "description": "Use `gap` prop to control the gap between group items. Unlike the deprecated Flex component, Group has no default gap value - you must specify it explicitly.",
+          "heading": "Gap"
         },
         {
           "code": [
@@ -58320,7 +58600,9 @@
             }
           ],
           "components": ["Box", "Group"],
-          "title": "horizontal-usage"
+          "title": "horizontal-usage",
+          "description": "Use `flexDirection` prop to control whether children are grouped vertically or horizontally. By default `flexDirection` is set to `row` (CSS standard).\n\nUse `flexDirection=\"row\"` or `flexDirection=\"row-reverse\"` to group items horizontally:",
+          "heading": "Direction"
         },
         {
           "code": [
@@ -58330,7 +58612,9 @@
             }
           ],
           "components": ["Box", "Group"],
-          "title": "usage"
+          "title": "usage",
+          "description": "The Group component uses CSS-standard defaults: `flexDirection=\"row\"` (horizontal layout) with no default gap. You must explicitly set the gap value.",
+          "heading": "Usage"
         },
         {
           "code": [
@@ -58340,7 +58624,9 @@
             }
           ],
           "components": ["Box", "Group"],
-          "title": "vertical-usage"
+          "title": "vertical-usage",
+          "description": "Use `flexDirection=\"column\"` or `flexDirection=\"column-reverse\"` to group items vertically:",
+          "heading": "Direction"
         }
       ]
     },
@@ -59131,7 +59417,9 @@
             }
           ],
           "components": ["Group", "Heading"],
-          "title": "size-usage"
+          "title": "size-usage",
+          "description": "Combine the `level` prop with `asChild` to set the visual size while manually controlling the semantic tag.",
+          "heading": "Visual size"
         },
         {
           "code": [
@@ -59141,7 +59429,9 @@
             }
           ],
           "components": ["Group", "Heading"],
-          "title": "usage"
+          "title": "usage",
+          "description": "Use the `level` prop to control both the semantic tag and visual size.",
+          "heading": "Usage"
         }
       ]
     },
@@ -59953,7 +60243,9 @@
             "HoverCardTrigger",
             "Text"
           ],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -59969,7 +60261,9 @@
             "HoverCardTrigger",
             "Text"
           ],
-          "title": "trigger-usage"
+          "title": "trigger-usage",
+          "description": "By default we render an `<a>` element for the dialog trigger which also accepts all of our **Box** props.\n\nWe can also completely change the trigger by using `asChild` and passing our own component.",
+          "heading": "Customize trigger"
         },
         {
           "code": [
@@ -59984,7 +60278,8 @@
             "HoverCardTrigger",
             "Text"
           ],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -62359,7 +62654,9 @@
             }
           ],
           "components": ["Button", "Indicator"],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "Use the `intent` and `variant` props to fine tune the appearance of the badge.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -62369,7 +62666,9 @@
             }
           ],
           "components": ["Button", "Indicator"],
-          "title": "content-usage"
+          "title": "content-usage",
+          "description": "Use the `content` prop to set the content of the badge.",
+          "heading": "Content"
         },
         {
           "code": [
@@ -62379,7 +62678,9 @@
             }
           ],
           "components": ["Button", "Indicator"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Use the `disabled` prop to hide the badge.",
+          "heading": "Hide indicator"
         },
         {
           "code": [
@@ -62389,7 +62690,8 @@
             }
           ],
           "components": ["Button", "Indicator"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -63196,7 +63498,9 @@
             }
           ],
           "components": ["Heading", "InlineInput"],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "The inline input field will inherit styles from the parent component.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -63206,7 +63510,9 @@
             }
           ],
           "components": ["Group", "InlineInput", "Text"],
-          "title": "change-usage"
+          "title": "change-usage",
+          "description": "Use the `onValueChange` prop to listen for changes to the value.",
+          "heading": "Handling changes"
         },
         {
           "code": [
@@ -63216,7 +63522,9 @@
             }
           ],
           "components": ["Heading", "InlineInput", "toaster"],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.\n\nRemove the text from the following input and press `Enter`:",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -63226,7 +63534,9 @@
             }
           ],
           "components": ["InlineInput", "Text"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Enable the `disabled` prop to display the read-only state of the input field.",
+          "heading": "Read-only state"
         },
         {
           "code": [
@@ -63236,7 +63546,9 @@
             }
           ],
           "components": ["InlineInput", "Text"],
-          "title": "multiline-usage"
+          "title": "multiline-usage",
+          "description": "Enable the `multiline` prop to allow multi-line text input.",
+          "heading": "Multiline"
         },
         {
           "code": [
@@ -63246,7 +63558,9 @@
             }
           ],
           "components": ["InlineInput", "Text"],
-          "title": "placeholder-usage"
+          "title": "placeholder-usage",
+          "description": "By default we re-use the `label` prop for empty placeholder - but this can be customized using the `placeholder` prop.",
+          "heading": "Placeholder"
         },
         {
           "code": [
@@ -63256,7 +63570,9 @@
             }
           ],
           "components": ["InlineInput", "Text"],
-          "title": "usage"
+          "title": "usage",
+          "description": "The `InlineInput` component requires the `label` prop and is typically paired with another component to provide the visual styles.",
+          "heading": "Usage"
         }
       ]
     },
@@ -64083,7 +64399,9 @@
             }
           ],
           "components": ["Input"],
-          "title": "addon-pointer-usage"
+          "title": "addon-pointer-usage",
+          "description": "Use the `addonPointerEvents` prop to control whether clicking the addons focuses the input or not.",
+          "heading": "Addons > Handling addon clicks"
         },
         {
           "code": [
@@ -64093,7 +64411,9 @@
             }
           ],
           "components": ["Field", "Group", "Input"],
-          "title": "addon-text-usage"
+          "title": "addon-text-usage",
+          "description": "Use the `addonBefore` and `addonAfter` props to add text labels like currency symbols, units, or prefixes to your inputs.",
+          "heading": "Addons > Text addons"
         },
         {
           "code": [
@@ -64103,7 +64423,9 @@
             }
           ],
           "components": ["Button", "Input"],
-          "title": "addon-usage"
+          "title": "addon-usage",
+          "description": "You can also provide icons, buttons, or any other interactive element as addons.",
+          "heading": "Addons > Interactive addons"
         },
         {
           "code": [
@@ -64113,7 +64435,9 @@
             }
           ],
           "components": ["Group", "Input"],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "Use the `appearance` prop to select between the different input appearances.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -64123,7 +64447,9 @@
             }
           ],
           "components": ["Group", "Input", "Text"],
-          "title": "controlled-onchange-usage"
+          "title": "controlled-onchange-usage",
+          "description": "Using `onChange`:",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -64133,7 +64459,9 @@
             }
           ],
           "components": ["Group", "Input", "Text"],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` / `onChange` to listen for changes to the state.\n\nUsing `onValueChange`:",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -64143,7 +64471,9 @@
             }
           ],
           "components": ["Input"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Enable the `disabled` prop to toggle the disabled state of the input field.",
+          "heading": "Disabled state"
         },
         {
           "code": [
@@ -64153,7 +64483,9 @@
             }
           ],
           "components": ["Field", "Input"],
-          "title": "error-usage"
+          "title": "error-usage",
+          "description": "Use the `error` prop on the Field component to display validation errors. The error message will be shown below the input and the input will be styled accordingly.\n\nNote: When you set the `error` prop on Field, it automatically sets the error state on the Input inside it. You don't need to set `error` on both components.",
+          "heading": "Error state"
         },
         {
           "code": [
@@ -64163,7 +64495,9 @@
             }
           ],
           "components": ["Button", "Field", "Group", "Input"],
-          "title": "form-integration-usage"
+          "title": "form-integration-usage",
+          "description": "Integrate with form libraries like react-hook-form for validation and error handling.",
+          "heading": "Form integration"
         },
         {
           "code": [
@@ -64173,7 +64507,9 @@
             }
           ],
           "components": ["Field", "Input"],
-          "title": "maxlength-usage"
+          "title": "maxlength-usage",
+          "description": "Use the `maxLength` prop to limit the number of characters users can enter. Enable `showCount` on the surrounding `Field` to show a character count.",
+          "heading": "Character limit"
         },
         {
           "code": [
@@ -64183,7 +64519,9 @@
             }
           ],
           "components": ["Button", "Field", "Input"],
-          "title": "pattern-copy-usage"
+          "title": "pattern-copy-usage",
+          "description": "Add a copy button in the addon to let users copy the input value to their clipboard.",
+          "heading": "Common patterns > Copy to clipboard"
         },
         {
           "code": [
@@ -64193,7 +64531,9 @@
             }
           ],
           "components": ["Box", "Field", "Group", "Input", "Spinner"],
-          "title": "pattern-loading-usage"
+          "title": "pattern-loading-usage",
+          "description": "Show a loading spinner in the addon while performing an asynchronous check such as username availability.",
+          "heading": "Common patterns > Async validation"
         },
         {
           "code": [
@@ -64203,7 +64543,9 @@
             }
           ],
           "components": ["Input"],
-          "title": "readonly-usage"
+          "title": "readonly-usage",
+          "description": "Enable the `readOnly` prop to display the read-only state of the input field.",
+          "heading": "Read-only state"
         },
         {
           "code": [
@@ -64213,7 +64555,9 @@
             }
           ],
           "components": ["Field", "Input"],
-          "title": "required-usage"
+          "title": "required-usage",
+          "description": "Use the `required` prop on the Field component to mark an input as required. This adds a visual indicator and sets the appropriate ARIA attributes.\n\nNote: This only provides visual feedback. For actual validation, use the native `required` attribute on the Input or a form validation library like react-hook-form.",
+          "heading": "Required"
         },
         {
           "code": [
@@ -64223,7 +64567,9 @@
             }
           ],
           "components": ["Input"],
-          "title": "size-usage"
+          "title": "size-usage",
+          "description": "Use the `size` prop to control the size of the input field. The `xl` size uses a larger font size for the input value and placeholder.",
+          "heading": "Sizes"
         },
         {
           "code": [
@@ -64233,7 +64579,9 @@
             }
           ],
           "components": ["Field", "Group", "Input"],
-          "title": "type-usage"
+          "title": "type-usage",
+          "description": "Use the `type` prop to specify the type of data the input should accept. Common types include `email`, `password`, `tel`, `url`, and `number`.",
+          "heading": "Input types"
         },
         {
           "code": [
@@ -64243,7 +64591,8 @@
             }
           ],
           "components": ["Field", "Input"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -65036,7 +65385,9 @@
             }
           ],
           "components": ["Kbd", "Text"],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "Use the `variant` prop to select between the different appearances.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -65046,7 +65397,9 @@
             }
           ],
           "components": ["Kbd", "Text"],
-          "title": "keys-usage"
+          "title": "keys-usage",
+          "description": "Use the `keys` prop to display commonly used key codes.",
+          "heading": "Key codes"
         },
         {
           "code": [
@@ -65056,7 +65409,8 @@
             }
           ],
           "components": ["Kbd", "Text"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -66572,7 +66926,8 @@
             }
           ],
           "components": ["Box", "Layout", "LayoutContent"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -68138,7 +68493,9 @@
             }
           ],
           "components": ["Link", "Text"],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "Use the `appearance` prop to select between the different link appearances.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -68148,7 +68505,9 @@
             }
           ],
           "components": ["Link", "Text", "toaster"],
-          "title": "button-usage"
+          "title": "button-usage",
+          "description": "Set `asChild` to `true` and wrap children in a `<button>` element to render links as buttons.",
+          "heading": "Links as buttons"
         },
         {
           "code": [
@@ -68158,7 +68517,9 @@
             }
           ],
           "components": ["Link", "Text"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Set the `disabled` prop to `true` to style links to appear disabled and also prevent any interactions.",
+          "heading": "Disabled links"
         },
         {
           "code": [
@@ -68168,7 +68529,9 @@
             }
           ],
           "components": ["Link", "Text"],
-          "title": "external-usage"
+          "title": "external-usage",
+          "description": "Set the `external` prop to `true` to add an icon and set the correct rel and target attributes.",
+          "heading": "External links"
         },
         {
           "code": [
@@ -68178,7 +68541,8 @@
             }
           ],
           "components": ["Link", "Text"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -68364,7 +68728,9 @@
             "MenuTrigger",
             "type MenuOption"
           ],
-          "title": "addon-usage"
+          "title": "addon-usage",
+          "description": "We can add the `addon` property to show additional content inside the items.",
+          "heading": "Addon"
         },
         {
           "code": [
@@ -68385,7 +68751,9 @@
             "MenuContent",
             "MenuTrigger"
           ],
-          "title": "alert-dialog-usage"
+          "title": "alert-dialog-usage",
+          "description": "Combine with dialogs to show modals or alerts when selecting an item.\n\nMake sure to use `AlertDialog` or `Dialog` in controlled mode since there is no actual trigger.",
+          "heading": "Dialogs inside menus"
         },
         {
           "code": [
@@ -68395,7 +68763,9 @@
             }
           ],
           "components": ["Menu", "MenuContent", "MenuTrigger"],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "Use the `intent` prop to control the appearance of items.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -68410,7 +68780,9 @@
             "MenuTrigger",
             "type MenuOption"
           ],
-          "title": "basic-usage"
+          "title": "basic-usage",
+          "description": "Menu works with lists of items provided via the `options` prop. The basic structure includes the main component provider, a trigger, and the content popover.\n\n- `Menu`\n- `MenuTrigger`\n- `MenuContent`\n\nItems must be an array of objects of `MenuOption` type.",
+          "heading": "Structure"
         },
         {
           "code": [
@@ -68425,7 +68797,9 @@
             "MenuTrigger",
             "type MenuOption"
           ],
-          "title": "content-checkbox-usage"
+          "title": "content-checkbox-usage",
+          "description": "We can render multi-select items by enabling the `multi` property.",
+          "heading": "Selection > Multi-select"
         },
         {
           "code": [
@@ -68435,7 +68809,9 @@
             }
           ],
           "components": ["Menu", "MenuContent", "MenuTrigger"],
-          "title": "content-radio-switch-usage"
+          "title": "content-radio-switch-usage",
+          "description": "We can optionally use switch toggles to show selection states by enabling the `switch` property.",
+          "heading": "Selection > Single-select (Switch)"
         },
         {
           "code": [
@@ -68450,7 +68826,9 @@
             "MenuTrigger",
             "type MenuOption"
           ],
-          "title": "content-radio-usage"
+          "title": "content-radio-usage",
+          "description": "Now that we can perform actions on selection, we can also store that state and show the selected states for each item using the `selected` property.",
+          "heading": "Selection > Single-select"
         },
         {
           "code": [
@@ -68467,7 +68845,9 @@
             "Text",
             "type MenuOption"
           ],
-          "title": "content-usage"
+          "title": "content-usage",
+          "description": "Clicking the items will not do anything yet. For that we'll have to add the `execute` property to each item.",
+          "heading": "Selection"
         },
         {
           "code": [
@@ -68482,7 +68862,9 @@
             "MenuTrigger",
             "type MenuOption"
           ],
-          "title": "creatable-usage"
+          "title": "creatable-usage",
+          "description": "We can customize the filter behavior using the `visible` property on items.\n\nThe following example shows how we can build **creatable** menus by allowing the user to add new entries on the fly.",
+          "heading": "Input > Creatable example"
         },
         {
           "code": [
@@ -68492,7 +68874,9 @@
             }
           ],
           "components": ["Menu", "MenuContent", "MenuTrigger"],
-          "title": "description-usage"
+          "title": "description-usage",
+          "description": "We can use the `description` property to show secondary text in addition to item labels.",
+          "heading": "Description"
         },
         {
           "code": [
@@ -68508,7 +68892,9 @@
             "toaster",
             "type MenuOption"
           ],
-          "title": "detail-usage"
+          "title": "detail-usage",
+          "description": "We can use the `detail` property to show secondary content in addition to item labels.",
+          "heading": "Detail"
         },
         {
           "code": [
@@ -68518,7 +68904,9 @@
             }
           ],
           "components": ["Menu", "MenuContent", "MenuTrigger"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Use the `disabledReason` property to disable the menu items.",
+          "heading": "Disabled items"
         },
         {
           "code": [
@@ -68533,7 +68921,9 @@
             "MenuContent",
             "MenuTrigger"
           ],
-          "title": "ellipsis-trigger-usage"
+          "title": "ellipsis-trigger-usage",
+          "description": "We can also use `asChild` to render a completely different component. We provide two built-in buttons:\n\n- `AngleMenuButton` (default)\n- `EllipsisMenuButton`",
+          "heading": "Trigger > Ellipsis trigger"
         },
         {
           "code": [
@@ -68543,7 +68933,9 @@
             }
           ],
           "components": ["Menu", "MenuContent", "MenuTrigger"],
-          "title": "empty-usage"
+          "title": "empty-usage",
+          "description": "By default menu will display a generic empty content message if no results are found matching your query. We can customize this empty message by setting the `empty` prop.",
+          "heading": "Empty"
         },
         {
           "code": [
@@ -68558,7 +68950,9 @@
             "MenuTrigger",
             "type MenuOption"
           ],
-          "title": "group-hidden-usage"
+          "title": "group-hidden-usage",
+          "description": "Use `group.hidden` property to hide the group label. Useful when you want to separate groups but do not want show any labels.",
+          "heading": "Groups > Hidden label"
         },
         {
           "code": [
@@ -68573,7 +68967,9 @@
             "MenuTrigger",
             "type MenuOption"
           ],
-          "title": "group-priority-usage"
+          "title": "group-priority-usage",
+          "description": "Use `group.priority` property to sort groups among each other.",
+          "heading": "Groups > Priority"
         },
         {
           "code": [
@@ -68588,7 +68984,9 @@
             "MenuTrigger",
             "type MenuOption"
           ],
-          "title": "group-separator-usage"
+          "title": "group-separator-usage",
+          "description": "Use `group.separator` to show a horizontal separator before/after the group.",
+          "heading": "Groups > Separator"
         },
         {
           "code": [
@@ -68603,7 +69001,9 @@
             "MenuTrigger",
             "type MenuOption"
           ],
-          "title": "group-usage"
+          "title": "group-usage",
+          "description": "Use `group` property to group items.",
+          "heading": "Groups"
         },
         {
           "code": [
@@ -68617,7 +69017,9 @@
             }
           ],
           "components": ["Menu", "MenuContent", "MenuTrigger"],
-          "title": "input-controlled-usage"
+          "title": "input-controlled-usage",
+          "description": "We can also manually control `options` in combination with the `inputValue` and `onInputValueChange` prop to load items as the user types.\n\nAnd we can toggle the `loading` prop to show a loading state while the data is loading (an empty state will be shown otherwise).",
+          "heading": "Input > Async loading example"
         },
         {
           "code": [
@@ -68627,7 +69029,9 @@
             }
           ],
           "components": ["Menu", "MenuContent", "MenuTrigger"],
-          "title": "input-usage"
+          "title": "input-usage",
+          "description": "By default the input is only shown if there are any selectable items (items with a `selected` property) or when the user starts typing. But we can always show the input by setting the `inputVisible` prop to `always`.",
+          "heading": "Input"
         },
         {
           "code": [
@@ -68637,7 +69041,9 @@
             }
           ],
           "components": ["Menu", "MenuContent", "MenuTrigger"],
-          "title": "keyword-usage"
+          "title": "keyword-usage",
+          "description": "Menu automatically handles filtering using a built-in fuzzy filter based on the `label` and `keywords` properties of items.\n\nType \"placeholder\" into the menu and see how \"Workflow\" is highlighted:",
+          "heading": "Input > Filtering"
         },
         {
           "code": [
@@ -68652,7 +69058,9 @@
             "MenuTrigger",
             "type MenuOption"
           ],
-          "title": "link-execute-usage"
+          "title": "link-execute-usage",
+          "description": "Add the `href` property to options to render them as links.\n\nIf the `execute` property is also present then the default link clicking behavior will be prevented (unless users use a modifier like Enter to open in a new tab).",
+          "heading": "Links"
         },
         {
           "code": [
@@ -68662,7 +69070,9 @@
             }
           ],
           "components": ["Menu", "MenuContent", "MenuTrigger"],
-          "title": "link-external-usage"
+          "title": "link-external-usage",
+          "description": "We can toggle the `external` property to show an external link icon and open links in a new tab by default.",
+          "heading": "Links > External"
         },
         {
           "code": [
@@ -68672,7 +69082,9 @@
             }
           ],
           "components": ["Menu", "MenuContent", "MenuTrigger"],
-          "title": "link-usage"
+          "title": "link-usage",
+          "description": "If the `execute` property is omitted then clicking an item will simply follow the link and close the menu.",
+          "heading": "Links"
         },
         {
           "code": [
@@ -68687,7 +69099,9 @@
             "MenuTrigger",
             "type MenuOption"
           ],
-          "title": "nested-usage"
+          "title": "nested-usage",
+          "description": "Use `subOptions` property to render submenus.",
+          "heading": "Submenus"
         },
         {
           "code": [
@@ -68707,7 +69121,9 @@
             }
           ],
           "components": ["Menu", "MenuContent", "MenuTrigger"],
-          "title": "trigger-usage"
+          "title": "trigger-usage",
+          "description": "By default we use the `Button` component for the menu trigger which accepts all of the existing button props.",
+          "heading": "Trigger > Customize trigger"
         },
         {
           "code": [
@@ -68722,7 +69138,8 @@
             "MenuTrigger",
             "type MenuOption"
           ],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         },
         {
           "code": [
@@ -68737,7 +69154,9 @@
             "MenuTrigger",
             "type MenuOption"
           ],
-          "title": "virtualized-usage"
+          "title": "virtualized-usage",
+          "description": "Menu automatically uses virtualization to improve performance when rendering a large number of items.",
+          "heading": "Virtualized"
         }
       ]
     },
@@ -70317,7 +70736,9 @@
             "ModalLayer",
             "theme"
           ],
-          "title": "usage"
+          "title": "usage",
+          "description": "Dialog and popover components internally use focus managers to ensure focus trapping works consistently across browsers. This works for all elements inside the DOM tree of the dialog/popover, but elements rendered via portals are not automatically tracked.\n\nAll of our components automatically handle this focus management when being rendered inside dialogs/popovers - but third party portalled components need to be manually wrapped in the `ModalLayer` component.",
+          "heading": "Usage"
         }
       ]
     },
@@ -79626,7 +80047,9 @@
             }
           ],
           "components": ["Button", "Group", "Pagination"],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `page` and `defaultPage` props to toggle between controlled and uncontrolled usage. And combine it with `onPageChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -79636,7 +80059,8 @@
             }
           ],
           "components": ["Pagination"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -81160,7 +81584,9 @@
             }
           ],
           "components": ["Pill", "Tooltip"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Set the `disabled` prop to `true` to disable pills and prevent any interactions.\n\nFor accessibility please make sure to include text that explains why the button is disabled or use a tooltip.",
+          "heading": "Disabled state"
         },
         {
           "code": [
@@ -81170,7 +81596,9 @@
             }
           ],
           "components": ["Pill", "toaster"],
-          "title": "dismiss-usage"
+          "title": "dismiss-usage",
+          "description": "Use the `onDismiss` prop to show a close button inside the pill.",
+          "heading": "Dismissible"
         },
         {
           "code": [
@@ -81180,7 +81608,9 @@
             }
           ],
           "components": ["Pill", "PillGroup"],
-          "title": "group-usage"
+          "title": "group-usage",
+          "description": "Use the `<PillGroup />` component to group related pills together.",
+          "heading": "Grouping pills"
         },
         {
           "code": [
@@ -81190,7 +81620,9 @@
             }
           ],
           "components": ["Group", "Pill"],
-          "title": "size-usage"
+          "title": "size-usage",
+          "description": "Use the `size` prop to modify the size of the button.",
+          "heading": "Different sizes"
         },
         {
           "code": [
@@ -81200,7 +81632,8 @@
             }
           ],
           "components": ["Pill"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -83002,7 +83435,8 @@
             "PillMenuTrigger",
             "type MenuOption"
           ],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -84551,7 +84985,9 @@
             "Switch",
             "Text"
           ],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -84573,7 +85009,8 @@
             "Separator",
             "Tooltip"
           ],
-          "title": "example-usage"
+          "title": "example-usage",
+          "heading": "Example"
         },
         {
           "code": [
@@ -84589,7 +85026,9 @@
             "PopoverTrigger",
             "Text"
           ],
-          "title": "trigger-usage"
+          "title": "trigger-usage",
+          "description": "By default we use the `Button` component for the dialog trigger which accepts all of the existing button props.\n\nWe can also completely change the trigger by using `asChild` and passing our own component.",
+          "heading": "Customize trigger"
         },
         {
           "code": [
@@ -84605,7 +85044,8 @@
             "PopoverTrigger",
             "Text"
           ],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -87737,7 +88177,9 @@
             }
           ],
           "components": ["Group", "Progress"],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "Use the `intent` prop to select between the different progress types.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -87747,7 +88189,8 @@
             }
           ],
           "components": ["Progress"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -89344,7 +89787,9 @@
             }
           ],
           "components": ["Button", "Group", "Radio", "RadioGroup"],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `value` and `defaultValue` props on `RadioGroup` to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the value.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -89354,7 +89799,9 @@
             }
           ],
           "components": ["Radio", "RadioGroup"],
-          "title": "description-usage"
+          "title": "description-usage",
+          "description": "Use the `description` prop to add helper text after the label.",
+          "heading": "Description"
         },
         {
           "code": [
@@ -89364,7 +89811,9 @@
             }
           ],
           "components": ["Radio", "RadioGroup"],
-          "title": "disabled-group-usage"
+          "title": "disabled-group-usage",
+          "description": "Enable the `disabled` prop on the `RadioGroup` to toggle the disabled state of all the radio controls.",
+          "heading": "Disabled state"
         },
         {
           "code": [
@@ -89374,7 +89823,9 @@
             }
           ],
           "components": ["Radio", "RadioGroup"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "You can also enable the `disabled` prop on each `Radio` to toggle the disabled state of each radio control.",
+          "heading": "Disabled state"
         },
         {
           "code": [
@@ -89384,7 +89835,9 @@
             }
           ],
           "components": ["Button", "Field", "Group", "Radio", "RadioGroup"],
-          "title": "error-usage"
+          "title": "error-usage",
+          "description": "Wrap `RadioGroup` in a `Field` component and use the `error` prop to display validation errors.",
+          "heading": "Error state"
         },
         {
           "code": [
@@ -89401,7 +89854,9 @@
             "Radio",
             "RadioGroup"
           ],
-          "title": "form-integration-usage"
+          "title": "form-integration-usage",
+          "description": "Use `Controller` from react-hook-form to integrate RadioGroup with form validation.",
+          "heading": "Form integration"
         },
         {
           "code": [
@@ -89411,7 +89866,9 @@
             }
           ],
           "components": ["Radio", "RadioGroup"],
-          "title": "label-usage"
+          "title": "label-usage",
+          "description": "The `children` prop on `Radio` is used as the label of the radio control.",
+          "heading": "Label"
         },
         {
           "code": [
@@ -89421,7 +89878,9 @@
             }
           ],
           "components": ["Field", "Group", "Input", "Radio", "RadioGroup"],
-          "title": "pattern-conditional-usage"
+          "title": "pattern-conditional-usage",
+          "description": "Use the selected radio value to conditionally show additional fields.",
+          "heading": "Common patterns > Conditional fields"
         },
         {
           "code": [
@@ -89431,7 +89890,9 @@
             }
           ],
           "components": ["Field", "Radio", "RadioGroup"],
-          "title": "usage"
+          "title": "usage",
+          "description": "Use `RadioGroup` and `Radio` components together to create sets of radio buttons.",
+          "heading": "Usage"
         }
       ]
     },
@@ -90241,7 +90702,9 @@
             }
           ],
           "components": ["Box", "Button", "Group", "Range"],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -90251,7 +90714,9 @@
             }
           ],
           "components": ["Range"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Enable the `disabled` prop to toggle the disabled state of the input field.",
+          "heading": "Disabled state"
         },
         {
           "code": [
@@ -90261,7 +90726,9 @@
             }
           ],
           "components": ["Range"],
-          "title": "label-usage"
+          "title": "label-usage",
+          "description": "Use the `getLabel` prop to customize the label shown inside the tooltip.",
+          "heading": "Label"
         },
         {
           "code": [
@@ -90271,7 +90738,9 @@
             }
           ],
           "components": ["Group", "Range", "Text"],
-          "title": "marks-usage"
+          "title": "marks-usage",
+          "description": "Use the `marks` prop to add visual markers along the range track.\n\nMarks can be an array of numbers or objects with `value` and `label` properties.",
+          "heading": "Marks"
         },
         {
           "code": [
@@ -90281,7 +90750,9 @@
             }
           ],
           "components": ["Range"],
-          "title": "size-usage"
+          "title": "size-usage",
+          "description": "Use the `size` prop to control the size of the range control.",
+          "heading": "Sizes"
         },
         {
           "code": [
@@ -90291,7 +90762,9 @@
             }
           ],
           "components": ["Range"],
-          "title": "step-usage"
+          "title": "step-usage",
+          "description": "Use the `max`/`min`/`step` props to specify the maximum, minimum, and step values for the range.",
+          "heading": "Max/Min/Step"
         },
         {
           "code": [
@@ -90301,7 +90774,9 @@
             }
           ],
           "components": ["Range"],
-          "title": "tooltip-usage"
+          "title": "tooltip-usage",
+          "description": "Enable the `showTooltip` prop to toggle the visibility of the tooltip above the thumb.",
+          "heading": "Tooltip"
         },
         {
           "code": [
@@ -90311,7 +90786,8 @@
             }
           ],
           "components": ["Field", "Range"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -91931,7 +92407,9 @@
             }
           ],
           "components": ["Button", "Group", "SearchInput"],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onChange` to listen for changes to the input field.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -91941,7 +92419,9 @@
             }
           ],
           "components": ["SearchInput"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Enable the `disabled` prop to toggle the disabled state of the input field.",
+          "heading": "Disabled state"
         },
         {
           "code": [
@@ -91951,7 +92431,9 @@
             }
           ],
           "components": ["Field", "SearchInput"],
-          "title": "usage"
+          "title": "usage",
+          "description": "The `SearchInput` component extends the `Input` component with some additional addons.",
+          "heading": "Usage"
         }
       ]
     },
@@ -92771,7 +93253,9 @@
             "SegmentedControlItem",
             "Tooltip"
           ],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -92781,7 +93265,9 @@
             }
           ],
           "components": ["SegmentedControl", "SegmentedControlItem", "Tooltip"],
-          "title": "usage"
+          "title": "usage",
+          "description": "Use `SegmentedControl` and `SegmentedControlItem` components together to create sets of toggle buttons.\n\n`SegmentedControlItem` extends the Button component.",
+          "heading": "Usage"
         }
       ]
     },
@@ -93704,7 +94190,9 @@
             }
           ],
           "components": ["Select", "SelectContent", "SelectTrigger"],
-          "title": "content-usage"
+          "title": "content-usage",
+          "description": "Select options use the `label` property as the display text. We can add the `addon` and `description` properties to show additional content inside the items.",
+          "heading": "Content"
         },
         {
           "code": [
@@ -93720,7 +94208,9 @@
             "SelectTrigger",
             "Text"
           ],
-          "title": "controlled-onchange-usage"
+          "title": "controlled-onchange-usage",
+          "description": "Using `onChange`:",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -93736,7 +94226,9 @@
             "SelectTrigger",
             "Text"
           ],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` / `onChange` to listen for changes to the state.\n\nUsing `onValueChange`:",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -93746,7 +94238,9 @@
             }
           ],
           "components": ["Select", "SelectContent", "SelectTrigger"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Enable the `disabled` prop on `Select` to toggle the disabled state of the input field.",
+          "heading": "Disabled state"
         },
         {
           "code": [
@@ -93756,7 +94250,8 @@
             }
           ],
           "components": ["Field", "Select", "SelectContent", "SelectTrigger"],
-          "title": "field-usage"
+          "title": "field-usage",
+          "heading": "Usage"
         },
         {
           "code": [
@@ -93773,7 +94268,9 @@
             "SelectTrigger",
             "Text"
           ],
-          "title": "form-usage"
+          "title": "form-usage",
+          "description": "Use the `name` prop (and optionally `ref` and `onChange`) to integrate `Select` with forms.",
+          "heading": "Form usage"
         },
         {
           "code": [
@@ -93783,7 +94280,9 @@
             }
           ],
           "components": ["Select", "SelectContent", "SelectTrigger"],
-          "title": "group-usage"
+          "title": "group-usage",
+          "description": "We can group options using the `group` property.",
+          "heading": "Group"
         },
         {
           "code": [
@@ -93798,7 +94297,9 @@
             "SelectContent",
             "SelectTrigger"
           ],
-          "title": "trigger-usage"
+          "title": "trigger-usage",
+          "description": "By default we use the `Button` component for the menu trigger which accepts all of the existing button props.\n\nWe can also use `asChild` to render a completely different component. We provide a few built-in buttons:\n\n- [`AngleMenuButton`](/components/angle-menu-button/) (default)\n- [`LabelMenuButton`](/components/label-menu-button/)",
+          "heading": "Trigger"
         },
         {
           "code": [
@@ -93808,7 +94309,9 @@
             }
           ],
           "components": ["Select", "SelectContent", "SelectTrigger"],
-          "title": "usage"
+          "title": "usage",
+          "description": "Select works with lists of items provided via the `options` prop. The basic structure includes the main component provider, a trigger, and the content.\n\n- `Select`\n- `SelectTrigger`\n- `SelectContent`\n\nItems must be an array of objects of `SelectOption` type and at minimum must contain the following two properties:\n\n- `label`\n- `value`\n\nThe trigger can be provided a `placeholder` to display in case no values have been selected yet (or if an empty value is selected).",
+          "heading": "Structure"
         }
       ]
     },
@@ -96147,7 +96650,9 @@
             }
           ],
           "components": ["Group", "Separator", "Text"],
-          "title": "responsive-usage"
+          "title": "responsive-usage",
+          "description": "You can also use object or array prop notation to change orientation at various responsive breakpoints.\n\nResize the canvas to see the orientation change:",
+          "heading": "Responsive"
         },
         {
           "code": [
@@ -96157,7 +96662,8 @@
             }
           ],
           "components": ["Box", "Group", "Separator", "Text"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         },
         {
           "code": [
@@ -96167,7 +96673,9 @@
             }
           ],
           "components": ["Group", "Separator", "Text"],
-          "title": "vertical-usage"
+          "title": "vertical-usage",
+          "description": "Use `orientation=\"vertical\"` to display a vertical separator.",
+          "heading": "Orientation"
         }
       ]
     },
@@ -96996,7 +97504,8 @@
             "SidebarToggle",
             "SubNav"
           ],
-          "title": "sub-nav-usage"
+          "title": "sub-nav-usage",
+          "heading": "Secondary navigation"
         },
         {
           "code": [
@@ -97018,7 +97527,8 @@
             "Sidebar",
             "SidebarToggle"
           ],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -98584,7 +99094,9 @@
             }
           ],
           "components": ["Avatar", "Skeleton"],
-          "title": "children-usage"
+          "title": "children-usage",
+          "description": "Use `children` to insert things such as icons or graphics.",
+          "heading": "Children"
         },
         {
           "code": [
@@ -98594,7 +99106,9 @@
             }
           ],
           "components": ["Grid", "Group", "Heading", "Skeleton", "Text"],
-          "title": "dimension-usage"
+          "title": "dimension-usage",
+          "description": "Skeleton is automatically sized according to the parent `font-size`/`line-height` styles so we can combine it with `Text` or `Heading` component to achieve correctly sized textual placeholders.",
+          "heading": "Dimensions"
         },
         {
           "code": [
@@ -98611,7 +99125,8 @@
             "Skeleton",
             "Text"
           ],
-          "title": "example-usage"
+          "title": "example-usage",
+          "heading": "Example"
         },
         {
           "code": [
@@ -98621,7 +99136,8 @@
             }
           ],
           "components": ["Group", "Skeleton"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -99459,7 +99975,9 @@
             }
           ],
           "components": ["Sortable", "SortableItem"],
-          "title": "basic-usage"
+          "title": "basic-usage",
+          "description": "`Sortable` works with a list of items provided via the `items` prop. Each item is a unique string identifying the sortable item within the list, or an object with a unique `id` and a `label` (see Screen reader announcements).\n\nNext we provide a render prop in `children` that has the same `items` as an argument but representing the live state as they are being sorted.\n\nFinally we use `SortableItem` to render each sortable element inside the render function.",
+          "heading": "Basic"
         },
         {
           "code": [
@@ -99487,7 +100005,9 @@
             "SortableItem",
             "Text"
           ],
-          "title": "card-usage"
+          "title": "card-usage",
+          "description": "We can combine Sortable with the Card component to build a sortable list of cards.",
+          "heading": "Card example"
         },
         {
           "code": [
@@ -99501,7 +100021,9 @@
             }
           ],
           "components": ["Sortable", "SortableItem"],
-          "title": "controlled-onchange-usage"
+          "title": "controlled-onchange-usage",
+          "description": "Using `onChange` is necessary in cases where we're sorting a large number of items and we only want to mutate the item that is being dragged.",
+          "heading": "Sorting"
         },
         {
           "code": [
@@ -99511,7 +100033,9 @@
             }
           ],
           "components": ["Sortable", "SortableItem"],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Notice in the previous demo items are draggable but they always revert back to their original position.\n\nWe need to use either the `onItemsChange` or `onChange` prop to store the new sorted state.\n\nOnly use either `onItemsChange` or `onChange`. Do not use both props on the same component.\n\nUsing `onValueChange` is the simplest way to handle sorting for smaller pieces of data where we can update the sorting rank for all items in one call.",
+          "heading": "Sorting"
         },
         {
           "code": [
@@ -99521,7 +100045,9 @@
             }
           ],
           "components": ["Sortable", "SortableHandle", "SortableItem"],
-          "title": "handle-usage"
+          "title": "handle-usage",
+          "description": "By default the whole item acts as the drag handle, but we can use the `SortableHandle` component to render separate drag handles within the items.",
+          "heading": "Drag handle"
         },
         {
           "code": [
@@ -99531,7 +100057,9 @@
             }
           ],
           "components": ["Sortable", "SortableHandle", "SortableItem"],
-          "title": "label-usage"
+          "title": "label-usage",
+          "description": "While an item is dragged, screen readers announce its name and position, such as \"Design moved to position 3 of 5\". A string item is its own name. When IDs aren't readable, pass items as `{ id, label }` objects instead and the `label` is announced. A list must be all strings or all objects.",
+          "heading": "Screen reader announcements"
         },
         {
           "code": [
@@ -99547,7 +100075,9 @@
             "SortableGroup",
             "SortableItem"
           ],
-          "title": "list-usage"
+          "title": "list-usage",
+          "description": "Use the `SortableGroup` component to swap items between lists in addition to sorting with each other.\n\nWe also need to change the `items` prop to an object where the key is the ID of the group and the value is the list of items in that group.",
+          "heading": "Multiple lists"
         },
         {
           "code": [
@@ -99557,7 +100087,8 @@
             }
           ],
           "components": ["Sortable", "SortableItem"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -102675,7 +103206,9 @@
             }
           ],
           "components": ["Spinner"],
-          "title": "color-usage"
+          "title": "color-usage",
+          "description": "Set the `appearance` prop to `inverse` when displaying spinner on dark background.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -102685,7 +103218,9 @@
             }
           ],
           "components": ["Spinner"],
-          "title": "label-usage"
+          "title": "label-usage",
+          "description": "Use `children` to show an optional label for the spinner.",
+          "heading": "Label"
         },
         {
           "code": [
@@ -102695,7 +103230,9 @@
             }
           ],
           "components": ["Group", "Spinner"],
-          "title": "size-usage"
+          "title": "size-usage",
+          "description": "Use the `size` prop to select between the different sizes.",
+          "heading": "Size"
         },
         {
           "code": [
@@ -102705,7 +103242,8 @@
             }
           ],
           "components": ["Spinner"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -107476,7 +108014,9 @@
             }
           ],
           "components": ["Button", "Group", "Switch"],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `checked` and `defaultChecked` props to toggle between controlled and uncontrolled usage. And combine it with `onCheckedChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -107486,7 +108026,9 @@
             }
           ],
           "components": ["Group", "Switch"],
-          "title": "description-usage"
+          "title": "description-usage",
+          "description": "Use the `description` prop to add helper text after the label.",
+          "heading": "Description"
         },
         {
           "code": [
@@ -107496,7 +108038,9 @@
             }
           ],
           "components": ["Group", "Switch"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Enable the `disabled` prop to toggle the disabled state of the input field.",
+          "heading": "Disabled state"
         },
         {
           "code": [
@@ -107506,7 +108050,9 @@
             }
           ],
           "components": ["Field", "Switch"],
-          "title": "error-usage"
+          "title": "error-usage",
+          "description": "Wrap `Switch` in a `Field` component and use the `error` prop to display validation errors.",
+          "heading": "Error state"
         },
         {
           "code": [
@@ -107516,7 +108062,9 @@
             }
           ],
           "components": ["Button", "Field", "Group", "Input", "Switch"],
-          "title": "form-integration-usage"
+          "title": "form-integration-usage",
+          "description": "Integrate with form libraries like react-hook-form for validation and error handling.",
+          "heading": "Form integration"
         },
         {
           "code": [
@@ -107526,7 +108074,9 @@
             }
           ],
           "components": ["Group", "Separator", "Switch"],
-          "title": "label-usage"
+          "title": "label-usage",
+          "description": "The `children` prop is used as the label of the switch control.",
+          "heading": "Label"
         },
         {
           "code": [
@@ -107536,7 +108086,9 @@
             }
           ],
           "components": ["Switch"],
-          "title": "size-usage"
+          "title": "size-usage",
+          "description": "Use the `size` prop to control the size of the switch control.",
+          "heading": "Sizes"
         },
         {
           "code": [
@@ -107546,7 +108098,8 @@
             }
           ],
           "components": ["Switch"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -108350,7 +108903,8 @@
             "TableHeaderCell",
             "TableRow"
           ],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -113783,7 +114337,9 @@
             "TabsList",
             "TabsTrigger"
           ],
-          "title": "usage"
+          "title": "usage",
+          "description": "Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.",
+          "heading": "Usage"
         }
       ]
     },
@@ -116883,7 +117439,9 @@
             }
           ],
           "components": ["Group", "Text"],
-          "title": "composition-usage"
+          "title": "composition-usage",
+          "description": "`Text` component uses the Radix Composition approach and accepts an `asChild` prop. By default it renders a `<p>` element but when `asChild` is enabled it will forward all of its own props to its child and only render the child element instead.",
+          "heading": "Composition"
         },
         {
           "code": [
@@ -116893,7 +117451,8 @@
             }
           ],
           "components": ["Code", "Kbd", "Text"],
-          "title": "formatting-usage"
+          "title": "formatting-usage",
+          "heading": "Formatting"
         },
         {
           "code": [
@@ -116903,7 +117462,9 @@
             }
           ],
           "components": ["Text"],
-          "title": "line-clamp-usage"
+          "title": "line-clamp-usage",
+          "description": "Use the `lineClamp` prop to truncate the text at specific number of lines.",
+          "heading": "Line clamp"
         },
         {
           "code": [
@@ -116913,7 +117474,9 @@
             }
           ],
           "components": ["Box", "Text"],
-          "title": "truncate-usage"
+          "title": "truncate-usage",
+          "description": "Use the `truncate` prop to truncate the text and add an ellipsis at the end.",
+          "heading": "Truncate"
         },
         {
           "code": [
@@ -116923,7 +117486,8 @@
             }
           ],
           "components": ["Group", "Text"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -117712,7 +118276,9 @@
             }
           ],
           "components": ["Button", "Group", "Textarea", "Tooltip"],
-          "title": "addon-pointer-usage"
+          "title": "addon-pointer-usage",
+          "description": "Use the `addonPointerEvents` prop to control whether clicking blank spaces in the addons focuses the input or not.",
+          "heading": "Addons > Handling addon clicks"
         },
         {
           "code": [
@@ -117722,7 +118288,9 @@
             }
           ],
           "components": ["Button", "Group", "Textarea", "Tooltip"],
-          "title": "addon-usage"
+          "title": "addon-usage",
+          "description": "Use the `addonBefore` and `addonAfter` prop to add icons, text, or any other element to the start or end of the text field.",
+          "heading": "Addons > Top and bottom addons"
         },
         {
           "code": [
@@ -117732,7 +118300,9 @@
             }
           ],
           "components": ["Group", "Text", "Textarea"],
-          "title": "controlled-onchange-usage"
+          "title": "controlled-onchange-usage",
+          "description": "Using `onChange`:",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -117742,7 +118312,9 @@
             }
           ],
           "components": ["Group", "Text", "Textarea"],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` / `onChange` to listen for changes to the state.\n\nUsing `onValueChange`:",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -117752,7 +118324,9 @@
             }
           ],
           "components": ["Textarea"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Enable the `disabled` prop to toggle the disabled state of the text field.",
+          "heading": "Disabled state"
         },
         {
           "code": [
@@ -117762,7 +118336,9 @@
             }
           ],
           "components": ["Textarea"],
-          "title": "error-usage"
+          "title": "error-usage",
+          "description": "Enable the `error` prop to display the error state of the text field.",
+          "heading": "Error state"
         },
         {
           "code": [
@@ -117772,7 +118348,9 @@
             }
           ],
           "components": ["Textarea"],
-          "title": "readonly-usage"
+          "title": "readonly-usage",
+          "description": "Enable the `readOnly` prop to display the read-only state of the text field.",
+          "heading": "Read-only state"
         },
         {
           "code": [
@@ -117782,7 +118360,9 @@
             }
           ],
           "components": ["Group", "Textarea"],
-          "title": "size-auto-minmax-usage"
+          "title": "size-auto-minmax-usage",
+          "description": "You can use the `maxRows` and `rows` props to limit the textarea size.",
+          "heading": "Sizing > Auto sizing"
         },
         {
           "code": [
@@ -117792,7 +118372,9 @@
             }
           ],
           "components": ["Group", "Textarea"],
-          "title": "size-auto-usage"
+          "title": "size-auto-usage",
+          "description": "Use `resize=auto` prop to automatically resize the textarea as the value changes.",
+          "heading": "Sizing > Auto sizing"
         },
         {
           "code": [
@@ -117802,7 +118384,9 @@
             }
           ],
           "components": ["Textarea"],
-          "title": "size-manual-usage"
+          "title": "size-manual-usage",
+          "description": "Use the `resize=vertical` prop to allow users to manually resize the textarea.\n\nYou can use `rows` prop to set the initial size of the textarea.",
+          "heading": "Sizing > Manual sizing"
         },
         {
           "code": [
@@ -117812,7 +118396,9 @@
             }
           ],
           "components": ["Textarea"],
-          "title": "size-reset-usage"
+          "title": "size-reset-usage",
+          "description": "Use the `resize=none` prop to disallow resizing the textarea.\n\nYou can use `rows` prop to set the size of the textarea.",
+          "heading": "Sizing > Reset sizing"
         },
         {
           "code": [
@@ -117822,7 +118408,9 @@
             }
           ],
           "components": ["Textarea"],
-          "title": "size-usage"
+          "title": "size-usage",
+          "description": "By default `Textarea` does not allow resizing and you can use the `rows` prop to set the size.",
+          "heading": "Sizing > Fixed size"
         },
         {
           "code": [
@@ -117832,7 +118420,8 @@
             }
           ],
           "components": ["Field", "Textarea"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -119441,7 +120030,9 @@
             }
           ],
           "components": ["Button", "Group", "Text", "toaster"],
-          "title": "action-usage"
+          "title": "action-usage",
+          "description": "Use the `action` and `onAction` options to include a short action button associated with the toast.\n\nToasts with an action stay open 1.5 times the provider's `duration`. They still close on their own, so keep whatever the action does reachable elsewhere too. For undo, apply the change right away and make the action restore it, like the demo below.",
+          "heading": "Action"
         },
         {
           "code": [
@@ -119451,7 +120042,9 @@
             }
           ],
           "components": ["Button", "Group", "toaster"],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "Use the `intent` option in the second argument to select between the different toast types.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -119461,7 +120054,9 @@
             }
           ],
           "components": ["Button", "toaster"],
-          "title": "dismiss-usage"
+          "title": "dismiss-usage",
+          "description": "Use `toaster.remove()` to remove toasts. The `create()` method returns a unique ID for the toast which can then be passed to the `remove()` method.",
+          "heading": "Dismiss"
         },
         {
           "code": [
@@ -119471,7 +120066,9 @@
             }
           ],
           "components": ["Button", "toaster"],
-          "title": "usage"
+          "title": "usage",
+          "description": "Use `toaster.create()` to add toasts. The method takes two arguments `message` and `options`.",
+          "heading": "Usage"
         }
       ]
     },
@@ -120264,7 +120861,9 @@
             }
           ],
           "components": ["Group", "ToggleButton"],
-          "title": "appearance-usage"
+          "title": "appearance-usage",
+          "description": "Use the `appearance` prop to select between the different button appearances.",
+          "heading": "Appearance"
         },
         {
           "code": [
@@ -120274,7 +120873,9 @@
             }
           ],
           "components": ["Button", "Group", "ToggleButton"],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `pressed` and `defaultPressed` props to toggle between controlled and uncontrolled usage. And combine it with `onPressedChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -120284,7 +120885,9 @@
             }
           ],
           "components": ["ToggleButton", "Tooltip"],
-          "title": "disabled-usage"
+          "title": "disabled-usage",
+          "description": "Set the `disabled` prop to `true` to disable buttons and prevent any interactions.\n\nFor accessibility please make sure to include text that explains why the button is disabled or use a tooltip.",
+          "heading": "Disabled state"
         },
         {
           "code": [
@@ -120294,7 +120897,9 @@
             }
           ],
           "components": ["ToggleButton", "Tooltip"],
-          "title": "tooltip-usage"
+          "title": "tooltip-usage",
+          "description": "When using icon only buttons please make sure to always include an `aria-label` prop for screen readers and optionally use tooltips to visually denote the button's intent.",
+          "heading": "Accessibility"
         },
         {
           "code": [
@@ -120304,7 +120909,8 @@
             }
           ],
           "components": ["ToggleButton"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -121125,7 +121731,9 @@
             }
           ],
           "components": ["Group", "Link", "Text", "Tooltip"],
-          "title": "auto-usage"
+          "title": "auto-usage",
+          "description": "Use the `auto` prop to only show the tooltip when the underlying text is clipped.",
+          "heading": "Auto"
         },
         {
           "code": [
@@ -121135,7 +121743,9 @@
             }
           ],
           "components": ["Button", "Group", "Text", "Tooltip"],
-          "title": "controlled-usage"
+          "title": "controlled-usage",
+          "description": "Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.",
+          "heading": "Controlled"
         },
         {
           "code": [
@@ -121145,7 +121755,9 @@
             }
           ],
           "components": ["Button", "Group", "Tooltip"],
-          "title": "delay-usage"
+          "title": "delay-usage",
+          "description": "Use the `delayDuration` prop to control how long to wait to open the tooltip after mouse hover.",
+          "heading": "Delay"
         },
         {
           "code": [
@@ -121155,7 +121767,9 @@
             }
           ],
           "components": ["Button", "Grid", "Tooltip"],
-          "title": "placement-usage"
+          "title": "placement-usage",
+          "description": "Use the `side` and `align` props to control where the tooltip is placed by default.",
+          "heading": "Placement"
         },
         {
           "code": [
@@ -121165,7 +121779,8 @@
             }
           ],
           "components": ["Button", "Tooltip"],
-          "title": "usage"
+          "title": "usage",
+          "heading": "Usage"
         }
       ]
     },
@@ -121238,7 +121853,9 @@
             }
           ],
           "components": ["Box"],
-          "title": "colors-usage"
+          "title": "colors-usage",
+          "description": "Use `transition=\"colors\"` to transition all color related properties.",
+          "heading": "Transition colors"
         }
       ]
     },
