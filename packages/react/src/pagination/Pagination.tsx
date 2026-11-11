@@ -154,7 +154,10 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                       ref={active === page ? activeRef : undefined}
                       {...styles.button()}
                     >
-                      <VisuallyHidden>{messages["page"]}</VisuallyHidden> {page}
+                      <VisuallyHidden>
+                        {messages["page {page}"](page)}
+                      </VisuallyHidden>
+                      <span aria-hidden="true">{page}</span>
                       {page === 1 ? (
                         <VisuallyHidden>
                           {messages["(first page)"]}

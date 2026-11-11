@@ -50,8 +50,8 @@ const messages = {
   "No results found.": "No results found.",
   "Numbered list": "Numbered list",
   "Opal suggestion": "Opal suggestion",
-  page: "page",
   "Page Size": "Page Size",
+  "page {page}": (page: number) => `page ${page}`,
   pagination: "pagination",
   "Pick a date": "Pick a date",
   "Picked up {label}, item {position} of {count}.": (
