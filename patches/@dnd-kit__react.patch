@@ -1,0 +1,60 @@
+diff --git a/index.cjs b/index.cjs
+index 6e9a135cb4befd50ca834d40c1af90bd13a8c94f..59269cce43320d1974f6a4e956191fc6b21b3d43 100644
+--- a/index.cjs
++++ b/index.cjs
+@@ -7,6 +7,11 @@ var state = require('@dnd-kit/state');
+ var jsxRuntime = require('react/jsx-runtime');
+ var utilities = require('@dnd-kit/react/utilities');
+ var abstract = require('@dnd-kit/abstract');
++var reactDom = require('react-dom');
++
++// React 16/17 lack both APIs. See index.js.
++var startTransition = react.startTransition || reactDom.unstable_batchedUpdates;
++var useInsertionEffect = react.useInsertionEffect || hooks.useIsomorphicLayoutEffect;
+ 
+ var __defProp = Object.defineProperty;
+ var __defProps = Object.defineProperties;
+@@ -62,7 +67,7 @@ var Renderer = react.memo(
+               resolver.current = resolve;
+             });
+           }
+-          react.startTransition(() => {
++          startTransition(() => {
+             callback();
+             setTransitionCount((count) => count + 1);
+           });
+@@ -192,7 +197,7 @@ function useStableInstance(create) {
+   if (!ref.current) {
+     ref.current = create();
+   }
+-  react.useInsertionEffect(() => {
++  useInsertionEffect(() => {
+     return () => {
+       var _a2;
+       return (_a2 = ref.current) == null ? void 0 : _a2.destroy();
+diff --git a/index.js b/index.js
+index 9eca374aed9eb50fc08b92d72aba7d7092463faf..69cd428905eafd6b3351ec04447a043891f7d683 100644
+--- a/index.js
++++ b/index.js
+@@ -1,4 +1,6 @@
+-import { createContext, memo, forwardRef, useState, useRef, useMemo, startTransition, useImperativeHandle, useEffect, useInsertionEffect, useContext, useCallback, createElement } from 'react';
++import * as React from 'react';
++import { createContext, memo, forwardRef, useState, useRef, useMemo, useImperativeHandle, useEffect, useContext, useCallback, createElement } from 'react';
++import { unstable_batchedUpdates } from 'react-dom';
+ import { DragDropManager, resolveCustomizable, defaultPreset, Draggable, Feedback, Droppable } from '@dnd-kit/dom';
+ export { KeyboardSensor, PointerSensor } from '@dnd-kit/dom';
+ import { useIsomorphicLayoutEffect, useLatest, useOnValueChange, useDeepSignal, useOnElementChange, useComputed } from '@dnd-kit/react/hooks';
+@@ -7,6 +9,13 @@ import { jsxs, jsx } from 'react/jsx-runtime';
+ import { currentValue } from '@dnd-kit/react/utilities';
+ import { CollisionPriority, CollisionType } from '@dnd-kit/abstract';
+ 
++// React 16/17 lack both APIs. Read them off the namespace with a computed key so
++// bundlers don't turn them back into named imports that fail to link there.
++// Batch like a transition would: React 16/17 don't batch updates fired from
++// dnd-kit's native listeners. The isomorphic effect stays silent on the server.
++var startTransition = React["startTransition".toString()] || unstable_batchedUpdates;
++var useInsertionEffect = React["useInsertionEffect".toString()] || useIsomorphicLayoutEffect;
++
+ var __defProp = Object.defineProperty;
+ var __defProps = Object.defineProperties;
+ var __getOwnPropDescs = Object.getOwnPropertyDescriptors;

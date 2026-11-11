@@ -166,6 +166,7 @@ overrides:
   '@module-federation/enhanced': ^2.7.0
 
 patchedDependencies:
+  '@dnd-kit/react': 4c6dc3bd22f53df0d628407d74e5233c6442a01425cfaa7f068e04685200ba36
   '@vanilla-extract/sprinkles': 530004842e1937cf2ffe2728e2a18629c5dd638aa441e1158192285fcee2fe7e
   nextra-theme-docs: a391591b3ddb7fdaebf44d26ebcaa6ff78dad06cbb0ea8d21554d51de6d8b0d8
   react-docgen-typescript: 9f29f13ed1200787937c00d09629181fa03ff282ed42effecdf82ed5472f5d68
@@ -280,9 +281,6 @@ importers:
       '@cfworker/json-schema':
         specifier: ^4.1.1
         version: 4.1.1
-      '@dnd-kit/react':
-        specifier: ^0.5.0
-        version: 0.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@faker-js/faker':
         specifier: ^10.6.0
         version: 10.6.0
@@ -610,18 +608,21 @@ importers:
       '@cfworker/json-schema':
         specifier: ^4.1.1
         version: 4.1.1
+      '@dnd-kit/abstract':
+        specifier: 0.5.0
+        version: 0.5.0
       '@dnd-kit/collision':
-        specifier: ^0.5.0
+        specifier: 0.5.0
         version: 0.5.0
       '@dnd-kit/dom':
-        specifier: ^0.5.0
+        specifier: 0.5.0
         version: 0.5.0
       '@dnd-kit/helpers':
-        specifier: ^0.5.0
+        specifier: 0.5.0
         version: 0.5.0
-      '@dnd-kit/react':
-        specifier: ^0.5.0
-        version: 0.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@dnd-kit/state':
+        specifier: 0.5.0
+        version: 0.5.0
       '@optiaxiom/globals':
         specifier: workspace:^
         version: link:../globals
@@ -785,6 +786,9 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0(react@18.3.1)
     devDependencies:
+      '@dnd-kit/react':
+        specifier: 0.5.0
+        version: 0.5.0(patch_hash=4c6dc3bd22f53df0d628407d74e5233c6442a01425cfaa7f068e04685200ba36)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@emotion/hash':
         specifier: ^0.9.2
         version: 0.9.2
@@ -9938,7 +9942,7 @@ snapshots:
       '@dnd-kit/abstract': 0.5.0
       tslib: 2.8.1
 
-  '@dnd-kit/react@0.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@dnd-kit/react@0.5.0(patch_hash=4c6dc3bd22f53df0d628407d74e5233c6442a01425cfaa7f068e04685200ba36)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@dnd-kit/abstract': 0.5.0
       '@dnd-kit/dom': 0.5.0

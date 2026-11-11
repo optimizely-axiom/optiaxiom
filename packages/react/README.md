@@ -121,6 +121,8 @@ Every `@radix-ui/*` dependency is pinned to an exact version. Radix packages pin
 | `@radix-ui/react-tabs`    | `1.1.21` | 1.1.22 calls `onValueChange` twice per click ([radix-ui/primitives#4266](https://github.com/radix-ui/primitives/issues/4266)).                                                                                                            | A release fixes the double call.                                                               |
 | `@radix-ui/react-context` | `1.1.4`  | 1.2.0 and later type its hooks with interfaces it doesn't export, so our exported context hooks fail declaration emit (TS4023, [radix-ui/primitives#4098](https://github.com/radix-ui/primitives/issues/4098)).                           | The fix ([#4204](https://github.com/radix-ui/primitives/pull/4204)) ships in a stable release. |
 
+Every `@dnd-kit/*` package is pinned to one exact version too. `@dnd-kit/react` calls React 18 APIs, so it's a devDependency bundled into our dist, patched (`patches/@dnd-kit__react.patch`) to fall back on React 16/17. The bundled copy runs against the installed `@dnd-kit/dom`, `@dnd-kit/state` and `@dnd-kit/abstract`, so move all of them together and check the patch still applies after each bump.
+
 CI runs the specs on React 17 as well as 18, so a bump that breaks React 17 fails there.
 
 ## Contributing
