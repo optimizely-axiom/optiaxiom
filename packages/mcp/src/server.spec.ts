@@ -158,6 +158,29 @@ describe("createServer", () => {
 
     await client.close();
   });
+
+  it("returns the native props that control a form control's state", async () => {
+    const client = await connect(createServer());
+
+    const props = async (name: string, query: string) => {
+      const result = await client.callTool({
+        arguments: { name, props: query },
+        name: "get_component",
+      });
+      return Object.keys(
+        JSON.parse((result.content as Array<{ text: string }>)[0].text).props,
+      );
+    };
+
+    expect(await props("Switch", "checked defaultChecked disabled")).toEqual(
+      expect.arrayContaining(["checked", "defaultChecked", "disabled"]),
+    );
+    expect(await props("Input", "value defaultValue maxLength")).toEqual(
+      expect.arrayContaining(["value", "defaultValue", "maxLength"]),
+    );
+
+    await client.close();
+  });
 });
 
 describe("get_patterns", () => {

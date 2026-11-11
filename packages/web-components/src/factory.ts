@@ -6,6 +6,7 @@ type Component = {
   ref: { current: HTMLInputElement | null };
 };
 
+// Keep `formStateProps` in plugins/prop-types.mjs in sync.
 export const formAssociated: Set<string> = new Set([
   "ax-checkbox",
   "ax-input",
