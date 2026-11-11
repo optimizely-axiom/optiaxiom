@@ -1,0 +1,162 @@
+name: Dependencies
+
+on:
+  schedule:
+    # Daily at 08:17 UTC, off the hour to avoid the top-of-hour scheduler rush.
+    - cron: "17 8 * * *"
+  workflow_dispatch: {}
+
+permissions: {}
+
+concurrency:
+  group: deps
+  cancel-in-progress: true
+
+jobs:
+  # Whoever finishes the open PR (rebasing a patch, fixing lint) pushes to its
+  # branch. Regenerating the branch would force-push over their commits, so the
+  # update waits until that PR merges or closes.
+  busy:
+    if: ${{ github.repository_owner == 'optimizely-axiom' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      busy: ${{ steps.check.outputs.busy }}
+    steps:
+      - id: check
+        env:
+          BOT: 41898282+github-actions[bot]@users.noreply.github.com
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if others=$(gh api "repos/$GITHUB_REPOSITORY/compare/main...chore/dev-deps-update" --jq "[.commits[] | select(.commit.committer.email != \"$BOT\")] | length" 2>/dev/null); then
+            echo "busy=$([ "$others" -gt 0 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          else
+            echo "busy=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  # Private workspaces only: which packages and how far each moves is in
+  # packages/shared/bin/update-dev-deps.mjs.
+  dev:
+    needs: busy
+    if: ${{ needs.busy.outputs.busy == 'false' }}
+    runs-on: ubuntu-latest
+    # create-pull-request pushes the branch and opens or updates the PR.
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # create-pull-request pushes with its own token input.
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          cache: pnpm
+          node-version-file: .node-version
+
+      # STRICT holds each package at its newest version older than pnpm's
+      # minimumReleaseAge. The bump needs no node_modules.
+      - name: Bump dev dependencies
+        env:
+          PNPM_CONFIG_MINIMUM_RELEASE_AGE_STRICT: "true"
+        run: node packages/shared/bin/update-dev-deps.mjs
+
+      # A bumped patched package whose patch no longer applies fails the
+      # install. The PR still opens with the bump, naming the patch for an agent
+      # to rebase. pnpm stops at the first failing patch and wraps its error
+      # across lines, so the log is cut down to colour-free path characters
+      # before matching.
+      - name: Install the bumped lockfile
+        id: install
+        run: |
+          log="$RUNNER_TEMP/install.log"
+          pnpm install --frozen-lockfile 2>&1 | tee "$log"
+          status=${PIPESTATUS[0]}
+          if [ "$status" -eq 0 ]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          elif grep -q ERR_PNPM_PATCH_FAILED "$log"; then
+            patch=$(sed 's/\x1b\[[0-9;]*m//g' "$log" | LC_ALL=C tr -cd '[:alnum:]@_.+/:-' | grep -oE 'Couldnotapplypatch[^:]*patches/[A-Za-z0-9@_.+-]+\.patch' | grep -oE 'patches/[A-Za-z0-9@_.+-]+\.patch' | head -1)
+            echo "patch=${patch:-unknown}" >> "$GITHUB_OUTPUT"
+          else
+            exit "$status"
+          fi
+
+      # Regenerate the files CI diffs (proteus schema, icons, MCP data), then
+      # lint, so an oxfmt or oxlint bump lands with its reformat. A failure
+      # still opens the PR, flagged for an agent to finish.
+      - id: build
+        if: ${{ steps.install.outputs.ok }}
+        continue-on-error: true
+        run: pnpm -F icons... -F proteus... -F web-components... -F mcp... build
+
+      - id: lint
+        if: ${{ steps.install.outputs.ok }}
+        continue-on-error: true
+        run: pnpm lint
+
+      - name: Write the PR body
+        env:
+          BUILD: ${{ steps.build.outcome }}
+          LINT: ${{ steps.lint.outcome }}
+          PATCH: ${{ steps.install.outputs.patch }}
+        run: |
+          finish='pnpm install, pnpm -F icons... -F proteus... -F web-components... -F mcp... build and pnpm lint'
+          {
+            cat <<'EOF'
+          Automated by `packages/shared/bin/update-dev-deps.mjs`: bumps every package that never reaches consumers, `^0.x` ranges to latest and other ranges within range. Exact pins and runtime dependencies of published packages stay put.
+
+          EOF
+            if [ -n "$PATCH" ]; then
+              cat <<EOF
+          ## Patch to rebase
+
+          \`$PATCH\` no longer applies to the bumped package, so this branch has not been installed, built or linted. pnpm stops at the first failing patch; others may follow.
+
+          To finish: \`pnpm patch <package>@<new version>\`, reapply the change from the old patch, \`pnpm patch-commit <dir>\`, then run $finish, and push to this branch.
+
+          EOF
+            fi
+            if [ "$BUILD" = failure ] || [ "$LINT" = failure ]; then
+              broken=()
+              [ "$BUILD" = failure ] && broken+=(build)
+              [ "$LINT" = failure ] && broken+=(lint)
+              failed="${broken[*]}"
+              failed="${failed// / and }"
+              cat <<EOF
+          ## $failed failed
+
+          See the [workflow run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID). Fix it on this branch, then run $finish, and push.
+
+          EOF
+            fi
+            if ! git diff --quiet -- packages/mcp/src/data.json; then
+              cat <<'EOF'
+          ## MCP data changed
+
+          The bump changed `packages/mcp/src/data.json`. Add an `@optiaxiom/mcp` changeset describing what consumers see.
+
+          EOF
+            fi
+            printf '## package.json changes\n\n```diff\n'
+            git diff -- ':(glob)**/package.json'
+            printf '```\n\n'
+            cat <<'EOF'
+          > CI does not run on PRs opened by `GITHUB_TOKEN`: approve the workflow run, or push a commit.
+          EOF
+          } > "$RUNNER_TEMP/body.md"
+
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          base: main
+          body-path: ${{ runner.temp }}/body.md
+          branch: chore/dev-deps-update
+          commit-message: "chore(deps): update dev dependencies"
+          # The busy job tells the bot's commits from anyone else's by this.
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          delete-branch: true
+          labels: dependencies
+          title: "chore(deps): update dev dependencies"
