@@ -7,13 +7,17 @@ import { Demo, Scale } from "@/components";
 
 `Box` component supports multiple props for controlling an element's background, border, and text colors.
 
-You can also use the `--ax-colors-*` CSS variables directly in any CSS property.
+Outside style props, use `theme.colors` in JS and CSS-in-JS, which TypeScript checks against the real color names. In plain `.css` files, use the `--ax-colors-*` CSS variables.
 
 ## Documentation
 
 ### Using style props
 
 <Demo component="styles/prop-usage" />
+
+### Using the theme object
+
+<Demo component="styles/js-usage" />
 
 ### Using CSS variables
 
