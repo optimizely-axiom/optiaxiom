@@ -15,23 +15,8 @@ const hoveredTextColorVar = createVar();
 const pressedTextColorVar = createVar();
 const textColorVar = createVar();
 
-const marker = style({});
-
-/**
- * Fades the label and addons but not the description, which on a disabled
- * item carries the reason it's disabled.
- */
-const disabled = style({
-  selectors: {
-    [`${marker}[data-disabled] &`]: {
-      opacity: 0.3,
-    },
-  },
-});
-
 export const item = recipe({
   base: [
-    marker,
     {
       alignItems: "start",
       fontSize: "md",
@@ -66,6 +51,9 @@ export const item = recipe({
           outline: `2px solid ${theme.colors["border.control"]}`,
           outlineOffset: "-2px",
         },
+        "&[data-disabled]": {
+          opacity: 0.3,
+        },
       },
     }),
   ],
@@ -97,7 +85,6 @@ export const item = recipe({
 
 export const addon = recipe({
   base: [
-    disabled,
     {
       alignItems: "center",
       display: "flex",
@@ -120,7 +107,6 @@ export const addon = recipe({
 
 export const title = recipe({
   base: [
-    disabled,
     {
       alignItems: "center",
       gap: "8",

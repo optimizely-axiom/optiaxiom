@@ -19,10 +19,9 @@ export const MenuSwitchItem = forwardRef<HTMLDivElement, MenuSwitchItemProps>(
         <ListboxSwitchItem
           addonBefore={resolveItemProperty(props.item.addon, { inputValue })}
           asChild
-          description={
-            resolveItemProperty(props.item.disabledReason) ||
-            resolveItemProperty(props.item.description, { inputValue })
-          }
+          description={resolveItemProperty(props.item.description, {
+            inputValue,
+          })}
           onCheckedChange={() => {
             if (!resolveItemProperty(props.item.disabledReason)) {
               track(props.item);

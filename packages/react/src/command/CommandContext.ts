@@ -25,8 +25,7 @@ export type CommandOption = {
     | ((context: { inputValue: string | undefined }) => ReactNode)
     | ReactNode;
   /**
-   * Mark the item as disabled and skip it in keyboard navigation. List items
-   * show the reason in place of their `description`.
+   * Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.
    */
   disabledReason?: (() => string) | string;
   /**

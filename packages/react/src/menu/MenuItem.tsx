@@ -32,10 +32,9 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
           data-focus-visible={
             focusVisible && highlightedItem === props.item ? "" : undefined
           }
-          description={
-            resolveItemProperty(props.item.disabledReason) ||
-            resolveItemProperty(props.item.description, { inputValue })
-          }
+          description={resolveItemProperty(props.item.description, {
+            inputValue,
+          })}
           intent={props.item.intent}
         >
           <Comp
