@@ -29,15 +29,14 @@ jobs:
           BOT: 41898282+github-actions[bot]@users.noreply.github.com
           GH_TOKEN: ${{ github.token }}
         run: |
-          if others=$(gh api "repos/$GITHUB_REPOSITORY/compare/main...chore/dev-deps-update" --jq "[.commits[] | select(.commit.committer.email != \"$BOT\")] | length" 2>/dev/null); then
+          if others=$(gh api "repos/$GITHUB_REPOSITORY/compare/main...chore/deps-update" --jq "[.commits[] | select(.commit.committer.email != \"$BOT\")] | length" 2>/dev/null); then
             echo "busy=$([ "$others" -gt 0 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
           else
             echo "busy=false" >> "$GITHUB_OUTPUT"
           fi
 
-  # Private workspaces only: which packages and how far each moves is in
-  # packages/shared/bin/update-deps.mjs.
-  dev:
+  # Which packages and how far each moves: packages/shared/bin/update-deps.mjs.
+  update:
     needs: busy
     if: ${{ needs.busy.outputs.busy == 'false' }}
     runs-on: ubuntu-latest
@@ -60,10 +59,10 @@ jobs:
 
       # STRICT holds each package at its newest version older than pnpm's
       # minimumReleaseAge. The bump needs no node_modules.
-      - name: Bump dev dependencies
+      - name: Bump dependencies
         env:
           PNPM_CONFIG_MINIMUM_RELEASE_AGE_STRICT: "true"
-        run: node packages/shared/bin/update-deps.mjs
+        run: node packages/shared/bin/update-deps.mjs --report "$RUNNER_TEMP/report.md"
 
       # A bumped patched package whose patch no longer applies fails the
       # install. The PR still opens with the bump, naming the patch for an agent
@@ -107,7 +106,7 @@ jobs:
           finish='pnpm install, pnpm -F icons... -F proteus... -F web-components... -F mcp... build and pnpm lint'
           {
             cat <<'EOF'
-          Automated by `packages/shared/bin/update-deps.mjs`: bumps the dependencies of the root, apps and shared, `^0.x` ranges to latest and other ranges within range. Exact pins and anything named in a published manifest stay put.
+          Automated by `packages/shared/bin/update-deps.mjs`: bumps every workspace's dependencies, `^0.x` ranges to latest and other ranges within range, with a patch changeset for each published package whose shipped dependencies moved. Exact pins, peer ranges and `@module-federation/enhanced` stay put.
 
           EOF
             if [ -n "$PATCH" ]; then
@@ -141,6 +140,10 @@ jobs:
 
           EOF
             fi
+            if [ -s "$RUNNER_TEMP/report.md" ]; then
+              cat "$RUNNER_TEMP/report.md"
+              echo
+            fi
             printf '## package.json changes\n\n```diff\n'
             git diff -- ':(glob)**/package.json'
             printf '```\n\n'
@@ -153,10 +156,10 @@ jobs:
         with:
           base: main
           body-path: ${{ runner.temp }}/body.md
-          branch: chore/dev-deps-update
-          commit-message: "chore(deps): update dev dependencies"
+          branch: chore/deps-update
+          commit-message: "chore(deps): update dependencies"
           # The busy job tells the bot's commits from anyone else's by this.
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           delete-branch: true
           labels: dependencies
-          title: "chore(deps): update dev dependencies"
+          title: "chore(deps): update dependencies"
