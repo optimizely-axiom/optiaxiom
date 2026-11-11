@@ -55,7 +55,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProviderProps>(
     {
       className,
       container,
-      duration,
+      duration = 5000,
       label,
       position = "top-right",
       swipeDirection,
@@ -103,7 +103,14 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProviderProps>(
             open={open}
             toastRef={ref}
           >
-            <Toast intent={toast.intent || toast.type} key={id}>
+            <Toast
+              // Keyboard and screen reader users need longer to reach the
+              // action: the polite announcement queues behind other speech,
+              // then F8 and Tab move focus to the button.
+              duration={toast.action ? duration * 1.5 : undefined}
+              intent={toast.intent || toast.type}
+              key={id}
+            >
               <ToastTitle>{toast.title}</ToastTitle>
               {toast.action && (
                 <ToastAction altText={toast.action} onClick={toast.onAction}>
