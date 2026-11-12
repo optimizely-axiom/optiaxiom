@@ -29,7 +29,9 @@ export type LinkProps = BoxProps<
      */
     href?: ComponentPropsWithoutRef<"a">["href"];
     /**
-     * The link onClick handler.
+     * The link onClick handler. For an action that doesn't navigate, such as
+     * opening a dialog, set `asChild` and pass the handler to a child
+     * `<button>` instead.
      */
     onClick?: ComponentPropsWithoutRef<"a">["onClick"];
   }
@@ -37,6 +39,9 @@ export type LinkProps = BoxProps<
 
 /**
  * Anchor element for creating hyperlinks.
+ *
+ * For an action styled as a link that doesn't navigate, set `asChild` and
+ * wrap a `<button>`: `<Link asChild><button onClick={…}>…</button></Link>`.
  *
  * @category navigation
  * @since 0.1.0

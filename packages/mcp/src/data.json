@@ -20004,7 +20004,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "onClick": {
-          "description": "The link onClick handler.",
+          "description": "The link onClick handler. For an action that doesn't navigate, such as\nopening a dialog, set `asChild` and pass the handler to a child\n`<button>` instead.",
           "tsType": "MouseEventHandler<HTMLAnchorElement>"
         },
         "overflow": {
@@ -67856,7 +67856,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/layout"
     },
     "Link": {
-      "description": "Anchor element for creating hyperlinks.",
+      "description": "Anchor element for creating hyperlinks.\n\nFor an action styled as a link that doesn't navigate, set `asChild` and\nwrap a `<button>`: `<Link asChild><button onClick={…}>…</button></Link>`.",
       "entryPoint": "@optiaxiom/react/link",
       "import": "import { Link } from '@optiaxiom/react';",
       "name": "Link",
@@ -68363,7 +68363,7 @@
           "enum": ["contain", "fill", "none", "cover"]
         },
         "onClick": {
-          "description": "The link onClick handler.",
+          "description": "The link onClick handler. For an action that doesn't navigate, such as\nopening a dialog, set `asChild` and pass the handler to a child\n`<button>` instead.",
           "tsType": "MouseEventHandler<HTMLAnchorElement>"
         },
         "overflow": {
@@ -68658,13 +68658,13 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { Link, Text, toaster } from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Text>\n      This is{\" \"}\n      <Link asChild href=\"data:,\">\n        <button onClick={() => toaster.create(\"Clicked!\")}>\n          actually a button\n        </button>\n      </Link>\n    </Text>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { Link, Text, toaster } from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Text>\n      This is{\" \"}\n      <Link asChild>\n        <button onClick={() => toaster.create(\"Clicked!\")}>\n          actually a button\n        </button>\n      </Link>\n    </Text>\n  );\n}\n",
               "filename": "App.tsx"
             }
           ],
           "components": ["Link", "Text", "toaster"],
           "title": "button-usage",
-          "description": "Set `asChild` to `true` and wrap children in a `<button>` element to render links as buttons.",
+          "description": "For an action that doesn't navigate, such as opening a dialog or a support widget, set `asChild` to `true` and wrap a `<button>` element. It looks like a link and behaves like a button.",
           "heading": "Links as buttons"
         },
         {
