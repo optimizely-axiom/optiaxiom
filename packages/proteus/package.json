@@ -33,8 +33,8 @@
     "dev": "rm -rf dist && wait-on ../../packages/react/dist/index.d.ts ../../packages/react/dist/unstable.d.ts ../../packages/react/dist/css-runtime.d.ts ../../packages/shared/data/docs.json && rolldown -wc"
   },
   "dependencies": {
-    "@cfworker/json-schema": "^4.1.1",
-    "@modelcontextprotocol/ext-apps": "^1.5.0",
+    "@cfworker/json-schema": "^4.1.6",
+    "@modelcontextprotocol/ext-apps": "^1.7.5",
     "@module-federation/enhanced": "^0.19.1",
     "@optiaxiom/icons": "workspace:^",
     "@optiaxiom/react": "workspace:^",
@@ -46,15 +46,15 @@
     "embla-carousel-react": "^8.6.0",
     "jsonpointer": "^5.0.1",
     "react-markdown": "^10.1.0",
-    "recharts": "^3.8.1",
+    "recharts": "^3.10.1",
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@emotion/hash": "^0.9.2",
     "@optiaxiom/shared": "workspace:*",
-    "@vanilla-extract/css": "^1.21.1",
-    "autoprefixer": "^10.5.2",
-    "postcss": "^8.5.16"
+    "@vanilla-extract/css": "^1.21.3",
+    "autoprefixer": "^10.6.2",
+    "postcss": "^8.5.32"
   },
   "peerDependencies": {
     "react": "^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
