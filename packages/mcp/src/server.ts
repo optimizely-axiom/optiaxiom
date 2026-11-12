@@ -286,7 +286,7 @@ Examples:
   server.registerTool(
     "get_tokens",
     {
-      description: `Get design token mappings for the Axiom Design System. Returns token-to-value mappings for colors, sizes, borderRadius, fontSize, boxShadow, duration, fontFamily, zIndex, and breakpoints (the min-widths responsive props switch at). Use this to convert hardcoded values to semantic tokens (e.g., #4F576E → fg.secondary, 32px height → h='md'). Spacing is not a token: spacing props take the pixel count (16px padding → p='16') and have no CSS variable or \`theme\` entry. For how to consume these tokens in code (style props, CSS variables, or the \`theme\` object), call get_guides({ names: 'design-tokens' }).`,
+      description: `Get design token mappings for the Axiom Design System. Returns token-to-value mappings for colors, sizes, borderRadius, fontSize, boxShadow, duration, fontFamily, zIndex, and breakpoints (the min-widths responsive props switch at). Use this to convert hardcoded values to semantic tokens (e.g., #4F576E → fg.secondary, 32px height → h='md'). Spacing is not a token: spacing props take the pixel count (16px padding → p='16') and have no CSS variable or \`theme\` entry. For how to consume these tokens in code (style props, CSS variables, or the \`theme\` object), call get_guides({ names: 'design-tokens' }). Where Axiom's CSS variables aren't loaded (e.g. an iframe stylesheet), import the values from \`tokens\` in \`@optiaxiom/react\` (e.g. \`tokens.fontFamily.sans\`) instead of copying them; color values there are \`light-dark()\` CSS strings.`,
       inputSchema: {
         categories: z
           .array(z.enum(tokenCategories))

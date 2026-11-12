@@ -87,6 +87,18 @@ Use this `theme` object in any CSS-in-JS solution, such as vanilla-extract `.css
 
 <Demo component="styles/js-usage" />
 
+### Raw token values
+
+Where Axiom's CSS variables aren't loaded, such as a stylesheet built as a string for an iframe, import the raw values from `tokens` instead of copying them, so they follow token updates.
+
+```tsx
+import { tokens } from "@optiaxiom/react";
+
+const stylesheet = `body { font-family: ${tokens.fontFamily.sans}; }`;
+```
+
+Color values are `light-dark()` CSS strings, so they work only in CSS.
+
 ## Reference
 
 ### borderRadius
