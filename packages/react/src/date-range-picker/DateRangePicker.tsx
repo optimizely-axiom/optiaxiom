@@ -17,6 +17,10 @@ export type DateRangePickerProps = ComponentPropsWithRef<typeof Popover> & {
   disabled?: boolean;
   /**
    * Handler that is called when the selected value changes.
+   *
+   * `from` is midnight on the first day and `to` is `23:59:59.999` on the last
+   * day, both in the user's local time zone, so in UTC either can fall on a
+   * different day.
    */
   onValueChange?: (value: DateRange | null) => void;
   /**
@@ -25,7 +29,16 @@ export type DateRangePickerProps = ComponentPropsWithRef<typeof Popover> & {
   value?: DateRange | null;
 };
 
-type DateRange = { from: Date; to: Date };
+type DateRange = {
+  /**
+   * Midnight on the first day, in the user's local time zone.
+   */
+  from: Date;
+  /**
+   * `23:59:59.999` on the last day, in the user's local time zone.
+   */
+  to: Date;
+};
 
 /**
  * Calendar popover that lets user pick date ranges.
