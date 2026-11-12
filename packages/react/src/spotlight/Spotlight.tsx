@@ -10,8 +10,15 @@ export type SpotlightProps = ExcludeProps<
 >;
 
 /**
- * Command menu for search and application navigation.
+ * Command menu for search and application navigation, such as a global
+ * search or command palette.
  *
+ * Takes the same `options` as `Menu` (groups, `execute`, `href`, `visible`)
+ * and always shows the search input. It opens with Cmd/Ctrl+K, and
+ * `SpotlightTrigger` renders a search button that opens it too.
+ *
+ * @category navigation
+ * @since 0.5.0
  * @experimental
  */
 export function Spotlight({ children, ...props }: SpotlightProps) {

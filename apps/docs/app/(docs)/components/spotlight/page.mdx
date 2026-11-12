@@ -1,0 +1,64 @@
+import { Cards, Demo, Links, PropsTable } from "@/components";
+
+# Spotlight
+
+Command menu for search and application navigation.
+
+<Links component="spotlight" />
+
+## Documentation
+
+### Usage
+
+Use `Spotlight` for a global search or command palette. It opens with Cmd/Ctrl+K, and `SpotlightTrigger` renders a search button that opens it too.
+
+`Spotlight` takes the same `options` as [Menu](/components/menu/): group them with `group`, navigate with `href`, or run an action with `execute`. Typing in the search input filters the options.
+
+<Demo component="spotlight/usage" />
+
+### Anatomy
+
+```tsx
+import {
+  Spotlight,
+  SpotlightContent,
+  SpotlightTrigger,
+} from "@optiaxiom/react/unstable";
+
+export default () => (
+  <Spotlight>
+    <SpotlightTrigger />
+    <SpotlightContent />
+  </Spotlight>
+);
+```
+
+### Recent items
+
+Use the `visible` callback on options to show recent items while the search input is empty, and search results once the user types.
+
+<Demo component="spotlight/recent-usage" />
+
+### Related
+
+<Cards items={["Menu"]} />
+
+## Props
+
+### Spotlight
+
+<PropsTable component="Spotlight" />
+
+### SpotlightTrigger
+
+<PropsTable component="SpotlightTrigger" />
+
+### SpotlightContent
+
+<PropsTable component="SpotlightContent" />
+
+## Changelog
+
+### 0.5.0
+
+- Added component
