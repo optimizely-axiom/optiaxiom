@@ -1364,7 +1364,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -2911,7 +2911,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -5987,7 +5987,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -6766,7 +6766,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -12464,7 +12464,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -26198,7 +26198,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/data-table"
     },
     "DataTableCheckbox": {
-      "description": "Selects its row, or every row on the page when rendered in a header.\n\nWhen the checkbox is the only content of its cell, wrap it in\n`<Cover asChild>` so the whole cell toggles selection. Otherwise a click on\nthe cell's padding selects only this row and clears the rest.",
+      "description": "Selects its row, or every row on the page when rendered in a header.\n\nWhen the checkbox is the only content of its cell, wrap it in\n`<Cover asChild>` so the whole cell toggles selection. Otherwise a click on\nthe cell's padding selects only this row and clears the rest.\n\nA row checkbox takes its accessible name from the row's `DataTableLabel`,\nafter the default \"Check to select\" or \"Check to unselect\" message, and that\nname overrides an `aria-label`. Put `DataTableLabel` in the row's primary\ncell, or pass `aria-labelledby` to name it from another element. The header\ncheckbox defaults to \"Select all\".",
       "entryPoint": "@optiaxiom/react/data-table",
       "import": "import { DataTableCheckbox } from '@optiaxiom/react';",
       "name": "DataTableCheckbox",
@@ -31630,7 +31630,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -36526,7 +36526,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -40381,7 +40381,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -50140,7 +50140,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -50919,7 +50919,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -51672,7 +51672,7 @@
           "responsive": true
         },
         "info": {
-          "description": "Display a help icon with additional context for the input.",
+          "description": "Display a help icon with additional context for the input. The icon is a\nfocusable button, and its tooltip opens on hover, focus and click. Keep it to a short plain-text\nhint; put anything users need to fill in the field in `description`,\nwhich stays visible.",
           "tsType": "ReactNode"
         },
         "inputId": {
@@ -52580,7 +52580,7 @@
           "responsive": true
         },
         "info": {
-          "description": "Display a help icon with additional context for the input.",
+          "description": "Display a help icon with additional context for the input. The icon is a\nfocusable button, and its tooltip opens on hover, focus and click. Keep it to a short plain-text\nhint; put anything users need to fill in the field in `description`,\nwhich stays visible.",
           "tsType": "ReactNode"
         },
         "inputId": {
@@ -55774,7 +55774,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -65857,7 +65857,7 @@
           "type": "string"
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -70399,7 +70399,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -87097,7 +87097,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -93787,7 +93787,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -95599,7 +95599,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -104666,7 +104666,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -106988,7 +106988,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -120616,7 +120616,7 @@
           "responsive": true
         },
         "loading": {
-          "description": "Whether to show loading spinner inside the button.",
+          "description": "Show a loading spinner and mark the button `aria-busy`. The button stays\nfocusable and clickable: don't also set `disabled`, which drops keyboard\nfocus mid-action, and ignore repeat clicks in `onClick` if the action\nshouldn't run twice. Nothing is announced when loading starts or ends,\nso tell screen reader users the outcome yourself, e.g. with a toast.",
           "type": "boolean"
         },
         "m": {
@@ -122082,14 +122082,14 @@
       "examples": []
     },
     "VisuallyHidden": {
-      "description": "VisuallyHidden component from Axiom Design System",
+      "description": "Hide content visually while keeping it available to screen readers, such as\nextra context for an icon or a status message.\n\nRenders a `span`, or its child with `asChild`. Other props such as `role`\nand `aria-live` land on that element. For a status message, keep the live\nregion mounted and change only its text: most screen readers don't announce\na region that mounts with its text already in it.",
       "import": "import { VisuallyHidden } from '@optiaxiom/react/unstable';",
       "name": "VisuallyHidden",
       "props": {
         "asChild": { "type": "boolean" },
         "children": { "tsType": "ReactNode" },
         "disabled": {
-          "description": "Set to true to hide the content.",
+          "description": "Show the content visually instead of hiding it.",
           "type": "boolean"
         }
       },

@@ -15,7 +15,10 @@ export type FieldLabelProps = BoxProps<
   "div",
   {
     /**
-     * Display a help icon with additional context for the input.
+     * Display a help icon with additional context for the input. The icon is a
+     * focusable button, and its tooltip opens on hover, focus and click. Keep it to a short plain-text
+     * hint; put anything users need to fill in the field in `description`,
+     * which stays visible.
      */
     info?: ReactNode;
     /**
