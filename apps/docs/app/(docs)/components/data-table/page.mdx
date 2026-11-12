@@ -21,6 +21,8 @@ npm install @tanstack/react-table
 
 Use the `table` prop to pass a table instance returned from `useReactTable()` hook. At minimum make sure to include `columns`, `data`, and `getCoreRowModel` when using the hook.
 
+TanStack makes every accessor column sortable by default, so each header renders a sort button. Pass `enableSorting: false` unless the table [sorts](#sorting) its rows, otherwise clicking a header flips the arrow without reordering anything.
+
 <Demo component="data-table/usage" />
 
 ### Anatomy
@@ -46,6 +48,14 @@ export default () => (
 Headers in `DataTable` are sticky by default. Set a height on the component to allow scrolling vertically when a large number of rows are present.
 
 <Demo component="data-table/sticky-header-usage" />
+
+### Column sizing
+
+Set a column's width in pixels with the `size` column option (150 by default). Columns are resizable by default: `size` is their starting width, they share any leftover table width in proportion to their `size`, and users can drag the header edge to resize them, down to `minSize` and up to `maxSize`.
+
+Set `enableResizing: false` on a column to keep it at exactly `size`, such as a status or action column.
+
+<Demo component="data-table/column-sizing-usage" />
 
 ### Column pinning
 
@@ -124,7 +134,7 @@ Use the `empty` prop on `DataTableBody` to show content in a full-width row when
 
 #### Client side
 
-Simply provide `getSortedRowModel` on table and optionally use `enableSorting` to control which columns you'd like to be sortable to use client-side sorting.
+Provide `getSortedRowModel` on the table to sort rows on the client. Every accessor column is sortable by default; set `enableSorting: false` on a column to opt it out.
 
 <Alert intent="warning" mt="16">
   Hover over and click the table headers to sort by columns:
@@ -134,7 +144,7 @@ Simply provide `getSortedRowModel` on table and optionally use `enableSorting` t
 
 #### Server side
 
-To implement manual server-side sorting we can use `manualSorting`. Then combine it with `onSortingChange` and `state.sorting` to control sorting and react to changes.
+To sort on the server, control sorting with `onSortingChange` and `state.sorting`, and pass rows in the order the server returns them. Leave out `getSortedRowModel` (or set `manualSorting`) so the table keeps that order.
 
 <Alert intent="warning" mt="16">
   Hover over and click the table headers to sort by columns:

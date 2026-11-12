@@ -43,6 +43,7 @@ export function App() {
   const table = useReactTable({
     columns,
     data,
+    enableSorting: false,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),

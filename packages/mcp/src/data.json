@@ -23520,7 +23520,7 @@
       ]
     },
     "DataTable": {
-      "description": "Easy to use table and datagrids built using [TanStack Table](https://tanstack.com/table/latest).\n\nPass `loading` and `empty` to `DataTableBody` to show a loading state while\nrows load and an empty state when there are no results.",
+      "description": "Easy to use table and datagrids built using [TanStack Table](https://tanstack.com/table/latest).\n\nPass `loading` and `empty` to `DataTableBody` to show a loading state while\nrows load and an empty state when there are no results.\n\nEvery accessor column is sortable by default, so each header renders a sort\nbutton. Pass `enableSorting: false` to `useReactTable()` unless the table\nsorts its rows (`getSortedRowModel`, or server-side via `onSortingChange`).\n\nColumn widths come from the column `size` in pixels. Resizable columns (the\ndefault) share leftover width in proportion to their `size`; set\n`enableResizing: false` to keep a column at exactly `size`.",
       "entryPoint": "@optiaxiom/react/data-table",
       "import": "import { DataTable } from '@optiaxiom/react';",
       "name": "DataTable",
@@ -24305,7 +24305,27 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data: [],\n    getCoreRowModel: getCoreRowModel(),\n  });\n\n  return (\n    <DataTable table={table}>\n      <DataTableBody empty=\"No payments yet.\" />\n    </DataTable>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n  });\n  return (\n    <DataTable table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
+              "filename": "App.tsx"
+            },
+            {
+              "content": "import { Badge } from \"@optiaxiom/react\";\nimport { createColumnHelper } from \"@tanstack/react-table\";\n\nconst columnHelper = createColumnHelper<{\n  amount: number;\n  firstName: string;\n  lastName: string;\n  status: \"failed\" | \"processing\" | \"success\";\n}>();\n\nconst mapStatusToIntent = {\n  failed: \"danger\",\n  processing: \"warning\",\n  success: \"success\",\n} as const;\n\nexport const columns = [\n  columnHelper.accessor(\"firstName\", {\n    header: \"First Name\",\n    size: 240,\n  }),\n  columnHelper.accessor(\"lastName\", {\n    header: \"Last Name\",\n    size: 120,\n  }),\n  columnHelper.accessor(\"status\", {\n    cell: ({ getValue }) => (\n      <Badge intent={mapStatusToIntent[getValue()]}>{getValue()}</Badge>\n    ),\n    enableResizing: false,\n    header: \"Status\",\n    size: 120,\n  }),\n  columnHelper.accessor(\"amount\", {\n    cell: ({ renderValue }) => `$${renderValue()}`,\n    enableResizing: false,\n    header: \"Amount\",\n    size: 100,\n  }),\n];\n",
+              "filename": "columns.tsx"
+            },
+            {
+              "content": "export const data = [\n  {\n    amount: 20,\n    firstName: \"Arthur\",\n    lastName: \"Morgan\",\n    status: \"success\" as const,\n  },\n  {\n    amount: 12.75,\n    firstName: \"John\",\n    lastName: \"Marston\",\n    status: \"processing\" as const,\n  },\n  {\n    amount: 1.25,\n    firstName: \"Micah\",\n    lastName: \"Bell\",\n    status: \"failed\" as const,\n  },\n];\n",
+              "filename": "data.ts"
+            }
+          ],
+          "components": ["Badge", "DataTable", "DataTableBody"],
+          "title": "column-sizing-usage",
+          "description": "Set a column's width in pixels with the `size` column option (150 by default). Columns are resizable by default: `size` is their starting width, they share any leftover table width in proportion to their `size`, and users can drag the header edge to resize them, down to `minSize` and up to `maxSize`.\n\nSet `enableResizing: false` on a column to keep it at exactly `size`, such as a status or action column.",
+          "heading": "Column sizing"
+        },
+        {
+          "code": [
+            {
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data: [],\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n  });\n\n  return (\n    <DataTable table={table}>\n      <DataTableBody empty=\"No payments yet.\" />\n    </DataTable>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
@@ -24321,7 +24341,7 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport {\n  getCoreRowModel,\n  getExpandedRowModel,\n  useReactTable,\n} from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n    getExpandedRowModel: getExpandedRowModel(),\n    getSubRows: (row) => row.items,\n  });\n  return (\n    <DataTable table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport {\n  getCoreRowModel,\n  getExpandedRowModel,\n  useReactTable,\n} from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n    getExpandedRowModel: getExpandedRowModel(),\n    getSubRows: (row) => row.items,\n  });\n  return (\n    <DataTable table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
@@ -24346,7 +24366,7 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { IconPlus } from \"@optiaxiom/icons\";\nimport {\n  Button,\n  DataTable,\n  DataTableBody,\n  DataTableFooter,\n  Flex,\n  Group,\n  LabelMenuButton,\n  Menu,\n  MenuContent,\n  MenuTrigger,\n  SearchInput,\n  toaster,\n} from \"@optiaxiom/react\";\nimport {\n  type ColumnFiltersState,\n  getCoreRowModel,\n  getFilteredRowModel,\n  getPaginationRowModel,\n  useReactTable,\n} from \"@tanstack/react-table\";\nimport { useRef, useState } from \"react\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nconst filters = [\n  { id: \"status\", label: \"Status\", values: [\"Draft\", \"Ready\"] },\n  {\n    id: \"owner\",\n    label: \"Owner\",\n    values: [...new Set(data.map((item) => item.owner))].sort(),\n  },\n];\n\nexport function App() {\n  const searchRef = useRef<HTMLInputElement>(null);\n  const [globalFilter, setGlobalFilter] = useState(\"\");\n  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n    getFilteredRowModel: getFilteredRowModel(),\n    getPaginationRowModel: getPaginationRowModel(),\n    globalFilterFn: \"includesString\",\n    initialState: { pagination: { pageIndex: 0, pageSize: 10 } },\n    onColumnFiltersChange: setColumnFilters,\n    onGlobalFilterChange: setGlobalFilter,\n    state: { columnFilters, globalFilter },\n  });\n\n  return (\n    <Flex maxW=\"full\" w=\"full\">\n      <Group flexWrap=\"wrap\" gap=\"12\" justifyContent=\"space-between\">\n        <Group flexWrap=\"wrap\" gap=\"8\">\n          <SearchInput\n            aria-label=\"Search items\"\n            onValueChange={setGlobalFilter}\n            placeholder=\"Search items\"\n            ref={searchRef}\n            size=\"lg\"\n            value={globalFilter}\n          />\n          {filters.map((filter) => {\n            const column = table.getColumn(filter.id);\n            const value = column?.getFilterValue() as string | undefined;\n            return (\n              <Menu\n                key={filter.id}\n                options={[undefined, ...filter.values].map((option) => ({\n                  execute: () => column?.setFilterValue(option),\n                  label: option ?? \"All\",\n                  selected: value === option,\n                }))}\n              >\n                <MenuTrigger asChild>\n                  <LabelMenuButton label={filter.label}>\n                    {value ?? \"All\"}\n                  </LabelMenuButton>\n                </MenuTrigger>\n                <MenuContent />\n              </Menu>\n            );\n          })}\n        </Group>\n        <Button\n          appearance=\"primary\"\n          icon={<IconPlus />}\n          onClick={() => toaster.create(\"Create item\")}\n          size=\"lg\"\n        >\n          Create item\n        </Button>\n      </Group>\n\n      <DataTable table={table}>\n        <DataTableBody\n          empty={\n            <>\n              No items match your filters.\n              <Button\n                appearance=\"subtle\"\n                mt=\"8\"\n                onClick={() => {\n                  setGlobalFilter(\"\");\n                  setColumnFilters([]);\n                  searchRef.current?.focus();\n                }}\n              >\n                Clear filters\n              </Button>\n            </>\n          }\n        />\n        <DataTableFooter />\n      </DataTable>\n    </Flex>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { IconPlus } from \"@optiaxiom/icons\";\nimport {\n  Button,\n  DataTable,\n  DataTableBody,\n  DataTableFooter,\n  Flex,\n  Group,\n  LabelMenuButton,\n  Menu,\n  MenuContent,\n  MenuTrigger,\n  SearchInput,\n  toaster,\n} from \"@optiaxiom/react\";\nimport {\n  type ColumnFiltersState,\n  getCoreRowModel,\n  getFilteredRowModel,\n  getPaginationRowModel,\n  useReactTable,\n} from \"@tanstack/react-table\";\nimport { useRef, useState } from \"react\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nconst filters = [\n  { id: \"status\", label: \"Status\", values: [\"Draft\", \"Ready\"] },\n  {\n    id: \"owner\",\n    label: \"Owner\",\n    values: [...new Set(data.map((item) => item.owner))].sort(),\n  },\n];\n\nexport function App() {\n  const searchRef = useRef<HTMLInputElement>(null);\n  const [globalFilter, setGlobalFilter] = useState(\"\");\n  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);\n  const table = useReactTable({\n    columns,\n    data,\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n    getFilteredRowModel: getFilteredRowModel(),\n    getPaginationRowModel: getPaginationRowModel(),\n    globalFilterFn: \"includesString\",\n    initialState: { pagination: { pageIndex: 0, pageSize: 10 } },\n    onColumnFiltersChange: setColumnFilters,\n    onGlobalFilterChange: setGlobalFilter,\n    state: { columnFilters, globalFilter },\n  });\n\n  return (\n    <Flex maxW=\"full\" w=\"full\">\n      <Group flexWrap=\"wrap\" gap=\"12\" justifyContent=\"space-between\">\n        <Group flexWrap=\"wrap\" gap=\"8\">\n          <SearchInput\n            aria-label=\"Search items\"\n            onValueChange={setGlobalFilter}\n            placeholder=\"Search items\"\n            ref={searchRef}\n            size=\"lg\"\n            value={globalFilter}\n          />\n          {filters.map((filter) => {\n            const column = table.getColumn(filter.id);\n            const value = column?.getFilterValue() as string | undefined;\n            return (\n              <Menu\n                key={filter.id}\n                options={[undefined, ...filter.values].map((option) => ({\n                  execute: () => column?.setFilterValue(option),\n                  label: option ?? \"All\",\n                  selected: value === option,\n                }))}\n              >\n                <MenuTrigger asChild>\n                  <LabelMenuButton label={filter.label}>\n                    {value ?? \"All\"}\n                  </LabelMenuButton>\n                </MenuTrigger>\n                <MenuContent />\n              </Menu>\n            );\n          })}\n        </Group>\n        <Button\n          appearance=\"primary\"\n          icon={<IconPlus />}\n          onClick={() => toaster.create(\"Create item\")}\n          size=\"lg\"\n        >\n          Create item\n        </Button>\n      </Group>\n\n      <DataTable table={table}>\n        <DataTableBody\n          empty={\n            <>\n              No items match your filters.\n              <Button\n                appearance=\"subtle\"\n                mt=\"8\"\n                onClick={() => {\n                  setGlobalFilter(\"\");\n                  setColumnFilters([]);\n                  searchRef.current?.focus();\n                }}\n              >\n                Clear filters\n              </Button>\n            </>\n          }\n        />\n        <DataTableFooter />\n      </DataTable>\n    </Flex>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
@@ -24383,7 +24403,7 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { DataTable, DataTableBody, Group, Switch } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\nimport { useState } from \"react\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n    getRowId: (row) => row.id.toString(),\n  });\n\n  const [loading, setLoading] = useState<Record<string, \"sub-rows\" | false>>({\n    \"1\": \"sub-rows\",\n  });\n\n  return (\n    <Group alignItems=\"start\" flexDirection=\"column\" gap=\"16\" maxW=\"full\">\n      <Switch\n        checked={loading[\"1\"] === \"sub-rows\"}\n        onCheckedChange={(checked) =>\n          setLoading({ \"1\": checked ? \"sub-rows\" : false })\n        }\n      >\n        Loading\n      </Switch>\n      <DataTable maxH=\"xs\" table={table}>\n        <DataTableBody loading={loading} />\n      </DataTable>\n    </Group>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody, Group, Switch } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\nimport { useState } from \"react\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n    getRowId: (row) => row.id.toString(),\n  });\n\n  const [loading, setLoading] = useState<Record<string, \"sub-rows\" | false>>({\n    \"1\": \"sub-rows\",\n  });\n\n  return (\n    <Group alignItems=\"start\" flexDirection=\"column\" gap=\"16\" maxW=\"full\">\n      <Switch\n        checked={loading[\"1\"] === \"sub-rows\"}\n        onCheckedChange={(checked) =>\n          setLoading({ \"1\": checked ? \"sub-rows\" : false })\n        }\n      >\n        Loading\n      </Switch>\n      <DataTable maxH=\"xs\" table={table}>\n        <DataTableBody loading={loading} />\n      </DataTable>\n    </Group>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
@@ -24403,7 +24423,7 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { DataTable, DataTableBody, Group, Switch } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\nimport { useState } from \"react\";\n\nimport { columns } from \"./columns\";\n\nexport function App() {\n  const [data] = useState([]);\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n  });\n\n  const [loading, setLoading] = useState(true);\n\n  return (\n    <Group alignItems=\"start\" flexDirection=\"column\" gap=\"16\" maxW=\"full\">\n      <Switch checked={loading} onCheckedChange={setLoading}>\n        Loading\n      </Switch>\n      <DataTable maxH=\"xs\" table={table}>\n        <DataTableBody loading={loading} />\n      </DataTable>\n    </Group>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody, Group, Switch } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\nimport { useState } from \"react\";\n\nimport { columns } from \"./columns\";\n\nexport function App() {\n  const [data] = useState([]);\n  const table = useReactTable({\n    columns,\n    data,\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n  });\n\n  const [loading, setLoading] = useState(true);\n\n  return (\n    <Group alignItems=\"start\" flexDirection=\"column\" gap=\"16\" maxW=\"full\">\n      <Switch checked={loading} onCheckedChange={setLoading}>\n        Loading\n      </Switch>\n      <DataTable maxH=\"xs\" table={table}>\n        <DataTableBody loading={loading} />\n      </DataTable>\n    </Group>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
@@ -24419,7 +24439,7 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { DataTable, DataTableBody, DataTableFooter } from \"@optiaxiom/react\";\nimport {\n  getCoreRowModel,\n  getPaginationRowModel,\n  useReactTable,\n} from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n    getPaginationRowModel: getPaginationRowModel(),\n    initialState: { pagination: { pageIndex: 0, pageSize: 10 } },\n  });\n  return (\n    <DataTable maxH=\"xs\" table={table}>\n      <DataTableBody />\n      <DataTableFooter />\n    </DataTable>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody, DataTableFooter } from \"@optiaxiom/react\";\nimport {\n  getCoreRowModel,\n  getPaginationRowModel,\n  useReactTable,\n} from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n    getPaginationRowModel: getPaginationRowModel(),\n    initialState: { pagination: { pageIndex: 0, pageSize: 10 } },\n  });\n  return (\n    <DataTable maxH=\"xs\" table={table}>\n      <DataTableBody />\n      <DataTableFooter />\n    </DataTable>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
@@ -24439,7 +24459,7 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { DataTable, DataTableBody, DataTableFooter } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\nimport { useMemo, useState } from \"react\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\n/**\n * Simulate fetching data from server.\n */\nconst fetchData = ({ pageIndex = 0, pageSize = 10 }) =>\n  data.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize);\n\nexport function App() {\n  const [pagination, setPagination] = useState({\n    pageIndex: 0,\n    pageSize: 10,\n  });\n\n  const table = useReactTable({\n    columns,\n    data: useMemo(() => fetchData(pagination), [pagination]),\n    getCoreRowModel: getCoreRowModel(),\n    manualPagination: true,\n    onPaginationChange: setPagination,\n    rowCount: data.length,\n    state: { pagination },\n  });\n  return (\n    <DataTable maxH=\"xs\" table={table}>\n      <DataTableBody />\n      <DataTableFooter />\n    </DataTable>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody, DataTableFooter } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\nimport { useMemo, useState } from \"react\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\n/**\n * Simulate fetching data from server.\n */\nconst fetchData = ({ pageIndex = 0, pageSize = 10 }) =>\n  data.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize);\n\nexport function App() {\n  const [pagination, setPagination] = useState({\n    pageIndex: 0,\n    pageSize: 10,\n  });\n\n  const table = useReactTable({\n    columns,\n    data: useMemo(() => fetchData(pagination), [pagination]),\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n    manualPagination: true,\n    onPaginationChange: setPagination,\n    rowCount: data.length,\n    state: { pagination },\n  });\n  return (\n    <DataTable maxH=\"xs\" table={table}>\n      <DataTableBody />\n      <DataTableFooter />\n    </DataTable>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
@@ -24459,7 +24479,7 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    enableRowSelection: false,\n    getCoreRowModel: getCoreRowModel(),\n  });\n  return (\n    <DataTable table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    enableRowSelection: false,\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n  });\n  return (\n    <DataTable table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
@@ -24494,7 +24514,7 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n  });\n  return (\n    <DataTable table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n  });\n  return (\n    <DataTable table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
@@ -24534,7 +24554,7 @@
           ],
           "components": ["DataTable", "DataTableBody"],
           "title": "sorting-client-usage",
-          "description": "Simply provide `getSortedRowModel` on table and optionally use `enableSorting` to control which columns you'd like to be sortable to use client-side sorting.\n\nHover over and click the table headers to sort by columns:",
+          "description": "Provide `getSortedRowModel` on the table to sort rows on the client. Every accessor column is sortable by default; set `enableSorting: false` on a column to opt it out.\n\nHover over and click the table headers to sort by columns:",
           "heading": "Sorting > Client side"
         },
         {
@@ -24554,13 +24574,13 @@
           ],
           "components": ["DataTable", "DataTableBody"],
           "title": "sorting-server-usage",
-          "description": "To implement manual server-side sorting we can use `manualSorting`. Then combine it with `onSortingChange` and `state.sorting` to control sorting and react to changes.\n\nHover over and click the table headers to sort by columns:",
+          "description": "To sort on the server, control sorting with `onSortingChange` and `state.sorting`, and pass rows in the order the server returns them. Leave out `getSortedRowModel` (or set `manualSorting`) so the table keeps that order.\n\nHover over and click the table headers to sort by columns:",
           "heading": "Sorting > Server side"
         },
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n    state: {\n      columnPinning: {\n        left: [\"id\", \"username\"],\n      },\n      pagination: { pageIndex: 0, pageSize: data.length },\n    },\n  });\n  return (\n    <DataTable maxH=\"xs\" table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n    state: {\n      columnPinning: {\n        left: [\"id\", \"username\"],\n      },\n      pagination: { pageIndex: 0, pageSize: data.length },\n    },\n  });\n  return (\n    <DataTable maxH=\"xs\" table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
@@ -24580,7 +24600,7 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n    state: { pagination: { pageIndex: 0, pageSize: data.length } },\n  });\n  return (\n    <DataTable maxH=\"xs\" table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n    state: { pagination: { pageIndex: 0, pageSize: data.length } },\n  });\n  return (\n    <DataTable maxH=\"xs\" table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
@@ -24600,7 +24620,7 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n  });\n  return (\n    <DataTable table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n  });\n  return (\n    <DataTable table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
@@ -24614,13 +24634,13 @@
           ],
           "components": ["Badge", "DataTable", "DataTableBody"],
           "title": "usage",
-          "description": "Use the `table` prop to pass a table instance returned from `useReactTable()` hook. At minimum make sure to include `columns`, `data`, and `getCoreRowModel` when using the hook.",
+          "description": "Use the `table` prop to pass a table instance returned from `useReactTable()` hook. At minimum make sure to include `columns`, `data`, and `getCoreRowModel` when using the hook.\n\nTanStack makes every accessor column sortable by default, so each header renders a sort button. Pass `enableSorting: false` unless the table sorts its rows, otherwise clicking a header flips the arrow without reordering anything.",
           "heading": "Usage"
         },
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { faker } from \"@faker-js/faker\";\nimport { DataTable, DataTableBody, Group, Text } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { useInViewTimer } from \"./useInViewTimer\";\n\nfaker.seed(123);\n\nconst cols = 50;\nconst rows = 500;\n\nconst data = Array.from({ length: rows }, () =>\n  Object.fromEntries(\n    Array.from({ length: cols }, (_, index) => [\n      `col${index}`,\n      faker.book.title(),\n    ]),\n  ),\n);\nconst columns = Array.from({ length: cols }, (_, index) => ({\n  accessorKey: `col${index}`,\n  header: `Column ${index + 1}`,\n}));\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n    state: { pagination: { pageIndex: 0, pageSize: data.length } },\n  });\n\n  /**\n   * A simple hook to re-render the table when it is visible on the screen.\n   */\n  const [count, ref] = useInViewTimer();\n\n  return (\n    <Group flexDirection=\"column\" gap=\"16\" maxW=\"full\" ref={ref}>\n      <Text>Timer: {count}s (to simulate re-rendering)</Text>\n      <DataTable maxH=\"sm\" table={table}>\n        <DataTableBody />\n      </DataTable>\n    </Group>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { faker } from \"@faker-js/faker\";\nimport { DataTable, DataTableBody, Group, Text } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { useInViewTimer } from \"./useInViewTimer\";\n\nfaker.seed(123);\n\nconst cols = 50;\nconst rows = 500;\n\nconst data = Array.from({ length: rows }, () =>\n  Object.fromEntries(\n    Array.from({ length: cols }, (_, index) => [\n      `col${index}`,\n      faker.book.title(),\n    ]),\n  ),\n);\nconst columns = Array.from({ length: cols }, (_, index) => ({\n  accessorKey: `col${index}`,\n  header: `Column ${index + 1}`,\n}));\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    enableSorting: false,\n    getCoreRowModel: getCoreRowModel(),\n    state: { pagination: { pageIndex: 0, pageSize: data.length } },\n  });\n\n  /**\n   * A simple hook to re-render the table when it is visible on the screen.\n   */\n  const [count, ref] = useInViewTimer();\n\n  return (\n    <Group flexDirection=\"column\" gap=\"16\" maxW=\"full\" ref={ref}>\n      <Text>Timer: {count}s (to simulate re-rendering)</Text>\n      <DataTable maxH=\"sm\" table={table}>\n        <DataTableBody />\n      </DataTable>\n    </Group>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
@@ -108308,7 +108328,7 @@
       "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space` | Toggles the switch between on and off |\n| `Enter` | Toggles the switch between on and off |\n| `Tab` | Moves focus to or away from the switch |\n| `Shift + Tab` | Moves focus to the previous focusable element |\n\nSwitch automatically handles accessibility:\n\n- Uses proper `role=\"switch\"` and ARIA attributes\n- Supports `aria-checked` for on/off states\n- Associates label text with the switch control"
     },
     "Table": {
-      "description": "Display tabular data using rows and columns.\n\n⚠️ **IMPORTANT**: Consider using `DataTable` instead for displaying tabular\ndata.\n\n`DataTable` provides built-in support for:\n- Sorting (client-side and server-side)\n- Pagination (client-side and server-side)\n- Row selection with checkboxes\n- Column pinning (sticky columns)\n- Row expansion\n- Loading states\n- Virtualization for large datasets\n\n`Table` is a low-level primitive and should only be used for very specific\ncustom table layouts. For most use cases, `DataTable` is the recommended\nchoice.",
+      "description": "Display tabular data using rows and columns.\n\n⚠️ **IMPORTANT**: Consider using `DataTable` instead for displaying tabular\ndata.\n\n`DataTable` provides built-in support for:\n- Sorting (client-side and server-side)\n- Pagination (client-side and server-side)\n- Row selection with checkboxes\n- Column pinning (sticky columns)\n- Row expansion\n- Loading skeletons and empty states\n- Sticky headers\n- Column sizing and resizing\n- Virtualization for large datasets\n\n`Table` is a low-level primitive and should only be used for very specific\ncustom table layouts. For most use cases, `DataTable` is the recommended\nchoice.",
       "entryPoint": "@optiaxiom/react/table",
       "import": "import { Table } from '@optiaxiom/react';",
       "name": "Table",

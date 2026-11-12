@@ -28,6 +28,7 @@ export function App() {
   const table = useReactTable({
     columns,
     data,
+    enableSorting: false,
     getCoreRowModel: getCoreRowModel(),
     state: { pagination: { pageIndex: 0, pageSize: data.length } },
   });

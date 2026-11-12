@@ -23,6 +23,14 @@ export type DataTableProps = BoxProps<
  * Pass `loading` and `empty` to `DataTableBody` to show a loading state while
  * rows load and an empty state when there are no results.
  *
+ * Every accessor column is sortable by default, so each header renders a sort
+ * button. Pass `enableSorting: false` to `useReactTable()` unless the table
+ * sorts its rows (`getSortedRowModel`, or server-side via `onSortingChange`).
+ *
+ * Column widths come from the column `size` in pixels. Resizable columns (the
+ * default) share leftover width in proportion to their `size`; set
+ * `enableResizing: false` to keep a column at exactly `size`.
+ *
  * @category data-display
  * @group DataTable
  * @since 1.4.0
