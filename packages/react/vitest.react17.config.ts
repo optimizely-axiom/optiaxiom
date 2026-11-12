@@ -18,8 +18,8 @@ export default mergeConfig(
         deps: {
           // What the test environments guide tells React 17 consumers on
           // Vitest to set, for dependencies that import `react/jsx-runtime`.
-          // Plus @dnd-kit, which consumers get bundled into our dist and
-          // these specs import from source.
+          // Plus @dnd-kit: these specs import it from source, while consumers
+          // get it bundled into our dist.
           inline: ["@optiaxiom", "@radix", "@dnd-kit"],
         },
       },
