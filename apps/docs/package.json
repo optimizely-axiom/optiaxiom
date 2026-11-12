@@ -8,7 +8,7 @@
     "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind"
   },
   "devDependencies": {
-    "@cfworker/json-schema": "^4.1.1",
+    "@cfworker/json-schema": "^4.1.6",
     "@faker-js/faker": "^10.6.0",
     "@monaco-editor/react": "^4.7.0",
     "@optiaxiom/icons": "workspace:^",
@@ -36,7 +36,7 @@
     "react": "^18.3.1",
     "react-docgen-typescript": "2.2.2",
     "react-dom": "^18.3.1",
-    "react-hook-form": "^7.91.0",
+    "react-hook-form": "^7.92.0",
     "react-select": "^5.10.2",
     "sharp": "^0.35.5",
     "unist-util-visit": "^5.2.0"

@@ -1,5 +1,5 @@
 diff --git a/dist/schemas.js b/dist/schemas.js
-index 060d0b9..8a7c81f 100644
+index 060d0b98b76515e4f0a1cd9edb3c3f5d31597540..20e9165c1a6753408cc70996b36a82c8dcae6792 100644
 --- a/dist/schemas.js
 +++ b/dist/schemas.js
 @@ -26,6 +26,7 @@ const nextThemesSchema = z.strictObject({
@@ -10,8 +10,17 @@ index 060d0b9..8a7c81f 100644
    storageKey: z.string().default("theme")
  });
  const sidebarSchema = z.strictObject({
+@@ -65,7 +66,7 @@ const LayoutPropsSchema = z.strictObject({
+   banner: reactNode.optional().meta({
+     description: "Rendered [`<Banner>` component](/docs/built-ins/banner). E.g. `<Banner {...bannerProps} />`"
+   }),
+-  children: reactNode,
++  children: reactNode.optional(),
+   copyPageButton: z.boolean().default(true).meta({
+     description: "Hide/show copy page content button."
+   }),
 diff --git a/dist/style.css b/dist/style.css
-index 387ae10..2a942b8 100644
+index 387ae10a31bd549dca6992d87b2cd07b684ddf15..2a942b8fa605a980eaa539e5d1a0d0e3e3cc6aaa 100644
 --- a/dist/style.css
 +++ b/dist/style.css
 @@ -131,12 +131,14 @@
@@ -31,7 +40,7 @@ index 387ae10..2a942b8 100644
      line-height: 1.5;
      -webkit-text-size-adjust: 100%;
 diff --git a/dist/types.generated.d.mts b/dist/types.generated.d.mts
-index daa88cd..d8c22bc 100644
+index daa88cd96a942e16e74cc83d58da58500b9ab858..d8c22bc0913e4bf3a425274953b68d769476eb3a 100644
 --- a/dist/types.generated.d.mts
 +++ b/dist/types.generated.d.mts
 @@ -109,6 +109,9 @@ interface LayoutProps {
