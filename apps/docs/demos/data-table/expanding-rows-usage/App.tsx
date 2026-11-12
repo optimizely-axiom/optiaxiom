@@ -14,6 +14,7 @@ export function App() {
   const table = useReactTable({
     columns,
     data,
+    enableSorting: false,
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
     getSubRows: (row) => row.items,

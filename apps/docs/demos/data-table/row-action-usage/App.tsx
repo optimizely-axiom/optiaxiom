@@ -11,6 +11,7 @@ export function App() {
     columns,
     data,
     enableRowSelection: false,
+    enableSorting: false,
     getCoreRowModel: getCoreRowModel(),
   });
   return (

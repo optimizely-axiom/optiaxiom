@@ -22,6 +22,7 @@ export function App() {
   const table = useReactTable({
     columns,
     data: useMemo(() => fetchData(pagination), [pagination]),
+    enableSorting: false,
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
     onPaginationChange: setPagination,

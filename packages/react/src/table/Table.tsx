@@ -18,7 +18,9 @@ export type TableProps = BoxProps<"div", styles.TableVariants>;
  * - Row selection with checkboxes
  * - Column pinning (sticky columns)
  * - Row expansion
- * - Loading states
+ * - Loading skeletons and empty states
+ * - Sticky headers
+ * - Column sizing and resizing
  * - Virtualization for large datasets
  *
  * `Table` is a low-level primitive and should only be used for very specific
