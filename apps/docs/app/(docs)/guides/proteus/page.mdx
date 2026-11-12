@@ -141,6 +141,29 @@ Triggers a file download:
 
 <Demo component="proteus/action-download" />
 
+### Edit handler
+
+Opens a file in the host's editor. Fire `{ action: "editFile", file }` from any `onClick`, where `file` describes the file to open:
+
+```json
+{
+  "$type": "Action",
+  "children": "Edit",
+  "onClick": {
+    "action": "editFile",
+    "file": {
+      "extension": "PNG",
+      "file_link": { "$type": "Value", "path": "/image_url" },
+      "full_name": "banner.png",
+      "mime_type": "image/png",
+      "name": "banner"
+    }
+  }
+}
+```
+
+The host wires this via the `onEditFile(file)` prop on `ProteusDocumentRenderer`. Without it, the action does nothing. `ImageCarousel` shows its own Edit button for the selected image whenever the host passes `onEditFile`.
+
 ### Data operations
 
 Actions can also edit form data directly, without a round-trip to your server. `setValue` writes `value` at a JSON-pointer `path`, replacing any existing value; `pushValue` appends to the array at `path`; and `removeValue` removes the array element at `path`. Paths resolve like `Value` (absolute `/x`, relative to the current context, or `''` for the current context itself).
