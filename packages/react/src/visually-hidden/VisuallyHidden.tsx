@@ -24,10 +24,13 @@ export const VisuallyHidden = forwardRef<HTMLSpanElement, VisuallyHiddenProps>(
          * between it and its containing block and stretch the outer scroll
          * area. Not `fixed`: a transformed ancestor such as `Dialog` becomes
          * its containing block anyway, and it escapes positioned parents that
-         * keep hidden content next to the element it describes.
+         * keep hidden content next to the element it describes. `margin: 0`
+         * overrides Radix's `-1px`, which pushes the pinned box outside the
+         * containing block's corner.
          */
         style={{
           left: 0,
+          margin: 0,
           position: "absolute",
           top: 0,
           ...style,
