@@ -486,7 +486,7 @@
       }
     },
     {
-      "files": ["**/packages/proteus/src/**", "**/packages/react/src/**"],
+      "files": ["**/packages/proteus/src/**"],
       "rules": {
         "no-restricted-globals": [
           "error",
@@ -498,7 +498,34 @@
       }
     },
     {
-      "files": ["**/packages/react/src/hooks/useAnimationFrame.ts"],
+      "files": ["**/packages/react/src/**"],
+      "rules": {
+        "no-restricted-globals": [
+          "error",
+          {
+            "name": "requestAnimationFrame",
+            "message": "Use `useAnimationFrame` so a pending frame is cancelled on unmount."
+          },
+          {
+            "name": "setTimeout",
+            "message": "Use `useTimeout` so a pending timeout is cleared on unmount."
+          }
+        ],
+        "no-restricted-properties": [
+          "error",
+          {
+            "object": "window",
+            "property": "setTimeout",
+            "message": "Use `useTimeout` so a pending timeout is cleared on unmount."
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "**/packages/react/src/hooks/useAnimationFrame.ts",
+        "**/packages/react/src/hooks/useTimeout.ts"
+      ],
       "rules": {
         "no-restricted-globals": "off"
       }

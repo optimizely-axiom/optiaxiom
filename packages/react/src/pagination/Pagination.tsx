@@ -9,6 +9,7 @@ import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { ButtonRoot } from "../button/ButtonRoot";
 import { Group } from "../group";
+import { useTimeout } from "../hooks";
 import { Icon } from "../icon";
 import { useMessages } from "../locale";
 import { Tooltip } from "../tooltip";
@@ -76,6 +77,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
     const [animation, setAnimation] = useState(false);
     const activeRef = useRef<HTMLButtonElement>(null);
     const cursorRef = useRef<HTMLButtonElement>(null);
+    const { clear, start } = useTimeout();
     useEffect(() => {
       if (!activeRef.current || !cursorRef.current) {
         return;
@@ -83,9 +85,9 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
 
       cursorRef.current.style.transform = `translateX(${activeRef.current.offsetLeft}px)`;
       cursorRef.current.style.visibility = "visible";
-      const timeout = setTimeout(() => setAnimation(true), 150);
-      return () => clearTimeout(timeout);
-    }, [active]);
+      start(() => setAnimation(true), 150);
+      return clear;
+    }, [active, clear, start]);
 
     return (
       <Box asChild {...props}>

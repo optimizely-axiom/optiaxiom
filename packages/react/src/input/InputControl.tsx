@@ -13,6 +13,7 @@ import type { ExtendProps } from "../utils";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { useFieldContext } from "../field/internals";
+import { useTimeout } from "../hooks";
 import { useSurface } from "../surface";
 import { useDebouncedTrack } from "../surface/internals";
 import { useInputContext } from "./InputContext";
@@ -122,6 +123,7 @@ export const InputControl = forwardRef<
         ? restProps.maxLength
         : undefined;
     const controlled = props.value !== undefined;
+    const { clear, start } = useTimeout();
     useLayoutEffect(() => {
       const input = inputRef.current;
       if (!input || !onCountChange || maxLength === undefined) {
@@ -133,18 +135,15 @@ export const InputControl = forwardRef<
       sync();
 
       // `reset` fires before the form restores the values.
-      let timer: ReturnType<typeof setTimeout> | undefined;
-      const onReset = () => {
-        timer = setTimeout(sync);
-      };
+      const onReset = () => start(sync);
       const form = input.form;
       form?.addEventListener("reset", onReset);
       return () => {
-        clearTimeout(timer);
+        clear();
         form?.removeEventListener("reset", onReset);
         onCountChange(undefined);
       };
-    }, [inputRef, maxLength, onCountChange]);
+    }, [clear, inputRef, maxLength, onCountChange, start]);
     useLayoutEffect(() => {
       if (controlled && maxLength !== undefined) {
         onCountChange?.({

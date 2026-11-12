@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 
+import { useTimeout } from "../hooks";
 import { TransitionGlobalConfig } from "./TransitionGlobalConfig";
 import {
   TransitionGroupProvider,
@@ -54,16 +55,17 @@ export function TransitionGroup({
   const { open: openParent } =
     useTransitionGroupContext("@optiaxiom/react/TransitionGroup") ?? {};
   const open = openParent === false ? openParent : openProp;
+  const { clear, start } = useTimeout();
   useEffect(() => {
     if (open) {
-      const timer = setTimeout(() => {
+      start(() => {
         if (transitions.length) {
           void waitForAnimation(transitions).then(() => setPresence(true));
         } else {
           setPresence(true);
         }
       }, 10);
-      return () => clearTimeout(timer);
+      return clear;
     } else {
       if (transitions.length) {
         void waitForAnimation(transitions).then(() => setPresence(false));
@@ -72,7 +74,7 @@ export function TransitionGroup({
       }
       return;
     }
-  }, [open, setPresence, transitions]);
+  }, [clear, open, start, setPresence, transitions]);
 
   const childrenRef = useRef(children);
   if (open) {

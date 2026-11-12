@@ -23,8 +23,13 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
     },
     outerRef,
   ) => {
-    const { downshift, enabled, highlightedItem, pauseInteractionRef } =
-      useCommandContext("@optiaxiom/react/MenuSubTrigger");
+    const {
+      downshift,
+      enabled,
+      highlightedItem,
+      pauseInteractionRef,
+      pauseInteractionTimeout,
+    } = useCommandContext("@optiaxiom/react/MenuSubTrigger");
     const { open } = usePopoverContext("@optiaxiom/react/MenuSubTrigger");
     const { contentRef, itemRef } = useMenuSubContext(
       "@optiaxiom/react/MenuSubTrigger",
@@ -110,7 +115,7 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
 
             return b1 > 0 && b2 > 0 && b3 > 0;
           };
-          pauseInteractionRef.current.timer = window.setTimeout(() => {
+          pauseInteractionTimeout.start(() => {
             pauseInteractionRef.current.isInsideTriangle = null;
           }, 20);
         }}

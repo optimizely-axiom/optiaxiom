@@ -1,5 +1,6 @@
 import { type RefObject, useEffect } from "react";
 
+import { useTimeout } from "../hooks";
 import { useFileUploadContext } from "./FileUploadContext";
 
 export const useStickyPosition = (
@@ -9,6 +10,7 @@ export const useStickyPosition = (
   const { rootRef } = useFileUploadContext(
     "@optiaxiom/react/useStickyPosition",
   );
+  const { clear, start } = useTimeout();
   useEffect(() => {
     if (!visible || !rootRef.current) {
       return;
@@ -31,10 +33,8 @@ export const useStickyPosition = (
     });
     observer.observe(rootRef.current);
 
-    let timer = 0;
     const listener = () => {
-      window.clearTimeout(timer);
-      timer = window.setTimeout(() => {
+      start(() => {
         if (rootRef.current) {
           observer.unobserve(rootRef.current);
           observer.observe(rootRef.current);
@@ -46,6 +46,7 @@ export const useStickyPosition = (
     return () => {
       window.removeEventListener("scroll", listener, true);
       observer.disconnect();
+      clear();
     };
-  }, [visible, rootRef, ref]);
+  }, [visible, rootRef, ref, start, clear]);
 };

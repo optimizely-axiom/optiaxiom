@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
+import { useTimeout } from "../hooks";
 import { useFileUploadContext } from "./FileUploadContext";
 
 export const useDraggingOverBody = () => {
@@ -9,8 +10,8 @@ export const useDraggingOverBody = () => {
   const [isDragging, setIsDragging] = useState(false);
   const dragRef = useRef({
     source: null as "file" | Node | null,
-    timer: 0,
   });
+  const { start } = useTimeout();
 
   useEffect(() => {
     if (disabled) {
@@ -41,8 +42,7 @@ export const useDraggingOverBody = () => {
             !rootRef.current?.contains(dragRef.current.source)),
       );
 
-      window.clearTimeout(dragRef.current.timer);
-      dragRef.current.timer = window.setTimeout(() => {
+      start(() => {
         dragRef.current.source = null;
         setIsDragging(false);
       }, 100);
@@ -52,7 +52,7 @@ export const useDraggingOverBody = () => {
     return () => {
       document.body.removeEventListener("dragover", over);
     };
-  }, [disabled, rootRef]);
+  }, [disabled, rootRef, start]);
 
   return isDragging;
 };
