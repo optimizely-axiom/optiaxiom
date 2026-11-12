@@ -14319,7 +14319,7 @@
           "tsType": "((date: Date) => void)"
         },
         "onValueChange": {
-          "description": "Handler that is called when the selected value changes.",
+          "description": "Handler that is called when the selected value changes.\n\nIn `range` mode, `from` is midnight on the first day and `to` is\n`23:59:59.999` on the last day, both in the user's local time zone, so in UTC\neither can fall on a different day.\nHandler that is called when the selected value changes.\n\nIn `single` mode, the value is midnight on the picked day (or the picked time\nwhen `type=\"datetime-local\"`) in the user's local time zone, so in UTC it can\nfall on a different day.",
           "tsType": "((value: DateRange | null) => void) | ((value: Date | null) => void)"
         },
         "overflow": {
@@ -30348,8 +30348,14 @@
             { "type": "null" },
             {
               "properties": {
-                "from": { "tsType": "Date" },
-                "to": { "tsType": "Date" }
+                "from": {
+                  "description": "Midnight on the first day, in the user's local time zone.",
+                  "tsType": "Date"
+                },
+                "to": {
+                  "description": "`23:59:59.999` on the last day, in the user's local time zone.",
+                  "tsType": "Date"
+                }
               },
               "required": ["from", "to"],
               "title": "DateRange",
@@ -30370,7 +30376,7 @@
           "tsType": "((open: boolean) => void)"
         },
         "onValueChange": {
-          "description": "Handler that is called when the selected value changes.",
+          "description": "Handler that is called when the selected value changes.\n\n`from` is midnight on the first day and `to` is `23:59:59.999` on the last\nday, both in the user's local time zone, so in UTC either can fall on a\ndifferent day.",
           "tsType": "((value: DateRange | null) => void)"
         },
         "open": {
@@ -30383,8 +30389,14 @@
             { "type": "null" },
             {
               "properties": {
-                "from": { "tsType": "Date" },
-                "to": { "tsType": "Date" }
+                "from": {
+                  "description": "Midnight on the first day, in the user's local time zone.",
+                  "tsType": "Date"
+                },
+                "to": {
+                  "description": "`23:59:59.999` on the last day, in the user's local time zone.",
+                  "tsType": "Date"
+                }
               },
               "required": ["from", "to"],
               "title": "DateRange",

@@ -93,6 +93,10 @@ export type CalendarProps = BoxProps<
           mode: "range";
           /**
            * Handler that is called when the selected value changes.
+           *
+           * In `range` mode, `from` is midnight on the first day and `to` is
+           * `23:59:59.999` on the last day, both in the user's local time zone, so in UTC
+           * either can fall on a different day.
            */
           onValueChange?: (value: DateRange | null) => void;
           /**
@@ -111,6 +115,10 @@ export type CalendarProps = BoxProps<
           mode?: "single";
           /**
            * Handler that is called when the selected value changes.
+           *
+           * In `single` mode, the value is midnight on the picked day (or the picked time
+           * when `type="datetime-local"`) in the user's local time zone, so in UTC it can
+           * fall on a different day.
            */
           onValueChange?: (value: Date | null) => void;
           /**
@@ -121,7 +129,16 @@ export type CalendarProps = BoxProps<
     )
 >;
 
-type DateRange = { from: Date; to: Date };
+type DateRange = {
+  /**
+   * Midnight on the first day, in the user's local time zone.
+   */
+  from: Date;
+  /**
+   * `23:59:59.999` on the last day, in the user's local time zone.
+   */
+  to: Date;
+};
 
 const components = {
   CaptionLabel: CalendarCaptionLabel,
