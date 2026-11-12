@@ -7198,7 +7198,26 @@
       "group": "Button",
       "since": "0.1.0",
       "category": ["actions"],
-      "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/button"
+      "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/angle-menu-button",
+      "examples": [
+        {
+          "code": [
+            {
+              "content": "import { IconArrowRightFromBracket, IconUser } from \"@optiaxiom/icons\";\nimport {\n  AngleMenuButton,\n  Menu,\n  MenuContent,\n  MenuTrigger,\n} from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Menu\n      options={[\n        {\n          addon: <IconUser />,\n          label: \"View profile\",\n        },\n        {\n          addon: <IconArrowRightFromBracket />,\n          label: \"Logout\",\n        },\n      ]}\n    >\n      <MenuTrigger asChild>\n        <AngleMenuButton>My account</AngleMenuButton>\n      </MenuTrigger>\n      <MenuContent />\n    </Menu>\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": [
+            "AngleMenuButton",
+            "Menu",
+            "MenuContent",
+            "MenuTrigger"
+          ],
+          "title": "usage",
+          "description": "`MenuTrigger` renders an `AngleMenuButton` by default, but you can use it directly with `MenuTrigger asChild` or as the trigger for other dropdown patterns such as `Popover`.",
+          "heading": "Usage"
+        }
+      ]
     },
     "AuthProvider": {
       "description": "`AuthProvider` is used to pass down the user credentials to all components. It should be rendered near the root of your application and should be used only once.",
@@ -51332,7 +51351,26 @@
       "group": "Button",
       "since": "0.1.0",
       "category": ["actions"],
-      "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/button"
+      "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/ellipsis-menu-button",
+      "examples": [
+        {
+          "code": [
+            {
+              "content": "import { IconArrowRightFromBracket, IconUser } from \"@optiaxiom/icons\";\nimport {\n  EllipsisMenuButton,\n  Menu,\n  MenuContent,\n  MenuTrigger,\n} from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Menu\n      options={[\n        {\n          addon: <IconUser />,\n          label: \"View profile\",\n        },\n        {\n          addon: <IconArrowRightFromBracket />,\n          label: \"Logout\",\n        },\n      ]}\n    >\n      <MenuTrigger asChild>\n        <EllipsisMenuButton appearance=\"subtle\" aria-label=\"My account\" />\n      </MenuTrigger>\n      <MenuContent />\n    </Menu>\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": [
+            "EllipsisMenuButton",
+            "Menu",
+            "MenuContent",
+            "MenuTrigger"
+          ],
+          "title": "usage",
+          "description": "Use `EllipsisMenuButton` with `MenuTrigger asChild` to open overflow menus. Remember to provide an `aria-label` since the button has no visible text.",
+          "heading": "Usage"
+        }
+      ]
     },
     "Field": {
       "description": "Wrapper for inputs to provide context such as label/help/required etc.\n\nSize the `Field` (for example with `w`), not the input inside it. The input\nstretches to the field's width, so the description, error and character\ncount line up with it.\n\nWhen the input sets `maxLength`, add `showCount` so users see how close they\nare to the limit. Typing otherwise stops at the limit with no feedback.",
@@ -66247,7 +66285,26 @@
       "group": "Button",
       "since": "0.1.0",
       "category": ["actions"],
-      "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/button"
+      "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/label-menu-button",
+      "examples": [
+        {
+          "code": [
+            {
+              "content": "\"use client\";\n\nimport {\n  LabelMenuButton,\n  Select,\n  SelectContent,\n  SelectTrigger,\n} from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Select\n      options={[\n        { label: \"No priority\", value: \"\" },\n        { label: \"Urgent\", value: \"Urgent\" },\n        { label: \"High\", value: \"High\" },\n        { label: \"Medium\", value: \"Medium\" },\n        { label: \"Low\", value: \"Low\" },\n      ]}\n    >\n      <SelectTrigger asChild w=\"224\">\n        <LabelMenuButton label=\"Priority\" />\n      </SelectTrigger>\n      <SelectContent />\n    </Select>\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": [
+            "LabelMenuButton",
+            "Select",
+            "SelectContent",
+            "SelectTrigger"
+          ],
+          "title": "usage",
+          "description": "Pass the field name to the `label` prop and use `LabelMenuButton` with `SelectTrigger asChild`. The selected value is shown beneath the label.",
+          "heading": "Usage"
+        }
+      ]
     },
     "Layout": {
       "description": "Implement a basic page layout with multiple content areas.",
