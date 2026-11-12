@@ -101,10 +101,7 @@ Examples:
         content: [
           {
             text: JSON.stringify({
-              accessibility:
-                component.accessibility ??
-                (component.group &&
-                  getComponent(component.group)?.accessibility),
+              accessibility: component.accessibility,
               components: component.components,
               deprecated: component.deprecated,
               description: component.description,

@@ -161,18 +161,26 @@ describe("createServer", () => {
     await client.close();
   });
 
-  it("returns the group's accessibility section for a sub-component", async () => {
+  it("returns the accessibility section only for the component its page documents", async () => {
     const client = await connect(createServer());
 
-    const result = await client.callTool({
-      arguments: { name: "DialogContent" },
-      name: "get_component",
-    });
-    const { accessibility } = JSON.parse(
-      (result.content as Array<{ text: string }>)[0].text,
+    const [dialog, content] = await Promise.all(
+      ["Dialog", "DialogContent"].map(async (name) =>
+        JSON.parse(
+          (
+            (
+              await client.callTool({
+                arguments: { name },
+                name: "get_component",
+              })
+            ).content as Array<{ text: string }>
+          )[0].text,
+        ),
+      ),
     );
 
-    expect(accessibility).toContain("| `Esc` | Closes the dialog");
+    expect(dialog.accessibility).toContain("| `Esc` | Closes the dialog");
+    expect(content).not.toHaveProperty("accessibility");
 
     await client.close();
   });
