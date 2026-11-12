@@ -183,7 +183,7 @@ export function Menu({
 
   const hasSelectableItem = useMemo(
     () =>
-      options.filter((item) => "selected" in item).length >
+      options.filter((item) => item.selected !== undefined).length >
         options.length / 2 && options.length >= 10,
     [options],
   );

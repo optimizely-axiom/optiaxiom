@@ -46,7 +46,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     const groupContext = useRadioGroupContext("@optiaxiom/react/Radio");
 
     if (groupContext) {
-      if ("checked" in props) {
+      if (props.checked !== undefined) {
         throw new Error(
           `Cannot use \`checked\` prop when \`Radio\` is used within \`RadioGroup\``,
         );

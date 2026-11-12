@@ -140,7 +140,7 @@ export function Command({
         onItemSelect?.(selectedItem, {
           dismiss:
             type !== useCombobox.stateChangeTypes.FunctionSelectItem ||
-            !("selected" in selectedItem),
+            selectedItem.selected === undefined,
         });
         /**
          * Reset selection back to null. Otherwise downshift keeps a ref of
