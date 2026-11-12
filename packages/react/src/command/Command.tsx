@@ -3,6 +3,7 @@ import { useCombobox } from "downshift";
 import { type ReactNode, useEffect, useRef } from "react";
 
 import { useHighlightedIndex } from "../downshift";
+import { useTimeout } from "../hooks";
 import {
   type CommandOption,
   CommandProvider,
@@ -100,10 +101,8 @@ export function Command({
 
   const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex(enabled);
 
-  const pauseInteractionRef = useRef({
-    isInsideTriangle: null,
-    timer: undefined,
-  });
+  const pauseInteractionRef = useRef({ isInsideTriangle: null });
+  const pauseInteractionTimeout = useTimeout();
 
   const highlightedItemRef = useRef<HTMLElement>(null);
   const downshift = useCombobox({
@@ -213,6 +212,7 @@ export function Command({
       items={items}
       loading={loading}
       pauseInteractionRef={pauseInteractionRef}
+      pauseInteractionTimeout={pauseInteractionTimeout}
       setHighlightedIndex={setHighlightedIndex}
       setInputValue={setInputValue}
     >

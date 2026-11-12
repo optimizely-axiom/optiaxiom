@@ -1,19 +1,20 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
+
+import { useTimeout } from "../hooks";
 
 export const useTooltipState = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
-  const timerRef = useRef<number>();
+  const { clear, start } = useTimeout();
 
   return [
     tooltipOpen,
     (flag: boolean, delayed = false) => {
       if (delayed) {
-        window.clearTimeout(timerRef.current);
-        timerRef.current = window.setTimeout(() => {
+        start(() => {
           setTooltipOpen(flag);
         }, 50);
       } else {
-        window.clearTimeout(timerRef.current);
+        clear();
         setTooltipOpen(flag);
       }
     },

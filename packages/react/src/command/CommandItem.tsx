@@ -58,6 +58,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
       inputValue,
       items,
       pauseInteractionRef,
+      pauseInteractionTimeout,
     } = useCommandContext("@optiaxiom/react/CommandItem");
     const ref = useComposedRefs(
       highlightedItem === item ? highlightedItemRef : undefined,
@@ -117,7 +118,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
       },
       onMouseLeave: (event: MouseEvent<HTMLDivElement>) => {
         onMouseLeave?.(event);
-        window.clearTimeout(pauseInteractionRef.current.timer);
+        pauseInteractionTimeout.clear();
       },
       onMouseMove: (event: MouseEvent<HTMLDivElement>) => {
         onMouseMove?.(event);
@@ -159,8 +160,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
             preventDownshiftDefault: true,
           });
 
-          window.clearTimeout(pauseInteractionRef.current.timer);
-          pauseInteractionRef.current.timer = window.setTimeout(() => {
+          pauseInteractionTimeout.start(() => {
             pauseInteractionRef.current.isInsideTriangle = null;
             downshift.setHighlightedIndex(index);
           }, 20);

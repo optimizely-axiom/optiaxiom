@@ -5,6 +5,8 @@ import type { MutableRefObject, ReactNode, RefObject } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
+import type { useTimeout } from "../hooks";
+
 export type CommandOption = {
   /**
    * Images, icons, or avatars to be displayed before the item label.
@@ -177,8 +179,8 @@ export const [CommandProvider, useCommandContext] = createContext<{
   loading: "both" | "skeleton" | "spinner" | boolean | undefined;
   pauseInteractionRef: MutableRefObject<{
     isInsideTriangle: ((target: { x: number; y: number }) => boolean) | null;
-    timer: number | undefined;
   }>;
+  pauseInteractionTimeout: ReturnType<typeof useTimeout>;
   setHighlightedIndex: (index: number) => void;
   setInputValue: (value: string) => void;
 }>("@optiaxiom/react/Command");
