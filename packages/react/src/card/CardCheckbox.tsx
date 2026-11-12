@@ -17,6 +17,12 @@ export type CardCheckboxProps = ExcludeProps<
 >;
 
 /**
+ * Selects its card.
+ *
+ * Takes its accessible name from the `CardHeader` title, after the default
+ * "Check to select" or "Check to unselect" message. Pass `aria-label` or
+ * `aria-labelledby` to name it yourself.
+ *
  * @extends Checkbox
  * @group Card
  */
@@ -34,13 +40,17 @@ export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
 
     return (
       <>
-        <VisuallyHidden id={labelPrefixId}>
-          {checked
-            ? messages["Check to unselect"]
-            : messages["Check to select"]}
-        </VisuallyHidden>
+        {!props["aria-label"] && (
+          <VisuallyHidden id={labelPrefixId}>
+            {checked
+              ? messages["Check to unselect"]
+              : messages["Check to select"]}
+          </VisuallyHidden>
+        )}
         <Checkbox
-          aria-labelledby={clsx(labelPrefixId, labelId)}
+          aria-labelledby={
+            props["aria-label"] ? undefined : clsx(labelPrefixId, labelId)
+          }
           onChange={(event) => {
             onChange?.(event);
             setChecked(event.target.checked);
