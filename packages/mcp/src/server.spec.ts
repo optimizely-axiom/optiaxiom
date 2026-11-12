@@ -177,6 +177,22 @@ describe("createServer", () => {
     await client.close();
   });
 
+  it("returns a sub-component's own docs page when it has one", async () => {
+    const client = await connect(createServer());
+
+    const result = await client.callTool({
+      arguments: { name: "EllipsisMenuButton" },
+      name: "get_component",
+    });
+    const { examples } = JSON.parse(
+      (result.content as Array<{ text: string }>)[0].text,
+    );
+
+    expect(examples).toHaveLength(1);
+
+    await client.close();
+  });
+
   it("omits required when a component has no required props", async () => {
     const client = await connect(createServer());
 

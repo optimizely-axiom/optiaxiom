@@ -1,6 +1,7 @@
 import { tokens } from "@optiaxiom/globals";
 import { getDocs } from "@optiaxiom/shared";
 import { transform } from "esbuild";
+import { existsSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
 import { basename, dirname, join, sep } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -19,6 +20,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const docsSite = "https://optimizely-axiom.github.io/optiaxiom";
+const componentsDocsDir = join(
+  __dirname,
+  "..",
+  "..",
+  "..",
+  "apps",
+  "docs",
+  "app",
+  "(docs)",
+  "components",
+);
 
 /**
  * @typedef {import('../src/types.js').ComponentInfo} ComponentInfo
@@ -129,13 +141,15 @@ export async function generateComponents() {
           }
         }
       }
-
-      // Set docsUrl to point to the group component
-      component.docsUrl = `${docsSite}/components/${toKebabCase(component.group)}`;
-    } else {
-      // No group, use own name for docsUrl
-      component.docsUrl = `${docsSite}/components/${toKebabCase(docsName(component.name))}`;
     }
+
+    // A sub-component documented on its own page links there, the rest to
+    // their group's page.
+    component.docsUrl = `${docsSite}/components/${toKebabCase(
+      component.group && !hasOwnPage(component.name)
+        ? component.group
+        : docsName(component.name),
+    )}`;
   }
 
   // Third pass: Parse all component demos in parallel
@@ -143,8 +157,12 @@ export async function generateComponents() {
   await Promise.all(
     Object.values(components)
       .filter(
-        // Only include examples for primary components (no group, or name matches group)
-        (component) => !component.group || component.name === component.group,
+        // Only primary components (no group, or name matches group) and
+        // sub-components with their own docs page have examples
+        (component) =>
+          !component.group ||
+          component.name === component.group ||
+          hasOwnPage(component.name),
       )
       .map(async (component) => {
         const demos = docsName(component.name);
@@ -176,6 +194,18 @@ export async function generateComponents() {
  */
 function docsName(name) {
   return name === "ToastProvider" ? "Toast" : name;
+}
+
+/**
+ * Whether a component has a docs page of its own.
+ *
+ * @param {string} name
+ * @returns {boolean}
+ */
+function hasOwnPage(name) {
+  return existsSync(
+    join(componentsDocsDir, toKebabCase(docsName(name)), "page.mdx"),
+  );
 }
 
 // Guides that exist as docs pages but should not be surfaced via the MCP.
@@ -386,19 +416,7 @@ function langForFile(filename) {
  * @returns {Promise<string | undefined>}
  */
 async function parseAccessibilitySection(page) {
-  const path = join(
-    __dirname,
-    "..",
-    "..",
-    "..",
-    "apps",
-    "docs",
-    "app",
-    "(docs)",
-    "components",
-    page,
-    "page.mdx",
-  );
+  const path = join(componentsDocsDir, page, "page.mdx");
   const content = await readFile(path, "utf-8").catch(() => null);
   const section = content?.match(
     /^## Accessibility\n([\s\S]*?)(?=^## |$(?![\s\S]))/m,
