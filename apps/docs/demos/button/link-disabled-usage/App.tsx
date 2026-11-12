@@ -1,11 +1,14 @@
-import { Button, Link, Tooltip } from "@optiaxiom/react";
+import { Button, Group, Link, Text } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Tooltip content="Disabled button link demo">
+    <Group gap="8">
       <Button asChild disabled>
-        <Link href="./props">Disabled Link</Link>
+        <Link href="./props">View report</Link>
       </Button>
-    </Tooltip>
+      <Text color="fg.secondary" fontSize="sm">
+        The report is ready once the import finishes.
+      </Text>
+    </Group>
   );
 }
