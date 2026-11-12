@@ -15,7 +15,10 @@ export function App() {
 
   return (
     <Group gap="16">
-      <SegmentedControl onValueChange={setValue} value={value}>
+      <SegmentedControl
+        onValueChange={(value: string) => value && setValue(value)}
+        value={value}
+      >
         <Tooltip content="Desktop">
           <SegmentedControlItem
             aria-label="Desktop"
@@ -41,7 +44,10 @@ export function App() {
           />
         </Tooltip>
       </SegmentedControl>
-      <Button disabled={!value} onClick={() => setValue("desktop")}>
+      <Button
+        disabled={value === "desktop"}
+        onClick={() => setValue("desktop")}
+      >
         Reset
       </Button>
     </Group>

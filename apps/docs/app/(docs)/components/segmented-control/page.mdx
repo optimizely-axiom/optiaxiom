@@ -33,6 +33,8 @@ export default () => (
 
 Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.
 
+In `single` mode, clicking the active item deselects it and calls `onValueChange` with an empty string. To keep one item always active, as in a view switcher, ignore empty values in `onValueChange`.
+
 <Demo component="segmented-control/controlled-usage" />
 
 ### Related

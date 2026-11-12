@@ -93366,7 +93366,7 @@
           "enum": ["opacity", "transform", "all", "none", "colors"]
         },
         "type": {
-          "description": "Whether to allow multiple values or only activate one item at a time.",
+          "description": "Whether to allow multiple values or only activate one item at a time.\n\nIn `single` mode, clicking the active item deselects it and calls\n`onValueChange` with `\"\"`. To keep one item always active, control\n`value` and ignore empty values:\n`onValueChange={(value: string) => value && setValue(value)}`.",
           "default": "single",
           "enum": ["multiple", "single"]
         },
@@ -93432,7 +93432,7 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { IconDesktop, IconMobile, IconTablet } from \"@optiaxiom/icons\";\nimport {\n  Button,\n  Group,\n  SegmentedControl,\n  SegmentedControlItem,\n  Tooltip,\n} from \"@optiaxiom/react\";\nimport { useState } from \"react\";\n\nexport function App() {\n  const [value, setValue] = useState(\"desktop\");\n\n  return (\n    <Group gap=\"16\">\n      <SegmentedControl onValueChange={setValue} value={value}>\n        <Tooltip content=\"Desktop\">\n          <SegmentedControlItem\n            aria-label=\"Desktop\"\n            icon={<IconDesktop />}\n            key=\"desktop\"\n            value=\"desktop\"\n          />\n        </Tooltip>\n        <Tooltip content=\"Tablet\">\n          <SegmentedControlItem\n            aria-label=\"Tablet\"\n            icon={<IconTablet />}\n            key=\"tablet\"\n            value=\"tablet\"\n          />\n        </Tooltip>\n        <Tooltip content=\"Mobile\">\n          <SegmentedControlItem\n            aria-label=\"Mobile\"\n            icon={<IconMobile />}\n            key=\"mobile\"\n            value=\"mobile\"\n          />\n        </Tooltip>\n      </SegmentedControl>\n      <Button disabled={!value} onClick={() => setValue(\"desktop\")}>\n        Reset\n      </Button>\n    </Group>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { IconDesktop, IconMobile, IconTablet } from \"@optiaxiom/icons\";\nimport {\n  Button,\n  Group,\n  SegmentedControl,\n  SegmentedControlItem,\n  Tooltip,\n} from \"@optiaxiom/react\";\nimport { useState } from \"react\";\n\nexport function App() {\n  const [value, setValue] = useState(\"desktop\");\n\n  return (\n    <Group gap=\"16\">\n      <SegmentedControl\n        onValueChange={(value: string) => value && setValue(value)}\n        value={value}\n      >\n        <Tooltip content=\"Desktop\">\n          <SegmentedControlItem\n            aria-label=\"Desktop\"\n            icon={<IconDesktop />}\n            key=\"desktop\"\n            value=\"desktop\"\n          />\n        </Tooltip>\n        <Tooltip content=\"Tablet\">\n          <SegmentedControlItem\n            aria-label=\"Tablet\"\n            icon={<IconTablet />}\n            key=\"tablet\"\n            value=\"tablet\"\n          />\n        </Tooltip>\n        <Tooltip content=\"Mobile\">\n          <SegmentedControlItem\n            aria-label=\"Mobile\"\n            icon={<IconMobile />}\n            key=\"mobile\"\n            value=\"mobile\"\n          />\n        </Tooltip>\n      </SegmentedControl>\n      <Button\n        disabled={value === \"desktop\"}\n        onClick={() => setValue(\"desktop\")}\n      >\n        Reset\n      </Button>\n    </Group>\n  );\n}\n",
               "filename": "App.tsx"
             }
           ],
@@ -93444,7 +93444,7 @@
             "Tooltip"
           ],
           "title": "controlled-usage",
-          "description": "Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.",
+          "description": "Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.\n\nIn `single` mode, clicking the active item deselects it and calls `onValueChange` with an empty string. To keep one item always active, as in a view switcher, ignore empty values in `onValueChange`.",
           "heading": "Controlled"
         },
         {
