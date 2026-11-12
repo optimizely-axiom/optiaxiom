@@ -12,7 +12,7 @@ export function App() {
       <HoverCardTrigger asChild>
         <Button
           appearance="subtle"
-          aria-label="Information hover"
+          aria-label="Notifications"
           icon={<IconEnvelope />}
         />
       </HoverCardTrigger>

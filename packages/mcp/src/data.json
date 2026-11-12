@@ -60350,7 +60350,7 @@
         {
           "code": [
             {
-              "content": "import { IconEnvelope } from \"@optiaxiom/icons\";\nimport { Button, Text } from \"@optiaxiom/react\";\nimport {\n  HoverCard,\n  HoverCardContent,\n  HoverCardTrigger,\n} from \"@optiaxiom/react/unstable\";\n\nexport function App() {\n  return (\n    <HoverCard>\n      <HoverCardTrigger asChild>\n        <Button\n          appearance=\"subtle\"\n          aria-label=\"Information hover\"\n          icon={<IconEnvelope />}\n        />\n      </HoverCardTrigger>\n\n      <HoverCardContent>\n        <Text>Notification example content</Text>\n      </HoverCardContent>\n    </HoverCard>\n  );\n}\n",
+              "content": "import { IconEnvelope } from \"@optiaxiom/icons\";\nimport { Button, Text } from \"@optiaxiom/react\";\nimport {\n  HoverCard,\n  HoverCardContent,\n  HoverCardTrigger,\n} from \"@optiaxiom/react/unstable\";\n\nexport function App() {\n  return (\n    <HoverCard>\n      <HoverCardTrigger asChild>\n        <Button\n          appearance=\"subtle\"\n          aria-label=\"Notifications\"\n          icon={<IconEnvelope />}\n        />\n      </HoverCardTrigger>\n\n      <HoverCardContent>\n        <Text>Notification example content</Text>\n      </HoverCardContent>\n    </HoverCard>\n  );\n}\n",
               "filename": "App.tsx"
             }
           ],
