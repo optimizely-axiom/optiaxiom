@@ -1,5 +1,79 @@
 # @optiaxiom/mcp
 
+## 3.4.0
+
+### Minor Changes
+
+- d6996ee: added `showCount` to `Field` for a character count
+- ccf4c42: added docs page accessibility notes to `get_component`
+- c995a63: described props with JSON Schema, including option fields
+
+### Patch Changes
+
+- 7b0fd5d: documented accessibility of `Field` `info`, `VisuallyHidden`, `DataTableCheckbox`, `Button` `loading`
+- d89a42e: set `aria-busy` on loading `Button`
+- 6990d34: named `CardCheckbox` and `DataTableCheckbox` from a consumer `aria-label`
+- 92c64c9: named common search terms in component descriptions
+- 4658802: documented wrapping `DataTableCheckbox` in `Cover`
+- 1c7f76c: added `empty` prop to `DataTableBody` for empty states
+- e06918e: added a `DataTable` list view example with search and filters
+- 446bed3: documented `DateInput` `min`/`max` format for each `type`
+- f45b404: documented that `Calendar` and `DateRangePicker` values use local time
+- c3cd8cc: pointed Dialog at guidance for third-party overlays
+- e51a3ae: pointed test tools at the component locator guide
+- 7306434: explain sizing `Field` instead of its input
+- 52f1c31: fit popover, menu and select content to narrow viewports
+- 87f6e42: documented `value` and `checked` props on form controls
+- f481700: named the HoverCard trigger example by its purpose
+- a3926d1: documented icon coloring in the icons guide
+- 164e9af: added `InlineInput` test examples
+- 258fd73: used `@optiaxiom/icons` in `Input` pattern examples
+- 6a1f3c2: documented jsdom stubs and CSS parse errors in test guide
+- 3331d7c: documented `Menu` as a `LabelMenuButton` trigger for filters
+- 4d1c296: documented that `Menu` and `Select` groups are identified by `label`
+- 277bb9e: added `Locale` dictionaries to `AxiomProvider` `locale` for built-in labels
+- 18a5312: fixed the Claude Code setup instructions in the README
+- 43a091e: added a `DateInput` testing example
+- 731971a: explained disabled buttons with visible text in examples
+- 6c63fbf: pointed `get_tests` to the test environments guide
+- 4142bc5: fixed menu button docs links, examples and accessibility notes
+- 3e64a38: fixed Input copy example copying an empty string
+- 89f2cf2: added jsdom `ResizeObserver` stub to test environments guide
+- 87af1eb: trimmed tool descriptions; prop format notes ship with prop definitions
+- eadadc5: added jsdom `matchMedia` guidance to test environments guide
+- 586cd47: added `Menu` and `Select` reference tests
+- f1426c7: described object fields inside object props, like option `group`
+- 443c3c5: stopped repeating group accessibility notes on sub-components
+- f3e7686: ranked `get_patterns` results by requested component coverage
+- 0a1f294: matched `get_patterns` queries against docs headings and descriptions
+- f3e7686: fixed `get_patterns` missing demos that never import their component
+- 893d578: described record props like `Sortable` `items` with `additionalProperties`
+- c585096: fixed `ToastProvider` docs link
+- bd6b6e3: describe props mixing an object with primitives or null as `anyOf`
+- 75fea92: allow keyboard navigation to disabled `Menu` and `Select` items
+- eadadc5: clarified that Menu `size` only applies from the `sm` breakpoint
+- 6067c81: keep submenu filter text when options refresh
+- 733d03c: added `minH` prop for `0` and `auto` min-height
+- a09a8d2: set `aria-current="page"` on active `NavItem`
+- 5dfd3f6: added `Pagination` test pattern
+- 3ea20cc: clarified that spacing has no CSS variable or theme entry
+- 1dadf17: pinned Radix dependencies to their latest React 17-compatible release
+- 1896668: documented deselecting the active item in single `SegmentedControl`
+- 601ec05: added `Select` test pattern
+- 9266661: `Sortable` announces items by name and position; items accept `{ id, label }`
+- c7333c4: fixed `Sortable` crashing on React 16 and 17
+- fd1e032: set up reference tests through a shared `setup()`
+- 6b005b8: noted how to align `TableHeaderCell` content
+- 6c51162: fixed controlled `Tabs` calling `onValueChange` twice per click
+- 733b5e9: pointed `Text` and `Heading` docs to `fontSize` for font size
+- 4dce299: fixed `Time` description
+- 3308a7b: keep toasts with an action open 1.5× longer
+- b30cc09: document when not to use a toast
+- c388672: noted scroll-container inset for `Checkbox` and `RadioGroup`
+- 3d77c4d: noted that `Tooltip` triggers must be keyboard focusable
+- a768918: noted when to use `Popover` over `Tooltip`
+- 5378b83: added German, Spanish, French and Japanese `Locale` entry points
+
 ## 3.3.0
 
 ### Minor Changes

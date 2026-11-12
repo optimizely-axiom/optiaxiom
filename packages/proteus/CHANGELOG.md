@@ -1,5 +1,87 @@
 # @optiaxiom/proteus
 
+## 3.12.0
+
+### Minor Changes
+
+- 733d03c: added `minH` prop for `0` and `auto` min-height
+- a585e4a: added `editFile` action and `onEditFile` for an `ImageCarousel` Edit button
+
+### Patch Changes
+
+- 7b0fd5d: documented accessibility of `Field` `info`, `VisuallyHidden`, `DataTableCheckbox`, `Button` `loading`
+- 52f1c31: fit popover, menu and select content to narrow viewports
+- 472efe0: stopped crashing without `scrollIntoView` or `ResizeObserver`
+- 1dadf17: pinned Radix dependencies to their latest React 17-compatible release
+- Updated dependencies [7b0fd5d]
+- Updated dependencies [e703522]
+- Updated dependencies [abadc11]
+- Updated dependencies [d89a42e]
+- Updated dependencies [7a677b6]
+- Updated dependencies [6990d34]
+- Updated dependencies [d44e445]
+- Updated dependencies [ba56e9e]
+- Updated dependencies [94f2729]
+- Updated dependencies [1c7f76c]
+- Updated dependencies [7295050]
+- Updated dependencies [446bed3]
+- Updated dependencies [43a091e]
+- Updated dependencies [3463df8]
+- Updated dependencies [f45b404]
+- Updated dependencies [e7f0334]
+- Updated dependencies [683f82b]
+- Updated dependencies [23a5c05]
+- Updated dependencies [c3cd8cc]
+- Updated dependencies [237eede]
+- Updated dependencies [d6996ee]
+- Updated dependencies [52f1c31]
+- Updated dependencies [3e6da8e]
+- Updated dependencies [87f6e42]
+- Updated dependencies [164e9af]
+- Updated dependencies [766de70]
+- Updated dependencies [21a0f29]
+- Updated dependencies [a79be3c]
+- Updated dependencies [4d1c296]
+- Updated dependencies [277bb9e]
+- Updated dependencies [ae4224b]
+- Updated dependencies [75fea92]
+- Updated dependencies [d3326be]
+- Updated dependencies [eadadc5]
+- Updated dependencies [6067c81]
+- Updated dependencies [733d03c]
+- Updated dependencies [a09a8d2]
+- Updated dependencies [9663963]
+- Updated dependencies [da0ff08]
+- Updated dependencies [550abae]
+- Updated dependencies [1fc2f8d]
+- Updated dependencies [e96c406]
+- Updated dependencies [6967129]
+- Updated dependencies [1dadf17]
+- Updated dependencies [472efe0]
+- Updated dependencies [1896668]
+- Updated dependencies [21a1e5f]
+- Updated dependencies [d7c5091]
+- Updated dependencies [601ec05]
+- Updated dependencies [425290b]
+- Updated dependencies [45fb58a]
+- Updated dependencies [0206f4e]
+- Updated dependencies [9266661]
+- Updated dependencies [c7333c4]
+- Updated dependencies [6b005b8]
+- Updated dependencies [6c51162]
+- Updated dependencies [733b5e9]
+- Updated dependencies [3308a7b]
+- Updated dependencies [8175907]
+- Updated dependencies [b30cc09]
+- Updated dependencies [6e00ea4]
+- Updated dependencies [c388672]
+- Updated dependencies [3d77c4d]
+- Updated dependencies [a768918]
+- Updated dependencies [5378b83]
+- Updated dependencies [48fc607]
+- Updated dependencies [cf4efc4]
+  - @optiaxiom/react@3.6.0
+
 ## 3.11.1
 
 ### Patch Changes

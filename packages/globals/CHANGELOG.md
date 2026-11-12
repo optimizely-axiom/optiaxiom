@@ -1,5 +1,16 @@
 # @optiaxiom/globals
 
+## 3.1.0
+
+### Minor Changes
+
+- 9663963: added `focusBookmarks` registry shared across library copies
+
+### Patch Changes
+
+- 1dadf17: pinned Radix dependencies to their latest React 17-compatible release
+- 87bfa90: showed toasts created together at once on React 16/17
+
 ## 3.0.7
 
 ### Patch Changes
