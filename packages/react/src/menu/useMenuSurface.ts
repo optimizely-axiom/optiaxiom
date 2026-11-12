@@ -46,7 +46,7 @@ export function useMenuSurface() {
           },
           [itemSurface],
         );
-      } else if ("selected" in item) {
+      } else if (item.selected !== undefined) {
         // Selection
         surface.track(
           {

@@ -36,7 +36,7 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
                   ? size === "sm"
                     ? MenuSubTrigger
                     : MenuItem
-                  : "selected" in item
+                  : item.selected !== undefined
                     ? item.multi
                       ? MenuCheckboxItem
                       : item.switch
