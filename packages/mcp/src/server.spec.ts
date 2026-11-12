@@ -184,10 +184,11 @@ describe("createServer", () => {
       arguments: { name: "EllipsisMenuButton" },
       name: "get_component",
     });
-    const { examples } = JSON.parse(
+    const { accessibility, examples } = JSON.parse(
       (result.content as Array<{ text: string }>)[0].text,
     );
 
+    expect(accessibility).toContain("shows only the ellipsis icon");
     expect(examples).toHaveLength(1);
 
     await client.close();
