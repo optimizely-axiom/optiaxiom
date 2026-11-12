@@ -168,7 +168,7 @@ overrides:
 patchedDependencies:
   '@dnd-kit/react': 4c6dc3bd22f53df0d628407d74e5233c6442a01425cfaa7f068e04685200ba36
   '@vanilla-extract/sprinkles': 530004842e1937cf2ffe2728e2a18629c5dd638aa441e1158192285fcee2fe7e
-  nextra-theme-docs: a391591b3ddb7fdaebf44d26ebcaa6ff78dad06cbb0ea8d21554d51de6d8b0d8
+  nextra-theme-docs: 453a07582745121fe69d74e8bd696809cada94fa34beffa07b4dd159657d6670
   react-docgen-typescript: 9f29f13ed1200787937c00d09629181fa03ff282ed42effecdf82ed5472f5d68
   rolldown-plugin-dts: ac65b13515c62fe899c2e175a6b2d355982e9234a3e0326dac17ea84f708819f
 
@@ -346,7 +346,7 @@ importers:
         version: 4.6.1(@typescript/typescript6@6.0.2)(acorn@8.17.0)(next@16.4.6(@babel/core@7.29.0(supports-color@10.2.2))(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@10.2.2)
       nextra-theme-docs:
         specifier: ^4.6.1
-        version: 4.6.1(patch_hash=a391591b3ddb7fdaebf44d26ebcaa6ff78dad06cbb0ea8d21554d51de6d8b0d8)(@types/react@18.3.31)(immer@11.1.4)(next@16.4.6(@babel/core@7.29.0(supports-color@10.2.2))(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.6.1(@typescript/typescript6@6.0.2)(acorn@8.17.0)(next@16.4.6(@babel/core@7.29.0(supports-color@10.2.2))(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@10.2.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.7.0(react@18.3.1))
+        version: 4.6.1(patch_hash=453a07582745121fe69d74e8bd696809cada94fa34beffa07b4dd159657d6670)(@types/react@18.3.31)(immer@11.1.4)(next@16.4.6(@babel/core@7.29.0(supports-color@10.2.2))(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.6.1(@typescript/typescript6@6.0.2)(acorn@8.17.0)(next@16.4.6(@babel/core@7.29.0(supports-color@10.2.2))(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@10.2.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.7.0(react@18.3.1))
       pagefind:
         specifier: ^1.6.0
         version: 1.6.0
@@ -16503,7 +16503,7 @@ snapshots:
       - '@types/node'
       - babel-plugin-macros
 
-  nextra-theme-docs@4.6.1(patch_hash=a391591b3ddb7fdaebf44d26ebcaa6ff78dad06cbb0ea8d21554d51de6d8b0d8)(@types/react@18.3.31)(immer@11.1.4)(next@16.4.6(@babel/core@7.29.0(supports-color@10.2.2))(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.6.1(@typescript/typescript6@6.0.2)(acorn@8.17.0)(next@16.4.6(@babel/core@7.29.0(supports-color@10.2.2))(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@10.2.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.7.0(react@18.3.1)):
+  nextra-theme-docs@4.6.1(patch_hash=453a07582745121fe69d74e8bd696809cada94fa34beffa07b4dd159657d6670)(@types/react@18.3.31)(immer@11.1.4)(next@16.4.6(@babel/core@7.29.0(supports-color@10.2.2))(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.6.1(@typescript/typescript6@6.0.2)(acorn@8.17.0)(next@16.4.6(@babel/core@7.29.0(supports-color@10.2.2))(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@10.2.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.7.0(react@18.3.1)):
     dependencies:
       '@headlessui/react': 2.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       clsx: 2.1.1
