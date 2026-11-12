@@ -1,5 +1,62 @@
 # @optiaxiom/web-components
 
+## 3.5.0
+
+### Minor Changes
+
+- 1c7f76c: added `empty` prop to `DataTableBody` for empty states
+- d6996ee: added `showCount` to `Field` for a character count
+- 277bb9e: added `Locale` dictionaries to `AxiomProvider` `locale` for built-in labels
+- 733d03c: added `minH` prop for `0` and `auto` min-height
+
+### Patch Changes
+
+- abadc11: threw a descriptive error for an unknown Button `appearance`
+- d89a42e: set `aria-busy` on loading `Button`
+- 7a677b6: stopped animation frame callbacks running after unmount
+- 6990d34: named `CardCheckbox` and `DataTableCheckbox` from a consumer `aria-label`
+- d44e445: stopped timeout callbacks running after unmount
+- ba56e9e: fixed menu options with `visible: undefined` being hidden
+- 94f2729: stopped `DataTable` arrow keys selecting unselectable rows
+- 7295050: hid DataTable column resize handles from screen readers
+- 446bed3: documented `DateInput` `min`/`max` format for each `type`
+- 43a091e: stopped `DateInput` crashing on click or typing in jsdom
+- 3463df8: capped year at 4 digits in `datetime-local` `DateInput`
+- e7f0334: restored focus when a conditionally rendered Dialog or AlertDialog closes
+- 683f82b: removed hidden empty title and description from `Dialog` and `Menu`
+- 23a5c05: closed dismissed dialogs on a custom `dialog.kit`
+- 237eede: renamed `Field` `info` button to "More information"
+- 52f1c31: fit popover, menu and select content to narrow viewports
+- 3e6da8e: lowered focused control z-index so it stays below app UI
+- 21a0f29: threw a descriptive error for an unknown `Alert`, `Banner` or `Toast` `intent`
+- a79be3c: fixed `Select` value changes throwing in jsdom tests
+- 4d1c296: documented that `Menu` and `Select` groups are identified by `label`
+- 75fea92: allow keyboard navigation to disabled `Menu` and `Select` items
+- d3326be: warned on duplicate `Menu` option keys and stopped hover crash
+- 6067c81: keep submenu filter text when options refresh
+- a09a8d2: set `aria-current="page"` on active `NavItem`
+- 9663963: restored focus to the opener of a dialog opened from another dialog
+- da0ff08: fixed `Select`, `SearchInput` and `DateInput` missing react-hook-form defaults
+- 550abae: treat `selected` and `checked` set to `undefined` as unset
+- e96c406: rendered `Pill` label as a `span` instead of a `p`
+- 6967129: removed 120px minimum width from `PopoverContent`
+- 1dadf17: pinned Radix dependencies to their latest React 17-compatible release
+- 472efe0: stopped components crashing without `scrollIntoView` or `ResizeObserver`
+- d7c5091: move focus to `SelectTrigger` on form validation and `ref.focus()`
+- 601ec05: fixed `SelectTrigger` ignoring `aria-label` outside `Field`
+- 425290b: focus `SelectTrigger asChild` from its `Field` label and on `defaultOpen`
+- 45fb58a: forward `ref` on `SelectTrigger` to the trigger button
+- 0206f4e: showed Select's required validation message at its trigger
+- 9266661: `Sortable` announces items by name and position; items accept `{ id, label }`
+- 6c51162: fixed controlled `Tabs` calling `onValueChange` twice per click
+- 3308a7b: keep toasts with an action open 1.5× longer
+- 8175907: made new toasts clickable in tests without CSS
+- 87bfa90: showed toasts created together at once on React 16/17
+- 87f6e42: added `disabled`, `maxLength` and other state properties to form elements
+- 6e00ea4: let browser tests click `Checkbox`, `Radio` and `Switch` inputs directly
+- 48fc607: fix visually hidden content stretching dialogs and scroll containers
+- cf4efc4: warn in development when an option sets `disabled`
+
 ## 3.4.1
 
 ### Patch Changes

@@ -1,5 +1,84 @@
 # @optiaxiom/react
 
+## 3.6.0
+
+### Minor Changes
+
+- 1c7f76c: added `empty` prop to `DataTableBody` for empty states
+- d6996ee: added `showCount` to `Field` for a character count
+- 277bb9e: added `Locale` dictionaries to `AxiomProvider` `locale` for built-in labels
+- 733d03c: added `minH` prop for `0` and `auto` min-height
+- 5378b83: added German, Spanish, French and Japanese `Locale` entry points
+
+### Patch Changes
+
+- 7b0fd5d: documented accessibility of `Field` `info`, `VisuallyHidden`, `DataTableCheckbox`, `Button` `loading`
+- e703522: bundled `@dnd-kit` so consumers no longer install it
+- abadc11: threw a descriptive error for an unknown Button `appearance`
+- d89a42e: set `aria-busy` on loading `Button`
+- 7a677b6: stopped animation frame callbacks running after unmount
+- 6990d34: named `CardCheckbox` and `DataTableCheckbox` from a consumer `aria-label`
+- d44e445: stopped timeout callbacks running after unmount
+- ba56e9e: fixed menu options with `visible: undefined` being hidden
+- 94f2729: stopped `DataTable` arrow keys selecting unselectable rows
+- 7295050: hid DataTable column resize handles from screen readers
+- 446bed3: documented `DateInput` `min`/`max` format for each `type`
+- 43a091e: stopped `DateInput` crashing on click or typing in jsdom
+- 3463df8: capped year at 4 digits in `datetime-local` `DateInput`
+- f45b404: documented that `Calendar` and `DateRangePicker` values use local time
+- e7f0334: restored focus when a conditionally rendered Dialog or AlertDialog closes
+- 683f82b: removed hidden empty title and description from `Dialog` and `Menu`
+- 23a5c05: closed dismissed dialogs on a custom `dialog.kit`
+- c3cd8cc: pointed Dialog at guidance for third-party overlays
+- 237eede: renamed `Field` `info` button to "More information"
+- 52f1c31: fit popover, menu and select content to narrow viewports
+- 3e6da8e: lowered focused control z-index so it stays below app UI
+- 87f6e42: documented `value` and `checked` props on form controls
+- 164e9af: wired `InlineInput` to `Field` label, description and error
+- 766de70: fixed `InlineInput` crashing under jsdom
+- 21a0f29: threw a descriptive error for an unknown `Alert`, `Banner` or `Toast` `intent`
+- a79be3c: fixed `Select` value changes throwing in jsdom tests
+- 4d1c296: documented that `Menu` and `Select` groups are identified by `label`
+- ae4224b: renamed the "Opal suggestion" label to "Mark suggestion"
+- 75fea92: allow keyboard navigation to disabled `Menu` and `Select` items
+- d3326be: warned on duplicate `Menu` option keys and stopped hover crash
+- eadadc5: clarified that Menu `size` only applies from the `sm` breakpoint
+- 6067c81: keep submenu filter text when options refresh
+- a09a8d2: set `aria-current="page"` on active `NavItem`
+- 9663963: restored focus to the opener of a dialog opened from another dialog
+- da0ff08: fixed `Select`, `SearchInput` and `DateInput` missing react-hook-form defaults
+- 550abae: treat `selected` and `checked` set to `undefined` as unset
+- 1fc2f8d: clear Pagination's animation timer on unmount
+- e96c406: rendered `Pill` label as a `span` instead of a `p`
+- 6967129: removed 120px minimum width from `PopoverContent`
+- 1dadf17: pinned Radix dependencies to their latest React 17-compatible release
+- 472efe0: stopped components crashing without `scrollIntoView` or `ResizeObserver`
+- 1896668: documented deselecting the active item in single `SegmentedControl`
+- 21a1e5f: documented `Select` empty-value option as the "none" choice
+- d7c5091: move focus to `SelectTrigger` on form validation and `ref.focus()`
+- 601ec05: fixed `SelectTrigger` ignoring `aria-label` outside `Field`
+- 425290b: focus `SelectTrigger asChild` from its `Field` label and on `defaultOpen`
+- 45fb58a: forward `ref` on `SelectTrigger` to the trigger button
+- 0206f4e: showed Select's required validation message at its trigger
+- 9266661: `Sortable` announces items by name and position; items accept `{ id, label }`
+- c7333c4: fixed `Sortable` crashing on React 16 and 17
+- 6b005b8: noted how to align `TableHeaderCell` content
+- 6c51162: fixed controlled `Tabs` calling `onValueChange` twice per click
+- 733b5e9: pointed `Text` and `Heading` docs to `fontSize` for font size
+- 3308a7b: keep toasts with an action open 1.5× longer
+- 8175907: made new toasts clickable in tests without CSS
+- b30cc09: document when not to use a toast
+- 6e00ea4: let browser tests click `Checkbox`, `Radio` and `Switch` inputs directly
+- c388672: noted scroll-container inset for `Checkbox` and `RadioGroup`
+- 3d77c4d: noted that `Tooltip` triggers must be keyboard focusable
+- a768918: noted when to use `Popover` over `Tooltip`
+- 48fc607: fix visually hidden content stretching dialogs and scroll containers
+- cf4efc4: warn in development when an option sets `disabled`
+- Updated dependencies [9663963]
+- Updated dependencies [1dadf17]
+- Updated dependencies [87bfa90]
+  - @optiaxiom/globals@3.1.0
+
 ## 3.5.1
 
 ### Patch Changes
