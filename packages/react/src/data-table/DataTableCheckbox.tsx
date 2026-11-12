@@ -25,6 +25,12 @@ export type DataTableCheckboxProps = ComponentPropsWithoutRef<typeof Checkbox> &
  * `<Cover asChild>` so the whole cell toggles selection. Otherwise a click on
  * the cell's padding selects only this row and clears the rest.
  *
+ * A row checkbox takes its accessible name from the row's `DataTableLabel`,
+ * after the default "Check to select" or "Check to unselect" message, and that
+ * name overrides an `aria-label`. Put `DataTableLabel` in the row's primary
+ * cell, or pass `aria-labelledby` to name it from another element. The header
+ * checkbox defaults to "Select all".
+ *
  * @group DataTable
  */
 export const DataTableCheckbox = forwardRef<

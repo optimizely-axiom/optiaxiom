@@ -3391,7 +3391,7 @@
         "h": { "$ref": "#/definitions/SprinkleProp_h" },
         "info": {
           "$ref": "#/definitions/ProteusNode",
-          "description": "Display a help icon with additional context for the input."
+          "description": "Display a help icon with additional context for the input. The icon is a\nfocusable button, and its tooltip opens on hover, focus and click. Keep it to a short plain-text\nhint; put anything users need to fill in the field in `description`,\nwhich stays visible."
         },
         "justifyContent": {
           "$ref": "#/definitions/SprinkleProp_justifyContent"

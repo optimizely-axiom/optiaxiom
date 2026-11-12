@@ -7,11 +7,20 @@ export type VisuallyHiddenProps = ComponentPropsWithoutRef<
   typeof RadixVisuallyHidden.Root
 > & {
   /**
-   * Set to true to hide the content.
+   * Show the content visually instead of hiding it.
    */
   disabled?: boolean;
 };
 
+/**
+ * Hide content visually while keeping it available to screen readers, such as
+ * extra context for an icon or a status message.
+ *
+ * Renders a `span`, or its child with `asChild`. Other props such as `role`
+ * and `aria-live` land on that element. For a status message, keep the live
+ * region mounted and change only its text: most screen readers don't announce
+ * a region that mounts with its text already in it.
+ */
 export const VisuallyHidden = forwardRef<HTMLSpanElement, VisuallyHiddenProps>(
   ({ asChild, children, disabled, style, ...props }, ref) => {
     return (

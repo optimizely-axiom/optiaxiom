@@ -56,7 +56,11 @@ export type ButtonRootProps<
        */
       disabled?: boolean;
       /**
-       * Whether to show loading spinner inside the button.
+       * Show a loading spinner and mark the button `aria-busy`. The button stays
+       * focusable and clickable: don't also set `disabled`, which drops keyboard
+       * focus mid-action, and ignore repeat clicks in `onClick` if the action
+       * shouldn't run twice. Nothing is announced when loading starts or ends,
+       * so tell screen reader users the outcome yourself, e.g. with a toast.
        */
       loading?: boolean;
       /**
