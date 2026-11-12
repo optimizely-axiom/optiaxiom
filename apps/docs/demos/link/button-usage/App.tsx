@@ -6,7 +6,7 @@ export function App() {
   return (
     <Text>
       This is{" "}
-      <Link asChild href="data:,">
+      <Link asChild>
         <button onClick={() => toaster.create("Clicked!")}>
           actually a button
         </button>
