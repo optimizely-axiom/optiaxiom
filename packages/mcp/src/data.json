@@ -23520,7 +23520,7 @@
       ]
     },
     "DataTable": {
-      "description": "Easy to use table and datagrids built using [TanStack Table](https://tanstack.com/table/latest).\n\nPass `loading` and `empty` to `DataTableBody` to show a loading state while\nrows load and an empty state when there are no results.",
+      "description": "Easy to use table and datagrids built using [TanStack Table](https://tanstack.com/table/latest).\n\nPass `loading` and `empty` to `DataTableBody` to show a loading state while\nrows load and an empty state when there are no results.\n\nOn v8, every accessor column is sortable, so each header renders a sort\nbutton. Pass `enableSorting: false` to `useReactTable()` unless the table\nsorts its rows (`getSortedRowModel`, or server-side via `onSortingChange`).\n\nColumns start at their `size` in pixels and share leftover width in\nproportion to it. To keep a column at exactly `size`, set\n`enableResizing: false` on it (on v9, with `columnResizingFeature`\nregistered).",
       "entryPoint": "@optiaxiom/react/data-table",
       "import": "import { DataTable } from '@optiaxiom/react';",
       "name": "DataTable",
@@ -24646,7 +24646,7 @@
           ],
           "components": ["DataTable", "DataTableBody"],
           "title": "sorting-client-usage",
-          "description": "Register `rowSortingFeature` with `sortedRowModel: createSortedRowModel()` and `sortFns`, and optionally use `enableSorting` to control which columns you'd like to be sortable. On v8, provide `getSortedRowModel` instead.\n\nHover over and click the table headers to sort by columns:",
+          "description": "Register `rowSortingFeature` with `sortedRowModel: createSortedRowModel()` and `sortFns` to sort rows on the client. On v8, provide `getSortedRowModel` instead. Every accessor column is then sortable; set `enableSorting: false` on a column to opt it out.\n\nHover over and click the table headers to sort by columns:",
           "heading": "Sorting > Client side"
         },
         {
@@ -24666,7 +24666,7 @@
           ],
           "components": ["DataTable", "DataTableBody"],
           "title": "sorting-server-usage",
-          "description": "To implement manual server-side sorting we can use `manualSorting`, with `rowSortingFeature` registered on v9. Then combine it with `onSortingChange` and `state.sorting` to control sorting and react to changes.\n\nHover over and click the table headers to sort by columns:",
+          "description": "To sort on the server, register `rowSortingFeature` on v9, control sorting with `onSortingChange` and `state.sorting`, and pass rows in the order the server returns them. Leave out `sortedRowModel` (`getSortedRowModel` on v8), or set `manualSorting`, so the table keeps that order.\n\nHover over and click the table headers to sort by columns:",
           "heading": "Sorting > Server side"
         },
         {
@@ -24726,7 +24726,7 @@
           ],
           "components": ["Badge", "DataTable", "DataTableBody"],
           "title": "usage",
-          "description": "Use the `table` prop to pass the table instance returned from the `useTable()` hook, with `columns`, `data`, and the `features` the table uses. Register each feature in `tableFeatures()`, such as `rowSelectionFeature` for `DataTableCheckbox` or `rowPaginationFeature` for `DataTableFooter`: their controls do nothing without it.\n\nOn v8, pass the table returned from `useReactTable()` with `columns`, `data`, and `getCoreRowModel`. A v8 table has every feature.",
+          "description": "Use the `table` prop to pass the table instance returned from the `useTable()` hook, with `columns`, `data`, and the `features` the table uses. Register each feature in `tableFeatures()`, such as `rowSelectionFeature` for `DataTableCheckbox` or `rowPaginationFeature` for `DataTableFooter`: their controls do nothing without it.\n\nOn v8, pass the table returned from `useReactTable()` with `columns`, `data`, and `getCoreRowModel`. A v8 table has every feature, so every accessor column renders a sort button: pass `enableSorting: false` unless the table sorts its rows, otherwise clicking a header flips the arrow without reordering anything.",
           "heading": "Usage"
         },
         {
@@ -108523,7 +108523,7 @@
       "accessibility": "### Keyboard interactions\n\n| Key | Description |\n| --- | --- |\n| `Space` | Toggles the switch between on and off |\n| `Enter` | Toggles the switch between on and off |\n| `Tab` | Moves focus to or away from the switch |\n| `Shift + Tab` | Moves focus to the previous focusable element |\n\nSwitch automatically handles accessibility:\n\n- Uses proper `role=\"switch\"` and ARIA attributes\n- Supports `aria-checked` for on/off states\n- Associates label text with the switch control"
     },
     "Table": {
-      "description": "Display tabular data using rows and columns.\n\n⚠️ **IMPORTANT**: Consider using `DataTable` instead for displaying tabular\ndata.\n\n`DataTable` provides built-in support for:\n- Sorting (client-side and server-side)\n- Pagination (client-side and server-side)\n- Row selection with checkboxes\n- Column pinning (sticky columns)\n- Row expansion\n- Loading states\n- Virtualization for large datasets\n\n`Table` is a low-level primitive and should only be used for very specific\ncustom table layouts. For most use cases, `DataTable` is the recommended\nchoice.",
+      "description": "Display tabular data using rows and columns.\n\n⚠️ **IMPORTANT**: Consider using `DataTable` instead for displaying tabular\ndata.\n\n`DataTable` provides built-in support for:\n- Sorting (client-side and server-side)\n- Pagination (client-side and server-side)\n- Row selection with checkboxes\n- Column pinning (sticky columns)\n- Row expansion\n- Loading skeletons and empty states\n- Sticky headers\n- Column sizing and resizing\n- Virtualization for large datasets\n\n`Table` is a low-level primitive and should only be used for very specific\ncustom table layouts. For most use cases, `DataTable` is the recommended\nchoice.",
       "entryPoint": "@optiaxiom/react/table",
       "import": "import { Table } from '@optiaxiom/react';",
       "name": "Table",

@@ -25,7 +25,7 @@ npm install @tanstack/react-table
 
 Use the `table` prop to pass the table instance returned from the `useTable()` hook, with `columns`, `data`, and the `features` the table uses. Register each feature in `tableFeatures()`, such as `rowSelectionFeature` for `DataTableCheckbox` or `rowPaginationFeature` for `DataTableFooter`: their controls do nothing without it.
 
-On v8, pass the table returned from `useReactTable()` with `columns`, `data`, and `getCoreRowModel`. A v8 table has every feature.
+On v8, pass the table returned from `useReactTable()` with `columns`, `data`, and `getCoreRowModel`. A v8 table has every feature, so every accessor column renders a sort button: pass `enableSorting: false` unless the table [sorts](#sorting) its rows, otherwise clicking a header flips the arrow without reordering anything.
 
 <Demo component="data-table/usage" />
 
@@ -52,6 +52,12 @@ export default () => (
 Headers in `DataTable` are sticky by default. Set a height on the component to allow scrolling vertically when a large number of rows are present.
 
 <Demo component="data-table/sticky-header-usage" />
+
+### Column sizing
+
+Set a column's width in pixels with the `size` column option (150 by default). Columns start at `size` and share any leftover table width in proportion to their `size`.
+
+To keep a column at exactly `size`, such as a status or action column, set `enableResizing: false` on it. On v9, register `columnResizingFeature` for that option, which also lets users drag the edges of the other columns. The [column resizing](#column-resizing) demo fixes its ID column this way.
 
 ### Column pinning
 
@@ -200,7 +206,7 @@ Use the `empty` prop on `DataTableBody` to show content in a full-width row when
 
 #### Client side
 
-Register `rowSortingFeature` with `sortedRowModel: createSortedRowModel()` and `sortFns`, and optionally use `enableSorting` to control which columns you'd like to be sortable. On v8, provide `getSortedRowModel` instead.
+Register `rowSortingFeature` with `sortedRowModel: createSortedRowModel()` and `sortFns` to sort rows on the client. On v8, provide `getSortedRowModel` instead. Every accessor column is then sortable; set `enableSorting: false` on a column to opt it out.
 
 <Alert intent="warning" mt="16">
   Hover over and click the table headers to sort by columns:
@@ -210,7 +216,7 @@ Register `rowSortingFeature` with `sortedRowModel: createSortedRowModel()` and `
 
 #### Server side
 
-To implement manual server-side sorting we can use `manualSorting`, with `rowSortingFeature` registered on v9. Then combine it with `onSortingChange` and `state.sorting` to control sorting and react to changes.
+To sort on the server, register `rowSortingFeature` on v9, control sorting with `onSortingChange` and `state.sorting`, and pass rows in the order the server returns them. Leave out `sortedRowModel` (`getSortedRowModel` on v8), or set `manualSorting`, so the table keeps that order.
 
 <Alert intent="warning" mt="16">
   Hover over and click the table headers to sort by columns:
