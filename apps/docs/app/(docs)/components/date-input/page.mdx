@@ -69,13 +69,13 @@ Use the `addonAfter` prop to display content inside the input at the end.
 
 ### Max
 
-Use the `max` prop to specify the latest date the user can enter. Will disable all dates after the specified date.
+Use the `max` prop to specify the latest date the user can enter. Will disable all dates after the specified date. Pass it in the same format as `value`: with `type="datetime-local"` it must include a time, e.g. `2030-12-31T23:59`.
 
 <Demo component="date-input/max-usage" />
 
 ### Min
 
-Use the `min` prop to specify the earliest date the user can enter. Will disable all dates prior to the specified date.
+Use the `min` prop to specify the earliest date the user can enter. Will disable all dates prior to the specified date. Pass it in the same format as `value`: with `type="datetime-local"` it must include a time, e.g. `2025-01-01T00:00`.
 
 <Demo component="date-input/min-usage" />
 
