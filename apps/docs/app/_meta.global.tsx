@@ -170,6 +170,9 @@ export default {
         title: <AlphaItem>Sortable</AlphaItem>,
       },
       spinner: "Spinner",
+      spotlight: {
+        title: <AlphaItem>Spotlight</AlphaItem>,
+      },
       switch: "Switch",
       table: "Table",
       tabs: "Tabs",

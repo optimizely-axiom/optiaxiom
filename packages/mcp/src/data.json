@@ -103442,7 +103442,7 @@
       ]
     },
     "Spotlight": {
-      "description": "Command menu for search and application navigation.",
+      "description": "Command menu for search and application navigation, such as a global\nsearch or command palette.\n\nTakes the same `options` as `Menu` (groups, `execute`, `href`, `visible`)\nand always shows the search input. It opens with Cmd/Ctrl+K, and\n`SpotlightTrigger` renders a search button that opens it too.",
       "import": "import { Spotlight } from '@optiaxiom/react/unstable';",
       "name": "Spotlight",
       "props": {
@@ -103589,8 +103589,47 @@
         }
       },
       "required": ["children", "options"],
+      "since": "0.5.0",
+      "category": ["navigation"],
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/spotlight",
-      "examples": []
+      "examples": [
+        {
+          "code": [
+            {
+              "content": "\"use client\";\n\nimport { type MenuOption, toaster } from \"@optiaxiom/react\";\nimport {\n  Spotlight,\n  SpotlightContent,\n  SpotlightTrigger,\n} from \"@optiaxiom/react/unstable\";\nimport { useMemo } from \"react\";\n\nconst groups = {\n  projects: { label: \"Projects\" },\n  recent: { label: \"Recent\" },\n} satisfies Record<string, MenuOption[\"group\"]>;\n\nconst projects = [\"Atlas\", \"Beacon\", \"Comet\", \"Delta\", \"Echo\"];\nconst recent = [\"Comet\", \"Atlas\"];\n\nexport function App() {\n  return (\n    <Spotlight\n      options={useMemo(\n        () => [\n          ...recent.map<MenuOption>((name) => ({\n            execute: () => toaster.create(`Opened ${name}`),\n            group: groups.recent,\n            key: `recent-${name}`,\n            label: name,\n            visible: ({ inputValue }) => !inputValue,\n          })),\n          ...projects.map<MenuOption>((name) => ({\n            execute: () => toaster.create(`Opened ${name}`),\n            group: groups.projects,\n            key: `project-${name}`,\n            label: name,\n            visible: ({ inputValue }) =>\n              inputValue\n                ? name.toLowerCase().includes(inputValue.toLowerCase())\n                : false,\n          })),\n        ],\n        [],\n      )}\n    >\n      <SpotlightTrigger>Search projects</SpotlightTrigger>\n      <SpotlightContent />\n    </Spotlight>\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": [
+            "Spotlight",
+            "SpotlightContent",
+            "SpotlightTrigger",
+            "toaster",
+            "type MenuOption"
+          ],
+          "title": "recent-usage",
+          "description": "Use the `visible` callback on options to show recent items while the search input is empty, and search results once the user types.",
+          "heading": "Recent items"
+        },
+        {
+          "code": [
+            {
+              "content": "\"use client\";\n\nimport { type MenuOption, toaster } from \"@optiaxiom/react\";\nimport {\n  Spotlight,\n  SpotlightContent,\n  SpotlightTrigger,\n} from \"@optiaxiom/react/unstable\";\nimport { useMemo } from \"react\";\n\nconst groups = {\n  actions: { label: \"Actions\" },\n  pages: { label: \"Pages\" },\n} satisfies Record<string, MenuOption[\"group\"]>;\n\nexport function App() {\n  return (\n    <Spotlight\n      options={useMemo<MenuOption[]>(\n        () => [\n          { group: groups.pages, href: \"../\", label: \"Components\" },\n          { group: groups.pages, href: \"../../\", label: \"Home\" },\n          {\n            execute: () => toaster.create(\"Created a project\"),\n            group: groups.actions,\n            label: \"Create project\",\n          },\n          {\n            execute: () => toaster.create(\"Invited a member\"),\n            group: groups.actions,\n            label: \"Invite member\",\n          },\n        ],\n        [],\n      )}\n    >\n      <SpotlightTrigger>Search</SpotlightTrigger>\n      <SpotlightContent />\n    </Spotlight>\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": [
+            "Spotlight",
+            "SpotlightContent",
+            "SpotlightTrigger",
+            "toaster",
+            "type MenuOption"
+          ],
+          "title": "usage",
+          "description": "Use `Spotlight` for a global search or command palette. It opens with Cmd/Ctrl+K, and `SpotlightTrigger` renders a search button that opens it too.\n\n`Spotlight` takes the same `options` as Menu: group them with `group`, navigate with `href`, or run an action with `execute`. Typing in the search input filters the options.",
+          "heading": "Usage"
+        }
+      ]
     },
     "SpotlightContent": {
       "description": "SpotlightContent component from Axiom Design System",
@@ -104342,6 +104381,8 @@
         }
       },
       "group": "Spotlight",
+      "since": "0.5.0",
+      "category": ["navigation"],
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/spotlight"
     },
     "SpotlightTrigger": {
@@ -105119,6 +105160,8 @@
         }
       },
       "group": "Spotlight",
+      "since": "0.5.0",
+      "category": ["navigation"],
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/spotlight"
     },
     "SubNav": {
