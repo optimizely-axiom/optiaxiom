@@ -38,6 +38,20 @@ export type DateInputProps = ExtendProps<
     "holiday" | "placeholder" | "weekend"
   > & {
     /**
+     * The latest date the user can enter, in the same format as `value`:
+     * `YYYY-MM-DD` for `type="date"`, and `YYYY-MM-DDTHH:MM` for
+     * `type="datetime-local"` (e.g. "2030-12-31T23:59"). The browser ignores a
+     * value in the wrong format.
+     */
+    max?: ComponentPropsWithoutRef<"input">["max"];
+    /**
+     * The earliest date the user can enter, in the same format as `value`:
+     * `YYYY-MM-DD` for `type="date"`, and `YYYY-MM-DDTHH:MM` for
+     * `type="datetime-local"` (e.g. "2025-01-01T00:00"). The browser ignores a
+     * value in the wrong format.
+     */
+    min?: ComponentPropsWithoutRef<"input">["min"];
+    /**
      * The default date and time to use in the calendar picker when no value has
      * been selected.
      *

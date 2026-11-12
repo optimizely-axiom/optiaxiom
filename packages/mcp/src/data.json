@@ -29711,6 +29711,10 @@
           ],
           "responsive": true
         },
+        "max": {
+          "description": "The latest date the user can enter, in the same format as `value`:\n`YYYY-MM-DD` for `type=\"date\"`, and `YYYY-MM-DDTHH:MM` for\n`type=\"datetime-local\"` (e.g. \"2030-12-31T23:59\"). The browser ignores a\nvalue in the wrong format.",
+          "type": ["string", "number"]
+        },
         "maxH": {
           "description": "Set the element's maximum height. Only accepts predefined maxSize tokens.",
           "enum": ["xs", "sm", "md", "lg", "full"],
@@ -29746,6 +29750,10 @@
             "64"
           ],
           "responsive": true
+        },
+        "min": {
+          "description": "The earliest date the user can enter, in the same format as `value`:\n`YYYY-MM-DD` for `type=\"date\"`, and `YYYY-MM-DDTHH:MM` for\n`type=\"datetime-local\"` (e.g. \"2025-01-01T00:00\"). The browser ignores a\nvalue in the wrong format.",
+          "type": ["string", "number"]
         },
         "minH": {
           "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
@@ -30228,7 +30236,7 @@
           ],
           "components": ["DateInput"],
           "title": "max-usage",
-          "description": "Use the `max` prop to specify the latest date the user can enter. Will disable all dates after the specified date.",
+          "description": "Use the `max` prop to specify the latest date the user can enter. Will disable all dates after the specified date. Pass it in the same format as `value`: with `type=\"datetime-local\"` it must include a time, e.g. `2030-12-31T23:59`.",
           "heading": "Max"
         },
         {
@@ -30240,7 +30248,7 @@
           ],
           "components": ["DateInput"],
           "title": "min-usage",
-          "description": "Use the `min` prop to specify the earliest date the user can enter. Will disable all dates prior to the specified date.",
+          "description": "Use the `min` prop to specify the earliest date the user can enter. Will disable all dates prior to the specified date. Pass it in the same format as `value`: with `type=\"datetime-local\"` it must include a time, e.g. `2025-01-01T00:00`.",
           "heading": "Min"
         },
         {
