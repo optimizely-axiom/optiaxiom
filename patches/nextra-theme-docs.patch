@@ -28,7 +28,7 @@ index b9053fcecc17450dab560536a12bc5c6335b8ba4..ce7246d0399ded6185a66812d8f539d9
    Layout,
    Link,
 diff --git a/dist/schemas.js b/dist/schemas.js
-index 060d0b98b76515e4f0a1cd9edb3c3f5d31597540..8a7c81fb1f0ba3566afca4139e223243250a2679 100644
+index 060d0b98b76515e4f0a1cd9edb3c3f5d31597540..20e9165c1a6753408cc70996b36a82c8dcae6792 100644
 --- a/dist/schemas.js
 +++ b/dist/schemas.js
 @@ -26,6 +26,7 @@ const nextThemesSchema = z.strictObject({
@@ -39,6 +39,15 @@ index 060d0b98b76515e4f0a1cd9edb3c3f5d31597540..8a7c81fb1f0ba3566afca4139e223243
    storageKey: z.string().default("theme")
  });
  const sidebarSchema = z.strictObject({
+@@ -65,7 +66,7 @@ const LayoutPropsSchema = z.strictObject({
+   banner: reactNode.optional().meta({
+     description: "Rendered [`<Banner>` component](/docs/built-ins/banner). E.g. `<Banner {...bannerProps} />`"
+   }),
+-  children: reactNode,
++  children: reactNode.optional(),
+   copyPageButton: z.boolean().default(true).meta({
+     description: "Hide/show copy page content button."
+   }),
 diff --git a/dist/style.css b/dist/style.css
 index 387ae10a31bd549dca6992d87b2cd07b684ddf15..2a942b8fa605a980eaa539e5d1a0d0e3e3cc6aaa 100644
 --- a/dist/style.css
