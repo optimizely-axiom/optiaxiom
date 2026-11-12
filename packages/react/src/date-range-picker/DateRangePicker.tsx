@@ -74,24 +74,28 @@ export function DateRangePicker({
     onChange: onValueChange,
     prop: valueProp,
   });
+  const setOpenStable = useEvent(setOpen);
   const setValueStable = useEvent(setValue);
 
   useEffect(() => {
-    if (open) {
+    if (disabled) {
+      setFrom(undefined);
+      setOpenStable(false);
+    } else if (open) {
       setFrom(undefined);
     }
-  }, [open]);
+  }, [disabled, open, setOpenStable]);
   useEffect(() => {
-    if (!open && from) {
+    if (!disabled && !open && from) {
       const end = toInstant(toPlainDate(from) + "T23:59:59.999");
       if (end) {
         setValueStable({ from: from, to: end });
       }
     }
-  }, [from, open, setValueStable]);
+  }, [disabled, from, open, setValueStable]);
 
   return (
-    <Popover onOpenChange={setOpen} open={open} {...props}>
+    <Popover onOpenChange={setOpen} open={open && !disabled} {...props}>
       <DateRangePickerProvider
         disabled={disabled}
         setFrom={setFrom}

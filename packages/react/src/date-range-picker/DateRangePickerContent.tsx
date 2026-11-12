@@ -58,7 +58,7 @@ export const DateRangePickerContent = forwardRef<
     const { labelId: fieldLabelId } = useFieldContext(
       "@optiaxiom/react/DateRangePickerContent",
     );
-    const { setFrom, setOpen, setValue, triggerRef, value } =
+    const { disabled, setFrom, setOpen, setValue, triggerRef, value } =
       useDateRangePickerContext("@optiaxiom/react/DateRangePickerContent");
     const requestFrame = useAnimationFrame();
     const labelId = useId();
@@ -84,9 +84,11 @@ export const DateRangePickerContent = forwardRef<
             min={min}
             mode="range"
             onDateSelect={(date) => {
+              if (disabled) return;
               setFrom((from) => (from ? undefined : date));
             }}
             onValueChange={(value) => {
+              if (disabled) return;
               setValue(value);
               requestFrame(() => setOpen(false));
             }}
