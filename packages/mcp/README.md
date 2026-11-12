@@ -41,11 +41,17 @@ pnpm add -D @optiaxiom/mcp
 
 ### Claude Code
 
-Add the MCP server to your workspace configuration file at `.vscode/mcp.json`:
+Add the server to your project with the Claude Code CLI:
+
+```sh
+claude mcp add --scope project axiom -- npx -y @optiaxiom/mcp
+```
+
+Or add it to `.mcp.json` at the root of your project yourself:
 
 ```json
 {
-  "servers": {
+  "mcpServers": {
     "axiom": {
       "command": "npx",
       "args": ["-y", "@optiaxiom/mcp"]
@@ -54,13 +60,30 @@ Add the MCP server to your workspace configuration file at `.vscode/mcp.json`:
 }
 ```
 
+Check `.mcp.json` into the repository so every contributor and agent working in it gets the server. Claude Code asks each of them to approve it the first time it starts in the project.
+
 ### Cursor
 
-Add to your Cursor MCP configuration:
+Add to `.cursor/mcp.json` in your project, or `~/.cursor/mcp.json` for every project:
 
 ```json
 {
   "mcpServers": {
+    "axiom": {
+      "command": "npx",
+      "args": ["-y", "@optiaxiom/mcp"]
+    }
+  }
+}
+```
+
+### VS Code
+
+Add to `.vscode/mcp.json` in your project:
+
+```json
+{
+  "servers": {
     "axiom": {
       "command": "npx",
       "args": ["-y", "@optiaxiom/mcp"]
@@ -97,6 +120,28 @@ app.post("/mcp", async (req, res) => {
   await server.connect(transport);
   await transport.handleRequest(req, res, req.body);
 });
+```
+
+### Troubleshooting
+
+If your assistant doesn't use the Axiom tools, check that the server started: run `/mcp` in Claude Code, or check the server's status in Cursor's settings.
+
+`npx` downloads the server through the npm registry your project's `.npmrc` points to. If that is a private registry that needs a token, the download fails once the token is missing or expired, and the server doesn't start. Pin the public registry in the server's arguments:
+
+```json
+{
+  "mcpServers": {
+    "axiom": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "--registry",
+        "https://registry.npmjs.org",
+        "@optiaxiom/mcp"
+      ]
+    }
+  }
+}
 ```
 
 ## Available Tools
