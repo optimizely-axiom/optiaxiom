@@ -12,7 +12,7 @@ import { ProteusDocumentRenderer, ProteusElement } from "@optiaxiom/proteus";
 import { Box, Group, Heading } from "@optiaxiom/react";
 import { useEffect, useRef, useState } from "react";
 import { action } from "storybook/actions";
-import { expect, userEvent, waitFor } from "storybook/test";
+import { expect, fn, userEvent, waitFor } from "storybook/test";
 
 export default {
   args: {
@@ -760,6 +760,197 @@ export const WithAsyncActions: Story = {
     await userEvent.click(cancel);
     await expect(remove).toBeDisabled();
     await waitFor(() => expect(remove).toBeEnabled(), { timeout: 3000 });
+  },
+};
+
+const hostScriptButton = {
+  $type: "Button",
+  appearance: "primary",
+  children: "Reply",
+  onClick: { args: ["L-7"], hostScript: "reply-l-7" },
+};
+
+export const WithHostScript: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        {
+          $type: "Show",
+          children: hostScriptButton,
+          else: {
+            $type: "Text",
+            children: { $type: "Value", path: "/result" },
+          },
+          when: { "!": { $type: "Value", path: "/result" } },
+        },
+      ],
+      title: "Host-run script",
+    },
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Reply" }));
+    // the host runs the script and merges what it returns into the data
+    await expect(
+      await canvas.findByText("Ran reply-l-7 with L-7"),
+    ).toBeInTheDocument();
+  },
+  render: function Render(args) {
+    const [data, setData] = useState<Record<string, unknown>>({});
+    return (
+      <ProteusDocumentRenderer
+        {...args}
+        data={data}
+        onDataChange={setData}
+        onHostScript={async (name, scriptArgs) => {
+          action("onHostScript")(name, scriptArgs);
+          setData((prev) => ({
+            ...prev,
+            result: `Ran ${name} with ${scriptArgs.join(", ")}`,
+          }));
+        }}
+      />
+    );
+  },
+};
+
+export const WithHostScriptUnavailable: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [hostScriptButton],
+      title: "Host-run script",
+    },
+  },
+  play: async ({ canvas }) => {
+    // without `onHostScript` the host can't run it, so the button says so
+    const button = canvas.getByRole("button", { name: "Reply" });
+    await expect(button).toBeDisabled();
+    await expect(button).toHaveAttribute("title", "Not available here");
+  },
+};
+
+export const WithHostScriptInvalid: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        { $type: "Text", children: "Only well-formed host scripts render." },
+        {
+          ...hostScriptButton,
+          children: "Bad name",
+          onClick: { hostScript: "Reply L-7" },
+        },
+        {
+          ...hostScriptButton,
+          children: "Bad args",
+          onClick: { args: ["line\nbreak"], hostScript: "reply-l-7" },
+        },
+        {
+          ...hostScriptButton,
+          children: "Bad control character",
+          onClick: { args: ["carriage\rreturn"], hostScript: "reply-l-7" },
+        },
+      ],
+      title: "Host-run script",
+    },
+    onHostScript: action("onHostScript"),
+    strict: false,
+  },
+  play: async ({ canvas }) => {
+    // the schema refuses a malformed name or args, so the button never renders
+    await expect(
+      canvas.getByText("Only well-formed host scripts render."),
+    ).toBeInTheDocument();
+    await expect(
+      canvas.queryByRole("button", { name: "Bad name" }),
+    ).not.toBeInTheDocument();
+    await expect(
+      canvas.queryByRole("button", { name: "Bad args" }),
+    ).not.toBeInTheDocument();
+    await expect(
+      canvas.queryByRole("button", { name: "Bad control character" }),
+    ).not.toBeInTheDocument();
+  },
+};
+
+export const WithHostScriptOutsideButtons: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        { $type: "Text", children: "Only buttons run host scripts." },
+        {
+          $type: "CardLink",
+          children: "Open offer",
+          onClick: { hostScript: "reply-l-7" },
+        },
+        {
+          $type: "PillMenu",
+          inputName: "query",
+          name: "people",
+          onInputValueChange: { hostScript: "reply-l-7" },
+          options: [],
+        },
+      ],
+      title: "Host-run script",
+    },
+    onHostScript: fn(),
+    strict: false,
+  },
+  play: async ({ args, canvas }) => {
+    // a link click or a keystroke must not run code on the host's server, so
+    // the schema refuses both and neither element renders
+    await expect(
+      canvas.getByText("Only buttons run host scripts."),
+    ).toBeInTheDocument();
+    await expect(canvas.queryByText("Open offer")).not.toBeInTheDocument();
+    await expect(canvas.queryByRole("combobox")).not.toBeInTheDocument();
+    await expect(args.onHostScript).not.toHaveBeenCalled();
+  },
+};
+
+export const WithHostScriptFromScript: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        {
+          $type: "Button",
+          children: "Run script",
+          onClick: { script: "main:run" },
+        },
+        { $type: "Text", children: { $type: "Value", path: "/status" } },
+      ],
+      scripts: {
+        main: [
+          "register('run', async (ctx) => {",
+          "  await ctx.emit({ hostScript: 'reply-l-7', args: ['L-7'] });",
+          "  ctx.emit({ action: 'setValue', path: '/status', value: 'Script done' });",
+          "});",
+        ].join("\n"),
+      },
+      title: "Host-run script",
+    },
+    onHostScript: fn(),
+  },
+  play: async ({ args, canvas }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Run script" }));
+    // emitted events skip the schema, so a script must not reach the host's
+    // server: only a click on a `hostScript` Action does
+    await expect(await canvas.findByText("Script done")).toBeInTheDocument();
+    await expect(args.onHostScript).not.toHaveBeenCalled();
+  },
+  render: function Render(args) {
+    const [data, setData] = useState<Record<string, unknown>>({});
+    return (
+      <ProteusDocumentRenderer {...args} data={data} onDataChange={setData} />
+    );
   },
 };
 

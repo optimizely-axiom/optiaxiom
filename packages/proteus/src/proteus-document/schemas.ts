@@ -53,6 +53,11 @@ import type { ProteusDocumentShellProps } from "./ProteusDocumentShell";
 
 import proteusDocumentSpec from "../schema/runtime-schema.json";
 
+/**
+ * Every handler an Action or Button `onClick` accepts.
+ */
+export type ProteusActionHandler = ProteusEventHandler | ProteusHostScript;
+
 export type ProteusElement =
   | (AlertProps & { $type: "Alert" })
   | (AvatarGroupProps & { $type: "AvatarGroup" })
@@ -141,6 +146,12 @@ export type ProteusEventHandler =
     }
   | { message: string | StructuredMessage }
   | { params?: Record<string, unknown>; script: string };
+
+/**
+ * Accepted only on Action and Button `onClick`: running code on the host's
+ * server takes a user's click.
+ */
+export type ProteusHostScript = { args?: string[]; hostScript: string };
 
 export type ProteusPreviewFile = {
   extension: string;

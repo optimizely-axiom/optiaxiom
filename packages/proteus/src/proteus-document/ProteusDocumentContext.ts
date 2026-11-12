@@ -4,7 +4,7 @@ import type { ComponentType } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
-import type { ProteusEventHandler } from "./schemas";
+import type { ProteusActionHandler } from "./schemas";
 
 export type FileUploadMetadata = {
   link: string;
@@ -33,9 +33,14 @@ export const [ProteusDocumentProvider, useProteusDocumentContext] =
      */
     collapsible: boolean | undefined;
     data: Record<string, unknown>;
+    /**
+     * Whether the host runs host scripts (`onHostScript`). Without it, an
+     * action naming one renders disabled.
+     */
+    hostScripts: boolean;
     icons: ProteusIconMap | undefined;
     onDataChange: (path: string, value: unknown) => void;
-    onEvent: (event: ProteusEventHandler) => Promise<unknown>;
+    onEvent: (event: ProteusActionHandler) => Promise<unknown>;
     onTrack?: (event: string, properties: Record<string, string>) => void;
     onUpload?: UploadFile;
     /**
