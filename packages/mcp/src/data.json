@@ -16408,7 +16408,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/card"
     },
     "CardCheckbox": {
-      "description": "CardCheckbox component from Axiom Design System",
+      "description": "Selects its card.\n\nTakes its accessible name from the `CardHeader` title, after the default\n\"Check to select\" or \"Check to unselect\" message. Pass `aria-label` or\n`aria-labelledby` to name it yourself.",
       "entryPoint": "@optiaxiom/react/card",
       "import": "import { CardCheckbox } from '@optiaxiom/react';",
       "name": "CardCheckbox",
@@ -26198,7 +26198,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/data-table"
     },
     "DataTableCheckbox": {
-      "description": "Selects its row, or every row on the page when rendered in a header.\n\nWhen the checkbox is the only content of its cell, wrap it in\n`<Cover asChild>` so the whole cell toggles selection. Otherwise a click on\nthe cell's padding selects only this row and clears the rest.\n\nA row checkbox takes its accessible name from the row's `DataTableLabel`,\nafter the default \"Check to select\" or \"Check to unselect\" message, and that\nname overrides an `aria-label`. Put `DataTableLabel` in the row's primary\ncell, or pass `aria-labelledby` to name it from another element. The header\ncheckbox defaults to \"Select all\".",
+      "description": "Selects its row, or every row on the page when rendered in a header.\n\nWhen the checkbox is the only content of its cell, wrap it in\n`<Cover asChild>` so the whole cell toggles selection. Otherwise a click on\nthe cell's padding selects only this row and clears the rest.\n\nA row checkbox takes its accessible name from the row's `DataTableLabel`,\nafter the default \"Check to select\" or \"Check to unselect\" message. Put\n`DataTableLabel` in the row's primary cell, or pass `aria-label` or\n`aria-labelledby` to name it yourself. The header checkbox defaults to\n\"Select all\".",
       "entryPoint": "@optiaxiom/react/data-table",
       "import": "import { DataTableCheckbox } from '@optiaxiom/react';",
       "name": "DataTableCheckbox",

@@ -26,10 +26,10 @@ export type DataTableCheckboxProps = ComponentPropsWithoutRef<typeof Checkbox> &
  * the cell's padding selects only this row and clears the rest.
  *
  * A row checkbox takes its accessible name from the row's `DataTableLabel`,
- * after the default "Check to select" or "Check to unselect" message, and that
- * name overrides an `aria-label`. Put `DataTableLabel` in the row's primary
- * cell, or pass `aria-labelledby` to name it from another element. The header
- * checkbox defaults to "Select all".
+ * after the default "Check to select" or "Check to unselect" message. Put
+ * `DataTableLabel` in the row's primary cell, or pass `aria-label` or
+ * `aria-labelledby` to name it yourself. The header checkbox defaults to
+ * "Select all".
  *
  * @group DataTable
  */
@@ -60,7 +60,7 @@ export const DataTableCheckbox = forwardRef<
 
   return (
     <>
-      {row && (
+      {row && !props["aria-label"] && (
         <VisuallyHidden id={labelPrefixId}>
           {row.getIsSelected()
             ? messages["Check to unselect"]
@@ -76,7 +76,11 @@ export const DataTableCheckbox = forwardRef<
       >
         <Checkbox
           aria-label={!row ? messages["Select all"] : undefined}
-          aria-labelledby={row && clsx(labelPrefixId, labelId)}
+          aria-labelledby={
+            row && !props["aria-label"]
+              ? clsx(labelPrefixId, labelId)
+              : undefined
+          }
           checked={
             row
               ? row.getIsSelected()
