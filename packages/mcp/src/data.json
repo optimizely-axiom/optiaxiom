@@ -51370,7 +51370,8 @@
           "description": "Use `EllipsisMenuButton` with `MenuTrigger asChild` to open overflow menus. Remember to provide an `aria-label` since the button has no visible text.",
           "heading": "Usage"
         }
-      ]
+      ],
+      "accessibility": "### Labels\n\n- Without `children` the button shows only the ellipsis icon. Give it an `aria-label` naming what the menu acts on, such as \"Article actions\". Button logs a console error when the label is missing."
     },
     "Field": {
       "description": "Wrapper for inputs to provide context such as label/help/required etc.\n\nSize the `Field` (for example with `w`), not the input inside it. The input\nstretches to the field's width, so the description, error and character\ncount line up with it.\n\nWhen the input sets `maxLength`, add `showCount` so users see how close they\nare to the limit. Typing otherwise stops at the limit with no feedback.",
