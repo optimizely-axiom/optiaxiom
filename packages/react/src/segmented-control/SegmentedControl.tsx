@@ -10,6 +10,11 @@ export type SegmentedControlProps = BoxProps<
   {
     /**
      * Whether to allow multiple values or only activate one item at a time.
+     *
+     * In `single` mode, clicking the active item deselects it and calls
+     * `onValueChange` with `""`. To keep one item always active, control
+     * `value` and ignore empty values:
+     * `onValueChange={(value: string) => value && setValue(value)}`.
      */
     type?: "multiple" | "single";
   }
