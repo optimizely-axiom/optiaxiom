@@ -5,14 +5,16 @@ import * as styles from "./Kbd.css";
 
 export type KbdProps = BoxProps<
   "kbd",
-  styles.KeyVariants & {
+  {
     /**
-     * Keyboard symbols/shortcuts to include.
+     * Modifier keys to show before the children, as symbols on macOS and
+     * names elsewhere. `mod` is Command (⌘) on macOS and Ctrl on other
+     * platforms: use it for shortcuts like Cmd/Ctrl+K.
      */
     modifiers?:
       | Array<keyof (typeof mapModifierToCode)["mac"]>
       | keyof (typeof mapModifierToCode)["mac"];
-  }
+  } & styles.KeyVariants
 >;
 const platform =
   typeof navigator !== "undefined" &&

@@ -48,6 +48,9 @@ export type TooltipProps = ExcludeProps<
  * interactive help use Popover opened from a labelled button instead: a
  * tooltip closes when the pointer moves onto it and doesn't open on tap.
  *
+ * To show a keyboard shortcut, add a `Kbd` to the content:
+ * `<Kbd modifiers="mod">K</Kbd>` shows ⌘ on macOS and Ctrl elsewhere.
+ *
  * The child must be focusable or contain a focusable element, otherwise
  * keyboard users can't open the tooltip.
  *

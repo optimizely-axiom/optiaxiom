@@ -65133,7 +65133,7 @@
           "responsive": true
         },
         "modifiers": {
-          "description": "Keyboard symbols/shortcuts to include.",
+          "description": "Modifier keys to show before the children, as symbols on macOS and\nnames elsewhere. `mod` is Command (⌘) on macOS and Ctrl on other\nplatforms: use it for shortcuts like Cmd/Ctrl+K.",
           "anyOf": [
             { "enum": ["shift", "meta", "alt", "ctrl", "mod"] },
             {
@@ -65531,14 +65531,14 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport type { ComponentPropsWithoutRef } from \"react\";\n\nimport { Kbd, Text } from \"@optiaxiom/react\";\n\nexport function App({\n  modifiers = \"meta\",\n}: Pick<ComponentPropsWithoutRef<typeof Kbd>, \"modifiers\">) {\n  return (\n    <Text>\n      <Kbd modifiers={modifiers}>K</Kbd>\n    </Text>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport type { ComponentPropsWithoutRef } from \"react\";\n\nimport { Kbd, Text } from \"@optiaxiom/react\";\n\nexport function App({\n  modifiers = \"mod\",\n}: Pick<ComponentPropsWithoutRef<typeof Kbd>, \"modifiers\">) {\n  return (\n    <Text>\n      <Kbd modifiers={modifiers}>K</Kbd>\n    </Text>\n  );\n}\n",
               "filename": "App.tsx"
             }
           ],
           "components": ["Kbd", "Text"],
-          "title": "keys-usage",
-          "description": "Use the `keys` prop to display commonly used key codes.",
-          "heading": "Key codes"
+          "title": "modifiers-usage",
+          "description": "Use the `modifiers` prop to show modifier keys, as symbols on macOS and names elsewhere. `mod` shows Command (⌘) on macOS and Ctrl on other platforms, so use it for shortcuts like Cmd/Ctrl+K.",
+          "heading": "Modifiers"
         },
         {
           "code": [
@@ -121143,7 +121143,7 @@
       "accessibility": "### Labels\n\n- Give an icon only toggle button an `aria-label`. ToggleButton exposes its state with `aria-pressed`, so keep the label the same in both states.\n- A disabled toggle button leaves the tab order. Explain why it's disabled in visible text nearby."
     },
     "Tooltip": {
-      "description": "Popup with brief information shown when user interacts with an element using\nkeyboard focus or mouse hover.\n\nKeep content to a short plain-text label of a few words. For longer, rich or\ninteractive help use Popover opened from a labelled button instead: a\ntooltip closes when the pointer moves onto it and doesn't open on tap.\n\nThe child must be focusable or contain a focusable element, otherwise\nkeyboard users can't open the tooltip.",
+      "description": "Popup with brief information shown when user interacts with an element using\nkeyboard focus or mouse hover.\n\nKeep content to a short plain-text label of a few words. For longer, rich or\ninteractive help use Popover opened from a labelled button instead: a\ntooltip closes when the pointer moves onto it and doesn't open on tap.\n\nTo show a keyboard shortcut, add a `Kbd` to the content:\n`<Kbd modifiers=\"mod\">K</Kbd>` shows ⌘ on macOS and Ctrl elsewhere.\n\nThe child must be focusable or contain a focusable element, otherwise\nkeyboard users can't open the tooltip.",
       "entryPoint": "@optiaxiom/react/tooltip",
       "import": "import { Tooltip } from '@optiaxiom/react';",
       "name": "Tooltip",
