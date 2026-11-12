@@ -46,6 +46,16 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
 
     const ref = useComposedRefs(outerRef, context.toastRef);
 
+    if (!(intent in mapIntentToIcon)) {
+      throw new Error(
+        `\`@optiaxiom/react/Toast\` has no intent "${intent}". Possible values are ${Object.keys(
+          mapIntentToIcon,
+        )
+          .map((value) => `"${value}"`)
+          .join(", ")}.`,
+      );
+    }
+
     return (
       <Box
         asChild
