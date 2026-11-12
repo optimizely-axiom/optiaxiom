@@ -59,7 +59,10 @@ type SelectOptionGroup = {
    */
   hidden?: boolean;
   /**
-   * The label group.
+   * The group's heading, which also identifies the group: neighbouring items
+   * whose groups share a `label` render under one heading, even when the group
+   * objects differ. Give distinct groups distinct labels, and keep a group's
+   * items next to each other in `options`.
    */
   label: string;
   /**

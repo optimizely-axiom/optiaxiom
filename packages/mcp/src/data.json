@@ -68780,7 +68780,7 @@
                     "type": "boolean"
                   },
                   "label": {
-                    "description": "Return a string representation of the group.",
+                    "description": "The group's heading, which also identifies the group: neighbouring items\nwhose groups share a `label` render under one heading, even when the group\nobjects differ. Give distinct groups distinct labels, and keep a group's\nitems next to each other in `options`.",
                     "type": "string"
                   },
                   "priority": {
@@ -69160,7 +69160,7 @@
             "type MenuOption"
           ],
           "title": "group-usage",
-          "description": "Use `group` property to group items.",
+          "description": "Use `group` property to group items.\n\nA group is identified by its `label`: neighbouring items whose groups share a label render under one heading. Give distinct groups distinct labels, and keep each group's items next to each other in `options`.",
           "heading": "Groups"
         },
         {
@@ -83120,7 +83120,7 @@
                     "type": "boolean"
                   },
                   "label": {
-                    "description": "Return a string representation of the group.",
+                    "description": "The group's heading, which also identifies the group: neighbouring items\nwhose groups share a `label` render under one heading, even when the group\nobjects differ. Give distinct groups distinct labels, and keep a group's\nitems next to each other in `options`.",
                     "type": "string"
                   },
                   "priority": {
@@ -83459,7 +83459,7 @@
                     "type": "boolean"
                   },
                   "label": {
-                    "description": "Return a string representation of the group.",
+                    "description": "The group's heading, which also identifies the group: neighbouring items\nwhose groups share a `label` render under one heading, even when the group\nobjects differ. Give distinct groups distinct labels, and keep a group's\nitems next to each other in `options`.",
                     "type": "string"
                   },
                   "priority": {
@@ -94326,7 +94326,7 @@
                     "type": "boolean"
                   },
                   "label": {
-                    "description": "The label group.",
+                    "description": "The group's heading, which also identifies the group: neighbouring items\nwhose groups share a `label` render under one heading, even when the group\nobjects differ. Give distinct groups distinct labels, and keep a group's\nitems next to each other in `options`.",
                     "type": "string"
                   },
                   "priority": {
@@ -94472,7 +94472,7 @@
           ],
           "components": ["Select", "SelectContent", "SelectTrigger"],
           "title": "group-usage",
-          "description": "We can group options using the `group` property.",
+          "description": "We can group options using the `group` property.\n\nA group is identified by its `label`: neighbouring items whose groups share a label render under one heading. Give distinct groups distinct labels, and keep each group's items next to each other in `options`.",
           "heading": "Group"
         },
         {
@@ -103509,7 +103509,7 @@
                     "type": "boolean"
                   },
                   "label": {
-                    "description": "Return a string representation of the group.",
+                    "description": "The group's heading, which also identifies the group: neighbouring items\nwhose groups share a `label` render under one heading, even when the group\nobjects differ. Give distinct groups distinct labels, and keep a group's\nitems next to each other in `options`.",
                     "type": "string"
                   },
                   "priority": {
