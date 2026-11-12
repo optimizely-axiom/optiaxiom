@@ -608,21 +608,6 @@ importers:
       '@cfworker/json-schema':
         specifier: ^4.1.1
         version: 4.1.1
-      '@dnd-kit/abstract':
-        specifier: 0.5.0
-        version: 0.5.0
-      '@dnd-kit/collision':
-        specifier: 0.5.0
-        version: 0.5.0
-      '@dnd-kit/dom':
-        specifier: 0.5.0
-        version: 0.5.0
-      '@dnd-kit/helpers':
-        specifier: 0.5.0
-        version: 0.5.0
-      '@dnd-kit/state':
-        specifier: 0.5.0
-        version: 0.5.0
       '@optiaxiom/globals':
         specifier: workspace:^
         version: link:../globals
@@ -786,9 +771,24 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0(react@18.3.1)
     devDependencies:
+      '@dnd-kit/abstract':
+        specifier: 0.5.0
+        version: 0.5.0
+      '@dnd-kit/collision':
+        specifier: 0.5.0
+        version: 0.5.0
+      '@dnd-kit/dom':
+        specifier: 0.5.0
+        version: 0.5.0
+      '@dnd-kit/helpers':
+        specifier: 0.5.0
+        version: 0.5.0
       '@dnd-kit/react':
         specifier: 0.5.0
         version: 0.5.0(patch_hash=4c6dc3bd22f53df0d628407d74e5233c6442a01425cfaa7f068e04685200ba36)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@dnd-kit/state':
+        specifier: 0.5.0
+        version: 0.5.0
       '@emotion/hash':
         specifier: ^0.9.2
         version: 0.9.2
