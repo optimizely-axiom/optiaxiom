@@ -12893,11 +12893,11 @@
         {
           "code": [
             {
-              "content": "import { Button, Group, Tooltip } from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Group gap=\"16\">\n      <Tooltip content=\"Disabled button demo\">\n        <Button appearance=\"primary\" disabled>\n          Disabled\n        </Button>\n      </Tooltip>\n      <Tooltip content=\"Disabled button demo\">\n        <Button disabled>Disabled</Button>\n      </Tooltip>\n      <Tooltip content=\"Disabled button demo\">\n        <Button appearance=\"subtle\" disabled>\n          Disabled\n        </Button>\n      </Tooltip>\n    </Group>\n  );\n}\n",
+              "content": "import { Button, Group, Text } from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Group alignItems=\"start\" flexDirection=\"column\" gap=\"8\">\n      <Group gap=\"16\">\n        <Button appearance=\"primary\" disabled>\n          Publish\n        </Button>\n        <Button disabled>Duplicate</Button>\n        <Button appearance=\"subtle\" disabled>\n          Archive\n        </Button>\n      </Group>\n      <Text color=\"fg.secondary\" fontSize=\"sm\">\n        Select an article to publish, duplicate or archive it.\n      </Text>\n    </Group>\n  );\n}\n",
               "filename": "App.tsx"
             }
           ],
-          "components": ["Button", "Group", "Tooltip"],
+          "components": ["Button", "Group", "Text"],
           "title": "disabled-usage",
           "description": "Set the `disabled` prop to `true` to disable buttons and prevent any interactions.\n\nInclude visible text that explains why it's disabled: a disabled button leaves the tab order, so keyboard and screen reader users can't reach a tooltip on it.",
           "heading": "Disabled state"
@@ -12953,11 +12953,11 @@
         {
           "code": [
             {
-              "content": "import { Button, Link, Tooltip } from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Tooltip content=\"Disabled button link demo\">\n      <Button asChild disabled>\n        <Link href=\"./props\">Disabled Link</Link>\n      </Button>\n    </Tooltip>\n  );\n}\n",
+              "content": "import { Button, Group, Link, Text } from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Group gap=\"8\">\n      <Button asChild disabled>\n        <Link href=\"./props\">View report</Link>\n      </Button>\n      <Text color=\"fg.secondary\" fontSize=\"sm\">\n        The report is ready once the import finishes.\n      </Text>\n    </Group>\n  );\n}\n",
               "filename": "App.tsx"
             }
           ],
-          "components": ["Button", "Link", "Tooltip"],
+          "components": ["Button", "Group", "Link", "Text"],
           "title": "link-disabled-usage",
           "description": "Make sure to prevent interactions manually using `event.preventDefault()` since `<a>` elements do not support the `disabled` prop.\n\nAlternatively you can use our `Link` component which supports the `disabled` prop.",
           "heading": "Links > Disabled button links"
@@ -81659,11 +81659,11 @@
         {
           "code": [
             {
-              "content": "import { Tooltip } from \"@optiaxiom/react\";\nimport { Pill } from \"@optiaxiom/react/unstable\";\n\nexport function App() {\n  return (\n    <Tooltip content=\"Disabled pill demo\">\n      <Pill disabled>Disabled</Pill>\n    </Tooltip>\n  );\n}\n",
+              "content": "import { Group, Text } from \"@optiaxiom/react\";\nimport { Pill } from \"@optiaxiom/react/unstable\";\n\nexport function App() {\n  return (\n    <Group gap=\"8\">\n      <Pill disabled>Archived</Pill>\n      <Text color=\"fg.secondary\" fontSize=\"sm\">\n        Archived articles are read only.\n      </Text>\n    </Group>\n  );\n}\n",
               "filename": "App.tsx"
             }
           ],
-          "components": ["Pill", "Tooltip"],
+          "components": ["Group", "Pill", "Text"],
           "title": "disabled-usage",
           "description": "Set the `disabled` prop to `true` to disable pills and prevent any interactions.\n\nInclude visible text that explains why it's disabled: a disabled pill leaves the tab order, so keyboard and screen reader users can't reach a tooltip on it.",
           "heading": "Disabled state"
@@ -121026,11 +121026,11 @@
         {
           "code": [
             {
-              "content": "import { IconSidebar } from \"@optiaxiom/icons\";\nimport { ToggleButton, Tooltip } from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Tooltip content=\"Disabled toggle demo\">\n      <ToggleButton\n        aria-label=\"Toggle sidebar\"\n        disabled\n        icon={<IconSidebar />}\n      />\n    </Tooltip>\n  );\n}\n",
+              "content": "import { IconSidebar } from \"@optiaxiom/icons\";\nimport { Group, Text, ToggleButton } from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Group gap=\"8\">\n      <ToggleButton\n        aria-label=\"Toggle sidebar\"\n        disabled\n        icon={<IconSidebar />}\n      />\n      <Text color=\"fg.secondary\" fontSize=\"sm\">\n        The sidebar is unavailable in full screen mode.\n      </Text>\n    </Group>\n  );\n}\n",
               "filename": "App.tsx"
             }
           ],
-          "components": ["ToggleButton", "Tooltip"],
+          "components": ["Group", "Text", "ToggleButton"],
           "title": "disabled-usage",
           "description": "Set the `disabled` prop to `true` to disable buttons and prevent any interactions.\n\nInclude visible text that explains why it's disabled: a disabled button leaves the tab order, so keyboard and screen reader users can't reach a tooltip on it.",
           "heading": "Disabled state"

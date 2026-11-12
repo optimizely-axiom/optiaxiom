@@ -1,21 +1,20 @@
-import { Button, Group, Tooltip } from "@optiaxiom/react";
+import { Button, Group, Text } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Group gap="16">
-      <Tooltip content="Disabled button demo">
+    <Group alignItems="start" flexDirection="column" gap="8">
+      <Group gap="16">
         <Button appearance="primary" disabled>
-          Disabled
+          Publish
         </Button>
-      </Tooltip>
-      <Tooltip content="Disabled button demo">
-        <Button disabled>Disabled</Button>
-      </Tooltip>
-      <Tooltip content="Disabled button demo">
+        <Button disabled>Duplicate</Button>
         <Button appearance="subtle" disabled>
-          Disabled
+          Archive
         </Button>
-      </Tooltip>
+      </Group>
+      <Text color="fg.secondary" fontSize="sm">
+        Select an article to publish, duplicate or archive it.
+      </Text>
     </Group>
   );
 }
