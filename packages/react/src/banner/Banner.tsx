@@ -43,6 +43,16 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(
     const labelId = useId();
     const messages = useMessages();
 
+    if (!(intent in mapIntentToIcon)) {
+      throw new Error(
+        `\`@optiaxiom/react/Banner\` has no intent "${intent}". Possible values are ${Object.keys(
+          mapIntentToIcon,
+        )
+          .map((value) => `"${value}"`)
+          .join(", ")}.`,
+      );
+    }
+
     return (
       <Group
         aria-labelledby={labelId}

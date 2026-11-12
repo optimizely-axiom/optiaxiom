@@ -50,6 +50,16 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
     const labelId = useId();
     const messages = useMessages();
 
+    if (!(intent in mapIntentToIcon)) {
+      throw new Error(
+        `\`@optiaxiom/react/Alert\` has no intent "${intent}". Possible values are ${Object.keys(
+          mapIntentToIcon,
+        )
+          .map((value) => `"${value}"`)
+          .join(", ")}.`,
+      );
+    }
+
     return (
       <Group
         aria-labelledby={labelId}
