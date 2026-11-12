@@ -7,8 +7,9 @@ const FUNCTION_TYPES = new Set([
 ]);
 
 /**
- * jsdom (Jest's default environment) lacks `scrollIntoView` and
- * `ResizeObserver`, so calling either unguarded crashes consumer tests.
+ * jsdom (Jest's default environment) lacks `scrollIntoView`,
+ * `ResizeObserver` and the `CSS` namespace, so calling them unguarded crashes
+ * consumer tests.
  */
 export default ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
@@ -16,6 +17,14 @@ export default ESLintUtils.RuleCreator.withoutDocs({
     const guarded = new Set();
 
     return {
+      /**
+       * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['CallExpression']}
+       */
+      'CallExpression[callee.object.type="Identifier"][callee.object.name="CSS"]':
+        (node) => {
+          context.report({ messageId: "css", node });
+        },
+
       /**
        * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['CallExpression']}
        */
@@ -64,6 +73,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
 
   meta: {
     messages: {
+      css: "Call `globalThis.CSS?.method?.()` optionally: jsdom has no `CSS`, and test setups that add one may leave out the method.",
       resizeObserver:
         'Check `typeof ResizeObserver === "undefined"` before constructing it: jsdom does not implement it.',
       scrollIntoView:

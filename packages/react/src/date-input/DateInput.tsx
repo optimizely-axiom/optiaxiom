@@ -184,12 +184,16 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               setValue(event.target.value);
             }}
             onClick={(e) => {
-              if (CSS.supports("selector(::-webkit-datetime-edit)")) {
+              if (
+                globalThis.CSS?.supports?.("selector(::-webkit-datetime-edit)")
+              ) {
                 e.preventDefault();
               }
             }}
             onKeyDown={(e) => {
-              if (CSS.supports("selector(::-webkit-datetime-edit)")) {
+              if (
+                globalThis.CSS?.supports?.("selector(::-webkit-datetime-edit)")
+              ) {
                 if (e.key === " ") {
                   e.preventDefault();
                   if (!props.readOnly) {
