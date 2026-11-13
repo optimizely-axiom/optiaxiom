@@ -5,6 +5,7 @@ import { forwardRef } from "react";
 import { Box } from "../box";
 import { Button, type ButtonProps } from "../button";
 import { MenuTrigger } from "../menu";
+import { decorateChildren } from "../utils";
 import { useMenuContext } from "../menu/internals";
 
 export type SpotlightTriggerProps = ButtonProps<typeof MenuTrigger>;
@@ -28,15 +29,18 @@ const DEFAULT_HOTKEY = "mod+K";
 export const SpotlightTrigger = forwardRef<
   HTMLButtonElement,
   SpotlightTriggerProps
->(({ children, ...props }, ref) => {
+>(({ asChild, children, icon = <IconSearch />, ...props }, ref) => {
   const { open, setOpen } = useMenuContext("@optiaxiom/react/SpotlightTrigger");
 
   useHotkeys([[DEFAULT_HOTKEY, () => setOpen(!open)]]);
 
   return (
     <MenuTrigger asChild ref={ref} {...props}>
-      <Button icon={<IconSearch />}>
-        {children && <Box color="fg.tertiary">{children}</Box>}
+      <Button asChild={asChild} icon={icon}>
+        {decorateChildren(
+          { asChild, children },
+          (children) => children && <Box color="fg.tertiary">{children}</Box>,
+        )}
       </Button>
     </MenuTrigger>
   );

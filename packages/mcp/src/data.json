@@ -104660,6 +104660,7 @@
         },
         "icon": {
           "description": "Display an icon before or after the button content or omit `children` to only show the icon.",
+          "default": "<IconSearch />",
           "tsType": "ReactNode"
         },
         "iconPosition": {
