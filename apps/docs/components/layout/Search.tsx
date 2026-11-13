@@ -28,6 +28,7 @@ export function Search({
   legacyPages: Record<string, string>;
 }) {
   const router = useRouter();
+  const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(false);
@@ -69,12 +70,44 @@ export function Search({
     };
   }, [inputValue, legacyPages]);
 
+  // The site search owns Cmd/Ctrl+K: this capture listener runs before any
+  // Spotlight's own shortcut (bound further down the tree) and stops it, so
+  // the Spotlight demos on the docs pages don't open too.
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      const mod = navigator.userAgent.includes("Mac")
+        ? event.metaKey
+        : event.ctrlKey;
+      const target = event.target as HTMLElement | null;
+      if (
+        event.key.toLowerCase() !== "k" ||
+        !mod ||
+        event.altKey ||
+        event.shiftKey ||
+        // Like Spotlight's own shortcut, which skips typing in a field.
+        target?.isContentEditable ||
+        ["INPUT", "SELECT", "TEXTAREA"].includes(target?.tagName ?? "")
+      ) {
+        return;
+      }
+      event.preventDefault();
+      event.stopPropagation();
+      setOpen((open) => !open);
+    };
+    window.addEventListener("keydown", onKeyDown, { capture: true });
+    return () =>
+      window.removeEventListener("keydown", onKeyDown, { capture: true });
+  }, []);
+
   return (
     <Spotlight
+      disableHotkey
       empty={error || (inputValue ? "No results found." : "Type to search.")}
       inputValue={inputValue}
       loading={loading && (results.length ? "spinner" : "both")}
       onInputValueChange={setInputValue}
+      onOpenChange={setOpen}
+      open={open}
       options={results.map<MenuOption>(({ page, section: subResult }) => {
         const route = toRoute(subResult.url);
         const excerpt = stripTitle(subResult.excerpt, subResult.title);
@@ -95,9 +128,13 @@ export function Search({
             : subResult.title !== pageTitle(page)
               ? subResult.title
               : undefined,
-          execute: () => {
+          // A controlled Spotlight leaves closing to the item.
+          execute: ({ dismiss }) => {
             setInputValue("");
             router.push(route);
+            if (dismiss) {
+              setOpen(false);
+            }
           },
           href: basePath + route,
           key: subResult.url,

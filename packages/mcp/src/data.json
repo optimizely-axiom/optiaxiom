@@ -103468,6 +103468,10 @@
           "description": "The initial open state in uncontrolled mode.",
           "type": "boolean"
         },
+        "disableHotkey": {
+          "description": "Turn off the Cmd/Ctrl+K hotkey, such as when another Spotlight on the\npage owns it.",
+          "type": "boolean"
+        },
         "empty": {
           "description": "Custom empty state content.",
           "tsType": "ReactNode"
