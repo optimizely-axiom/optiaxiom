@@ -123,6 +123,59 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
       observer.observe(node);
       return () => observer.disconnect();
     }, []);
+
+    /**
+     * The container outlives page changes, so each page gets its own offset:
+     * a revisited page (back navigation, previous page) returns to where it
+     * was left, anything else starts at the top. Offsets are tied to the
+     * page's first row so a page whose rows changed (sorting, filtering, new
+     * server data) isn't restored. With server-side pagination the page
+     * changes before its rows arrive, so a saved offset waits for the first
+     * new rows (`loading` counts as none yet) and is dropped if they don't
+     * match.
+     *
+     * The offset comes from the scroll handler: by the time this effect runs,
+     * a shorter new page has already clamped `scrollTop`.
+     */
+    const { pageIndex, pageSize } = table.getState().pagination;
+    const firstRowId: string | undefined =
+      loading === true ? undefined : rawRows[0]?.id;
+    const pageRef = useRef({ firstRowId, pageIndex, pageSize });
+    const scrollTopRef = useRef(0);
+    const offsetsRef = useRef(
+      new Map<string, { rowId: string; top: number }>(),
+    );
+    const pendingRef = useRef<{ rowId: string; top: number }>(undefined);
+    useLayoutEffect(() => {
+      const previous = pageRef.current;
+      pageRef.current = { firstRowId, pageIndex, pageSize };
+      const container = scrollContainerRef.current;
+      if (!container) {
+        return;
+      }
+
+      if (previous.pageIndex !== pageIndex || previous.pageSize !== pageSize) {
+        if (previous.firstRowId !== undefined) {
+          offsetsRef.current.set(`${previous.pageIndex}:${previous.pageSize}`, {
+            rowId: previous.firstRowId,
+            top: scrollTopRef.current,
+          });
+        }
+        pendingRef.current = offsetsRef.current.get(`${pageIndex}:${pageSize}`);
+        container.scrollTop = 0;
+        if (firstRowId === previous.firstRowId) {
+          // Still the previous page's rows: wait for the new ones.
+          return;
+        }
+      }
+
+      if (pendingRef.current && firstRowId !== undefined) {
+        if (pendingRef.current.rowId === firstRowId) {
+          container.scrollTop = pendingRef.current.top;
+        }
+        pendingRef.current = undefined;
+      }
+    }, [firstRowId, pageIndex, pageSize]);
     const centerColumns = table.getCenterVisibleLeafColumns();
 
     const columnVirtualizer = useVirtualizer({
@@ -228,7 +281,10 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                 : rows.length)
           }
           layout="fixed"
-          onScroll={calculateScrollTimeline}
+          onScroll={(event) => {
+            scrollTopRef.current = event.currentTarget.scrollTop;
+            calculateScrollTimeline();
+          }}
           ref={scrollContainerRef}
         >
           <TableHeader display="grid" pinned>

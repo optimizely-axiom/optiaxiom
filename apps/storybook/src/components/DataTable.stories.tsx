@@ -451,6 +451,95 @@ export const PaginatingKeepsFocus: Story = {
   },
 };
 
+const playPaginatingRemembersScroll: Story["play"] = async ({ canvas }) => {
+  const scrollContainer = canvas.getByRole("table").parentElement!;
+  await waitFor(() =>
+    expect(canvas.getAllByRole("row")[1]).toHaveTextContent("order-001"),
+  );
+  // Roboto loads on first use and reflows the rows, moving the offset.
+  await document.fonts.load("1rem Roboto Variable");
+  scrollContainer.scrollTop = scrollContainer.scrollHeight;
+  await waitFor(() => expect(scrollContainer.scrollTop).toBeGreaterThan(0));
+  // The scroll event for a programmatic scroll fires on the next frame.
+  await new Promise((resolve) => requestAnimationFrame(resolve));
+  const offset = scrollContainer.scrollTop;
+
+  await userEvent.click(canvas.getByRole("button", { name: "Next page" }));
+  await waitFor(() =>
+    expect(canvas.getAllByRole("row")[1]).toHaveTextContent("order-021"),
+  );
+  await expect(scrollContainer.scrollTop).toBe(0);
+
+  await userEvent.click(canvas.getByRole("button", { name: "Previous page" }));
+  await waitFor(() =>
+    expect(canvas.getAllByRole("row")[1]).toHaveTextContent("order-001"),
+  );
+  await expect(scrollContainer.scrollTop).toBe(offset);
+};
+
+export const PaginatingRemembersScroll: Story = {
+  args: { maxH: "xs", style: {} },
+  play: playPaginatingRemembersScroll,
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columns,
+          data: largeData,
+          getCoreRowModel: getCoreRowModel(),
+          getPaginationRowModel: getPaginationRowModel(),
+          initialState: { pagination: { pageSize: 20 } },
+        })}
+      >
+        <DataTableBody />
+        <DataTableFooter />
+      </DataTable>
+    );
+  },
+};
+
+export const PaginatingRemembersScrollServerSide: Story = {
+  args: { maxH: "xs", style: {} },
+  play: playPaginatingRemembersScroll,
+  render: function Render(args) {
+    const [pagination, setPagination] = useState({
+      pageIndex: 0,
+      pageSize: 20,
+    });
+    const [data, setData] = useState<typeof largeData>([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      setLoading(true);
+      const timeout = setTimeout(() => {
+        const start = pagination.pageIndex * pagination.pageSize;
+        setData(largeData.slice(start, start + pagination.pageSize));
+        setLoading(false);
+      }, 100);
+      return () => clearTimeout(timeout);
+    }, [pagination]);
+
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columns,
+          data,
+          getCoreRowModel: getCoreRowModel(),
+          getRowId: (row) => row.id,
+          manualPagination: true,
+          onPaginationChange: setPagination,
+          rowCount: largeData.length,
+          state: { pagination },
+        })}
+      >
+        <DataTableBody loading={loading} />
+        <DataTableFooter />
+      </DataTable>
+    );
+  },
+};
+
 export const ArrowKeysFollowRowAfterDataChange: Story = {
   play: async ({ canvas }) => {
     const rowOf = (id: string) =>
