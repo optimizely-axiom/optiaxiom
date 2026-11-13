@@ -37,6 +37,8 @@ npm install --save-dev @optiaxiom/mcp
 pnpm add -D @optiaxiom/mcp
 ```
 
+A global or project install stays on the version you installed, and its docs fall behind each release. Rerun the install to update it.
+
 ## Usage
 
 ### Claude Code
@@ -44,7 +46,7 @@ pnpm add -D @optiaxiom/mcp
 Add the server to your project with the Claude Code CLI:
 
 ```sh
-claude mcp add --scope project axiom -- npx -y @optiaxiom/mcp
+claude mcp add --scope project axiom -- npx -y @optiaxiom/mcp@latest
 ```
 
 Or add it to `.mcp.json` at the root of your project yourself:
@@ -54,13 +56,15 @@ Or add it to `.mcp.json` at the root of your project yourself:
   "mcpServers": {
     "axiom": {
       "command": "npx",
-      "args": ["-y", "@optiaxiom/mcp"]
+      "args": ["-y", "@optiaxiom/mcp@latest"]
     }
   }
 }
 ```
 
 Check `.mcp.json` into the repository so every contributor and agent working in it gets the server. Claude Code asks each of them to approve it the first time it starts in the project.
+
+The `@latest` tag in these configurations makes `npx` check for a new release each time the server starts, so the server's docs keep up with `@optiaxiom/react` even when an older copy is installed in the project or globally.
 
 ### Cursor
 
@@ -71,7 +75,7 @@ Add to `.cursor/mcp.json` in your project, or `~/.cursor/mcp.json` for every pro
   "mcpServers": {
     "axiom": {
       "command": "npx",
-      "args": ["-y", "@optiaxiom/mcp"]
+      "args": ["-y", "@optiaxiom/mcp@latest"]
     }
   }
 }
@@ -86,7 +90,7 @@ Add to `.vscode/mcp.json` in your project:
   "servers": {
     "axiom": {
       "command": "npx",
-      "args": ["-y", "@optiaxiom/mcp"]
+      "args": ["-y", "@optiaxiom/mcp@latest"]
     }
   }
 }
@@ -97,7 +101,7 @@ Add to `.vscode/mcp.json` in your project:
 You can also run the server directly:
 
 ```bash
-npx @optiaxiom/mcp
+npx @optiaxiom/mcp@latest
 ```
 
 ### Embedding in a host
@@ -137,7 +141,7 @@ If your assistant doesn't use the Axiom tools, check that the server started: ru
         "-y",
         "--registry",
         "https://registry.npmjs.org",
-        "@optiaxiom/mcp"
+        "@optiaxiom/mcp@latest"
       ]
     }
   }

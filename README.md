@@ -18,7 +18,7 @@ npm install @optiaxiom/react
 We provide an [MCP server](./packages/mcp) that enables AI assistants like Claude Code and Cursor to access accurate Axiom component metadata, design tokens, and usage examples. This helps AI assistants generate better code using the Axiom design system.
 
 ```sh
-npm install -g @optiaxiom/mcp
+claude mcp add --scope project axiom -- npx -y @optiaxiom/mcp@latest
 ```
 
 See the [MCP guide](https://optimizely-axiom.github.io/optiaxiom/guides/mcp) for setup instructions.
