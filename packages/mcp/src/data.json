@@ -104345,7 +104345,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/spotlight"
     },
     "SpotlightTrigger": {
-      "description": "SpotlightTrigger component from Axiom Design System",
+      "description": "Search button that opens the Spotlight, also with Cmd/Ctrl+K.\n\nLeave out `children` for an icon-only button, and give it an `aria-label`.\nTo show a full search button on larger screens and only the icon on small\nones, render one of each with responsive `display`. Every trigger binds the\nshortcut, which still opens the Spotlight once.",
       "import": "import { SpotlightTrigger } from '@optiaxiom/react/unstable';",
       "name": "SpotlightTrigger",
       "props": {
