@@ -157,7 +157,7 @@ Use the `intent` prop to control the appearance of items.
 
 Add the `href` property to options to render them as links.
 
-If the `execute` property is also present then the default link clicking behavior will be prevented (unless users use a modifier like <Kbd modifiers="mod">Enter</Kbd> to open in a new tab).
+If the `execute` property is also present then clicking an item or pressing <Kbd>Enter</Kbd> runs `execute` instead of following the link, so you control navigation (for example with your router). Holding Cmd or Shift while clicking still follows the link, so users can open it in a new tab or window.
 
 <Demo component="menu/link-execute-usage" meta="{13,28}" />
 

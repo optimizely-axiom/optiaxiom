@@ -68797,7 +68797,7 @@
                 "type": "object"
               },
               "href": {
-                "description": "Render a link with the given value as the `href` attribute.",
+                "description": "Render a link with the given value as the `href` attribute. Clicking or\npressing Enter follows the link. If `execute` is also set, clicking and\nEnter run `execute` instead, while Cmd+click and Shift+click still open\nthe link natively, e.g. in a new tab.",
                 "type": "string"
               },
               "intent": {
@@ -69217,7 +69217,7 @@
             "type MenuOption"
           ],
           "title": "link-execute-usage",
-          "description": "Add the `href` property to options to render them as links.\n\nIf the `execute` property is also present then the default link clicking behavior will be prevented (unless users use a modifier like Enter to open in a new tab).",
+          "description": "Add the `href` property to options to render them as links.\n\nIf the `execute` property is also present then clicking an item or pressing Enter runs `execute` instead of following the link, so you control navigation (for example with your router). Holding Cmd or Shift while clicking still follows the link, so users can open it in a new tab or window.",
           "heading": "Links"
         },
         {
@@ -83139,7 +83139,7 @@
                 "type": "object"
               },
               "href": {
-                "description": "Render a link with the given value as the `href` attribute.",
+                "description": "Render a link with the given value as the `href` attribute. Clicking or\npressing Enter follows the link. If `execute` is also set, clicking and\nEnter run `execute` instead, while Cmd+click and Shift+click still open\nthe link natively, e.g. in a new tab.",
                 "type": "string"
               },
               "intent": {
@@ -83478,7 +83478,7 @@
                 "type": "object"
               },
               "href": {
-                "description": "Render a link with the given value as the `href` attribute.",
+                "description": "Render a link with the given value as the `href` attribute. Clicking or\npressing Enter follows the link. If `execute` is also set, clicking and\nEnter run `execute` instead, while Cmd+click and Shift+click still open\nthe link natively, e.g. in a new tab.",
                 "type": "string"
               },
               "intent": {
@@ -103528,7 +103528,7 @@
                 "type": "object"
               },
               "href": {
-                "description": "Render a link with the given value as the `href` attribute.",
+                "description": "Render a link with the given value as the `href` attribute. Clicking or\npressing Enter follows the link. If `execute` is also set, clicking and\nEnter run `execute` instead, while Cmd+click and Shift+click still open\nthe link natively, e.g. in a new tab.",
                 "type": "string"
               },
               "intent": {
