@@ -1,5 +1,28 @@
 # @optiaxiom/mcp
 
+## 3.5.0
+
+### Minor Changes
+
+- 7d13f15: added documented `@optiaxiom/react` version and `since` to MCP
+
+### Patch Changes
+
+- f26a4ce: documented that `Kbd` `mod` shows ⌘ on macOS, Ctrl elsewhere
+- e6359c7: documented `Link asChild` with a `<button>` for non-navigating actions
+- f1b8a71: pointed `get_tokens` at the raw `tokens` export
+- de6cfa5: trimmed redundant reference tests from get_tests
+- 85378f5: documented closing a controlled `Menu` from `execute` with `dismiss`
+- f618400: documented how `Menu` links behave when `execute` is set
+- 3a96676: documented keeping server-ranked `Menu` results in order
+- a9830fc: documented passing `icon` to `MenuTrigger` for icon-only triggers
+- 31caf2c: documented `Spotlight` for global search and Cmd/Ctrl+K palettes
+- 496529a: fixed `Spotlight` calling `onOpenChange` once per trigger on Cmd/Ctrl+K
+- a7d37b6: added `disableHotkey` prop to `Spotlight`
+- 6358d9e: fixed `SpotlightTrigger` without children rendering an empty label
+- 1b9011f: added responsive `SpotlightTrigger` example
+- b809072: fixed `SpotlightTrigger` ignoring `asChild` and `icon`
+
 ## 3.4.0
 
 ### Minor Changes

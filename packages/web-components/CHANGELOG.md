@@ -1,5 +1,21 @@
 # @optiaxiom/web-components
 
+## 3.5.1
+
+### Patch Changes
+
+- f26a4ce: documented that `Kbd` `mod` shows ⌘ on macOS, Ctrl elsewhere
+- e6359c7: documented `Link asChild` with a `<button>` for non-navigating actions
+- 85378f5: documented closing a controlled `Menu` from `execute` with `dismiss`
+- 7a69e32: fixed Ctrl+click opening `Menu` links in a new tab
+- f618400: documented how `Menu` links behave when `execute` is set
+- 3a96676: documented keeping server-ranked `Menu` results in order
+- a9830fc: documented passing `icon` to `MenuTrigger` for icon-only triggers
+- 496529a: fixed `Spotlight` calling `onOpenChange` once per trigger on Cmd/Ctrl+K
+- a7d37b6: added `disableHotkey` prop to `Spotlight`
+- 6358d9e: fixed `SpotlightTrigger` without children rendering an empty label
+- b809072: fixed `SpotlightTrigger` ignoring `asChild` and `icon`
+
 ## 3.5.0
 
 ### Minor Changes
