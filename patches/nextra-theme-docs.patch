@@ -1,5 +1,34 @@
+diff --git a/dist/index.d.mts b/dist/index.d.mts
+index ebabfad9169099ad502a932fd6a2de5618fa1a19..83f2ce4784653fe52a508a91a39e12e7c1a24bc8 100644
+--- a/dist/index.d.mts
++++ b/dist/index.d.mts
+@@ -4,6 +4,7 @@ export { setMenu, useMenu } from './stores/menu.mjs';
+ export { useThemeConfig } from './stores/theme-config.mjs';
+ export { useMDXComponents } from './mdx-components/index.mjs';
+ export { Link } from './mdx-components/link.mjs';
++export { HeadingAnchor } from './mdx-components/heading-anchor.client.mjs';
+ export { Layout } from './layout.mjs';
+ export { Footer } from './components/footer/index.mjs';
+ export { LastUpdated } from './components/last-updated.mjs';
+diff --git a/dist/index.js b/dist/index.js
+index b9053fcecc17450dab560536a12bc5c6335b8ba4..ce7246d0399ded6185a66812d8f539d9dceef75e 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -2,10 +2,12 @@ import { useTheme } from "next-themes";
+ import { useThemeConfig, useConfig, useMenu, setMenu } from "./stores";
+ import { useMDXComponents } from "./mdx-components";
+ import { Link } from "./mdx-components/link";
++import { HeadingAnchor } from "./mdx-components/heading-anchor.client";
+ import { Layout } from "./layout";
+ import { NotFoundPage, Navbar, ThemeSwitch, LocaleSwitch, LastUpdated, Footer } from "./components";
+ export {
+   Footer,
++  HeadingAnchor,
+   LastUpdated,
+   Layout,
+   Link,
 diff --git a/dist/schemas.js b/dist/schemas.js
-index 060d0b9..8a7c81f 100644
+index 060d0b98b76515e4f0a1cd9edb3c3f5d31597540..8a7c81fb1f0ba3566afca4139e223243250a2679 100644
 --- a/dist/schemas.js
 +++ b/dist/schemas.js
 @@ -26,6 +26,7 @@ const nextThemesSchema = z.strictObject({
@@ -11,7 +40,7 @@ index 060d0b9..8a7c81f 100644
  });
  const sidebarSchema = z.strictObject({
 diff --git a/dist/style.css b/dist/style.css
-index 387ae10..2a942b8 100644
+index 387ae10a31bd549dca6992d87b2cd07b684ddf15..2a942b8fa605a980eaa539e5d1a0d0e3e3cc6aaa 100644
 --- a/dist/style.css
 +++ b/dist/style.css
 @@ -131,12 +131,14 @@
@@ -31,7 +60,7 @@ index 387ae10..2a942b8 100644
      line-height: 1.5;
      -webkit-text-size-adjust: 100%;
 diff --git a/dist/types.generated.d.mts b/dist/types.generated.d.mts
-index daa88cd..d8c22bc 100644
+index daa88cd96a942e16e74cc83d58da58500b9ab858..d8c22bc0913e4bf3a425274953b68d769476eb3a 100644
 --- a/dist/types.generated.d.mts
 +++ b/dist/types.generated.d.mts
 @@ -109,6 +109,9 @@ interface LayoutProps {

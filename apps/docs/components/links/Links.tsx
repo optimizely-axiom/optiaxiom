@@ -4,7 +4,12 @@ import { Link } from "nextra-theme-docs";
 import { GitHubIcon } from "nextra/icons";
 
 export const Links = ({ component }: { component: string }) => (
-  <Group alignItems="start" flexDirection="column" gap="16">
+  <Group
+    alignItems="start"
+    data-pagefind-ignore
+    flexDirection="column"
+    gap="16"
+  >
     <Group gap="12" mt="16">
       <Button asChild icon={<GitHubIcon />}>
         <NextLink

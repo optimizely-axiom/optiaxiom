@@ -382,6 +382,8 @@ export function Cards({ items }: { items: Array<keyof typeof PAGES> }) {
   return (
     <Grid
       className={styles.cards}
+      // Each card repeats the summary of the page it links to.
+      data-pagefind-ignore
       gap="16"
       gridTemplateColumns={["1", "2"]}
       mt="16"

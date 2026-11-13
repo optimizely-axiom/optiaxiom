@@ -65,6 +65,8 @@ export function IconGallery() {
   return (
     <Group
       className={styles.IconGallery}
+      // A list of icon names matches unrelated searches ("table", "search").
+      data-pagefind-ignore
       flexDirection="column"
       gap="24"
       mt="16"
