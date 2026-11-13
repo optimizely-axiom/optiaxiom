@@ -14,8 +14,13 @@ export type MenuTriggerProps = ComponentPropsWithoutRef<typeof PopoverTrigger>;
  * Trigger button for Menu component with automatic chevron icon.
  *
  * Use this as the trigger for Menu dropdowns. By default, renders an
- * AngleMenuButton (button with trailing chevron). Use asChild to customize the
- * trigger button.
+ * AngleMenuButton (button with trailing chevron) and accepts all Button props:
+ * pass `icon` to replace the chevron, and leave out `children` (with an
+ * `aria-label`) for an icon-only trigger. Use asChild only to render a
+ * different component, such as EllipsisMenuButton.
+ *
+ * @example
+ * <MenuTrigger aria-label="Filters" icon={<IconFilter />} />
  *
  * @example
  * <MenuTrigger asChild><EllipsisMenuButton /></MenuTrigger>
