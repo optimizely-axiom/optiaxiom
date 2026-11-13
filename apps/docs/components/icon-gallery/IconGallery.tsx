@@ -34,6 +34,7 @@ const iconEntries = Object.entries(tags)
       keywords: (keywords as string[]).join(" ").toLowerCase(),
       label,
       labelLower: label.toLowerCase(),
+      name: component.replace(/^Icon/, "").toLowerCase(),
     };
   })
   .sort((a, b) => a.label.localeCompare(b.label));
@@ -169,6 +170,15 @@ function IconCell({
 }
 
 function searchScore(entry: (typeof iconEntries)[number], search: string) {
+  // Match the export name typed with or without its `Icon` prefix and spaces.
+  const name = search
+    .toLowerCase()
+    .replace(/\s+/g, "")
+    .replace(/^icon(?=.)/, "");
+  if (entry.name === name) return 1;
+  if (entry.name.startsWith(name)) return 0.9;
+  if (entry.name.includes(name)) return 0.8;
+
   const words = search.toLowerCase().split(/\s+/).filter(Boolean);
   if (
     !words.every(
@@ -177,11 +187,6 @@ function searchScore(entry: (typeof iconEntries)[number], search: string) {
   ) {
     return 0;
   }
-
-  const joined = words.join("");
-  if (entry.labelLower === joined) return 1;
-  if (entry.labelLower.startsWith(joined)) return 0.9;
-  if (entry.labelLower.includes(joined)) return 0.8;
   if (words.every((w) => entry.labelLower.includes(w))) return 0.7;
   return 0.5;
 }
