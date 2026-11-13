@@ -125,3 +125,16 @@ export const Basic: Story = {
     );
   },
 };
+
+export const IconOnly: Story = {
+  args: {
+    children: (
+      <>
+        <SpotlightTrigger aria-label="Quick search" />
+        <SpotlightContent />
+      </>
+    ),
+    defaultOpen: false,
+    options: pages.map((page) => ({ group: page.category, label: page.title })),
+  },
+};
