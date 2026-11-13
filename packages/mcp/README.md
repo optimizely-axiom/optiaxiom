@@ -144,6 +144,10 @@ If your assistant doesn't use the Axiom tools, check that the server started: ru
 }
 ```
 
+## Server Instructions
+
+The server's instructions name the `@optiaxiom/react` release its data was generated from. They tell the assistant that when the project's types reject a documented component or prop, the project may be behind, and to offer an upgrade before building a workaround; and that when the project is newer, a newer `@optiaxiom/mcp` may document what's missing.
+
 ## Available Tools
 
 The MCP server provides the following tools that AI assistants can use:
@@ -157,7 +161,7 @@ Get information about an Axiom component. Returns the component's description, i
 - `name` (string, required): Component name (e.g., "Badge", "Button", "Alert")
 - `props` (string, optional): Search query to find specific props by name or description (e.g., "appearance size", "loading", "padding background"). Omit to get just the component description, import, and sub-components without any props.
 
-**Returns:** Component metadata with description, import statement, sub-components, examples, `accessibility` (the `## Accessibility` section of the component's own docs page, so a sub-component documented on its group's page has none; a `### Accessibility` subsection isn't picked up), prop names or, with `props`, the matching prop definitions, and a `required` list of every prop that must be passed, whether or not `props` matched it (omitted when there are none). With `props`, a `note` explains the definition format, which the tool description leaves out to stay small: prop definitions use JSON Schema keywords (`type`, `enum`, `anyOf`, `items`, `default`, `description`), and object-typed props such as `options` list their fields under `properties` with a `required` list; `tsType` holds the TypeScript type where JSON Schema can't express it (functions, `ReactNode`, generics). Props that accept per-breakpoint values (`{ base, sm, md }` or `[base, sm, md]`) are marked `responsive: true`.
+**Returns:** Component metadata with description, import statement, sub-components, examples, `since` (the `@optiaxiom/react` release that added the component), `accessibility` (the `## Accessibility` section of the component's own docs page, so a sub-component documented on its group's page has none; a `### Accessibility` subsection isn't picked up), prop names or, with `props`, the matching prop definitions, and a `required` list of every prop that must be passed, whether or not `props` matched it (omitted when there are none). With `props`, a `note` explains the definition format, which the tool description leaves out to stay small: prop definitions use JSON Schema keywords (`type`, `enum`, `anyOf`, `items`, `default`, `description`), and object-typed props such as `options` list their fields under `properties` with a `required` list; `tsType` holds the TypeScript type where JSON Schema can't express it (functions, `ReactNode`, generics). Props that accept per-breakpoint values (`{ base, sm, md }` or `[base, sm, md]`) are marked `responsive: true`.
 
 ### `search_components`
 

@@ -28,6 +28,14 @@ const testHelperNote = `These tests use the repo's custom render helper, importe
 Everything else (\`screen\`, \`waitFor\`, queries, matchers) is re-exported from @testing-library/react. Prefer role/name queries (getByRole("alert"), getByRole("button", { name: "close" })) to assert accessibility, mirroring these examples.
 To set up tests in an app that uses Axiom (Jest or Vitest, jsdom or happy-dom), call get_guides({ names: "test-environments" }): it covers wrapping in AxiomProvider, turning off animations, \`cleanup\` from @optiaxiom/react/testing between tests, and the stubs jsdom needs. Don't mock Axiom components: render them and query by role as these tests do.`;
 
+const reactVersion = process.env.REACT_VERSION;
+
+const instructions = `This MCP documents @optiaxiom/react ${reactVersion}. Most components list the release that added them as \`since\`.
+
+Projects often resolve an older @optiaxiom/react. When the project's types reject a component or prop documented here, the project may be behind: check the version the package you're editing resolves (its lockfile, or node_modules/@optiaxiom/react/package.json), and if it's older, offer the user an upgrade before building a workaround. If its declared range already allows ${reactVersion}, refreshing the lockfile is enough (e.g. \`npm update @optiaxiom/react\`); otherwise raise the range.
+
+If the project resolves a newer @optiaxiom/react than ${reactVersion}, APIs added since may be missing here. A newer @optiaxiom/mcp may document them: npx with @optiaxiom/mcp@latest picks it up on restart; a global or project install needs updating.`;
+
 const tokenCategories = [
   "borderRadius",
   "breakpoints",
@@ -48,10 +56,13 @@ const tokenCategories = [
  * request: an `McpServer` only holds one transport at a time.
  */
 export function createServer() {
-  const server = new McpServer({
-    name: pkg.name,
-    version: pkg.version,
-  });
+  const server = new McpServer(
+    {
+      name: pkg.name,
+      version: pkg.version,
+    },
+    { instructions },
+  );
 
   // Tool: get_component
   server.registerTool(
@@ -114,6 +125,7 @@ Examples:
               required: component.required?.length
                 ? component.required
                 : undefined,
+              since: component.since,
             }),
             type: "text" as const,
           },
