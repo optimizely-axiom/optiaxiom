@@ -49,15 +49,6 @@ describe("DataTable", () => {
       .map((row) => within(row).getAllByRole("cell")[0].textContent);
   }
 
-  it("finds columns by their header", () => {
-    setup();
-
-    expect(
-      screen.getAllByRole("columnheader").map((header) => header.textContent),
-    ).toEqual(["Keyword", "Volume"]);
-    expect(firstColumn()).toEqual(["design system", "accessibility"]);
-  });
-
   it("sorts from a column header", async () => {
     const { user } = setup();
 

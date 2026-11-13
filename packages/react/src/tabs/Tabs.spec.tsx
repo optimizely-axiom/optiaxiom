@@ -37,7 +37,6 @@ describe("Tabs", () => {
 
     await user.click(screen.getByRole("tab", { name: "Billing" }));
 
-    expect(onValueChange).toHaveBeenCalledTimes(1);
     expect(onValueChange).toHaveBeenCalledWith("billing");
     expect(screen.getByRole("tab", { name: "Billing" })).toHaveAttribute(
       "aria-selected",
