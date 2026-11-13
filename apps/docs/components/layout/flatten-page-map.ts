@@ -1,5 +1,9 @@
 import type { Folder, Meta, MetaJsonFile, PageMapItem } from "nextra";
 
+import { type ComponentPropsWithoutRef, isValidElement } from "react";
+
+import { LegacyItem } from "../../app/_meta.global";
+
 /** Route folders whose pages get hoisted into the root sidebar list. */
 const SECTIONS = ["guides", "components", "props"];
 
@@ -49,4 +53,26 @@ export function flattenPageMap(pageMap: PageMapItem[]): PageMapItem[] {
   }
 
   return [{ data }, ...items];
+}
+
+/**
+ * Pages the sidebar badges as legacy, mapped to the route that replaces each.
+ */
+export function getLegacyPages(pageMap: PageMapItem[]): Record<string, string> {
+  return Object.fromEntries(
+    pageMap
+      .filter(isFolder)
+      .flatMap((folder) =>
+        Object.entries(folder.children.find(isMeta)?.data ?? {}).flatMap(
+          ([name, meta]) =>
+            typeof meta === "object" &&
+            isValidElement<ComponentPropsWithoutRef<typeof LegacyItem>>(
+              meta.title,
+            ) &&
+            meta.title.type === LegacyItem
+              ? [[`/${folder.name}/${name}/`, meta.title.props.replacedBy]]
+              : [],
+        ),
+      ),
+  );
 }

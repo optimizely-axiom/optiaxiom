@@ -8,8 +8,9 @@ import { Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 
 import { CookieConsent } from "./CookieConsent";
-import { flattenPageMap } from "./flatten-page-map";
+import { flattenPageMap, getLegacyPages } from "./flatten-page-map";
 import "./Layout.css";
+import { Search } from "./Search";
 import { VersionSwitcher } from "./VersionSwitcher";
 
 export const metadata: Metadata = {
@@ -23,6 +24,8 @@ export const metadata: Metadata = {
 };
 
 export async function Layout({ children }: { children: ReactNode }) {
+  const pageMap = await getPageMap();
+
   return (
     <html dir="ltr" lang="en" suppressHydrationWarning>
       <Head
@@ -106,10 +109,14 @@ export async function Layout({ children }: { children: ReactNode }) {
                 projectLink="https://github.com/optimizely-axiom/optiaxiom"
               >
                 <VersionSwitcher />
+                <Search legacyPages={getLegacyPages(pageMap)} />
               </Navbar>
             }
             nextThemes={{ scriptProps: { type: "application/json" } }}
-            pageMap={flattenPageMap(await getPageMap())}
+            pageMap={flattenPageMap(pageMap)}
+            // Search renders in the navbar children: Nextra mounts this prop
+            // twice (navbar and mobile nav), which would bind ⌘K twice.
+            search={null}
             sidebar={{
               defaultMenuCollapseLevel: 1,
             }}

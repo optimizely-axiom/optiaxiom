@@ -8,7 +8,16 @@ const AlphaItem = ({ children }: { children?: ReactNode }) => (
   </Group>
 );
 
-const LegacyItem = ({ children }: { children?: ReactNode }) => (
+/**
+ * Sidebar title for a deprecated page. Search ranks the page last and hands its
+ * score to `replacedBy`, so searching the old name finds the replacement first.
+ */
+export const LegacyItem = ({
+  children,
+}: {
+  children?: ReactNode;
+  replacedBy: string;
+}) => (
   <Group flex="1" gap="16" justifyContent="space-between">
     {children} <Badge intent="danger">LEGACY</Badge>
   </Group>
@@ -116,7 +125,9 @@ export default {
       dialog: "Dialog",
       disclosure: "Disclosure",
       "dropdown-menu": {
-        title: <LegacyItem>DropdownMenu</LegacyItem>,
+        title: (
+          <LegacyItem replacedBy="/components/menu/">DropdownMenu</LegacyItem>
+        ),
       },
       "ellipsis-menu-button": "EllipsisMenuButton",
       field: "Field",
@@ -124,7 +135,7 @@ export default {
         title: <AlphaItem>FileUpload</AlphaItem>,
       },
       flex: {
-        title: <LegacyItem>Flex</LegacyItem>,
+        title: <LegacyItem replacedBy="/components/group/">Flex</LegacyItem>,
       },
       grid: "Grid",
       group: "Group",
