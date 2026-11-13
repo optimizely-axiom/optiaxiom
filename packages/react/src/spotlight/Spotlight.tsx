@@ -1,11 +1,21 @@
 import { type ComponentPropsWithoutRef } from "react";
 
-import type { ExcludeProps } from "../utils";
+import type { ExcludeProps, ExtendProps } from "../utils";
 
 import { Menu } from "../menu";
+import { SpotlightProvider } from "./SpotlightContext";
 
 export type SpotlightProps = ExcludeProps<
-  ComponentPropsWithoutRef<typeof Menu>,
+  ExtendProps<
+    ComponentPropsWithoutRef<typeof Menu>,
+    {
+      /**
+       * Turn off the Cmd/Ctrl+K hotkey, such as when another Spotlight on the
+       * page owns it.
+       */
+      disableHotkey?: boolean;
+    }
+  >,
   "inputVisible" | "size"
 >;
 
@@ -21,10 +31,16 @@ export type SpotlightProps = ExcludeProps<
  * @since 0.5.0
  * @experimental
  */
-export function Spotlight({ children, ...props }: SpotlightProps) {
+export function Spotlight({
+  children,
+  disableHotkey,
+  ...props
+}: SpotlightProps) {
   return (
     <Menu inputVisible="always" size="lg" {...props}>
-      {children}
+      <SpotlightProvider disableHotkey={disableHotkey}>
+        {children}
+      </SpotlightProvider>
     </Menu>
   );
 }

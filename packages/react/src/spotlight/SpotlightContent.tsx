@@ -4,6 +4,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { useMessages } from "../locale";
 import { MenuContent } from "../menu";
 import { useMenuContext } from "../menu/internals";
+import { useSpotlightContext } from "./SpotlightContext";
 
 export type SpotlightContentProps = ComponentPropsWithoutRef<
   typeof MenuContent
@@ -21,7 +22,10 @@ export const SpotlightContent = forwardRef<
   // Bound here, once per Spotlight, so any number of triggers (or none) share
   // the shortcut. This component stays rendered while the dialog is closed.
   const { open, setOpen } = useMenuContext("@optiaxiom/react/SpotlightContent");
-  useHotkeys([["mod+K", () => setOpen(!open)]]);
+  const { disableHotkey } = useSpotlightContext(
+    "@optiaxiom/react/SpotlightContent",
+  );
+  useHotkeys(disableHotkey ? [] : [["mod+K", () => setOpen(!open)]]);
 
   return (
     <MenuContent aria-label={messages["Quick search"]} ref={ref} {...props} />
