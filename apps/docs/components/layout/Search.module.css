@@ -1,0 +1,15 @@
+/* Taller than Menu's default (28rem) so about five two-line results fit. */
+.content {
+  max-height: min(34rem, 75dvh);
+}
+
+.excerpt mark {
+  background: none;
+  color: var(--ax-colors-fg-default);
+  font-weight: 600;
+}
+
+/* Sits with the version switcher, before the GitHub link. */
+.trigger {
+  order: -1;
+}
