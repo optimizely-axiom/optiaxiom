@@ -48,7 +48,10 @@ export type CommandOption = {
   group?: CommandOptionGroup;
   hiddenInSearchContext?: boolean;
   /**
-   * Render a link with the given value as the `href` attribute.
+   * Render a link with the given value as the `href` attribute. Clicking or
+   * pressing Enter follows the link. If `execute` is also set, clicking and
+   * Enter run `execute` instead, while Cmd+click and Shift+click still open
+   * the link natively, e.g. in a new tab.
    */
   href?: string;
   /**
