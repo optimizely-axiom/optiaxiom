@@ -70077,7 +70077,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/menu"
     },
     "MenuTrigger": {
-      "description": "Trigger button for Menu component with automatic chevron icon.\n\nUse this as the trigger for Menu dropdowns. By default, renders an\nAngleMenuButton (button with trailing chevron). Use asChild to customize the\ntrigger button.",
+      "description": "Trigger button for Menu component with automatic chevron icon.\n\nUse this as the trigger for Menu dropdowns. By default, renders an\nAngleMenuButton (button with trailing chevron) and accepts all Button props:\npass `icon` to replace the chevron, and leave out `children` (with an\n`aria-label`) for an icon-only trigger. Use asChild only to render a\ndifferent component, such as EllipsisMenuButton.",
       "entryPoint": "@optiaxiom/react/menu",
       "import": "import { MenuTrigger } from '@optiaxiom/react';",
       "name": "MenuTrigger",
