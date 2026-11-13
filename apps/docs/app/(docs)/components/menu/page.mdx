@@ -100,6 +100,14 @@ This demo shows the sorting on its own. Type "launch", then turn off `skipFilter
 
 <Demo component="menu/skip-score-usage" />
 
+#### Async creatable example
+
+A controlled menu (with `open` and `onOpenChange`) doesn't close when an item is picked, so each item decides. Close it from `execute` when its `dismiss` argument is true, and keep it open while slower work finishes, such as creating an item on the server.
+
+Type a new color and pick "Create": the menu shows a spinner until the color is saved, then closes.
+
+<Demo component="menu/async-creatable-usage" meta="{22-24,29-31,42-43,47,49}" />
+
 ### Empty
 
 By default menu will display a generic empty content message if no results are found matching your query. We can customize this empty message by setting the `empty` prop.

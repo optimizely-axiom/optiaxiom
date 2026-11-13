@@ -41,6 +41,10 @@ export type MenuProps = ExcludeProps<
       onOpenChange?: (open: boolean) => void;
       /**
        * The open state in controlled mode.
+       *
+       * A controlled menu doesn't close when an item is picked: close it from
+       * the item's `execute` when its `dismiss` argument is true. This lets an
+       * item keep the menu open, such as while an async create finishes.
        */
       open?: boolean;
       /**

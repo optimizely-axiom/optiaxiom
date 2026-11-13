@@ -68741,7 +68741,7 @@
           "tsType": "((open: boolean) => void)"
         },
         "open": {
-          "description": "The open state in controlled mode.",
+          "description": "The open state in controlled mode.\n\nA controlled menu doesn't close when an item is picked: close it from\nthe item's `execute` when its `dismiss` argument is true. This lets an\nitem keep the menu open, such as while an async create finishes.",
           "type": "boolean"
         },
         "options": {
@@ -68765,7 +68765,7 @@
                 "tsType": "string | (() => string)"
               },
               "execute": {
-                "description": "Handler that is called when an item is selected either via keyboard or mouse.",
+                "description": "Handler that is called when an item is selected either via keyboard or mouse.\n\n`dismiss` is whether this pick would close the menu. Menu and Spotlight\nclose on their own unless their `open` is controlled; then they leave it\nto you, so close them when `dismiss` is true.",
                 "tsType": "((context: { dismiss: boolean; inputValue: string | undefined; }) => void)"
               },
               "external": {
@@ -68924,6 +68924,23 @@
           "title": "appearance-usage",
           "description": "Use the `intent` prop to control the appearance of items.",
           "heading": "Appearance"
+        },
+        {
+          "code": [
+            {
+              "content": "\"use client\";\n\nimport {\n  Menu,\n  MenuContent,\n  type MenuOption,\n  MenuTrigger,\n} from \"@optiaxiom/react\";\nimport { useState } from \"react\";\n\nconst createColor = (label: string) =>\n  new Promise<string>((resolve) => setTimeout(() => resolve(label), 1000));\n\nexport function App() {\n  const [items, setItems] = useState([\"Ocean\", \"Blue\", \"Purple\"]);\n  const [value, setValue] = useState<string>();\n  const [open, setOpen] = useState(false);\n  const [saving, setSaving] = useState(false);\n\n  return (\n    <Menu\n      loading={saving && \"spinner\"}\n      onOpenChange={setOpen}\n      open={open}\n      options={[\n        ...items.map<MenuOption>((color) => ({\n          execute: ({ dismiss }) => {\n            setValue(color);\n            if (dismiss) {\n              setOpen(false);\n            }\n          },\n          label: color,\n          selected: value === color,\n        })),\n        {\n          detail: ({ inputValue }) => `\"${inputValue}\"`,\n          execute: ({ inputValue }) => {\n            if (!inputValue || saving) {\n              return;\n            }\n            setSaving(true);\n            void createColor(inputValue)\n              .then((color) => {\n                setItems((items) => [...items, color]);\n                setValue(color);\n                setOpen(false);\n              })\n              .finally(() => setSaving(false));\n          },\n          label: \"Create: \",\n          visible: ({ inputValue }) =>\n            inputValue\n              ? !items.find(\n                  (item) => item.toLowerCase() === inputValue.toLowerCase(),\n                )\n              : false,\n        },\n      ]}\n    >\n      <MenuTrigger w=\"224\">{value || \"Select colors\"}</MenuTrigger>\n      <MenuContent />\n    </Menu>\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": [
+            "Menu",
+            "MenuContent",
+            "MenuTrigger",
+            "type MenuOption"
+          ],
+          "title": "async-creatable-usage",
+          "description": "A controlled menu (with `open` and `onOpenChange`) doesn't close when an item is picked, so each item decides. Close it from `execute` when its `dismiss` argument is true, and keep it open while slower work finishes, such as creating an item on the server.\n\nType a new color and pick \"Create\": the menu shows a spinner until the color is saved, then closes.",
+          "heading": "Input > Async creatable example"
         },
         {
           "code": [
@@ -83083,7 +83100,7 @@
           "tsType": "((open: boolean) => void)"
         },
         "open": {
-          "description": "The open state in controlled mode.",
+          "description": "The open state in controlled mode.\n\nA controlled menu doesn't close when an item is picked: close it from\nthe item's `execute` when its `dismiss` argument is true. This lets an\nitem keep the menu open, such as while an async create finishes.",
           "type": "boolean"
         },
         "options": {
@@ -83107,7 +83124,7 @@
                 "tsType": "string | (() => string)"
               },
               "execute": {
-                "description": "Handler that is called when an item is selected either via keyboard or mouse.",
+                "description": "Handler that is called when an item is selected either via keyboard or mouse.\n\n`dismiss` is whether this pick would close the menu. Menu and Spotlight\nclose on their own unless their `open` is controlled; then they leave it\nto you, so close them when `dismiss` is true.",
                 "tsType": "((context: { dismiss: boolean; inputValue: string | undefined; }) => void)"
               },
               "external": {
@@ -83446,7 +83463,7 @@
                 "tsType": "string | (() => string)"
               },
               "execute": {
-                "description": "Handler that is called when an item is selected either via keyboard or mouse.",
+                "description": "Handler that is called when an item is selected either via keyboard or mouse.\n\n`dismiss` is whether this pick would close the menu. Menu and Spotlight\nclose on their own unless their `open` is controlled; then they leave it\nto you, so close them when `dismiss` is true.",
                 "tsType": "((context: { dismiss: boolean; inputValue: string | undefined; }) => void)"
               },
               "external": {
@@ -103472,7 +103489,7 @@
           "tsType": "((open: boolean) => void)"
         },
         "open": {
-          "description": "The open state in controlled mode.",
+          "description": "The open state in controlled mode.\n\nA controlled menu doesn't close when an item is picked: close it from\nthe item's `execute` when its `dismiss` argument is true. This lets an\nitem keep the menu open, such as while an async create finishes.",
           "type": "boolean"
         },
         "options": {
@@ -103496,7 +103513,7 @@
                 "tsType": "string | (() => string)"
               },
               "execute": {
-                "description": "Handler that is called when an item is selected either via keyboard or mouse.",
+                "description": "Handler that is called when an item is selected either via keyboard or mouse.\n\n`dismiss` is whether this pick would close the menu. Menu and Spotlight\nclose on their own unless their `open` is controlled; then they leave it\nto you, so close them when `dismiss` is true.",
                 "tsType": "((context: { dismiss: boolean; inputValue: string | undefined; }) => void)"
               },
               "external": {
