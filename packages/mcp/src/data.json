@@ -103635,6 +103635,24 @@
         {
           "code": [
             {
+              "content": "\"use client\";\n\nimport { Kbd, type MenuOption } from \"@optiaxiom/react\";\nimport {\n  Spotlight,\n  SpotlightContent,\n  SpotlightTrigger,\n} from \"@optiaxiom/react/unstable\";\nimport { useMemo } from \"react\";\n\nexport function App() {\n  return (\n    <Spotlight\n      options={useMemo<MenuOption[]>(\n        () => [\n          { href: \"../\", label: \"Components\" },\n          { href: \"../../\", label: \"Home\" },\n        ],\n        [],\n      )}\n    >\n      <SpotlightTrigger aria-label=\"Search\" display={[\"flex\", \"none\"]} />\n      <SpotlightTrigger\n        addonAfter={\n          <Kbd color=\"fg.tertiary\" ml=\"auto\" modifiers=\"mod\" variant=\"subtle\">\n            K\n          </Kbd>\n        }\n        display={[\"none\", \"flex\"]}\n        w=\"224\"\n      >\n        Search\n      </SpotlightTrigger>\n      <SpotlightContent />\n    </Spotlight>\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": [
+            "Kbd",
+            "Spotlight",
+            "SpotlightContent",
+            "SpotlightTrigger",
+            "type MenuOption"
+          ],
+          "title": "responsive-trigger-usage",
+          "description": "A `Spotlight` can have more than one `SpotlightTrigger`. Leave out `children` (and give it an `aria-label`) for an icon-only trigger, then use responsive `display` to show the icon on small screens and the full search button on larger ones. Resize the window to see the triggers swap.",
+          "heading": "Responsive trigger"
+        },
+        {
+          "code": [
+            {
               "content": "\"use client\";\n\nimport { type MenuOption, toaster } from \"@optiaxiom/react\";\nimport {\n  Spotlight,\n  SpotlightContent,\n  SpotlightTrigger,\n} from \"@optiaxiom/react/unstable\";\nimport { useMemo } from \"react\";\n\nconst groups = {\n  actions: { label: \"Actions\" },\n  pages: { label: \"Pages\" },\n} satisfies Record<string, MenuOption[\"group\"]>;\n\nexport function App() {\n  return (\n    <Spotlight\n      options={useMemo<MenuOption[]>(\n        () => [\n          { group: groups.pages, href: \"../\", label: \"Components\" },\n          { group: groups.pages, href: \"../../\", label: \"Home\" },\n          {\n            execute: () => toaster.create(\"Created a project\"),\n            group: groups.actions,\n            label: \"Create project\",\n          },\n          {\n            execute: () => toaster.create(\"Invited a member\"),\n            group: groups.actions,\n            label: \"Invite member\",\n          },\n        ],\n        [],\n      )}\n    >\n      <SpotlightTrigger>Search</SpotlightTrigger>\n      <SpotlightContent />\n    </Spotlight>\n  );\n}\n",
               "filename": "App.tsx"
             }

@@ -39,6 +39,12 @@ Use the `visible` callback on options to show recent items while the search inpu
 
 <Demo component="spotlight/recent-usage" />
 
+### Responsive trigger
+
+A `Spotlight` can have more than one `SpotlightTrigger`. Leave out `children` (and give it an `aria-label`) for an icon-only trigger, then use responsive `display` to show the icon on small screens and the full search button on larger ones. Resize the window to see the triggers swap.
+
+<Demo component="spotlight/responsive-trigger-usage" meta="{22,29}" />
+
 ### Related
 
 <Cards items={["Menu"]} />
