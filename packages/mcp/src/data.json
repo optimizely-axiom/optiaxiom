@@ -68825,7 +68825,7 @@
                 "tsType": "boolean | (() => boolean)"
               },
               "skipFilterScoring": {
-                "description": "Whether to skip scoring when filtering and sorting by the score.",
+                "description": "Exclude this item from match scoring. Menu sorts matching items by how\nclosely their label (or `keywords`) matches the typed text; set this on\nevery item whose order already means something, such as results ranked\nby a search API (together with `visible: true`). Group `priority` still\napplies.",
                 "type": "boolean"
               },
               "subOptions": {
@@ -68841,7 +68841,7 @@
                 "type": "boolean"
               },
               "visible": {
-                "description": "Override the default filtering logic and fully control when an item is\nvisible based on the current inputValue.",
+                "description": "Override the default filtering logic and fully control when an item is\nvisible based on the current inputValue. Set `true` for options you\nalready filtered yourself, such as results loaded as the user types.\nMatching items are still sorted by match score unless\n`skipFilterScoring` is set.",
                 "tsType": "boolean | ((context: { inputValue: string | undefined; }) => boolean | undefined)"
               }
             },
@@ -69269,7 +69269,9 @@
             }
           ],
           "components": ["Box", "Menu", "MenuContent", "MenuTrigger"],
-          "title": "skip-score-usage"
+          "title": "skip-score-usage",
+          "description": "Mark loaded options with `visible: true` so the menu doesn't filter them a second time. The menu still sorts matching options by how closely their label (or `keywords`) matches the typed text. When the order matters, such as results ranked by a search API, also set `skipFilterScoring: true` on every option to keep them in the order you pass (group `priority` still applies).\n\nThis demo shows the sorting on its own. Type \"launch\", then turn off `skipFilterScoring`: the sub-items move away from their campaigns.",
+          "heading": "Input > Async loading example"
         },
         {
           "code": [
@@ -83165,7 +83167,7 @@
                 "tsType": "boolean | (() => boolean)"
               },
               "skipFilterScoring": {
-                "description": "Whether to skip scoring when filtering and sorting by the score.",
+                "description": "Exclude this item from match scoring. Menu sorts matching items by how\nclosely their label (or `keywords`) matches the typed text; set this on\nevery item whose order already means something, such as results ranked\nby a search API (together with `visible: true`). Group `priority` still\napplies.",
                 "type": "boolean"
               },
               "subOptions": {
@@ -83181,7 +83183,7 @@
                 "type": "boolean"
               },
               "visible": {
-                "description": "Override the default filtering logic and fully control when an item is\nvisible based on the current inputValue.",
+                "description": "Override the default filtering logic and fully control when an item is\nvisible based on the current inputValue. Set `true` for options you\nalready filtered yourself, such as results loaded as the user types.\nMatching items are still sorted by match score unless\n`skipFilterScoring` is set.",
                 "tsType": "boolean | ((context: { inputValue: string | undefined; }) => boolean | undefined)"
               }
             },
@@ -83504,7 +83506,7 @@
                 "tsType": "boolean | (() => boolean)"
               },
               "skipFilterScoring": {
-                "description": "Whether to skip scoring when filtering and sorting by the score.",
+                "description": "Exclude this item from match scoring. Menu sorts matching items by how\nclosely their label (or `keywords`) matches the typed text; set this on\nevery item whose order already means something, such as results ranked\nby a search API (together with `visible: true`). Group `priority` still\napplies.",
                 "type": "boolean"
               },
               "subOptions": {
@@ -83520,7 +83522,7 @@
                 "type": "boolean"
               },
               "visible": {
-                "description": "Override the default filtering logic and fully control when an item is\nvisible based on the current inputValue.",
+                "description": "Override the default filtering logic and fully control when an item is\nvisible based on the current inputValue. Set `true` for options you\nalready filtered yourself, such as results loaded as the user types.\nMatching items are still sorted by match score unless\n`skipFilterScoring` is set.",
                 "tsType": "boolean | ((context: { inputValue: string | undefined; }) => boolean | undefined)"
               }
             },
@@ -103554,7 +103556,7 @@
                 "tsType": "boolean | (() => boolean)"
               },
               "skipFilterScoring": {
-                "description": "Whether to skip scoring when filtering and sorting by the score.",
+                "description": "Exclude this item from match scoring. Menu sorts matching items by how\nclosely their label (or `keywords`) matches the typed text; set this on\nevery item whose order already means something, such as results ranked\nby a search API (together with `visible: true`). Group `priority` still\napplies.",
                 "type": "boolean"
               },
               "subOptions": {
@@ -103570,7 +103572,7 @@
                 "type": "boolean"
               },
               "visible": {
-                "description": "Override the default filtering logic and fully control when an item is\nvisible based on the current inputValue.",
+                "description": "Override the default filtering logic and fully control when an item is\nvisible based on the current inputValue. Set `true` for options you\nalready filtered yourself, such as results loaded as the user types.\nMatching items are still sorted by match score unless\n`skipFilterScoring` is set.",
                 "tsType": "boolean | ((context: { inputValue: string | undefined; }) => boolean | undefined)"
               }
             },

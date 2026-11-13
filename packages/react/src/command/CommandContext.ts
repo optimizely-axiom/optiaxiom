@@ -80,7 +80,11 @@ export type CommandOption = {
    */
   selected?: (() => boolean) | boolean;
   /**
-   * Whether to skip scoring when filtering and sorting by the score.
+   * Exclude this item from match scoring. Menu sorts matching items by how
+   * closely their label (or `keywords`) matches the typed text; set this on
+   * every item whose order already means something, such as results ranked
+   * by a search API (together with `visible: true`). Group `priority` still
+   * applies.
    */
   skipFilterScoring?: boolean;
   /**
@@ -130,7 +134,10 @@ export type CommandOption = {
   switch?: boolean;
   /**
    * Override the default filtering logic and fully control when an item is
-   * visible based on the current inputValue.
+   * visible based on the current inputValue. Set `true` for options you
+   * already filtered yourself, such as results loaded as the user types.
+   * Matching items are still sorted by match score unless
+   * `skipFilterScoring` is set.
    */
   visible?:
     | ((context: { inputValue: string | undefined }) => boolean | undefined)

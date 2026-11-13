@@ -94,6 +94,12 @@ And we can toggle the `loading` prop to show a loading state while the data is l
 
 <Demo component="menu/input-controlled-usage" meta="{50,51}" />
 
+Mark loaded options with `visible: true` so the menu doesn't filter them a second time. The menu still sorts matching options by how closely their label (or `keywords`) matches the typed text. When the order matters, such as results ranked by a search API, also set `skipFilterScoring: true` on every option to keep them in the order you pass (group `priority` still applies).
+
+This demo shows the sorting on its own. Type "launch", then turn off `skipFilterScoring`: the sub-items move away from their campaigns.
+
+<Demo component="menu/skip-score-usage" />
+
 ### Empty
 
 By default menu will display a generic empty content message if no results are found matching your query. We can customize this empty message by setting the `empty` prop.
