@@ -1,6 +1,7 @@
 import { defineConfig } from "rolldown";
 import { dts } from "rolldown-plugin-dts";
 
+import reactPkg from "../react/package.json" with { type: "json" };
 import pkg from "./package.json" with { type: "json" };
 import { generateDataPlugin } from "./plugins/rollup-plugin-generate-data.mjs";
 
@@ -22,6 +23,7 @@ export default defineConfig([
     transform: {
       define: {
         "process.env.NODE_ENV": JSON.stringify(env),
+        "process.env.REACT_VERSION": JSON.stringify(reactPkg.version),
       },
       target: "esnext",
     },
