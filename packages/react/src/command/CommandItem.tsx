@@ -102,7 +102,12 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
         if (disabledReason) {
           event.preventDefault();
         } else if (event.currentTarget instanceof HTMLAnchorElement) {
-          if (event.altKey || event.metaKey || event.shiftKey) {
+          if (
+            event.altKey ||
+            event.ctrlKey ||
+            event.metaKey ||
+            event.shiftKey
+          ) {
             Object.assign(event, {
               preventDownshiftDefault: true,
             });
