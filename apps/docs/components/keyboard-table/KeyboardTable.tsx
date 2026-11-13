@@ -29,7 +29,8 @@ export function KeyboardTable({
       <tbody>
         {interactions.map(async (interaction, index) => (
           <Tr key={index}>
-            <Td>
+            {/* Key names ("Space", "Enter") match unrelated searches. */}
+            <Td data-pagefind-ignore>
               <KeyCell keys={interaction.keys} />
             </Td>
             <Td>

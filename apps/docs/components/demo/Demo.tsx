@@ -75,7 +75,8 @@ export async function Demo({
   );
 
   return (
-    <Box bg="bg.avatar.neutral" mt="32" rounded="lg">
+    // Demo previews show sample data and demo code is an example, not docs.
+    <Box bg="bg.avatar.neutral" data-pagefind-ignore mt="32" rounded="lg">
       <DemoPreview
         component={<Component />}
         propTypes={doc?.props}

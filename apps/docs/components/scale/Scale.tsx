@@ -35,7 +35,9 @@ export const Scale = ({
   valueLabel = "Styles",
   values: sprinklePropOrValues,
 }: ScaleProps) => (
-  <Table maxH={maxH}>
+  // Token tables list raw style values (`var(--ax-…)`), which read as noise in
+  // search excerpts; each page's prose already names the prop.
+  <Table data-pagefind-ignore maxH={maxH}>
     <Thead>
       <tr>
         <Th className="x:sticky x:top-0">Name</Th>

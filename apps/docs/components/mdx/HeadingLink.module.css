@@ -4,17 +4,10 @@
   }
 }
 
+/* Out of tab order and the a11y tree, but still laid out so Nextra's TOC
+   observer sees it intersect. */
 .hidden {
-  opacity: 0;
-  pointer-events: none;
-
-  h6 {
-    counter-increment: none;
-
-    &::before {
-      content: "";
-    }
-  }
+  visibility: hidden;
 }
 
 .group {

@@ -14,7 +14,7 @@ export const PropType = ({ prop }: PropTypeProps) => {
   const defn = <PropDefinition prop={prop} />;
   return (
     <>
-      <Text>
+      <Text data-pagefind-ignore>
         <Box asChild fontFamily="mono">
           <code>
             {prop.type.raw?.startsWith(
@@ -39,7 +39,7 @@ export const PropType = ({ prop }: PropTypeProps) => {
         </Box>
       </Text>
       {prop.defaultValue && (
-        <Text>
+        <Text data-pagefind-ignore>
           <Box asChild color="fg.secondary" fontWeight="600">
             <strong>Default: </strong>
           </Box>

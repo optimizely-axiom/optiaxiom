@@ -5,7 +5,7 @@
   "scripts": {
     "build": "next build",
     "dev": "concurrently --raw \"sleep 3 && node -e \\\"require('better-opn')('http://localhost:5055')\\\"\" \"wait-on ../../packages/shared/data/docs.json && next dev -p 5055\"",
-    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind"
+    "postbuild": "node build-search-index.mjs"
   },
   "devDependencies": {
     "@cfworker/json-schema": "^4.1.1",

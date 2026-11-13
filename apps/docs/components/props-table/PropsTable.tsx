@@ -36,13 +36,18 @@ export async function PropsTable({ component }: { component: AllComponents }) {
     .join("\n// or\n");
 
   return (
-    <>
-      <MDXRemote
-        compiledSource={await compileMdx(
-          `\`\`\`tsx\n${imports}\n\`\`\``,
-          nextraOptions,
-        )}
-      />
+    // Searchable for prop names nothing else mentions, but weighted low so it
+    // doesn't outrank the prose. Only names and descriptions are indexed: the
+    // import line, types and defaults read as noise in excerpts.
+    <div data-pagefind-weight="0.2" style={{ display: "contents" }}>
+      <div data-pagefind-ignore>
+        <MDXRemote
+          compiledSource={await compileMdx(
+            `\`\`\`tsx\n${imports}\n\`\`\``,
+            nextraOptions,
+          )}
+        />
+      </div>
       <PropsTableDescription
         baseName={baseName}
         name={component as AllComponents}
@@ -63,7 +68,7 @@ export async function PropsTable({ component }: { component: AllComponents }) {
         )}
       </PropsTableDescription>
       <Table>
-        <Thead>
+        <Thead data-pagefind-ignore>
           <tr>
             <Th>Prop</Th>
           </tr>
@@ -128,7 +133,7 @@ export async function PropsTable({ component }: { component: AllComponents }) {
             ))}
         </tbody>
       </Table>
-    </>
+    </div>
   );
 }
 
@@ -150,7 +155,7 @@ function PropsTableDescription({
   virtual?: boolean;
 }) {
   return (
-    <Text fontSize="lg" mt="16">
+    <Text data-pagefind-ignore fontSize="lg" mt="16">
       {children}
       {matches(["Tooltip"], name) ? (
         <>
