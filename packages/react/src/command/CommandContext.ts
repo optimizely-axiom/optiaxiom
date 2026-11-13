@@ -33,6 +33,10 @@ export type CommandOption = {
   disabledReason?: (() => string) | string;
   /**
    * Handler that is called when an item is selected either via keyboard or mouse.
+   *
+   * `dismiss` is whether this pick would close the menu. Menu and Spotlight
+   * close on their own unless their `open` is controlled; then they leave it
+   * to you, so close them when `dismiss` is true.
    */
   execute?: (context: {
     dismiss: boolean;
