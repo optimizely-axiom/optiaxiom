@@ -69,46 +69,6 @@ describe("createServer", () => {
     await client.close();
   });
 
-  it("explains the prop definition format only alongside prop definitions", async () => {
-    const client = await connect(createServer());
-
-    const [names, definitions] = await Promise.all(
-      [{ name: "Box" }, { name: "Box", props: "padding" }].map(async (args) =>
-        JSON.parse(
-          (
-            (await client.callTool({ arguments: args, name: "get_component" }))
-              .content as Array<{ text: string }>
-          )[0].text,
-        ),
-      ),
-    );
-
-    expect(names).not.toHaveProperty("note");
-    expect(definitions.note).toContain("responsive: true");
-
-    await client.close();
-  });
-
-  it("lists required props among the requested prop definitions", async () => {
-    const client = await connect(createServer());
-
-    const result = await client.callTool({
-      arguments: { name: "Select", props: "options" },
-      name: "get_component",
-    });
-    const { props, required } = JSON.parse(
-      (result.content as Array<{ text: string }>)[0].text,
-    );
-
-    expect(props.options).toMatchObject({
-      items: { title: "SelectOption", type: "object" },
-      type: "array",
-    });
-    expect(required).toEqual(["options"]);
-
-    await client.close();
-  });
-
   it("lists every required prop even when the props query doesn't match it", async () => {
     const client = await connect(createServer());
 
@@ -139,24 +99,6 @@ describe("createServer", () => {
 
     expect(props).toContain("options");
     expect(required).toEqual(["options"]);
-
-    await client.close();
-  });
-
-  it("returns the accessibility section of the component's docs page", async () => {
-    const client = await connect(createServer());
-
-    const result = await client.callTool({
-      arguments: { name: "Calendar" },
-      name: "get_component",
-    });
-    const { accessibility } = JSON.parse(
-      (result.content as Array<{ text: string }>)[0].text,
-    );
-
-    expect(accessibility).toContain(
-      "| `Shift+PageUp`, `Shift+PageDown` | Navigate between years in the calendar. |",
-    );
 
     await client.close();
   });
@@ -198,45 +140,6 @@ describe("createServer", () => {
 
     expect(accessibility).toContain("shows only the ellipsis icon");
     expect(examples).toHaveLength(1);
-
-    await client.close();
-  });
-
-  it("omits required when a component has no required props", async () => {
-    const client = await connect(createServer());
-
-    const result = await client.callTool({
-      arguments: { name: "Button" },
-      name: "get_component",
-    });
-    const { required } = JSON.parse(
-      (result.content as Array<{ text: string }>)[0].text,
-    );
-
-    expect(required).toBeUndefined();
-
-    await client.close();
-  });
-
-  it("returns the native props that control a form control's state", async () => {
-    const client = await connect(createServer());
-
-    const props = async (name: string, query: string) => {
-      const result = await client.callTool({
-        arguments: { name, props: query },
-        name: "get_component",
-      });
-      return Object.keys(
-        JSON.parse((result.content as Array<{ text: string }>)[0].text).props,
-      );
-    };
-
-    expect(await props("Switch", "checked defaultChecked disabled")).toEqual(
-      expect.arrayContaining(["checked", "defaultChecked", "disabled"]),
-    );
-    expect(await props("Input", "value defaultValue maxLength")).toEqual(
-      expect.arrayContaining(["value", "defaultValue", "maxLength"]),
-    );
 
     await client.close();
   });

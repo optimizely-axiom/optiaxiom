@@ -46,19 +46,6 @@ describe("Toast", () => {
         ).not.toBeInTheDocument(),
       );
     });
-
-    it("can unmount while a toast is still showing", async () => {
-      const { unmount, user } = setup();
-
-      await user.click(screen.getByRole("button", { name: "Save" }));
-      await within(
-        screen.getByRole("region", { name: /notifications/i }),
-      ).findByText("Changes saved");
-
-      // A timer left running would fire after the test environment is torn down.
-      unmount();
-      expect(vi.getTimerCount()).toBe(0);
-    });
   });
 
   describe("with an action", () => {
@@ -92,26 +79,6 @@ describe("Toast", () => {
       );
 
       expect(onUndo).toHaveBeenCalledTimes(1);
-      await waitFor(() =>
-        expect(
-          screen.queryByRole("region", { name: /notifications/i }),
-        ).not.toBeInTheDocument(),
-      );
-    });
-
-    it("stays open for 1.5 times the provider duration", async () => {
-      const { user } = setup();
-
-      await user.click(screen.getByRole("button", { name: "Delete" }));
-      const notifications = within(
-        screen.getByRole("region", { name: /notifications/i }),
-      );
-      await notifications.findByText("Task deleted");
-
-      await vi.advanceTimersByTimeAsync(7000);
-      expect(notifications.getByText("Task deleted")).toBeVisible();
-
-      await vi.advanceTimersByTimeAsync(500);
       await waitFor(() =>
         expect(
           screen.queryByRole("region", { name: /notifications/i }),

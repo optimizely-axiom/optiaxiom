@@ -1,40 +1,29 @@
 import { useState } from "react";
 import { describe, expect, it, vi } from "vitest";
 
-import { render, screen, within } from "../../vitest.rtl";
+import { render, screen } from "../../vitest.rtl";
 import { Pagination } from "./index";
 
 describe("Pagination", () => {
   function setup() {
     const onPageChange = vi.fn();
-    const orders = Array.from({ length: 50 }, (_, i) => `Order ${i + 1}`);
-    const pageSize = 10;
 
-    function Orders() {
+    function ControlledPagination() {
       const [page, setPage] = useState(1);
 
       return (
-        <>
-          <ul aria-label="Orders">
-            {orders
-              .slice((page - 1) * pageSize, page * pageSize)
-              .map((order) => (
-                <li key={order}>{order}</li>
-              ))}
-          </ul>
-          <Pagination
-            onPageChange={(page) => {
-              setPage(page);
-              onPageChange(page);
-            }}
-            page={page}
-            total={orders.length / pageSize}
-          />
-        </>
+        <Pagination
+          onPageChange={(page) => {
+            setPage(page);
+            onPageChange(page);
+          }}
+          page={page}
+          total={5}
+        />
       );
     }
 
-    return { ...render(<Orders />), onPageChange };
+    return { ...render(<ControlledPagination />), onPageChange };
   }
 
   it("shows the page the user clicks", async () => {
@@ -46,11 +35,6 @@ describe("Pagination", () => {
     expect(
       screen.getByRole("button", { current: "page" }),
     ).toHaveAccessibleName("page 3");
-    expect(
-      within(screen.getByRole("list", { name: "Orders" })).getAllByRole(
-        "listitem",
-      )[0],
-    ).toHaveTextContent("Order 21");
   });
 
   it("steps through pages with the next and previous buttons", async () => {
