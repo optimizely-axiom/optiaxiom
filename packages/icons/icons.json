@@ -234,6 +234,7 @@
   "picture_as_pdf": ["FilePdf"],
   "pie_chart": ["FileChartPie"],
   "pinboard": ["Pinboard"],
+  "pip": ["Pip"],
   "play_arrow": ["Play"],
   "play_circle": ["CirclePlay"],
   "poll": ["SquarePollHorizontal"],
