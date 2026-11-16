@@ -21,7 +21,6 @@ export type PopoverContentProps = ExcludeProps<
   >,
   | "arrowPadding"
   | "avoidCollisions"
-  | "collisionBoundary"
   | "collisionPadding"
   | "deferPointerDownOutside"
   | "forceMount"
