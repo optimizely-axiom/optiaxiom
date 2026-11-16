@@ -261,6 +261,7 @@ export { IconPhotoLibrary as IconImages } from "../svg/photo_library.svg";
 export { IconPictureAsPdf as IconFilePdf } from "../svg/picture_as_pdf.svg";
 export { IconPieChart as IconFileChartPie } from "../svg/pie_chart.svg";
 export { IconPinboard as IconPinboard } from "../svg/pinboard.svg";
+export { IconPip as IconPip } from "../svg/pip.svg";
 export { IconPlayArrow as IconPlay } from "../svg/play_arrow.svg";
 export { IconPlayCircle as IconCirclePlay } from "../svg/play_circle.svg";
 export { IconPoll as IconSquarePollHorizontal } from "../svg/poll.svg";

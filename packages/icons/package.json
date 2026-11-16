@@ -1389,6 +1389,11 @@
       "import": "./dist/esm/IconPinboard.js",
       "require": "./dist/cjs/IconPinboard.js"
     },
+    "./IconPip": {
+      "types": "./dist/IconPip.d.ts",
+      "import": "./dist/esm/IconPip.js",
+      "require": "./dist/cjs/IconPip.js"
+    },
     "./IconPipe": {
       "types": "./dist/IconPipe.d.ts",
       "import": "./dist/esm/IconPipe.js",
