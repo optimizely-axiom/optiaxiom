@@ -25,6 +25,7 @@ export const MenuDialogContent = forwardRef<
       "aria-label": ariaLabel,
       children,
       className,
+      collisionBoundary: _collisionBoundary,
       minW: _minW,
       side: _side,
       sideOffset: _sideOffset,

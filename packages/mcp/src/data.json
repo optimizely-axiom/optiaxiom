@@ -30608,6 +30608,7 @@
         },
         "children": { "tsType": "ReactNode" },
         "className": { "type": "string" },
+        "collisionBoundary": { "tsType": "Boundary | Boundary[]" },
         "color": {
           "description": "Set the element's text color. Only accepts predefined color tokens starting with `fg.` (e.g., `fg.default`, `fg.accent`, `fg.error`), or the special values `current` and `transparent`.",
           "enum": [
@@ -69457,6 +69458,7 @@
         },
         "children": { "tsType": "ReactNode" },
         "className": { "type": "string" },
+        "collisionBoundary": { "tsType": "Boundary | Boundary[]" },
         "color": {
           "description": "Set the element's text color. Only accepts predefined color tokens starting with `fg.` (e.g., `fg.default`, `fg.accent`, `fg.error`), or the special values `current` and `transparent`.",
           "enum": [
@@ -83736,6 +83738,7 @@
         },
         "children": { "tsType": "ReactNode" },
         "className": { "type": "string" },
+        "collisionBoundary": { "tsType": "Boundary | Boundary[]" },
         "color": {
           "description": "Set the element's text color. Only accepts predefined color tokens starting with `fg.` (e.g., `fg.default`, `fg.accent`, `fg.error`), or the special values `current` and `transparent`.",
           "enum": [
@@ -86118,6 +86121,7 @@
         },
         "children": { "tsType": "ReactNode" },
         "className": { "type": "string" },
+        "collisionBoundary": { "tsType": "Boundary | Boundary[]" },
         "color": {
           "description": "Set the element's text color. Only accepts predefined color tokens starting with `fg.` (e.g., `fg.default`, `fg.accent`, `fg.error`), or the special values `current` and `transparent`.",
           "enum": [
@@ -103788,6 +103792,7 @@
         },
         "children": { "tsType": "ReactNode" },
         "className": { "type": "string" },
+        "collisionBoundary": { "tsType": "Boundary | Boundary[]" },
         "color": {
           "description": "Set the element's text color. Only accepts predefined color tokens starting with `fg.` (e.g., `fg.default`, `fg.accent`, `fg.error`), or the special values `current` and `transparent`.",
           "enum": [
