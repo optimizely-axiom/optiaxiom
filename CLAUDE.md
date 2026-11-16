@@ -44,12 +44,17 @@ incomplete. This is the most commonly missed step — check for it on every revi
   with restated context or defensive "this is non-breaking" prose.
 - A follow-up to a feature that hasn't been released yet may not need its own changeset.
 
-## Testing visual changes
+## Testing changes
 
 Stories are the test for visual behavior. Chromatic snapshots every Storybook story
 (`.github/workflows/visual.yml` — runs on push, or on a PR labeled `visual`), so a layout, spacing,
 alignment, or color fix needs a story that shows it, not a unit test pinning class names. Add a
 `*.spec.tsx` only for logic Chromatic can't see: behavior, state, accessibility, interactions.
+
+`*.spec.tsx` files ship in `@optiaxiom/mcp` as the canonical examples of how consumers test a
+component, so a spec must read as one: realistic usage through the public API, queried by role and
+name. Don't add a spec only to pin a bug fix; prove the fix with a temporary spec or a story and cite
+the before/after runs in the PR.
 
 ## Decide the commit structure BEFORE writing code
 
