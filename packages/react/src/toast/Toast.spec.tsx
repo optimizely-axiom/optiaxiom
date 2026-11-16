@@ -1,8 +1,9 @@
+import { createToaster, toaster } from "@optiaxiom/globals";
 import { describe, expect, it, vi } from "vitest";
 
 import { render, screen, waitFor, within } from "../../vitest.rtl";
 import { Button } from "../button";
-import { createToaster, toaster, ToastProvider } from "./index";
+import { ToastProvider } from "./ToastProvider";
 
 describe("Toast", () => {
   describe("with the default provider", () => {

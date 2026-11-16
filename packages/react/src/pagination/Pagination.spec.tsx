@@ -2,7 +2,7 @@ import { useState } from "react";
 import { describe, expect, it, vi } from "vitest";
 
 import { render, screen } from "../../vitest.rtl";
-import { Pagination } from "./index";
+import { Pagination } from "./Pagination";
 
 describe("Pagination", () => {
   function setup() {

@@ -8,7 +8,8 @@ import {
 import { describe, expect, it } from "vitest";
 
 import { render, screen, within } from "../../vitest.rtl";
-import { DataTable, DataTableBody } from "./index";
+import { DataTable } from "./DataTable";
+import { DataTableBody } from "./DataTableBody";
 
 type Keyword = { keyword: string; volume: number };
 
