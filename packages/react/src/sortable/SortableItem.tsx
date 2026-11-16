@@ -2,7 +2,7 @@ import { shapeIntersection } from "@dnd-kit/collision";
 import { Feedback } from "@dnd-kit/dom";
 import { useSortable } from "@dnd-kit/react/sortable";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { forwardRef, useEffect, useRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { useSortableContext } from "./SortableContext";
@@ -48,7 +48,7 @@ export const SortableItem = forwardRef<HTMLDivElement, SortableItemProps>(
       "@optiaxiom/react/SortableItem",
     );
 
-    const handleRef = useRef<HTMLDivElement>(null);
+    const [handle, setHandle] = useState<HTMLElement | null>(null);
     const {
       isDragging,
       isDropTarget,
@@ -61,7 +61,7 @@ export const SortableItem = forwardRef<HTMLDivElement, SortableItemProps>(
       collisionDetector: shapeIntersection,
       data: { label: typeof item === "string" ? item : item.label },
       group,
-      handle: handleRef,
+      handle,
       id,
       index,
       plugins: (defaults) => [
@@ -86,11 +86,11 @@ export const SortableItem = forwardRef<HTMLDivElement, SortableItemProps>(
     }
 
     return (
-      <SortableItemProvider handleRef={handleRef} isDragging={isDragging}>
+      <SortableItemProvider handleRef={setHandle} isDragging={isDragging}>
         <Box
           data-sortable-dragging={isDragging ? "" : undefined}
           ref={ref}
-          {...styles.item({ handle: !handleRef.current }, className)}
+          {...styles.item({ handle: !handle }, className)}
           {...props}
         >
           {cacheRef.current.get(id)}
