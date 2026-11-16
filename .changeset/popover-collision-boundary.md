@@ -1,6 +1,6 @@
 ---
-"@optiaxiom/react": minor
-"@optiaxiom/web-components": minor
+"@optiaxiom/react": patch
+"@optiaxiom/web-components": patch
 "@optiaxiom/mcp": patch
 ---
 
