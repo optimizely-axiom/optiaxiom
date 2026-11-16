@@ -480,6 +480,12 @@
                 "name": "@optiaxiom/icons",
                 "message": "Import each icon from its own entry point (`@optiaxiom/icons/IconTrashCan`) so consumers don't load the whole icons barrel."
               }
+            ],
+            "patterns": [
+              {
+                "regex": "^\\.(/index)?/?$",
+                "message": "Import from the module file in this directory (`./Button`). The barrel is for imports from other directories."
+              }
             ]
           }
         ]

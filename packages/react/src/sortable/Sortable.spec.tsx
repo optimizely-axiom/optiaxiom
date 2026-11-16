@@ -2,7 +2,8 @@ import { useState } from "react";
 import { describe, expect, it } from "vitest";
 
 import { render, screen } from "../../vitest.rtl";
-import { Sortable, SortableItem } from "./index";
+import { Sortable } from "./Sortable";
+import { SortableItem } from "./SortableItem";
 
 describe("Sortable", () => {
   function setup() {

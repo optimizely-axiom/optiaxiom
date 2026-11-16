@@ -2,7 +2,10 @@ import { useState } from "react";
 import { describe, expect, it, vi } from "vitest";
 
 import { render, screen } from "../../vitest.rtl";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./index";
+import { Tabs } from "./Tabs";
+import { TabsContent } from "./TabsContent";
+import { TabsList } from "./TabsList";
+import { TabsTrigger } from "./TabsTrigger";
 
 describe("Tabs", () => {
   function setup() {
