@@ -148,6 +148,7 @@ export function Search({
     >
       <Box className={styles.trigger}>
         <SpotlightTrigger
+          appearance="subtle"
           aria-label="Search documentation"
           display={["flex", "none"]}
         />
