@@ -1,0 +1,28 @@
+diff --git a/dist/foundation/motion/panel.js b/dist/foundation/motion/panel.js
+index f45ee34af0c4a63a817d6f68d9e314ab98307126..1efa35e6d588d8fbc673d6c9acb2961f1c5e35cd 100644
+--- a/dist/foundation/motion/panel.js
++++ b/dist/foundation/motion/panel.js
+@@ -54,7 +54,8 @@ function bindPanel(el, panel) {
+     const how = panel.opening();
+     if (how !== "animate") {
+       const finish = () => {
+-        for (const animation of el.getAnimations()) {
++        // jsdom has no getAnimations.
++        for (const animation of el.getAnimations?.() ?? []) {
+           animation.finish();
+         }
+       };
+diff --git a/dist/foundation/motion/presence.js b/dist/foundation/motion/presence.js
+index e0e85c2ce4ab28b98d7823a40bbd95c6d30c1473..bb4634a536b23ed5df276e0b6134e001630db5c6 100644
+--- a/dist/foundation/motion/presence.js
++++ b/dist/foundation/motion/presence.js
+@@ -78,7 +78,8 @@ function remaining(animations) {
+ }
+ function whenFinished(el, done) {
+   let finished = false;
+-  const animations = el.getAnimations({ subtree: true });
++  // jsdom has no getAnimations: finish at once, as with no animations.
++  const animations = el.getAnimations?.({ subtree: true }) ?? [];
+   const finish = () => {
+     if (finished) {
+       return;
