@@ -1,0 +1,163 @@
+import { Cards, Demo, KeyboardTable, Links, PropsTable } from "@/components";
+
+# Tree
+
+Hierarchical list of items that expand and collapse, such as pages or folders.
+
+<Links component="tree" />
+
+## Documentation
+
+### Usage
+
+Pass the items to `options`, each with its nested items in `children`. Pressing a row selects it, and pressing its chevron expands or collapses it. Give the tree an `aria-label` that names what it lists.
+
+<Demo component="tree/usage" />
+
+### Structure
+
+`Tree` renders its items from the `options` prop. Each item is a `TreeOption` and at minimum must contain the following two properties:
+
+- `label`
+- `value`
+
+Values must be unique across the whole tree, since selection and expansion refer to items by their `value`. An item with `children` is a branch, and one without is a leaf.
+
+### Multiple selection
+
+Enable the `multiple` prop to let users select several items. Each press toggles an item, Shift+click and Shift+Arrow extend the selection, and Ctrl/Cmd+A selects every visible item, or clears the selection when every item is selected.
+
+<Demo component="tree/multiple-usage" meta="/multiple/" />
+
+### Controlled
+
+The selection is always an array of values, even without `multiple`. Use `value`, `defaultValue` and `onValueChange` to control which items are selected, and `expanded`, `defaultExpanded` and `onExpandedChange` to control which branches are open.
+
+<Demo
+  component="tree/controlled-usage"
+  meta="/expanded={expanded}/ /onExpandedChange={setExpanded}/ /onValueChange={setValue}/ /value={value}/"
+/>
+
+### Content
+
+Use the `addon` property to show an icon before the label, `description` to show secondary text after it, and `detail` to show a badge or count after that.
+
+<Demo component="tree/content-usage" meta="/addon/ /description/ /detail/" />
+
+### Disabled items
+
+Use the `disabledReason` property to disable an item. Disabled items stay focusable so screen readers can find them, and show the reason in a tooltip. They can't be selected, renamed or open their `actions`.
+
+<Demo component="tree/disabled-usage" meta="/disabledReason/" />
+
+### Lazy children
+
+Pass a function returning a promise to `children` to load an item's children when it first expands. The chevron shows a spinner while they load. The function runs only once, so pass an array instead for children that change after they load.
+
+If the promise rejects, the item stays collapsed, and expanding it again calls the function once more. The tree shows nothing on failure; to tell users, show a toast or similar from your function and rethrow the error.
+
+<Demo component="tree/lazy-usage" meta="/children: fetchPages/" />
+
+### Paging
+
+To load a level a page at a time, return `{ nextPageLabel, nextPageParam, options }` from the `children` function. The tree ends the level with an item labelled `nextPageLabel`, such as "Load more posts", and pressing it calls the function again with that `pageParam`. Return no `nextPageParam` on the last page. The param can be a page index or a cursor, as with React Query's `getNextPageParam`.
+
+Focus moves to the first new item once the page loads. If a page's promise rejects, that item stays in place, and pressing it again retries.
+
+<Demo
+  component="tree/paging-usage"
+  meta="/nextPageLabel/ /nextPageParam/ /pageParam/"
+/>
+
+### Actions
+
+Use the `actions` property to give an item a context menu. It takes the same options as [Menu](/components/menu/).
+
+Pointer users open the menu from the "…" button that shows on the hovered or selected row, or right-click the row. On touch screens the selected row shows the button too, and a long press of 500ms opens the menu. Keyboard users open it on the focused item with Shift+F10 or the Menu key; the button stays out of the tab order, since the item already announces its menu and shortcut. Focus returns to the item when the menu closes, unless an action moved focus elsewhere, such as into a dialog.
+
+<Demo component="tree/actions-usage" meta="/actions/" />
+
+### Renaming
+
+Use the `onLabelChange` prop to let users rename items in place. Pressing F2 or double-clicking a row turns its label into a text field: Enter or leaving the field saves, and Escape cancels. Enter and Escape return focus to the item. An empty or unchanged label isn't saved.
+
+To start renaming from the context menu, pass `actions` a function: it receives `rename`, which an action can use as its `execute`. Set `editable` to `false` on items whose label can't change, and leave out their Rename action.
+
+<Demo
+  component="tree/rename-usage"
+  meta="/onLabelChange/ /rename/ /editable/"
+/>
+
+### Related
+
+<Cards items={["Menu", "Sidebar"]} />
+
+## Props
+
+### Tree
+
+<PropsTable component="Tree" />
+
+## Accessibility
+
+### Keyboard interactions
+
+The tree is a single tab stop. Tab moves focus to the selected item, or to the first item, and then returns to the item focused last.
+
+<KeyboardTable
+  interactions={[
+    {
+      keys: ["ArrowDown", "ArrowUp"],
+      description: "Moves focus to the next/previous visible item.",
+    },
+    {
+      keys: "ArrowRight",
+      description:
+        "When focus is on a collapsed branch, expands it. When focus is on an expanded branch, moves focus to its first child.",
+    },
+    {
+      keys: "ArrowLeft",
+      description:
+        "When focus is on an expanded branch, collapses it. Otherwise moves focus to the parent item.",
+    },
+    {
+      keys: ["Home", "End"],
+      description: "Moves focus to the first/last visible item.",
+    },
+    {
+      keys: "Enter",
+      description:
+        "Selects the focused item. When `multiple` is enabled, toggles its selection.",
+    },
+    {
+      keys: "Space",
+      description: "Toggles the focused item's selection.",
+    },
+    {
+      keys: [
+        { key: "ArrowDown", modifiers: "shift" },
+        { key: "ArrowUp", modifiers: "shift" },
+      ],
+      description: "When `multiple` is enabled, extends the selection.",
+    },
+    {
+      keys: [{ key: "A", modifiers: "mod" }],
+      description:
+        "When `multiple` is enabled, selects every visible item, or clears the selection when every item is selected.",
+    },
+    {
+      keys: "F2",
+      description:
+        "When `onLabelChange` is set, edits the focused item's label in place.",
+    },
+    {
+      keys: [{ key: "F10", modifiers: "shift" }, "ContextMenu"],
+      description: "Opens the focused item's `actions` in a context menu.",
+    },
+    {
+      keys: "A - Z",
+      description:
+        "Moves focus to the next item whose label starts with the typed text.",
+    },
+  ]}
+/>

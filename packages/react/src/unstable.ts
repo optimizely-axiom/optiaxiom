@@ -14,4 +14,5 @@ export * from "./spotlight";
 export * from "./suggestion";
 export * from "./surface";
 export * from "./time";
+export * from "./tree";
 export * from "./visually-hidden";
