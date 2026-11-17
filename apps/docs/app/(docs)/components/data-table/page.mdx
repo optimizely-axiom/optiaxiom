@@ -75,7 +75,7 @@ Use the `DataTableAction` component to show links, buttons, or dropdown menus wi
 
 You can enable the `primary` prop on any one of those actions to mark that as the primary action. This will automatically enable keyboard navigation within the table:
 
-- Double click on row to perform primary action.
+- Double click on a row to perform the primary action. When the table has no row selection (`enableRowSelection: false`), a single click does too.
 - Use up/down/left/right arrow keys to navigate between rows and actions.
 
 Finally, make sure to use the `DataTableLabel` in your primary cell to set the label of the row for screen readers.
