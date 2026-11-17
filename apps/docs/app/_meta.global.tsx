@@ -192,6 +192,9 @@ export default {
       toast: "Toast",
       "toggle-button": "ToggleButton",
       tooltip: "Tooltip",
+      tree: {
+        title: <AlphaItem>Tree</AlphaItem>,
+      },
     },
     title: "Components",
   },
