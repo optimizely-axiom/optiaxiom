@@ -24488,7 +24488,7 @@
             "toaster"
           ],
           "title": "row-action-usage",
-          "description": "Use the `DataTableAction` component to show links, buttons, or dropdown menus within rows that are only visible when the user hovers over the row.\n\nYou can enable the `primary` prop on any one of those actions to mark that as the primary action. This will automatically enable keyboard navigation within the table:\n\n- Double click on row to perform primary action.\n- Use up/down/left/right arrow keys to navigate between rows and actions.\n\nFinally, make sure to use the `DataTableLabel` in your primary cell to set the label of the row for screen readers.\n\nHover over the rows to perform more actions:",
+          "description": "Use the `DataTableAction` component to show links, buttons, or dropdown menus within rows that are only visible when the user hovers over the row.\n\nYou can enable the `primary` prop on any one of those actions to mark that as the primary action. This will automatically enable keyboard navigation within the table:\n\n- Double click on a row to perform the primary action. When the table has no row selection (`enableRowSelection: false`), a single click does too.\n- Use up/down/left/right arrow keys to navigate between rows and actions.\n\nFinally, make sure to use the `DataTableLabel` in your primary cell to set the label of the row for screen readers.\n\nHover over the rows to perform more actions:",
           "heading": "Row actions"
         },
         {

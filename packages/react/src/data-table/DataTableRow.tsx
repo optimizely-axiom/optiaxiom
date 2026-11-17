@@ -48,6 +48,12 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
     const [selector, setSelector] = useState<RefObject<HTMLInputElement>>();
 
     const focusManaged = Boolean(selector || primary);
+    /**
+     * The table decides what a click does. With selection on, a row that can't
+     * be selected (a selection cap, an item already added) ignores a single
+     * click and opens on double click, like the selectable rows around it.
+     */
+    const selectable = table.options.enableRowSelection !== false;
 
     const innerRef = useRef<HTMLTableRowElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -112,22 +118,21 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
             return;
           }
 
-          if (row.getCanSelect()) {
-            if (selector && getAssociatedControl(event) !== selector.current) {
-              table.setRowSelection({ [row.id]: true });
+          if (!selectable) {
+            if (!primary?.ref.current?.contains(event.target)) {
+              primary?.ref.current?.click();
             }
-          } else if (!primary?.ref.current?.contains(event.target)) {
-            primary?.ref.current?.click();
+          } else if (
+            row.getCanSelect() &&
+            selector &&
+            getAssociatedControl(event) !== selector.current
+          ) {
+            table.setRowSelection({ [row.id]: true });
           }
         }}
         onDoubleClick={(event) => {
-          // Only use double-click for primary action when row is selectable
-          // (otherwise single-click already triggers it)
-          if (
-            !row.getCanSelect() ||
-            !primary ||
-            !(event.target instanceof Element)
-          ) {
+          // Without selection, a single click already ran the primary action.
+          if (!selectable || !primary || !(event.target instanceof Element)) {
             return;
           }
 
