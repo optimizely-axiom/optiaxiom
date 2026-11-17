@@ -1,3 +1,5 @@
+"use client";
+
 import { IconArrowUpRightFromSquare, IconBookOpen } from "@optiaxiom/icons";
 import { Nav, NavBody, NavItem, NavList, Sidebar } from "@optiaxiom/react";
 
