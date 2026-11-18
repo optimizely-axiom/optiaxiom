@@ -5,10 +5,12 @@ import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 
 import { columns } from "./columns";
 
+const data: never[] = [];
+
 export function App() {
   const table = useReactTable({
     columns,
-    data: [],
+    data,
     getCoreRowModel: getCoreRowModel(),
   });
 
