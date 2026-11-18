@@ -81,6 +81,9 @@
   "desktop_windows": ["Display"],
   "devices": ["LaptopMobile"],
   "do_not_disturb_on": ["CircleMinus"],
+  "dock_to_right": {
+    "DockToRight": ["dock", "layout", "panel", "right panel", "sidebar"]
+  },
   "domain": ["Domain"],
   "done_all": ["CheckDouble"],
   "download": ["Download"],
