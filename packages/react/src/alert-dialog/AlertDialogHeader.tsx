@@ -28,9 +28,11 @@ export const AlertDialogHeader = forwardRef<
 >(({ addonBefore, children, className, ...props }, ref) => {
   return (
     <Group ref={ref} {...styles.header({}, className)} {...props}>
-      <Icon asChild color="fg.error">
-        {addonBefore && fallbackSpan(addonBefore)}
-      </Icon>
+      {addonBefore && (
+        <Icon asChild color="fg.error">
+          {fallbackSpan(addonBefore)}
+        </Icon>
+      )}
       <Heading asChild color="fg.default" fontWeight="500" level="3">
         <RadixDialog.Title>{children}</RadixDialog.Title>
       </Heading>
