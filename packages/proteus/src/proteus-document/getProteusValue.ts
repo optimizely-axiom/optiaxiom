@@ -37,12 +37,16 @@ const formatters: Record<
   (value: unknown, options?: Record<string, unknown>) => unknown
 > = {
   DateTime: (value, options) => {
-    if (typeof value === "number" || typeof value === "string") {
+    const date =
+      typeof value === "number" || typeof value === "string"
+        ? new Date(value)
+        : null;
+    if (date && !Number.isNaN(date.getTime())) {
       return new Intl.DateTimeFormat(undefined, {
         day: "numeric",
         month: "short",
         ...options,
-      }).format(new Date(value));
+      }).format(date);
     }
     return value;
   },
