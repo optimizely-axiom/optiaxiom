@@ -1,9 +1,10 @@
 import {
   type ColumnDef,
-  getCoreRowModel,
-  getSortedRowModel,
-  type TableOptions,
-  useReactTable,
+  createSortedRowModel,
+  rowSortingFeature,
+  sortFns,
+  tableFeatures,
+  useTable,
 } from "@tanstack/react-table";
 import { describe, expect, it } from "vitest";
 
@@ -13,9 +14,15 @@ import { DataTableBody } from "./DataTableBody";
 
 type Keyword = { keyword: string; volume: number };
 
+const features = tableFeatures({
+  rowSortingFeature,
+  sortedRowModel: createSortedRowModel(),
+  sortFns,
+});
+
 describe("DataTable", () => {
-  function setup(overrides: Partial<TableOptions<Keyword>> = {}) {
-    const columns: Array<ColumnDef<Keyword>> = [
+  function setup() {
+    const columns: Array<ColumnDef<typeof features, Keyword>> = [
       { accessorKey: "keyword", header: "Keyword" },
       { accessorKey: "volume", header: "Volume" },
     ];
@@ -26,15 +33,7 @@ describe("DataTable", () => {
 
     function Keywords() {
       return (
-        <DataTable
-          table={useReactTable({
-            columns,
-            data,
-            getCoreRowModel: getCoreRowModel(),
-            getSortedRowModel: getSortedRowModel(),
-            ...overrides,
-          })}
-        >
+        <DataTable table={useTable({ columns, data, features })}>
           <DataTableBody />
         </DataTable>
       );

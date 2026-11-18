@@ -12,7 +12,7 @@ import { useDataTableContext } from "./DataTableContext";
 import { useDataTableRowContext } from "./DataTableRowContext";
 
 /**
- * The cell context TanStack Table passes to a column's `cell`,
+ * The cell context TanStack Table passes to a column's `cell` (v8 or v9),
  * narrowed to what the expandable cell reads.
  */
 export type DataTableExpandableCellProps<TData, TValue> = {
@@ -26,9 +26,9 @@ export type DataTableExpandableCellProps<TData, TValue> = {
      * How deeply the row is nested; indents the cell by one step per level.
      */
     depth: number;
-    getCanExpand(): boolean;
-    getIsExpanded(): boolean;
-    getToggleExpandedHandler(): () => void;
+    getCanExpand?(): boolean;
+    getIsExpanded?(): boolean;
+    getToggleExpandedHandler?(): () => void;
     /**
      * The data item the row was built from.
      */

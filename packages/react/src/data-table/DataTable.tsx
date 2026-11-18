@@ -1,4 +1,5 @@
-import { forwardRef, useMemo, useRef, useState } from "react";
+import { forwardRef, useCallback, useMemo, useRef, useState } from "react";
+import { useSyncExternalStore } from "use-sync-external-store/shim";
 
 import { type BoxProps } from "../box";
 import { Group } from "../group";
@@ -9,7 +10,8 @@ export type DataTableProps = BoxProps<
   "div",
   {
     /**
-     * Pass the table instance returned from `useReactTable()` hook.
+     * Pass the table instance returned from TanStack Table's `useReactTable()`
+     * (v8) or `useTable()` (v9) hook.
      */
     table: TanStackTable;
   }
@@ -29,7 +31,30 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
   ({ children, table, ...props }, ref) => {
     const [highlightedIndex, setHighlightedIndex] = useState(-1);
     const focusRequestRef = useRef(false);
-    const adapter = useMemo(() => adaptTable(table), [table]);
+    /**
+     * A v9 table re-renders its owner only for the state its `useTable`
+     * selector picks, so subscribe to all of it. Keyed on the store: `useTable`
+     * returns a new table object on most renders. v8 tables have no store.
+     */
+    const store = table.store;
+    const getTableState = () => store?.get();
+    const tableState = useSyncExternalStore(
+      useCallback(
+        (onChange: () => void) => {
+          const subscription = store?.subscribe(onChange);
+          return () => subscription?.unsubscribe();
+        },
+        [store],
+      ),
+      getTableState,
+      getTableState,
+    );
+    // A new state snapshot hands the components a new adapter, which
+    // re-renders them even when the owner's `useTable` selector skipped it.
+    const adapter = useMemo(
+      () => adaptTable(table, tableState),
+      [table, tableState],
+    );
 
     return (
       <Group

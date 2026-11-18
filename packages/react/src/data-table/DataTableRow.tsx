@@ -204,15 +204,17 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
                     highlightedIndex,
                     -step,
                   );
-                  table.setRowSelection((selection) =>
-                    ahead && selection[ahead.id]
-                      ? behind
-                        ? { ...selection, [behind.id]: false }
-                        : selection
-                      : table.getCanSelect(nextRow)
-                        ? { ...selection, [nextRow.id]: true }
-                        : selection,
-                  );
+                  table.setRowSelection((old) => {
+                    const selection = { ...old };
+                    if (ahead && selection[ahead.id]) {
+                      if (behind) {
+                        delete selection[behind.id];
+                      }
+                    } else if (table.getCanSelect(nextRow)) {
+                      selection[nextRow.id] = true;
+                    }
+                    return selection;
+                  });
                 } else {
                   table.setRowSelection(
                     table.getCanSelect(nextRow) ? { [nextRow.id]: true } : {},
