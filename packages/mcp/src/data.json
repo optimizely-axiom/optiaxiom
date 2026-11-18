@@ -24223,7 +24223,7 @@
           "responsive": true
         },
         "table": {
-          "description": "Pass the table instance returned from `useReactTable()` hook.",
+          "description": "Pass the table instance returned from TanStack Table's `useReactTable()`\n(v8) or `useTable()` (v9) hook.",
           "tsType": "TanStackTable"
         },
         "textAlign": {
@@ -26988,21 +26988,15 @@
               "description": "How deeply the row is nested; indents the cell by one step per level.",
               "type": "number"
             },
-            "getCanExpand": { "tsType": "() => boolean" },
-            "getIsExpanded": { "tsType": "() => boolean" },
-            "getToggleExpandedHandler": { "tsType": "() => () => void" },
+            "getCanExpand": { "tsType": "(() => boolean)" },
+            "getIsExpanded": { "tsType": "(() => boolean)" },
+            "getToggleExpandedHandler": { "tsType": "(() => () => void)" },
             "original": {
               "description": "The data item the row was built from.",
               "tsType": "TData"
             }
           },
-          "required": [
-            "depth",
-            "getCanExpand",
-            "getIsExpanded",
-            "getToggleExpandedHandler",
-            "original"
-          ],
+          "required": ["depth", "original"],
           "type": "object"
         }
       },
@@ -130479,7 +130473,7 @@
     "DataTable": {
       "components": ["DataTable"],
       "name": "DataTable",
-      "source": "import {\n  type ColumnDef,\n  getCoreRowModel,\n  getSortedRowModel,\n  type TableOptions,\n  useReactTable,\n} from \"@tanstack/react-table\";\nimport { describe, expect, it } from \"vitest\";\n\nimport { render, screen, within } from \"../../vitest.rtl\";\nimport { DataTable } from \"./DataTable\";\nimport { DataTableBody } from \"./DataTableBody\";\n\ntype Keyword = { keyword: string; volume: number };\n\ndescribe(\"DataTable\", () => {\n  function setup(overrides: Partial<TableOptions<Keyword>> = {}) {\n    const columns: Array<ColumnDef<Keyword>> = [\n      { accessorKey: \"keyword\", header: \"Keyword\" },\n      { accessorKey: \"volume\", header: \"Volume\" },\n    ];\n    const data: Keyword[] = [\n      { keyword: \"design system\", volume: 300 },\n      { keyword: \"accessibility\", volume: 900 },\n    ];\n\n    function Keywords() {\n      return (\n        <DataTable\n          table={useReactTable({\n            columns,\n            data,\n            getCoreRowModel: getCoreRowModel(),\n            getSortedRowModel: getSortedRowModel(),\n            ...overrides,\n          })}\n        >\n          <DataTableBody />\n        </DataTable>\n      );\n    }\n\n    return render(<Keywords />);\n  }\n\n  function firstColumn() {\n    return screen\n      .getAllByRole(\"row\")\n      .slice(1)\n      .map((row) => within(row).getAllByRole(\"cell\")[0].textContent);\n  }\n\n  it(\"sorts from a column header\", async () => {\n    const { user } = setup();\n\n    const header = screen.getByRole(\"columnheader\", { name: /^Keyword/ });\n    expect(header).toHaveAttribute(\"aria-sort\", \"none\");\n\n    await user.click(within(header).getByRole(\"button\"));\n    expect(header).toHaveAttribute(\"aria-sort\", \"ascending\");\n    expect(firstColumn()).toEqual([\"accessibility\", \"design system\"]);\n  });\n});\n"
+      "source": "import {\n  type ColumnDef,\n  createSortedRowModel,\n  rowSortingFeature,\n  sortFns,\n  tableFeatures,\n  useTable,\n} from \"@tanstack/react-table\";\nimport { describe, expect, it } from \"vitest\";\n\nimport { render, screen, within } from \"../../vitest.rtl\";\nimport { DataTable } from \"./DataTable\";\nimport { DataTableBody } from \"./DataTableBody\";\n\ntype Keyword = { keyword: string; volume: number };\n\nconst features = tableFeatures({\n  rowSortingFeature,\n  sortedRowModel: createSortedRowModel(),\n  sortFns,\n});\n\ndescribe(\"DataTable\", () => {\n  function setup() {\n    const columns: Array<ColumnDef<typeof features, Keyword>> = [\n      { accessorKey: \"keyword\", header: \"Keyword\" },\n      { accessorKey: \"volume\", header: \"Volume\" },\n    ];\n    const data: Keyword[] = [\n      { keyword: \"design system\", volume: 300 },\n      { keyword: \"accessibility\", volume: 900 },\n    ];\n\n    function Keywords() {\n      return (\n        <DataTable table={useTable({ columns, data, features })}>\n          <DataTableBody />\n        </DataTable>\n      );\n    }\n\n    return render(<Keywords />);\n  }\n\n  function firstColumn() {\n    return screen\n      .getAllByRole(\"row\")\n      .slice(1)\n      .map((row) => within(row).getAllByRole(\"cell\")[0].textContent);\n  }\n\n  it(\"sorts from a column header\", async () => {\n    const { user } = setup();\n\n    const header = screen.getByRole(\"columnheader\", { name: /^Keyword/ });\n    expect(header).toHaveAttribute(\"aria-sort\", \"none\");\n\n    await user.click(within(header).getByRole(\"button\"));\n    expect(header).toHaveAttribute(\"aria-sort\", \"ascending\");\n    expect(firstColumn()).toEqual([\"accessibility\", \"design system\"]);\n  });\n});\n"
     },
     "DateInput": {
       "components": ["DateInput"],

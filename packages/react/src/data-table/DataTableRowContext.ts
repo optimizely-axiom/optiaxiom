@@ -42,8 +42,9 @@ export const [DataTableRowProvider, useDataTableRowContext] = createContext<{
 const fakeCellsFactory =
   (columns: TanStackColumn[], rowIndex: number) => (): TanStackCell[] =>
     columns.map((column, columnIndex) => ({
-      column: {
-        ...column,
+      // Inherit from the column: v9 keeps its methods on the prototype, which
+      // a spread drops.
+      column: Object.assign(Object.create(column) as TanStackColumn, {
         columnDef: {
           ...column.columnDef,
           cell: () =>
@@ -53,7 +54,7 @@ const fakeCellsFactory =
               ],
             }),
         },
-      },
+      }),
       getContext: () => ({}),
       id: column.id,
     }));
@@ -68,13 +69,13 @@ export const fakeRow = (table: TableAdapter, rowIndex: number): TanStackRow => {
     getCanMultiSelect: () => false,
     getCanSelect: () => false,
     getCenterVisibleCells,
-    getIsSelected: () => false,
-    getLeftVisibleCells: fakeCellsFactory(
-      table.getPinnedColumns("left"),
+    getEndVisibleCells: fakeCellsFactory(
+      table.getPinnedColumns("right"),
       rowIndex,
     ),
-    getRightVisibleCells: fakeCellsFactory(
-      table.getPinnedColumns("right"),
+    getIsSelected: () => false,
+    getStartVisibleCells: fakeCellsFactory(
+      table.getPinnedColumns("left"),
       rowIndex,
     ),
     getToggleSelectedHandler: () => () => {},
