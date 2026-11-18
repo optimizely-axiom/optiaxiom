@@ -24224,7 +24224,7 @@
         },
         "table": {
           "description": "Pass the table instance returned from `useReactTable()` hook.",
-          "tsType": "Table<any>"
+          "tsType": "TanStackTable"
         },
         "textAlign": {
           "description": "Set the element's `text-align` CSS property",
@@ -26979,15 +26979,34 @@
       "import": "import { DataTableExpandableCell } from '@optiaxiom/react/unstable';",
       "name": "DataTableExpandableCell",
       "props": {
-        "cell": { "tsType": "Cell<TData, TValue>" },
         "children": { "tsType": "ReactNode" },
-        "column": { "tsType": "Column<TData, TValue>" },
-        "getValue": { "tsType": "Getter<TValue>" },
-        "renderValue": { "tsType": "Getter<TValue | null>" },
-        "row": { "tsType": "Row<TData>" },
-        "table": { "tsType": "Table<TData>" }
+        "getValue": { "tsType": "() => TValue" },
+        "row": {
+          "description": "The row the cell belongs to.",
+          "properties": {
+            "depth": {
+              "description": "How deeply the row is nested; indents the cell by one step per level.",
+              "type": "number"
+            },
+            "getCanExpand": { "tsType": "() => boolean" },
+            "getIsExpanded": { "tsType": "() => boolean" },
+            "getToggleExpandedHandler": { "tsType": "() => () => void" },
+            "original": {
+              "description": "The data item the row was built from.",
+              "tsType": "TData"
+            }
+          },
+          "required": [
+            "depth",
+            "getCanExpand",
+            "getIsExpanded",
+            "getToggleExpandedHandler",
+            "original"
+          ],
+          "type": "object"
+        }
       },
-      "required": ["cell", "column", "getValue", "renderValue", "row", "table"],
+      "required": ["getValue", "row"],
       "group": "DataTable",
       "since": "1.4.0",
       "category": ["data-display"],
@@ -28084,7 +28103,7 @@
         },
         "header": {
           "description": "The Header instance to render.",
-          "tsType": "Header<unknown, unknown>"
+          "tsType": "TanStackHeader"
         },
         "justifyContent": {
           "description": "Set the element's `justify-content` CSS property",

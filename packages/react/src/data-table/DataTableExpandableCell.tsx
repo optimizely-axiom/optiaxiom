@@ -1,5 +1,3 @@
-import type { CellContext } from "@tanstack/table-core";
-
 import { IconAngleDown } from "@optiaxiom/icons/IconAngleDown";
 import { IconChevronRight } from "@optiaxiom/icons/IconChevronRight";
 import { useId } from "@radix-ui/react-id";
@@ -10,13 +8,32 @@ import { Box } from "../box";
 import { Button } from "../button";
 import { Group } from "../group";
 import { useMessages } from "../locale";
+import { useDataTableContext } from "./DataTableContext";
 import { useDataTableRowContext } from "./DataTableRowContext";
 
-export type DataTableExpandableCellProps<TData, TValue> = CellContext<
-  TData,
-  TValue
-> & {
+/**
+ * The cell context TanStack Table passes to a column's `cell`,
+ * narrowed to what the expandable cell reads.
+ */
+export type DataTableExpandableCellProps<TData, TValue> = {
   children?: ReactNode;
+  getValue(): TValue;
+  /**
+   * The row the cell belongs to.
+   */
+  row: {
+    /**
+     * How deeply the row is nested; indents the cell by one step per level.
+     */
+    depth: number;
+    getCanExpand(): boolean;
+    getIsExpanded(): boolean;
+    getToggleExpandedHandler(): () => void;
+    /**
+     * The data item the row was built from.
+     */
+    original: TData;
+  };
 };
 
 /**
@@ -32,6 +49,9 @@ export function DataTableExpandableCell<TData, TValue>({
 }: DataTableExpandableCellProps<TData, TValue>) {
   const labelPrefixId = useId();
   const messages = useMessages();
+  const { table } = useDataTableContext(
+    "@optiaxiom/react/DataTableExpandableCell",
+  );
   const { labelId } = useDataTableRowContext(
     "@optiaxiom/react/DataTableExpandableCell",
   );
@@ -40,16 +60,22 @@ export function DataTableExpandableCell<TData, TValue>({
       {Array.from({ length: row.depth }).map((_, index) => (
         <Box flex="none" key={index} w="sm" />
       ))}
-      {row.getCanExpand() ? (
+      {table.getCanRowExpand(row) ? (
         <Button
           appearance="subtle"
-          aria-expanded={row.getIsExpanded()}
+          aria-expanded={table.getIsRowExpanded(row)}
           aria-label={messages["Toggle row"]}
           aria-labelledby={clsx(labelPrefixId, labelId)}
           flex="none"
-          icon={row.getIsExpanded() ? <IconAngleDown /> : <IconChevronRight />}
+          icon={
+            table.getIsRowExpanded(row) ? (
+              <IconAngleDown />
+            ) : (
+              <IconChevronRight />
+            )
+          }
           id={labelPrefixId}
-          onClick={row.getToggleExpandedHandler()}
+          onClick={table.getToggleRowExpandedHandler(row)}
           size="sm"
           style={{ marginBlock: -2 }}
           type="button"

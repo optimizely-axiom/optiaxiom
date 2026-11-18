@@ -48,7 +48,9 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
   ) => {
     const { table } = useDataTableContext("@optiaxiom/react/DataTableFooter");
 
-    const { pagination } = table.getState();
+    const pagination = table.getPagination();
+    const pageCount = table.getPageCount();
+    const rowCount = table.getRowCount();
     const pageSizeId = useId();
     const messages = useMessages();
 
@@ -84,22 +86,22 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
             </Group>
           )}
         </Box>
-        {table.getPageCount() > 1 && (
+        {pageCount > 1 && (
           <Pagination
             onPageChange={(newPage) => table.setPageIndex(newPage - 1)}
             page={pagination.pageIndex + 1}
-            total={table.getPageCount()}
+            total={pageCount}
           />
         )}
         <Text {...styles.addon({ slot: "after" })}>
-          {table.getRowCount() > 0 &&
+          {rowCount > 0 &&
             messages["{start} - {end} of {total}"](
               pagination.pageIndex * pagination.pageSize + 1,
               Math.min(
                 (pagination.pageIndex + 1) * pagination.pageSize,
-                table.getRowCount(),
+                rowCount,
               ),
-              table.getRowCount(),
+              rowCount,
             )}
         </Text>
       </Group>

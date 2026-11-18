@@ -62,7 +62,7 @@ export const DataTableCheckbox = forwardRef<
     <>
       {row && !props["aria-label"] && (
         <VisuallyHidden id={labelPrefixId}>
-          {row.getIsSelected()
+          {table.getIsSelected(row)
             ? messages["Check to unselect"]
             : messages["Check to select"]}
         </VisuallyHidden>
@@ -83,7 +83,7 @@ export const DataTableCheckbox = forwardRef<
           }
           checked={
             row
-              ? row.getIsSelected()
+              ? table.getIsSelected(row)
               : table.getIsAllPageRowsSelected() ||
                 table.getIsSomePageRowsSelected()
           }
@@ -91,7 +91,7 @@ export const DataTableCheckbox = forwardRef<
           indeterminate={!row && table.getIsSomePageRowsSelected()}
           onChange={
             row
-              ? row.getToggleSelectedHandler()
+              ? table.getToggleSelectedHandler(row)
               : table.getToggleAllPageRowsSelectedHandler()
           }
           ref={ref}

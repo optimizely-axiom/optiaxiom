@@ -1,6 +1,5 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useLayoutEffect } from "@radix-ui/react-use-layout-effect";
-import { type Column, flexRender } from "@tanstack/react-table";
 import {
   defaultRangeExtractor,
   type Range,
@@ -23,6 +22,12 @@ import { useDataTableContext } from "./DataTableContext";
 import { DataTableHeaderCell } from "./DataTableHeaderCell";
 import { DataTableRow } from "./DataTableRow";
 import { fakeRow } from "./DataTableRowContext";
+import {
+  render,
+  type TableAdapter,
+  type TanStackColumn,
+  type TanStackRow,
+} from "./tanstack";
 
 export type DataTableBodyProps = BoxProps<
   "div",
@@ -62,12 +67,10 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
       "@optiaxiom/react/DataTableBody",
     );
 
-    const { rows: rawRows } = table.getRowModel();
+    const rawRows = table.getRows();
     const rows = useMemo(() => {
       let index = 0;
-      return rawRows.reduce<
-        Array<(typeof rawRows)[number] | ReturnType<typeof fakeRow>>
-      >((result, row) => {
+      return rawRows.reduce<TanStackRow[]>((result, row) => {
         result.push(row);
         index++;
         if (
@@ -123,12 +126,12 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
       observer.observe(node);
       return () => observer.disconnect();
     }, []);
-    const centerColumns = table.getCenterVisibleLeafColumns();
+    const centerColumns = table.getCenterColumns();
 
     const columnVirtualizer = useVirtualizer({
       count: centerColumns.length,
       enabled: centerColumns.length > COL_VIRTUALIZATION_THRESHOLD,
-      estimateSize: (index) => centerColumns[index].getSize(),
+      estimateSize: (index) => table.getColumnSize(centerColumns[index]),
       getItemKey: (index) => centerColumns[index].id,
       getScrollElement: () => scrollContainerRef.current,
       horizontal: true,
@@ -177,18 +180,21 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
     const totalResizableSize =
       headerGroups[0]?.headers.reduce(
         (sum, header) =>
-          sum + (header.column.getCanResize() ? header.getSize() : 0),
+          sum +
+          (table.getCanGrow(header.column) ? table.getHeaderSize(header) : 0),
         0,
       ) ?? 0;
 
     const leadingSpacerStyle = columnVirtualizer.options.enabled
       ? getSpacerStyle(
+          table,
           centerColumns.slice(0, virtualColumns[0]?.index ?? 0),
           totalResizableSize,
         )
       : undefined;
     const trailingSpacerStyle = columnVirtualizer.options.enabled
       ? getSpacerStyle(
+          table,
           centerColumns.slice(
             (virtualColumns.at(-1)?.index ?? centerColumns.length) + 1,
           ),
@@ -197,9 +203,9 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
       : undefined;
     const columnIndexes = new Map(
       [
-        ...table.getLeftVisibleLeafColumns(),
+        ...table.getPinnedColumns("left"),
         ...centerColumns,
-        ...table.getRightVisibleLeafColumns(),
+        ...table.getPinnedColumns("right"),
       ].map((column, index) => [column.id, index + 1]),
     );
 
@@ -208,8 +214,8 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
         ref={ref}
         style={{
           ...assignInlineVars({
-            [styles.leftTotalSizeVar]: `${table.getLeftTotalSize()}px`,
-            [styles.rightTotalSizeVar]: `${table.getRightTotalSize()}px`,
+            [styles.leftTotalSizeVar]: `${table.getPinnedTotalSize("left")}px`,
+            [styles.rightTotalSizeVar]: `${table.getPinnedTotalSize("right")}px`,
             [styles.totalSizeVar]: totalResizableSize.toString(),
           }),
           ...style,
@@ -243,24 +249,24 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                     aria-colindex={columnIndexes.get(header.column.id)}
                     header={header}
                     key={header.id}
-                    pinned={!!header.column.getIsPinned()}
+                    pinned={!!table.getPinned(header.column)}
                     style={{
                       ...assignInlineVars({
-                        [styles.cellOffsetVar]: `${header.column.getStart(header.column.getIsPinned() || "left")}px`,
-                        [styles.cellSizeVar]: `${header.getSize()}`,
+                        [styles.cellOffsetVar]: `${table.getColumnStart(header.column, table.getPinned(header.column) || "left")}px`,
+                        [styles.cellSizeVar]: `${table.getHeaderSize(header)}`,
                       }),
                     }}
                     {...styles.cell({
-                      pinned: header.column.getIsPinned() || undefined,
-                      pinnedType: header.column.getIsPinned()
+                      pinned: table.getPinned(header.column) || undefined,
+                      pinnedType: table.getPinned(header.column)
                         ? "header"
                         : undefined,
-                      resizable: header.column.getCanResize(),
+                      resizable: table.getCanGrow(header.column),
                     })}
                   >
                     {header.isPlaceholder
                       ? null
-                      : flexRender(
+                      : render(
                           header.column.columnDef.header,
                           header.getContext(),
                         )}
@@ -319,24 +325,24 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                     : undefined
                 }
               >
-                {row.getLeftVisibleCells().map((cell) => (
+                {table.getPinnedCells(row, "left").map((cell) => (
                   <TableCell
                     aria-colindex={columnIndexes.get(cell.column.id)}
                     key={cell.id}
                     pinned
                     style={{
                       ...assignInlineVars({
-                        [styles.cellOffsetVar]: `${cell.column.getStart("left")}px`,
-                        [styles.cellSizeVar]: `${cell.column.getSize()}`,
+                        [styles.cellOffsetVar]: `${table.getColumnStart(cell.column, "left")}px`,
+                        [styles.cellSizeVar]: `${table.getColumnSize(cell.column)}`,
                       }),
                     }}
                     {...styles.cell({
                       pinned: "left",
                       pinnedType: "body",
-                      resizable: cell.column.getCanResize(),
+                      resizable: table.getCanGrow(cell.column),
                     })}
                   >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    {render(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
 
@@ -346,24 +352,24 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
 
                 {(columnVirtualizer.options.enabled
                   ? virtualColumns.map((virtualCell) => {
-                      const cells = row.getCenterVisibleCells();
+                      const cells = table.getCenterCells(row);
                       return cells[virtualCell.index];
                     })
-                  : row.getCenterVisibleCells()
+                  : table.getCenterCells(row)
                 ).map((cell) => (
                   <TableCell
                     aria-colindex={columnIndexes.get(cell.column.id)}
                     key={cell.id}
                     style={{
                       ...assignInlineVars({
-                        [styles.cellSizeVar]: `${cell.column.getSize()}`,
+                        [styles.cellSizeVar]: `${table.getColumnSize(cell.column)}`,
                       }),
                     }}
                     {...styles.cell({
-                      resizable: cell.column.getCanResize(),
+                      resizable: table.getCanGrow(cell.column),
                     })}
                   >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    {render(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
 
@@ -371,24 +377,24 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   <TableCell aria-hidden p="0" style={trailingSpacerStyle} />
                 )}
 
-                {row.getRightVisibleCells().map((cell) => (
+                {table.getPinnedCells(row, "right").map((cell) => (
                   <TableCell
                     aria-colindex={columnIndexes.get(cell.column.id)}
                     key={cell.id}
                     pinned
                     style={{
                       ...assignInlineVars({
-                        [styles.cellOffsetVar]: `${cell.column.getStart("right")}px`,
-                        [styles.cellSizeVar]: `${cell.column.getSize()}`,
+                        [styles.cellOffsetVar]: `${table.getColumnStart(cell.column, "right")}px`,
+                        [styles.cellSizeVar]: `${table.getColumnSize(cell.column)}`,
                       }),
                     }}
                     {...styles.cell({
                       pinned: "right",
                       pinnedType: "body",
-                      resizable: cell.column.getCanResize(),
+                      resizable: table.getCanGrow(cell.column),
                     })}
                   >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    {render(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
               </DataTableRow>
@@ -423,7 +429,8 @@ DataTableBody.displayName = "@optiaxiom/react/DataTableBody";
  * the header's width and split its free space in the same ratio.
  */
 const getSpacerStyle = (
-  columns: Array<Column<unknown>>,
+  table: TableAdapter,
+  columns: TanStackColumn[],
   totalResizableSize: number,
 ) => {
   if (columns.length === 0) {
@@ -433,8 +440,8 @@ const getSpacerStyle = (
   let size = 0;
   let resizableSize = 0;
   for (const column of columns) {
-    size += column.getSize();
-    resizableSize += column.getCanResize() ? column.getSize() : 0;
+    size += table.getColumnSize(column);
+    resizableSize += table.getCanGrow(column) ? table.getColumnSize(column) : 0;
   }
   return {
     flexGrow: totalResizableSize ? resizableSize / totalResizableSize : 0,

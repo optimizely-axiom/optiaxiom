@@ -1,4 +1,3 @@
-import { type Header } from "@tanstack/react-table";
 import { forwardRef } from "react";
 
 import { ActionsContent, ActionsRoot } from "../actions";
@@ -12,7 +11,9 @@ import { useMessages } from "../locale";
 import { Separator } from "../separator";
 import { TableHeaderCell } from "../table";
 import { VisuallyHidden } from "../visually-hidden";
+import { useDataTableContext } from "./DataTableContext";
 import * as styles from "./DataTableHeaderCell.css";
+import { type TanStackHeader } from "./tanstack";
 
 export type DataTableHeaderCellProps = BoxProps<
   typeof TableHeaderCell,
@@ -20,7 +21,7 @@ export type DataTableHeaderCellProps = BoxProps<
     /**
      * The Header instance to render.
      */
-    header: Header<unknown, unknown>;
+    header: TanStackHeader;
   }
 >;
 
@@ -34,14 +35,15 @@ export const DataTableHeaderCell = forwardRef<
   HTMLTableCellElement,
   DataTableHeaderCellProps
 >(({ children, header, ...props }, ref) => {
-  const sortDir = header.column.getIsSorted();
+  const { table } = useDataTableContext("@optiaxiom/react/DataTableHeaderCell");
+  const sortDir = table.getIsSorted(header.column);
   const messages = useMessages();
 
   return (
     <ActionsRoot asChild>
       <TableHeaderCell
         aria-sort={
-          header.column.getCanSort()
+          table.getCanSort(header.column)
             ? sortDir === false
               ? "none"
               : sortDir === "asc"
@@ -53,34 +55,36 @@ export const DataTableHeaderCell = forwardRef<
         ref={ref}
         {...props}
       >
-        {header.column.getCanResize() && (
+        {table.getCanResize(header.column) && (
           <ActionsContent
-            visible={header.column.getIsResizing() ? "always" : "if-needed"}
+            visible={
+              table.getIsResizing(header.column) ? "always" : "if-needed"
+            }
           >
             {/* Pointer-only: react-table's resize handler has no keyboard support, so an exposed separator would be an unusable, unnamed stop for screen readers. */}
             <Separator
               aria-hidden="true"
-              onDoubleClick={() => header.column.resetSize()}
-              onMouseDown={header.getResizeHandler()}
-              onTouchStart={header.getResizeHandler()}
+              onDoubleClick={() => table.resetSize(header.column)}
+              onMouseDown={table.getResizeHandler(header)}
+              onTouchStart={table.getResizeHandler(header)}
               orientation="vertical"
               style={{
                 transform:
-                  header.getContext().table.options.columnResizeMode ===
-                    "onEnd" && header.column.getIsResizing()
-                    ? `translateX(${header.getContext().table.getState().columnSizingInfo.deltaOffset}px)`
+                  table.getIsResizing(header.column) &&
+                  typeof table.getResizeDeltaOffset() === "number"
+                    ? `translateX(${table.getResizeDeltaOffset()}px)`
                     : "",
               }}
               {...styles.handle({
-                resizing: header.column.getIsResizing(),
+                resizing: table.getIsResizing(header.column),
               })}
             />
           </ActionsContent>
         )}
 
-        {header.column.getCanSort() ? (
+        {table.getCanSort(header.column) ? (
           <Cover asChild inset {...styles.button()}>
-            <button onClick={() => header.column.toggleSorting()}>
+            <button onClick={() => table.toggleSorting(header.column)}>
               {children}
 
               {/* Browsers already separate flex items in the accessible name; the explicit space keeps the source readable as "Name sorted ascending". */}

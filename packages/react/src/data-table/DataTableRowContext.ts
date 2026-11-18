@@ -1,9 +1,14 @@
 "use client";
 
-import type { CellContext, Column, Table } from "@tanstack/table-core";
-
 import { createContext } from "@radix-ui/react-context";
 import { createElement, type RefObject } from "react";
+
+import type {
+  TableAdapter,
+  TanStackCell,
+  TanStackColumn,
+  TanStackRow,
+} from "./tanstack";
 
 import { Skeleton } from "../skeleton";
 
@@ -18,7 +23,7 @@ export const [DataTableRowProvider, useDataTableRowContext] = createContext<{
         ref: RefObject<HTMLDivElement>;
       }) => void)
     | undefined;
-  row: ReturnType<typeof fakeRow> | undefined;
+  row: TanStackRow | undefined;
   setHighlightedIndex: ((highlightedIndex: number) => void) | undefined;
   setSelector:
     | ((ref: RefObject<HTMLInputElement> | undefined) => void)
@@ -35,7 +40,7 @@ export const [DataTableRowProvider, useDataTableRowContext] = createContext<{
 });
 
 const fakeCellsFactory =
-  (columns: Column<unknown, unknown>[], rowIndex: number) => () =>
+  (columns: TanStackColumn[], rowIndex: number) => (): TanStackCell[] =>
     columns.map((column, columnIndex) => ({
       column: {
         ...column,
@@ -48,28 +53,32 @@ const fakeCellsFactory =
               ],
             }),
         },
-      } as Column<unknown, unknown>,
-      getContext: () => ({}) as CellContext<unknown, unknown>,
+      },
+      getContext: () => ({}),
       id: column.id,
     }));
 
-export const fakeRow = (table: Table<unknown>, rowIndex: number) => ({
-  getCanMultiSelect: () => false,
-  getCanSelect: () => false,
-  getCenterVisibleCells: fakeCellsFactory(
-    table.getCenterVisibleLeafColumns(),
+export const fakeRow = (table: TableAdapter, rowIndex: number): TanStackRow => {
+  const getCenterVisibleCells = fakeCellsFactory(
+    table.getCenterColumns(),
     rowIndex,
-  ),
-  getIsSelected: () => false,
-  getLeftVisibleCells: fakeCellsFactory(
-    table.getLeftVisibleLeafColumns(),
-    rowIndex,
-  ),
-  getRightVisibleCells: fakeCellsFactory(
-    table.getRightVisibleLeafColumns(),
-    rowIndex,
-  ),
-  getToggleSelectedHandler: () => (_event: unknown) => {},
-  id: "loading" + rowIndex,
-  toggleSelected: (_value?: boolean) => {},
-});
+  );
+  return {
+    getAllCells: getCenterVisibleCells,
+    getCanMultiSelect: () => false,
+    getCanSelect: () => false,
+    getCenterVisibleCells,
+    getIsSelected: () => false,
+    getLeftVisibleCells: fakeCellsFactory(
+      table.getPinnedColumns("left"),
+      rowIndex,
+    ),
+    getRightVisibleCells: fakeCellsFactory(
+      table.getPinnedColumns("right"),
+      rowIndex,
+    ),
+    getToggleSelectedHandler: () => () => {},
+    id: "loading" + rowIndex,
+    toggleSelected: () => {},
+  };
+};
