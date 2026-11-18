@@ -507,7 +507,9 @@ export const WithImageCarousel: Story = {
 export const WithImageCarouselEdit: Story = {
   args: {
     ...WithImageCarousel.args,
-    onEditFile: fn(),
+    onEditFile: fn(
+      () => new Promise<void>((resolve) => setTimeout(resolve, 1000)),
+    ),
   },
   play: async ({ args, canvas }) => {
     await userEvent.click(
@@ -515,7 +517,8 @@ export const WithImageCarouselEdit: Story = {
     );
     await waitFor(() => expect(canvas.getByText("2 / 8")).toBeInTheDocument());
 
-    await userEvent.click(canvas.getByRole("button", { name: "Edit" }));
+    const edit = canvas.getByRole("button", { name: "Edit" });
+    await userEvent.click(edit);
     await waitFor(() =>
       expect(args.onEditFile).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -524,6 +527,13 @@ export const WithImageCarouselEdit: Story = {
         }),
       ),
     );
+
+    await expect(edit).toHaveAttribute("aria-busy", "true");
+    await userEvent.click(edit);
+    await expect(args.onEditFile).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(edit).not.toHaveAttribute("aria-busy"), {
+      timeout: 3000,
+    });
   },
 };
 
