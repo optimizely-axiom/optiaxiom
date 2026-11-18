@@ -20,7 +20,7 @@
     "@storybook/addon-themes": "^10.6.7",
     "@storybook/addon-vitest": "^10.6.7",
     "@storybook/react-vite": "^10.6.7",
-    "@tanstack/react-table": "^8.21.3",
+    "@tanstack/react-table": "^9.3.1",
     "@vitejs/plugin-react": "^6.3.0",
     "@vitest/browser": "^4.1.12",
     "@vitest/browser-playwright": "^4.1.12",

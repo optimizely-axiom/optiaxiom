@@ -21,11 +21,19 @@ import {
 } from "@optiaxiom/react/unstable";
 import {
   type ColumnDef,
-  getCoreRowModel,
-  getExpandedRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
+  columnPinningFeature,
+  columnResizingFeature,
+  columnSizingFeature,
+  createExpandedRowModel,
+  createPaginatedRowModel,
+  createSortedRowModel,
+  rowExpandingFeature,
+  rowPaginationFeature,
+  rowSelectionFeature,
+  rowSortingFeature,
+  sortFns,
+  tableFeatures,
+  useTable,
 } from "@tanstack/react-table";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { expect, userEvent, waitFor, within } from "storybook/test";
@@ -62,7 +70,30 @@ export default meta;
 
 type Story = StoryObj<typeof DataTable>;
 
-const columns: ColumnDef<Payment>[] = [
+const features = tableFeatures({
+  columnPinningFeature,
+  columnResizingFeature,
+  columnSizingFeature,
+  rowExpandingFeature,
+  rowPaginationFeature,
+  rowSelectionFeature,
+  rowSortingFeature,
+  sortFns,
+});
+const expandingFeatures = tableFeatures({
+  ...features,
+  expandedRowModel: createExpandedRowModel(),
+});
+const paginatedFeatures = tableFeatures({
+  ...features,
+  paginatedRowModel: createPaginatedRowModel(),
+});
+const sortedPaginatedFeatures = tableFeatures({
+  ...paginatedFeatures,
+  sortedRowModel: createSortedRowModel(),
+});
+
+const columns: ColumnDef<typeof features, Payment>[] = [
   {
     cell: ({ row }) => (
       <Checkbox
@@ -77,7 +108,9 @@ const columns: ColumnDef<Payment>[] = [
       <Checkbox
         aria-label="Select all"
         checked={table.getIsAllPageRowsSelected()}
-        indeterminate={table.getIsSomePageRowsSelected()}
+        indeterminate={
+          table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected()
+        }
         onChange={table.getToggleAllPageRowsSelectedHandler()}
       />
     ),
@@ -267,11 +300,82 @@ export const Basic: Story = {
     return (
       <DataTable
         {...args}
-        table={useReactTable({
+        table={useTable({
           columns: columns.slice(0, 5),
           data,
-          getCoreRowModel: getCoreRowModel(),
+          features,
         })}
+      >
+        <DataTableBody />
+      </DataTable>
+    );
+  },
+};
+
+const coreFeatures = tableFeatures({});
+
+/**
+ * Without the column resizing feature, columns still grow to fill the table,
+ * as v8's columns (resizable by default) do.
+ */
+export const FillsWithoutResizing: Story = {
+  args: {
+    w: "full",
+  },
+  play: async ({ canvas }) => {
+    const table = canvas.getByRole("table");
+    const headers = canvas.getAllByRole("columnheader");
+    await expect(headers.at(-1)!.getBoundingClientRect().right).toBeCloseTo(
+      table.getBoundingClientRect().right,
+      0,
+    );
+  },
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useTable({
+          columns: [
+            { accessorKey: "id", header: "ID" },
+            { accessorKey: "status", header: "Status" },
+            { accessorKey: "email", header: "Email" },
+          ],
+          data,
+          features: coreFeatures,
+        })}
+      >
+        <DataTableBody />
+      </DataTable>
+    );
+  },
+};
+
+/**
+ * `useTable` re-renders its owner only for the state its selector picks.
+ * DataTable subscribes to the table itself, so sorting still updates it.
+ */
+export const NarrowSelector: Story = {
+  play: async ({ canvas }) => {
+    const header = canvas.getByRole("columnheader", { name: /^Email/ });
+    await userEvent.click(within(header).getByRole("button"));
+    await userEvent.click(within(header).getByRole("button"));
+    await expect(header).toHaveAttribute("aria-sort", "descending");
+    await expect(canvas.getAllByRole("row")[1]).toHaveTextContent(
+      "sarah.lee@gmail.com",
+    );
+  },
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useTable(
+          {
+            columns: columns.slice(1, 5),
+            data,
+            features: sortedPaginatedFeatures,
+          },
+          () => ({}),
+        )}
       >
         <DataTableBody />
       </DataTable>
@@ -303,10 +407,10 @@ export const VerticalScroll: Story = {
     return (
       <DataTable
         {...args}
-        table={useReactTable({
+        table={useTable({
           columns: columns.slice(0, 5),
           data: largeData,
-          getCoreRowModel: getCoreRowModel(),
+          features,
           state: { pagination: { pageIndex: 0, pageSize: 100 } },
         })}
       >
@@ -334,14 +438,14 @@ export const Pinned: Story = {
     return (
       <DataTable
         {...args}
-        table={useReactTable({
+        table={useTable({
           columns: columns,
           data: largeData,
-          getCoreRowModel: getCoreRowModel(),
+          features,
           state: {
             columnPinning: {
-              left: ["select", "id", "status"],
-              right: ["lastModifiedBy"],
+              end: ["lastModifiedBy"],
+              start: ["select", "id", "status"],
             },
             pagination: { pageIndex: 0, pageSize: 100 },
           },
@@ -387,7 +491,7 @@ export const KeyboardFocusWhileScrolled: Story = {
     return (
       <DataTable
         {...args}
-        table={useReactTable({
+        table={useTable({
           columns: [
             {
               cell: ({ row }) => (
@@ -401,7 +505,7 @@ export const KeyboardFocusWhileScrolled: Story = {
             ...columns.slice(2, 5),
           ],
           data: largeData,
-          getCoreRowModel: getCoreRowModel(),
+          features,
         })}
       >
         <DataTableBody />
@@ -425,7 +529,7 @@ export const PaginatingKeepsFocus: Story = {
     return (
       <DataTable
         {...args}
-        table={useReactTable({
+        table={useTable({
           columns: [
             {
               cell: ({ row }) => (
@@ -439,9 +543,8 @@ export const PaginatingKeepsFocus: Story = {
             ...columns.slice(2, 5),
           ],
           data: largeData,
-          getCoreRowModel: getCoreRowModel(),
-          getPaginationRowModel: getPaginationRowModel(),
-          initialState: { pagination: { pageSize: 10 } },
+          features: paginatedFeatures,
+          initialState: { pagination: { pageIndex: 0, pageSize: 10 } },
         })}
       >
         <DataTableBody />
@@ -503,7 +606,7 @@ export const ArrowKeysFollowRowAfterDataChange: Story = {
     return (
       <DataTable
         {...args}
-        table={useReactTable({
+        table={useTable({
           columns: [
             {
               cell: () => <DataTableCheckbox />,
@@ -525,7 +628,7 @@ export const ArrowKeysFollowRowAfterDataChange: Story = {
           ],
           data: rows,
           enableRowSelection: (row) => row.id !== "order-006",
-          getCoreRowModel: getCoreRowModel(),
+          features,
           getRowId: (row) => row.id,
         })}
       >
@@ -535,7 +638,7 @@ export const ArrowKeysFollowRowAfterDataChange: Story = {
   },
 };
 
-const manyColumns: ColumnDef<Payment>[] = Array.from(
+const manyColumns: ColumnDef<typeof features, Payment>[] = Array.from(
   { length: 30 },
   (_, i) => ({
     accessorFn: (row) => `${row.id} / ${i + 1}`,
@@ -592,10 +695,10 @@ export const VirtualizedColumns: Story = {
     return (
       <DataTable
         {...args}
-        table={useReactTable({
+        table={useTable({
           columns: manyColumns,
           data: largeData,
-          getCoreRowModel: getCoreRowModel(),
+          features,
         })}
       >
         <DataTableBody />
@@ -625,7 +728,10 @@ export const ExpandingRows: Story = {
     return (
       <DataTable
         {...args}
-        table={useReactTable({
+        table={useTable({
+          // Sub-rows load into `data`; TanStack Table v9 collapses every row
+          // when `data` changes unless this is off.
+          autoResetExpanded: false,
           columns: [
             columns[0],
             {
@@ -639,8 +745,7 @@ export const ExpandingRows: Story = {
             ...columns.slice(2, 5),
           ],
           data: rows,
-          getCoreRowModel: getCoreRowModel(),
-          getExpandedRowModel: getExpandedRowModel(),
+          features: expandingFeatures,
           getRowCanExpand: (row) => row.depth < 2,
           getRowId: (row) => row.id,
           getSubRows: (row) => flatRows.filter((r) => r.parent === row.id),
@@ -690,10 +795,10 @@ export const EmptyRows: Story = {
     return (
       <DataTable
         {...args}
-        table={useReactTable({
+        table={useTable({
           columns: columns.slice(0, 5),
           data: [],
-          getCoreRowModel: getCoreRowModel(),
+          features,
         })}
       >
         <DataTableBody />
@@ -718,10 +823,10 @@ export const EmptyRowsCustom: Story = {
     return (
       <DataTable
         {...args}
-        table={useReactTable({
+        table={useTable({
           columns,
           data: [],
-          getCoreRowModel: getCoreRowModel(),
+          features,
         })}
       >
         <DataTableBody
@@ -756,10 +861,10 @@ export const LoadingState: Story = {
     return (
       <DataTable
         {...args}
-        table={useReactTable({
+        table={useTable({
           columns: columns.slice(0, 5),
           data,
-          getCoreRowModel: getCoreRowModel(),
+          features,
         })}
       >
         <DataTableBody loading />
@@ -770,12 +875,10 @@ export const LoadingState: Story = {
 
 export const Pagination: Story = {
   render: function Render(args) {
-    const table = useReactTable({
+    const table = useTable({
       columns: columns,
       data: largeData,
-      getCoreRowModel: getCoreRowModel(),
-      getPaginationRowModel: getPaginationRowModel(),
-      getSortedRowModel: getSortedRowModel(),
+      features: sortedPaginatedFeatures,
     });
     return (
       <DataTable {...args} table={table}>
@@ -796,11 +899,11 @@ export const Resizing: Story = {
     return (
       <DataTable
         {...args}
-        table={useReactTable({
+        table={useTable({
           columnResizeMode: "onEnd",
           columns: columns.slice(0, 5),
           data,
-          getCoreRowModel: getCoreRowModel(),
+          features,
         })}
       >
         <DataTableBody />
