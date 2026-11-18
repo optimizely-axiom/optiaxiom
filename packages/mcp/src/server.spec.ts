@@ -86,6 +86,52 @@ describe("createServer", () => {
     await client.close();
   });
 
+  it("returns every prop the query names, however many", async () => {
+    const client = await connect(createServer());
+
+    const result = await client.callTool({
+      arguments: {
+        name: "Select",
+        props:
+          "value defaultValue onValueChange options disabled name required loading",
+      },
+      name: "get_component",
+    });
+    const { props } = JSON.parse(
+      (result.content as Array<{ text: string }>)[0].text,
+    );
+
+    expect(Object.keys(props).sort()).toEqual([
+      "defaultValue",
+      "disabled",
+      "loading",
+      "name",
+      "onValueChange",
+      "options",
+      "required",
+      "value",
+    ]);
+
+    await client.close();
+  });
+
+  it("names the matching props it left out", async () => {
+    const client = await connect(createServer());
+
+    const result = await client.callTool({
+      arguments: { name: "Box", props: "padding" },
+      name: "get_component",
+    });
+    const { moreProps, props } = JSON.parse(
+      (result.content as Array<{ text: string }>)[0].text,
+    );
+
+    expect(Object.keys(props)).toEqual(["p", "pb", "pl", "pr", "pt"]);
+    expect(moreProps).toEqual(["px", "py"]);
+
+    await client.close();
+  });
+
   it("returns prop names and every required prop without a props query", async () => {
     const client = await connect(createServer());
 

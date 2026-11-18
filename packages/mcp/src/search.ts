@@ -198,32 +198,48 @@ export function searchIcons({
     .map((result) => result.icon);
 }
 
-export function searchProps({
-  limit = 5,
-  props,
-  query,
-}: PropSearchOptions): Record<string, PropDefinition> {
-  if (!query.trim()) {
-    return {};
+/**
+ * Props the query names exactly (a whitespace- or comma-separated word equal
+ * to the prop name) are always returned; the best fuzzy matches fill the rest
+ * up to `limit`. `more` names the fuzzy matches the limit cut off, best first.
+ */
+export function searchProps({ limit = 5, props, query }: PropSearchOptions): {
+  more: string[];
+  props: Record<string, PropDefinition>;
+} {
+  const terms = query
+    .toLowerCase()
+    .split(/[\s,]+/)
+    .filter((term) => term.length > 0);
+  if (!terms.length) {
+    return { more: [], props: {} };
   }
 
-  const results = Object.entries(props)
+  const exact = Object.entries(props).filter(([name]) =>
+    terms.includes(name.toLowerCase()),
+  );
+  const fuzzy = Object.entries(props)
+    .filter(([name]) => !terms.includes(name.toLowerCase()))
     .map(([name, definition]) => ({
       definition,
       name,
       score: calculateRelevanceScore({
         description: definition.description ?? undefined,
         name,
-        query,
+        query: terms.join(" "),
       }),
     }))
     .filter((result) => result.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, limit);
+    .sort((a, b) => b.score - a.score);
+  const kept = fuzzy.slice(0, Math.max(0, limit - exact.length));
 
-  return Object.fromEntries(
-    results.map(({ definition, name }) => [name, definition]),
-  );
+  return {
+    more: fuzzy.slice(kept.length).map(({ name }) => name),
+    props: Object.fromEntries([
+      ...exact,
+      ...kept.map(({ definition, name }) => [name, definition] as const),
+    ]),
+  };
 }
 
 export function searchTests({
