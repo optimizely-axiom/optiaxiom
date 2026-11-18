@@ -1682,6 +1682,43 @@ export const WithDataTable: Story = {
   },
 };
 
+// Tool data can carry an empty or non-date value in a `DateTime` column; the
+// cell shows it as sent and the rest of the table still formats.
+export const WithDataTableDates: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Salesforce",
+      body: [
+        {
+          $type: "DataTable",
+          columns: [
+            { accessorKey: "name", header: "Name" },
+            {
+              accessorKey: "startDate",
+              format: {
+                options: { day: "numeric", month: "short", year: "numeric" },
+                type: "DateTime",
+              },
+              header: "Start date",
+            },
+          ],
+          data: [
+            { name: "Webinar", startDate: "2026-03-23T12:00:00Z" },
+            { name: "Lead gen form", startDate: "" },
+            { name: "Workshop", startDate: "TBD" },
+          ],
+        },
+      ],
+      title: "Campaigns",
+    },
+  },
+  play: async ({ canvas }) => {
+    await expect(await canvas.findByText("Lead gen form")).toBeVisible();
+    await expect(canvas.getByText("TBD")).toBeVisible();
+  },
+};
+
 // A change-history / diff view built entirely from the generic `DataTable`
 // element — no dedicated element needed. Each column's `cell` is a regular
 // Proteus element template; `DataTableRow` reads the current row inside it. The
