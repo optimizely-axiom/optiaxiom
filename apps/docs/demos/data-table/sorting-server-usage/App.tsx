@@ -1,14 +1,10 @@
 "use client";
 
 import { DataTable, DataTableBody } from "@optiaxiom/react";
-import {
-  getCoreRowModel,
-  type SortingState,
-  useReactTable,
-} from "@tanstack/react-table";
+import { type SortingState, useTable } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
 
-import { columns } from "./columns";
+import { columns, features } from "./columns";
 import { data } from "./data";
 
 export function App() {
@@ -19,10 +15,10 @@ export function App() {
     },
   ]);
 
-  const table = useReactTable({
+  const table = useTable({
     columns,
     data: useMemo(() => sortData(sorting), [sorting]),
-    getCoreRowModel: getCoreRowModel(),
+    features,
     onSortingChange: setSorting,
     state: { sorting },
   });

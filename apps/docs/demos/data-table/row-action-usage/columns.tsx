@@ -13,16 +13,25 @@ import {
   Text,
   toaster,
 } from "@optiaxiom/react";
-import { createColumnHelper } from "@tanstack/react-table";
+import {
+  columnSizingFeature,
+  createColumnHelper,
+  tableFeatures,
+} from "@tanstack/react-table";
 
-const columnHelper = createColumnHelper<{
-  id: number;
-  modified_at: Date;
-  modified_by: string;
-  name: string;
-}>();
+export const features = tableFeatures({ columnSizingFeature });
 
-export const columns = [
+const columnHelper = createColumnHelper<
+  typeof features,
+  {
+    id: number;
+    modified_at: Date;
+    modified_by: string;
+    name: string;
+  }
+>();
+
+export const columns = columnHelper.columns([
   columnHelper.display({
     cell: ({ row }) => (
       <Group gap="16" justifyContent="space-between" w="full">
@@ -98,4 +107,4 @@ export const columns = [
     header: "Modified By",
     size: 150,
   }),
-];
+]);

@@ -309,8 +309,8 @@ importers:
         specifier: ^3.51.0
         version: 3.51.0(react@18.3.1)
       '@tanstack/react-table':
-        specifier: ^8.21.3
-        version: 8.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^9.3.1
+        version: 9.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/cssesc':
         specifier: ^3.0.2
         version: 3.0.2

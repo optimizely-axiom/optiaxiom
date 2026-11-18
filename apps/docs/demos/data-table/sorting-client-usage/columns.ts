@@ -1,13 +1,31 @@
-import { createColumnHelper } from "@tanstack/react-table";
+import {
+  columnSizingFeature,
+  createColumnHelper,
+  createSortedRowModel,
+  rowSortingFeature,
+  sortFn_alphanumeric,
+  sortFn_text,
+  tableFeatures,
+} from "@tanstack/react-table";
 
-const columnHelper = createColumnHelper<{
-  amount: string;
-  firstName: string;
-  id: number;
-  lastName: string;
-}>();
+export const features = tableFeatures({
+  columnSizingFeature,
+  rowSortingFeature,
+  sortedRowModel: createSortedRowModel(),
+  sortFns: { alphanumeric: sortFn_alphanumeric, text: sortFn_text },
+});
 
-export const columns = [
+const columnHelper = createColumnHelper<
+  typeof features,
+  {
+    amount: string;
+    firstName: string;
+    id: number;
+    lastName: string;
+  }
+>();
+
+export const columns = columnHelper.columns([
   columnHelper.accessor("id", {
     enableSorting: false,
     header: "ID",
@@ -22,6 +40,6 @@ export const columns = [
   columnHelper.accessor("amount", {
     cell: ({ renderValue }) => `$${renderValue()}`,
     header: "Amount",
-    sortingFn: "alphanumeric",
+    sortFn: "alphanumeric",
   }),
-];
+]);
