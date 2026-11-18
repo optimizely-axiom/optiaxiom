@@ -90,7 +90,7 @@ export const SortableItem = forwardRef<HTMLDivElement, SortableItemProps>(
         <Box
           data-sortable-dragging={isDragging ? "" : undefined}
           ref={ref}
-          {...styles.item({ handle: !handle }, className)}
+          {...styles.item({ grab: !handle }, className)}
           {...props}
         >
           {cacheRef.current.get(id)}
