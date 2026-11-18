@@ -1,16 +1,29 @@
-import { createColumnHelper } from "@tanstack/react-table";
+import {
+  columnPinningFeature,
+  columnSizingFeature,
+  createColumnHelper,
+  tableFeatures,
+} from "@tanstack/react-table";
 
-const columnHelper = createColumnHelper<{
-  amount: string;
-  email: string;
-  firstName: string;
-  id: number;
-  jobTitle: string;
-  lastName: string;
-  username: string;
-}>();
+export const features = tableFeatures({
+  columnPinningFeature,
+  columnSizingFeature,
+});
 
-export const columns = [
+const columnHelper = createColumnHelper<
+  typeof features,
+  {
+    amount: string;
+    email: string;
+    firstName: string;
+    id: number;
+    jobTitle: string;
+    lastName: string;
+    username: string;
+  }
+>();
+
+export const columns = columnHelper.columns([
   columnHelper.accessor("id", {
     header: "ID",
     size: 60,
@@ -37,4 +50,4 @@ export const columns = [
     cell: ({ renderValue }) => `$${renderValue()}`,
     header: "Amount",
   }),
-];
+]);

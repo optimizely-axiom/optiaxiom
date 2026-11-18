@@ -1,13 +1,26 @@
-import { createColumnHelper } from "@tanstack/react-table";
+import {
+  columnSizingFeature,
+  createColumnHelper,
+  rowSortingFeature,
+  tableFeatures,
+} from "@tanstack/react-table";
 
-const columnHelper = createColumnHelper<{
-  amount: string;
-  firstName: string;
-  id: number;
-  lastName: string;
-}>();
+export const features = tableFeatures({
+  columnSizingFeature,
+  rowSortingFeature,
+});
 
-export const columns = [
+const columnHelper = createColumnHelper<
+  typeof features,
+  {
+    amount: string;
+    firstName: string;
+    id: number;
+    lastName: string;
+  }
+>();
+
+export const columns = columnHelper.columns([
   columnHelper.accessor("id", {
     enableSorting: false,
     header: "ID",
@@ -23,4 +36,4 @@ export const columns = [
     cell: ({ renderValue }) => `$${renderValue()}`,
     header: "Amount",
   }),
-];
+]);
