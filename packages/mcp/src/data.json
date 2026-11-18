@@ -24305,7 +24305,7 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data: [],\n    getCoreRowModel: getCoreRowModel(),\n  });\n\n  return (\n    <DataTable table={table}>\n      <DataTableBody empty=\"No payments yet.\" />\n    </DataTable>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { getCoreRowModel, useReactTable } from \"@tanstack/react-table\";\n\nimport { columns } from \"./columns\";\n\nconst data: never[] = [];\n\nexport function App() {\n  const table = useReactTable({\n    columns,\n    data,\n    getCoreRowModel: getCoreRowModel(),\n  });\n\n  return (\n    <DataTable table={table}>\n      <DataTableBody empty=\"No payments yet.\" />\n    </DataTable>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
