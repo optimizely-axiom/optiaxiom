@@ -21,7 +21,7 @@ export const item = recipe({
   }),
 
   variants: {
-    handle: {
+    grab: {
       false: {},
       true: style({
         cursor: "grab",
