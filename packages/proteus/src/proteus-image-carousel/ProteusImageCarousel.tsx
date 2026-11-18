@@ -11,6 +11,7 @@ import type { ProteusPreviewFile } from "../proteus-document/schemas";
 
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
+import { ProteusAction } from "../proteus-action/ProteusAction";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { ProteusImage } from "../proteus-image/ProteusImage";
 import * as styles from "./ProteusImageCarousel.css";
@@ -187,17 +188,15 @@ export function ProteusImageCarousel({
 
         <Group gap="8" ml="auto">
           {canEditFile && (
-            <Button
+            <ProteusAction
               icon={<IconPen />}
-              onClick={() =>
-                onEvent({
-                  action: "editFile",
-                  file: toPreviewFile(images[selectedIndex]),
-                })
-              }
+              onClick={{
+                action: "editFile",
+                file: toPreviewFile(images[selectedIndex]),
+              }}
             >
               Edit
-            </Button>
+            </ProteusAction>
           )}
 
           {images.length > 1 ? (

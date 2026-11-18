@@ -88,6 +88,8 @@ export type ProteusDocumentShellProps = {
    * Callback when user triggers an edit file action; receives the file to
    * edit. The image carousel shows Edit only when this is set. Without it, an
    * `editFile` action does nothing, as `preview` does without `onPreview`.
+   * Edit shows a spinner, and the document's other actions wait, until the
+   * returned promise settles.
    */
   onEditFile?: (file: ProteusPreviewFile) => Promise<void> | void;
   /**
