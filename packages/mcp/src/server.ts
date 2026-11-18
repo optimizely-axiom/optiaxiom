@@ -72,11 +72,12 @@ export function createServer() {
 
 Use the \`import\` statement. \`entryPoint\` names the component's own entry point; use it instead only when the project imports from entry points (e.g. a lint rule bans the \`@optiaxiom/react\` barrel). Never mix both styles in one project.
 
-Use the optional "props" parameter to search for specific props by name or description. Searches both component-specific props and style props — you don't need to know shorthand names, just describe what you want (e.g., "padding" finds the "p" prop). \`required\` lists every prop that must be passed, whether or not the props query matched it.
+Use the optional "props" parameter to search for specific props by name or description. Searches both component-specific props and style props — you don't need to know shorthand names, just describe what you want (e.g., "padding" finds the "p" prop). Every prop the query names exactly is returned; other matches fill up to 5. \`moreProps\` lists the other matching props; ask for any of them by name. \`required\` lists every prop that must be passed, whether or not the props query matched it.
 
 Examples:
   get_component({ name: "Dialog" }) → description, import, sub-components, accessibility, prop names, required props
-  get_component({ name: "Box", props: "padding background" }) → + p and bg prop definitions`,
+  get_component({ name: "Box", props: "padding background" }) → + p and bg prop definitions
+  get_component({ name: "Select", props: "value onValueChange options disabled name required" }) → all six named props, past the usual 5`,
       inputSchema: {
         name: z
           .string()
@@ -104,9 +105,10 @@ Examples:
         };
       }
 
-      const props = propsQuery
+      const matches = propsQuery
         ? searchProps({ props: component.props, query: propsQuery })
         : undefined;
+      const props = matches?.props;
 
       return {
         content: [
@@ -119,6 +121,7 @@ Examples:
               entryPoint: component.entryPoint,
               examples: component.examples?.map((e) => e.title),
               import: component.import,
+              moreProps: matches?.more.length ? matches.more : undefined,
               name: component.name,
               note: props ? propsNote : undefined,
               props: props ?? Object.keys(component.props),
