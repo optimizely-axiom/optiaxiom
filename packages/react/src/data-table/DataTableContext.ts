@@ -1,9 +1,10 @@
 "use client";
 
-import type { Table } from "@tanstack/table-core";
 import type { MutableRefObject } from "react";
 
 import { createContext } from "@radix-ui/react-context";
+
+import type { TableAdapter } from "./tanstack";
 
 export const [DataTableProvider, useDataTableContext] = createContext<{
   /**
@@ -13,5 +14,5 @@ export const [DataTableProvider, useDataTableContext] = createContext<{
   focusRequestRef: MutableRefObject<boolean>;
   highlightedIndex: number;
   setHighlightedIndex: (highlightedIndex: number) => void;
-  table: Table<unknown>;
+  table: TableAdapter;
 }>("@optiaxiom/react/DataTable");

@@ -1,10 +1,9 @@
-import type { Table } from "@tanstack/table-core";
-
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useMemo, useRef, useState } from "react";
 
 import { type BoxProps } from "../box";
 import { Group } from "../group";
 import { DataTableProvider } from "./DataTableContext";
+import { adaptTable, type TanStackTable } from "./tanstack";
 
 export type DataTableProps = BoxProps<
   "div",
@@ -12,8 +11,7 @@ export type DataTableProps = BoxProps<
     /**
      * Pass the table instance returned from `useReactTable()` hook.
      */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    table: Table<any>;
+    table: TanStackTable;
   }
 >;
 
@@ -31,6 +29,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
   ({ children, table, ...props }, ref) => {
     const [highlightedIndex, setHighlightedIndex] = useState(-1);
     const focusRequestRef = useRef(false);
+    const adapter = useMemo(() => adaptTable(table), [table]);
 
     return (
       <Group
@@ -45,7 +44,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
           focusRequestRef={focusRequestRef}
           highlightedIndex={highlightedIndex}
           setHighlightedIndex={setHighlightedIndex}
-          table={table}
+          table={adapter}
         >
           {children}
         </DataTableProvider>

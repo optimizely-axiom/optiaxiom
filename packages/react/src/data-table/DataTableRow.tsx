@@ -14,7 +14,8 @@ import type { BoxProps } from "../box";
 import { useEvent } from "../hooks";
 import { TableRow } from "../table";
 import { useDataTableContext } from "./DataTableContext";
-import { DataTableRowProvider, fakeRow } from "./DataTableRowContext";
+import { DataTableRowProvider } from "./DataTableRowContext";
+import { type TableAdapter, type TanStackRow } from "./tanstack";
 
 export type DataTableRowProps = BoxProps<
   typeof TableRow,
@@ -26,7 +27,7 @@ export type DataTableRowProps = BoxProps<
     /**
      * The Row instance to render.
      */
-    row: ReturnType<typeof fakeRow>;
+    row: TanStackRow;
   }
 >;
 
@@ -53,7 +54,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
      * be selected (a selection cap, an item already added) ignores a single
      * click and opens on double click, like the selectable rows around it.
      */
-    const selectable = table.options.enableRowSelection !== false;
+    const selectable = table.getCanSelectRows();
 
     const innerRef = useRef<HTMLTableRowElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -102,9 +103,11 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
     return (
       <TableRow
         aria-labelledby={labelId}
-        aria-selected={row.getCanSelect() ? row.getIsSelected() : undefined}
+        aria-selected={
+          table.getCanSelect(row) ? table.getIsSelected(row) : undefined
+        }
         data-focus-visible={focusManaged ? "" : undefined}
-        data-selected={row.getIsSelected() ? "" : undefined}
+        data-selected={table.getIsSelected(row) ? "" : undefined}
         onClick={(event) => {
           if (!(event.target instanceof Element)) {
             return;
@@ -123,7 +126,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
               primary?.ref.current?.click();
             }
           } else if (
-            row.getCanSelect() &&
+            table.getCanSelect(row) &&
             selector &&
             getAssociatedControl(event) !== selector.current
           ) {
@@ -175,7 +178,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
             return;
           }
 
-          const { rows } = table.getRowModel();
+          const rows = table.getRows();
           if (
             focusManaged &&
             (event.key === "ArrowDown" || event.key === "ArrowUp")
@@ -191,11 +194,12 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
               // change below checks it.
               const nextRow = rows[nextIndex];
               if (selector) {
-                if (event.shiftKey && row.getCanMultiSelect()) {
+                if (event.shiftKey && table.getCanMultiSelect(row)) {
                   // Look past rows that can't be selected: moving toward a
                   // selected row shrinks the range from the row being left.
-                  const ahead = findSelectableRow(rows, nextIndex, step);
+                  const ahead = findSelectableRow(table, rows, nextIndex, step);
                   const behind = findSelectableRow(
+                    table,
                     rows,
                     highlightedIndex,
                     -step,
@@ -205,13 +209,13 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
                       ? behind
                         ? { ...selection, [behind.id]: false }
                         : selection
-                      : nextRow.getCanSelect()
+                      : table.getCanSelect(nextRow)
                         ? { ...selection, [nextRow.id]: true }
                         : selection,
                   );
                 } else {
                   table.setRowSelection(
-                    nextRow.getCanSelect() ? { [nextRow.id]: true } : {},
+                    table.getCanSelect(nextRow) ? { [nextRow.id]: true } : {},
                   );
                 }
               }
@@ -229,7 +233,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
           } else if (event.currentTarget === document.activeElement) {
             if (event.key === " " && selector) {
               event.preventDefault();
-              row.toggleSelected();
+              table.toggleSelected(row);
             } else if (event.key === "Enter" && primary) {
               event.preventDefault();
               primary.ref.current?.click();
@@ -272,12 +276,13 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
 DataTableRow.displayName = "@optiaxiom/react/DataTableRow";
 
 const findSelectableRow = (
-  rows: Array<ReturnType<typeof fakeRow>>,
+  table: TableAdapter,
+  rows: TanStackRow[],
   from: number,
   step: number,
 ) => {
   for (let i = from; i >= 0 && i < rows.length; i += step) {
-    if (rows[i].getCanSelect()) {
+    if (table.getCanSelect(rows[i])) {
       return rows[i];
     }
   }
