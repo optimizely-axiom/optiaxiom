@@ -709,6 +709,11 @@
       "import": "./dist/esm/IconDisplay.js",
       "require": "./dist/cjs/IconDisplay.js"
     },
+    "./IconDockToRight": {
+      "types": "./dist/IconDockToRight.d.ts",
+      "import": "./dist/esm/IconDockToRight.js",
+      "require": "./dist/cjs/IconDockToRight.js"
+    },
     "./IconDollarSign": {
       "types": "./dist/IconDollarSign.d.ts",
       "import": "./dist/esm/IconDollarSign.js",

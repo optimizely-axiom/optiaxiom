@@ -127793,7 +127793,17 @@
     "IconInputNumeric": {
       "entryPoint": "@optiaxiom/icons/IconInputNumeric",
       "import": "import { IconInputNumeric } from '@optiaxiom/icons';",
-      "keywords": ["digit", "numbers", "symbol"],
+      "keywords": [
+        "hash",
+        "hashtag",
+        "key",
+        "media",
+        "numbers",
+        "pound",
+        "social",
+        "tag",
+        "trend"
+      ],
       "name": "IconInputNumeric"
     },
     "IconArrowsMaximize": {
@@ -129891,14 +129901,21 @@
       "keywords": [
         "adjust",
         "audio",
+        "configure",
         "controls",
         "custom",
         "customize",
         "edit",
         "editing",
+        "fader",
+        "faders",
         "filter",
         "filters",
         "instant",
+        "level",
+        "levels",
+        "lever",
+        "levers",
         "mix",
         "music",
         "options",
@@ -129917,14 +129934,21 @@
       "keywords": [
         "adjust",
         "audio",
+        "configure",
         "controls",
         "custom",
         "customize",
         "edit",
         "editing",
+        "fader",
+        "faders",
         "filter",
         "filters",
         "instant",
+        "level",
+        "levels",
+        "lever",
+        "levers",
         "mix",
         "music",
         "options",
@@ -130447,6 +130471,12 @@
         "zoom"
       ],
       "name": "IconMagnifyingGlassMinus"
+    },
+    "IconDockToRight": {
+      "entryPoint": "@optiaxiom/icons/IconDockToRight",
+      "import": "import { IconDockToRight } from '@optiaxiom/icons';",
+      "keywords": ["dock", "layout", "panel", "right panel", "sidebar"],
+      "name": "IconDockToRight"
     },
     "IconPersonSparkles": {
       "entryPoint": "@optiaxiom/icons/IconPersonSparkles",
