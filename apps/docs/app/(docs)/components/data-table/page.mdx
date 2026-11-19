@@ -139,6 +139,27 @@ The value is the TanStack row `id`, so set `getRowId` to keep it stable across s
 
 <Demo component="data-table/highlighted-row-usage" />
 
+### Row intent
+
+On TanStack Table v9, register `rowIntentFeature` to color rows. `getRowIntent` reads each row, so the app keeps the state the color describes:
+
+```tsx
+import { rowIntentFeature } from "@optiaxiom/react";
+
+const features = tableFeatures({ rowIntentFeature, rowSelectionFeature });
+
+const table = useTable({
+  columns,
+  data,
+  features,
+  getRowIntent: (row) => (row.id === openRowId ? "primary" : undefined),
+});
+```
+
+`primary` gives a row the selected rows' color without selecting it, such as the row shown in a details pane. A row with an intent keeps its color on hover.
+
+<Demo component="data-table/row-intent-usage" />
+
 ### Pagination
 
 `DataTable` supports both client-side and server-side pagination. Follow the [pagination guide](https://tanstack.com/table/latest/docs/guide/pagination) to learn how to implement pagination with TanStack Table.
@@ -266,6 +287,7 @@ Columns will be virtualized when there are more than 20 columns in a table and r
 - Added support for TanStack Table v9 tables from `useTable()`, alongside v8.
 - Added `selectionBehavior` prop so a row click can run the primary action while rows stay selected.
 - Added `rowHighlightingFeature` to read and set the highlighted row on TanStack Table v9.
+- Added `rowIntentFeature` to give rows the selected color on TanStack Table v9.
 
 ### 1.5.0
 

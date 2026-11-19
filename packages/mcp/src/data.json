@@ -24549,6 +24549,34 @@
         {
           "code": [
             {
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { useTable } from \"@tanstack/react-table\";\nimport { useMemo, useState } from \"react\";\n\nimport { columns, features } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const [openId, setOpenId] = useState<null | string>(\"2\");\n  const table = useTable({\n    columns: useMemo(() => columns(setOpenId), []),\n    data,\n    features,\n    getRowId: (row) => row.id,\n    getRowIntent: (row) => (row.id === openId ? \"primary\" : undefined),\n  });\n\n  return (\n    <DataTable selectionBehavior=\"toggle\" table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
+              "filename": "App.tsx"
+            },
+            {
+              "content": "import {\n  Button,\n  DataTableAction,\n  DataTableCheckbox,\n  DataTableLabel,\n  rowIntentFeature,\n} from \"@optiaxiom/react\";\nimport {\n  createColumnHelper,\n  rowSelectionFeature,\n  tableFeatures,\n} from \"@tanstack/react-table\";\n\nimport type { data } from \"./data\";\n\nexport const features = tableFeatures({\n  rowIntentFeature,\n  rowSelectionFeature,\n});\n\nconst columnHelper = createColumnHelper<\n  typeof features,\n  (typeof data)[number]\n>();\n\nexport const columns = (onOpen: (id: string) => void) =>\n  columnHelper.columns([\n    columnHelper.display({\n      cell: () => <DataTableCheckbox />,\n      header: () => <DataTableCheckbox />,\n      id: \"select\",\n    }),\n    columnHelper.accessor(\"name\", {\n      cell: ({ renderValue }) => (\n        <DataTableLabel>{renderValue()}</DataTableLabel>\n      ),\n      header: \"Name\",\n    }),\n    columnHelper.display({\n      cell: ({ row }) => (\n        <DataTableAction primary>\n          <Button appearance=\"subtle\" onClick={() => onOpen(row.id)} size=\"sm\">\n            Open\n          </Button>\n        </DataTableAction>\n      ),\n      header: \"Actions\",\n      id: \"actions\",\n    }),\n  ]);\n",
+              "filename": "columns.tsx"
+            },
+            {
+              "content": "export const data = [\n  { id: \"1\", name: \"Homepage hero\" },\n  { id: \"2\", name: \"Spring campaign\" },\n  { id: \"3\", name: \"Pricing table\" },\n  { id: \"4\", name: \"Partner logos\" },\n  { id: \"5\", name: \"Footer links\" },\n];\n",
+              "filename": "data.ts"
+            }
+          ],
+          "components": [
+            "Button",
+            "DataTable",
+            "DataTableAction",
+            "DataTableBody",
+            "DataTableCheckbox",
+            "DataTableLabel",
+            "rowIntentFeature"
+          ],
+          "title": "row-intent-usage",
+          "description": "On TanStack Table v9, register `rowIntentFeature` to color rows. `getRowIntent` reads each row, so the app keeps the state the color describes:\n\n`primary` gives a row the selected rows' color without selecting it, such as the row shown in a details pane. A row with an intent keeps its color on hover.",
+          "heading": "Row intent"
+        },
+        {
+          "code": [
+            {
               "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { useTable } from \"@tanstack/react-table\";\n\nimport { columns, features } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useTable({\n    columns,\n    data,\n    features,\n  });\n  return (\n    <DataTable table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
               "filename": "App.tsx"
             },

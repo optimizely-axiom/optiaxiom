@@ -9,6 +9,7 @@ import {
   DataTableLabel,
   Flex,
   rowHighlightingFeature,
+  rowIntentFeature,
   Text,
 } from "@optiaxiom/react";
 import {
@@ -142,6 +143,41 @@ export const HighlightedRowFromOutside: Story = {
           <DataTableBody />
         </DataTable>
       </Flex>
+    );
+  },
+};
+
+const intentData: Page[] = [
+  { id: "home", title: "Home" },
+  { id: "about", title: "About us" },
+  { id: "news", title: "News" },
+  { id: "contact", title: "Contact" },
+];
+
+const intentFeatures = tableFeatures({ rowIntentFeature, rowSelectionFeature });
+
+/**
+ * The `primary` intent gives a row the selected color without selecting it,
+ * here for the row a details pane would show (About us). It looks the same on
+ * a selected row (News) and doesn't change on hover.
+ */
+export const RowIntent: Story = {
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useTable({
+          columns: columns as Array<ColumnDef<typeof intentFeatures, Page>>,
+          data: intentData,
+          features: intentFeatures,
+          getRowId: (page) => page.id,
+          getRowIntent: (row) =>
+            row.id === "about" || row.id === "news" ? "primary" : undefined,
+          initialState: { rowSelection: { contact: true, news: true } },
+        })}
+      >
+        <DataTableBody />
+      </DataTable>
     );
   },
 };

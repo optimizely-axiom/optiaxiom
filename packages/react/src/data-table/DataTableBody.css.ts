@@ -109,12 +109,12 @@ export const cell = recipe({
         "@media": {
           "(hover: hover)": {
             selectors: {
-              [`${row}:hover &`]: {
+              [`${row}:not([data-intent]):hover &`]: {
                 vars: {
                   [bgHoverColor]: theme.colors["bg.default.hovered"],
                 },
               },
-              [`${row}[data-selected]:hover &`]: {
+              [`${row}[data-selected]:not([data-intent]):hover &`]: {
                 vars: {
                   [bgHoverColor]: `
                     color-mix(
@@ -134,6 +134,12 @@ export const cell = recipe({
               [bgHoverColor]: theme.colors["bg.accent.subtle"],
             },
           },
+          ...Object.fromEntries(
+            Object.entries(styles.intents).map(([intent, color]) => [
+              `${row}[data-intent="${intent}"] &`,
+              { vars: { [bgHoverColor]: theme.colors[`bg.${color}.subtle`] } },
+            ]),
+          ),
         },
       }),
       header: {},
