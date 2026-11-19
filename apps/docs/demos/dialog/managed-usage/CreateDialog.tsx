@@ -6,11 +6,12 @@ import {
   DialogFooter,
   DialogForm,
   DialogHeader,
+  dialogkit,
   Field,
   Input,
   toaster,
+  useDialogKit,
 } from "@optiaxiom/react";
-import { dialogkit, useDialogKit } from "@optiaxiom/react/unstable";
 
 export function CreateDialog() {
   const { id } = useDialogKit();

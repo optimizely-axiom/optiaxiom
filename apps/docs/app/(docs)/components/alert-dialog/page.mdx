@@ -1,5 +1,5 @@
 import { Cards, Demo, KeyboardTable, Links, PropsTable } from "@/components";
-import { Badge, Kbd } from "@optiaxiom/react";
+import { Kbd } from "@optiaxiom/react";
 
 # AlertDialog
 
@@ -53,7 +53,7 @@ Use the `open` and `defaultOpen` props to toggle between controlled and uncontro
   meta="/onOpenChange={setOpen}/ /open={open}/"
 />
 
-### Managed <Badge intent="primary">ALPHA</Badge>
+### Managed
 
 Use `dialogkit.create()` to create alert dialogs in managed mode. In managed mode you must omit the `AlertDialog` element and only send the `AlertDialogContent` element and its children.
 
@@ -153,6 +153,18 @@ We can also completely change the trigger by using `asChild` and passing our own
 />
 
 ## Changelog
+
+### 3.7.0
+
+- Moved **dialogkit** out of **Alpha**.
+
+  ```jsx
+  // Before
+  import { dialogkit } from "@optiaxiom/react/unstable";
+
+  // After
+  import { dialogkit } from "@optiaxiom/react";
+  ```
 
 ### 1.6.7
 

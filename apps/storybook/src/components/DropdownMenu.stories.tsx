@@ -19,6 +19,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
+  dialogkit,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
@@ -34,7 +35,6 @@ import {
   Group,
   Input,
 } from "@optiaxiom/react";
-import { dialogkit } from "@optiaxiom/react/unstable";
 import { useEffect, useState } from "react";
 import { action } from "storybook/actions";
 import { expect, screen, userEvent, waitFor } from "storybook/test";

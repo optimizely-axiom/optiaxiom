@@ -922,19 +922,19 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { Button, toaster } from \"@optiaxiom/react\";\nimport { dialogkit } from \"@optiaxiom/react/unstable\";\n\nexport function App() {\n  return (\n    <Button\n      onClick={async () => {\n        const result = await dialogkit.confirm({\n          action: \"Yes, delete\",\n          body: \"The comment and all replies will be deleted.\",\n          header: \"Delete comment?\",\n        });\n        if (result) {\n          toaster.create(\"Clicked confirm!\");\n        }\n      }}\n    >\n      Delete comment\n    </Button>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { Button, dialogkit, toaster } from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Button\n      onClick={async () => {\n        const result = await dialogkit.confirm({\n          action: \"Yes, delete\",\n          body: \"The comment and all replies will be deleted.\",\n          header: \"Delete comment?\",\n        });\n        if (result) {\n          toaster.create(\"Clicked confirm!\");\n        }\n      }}\n    >\n      Delete comment\n    </Button>\n  );\n}\n",
               "filename": "App.tsx"
             }
           ],
           "components": ["Button", "dialogkit", "toaster"],
           "title": "managed-confirm-usage",
           "description": "We can also use the `await dialogkit.confirm()` shortcut method to show an alert dialog and get a boolean result based on whether the user confirms or cancels the dialog.",
-          "heading": "Managed ALPHA"
+          "heading": "Managed"
         },
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport {\n  AlertDialogAction,\n  AlertDialogBody,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  Button,\n  toaster,\n} from \"@optiaxiom/react\";\nimport { dialogkit } from \"@optiaxiom/react/unstable\";\n\nexport function App() {\n  return (\n    <Button\n      onClick={() =>\n        dialogkit.create(\n          <AlertDialogContent>\n            <AlertDialogHeader>Delete comment?</AlertDialogHeader>\n\n            <AlertDialogBody>\n              The comment and all replies will be deleted.\n            </AlertDialogBody>\n\n            <AlertDialogFooter>\n              <AlertDialogCancel />\n              <AlertDialogAction\n                onClick={() => toaster.create(\"Clicked confirm!\")}\n              >\n                Yes, delete\n              </AlertDialogAction>\n            </AlertDialogFooter>\n          </AlertDialogContent>,\n        )\n      }\n    >\n      Delete comment\n    </Button>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport {\n  AlertDialogAction,\n  AlertDialogBody,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  Button,\n  dialogkit,\n  toaster,\n} from \"@optiaxiom/react\";\n\nexport function App() {\n  return (\n    <Button\n      onClick={() =>\n        dialogkit.create(\n          <AlertDialogContent>\n            <AlertDialogHeader>Delete comment?</AlertDialogHeader>\n\n            <AlertDialogBody>\n              The comment and all replies will be deleted.\n            </AlertDialogBody>\n\n            <AlertDialogFooter>\n              <AlertDialogCancel />\n              <AlertDialogAction\n                onClick={() => toaster.create(\"Clicked confirm!\")}\n              >\n                Yes, delete\n              </AlertDialogAction>\n            </AlertDialogFooter>\n          </AlertDialogContent>,\n        )\n      }\n    >\n      Delete comment\n    </Button>\n  );\n}\n",
               "filename": "App.tsx"
             }
           ],
@@ -951,7 +951,7 @@
           ],
           "title": "managed-usage",
           "description": "Use `dialogkit.create()` to create alert dialogs in managed mode. In managed mode you must omit the `AlertDialog` element and only send the `AlertDialogContent` element and its children.",
-          "heading": "Managed ALPHA"
+          "heading": "Managed"
         },
         {
           "code": [
@@ -35359,11 +35359,11 @@
         {
           "code": [
             {
-              "content": "\"use client\";\n\nimport { Button } from \"@optiaxiom/react\";\nimport { dialogkit } from \"@optiaxiom/react/unstable\";\n\nimport { CreateDialog } from \"./CreateDialog\";\n\nexport function App() {\n  return (\n    <Button onClick={() => dialogkit.create(<CreateDialog />)}>\n      Open Dialog\n    </Button>\n  );\n}\n",
+              "content": "\"use client\";\n\nimport { Button, dialogkit } from \"@optiaxiom/react\";\n\nimport { CreateDialog } from \"./CreateDialog\";\n\nexport function App() {\n  return (\n    <Button onClick={() => dialogkit.create(<CreateDialog />)}>\n      Open Dialog\n    </Button>\n  );\n}\n",
               "filename": "App.tsx"
             },
             {
-              "content": "import {\n  Button,\n  DialogBody,\n  DialogClose,\n  DialogContent,\n  DialogFooter,\n  DialogForm,\n  DialogHeader,\n  Field,\n  Input,\n  toaster,\n} from \"@optiaxiom/react\";\nimport { dialogkit, useDialogKit } from \"@optiaxiom/react/unstable\";\n\nexport function CreateDialog() {\n  const { id } = useDialogKit();\n\n  return (\n    <DialogContent>\n      <DialogHeader>Modal Title</DialogHeader>\n      <DialogForm\n        onSubmit={(event) => {\n          event.preventDefault();\n          if (event.target instanceof HTMLFormElement) {\n            toaster.create(\n              `Submitted: ${JSON.stringify(\n                Object.fromEntries(new FormData(event.target)),\n              )}`,\n            );\n          }\n          dialogkit.remove(id);\n        }}\n      >\n        <DialogBody>\n          <Field label=\"Name\">\n            <Input autoFocus name=\"name\" />\n          </Field>\n          <Field label=\"Description\">\n            <Input name=\"description\" />\n          </Field>\n        </DialogBody>\n        <DialogFooter>\n          <DialogClose>Cancel</DialogClose>\n          <Button appearance=\"primary\" type=\"submit\">\n            Submit\n          </Button>\n        </DialogFooter>\n      </DialogForm>\n    </DialogContent>\n  );\n}\n",
+              "content": "import {\n  Button,\n  DialogBody,\n  DialogClose,\n  DialogContent,\n  DialogFooter,\n  DialogForm,\n  DialogHeader,\n  dialogkit,\n  Field,\n  Input,\n  toaster,\n  useDialogKit,\n} from \"@optiaxiom/react\";\n\nexport function CreateDialog() {\n  const { id } = useDialogKit();\n\n  return (\n    <DialogContent>\n      <DialogHeader>Modal Title</DialogHeader>\n      <DialogForm\n        onSubmit={(event) => {\n          event.preventDefault();\n          if (event.target instanceof HTMLFormElement) {\n            toaster.create(\n              `Submitted: ${JSON.stringify(\n                Object.fromEntries(new FormData(event.target)),\n              )}`,\n            );\n          }\n          dialogkit.remove(id);\n        }}\n      >\n        <DialogBody>\n          <Field label=\"Name\">\n            <Input autoFocus name=\"name\" />\n          </Field>\n          <Field label=\"Description\">\n            <Input name=\"description\" />\n          </Field>\n        </DialogBody>\n        <DialogFooter>\n          <DialogClose>Cancel</DialogClose>\n          <Button appearance=\"primary\" type=\"submit\">\n            Submit\n          </Button>\n        </DialogFooter>\n      </DialogForm>\n    </DialogContent>\n  );\n}\n",
               "filename": "CreateDialog.tsx"
             }
           ],
@@ -35383,7 +35383,7 @@
           ],
           "title": "managed-usage",
           "description": "Use `dialogkit.create()` to create dialogs in managed mode. In managed mode you must omit the `Dialog` element and only send the `DialogContent` element and its children.",
-          "heading": "Managed ALPHA"
+          "heading": "Managed"
         },
         {
           "code": [
@@ -130529,6 +130529,11 @@
       "components": ["DateInput"],
       "name": "DateInput",
       "source": "import { describe, expect, it, vi } from \"vitest\";\n\nimport { render, screen } from \"../../vitest.rtl\";\nimport { Field } from \"../field\";\nimport { DateInput } from \"./DateInput\";\n\ndescribe(\"DateInput component\", () => {\n  function setup() {\n    const onSubmit = vi.fn();\n\n    return {\n      ...render(\n        <form\n          onSubmit={(event) => {\n            event.preventDefault();\n            onSubmit(Object.fromEntries(new FormData(event.currentTarget)));\n          }}\n        >\n          <Field label=\"Due date\">\n            <DateInput name=\"due\" placeholder=\"2025-01-01\" />\n          </Field>\n          <button type=\"submit\">Save</button>\n        </form>,\n      ),\n      onSubmit,\n    };\n  }\n\n  it(\"should submit the typed date with its form\", async () => {\n    const { onSubmit, user } = setup();\n\n    await user.type(screen.getByLabelText(\"Due date\"), \"2025-01-15\");\n    await user.click(screen.getByRole(\"button\", { name: \"Save\" }));\n\n    expect(onSubmit).toHaveBeenCalledWith({ due: \"2025-01-15\" });\n  });\n\n  it(\"should fill in the date picked from the calendar\", async () => {\n    const { user } = setup();\n\n    await user.click(screen.getByRole(\"img\", { name: \"Show date picker\" }));\n    await user.click(\n      await screen.findByRole(\"button\", { name: /January 15th, 2025/ }),\n    );\n\n    expect(screen.getByLabelText(\"Due date\")).toHaveValue(\"2025-01-15\");\n  });\n});\n"
+    },
+    "dialogkit": {
+      "components": ["dialogkit"],
+      "name": "dialogkit",
+      "source": "import { describe, expect, it, vi } from \"vitest\";\n\nimport { render, screen, waitFor } from \"../../vitest.rtl\";\nimport { Button } from \"../button\";\nimport { DialogContent, DialogFooter, DialogHeader } from \"../dialog\";\nimport { dialogkit } from \"./dialogkit\";\nimport { useDialogKit } from \"./useDialogKit\";\n\ndescribe(\"dialogkit\", () => {\n  function setup() {\n    const onResult = vi.fn();\n    return {\n      ...render(\n        <Button\n          onClick={async () =>\n            onResult(\n              await dialogkit.confirm({\n                action: \"Yes, delete\",\n                body: \"The comment and all replies will be deleted.\",\n                header: \"Delete comment?\",\n              }),\n            )\n          }\n        >\n          Delete comment\n        </Button>,\n      ),\n      onResult,\n    };\n  }\n\n  it(\"resolves confirm() with true when the user confirms\", async () => {\n    const { onResult, user } = setup();\n\n    await user.click(screen.getByRole(\"button\", { name: \"Delete comment\" }));\n    await screen.findByRole(\"alertdialog\", { name: \"Delete comment?\" });\n    await user.click(screen.getByRole(\"button\", { name: \"Yes, delete\" }));\n\n    await waitFor(() => expect(onResult).toHaveBeenCalledWith(true));\n  });\n\n  it(\"resolves confirm() with false when the user cancels\", async () => {\n    const { onResult, user } = setup();\n\n    await user.click(screen.getByRole(\"button\", { name: \"Delete comment\" }));\n    await screen.findByRole(\"alertdialog\", { name: \"Delete comment?\" });\n    await user.click(screen.getByRole(\"button\", { name: \"Cancel\" }));\n\n    await waitFor(() => expect(onResult).toHaveBeenCalledWith(false));\n  });\n\n  it(\"closes a created dialog from inside with remove()\", async () => {\n    function DoneDialog() {\n      const { id } = useDialogKit();\n      return (\n        <DialogContent>\n          <DialogHeader>Export ready</DialogHeader>\n          <DialogFooter>\n            <Button onClick={() => dialogkit.remove(id)}>Done</Button>\n          </DialogFooter>\n        </DialogContent>\n      );\n    }\n    const { user } = render(\n      <Button onClick={() => dialogkit.create(<DoneDialog />)}>Export</Button>,\n    );\n\n    await user.click(screen.getByRole(\"button\", { name: \"Export\" }));\n    await screen.findByRole(\"dialog\", { name: \"Export ready\" });\n    await user.click(screen.getByRole(\"button\", { name: \"Done\" }));\n\n    await waitFor(() =>\n      expect(screen.queryByRole(\"dialog\")).not.toBeInTheDocument(),\n    );\n  });\n});\n"
     },
     "InlineInput": {
       "components": ["InlineInput"],

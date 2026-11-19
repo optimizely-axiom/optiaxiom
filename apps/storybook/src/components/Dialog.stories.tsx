@@ -5,12 +5,14 @@ import {
   AxiomProvider,
   Box,
   Button,
+  createDialogKit,
   Dialog,
   DialogBody,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
+  dialogkit,
   DialogTrigger,
   Group,
   Input,
@@ -27,11 +29,7 @@ import {
   Text,
   Textarea,
 } from "@optiaxiom/react";
-import {
-  createDialogKit,
-  dialogkit,
-  SurfaceProvider,
-} from "@optiaxiom/react/unstable";
+import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,

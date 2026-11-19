@@ -60,7 +60,7 @@ type DialogKit = {
 /**
  * Create a dialog kit instance for managing dialogs programmatically.
  *
- * @experimental
+ * @since 3.7.0
  */
 export const createDialogKit = (): DialogKit => {
   let snapshot: DialogItem[] = [];
@@ -149,4 +149,9 @@ export const createDialogKit = (): DialogKit => {
   };
 };
 
+/**
+ * The default dialog kit, rendered by `AxiomProvider`.
+ *
+ * @since 3.7.0
+ */
 export const dialogkit = createDialogKit();

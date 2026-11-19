@@ -1,5 +1,5 @@
 import { Cards, Demo, KeyboardTable, Links, PropsTable } from "@/components";
-import { Alert, Badge, Kbd } from "@optiaxiom/react";
+import { Alert, Kbd } from "@optiaxiom/react";
 
 # Dialog
 
@@ -57,7 +57,7 @@ Use the `open` and `defaultOpen` props to toggle between controlled and uncontro
   meta="/onOpenChange={setOpen}/ /open={open}/"
 />
 
-### Managed <Badge intent="primary">ALPHA</Badge>
+### Managed
 
 Use `dialogkit.create()` to create dialogs in managed mode. In managed mode you must omit the `Dialog` element and only send the `DialogContent` element and its children.
 
@@ -160,6 +160,18 @@ Focus moves into the dialog when it opens, stays inside while it's open, and ret
 />
 
 ## Changelog
+
+### 3.7.0
+
+- Moved **dialogkit** out of **Alpha**.
+
+  ```jsx
+  // Before
+  import { dialogkit } from "@optiaxiom/react/unstable";
+
+  // After
+  import { dialogkit } from "@optiaxiom/react";
+  ```
 
 ### 1.6.7
 

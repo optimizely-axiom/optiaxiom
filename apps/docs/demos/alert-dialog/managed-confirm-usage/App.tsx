@@ -1,7 +1,6 @@
 "use client";
 
-import { Button, toaster } from "@optiaxiom/react";
-import { dialogkit } from "@optiaxiom/react/unstable";
+import { Button, dialogkit, toaster } from "@optiaxiom/react";
 
 export function App() {
   return (

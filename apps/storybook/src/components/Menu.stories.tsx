@@ -18,6 +18,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
+  dialogkit,
   Field,
   Grid,
   Group,
@@ -28,7 +29,7 @@ import {
   MenuTrigger,
   Text,
 } from "@optiaxiom/react";
-import { dialogkit, SurfaceProvider } from "@optiaxiom/react/unstable";
+import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { useMemo, useRef, useState } from "react";
 import { action } from "storybook/actions";
 import { expect, fn, screen, userEvent, waitFor, within } from "storybook/test";
