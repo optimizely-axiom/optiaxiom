@@ -14,13 +14,17 @@ concurrency:
 
 jobs:
   # Whoever finishes the open PR (rebasing a patch, fixing lint) pushes to its
-  # branch. Regenerating the branch would force-push over their commits, so the
-  # update waits until that PR merges or closes.
+  # branch. Regenerating the branch would force-push over their commits, so
+  # while an open PR's branch has a commit from anyone but the bot, the update
+  # waits until that PR merges or closes. A closed PR's leftover branch is
+  # nobody's work in progress. If either lookup fails, this job fails and the
+  # update is skipped: never force-push on an unknown answer.
   busy:
     if: ${{ github.repository_owner == 'optimizely-axiom' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: read
     outputs:
       busy: ${{ steps.check.outputs.busy }}
     steps:
@@ -28,12 +32,14 @@ jobs:
         env:
           BOT: 41898282+github-actions[bot]@users.noreply.github.com
           GH_TOKEN: ${{ github.token }}
+        # Command substitution ignores -e, so each lookup exits explicitly.
         run: |
-          if others=$(gh api "repos/$GITHUB_REPOSITORY/compare/main...chore/deps-update" --jq "[.commits[] | select(.commit.committer.email != \"$BOT\")] | length" 2>/dev/null); then
-            echo "busy=$([ "$others" -gt 0 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
-          else
-            echo "busy=false" >> "$GITHUB_OUTPUT"
+          open=$(gh pr list -R "$GITHUB_REPOSITORY" --head chore/deps-update --state open --json number --jq length) || exit 1
+          others=0
+          if [ "$open" -gt 0 ]; then
+            others=$(gh api "repos/$GITHUB_REPOSITORY/compare/main...chore/deps-update" --jq "[.commits[] | select(.commit.committer.email != \"$BOT\")] | length") || exit 1
           fi
+          echo "busy=$([ "$others" -gt 0 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
 
   # Which packages and how far each moves: packages/shared/bin/update-deps.mjs.
   update:
