@@ -24181,6 +24181,11 @@
           "enum": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
           "responsive": true
         },
+        "selectionBehavior": {
+          "description": "What a row click and the arrow keys do in a table with row selection.\n\n- `replace`: a click selects only that row, a double click runs its\n  primary action, and the arrow keys move focus and selection.\n- `toggle`: a click runs the row's primary action, or toggles the row\n  when it has none. Only the checkbox, Space and Shift + arrow keys\n  change the selection; the arrow keys only move focus. Unlike React\n  Aria's `toggle`, a click runs the primary action even while rows are\n  selected.",
+          "default": "replace",
+          "enum": ["replace", "toggle"]
+        },
         "shadow": {
           "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
           "enum": ["none", "sm", "md", "lg", "xl"]
@@ -24508,7 +24513,7 @@
             "toaster"
           ],
           "title": "row-action-usage",
-          "description": "Use the `DataTableAction` component to show links, buttons, or dropdown menus within rows that are only visible when the user hovers over the row.\n\nYou can enable the `primary` prop on any one of those actions to mark that as the primary action. This will automatically enable keyboard navigation within the table:\n\n- Double click on a row to perform the primary action. When the table has no row selection (`enableRowSelection: false`, or a v9 table without `rowSelectionFeature`), a single click does too.\n- Use up/down/left/right arrow keys to navigate between rows and actions.\n\nFinally, make sure to use the `DataTableLabel` in your primary cell to set the label of the row for screen readers.\n\nHover over the rows to perform more actions:",
+          "description": "Use the `DataTableAction` component to show links, buttons, or dropdown menus within rows that are only visible when the user hovers over the row.\n\nYou can enable the `primary` prop on any one of those actions to mark that as the primary action. This will automatically enable keyboard navigation within the table:\n\n- Double click on a row to perform the primary action. When the table has no row selection (`enableRowSelection: false`, or a v9 table without `rowSelectionFeature`), or uses `selectionBehavior=\"toggle\"`, a single click does too.\n- Use up/down/left/right arrow keys to navigate between rows and actions.\n\nFinally, make sure to use the `DataTableLabel` in your primary cell to set the label of the row for screen readers.\n\nHover over the rows to perform more actions:",
           "heading": "Row actions"
         },
         {
@@ -24536,6 +24541,35 @@
           "title": "row-selection-usage",
           "description": "Follow the row selection guide to allow selecting and highlighting rows. On v9, register `rowSelectionFeature`.\n\nUse the `DataTableCheckbox` component to automatically attach selection handlers and make the whole row selectable.\n\nCombine `Checkbox`/`DataTableCheckbox` with `Cover` to make them easier to interact with by spanning the whole cell.\n\nFinally, make sure to use the `DataTableLabel` in your primary cell to set the label of the row and the checkbox for screen readers.\n\nHover over the rows to see the checkboxes:",
           "heading": "Row selection"
+        },
+        {
+          "code": [
+            {
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody } from \"@optiaxiom/react\";\nimport { useTable } from \"@tanstack/react-table\";\n\nimport { columns, features } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const table = useTable({\n    columns,\n    data,\n    features,\n  });\n  return (\n    <DataTable selectionBehavior=\"toggle\" table={table}>\n      <DataTableBody />\n    </DataTable>\n  );\n}\n",
+              "filename": "App.tsx"
+            },
+            {
+              "content": "import {\n  Button,\n  Cover,\n  DataTableAction,\n  DataTableCheckbox,\n  DataTableLabel,\n  toaster,\n} from \"@optiaxiom/react\";\nimport {\n  columnSizingFeature,\n  createColumnHelper,\n  rowSelectionFeature,\n  tableFeatures,\n} from \"@tanstack/react-table\";\n\nexport const features = tableFeatures({\n  columnSizingFeature,\n  rowSelectionFeature,\n});\n\nconst columnHelper = createColumnHelper<\n  typeof features,\n  {\n    amount: string;\n    id: number;\n    name: string;\n  }\n>();\n\nexport const columns = columnHelper.columns([\n  columnHelper.display({\n    cell: () => (\n      <Cover asChild>\n        <DataTableCheckbox />\n      </Cover>\n    ),\n    header: () => (\n      <Cover asChild>\n        <DataTableCheckbox />\n      </Cover>\n    ),\n    id: \"select\",\n    size: 48,\n  }),\n  columnHelper.accessor(\"name\", {\n    cell: ({ renderValue }) => <DataTableLabel>{renderValue()}</DataTableLabel>,\n    header: \"Name\",\n    size: 200,\n  }),\n  columnHelper.display({\n    cell: ({ row }) => (\n      <DataTableAction primary>\n        <Button\n          appearance=\"subtle\"\n          onClick={() => toaster.create(`Opened: ${row.original.name}`)}\n          size=\"sm\"\n        >\n          Open\n        </Button>\n      </DataTableAction>\n    ),\n    header: \"Actions\",\n    id: \"actions\",\n  }),\n]);\n",
+              "filename": "columns.tsx"
+            },
+            {
+              "content": "import { faker } from \"@faker-js/faker\";\n\nfaker.seed(123);\n\nexport const data = Array.from({ length: 5 }, (_, index) => ({\n  amount: faker.finance.amount(),\n  id: index + 1,\n  name: faker.person.fullName(),\n}));\n",
+              "filename": "data.ts"
+            }
+          ],
+          "components": [
+            "Button",
+            "Cover",
+            "DataTable",
+            "DataTableAction",
+            "DataTableBody",
+            "DataTableCheckbox",
+            "DataTableLabel",
+            "toaster"
+          ],
+          "title": "selection-behavior-usage",
+          "description": "By default (`selectionBehavior=\"replace\"`), a click selects only the clicked row, a double click performs the primary action, and the arrow keys move the selection.\n\nSet `selectionBehavior=\"toggle\"` on `DataTable` when a click should run the row's action instead, such as opening a row while other rows stay checked:\n\n- Click a row to perform its primary action. A row without one toggles its selection.\n- Use the checkbox or Space to select a row, and Shift with the up/down arrow keys to extend the selection. The arrow keys alone only move between rows.",
+          "heading": "Selection behavior"
         },
         {
           "code": [
@@ -26218,7 +26252,7 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/data-table"
     },
     "DataTableCheckbox": {
-      "description": "Selects its row, or every row on the page when rendered in a header.\n\nWhen the checkbox is the only content of its cell, wrap it in\n`<Cover asChild>` so the whole cell toggles selection. Otherwise a click on\nthe cell's padding selects only this row and clears the rest.\n\nA row checkbox takes its accessible name from the row's `DataTableLabel`,\nafter the default \"Check to select\" or \"Check to unselect\" message. Put\n`DataTableLabel` in the row's primary cell, or pass `aria-label` or\n`aria-labelledby` to name it yourself. The header checkbox defaults to\n\"Select all\".",
+      "description": "Selects its row, or every row on the page when rendered in a header.\n\nWhen the checkbox is the only content of its cell, wrap it in\n`<Cover asChild>` so the whole cell toggles selection. Otherwise a click on\nthe cell's padding selects only this row and clears the rest, or with\n`selectionBehavior=\"toggle\"` acts like a click elsewhere in the row.\n\nA row checkbox takes its accessible name from the row's `DataTableLabel`,\nafter the default \"Check to select\" or \"Check to unselect\" message. Put\n`DataTableLabel` in the row's primary cell, or pass `aria-label` or\n`aria-labelledby` to name it yourself. The header checkbox defaults to\n\"Select all\".",
       "entryPoint": "@optiaxiom/react/data-table",
       "import": "import { DataTableCheckbox } from '@optiaxiom/react';",
       "name": "DataTableCheckbox",

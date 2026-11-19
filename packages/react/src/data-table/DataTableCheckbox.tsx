@@ -23,7 +23,8 @@ export type DataTableCheckboxProps = ComponentPropsWithoutRef<typeof Checkbox> &
  *
  * When the checkbox is the only content of its cell, wrap it in
  * `<Cover asChild>` so the whole cell toggles selection. Otherwise a click on
- * the cell's padding selects only this row and clears the rest.
+ * the cell's padding selects only this row and clears the rest, or with
+ * `selectionBehavior="toggle"` acts like a click elsewhere in the row.
  *
  * A row checkbox takes its accessible name from the row's `DataTableLabel`,
  * after the default "Check to select" or "Check to unselect" message. Put

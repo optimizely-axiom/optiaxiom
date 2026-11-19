@@ -93,7 +93,7 @@ Use the `DataTableAction` component to show links, buttons, or dropdown menus wi
 
 You can enable the `primary` prop on any one of those actions to mark that as the primary action. This will automatically enable keyboard navigation within the table:
 
-- Double click on a row to perform the primary action. When the table has no row selection (`enableRowSelection: false`, or a v9 table without `rowSelectionFeature`), a single click does too.
+- Double click on a row to perform the primary action. When the table has no row selection (`enableRowSelection: false`, or a v9 table without `rowSelectionFeature`), or uses `selectionBehavior="toggle"`, a single click does too.
 - Use up/down/left/right arrow keys to navigate between rows and actions.
 
 Finally, make sure to use the `DataTableLabel` in your primary cell to set the label of the row for screen readers.
@@ -103,6 +103,17 @@ Finally, make sure to use the `DataTableLabel` in your primary cell to set the l
 </Alert>
 
 <Demo component="data-table/row-action-usage" />
+
+### Selection behavior
+
+By default (`selectionBehavior="replace"`), a click selects only the clicked row, a double click performs the primary action, and the arrow keys move the selection.
+
+Set `selectionBehavior="toggle"` on `DataTable` when a click should run the row's action instead, such as opening a row while other rows stay checked:
+
+- Click a row to perform its primary action. A row without one toggles its selection.
+- Use the checkbox or Space to select a row, and Shift with the up/down arrow keys to extend the selection. The arrow keys alone only move between rows.
+
+<Demo component="data-table/selection-behavior-usage" />
 
 ### Pagination
 
@@ -229,6 +240,7 @@ Columns will be virtualized when there are more than 20 columns in a table and r
 ### 3.7.0
 
 - Added support for TanStack Table v9 tables from `useTable()`, alongside v8.
+- Added `selectionBehavior` prop so a row click can run the primary action while rows stay selected.
 
 ### 1.5.0
 
