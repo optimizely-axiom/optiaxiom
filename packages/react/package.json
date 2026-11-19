@@ -119,6 +119,11 @@
       "import": "./dist/esm/dialog.js",
       "require": "./dist/cjs/dialog.js"
     },
+    "./dialog-kit": {
+      "types": "./dist/dialog-kit.d.ts",
+      "import": "./dist/esm/dialog-kit.js",
+      "require": "./dist/cjs/dialog-kit.js"
+    },
     "./disclosure": {
       "types": "./dist/disclosure.d.ts",
       "import": "./dist/esm/disclosure.js",

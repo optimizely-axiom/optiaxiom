@@ -1,7 +1,6 @@
 export * from "./calendar";
 export * from "./data-table/unstable";
 export * from "./details-panel";
-export * from "./dialog-kit";
 export * from "./file-upload";
 export * from "./highlight";
 export * from "./hover-card";

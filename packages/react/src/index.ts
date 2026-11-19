@@ -17,6 +17,7 @@ export * from "./data-table";
 export * from "./date-input";
 export * from "./date-range-picker";
 export * from "./dialog";
+export * from "./dialog-kit";
 export * from "./disclosure";
 export * from "./dropdown-menu";
 export * from "./ellipsis-menu-button";

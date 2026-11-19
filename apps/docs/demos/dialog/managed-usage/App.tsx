@@ -1,7 +1,6 @@
 "use client";
 
-import { Button } from "@optiaxiom/react";
-import { dialogkit } from "@optiaxiom/react/unstable";
+import { Button, dialogkit } from "@optiaxiom/react";
 
 import { CreateDialog } from "./CreateDialog";
 

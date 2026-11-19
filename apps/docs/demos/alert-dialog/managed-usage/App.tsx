@@ -8,9 +8,9 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   Button,
+  dialogkit,
   toaster,
 } from "@optiaxiom/react";
-import { dialogkit } from "@optiaxiom/react/unstable";
 
 export function App() {
   return (

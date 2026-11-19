@@ -7,7 +7,7 @@ import { DialogKitContext } from "./DialogKitContext";
 /**
  * Hook to access the dialog kit context.
  *
- * @experimental
+ * @since 3.7.0
  */
 export function useDialogKit() {
   const context = useContext(DialogKitContext);
