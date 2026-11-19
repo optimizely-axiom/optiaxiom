@@ -6,8 +6,8 @@ export const className = style({});
 
 /**
  * The background token for each `data-intent`. `primary` is the selected
- * color's own token. An intent takes the place of the selected color and of
- * the hover color.
+ * color's own token. An intent takes the place of the selected color, and
+ * neither changes on hover.
  */
 export const intents = {
   primary: "accent",
@@ -26,17 +26,8 @@ export const row = recipe({
       "@media": {
         "(hover: hover)": {
           selectors: {
-            "&:not([data-intent]):hover": {
+            "&:not([data-intent]):not([data-selected]):hover": {
               backgroundColor: theme.colors["bg.default.hovered"],
-            },
-            "&[data-selected]:not([data-intent]):hover": {
-              backgroundColor: `
-                color-mix(
-                  in srgb,
-                  ${theme.colors["bg.accent.subtle"]},
-                  ${theme.colors["bg.accent.light"]} 15%
-                )
-              `,
             },
           },
         },

@@ -109,20 +109,9 @@ export const cell = recipe({
         "@media": {
           "(hover: hover)": {
             selectors: {
-              [`${row}:not([data-intent]):hover &`]: {
+              [`${row}:not([data-intent]):not([data-selected]):hover &`]: {
                 vars: {
                   [bgHoverColor]: theme.colors["bg.default.hovered"],
-                },
-              },
-              [`${row}[data-selected]:not([data-intent]):hover &`]: {
-                vars: {
-                  [bgHoverColor]: `
-                    color-mix(
-                      in srgb,
-                      ${theme.colors["bg.accent.subtle"]},
-                      ${theme.colors["bg.accent.light"]} 15%
-                    )
-                  `,
                 },
               },
             },
