@@ -3,6 +3,7 @@ import { useSyncExternalStore } from "use-sync-external-store/shim";
 
 import { type BoxProps } from "../box";
 import { Group } from "../group";
+import { useEvent } from "../hooks";
 import { DataTableProvider } from "./DataTableContext";
 import { adaptTable, type TanStackTable } from "./tanstack";
 
@@ -43,7 +44,7 @@ export type DataTableProps = BoxProps<
  */
 export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
   ({ children, selectionBehavior = "replace", table, ...props }, ref) => {
-    const [highlightedIndex, setHighlightedIndex] = useState(-1);
+    const [localHighlightedIndex, setLocalHighlightedIndex] = useState(-1);
     const focusRequestRef = useRef(false);
     /**
      * A v9 table re-renders its owner only for the state its `useTable`
@@ -68,6 +69,19 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
     const adapter = useMemo(
       () => adaptTable(table, tableState),
       [table, tableState],
+    );
+    /**
+     * The highlighted row lives in table state when the table registers
+     * `rowHighlightingFeature`, and here otherwise.
+     */
+    const highlighting = adapter.getHasRowHighlighting();
+    const highlightedIndex = highlighting
+      ? adapter.getHighlightedIndex()
+      : localHighlightedIndex;
+    const setHighlightedIndex = useEvent((index: number) =>
+      highlighting
+        ? adapter.setHighlightedIndex(index)
+        : setLocalHighlightedIndex(index),
     );
 
     return (
