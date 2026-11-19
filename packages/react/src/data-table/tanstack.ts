@@ -1,5 +1,7 @@
 import { type ComponentType, createElement, type ReactNode } from "react";
 
+import type { RowIntent } from "./rowIntentFeature";
+
 export type TanStackCell = {
   column: TanStackColumn;
   getContext(): unknown;
@@ -40,6 +42,7 @@ export type TanStackRow = {
   getCanSelect?(): boolean;
   getCenterVisibleCells?(): TanStackCell[];
   getEndVisibleCells?(): TanStackCell[];
+  getIntent?(): RowIntent | undefined;
   getIsSelected?(): boolean;
   getLeftVisibleCells?(): TanStackCell[];
   getRightVisibleCells?(): TanStackCell[];
@@ -225,6 +228,8 @@ export const adaptTable = (
         ? -1
         : table.getRowModel().rows.findIndex((row) => row.id === id);
     },
+    /** The row's intent from `rowIntentFeature`. */
+    getIntent: (row: TanStackRow) => row.getIntent?.(),
     getIsAllPageRowsSelected,
     getIsResizing: (column: TanStackColumn) => !!column.getIsResizing?.(),
     getIsRowExpanded: (row: { getIsExpanded?(): boolean }) =>

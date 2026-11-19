@@ -121,6 +121,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
           table.getCanSelect(row) ? table.getIsSelected(row) : undefined
         }
         data-focus-visible={focusManaged ? "" : undefined}
+        data-intent={table.getIntent(row)}
         data-selected={table.getIsSelected(row) ? "" : undefined}
         onClick={(event) => {
           if (!(event.target instanceof Element)) {
