@@ -93,6 +93,7 @@ export type TanStackTable = {
     data: unknown;
     enableRowSelection?: unknown;
   };
+  setHighlightedRowId?(highlightedRowId: null | string): void;
   setPageIndex?(pageIndex: number): void;
   setPageSize?(pageSize: number): void;
   setRowSelection?(updater: RowSelectionState | RowSelectionUpdater): void;
@@ -145,6 +146,7 @@ export const adaptTable = (
     | undefined
     | {
         columnResizing?: { deltaOffset: null | number };
+        highlightedRowId?: null | string;
         pagination?: PaginationState;
       };
   const getColumnSize = (column: TanStackColumn) =>
@@ -209,8 +211,20 @@ export const adaptTable = (
       const index = columns.findIndex(({ id }) => id === column.id);
       return index > 0 ? sumSizes(columns.slice(0, index)) : 0;
     },
+    /**
+     * Whether the table keeps the highlighted row in its state: a v9 table
+     * that registers `rowHighlightingFeature`.
+     */
+    getHasRowHighlighting: () => !!table.setHighlightedRowId,
     getHeaderGroups: () => table.getHeaderGroups(),
     getHeaderSize,
+    /** The highlighted row's index on the page, or -1 when it isn't on it. */
+    getHighlightedIndex: () => {
+      const id = state?.highlightedRowId;
+      return id === null || id === undefined
+        ? -1
+        : table.getRowModel().rows.findIndex((row) => row.id === id);
+    },
     getIsAllPageRowsSelected,
     getIsResizing: (column: TanStackColumn) => !!column.getIsResizing?.(),
     getIsRowExpanded: (row: { getIsExpanded?(): boolean }) =>
@@ -268,6 +282,13 @@ export const adaptTable = (
     getToggleSelectedHandler: (row: TanStackRow) =>
       row.getToggleSelectedHandler?.(),
     resetSize: (column: TanStackColumn) => column.resetSize?.(),
+    /** Skips an unchanged row, so refocusing a row doesn't report a change. */
+    setHighlightedIndex: (index: number) => {
+      const id = table.getRowModel().rows[index]?.id ?? null;
+      if (id !== (state?.highlightedRowId ?? null)) {
+        table.setHighlightedRowId?.(id);
+      }
+    },
     setPageIndex: (pageIndex: number) => table.setPageIndex?.(pageIndex),
     setPageSize: (pageSize: number) => table.setPageSize?.(pageSize),
     /**

@@ -4,3 +4,4 @@ export * from "./DataTableBody";
 export * from "./DataTableCheckbox";
 export * from "./DataTableFooter";
 export * from "./DataTableLabel";
+export * from "./rowHighlightingFeature";

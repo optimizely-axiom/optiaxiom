@@ -24371,6 +24371,36 @@
         {
           "code": [
             {
+              "content": "\"use client\";\n\nimport { DataTable, DataTableBody, Flex, Text } from \"@optiaxiom/react\";\nimport { useTable } from \"@tanstack/react-table\";\nimport { useState } from \"react\";\n\nimport { columns, features } from \"./columns\";\nimport { data } from \"./data\";\n\nexport function App() {\n  const [highlightedRowId, setHighlightedRowId] = useState<null | string>(null);\n  const table = useTable({\n    columns,\n    data,\n    features,\n    getRowId: (row) => String(row.id),\n    onHighlightedRowIdChange: setHighlightedRowId,\n    state: { highlightedRowId },\n  });\n  const highlighted = highlightedRowId\n    ? table.getRowModel().rowsById[highlightedRowId]?.original\n    : undefined;\n\n  return (\n    <Flex w=\"full\">\n      <DataTable table={table}>\n        <DataTableBody />\n      </DataTable>\n      <Text role=\"status\">\n        {highlighted\n          ? `Highlighted: ${highlighted.name}`\n          : \"Tab into the table and use the arrow keys.\"}\n      </Text>\n    </Flex>\n  );\n}\n",
+              "filename": "App.tsx"
+            },
+            {
+              "content": "import {\n  Button,\n  DataTableAction,\n  DataTableLabel,\n  rowHighlightingFeature,\n  toaster,\n} from \"@optiaxiom/react\";\nimport { createColumnHelper, tableFeatures } from \"@tanstack/react-table\";\n\nexport const features = tableFeatures({ rowHighlightingFeature });\n\nconst columnHelper = createColumnHelper<\n  typeof features,\n  {\n    amount: string;\n    id: number;\n    name: string;\n  }\n>();\n\nexport const columns = columnHelper.columns([\n  columnHelper.accessor(\"name\", {\n    cell: ({ renderValue }) => <DataTableLabel>{renderValue()}</DataTableLabel>,\n    header: \"Name\",\n  }),\n  columnHelper.display({\n    cell: ({ row }) => (\n      <DataTableAction primary>\n        <Button\n          appearance=\"subtle\"\n          onClick={() => toaster.create(`Opened: ${row.original.name}`)}\n          size=\"sm\"\n        >\n          Open\n        </Button>\n      </DataTableAction>\n    ),\n    header: \"Actions\",\n    id: \"actions\",\n  }),\n]);\n",
+              "filename": "columns.tsx"
+            },
+            {
+              "content": "import { faker } from \"@faker-js/faker\";\n\nfaker.seed(123);\n\nexport const data = Array.from({ length: 5 }, (_, index) => ({\n  amount: faker.finance.amount(),\n  id: index + 1,\n  name: faker.person.fullName(),\n}));\n",
+              "filename": "data.ts"
+            }
+          ],
+          "components": [
+            "Button",
+            "DataTable",
+            "DataTableAction",
+            "DataTableBody",
+            "DataTableLabel",
+            "Flex",
+            "Text",
+            "rowHighlightingFeature",
+            "toaster"
+          ],
+          "title": "highlighted-row-usage",
+          "description": "`DataTable` keeps track of the row the keyboard is on: focusing a row, clicking it and the arrow keys move this highlight, and Tab returns to it. On TanStack Table v9, register `rowHighlightingFeature` to keep it in table state, so the app can follow it (for example to show the row in a details pane) or set it:\n\nThe value is the TanStack row `id`, so set `getRowId` to keep it stable across sorting and pagination. `table.setHighlightedRowId()` moves the tab stop without moving focus, and cells can read `row.getIsHighlighted()`.",
+          "heading": "Highlighted row"
+        },
+        {
+          "code": [
+            {
               "content": "\"use client\";\n\nimport { IconPlus } from \"@optiaxiom/icons\";\nimport {\n  Button,\n  DataTable,\n  DataTableBody,\n  DataTableFooter,\n  Flex,\n  Group,\n  LabelMenuButton,\n  Menu,\n  MenuContent,\n  MenuTrigger,\n  SearchInput,\n  toaster,\n} from \"@optiaxiom/react\";\nimport { type ColumnFiltersState, useTable } from \"@tanstack/react-table\";\nimport { useRef, useState } from \"react\";\n\nimport { columns, features } from \"./columns\";\nimport { data } from \"./data\";\n\nconst filters = [\n  { id: \"status\", label: \"Status\", values: [\"Draft\", \"Ready\"] },\n  {\n    id: \"owner\",\n    label: \"Owner\",\n    values: [...new Set(data.map((item) => item.owner))].sort(),\n  },\n];\n\nexport function App() {\n  const searchRef = useRef<HTMLInputElement>(null);\n  const [globalFilter, setGlobalFilter] = useState(\"\");\n  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);\n  const table = useTable({\n    columns,\n    data,\n    features,\n    globalFilterFn: \"includesString\",\n    initialState: { pagination: { pageIndex: 0, pageSize: 10 } },\n    onColumnFiltersChange: setColumnFilters,\n    onGlobalFilterChange: setGlobalFilter,\n    state: { columnFilters, globalFilter },\n  });\n\n  return (\n    <Flex maxW=\"full\" w=\"full\">\n      <Group flexWrap=\"wrap\" gap=\"12\" justifyContent=\"space-between\">\n        <Group flexWrap=\"wrap\" gap=\"8\">\n          <SearchInput\n            aria-label=\"Search items\"\n            onValueChange={setGlobalFilter}\n            placeholder=\"Search items\"\n            ref={searchRef}\n            size=\"lg\"\n            value={globalFilter}\n          />\n          {filters.map((filter) => {\n            const column = table.getColumn(filter.id);\n            const value = column?.getFilterValue() as string | undefined;\n            return (\n              <Menu\n                key={filter.id}\n                options={[undefined, ...filter.values].map((option) => ({\n                  execute: () => column?.setFilterValue(option),\n                  label: option ?? \"All\",\n                  selected: value === option,\n                }))}\n              >\n                <MenuTrigger asChild>\n                  <LabelMenuButton label={filter.label}>\n                    {value ?? \"All\"}\n                  </LabelMenuButton>\n                </MenuTrigger>\n                <MenuContent />\n              </Menu>\n            );\n          })}\n        </Group>\n        <Button\n          appearance=\"primary\"\n          icon={<IconPlus />}\n          onClick={() => toaster.create(\"Create item\")}\n          size=\"lg\"\n        >\n          Create item\n        </Button>\n      </Group>\n\n      <DataTable table={table}>\n        <DataTableBody\n          empty={\n            <>\n              No items match your filters.\n              <Button\n                appearance=\"subtle\"\n                mt=\"8\"\n                onClick={() => {\n                  setGlobalFilter(\"\");\n                  setColumnFilters([]);\n                  searchRef.current?.focus();\n                }}\n              >\n                Clear filters\n              </Button>\n            </>\n          }\n        />\n        <DataTableFooter />\n      </DataTable>\n    </Flex>\n  );\n}\n",
               "filename": "App.tsx"
             },

@@ -115,6 +115,30 @@ Set `selectionBehavior="toggle"` on `DataTable` when a click should run the row'
 
 <Demo component="data-table/selection-behavior-usage" />
 
+### Highlighted row
+
+`DataTable` keeps track of the row the keyboard is on: focusing a row, clicking it and the arrow keys move this highlight, and Tab returns to it. On TanStack Table v9, register `rowHighlightingFeature` to keep it in table state, so the app can follow it (for example to show the row in a details pane) or set it:
+
+```tsx
+import { rowHighlightingFeature } from "@optiaxiom/react";
+
+const features = tableFeatures({ rowHighlightingFeature });
+
+const [highlightedRowId, setHighlightedRowId] = useState<null | string>(null);
+const table = useTable({
+  columns,
+  data,
+  features,
+  getRowId: (row) => row.id,
+  onHighlightedRowIdChange: setHighlightedRowId,
+  state: { highlightedRowId },
+});
+```
+
+The value is the TanStack row `id`, so set `getRowId` to keep it stable across sorting and pagination. `table.setHighlightedRowId()` moves the tab stop without moving focus, and cells can read `row.getIsHighlighted()`.
+
+<Demo component="data-table/highlighted-row-usage" />
+
 ### Pagination
 
 `DataTable` supports both client-side and server-side pagination. Follow the [pagination guide](https://tanstack.com/table/latest/docs/guide/pagination) to learn how to implement pagination with TanStack Table.
@@ -241,6 +265,7 @@ Columns will be virtualized when there are more than 20 columns in a table and r
 
 - Added support for TanStack Table v9 tables from `useTable()`, alongside v8.
 - Added `selectionBehavior` prop so a row click can run the primary action while rows stay selected.
+- Added `rowHighlightingFeature` to read and set the highlighted row on TanStack Table v9.
 
 ### 1.5.0
 
