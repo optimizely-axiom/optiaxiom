@@ -13,6 +13,7 @@ export const [DataTableProvider, useDataTableContext] = createContext<{
    */
   focusRequestRef: MutableRefObject<boolean>;
   highlightedIndex: number;
+  selectionBehavior: "replace" | "toggle";
   setHighlightedIndex: (highlightedIndex: number) => void;
   table: TableAdapter;
 }>("@optiaxiom/react/DataTable");

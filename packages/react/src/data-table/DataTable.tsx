@@ -10,6 +10,20 @@ export type DataTableProps = BoxProps<
   "div",
   {
     /**
+     * What a row click and the arrow keys do in a table with row selection.
+     *
+     * - `replace`: a click selects only that row, a double click runs its
+     *   primary action, and the arrow keys move focus and selection.
+     * - `toggle`: a click runs the row's primary action, or toggles the row
+     *   when it has none. Only the checkbox, Space and Shift + arrow keys
+     *   change the selection; the arrow keys only move focus. Unlike React
+     *   Aria's `toggle`, a click runs the primary action even while rows are
+     *   selected.
+     *
+     * @default "replace"
+     */
+    selectionBehavior?: "replace" | "toggle";
+    /**
      * Pass the table instance returned from TanStack Table's `useReactTable()`
      * (v8) or `useTable()` (v9) hook.
      */
@@ -28,7 +42,7 @@ export type DataTableProps = BoxProps<
  * @since 1.4.0
  */
 export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
-  ({ children, table, ...props }, ref) => {
+  ({ children, selectionBehavior = "replace", table, ...props }, ref) => {
     const [highlightedIndex, setHighlightedIndex] = useState(-1);
     const focusRequestRef = useRef(false);
     /**
@@ -68,6 +82,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
         <DataTableProvider
           focusRequestRef={focusRequestRef}
           highlightedIndex={highlightedIndex}
+          selectionBehavior={selectionBehavior}
           setHighlightedIndex={setHighlightedIndex}
           table={adapter}
         >

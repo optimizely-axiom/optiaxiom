@@ -33,8 +33,13 @@ export type DataTableRowProps = BoxProps<
 
 export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
   ({ children, index, row, ...props }, outerRef) => {
-    const { focusRequestRef, highlightedIndex, setHighlightedIndex, table } =
-      useDataTableContext("@optiaxiom/react/DataTableRow");
+    const {
+      focusRequestRef,
+      highlightedIndex,
+      selectionBehavior,
+      setHighlightedIndex,
+      table,
+    } = useDataTableContext("@optiaxiom/react/DataTableRow");
 
     const [subHighlightedIndex, setSubHighlightedIndex] = useState(-1);
     const labelId = useId();
@@ -48,13 +53,22 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
     const primary = actions.find((action) => action.primary);
     const [selector, setSelector] = useState<RefObject<HTMLInputElement>>();
 
-    const focusManaged = Boolean(selector || primary);
     /**
-     * The table decides what a click does. With selection on, a row that can't
-     * be selected (a selection cap, an item already added) ignores a single
-     * click and opens on double click, like the selectable rows around it.
+     * The table decides what a click does. In replace mode with selection on,
+     * a row that can't be selected (a selection cap, an item already added)
+     * ignores a single click and opens on double click, like the selectable
+     * rows around it.
      */
     const selectable = table.getCanSelectRows();
+    /**
+     * In toggle mode a click runs the primary action, or toggles a row that
+     * has none, and only the checkbox, Space and Shift + arrow keys select.
+     */
+    const toggle = selectable && selectionBehavior === "toggle";
+
+    const focusManaged = Boolean(
+      selector || primary || (toggle && table.getCanSelect(row)),
+    );
 
     const innerRef = useRef<HTMLTableRowElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -121,9 +135,22 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
             return;
           }
 
-          if (!selectable) {
+          // The checkbox's own label or cover toggles it.
+          if (
+            toggle &&
+            selector &&
+            getAssociatedControl(event) === selector.current
+          ) {
+            return;
+          }
+
+          if (!selectable || (toggle && primary)) {
             if (!primary?.ref.current?.contains(event.target)) {
               primary?.ref.current?.click();
+            }
+          } else if (toggle) {
+            if (table.getCanSelect(row)) {
+              table.toggleSelected(row);
             }
           } else if (
             table.getCanSelect(row) &&
@@ -134,8 +161,14 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
           }
         }}
         onDoubleClick={(event) => {
-          // Without selection, a single click already ran the primary action.
-          if (!selectable || !primary || !(event.target instanceof Element)) {
+          // Without selection or in toggle mode, a single click already ran
+          // the primary action.
+          if (
+            !selectable ||
+            toggle ||
+            !primary ||
+            !(event.target instanceof Element)
+          ) {
             return;
           }
 
@@ -193,7 +226,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
               // `setRowSelection` ignores `getCanSelect()`, so every selection
               // change below checks it.
               const nextRow = rows[nextIndex];
-              if (selector) {
+              if (selector || toggle) {
                 if (event.shiftKey && table.getCanMultiSelect(row)) {
                   // Look past rows that can't be selected: moving toward a
                   // selected row shrinks the range from the row being left.
@@ -215,7 +248,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
                     }
                     return selection;
                   });
-                } else {
+                } else if (!toggle) {
                   table.setRowSelection(
                     table.getCanSelect(nextRow) ? { [nextRow.id]: true } : {},
                   );
@@ -233,7 +266,10 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
               setSubHighlightedIndex(nextIndex);
             }
           } else if (event.currentTarget === document.activeElement) {
-            if (event.key === " " && selector) {
+            if (
+              event.key === " " &&
+              (selector || (toggle && table.getCanSelect(row)))
+            ) {
               event.preventDefault();
               table.toggleSelected(row);
             } else if (event.key === "Enter" && primary) {

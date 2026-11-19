@@ -36,7 +36,7 @@ import {
   useTable,
 } from "@tanstack/react-table";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { expect, userEvent, waitFor, within } from "storybook/test";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
 type Payment = {
   amount: number;
@@ -904,6 +904,120 @@ export const Resizing: Story = {
           columns: columns.slice(0, 5),
           data,
           features,
+        })}
+      >
+        <DataTableBody />
+      </DataTable>
+    );
+  },
+};
+
+const onOpen = fn();
+
+const toggleColumns: ColumnDef<typeof features, Payment>[] = [
+  {
+    cell: () => <DataTableCheckbox />,
+    header: () => <DataTableCheckbox />,
+    id: "select",
+  },
+  {
+    cell: ({ row }) => <DataTableLabel>{row.original.id}</DataTableLabel>,
+    header: "ID",
+    id: "id",
+  },
+  {
+    cell: ({ row }) => (
+      <DataTableAction primary>
+        <Button onClick={() => onOpen(row.id)}>Open</Button>
+      </DataTableAction>
+    ),
+    header: "Actions",
+    id: "actions",
+  },
+];
+
+/**
+ * In toggle mode a click runs the primary action and keeps the checked rows;
+ * the arrow keys only move focus.
+ */
+export const ToggleRunsPrimaryAction: Story = {
+  args: {
+    selectionBehavior: "toggle",
+  },
+  play: async ({ canvas }) => {
+    onOpen.mockClear();
+    const row = (name: string) => canvas.getByRole("row", { name });
+
+    await userEvent.click(within(row("m5gr84i9")).getByRole("checkbox"));
+    await userEvent.click(within(row("3u1reuv4")).getByText("3u1reuv4"));
+
+    await expect(onOpen).toHaveBeenCalledTimes(1);
+    await expect(onOpen).toHaveBeenCalledWith("3u1reuv4");
+    await expect(within(row("m5gr84i9")).getByRole("checkbox")).toBeChecked();
+    await expect(
+      within(row("3u1reuv4")).getByRole("checkbox"),
+    ).not.toBeChecked();
+
+    await userEvent.keyboard("{ArrowUp}");
+    await expect(row("m5gr84i9")).toHaveFocus();
+    await expect(within(row("m5gr84i9")).getByRole("checkbox")).toBeChecked();
+    await expect(
+      within(row("3u1reuv4")).getByRole("checkbox"),
+    ).not.toBeChecked();
+  },
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useTable({
+          columns: toggleColumns,
+          data,
+          features,
+          getRowId: (row) => row.id,
+        })}
+      >
+        <DataTableBody />
+      </DataTable>
+    );
+  },
+};
+
+/**
+ * In toggle mode a row without a primary action toggles on click, and a row
+ * that can't be selected stays as it is.
+ */
+export const ToggleWithoutAction: Story = {
+  args: {
+    selectionBehavior: "toggle",
+  },
+  play: async ({ canvas }) => {
+    const row = (name: string) => canvas.getByRole("row", { name });
+
+    await userEvent.click(within(row("order-001")).getByText("order-001"));
+    await userEvent.click(within(row("order-003")).getByText("order-003"));
+    await expect(within(row("order-001")).getByRole("checkbox")).toBeChecked();
+    await expect(within(row("order-003")).getByRole("checkbox")).toBeChecked();
+
+    await userEvent.click(within(row("order-001")).getByText("order-001"));
+    await expect(
+      within(row("order-001")).getByRole("checkbox"),
+    ).not.toBeChecked();
+
+    await userEvent.click(within(row("order-002")).getByText("order-002"));
+    await expect(
+      within(row("order-002")).getByRole("checkbox"),
+    ).not.toBeChecked();
+  },
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useTable({
+          columns: toggleColumns.slice(0, 2),
+          data: largeData.slice(0, 5),
+          enableRowSelection: (row) => row.id !== "order-002",
+          features,
+          getRowId: (row) => row.id,
         })}
       >
         <DataTableBody />
