@@ -19,7 +19,7 @@ import {
   useTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import { expect, userEvent } from "storybook/test";
+import { expect, userEvent, waitFor, type within } from "storybook/test";
 
 /**
  * Features only TanStack Table v9 has: v8 tables have no per-table features.
@@ -111,35 +111,107 @@ export const HighlightedRow: Story = {
   },
 };
 
+const pages = (count: number): Page[] =>
+  Array.from({ length: count }, (_, index) => ({
+    id: `page-${index + 1}`,
+    title: `Page ${index + 1}`,
+  }));
+
 /**
- * Setting the highlighted row moves the tab stop without moving focus.
+ * Waits for the named row to be fully visible below the table's pinned header.
+ */
+const expectRowInView = (canvas: ReturnType<typeof within>, name: string) =>
+  waitFor(async () => {
+    const scroller = canvas.getByRole("table").parentElement!;
+    const row = canvas.getByRole("row", { name }).getBoundingClientRect();
+    const header = canvas.getAllByRole("rowgroup")[0].getBoundingClientRect();
+    const view = scroller.getBoundingClientRect();
+    await expect(row.top).toBeGreaterThanOrEqual(header.bottom);
+    await expect(row.bottom).toBeLessThanOrEqual(
+      view.top + scroller.clientTop + scroller.clientHeight,
+    );
+  });
+
+/**
+ * Setting the highlighted row moves the tab stop without moving focus, and
+ * scrolls the row into view when it isn't already.
  */
 export const HighlightedRowFromOutside: Story = {
   play: async ({ canvas }) => {
-    const button = canvas.getByRole("button", { name: "Highlight Contact" });
+    const button = canvas.getByRole("button", { name: "Highlight Page 15" });
 
     await userEvent.click(button);
     await expect(button).toHaveFocus();
+    await expectRowInView(canvas, "Page 15");
 
     await userEvent.tab();
     await userEvent.tab();
-    await expect(canvas.getByRole("row", { name: "Contact" })).toHaveFocus();
+    await expect(canvas.getByRole("row", { name: "Page 15" })).toHaveFocus();
   },
   render: function Render(args) {
     const table = useTable({
-      columns,
-      data,
+      columns: columns.filter(({ id }) => id !== "select"),
+      data: pages(15),
       features,
       getRowId: (page) => page.id,
-      initialState: { highlightedRowId: "about" },
+      initialState: { highlightedRowId: "page-1" },
     });
 
     return (
       <Flex>
-        <Button onClick={() => table.setHighlightedRowId("contact")}>
-          Highlight Contact
+        <Button onClick={() => table.setHighlightedRowId("page-15")}>
+          Highlight Page 15
         </Button>
-        <DataTable {...args} table={table}>
+        <DataTable {...args} style={{ maxHeight: "300px" }} table={table}>
+          <DataTableBody />
+        </DataTable>
+      </Flex>
+    );
+  },
+};
+
+/**
+ * The same in a long table, which virtualizes rows out of the DOM, so an app
+ * returning to a list can reveal the row it left from.
+ */
+export const HighlightedRowFromOutsideVirtualized: Story = {
+  play: async ({ canvas }) => {
+    await expectRowInView(canvas, "Page 80");
+
+    const top = () =>
+      canvas.getByRole("row", { name: "Page 79" }).getBoundingClientRect().top;
+    const before = top();
+    await userEvent.click(
+      canvas.getByRole("button", { name: "Highlight Page 79" }),
+    );
+    // The virtualizer settles sub-pixel row sizes, so allow a pixel.
+    await expect(Math.abs(top() - before)).toBeLessThanOrEqual(1);
+
+    await userEvent.click(
+      canvas.getByRole("button", { name: "Highlight Page 5" }),
+    );
+    await expectRowInView(canvas, "Page 5");
+  },
+  render: function Render(args) {
+    const table = useTable({
+      columns: columns.filter(({ id }) => id !== "select"),
+      data: pages(100),
+      features,
+      getRowId: (page) => page.id,
+      initialState: { highlightedRowId: "page-80" },
+    });
+
+    return (
+      <Flex>
+        <Flex flexDirection="row">
+          <Button onClick={() => table.setHighlightedRowId("page-79")}>
+            Highlight Page 79
+          </Button>
+          <Button onClick={() => table.setHighlightedRowId("page-5")}>
+            Highlight Page 5
+          </Button>
+        </Flex>
+        <DataTable {...args} style={{ maxHeight: "300px" }} table={table}>
           <DataTableBody />
         </DataTable>
       </Flex>

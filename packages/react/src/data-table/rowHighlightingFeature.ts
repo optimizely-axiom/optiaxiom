@@ -92,7 +92,11 @@ const update = <T>(updater: Updater<T>, old: T) =>
  * a `highlightedRowId` state slice, an `onHighlightedRowIdChange` option and
  * `setHighlightedRowId()`/`resetHighlightedRowId()`; rows get
  * `getIsHighlighted()`. Focusing a row, clicking it and the arrow keys move
- * the highlight. Setting it moves the tab stop, not focus.
+ * the highlight. Setting it moves the tab stop, not focus, and scrolls the
+ * row into view when it isn't already, including a row virtualized out of
+ * view. Highlight a row the user can focus, one with a primary
+ * `DataTableAction` or a `DataTableCheckbox`, so Tab can reach it, and move
+ * to a row's page before highlighting it.
  *
  * It doesn't import TanStack Table at runtime. TanStack Table v8 has no
  * per-table features, so v8 tables keep the highlight internal.

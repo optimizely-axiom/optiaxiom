@@ -137,6 +137,8 @@ const table = useTable({
 
 The value is the TanStack row `id`, so set `getRowId` to keep it stable across sorting and pagination. `table.setHighlightedRowId()` moves the tab stop without moving focus, and cells can read `row.getIsHighlighted()`.
 
+A newly highlighted row scrolls into view when it isn't already, even when the table virtualizes it out of the DOM. Highlight a row the user can focus, one with a primary `DataTableAction` or a `DataTableCheckbox`, so Tab can reach it. To return to a list at the row the user left from, pass its id as `initialState.highlightedRowId`, and `loading` to `DataTableBody` while the rows load: the table scrolls to it once they have. A row on another page is not on the table yet, so set the page first.
+
 <Demo component="data-table/highlighted-row-usage" />
 
 ### Row intent

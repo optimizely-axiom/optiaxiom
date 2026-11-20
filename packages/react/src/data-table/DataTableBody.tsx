@@ -16,6 +16,7 @@ import {
 } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { useAnimationFrame } from "../hooks";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "../table";
 import * as styles from "./DataTableBody.css";
 import { useDataTableContext } from "./DataTableContext";
@@ -89,6 +90,9 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
     });
 
     const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const headerRef = useRef<HTMLTableSectionElement>(null);
+    const scrollRowRef = useRef<HTMLTableRowElement>(null);
+    const headerHeightRef = useRef(0);
     const calculateScrollTimeline = () => {
       if (!innerRef.current || !scrollContainerRef.current) {
         return;
@@ -162,8 +166,58 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
       getItemKey: (index) => rows[index].id,
       getScrollElement: () => scrollContainerRef.current,
       rangeExtractor,
+      /**
+       * Rows start below the pinned header, which `scrollToIndex` doesn't see,
+       * so it would leave a row it scrolls down to under the bottom edge.
+       * Measured when revealing a row, so scrolling never forces a layout.
+       */
+      scrollPaddingEnd: headerHeightRef.current,
     });
     const virtualRows = rowVirtualizer.getVirtualItems();
+
+    /**
+     * Scroll the highlighted row into view when it isn't already, so an app
+     * can reveal the row it highlights, even one virtualized out of view. It
+     * runs when the highlight changes and when a load finishes.
+     */
+    const highlightedRowId = table.getHighlightedRowId();
+    const requestFrame = useAnimationFrame();
+    useEffect(() => {
+      if (highlightedRowId === null || loading === true) {
+        return;
+      }
+      // Updated by an earlier effect, so it holds this render's rows here.
+      const index = previousRowsRef.current.findIndex(
+        (row) => row.id === highlightedRowId,
+      );
+      if (index === -1) {
+        return;
+      }
+
+      // Two frames later the table has laid out and shown, as when Storybook
+      // renders a story before showing it. A table still hidden (an inactive
+      // tab) has no layout to scroll, so it is skipped.
+      return requestFrame(() => {
+        const container = scrollContainerRef.current;
+        if (!container?.clientHeight) {
+          return;
+        }
+
+        const headerHeight =
+          headerRef.current?.getBoundingClientRect().height ?? 0;
+        if (rowVirtualizer.options.enabled) {
+          // Keeps correcting while the rows it scrolls past are measured.
+          headerHeightRef.current = headerHeight;
+          rowVirtualizer.options.scrollPaddingEnd = headerHeight;
+          rowVirtualizer.scrollToIndex(index);
+        } else {
+          // The pinned header covers the top of the scrolled rows.
+          container.style.scrollPaddingTop = `${headerHeight}px`;
+          scrollRowRef.current?.scrollIntoView?.({ block: "nearest" });
+        }
+      }, 2);
+    }, [highlightedRowId, loading, requestFrame, rowVirtualizer]);
+
     const showEmpty =
       loading !== true &&
       rows.length === 0 &&
@@ -237,7 +291,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
           onScroll={calculateScrollTimeline}
           ref={scrollContainerRef}
         >
-          <TableHeader display="grid" pinned>
+          <TableHeader display="grid" pinned ref={headerRef}>
             {headerGroups.map((headerGroup, headerIndex) => (
               <TableRow
                 aria-rowindex={headerIndex + 1}
@@ -314,7 +368,13 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                 display="flex"
                 index={virtualRow?.index ?? index}
                 key={row.id}
-                ref={virtualRow ? rowVirtualizer.measureElement : undefined}
+                ref={
+                  virtualRow
+                    ? rowVirtualizer.measureElement
+                    : row.id === highlightedRowId
+                      ? scrollRowRef
+                      : undefined
+                }
                 row={row}
                 style={
                   virtualRow
