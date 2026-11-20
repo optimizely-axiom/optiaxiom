@@ -1,5 +1,26 @@
 # @optiaxiom/web-components
 
+## 3.6.0
+
+### Minor Changes
+
+- 26f39c5: added `rowHighlightingFeature` to highlight and scroll to a `DataTable` row
+- ddcdd12: added `rowIntentFeature` to give `DataTable` rows the selected color
+- d2eca69: added `selectionBehavior` to `DataTable` for row clicks that run actions
+- 882b1b2: added TanStack Table v9 support to `DataTable`
+
+### Patch Changes
+
+- 0b68233: fixed `AlertDialogHeader` crashing on React 16 and 17 without `addonBefore`
+- a2121e2: fixed `Avatar` initials missing after quickly removing `src`
+- 5dfe14b: kept the color of selected table rows on hover
+- 4a9d271: fixed single click opening unselectable `DataTable` rows
+- 3875a70: updated dependencies to their latest compatible versions
+- dd949be: updated dependencies to their latest compatible versions
+- 1a3d9b3: added `collisionBoundary` prop to `PopoverContent`
+- c1bff78: fixed option misuse errors missing from published builds
+- 3483346: fixed `SortableItem` showing the grab cursor despite having a `SortableHandle`
+
 ## 3.5.1
 
 ### Patch Changes
