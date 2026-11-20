@@ -34,10 +34,6 @@ export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
 
     const warnedKeysRef = useRef(new Set<string>());
     useEffect(() => {
-      if (process.env.NODE_ENV === "production") {
-        return;
-      }
-
       const keys = new Set<string>();
       for (const item of items) {
         const key = itemToKey(item, inputValue);
