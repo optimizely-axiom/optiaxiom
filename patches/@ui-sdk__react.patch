@@ -1,0 +1,61 @@
+diff --git a/dist/render-element.js b/dist/render-element.js
+index 37161909267af55bdd2729ff9973817a789a9020..ad7036472f2bce6675b6042bf533cd352672022b 100644
+--- a/dist/render-element.js
++++ b/dist/render-element.js
+@@ -101,7 +101,14 @@ function renderElement(tag, props, render, state = {}) {
+   if (element) {
+     return React.cloneElement(
+       element,
+-      mergeProps(props, element.props)
++      mergeProps(
++        props,
++        element.props,
++        // React 18 and earlier keep the element's ref off its props, and
++        // cloneElement would replace it with the part's. React 19 warns on
++        // reading element.ref, so only older versions read it.
++        parseInt(React.version) < 19 ? { ref: element.ref ?? void 0 } : {}
++      )
+     );
+   }
+   return React.createElement(tag, props);
+diff --git a/dist/use-primitive.js b/dist/use-primitive.js
+index 802fed406a26857ba37388a5fc871701585f1b75..2c7ef665b138249b9a2b9e0dccb5a0ff93eea2fd 100644
+--- a/dist/use-primitive.js
++++ b/dist/use-primitive.js
+@@ -22,6 +22,18 @@ import {
+   yieldToAuthor
+ } from "@ui-sdk/core/renderer";
+ import * as React from "react";
++// React 16/17 lack useId. The fallback has an id on the first render, which
++// ui-sdk needs: it fixes an instance's id when it creates it. A computed key
++// keeps bundlers from linking a named import React 16/17 don't export.
++var nextId = 0;
++function useFallbackId() {
++  const ref = React.useRef(null);
++  if (ref.current === null) {
++    ref.current = `:u${(nextId++).toString(36)}:`;
++  }
++  return ref.current;
++}
++var useId = React["useId".toString()] || useFallbackId;
+ import {
+   mergeProps,
+   mergeRefs,
+@@ -99,7 +111,7 @@ function toReactProps(attrs2) {
+   return props;
+ }
+ function usePrimitive(primitive, options) {
+-  const id = `ui-sdk-${React.useId()}`;
++  const id = `ui-sdk-${useId()}`;
+   const create = (from = {}) => unwatched(
+     () => primitive({
+       ...options,
+@@ -623,7 +635,7 @@ function createParts(primitive, tags) {
+         rest.id = props.id;
+       }
+       for (const key2 of ids) {
+-        const id = React.useId();
++        const id = useId();
+         slotProps[key2] ??= id;
+       }
+       const scope = React.useContext(context);

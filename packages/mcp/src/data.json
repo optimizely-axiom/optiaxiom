@@ -122316,6 +122316,953 @@
       "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/transition-group",
       "examples": []
     },
+    "Tree": {
+      "description": "Hierarchical list of items that expand and collapse, such as pages or\nfolders.\n\nThe tree is one tab stop: arrow keys move between items, Right and Left\nexpand and collapse, and typing a letter jumps to the next item that starts\nwith it. Items take no buttons of their own; their `actions` open in a\ncontext menu with Shift+F10, the Menu key, a right-click or a long press.",
+      "import": "import { Tree } from '@optiaxiom/react/unstable';",
+      "name": "Tree",
+      "props": {
+        "alignItems": {
+          "description": "Set the element's `align-items` CSS property",
+          "enum": ["stretch", "center", "end", "start", "normal"],
+          "responsive": true
+        },
+        "alignSelf": {
+          "description": "Set the element's `align-self` CSS property",
+          "enum": ["stretch", "center", "end", "start", "normal"],
+          "responsive": true
+        },
+        "animation": {
+          "description": "Animate element with CSS animations",
+          "enum": ["ping", "pulse", "spin"]
+        },
+        "asChild": {
+          "description": "Change the default rendered element for the one passed as a child, merging their props and behavior.\n\nRead the {@link https://optimizely-axiom.github.io/optiaxiom/components/#composition Composition guide} for more details.",
+          "type": "boolean"
+        },
+        "backgroundImage": {
+          "description": "Set the element's `background-image` CSS property",
+          "enum": ["gradient.opal"]
+        },
+        "bg": {
+          "description": "Set the element's background color. Only accepts predefined color tokens starting with `bg.` (e.g., `bg.default`, `bg.accent`, `bg.error`), or the special values `current` and `transparent`.",
+          "enum": [
+            "transparent",
+            "bg.accent",
+            "bg.accent.hovered",
+            "bg.accent.light",
+            "bg.accent.pressed",
+            "bg.accent.subtle",
+            "bg.avatar.neutral",
+            "bg.avatar.purple",
+            "bg.default",
+            "bg.default.hovered",
+            "bg.default.inverse",
+            "bg.default.inverse.hovered",
+            "bg.default.inverse.pressed",
+            "bg.default.pressed",
+            "bg.error",
+            "bg.error.hovered",
+            "bg.error.light",
+            "bg.error.pressed",
+            "bg.error.subtle",
+            "bg.error.subtlest",
+            "bg.information",
+            "bg.information.light",
+            "bg.information.subtle",
+            "bg.message.neutral",
+            "bg.overlay",
+            "bg.page",
+            "bg.pill.default",
+            "bg.pill.hovered",
+            "bg.secondary",
+            "bg.secondary.hovered",
+            "bg.spinner.default",
+            "bg.spinner.inverse",
+            "bg.success",
+            "bg.success.hovered",
+            "bg.success.light",
+            "bg.success.subtle",
+            "bg.tertiary",
+            "bg.tertiary.hovered",
+            "bg.warning",
+            "bg.warning.hovered",
+            "bg.warning.light",
+            "bg.warning.subtle",
+            "current"
+          ]
+        },
+        "border": {
+          "description": "Set the element's `border-width` CSS property",
+          "enum": ["2", "0", "1"]
+        },
+        "borderB": {
+          "description": "Set the element's `border-bottom-width` CSS property",
+          "enum": ["2", "0", "1"]
+        },
+        "borderColor": {
+          "description": "Set the element's border color. Only accepts predefined color tokens starting with `border.` (e.g., `border.default`, `border.accent`, `border.error`), or the special values `current` and `transparent`.",
+          "enum": [
+            "transparent",
+            "border.accent",
+            "border.control",
+            "border.control.hovered",
+            "border.default",
+            "border.disabled",
+            "border.error",
+            "border.focus",
+            "border.focus.error",
+            "border.secondary",
+            "border.success",
+            "border.tertiary",
+            "border.warning",
+            "current"
+          ]
+        },
+        "borderL": {
+          "description": "Set the element's `border-left-width` CSS property",
+          "enum": ["2", "0", "1"]
+        },
+        "borderR": {
+          "description": "Set the element's `border-right-width` CSS property",
+          "enum": ["2", "0", "1"]
+        },
+        "borderT": {
+          "description": "Set the element's `border-top-width` CSS property",
+          "enum": ["2", "0", "1"]
+        },
+        "className": { "type": "string" },
+        "color": {
+          "description": "Set the element's text color. Only accepts predefined color tokens starting with `fg.` (e.g., `fg.default`, `fg.accent`, `fg.error`), or the special values `current` and `transparent`.",
+          "enum": [
+            "transparent",
+            "fg.accent",
+            "fg.accent.hovered",
+            "fg.accent.strong",
+            "fg.avatar.neutral",
+            "fg.avatar.purple",
+            "fg.black",
+            "fg.default",
+            "fg.default.inverse",
+            "fg.disabled",
+            "fg.error",
+            "fg.error.hovered",
+            "fg.error.light",
+            "fg.error.strong",
+            "fg.information",
+            "fg.information.light",
+            "fg.information.strong",
+            "fg.link.default",
+            "fg.link.default.hovered",
+            "fg.link.inverse",
+            "fg.link.subtle",
+            "fg.link.visited",
+            "fg.secondary",
+            "fg.spinner.default",
+            "fg.spinner.inverse",
+            "fg.success",
+            "fg.success.hovered",
+            "fg.success.light",
+            "fg.success.strong",
+            "fg.tertiary",
+            "fg.warning",
+            "fg.warning.hovered",
+            "fg.warning.inverse",
+            "fg.warning.light",
+            "fg.warning.strong",
+            "fg.white",
+            "current"
+          ]
+        },
+        "cursor": {
+          "description": "Set the element's `cursor` CSS property",
+          "enum": ["text", "default", "pointer"]
+        },
+        "defaultExpanded": {
+          "description": "The values of the items expanded at first, in uncontrolled mode.",
+          "items": { "type": "string" },
+          "type": "array"
+        },
+        "defaultValue": {
+          "description": "The values of the items selected at first, in uncontrolled mode.",
+          "items": { "type": "string" },
+          "type": "array"
+        },
+        "display": {
+          "description": "Set the element's `display` CSS property",
+          "enum": [
+            "flex",
+            "grid",
+            "none",
+            "block",
+            "inline",
+            "table",
+            "table-cell",
+            "table-row",
+            "inline-block",
+            "inline-flex"
+          ],
+          "responsive": true
+        },
+        "expanded": {
+          "description": "The values of the expanded items, in controlled mode.",
+          "items": { "type": "string" },
+          "type": "array"
+        },
+        "flex": {
+          "description": "Set the element's `flex` CSS property. `1` grows to fill available\nspace; `auto` grows and shrinks to fit content; `initial` shrinks but\ndoes not grow; `none` neither grows nor shrinks (use this instead of\n`flex-shrink: 0`).",
+          "enum": ["initial", "none", "auto", "1"],
+          "responsive": true
+        },
+        "flexDirection": {
+          "description": "Set the element's `flex-direction` CSS property",
+          "enum": ["column", "column-reverse", "row", "row-reverse"],
+          "responsive": true
+        },
+        "flexWrap": {
+          "description": "Set the element's `flex-wrap` CSS property",
+          "enum": ["nowrap", "wrap"],
+          "responsive": true
+        },
+        "fontFamily": {
+          "description": "Set the element's font family. Only accepts predefined fontFamily tokens.",
+          "enum": ["heading", "mono", "sans"]
+        },
+        "fontSize": {
+          "description": "Set the element's font size and line height (both properties are set together). Only accepts predefined fontSize tokens.",
+          "enum": [
+            "inherit",
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "2xl",
+            "3xl",
+            "4xl"
+          ],
+          "responsive": true
+        },
+        "fontWeight": {
+          "description": "Set the element's `font-weight` CSS property",
+          "enum": ["inherit", "600", "900", "400", "500", "700"]
+        },
+        "gap": {
+          "description": "Set the element's `gap` CSS property",
+          "enum": [
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "gridAutoRows": {
+          "description": "Set the element's `grid-auto-rows` CSS property. The only value `fr`\nsizes implicit rows to `minmax(0, 1fr)` (equal-height rows that can\nshrink below their content).",
+          "enum": ["fr"],
+          "responsive": true
+        },
+        "gridColumn": {
+          "description": "Set how many columns the element spans in a grid (`grid-column`). The\nvalue is the span count, e.g. `2` spans 2 columns — NOT the column it\nstarts at.",
+          "enum": ["2", "1", "3", "4"],
+          "responsive": true
+        },
+        "gridTemplateColumns": {
+          "description": "Control number of columns in a grid layout (`grid-template-columns`).\nThe value is the number of equal columns, e.g. `2` creates two equal\ncolumns (`repeat(2, minmax(0, 1fr))`) — use this instead of a raw\n`style={{ gridTemplateColumns: \"1fr 1fr\" }}`.",
+          "enum": ["2", "1", "3", "4"],
+          "responsive": true
+        },
+        "h": {
+          "description": "Set the element's height. Only accepts predefined size tokens.",
+          "enum": [
+            "auto",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "384",
+            "48",
+            "80",
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "full",
+            "3xl",
+            "2xs",
+            "0",
+            "64",
+            "56",
+            "224",
+            "1/2",
+            "1/3",
+            "2/3",
+            "1/4",
+            "3/4",
+            "fit",
+            "max",
+            "min"
+          ],
+          "responsive": true
+        },
+        "justifyContent": {
+          "description": "Set the element's `justify-content` CSS property",
+          "enum": [
+            "space-around",
+            "space-between",
+            "space-evenly",
+            "stretch",
+            "center",
+            "end",
+            "flex-end",
+            "flex-start",
+            "start",
+            "normal"
+          ],
+          "responsive": true
+        },
+        "justifyItems": {
+          "description": "Set the element's `justify-items` CSS property",
+          "enum": ["stretch", "center", "end", "start", "normal"],
+          "responsive": true
+        },
+        "m": {
+          "description": "Set the element's margin on all sides. Only accepts predefined spacing tokens.",
+          "enum": [
+            "auto",
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "maxH": {
+          "description": "Set the element's maximum height. Only accepts predefined maxSize tokens.",
+          "enum": ["xs", "sm", "md", "lg", "full"],
+          "responsive": true
+        },
+        "maxW": {
+          "description": "Set the element's maximum width. Only accepts predefined maxSize tokens.",
+          "enum": ["xs", "sm", "md", "lg", "full"],
+          "responsive": true
+        },
+        "mb": {
+          "description": "Set the element's bottom margin. Only accepts predefined spacing tokens.",
+          "enum": [
+            "auto",
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "minH": {
+          "description": "Set the element's minimum height. `0` lets a flex item shrink below its\ncontent, e.g. so a flex column wrapping a scrolling list stays within its\nparent and the list scrolls; `auto` restores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
+        "minW": {
+          "description": "Set the element's minimum width. `0` lets a flex item shrink below its\ncontent, e.g. so a `Text` with `truncate` inside it can truncate; `auto`\nrestores the default.",
+          "enum": ["auto", "0"],
+          "responsive": true
+        },
+        "ml": {
+          "description": "Set the element's left margin. Only accepts predefined spacing tokens.",
+          "enum": [
+            "auto",
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "mr": {
+          "description": "Set the element's right margin. Only accepts predefined spacing tokens.",
+          "enum": [
+            "auto",
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "mt": {
+          "description": "Set the element's top margin. Only accepts predefined spacing tokens.",
+          "enum": [
+            "auto",
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "multiple": {
+          "description": "Whether more than one item can be selected. Shift+Arrow and Shift+click\nextend the selection, and Ctrl/Cmd+A selects every visible item, or\nclears the selection when every item is selected.",
+          "type": "boolean"
+        },
+        "mx": {
+          "description": "Set the element's left and right margin. Only accepts predefined spacing tokens.",
+          "enum": [
+            "auto",
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "my": {
+          "description": "Set the element's top and bottom margin. Only accepts predefined spacing tokens.",
+          "enum": [
+            "auto",
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "objectFit": {
+          "description": "Set the element's `object-fit` CSS property",
+          "enum": ["contain", "fill", "none", "cover"]
+        },
+        "onExpandedChange": {
+          "description": "Handler that is called when items expand or collapse.",
+          "tsType": "((expanded: string[]) => void)"
+        },
+        "onLabelChange": {
+          "description": "Handler that is called with an item's edited label. Setting it lets\nusers rename items in place: F2 or a double-click starts editing,\nEnter or leaving the field saves, and Escape cancels. Items with\n`editable: false` keep their label.",
+          "tsType": "((value: string, label: string) => void)"
+        },
+        "onValueChange": {
+          "description": "Handler that is called when the selection changes. It receives at most\none value unless `multiple` is set.",
+          "tsType": "((value: string[]) => void)"
+        },
+        "options": {
+          "description": "The items to render, each with its nested items in `children`.",
+          "items": {
+            "properties": {
+              "actions": {
+                "description": "The actions in the item's context menu, opened with Shift+F10, the Menu\nkey, a right-click or a long press. Takes the same options as `Menu`.\nPass a function to get `rename`, which starts editing the item's label.\nDisabled items don't open their actions.",
+                "tsType": "{ visible?: boolean | ((context: { inputValue: string; }) => boolean | undefined) | undefined; label: string | ((context: { inputValue: string | undefined; }) => string); switch?: boolean; key?: string; group?: { hidden?: boolean; label: string; priority?: number; separator?: boolean }; execute?: ((context: { dismiss: boolean; inputValue: string; }) => void) | undefined; intent?: \"danger\" | \"neutral\"; addon?: ReactNode | ((context: { inputValue: string; }) => ReactNode); selected?: boolean | (() => boolean); description?: ReactNode | ((context: { inputValue: string; }) => ReactNode); external?: boolean; href?: string; detail?: ReactNode | ((context: { inputValue: string; }) => ReactNode); disabledReason?: string | (() => string); keywords?: string; multi?: boolean; skipFilterScoring?: boolean; subOptions?: CommandOption[] | ((context: { inputValue: string; }) => CommandOption[]) | undefined; subOptionsInputVisible?: boolean }[] | ((context: { rename: () => void; }) => { visible?: boolean | ((context: { inputValue: string; }) => boolean | undefined) | undefined; label: string | ((context: { inputValue: string | undefined; }) => string); switch?: boolean; key?: string; group?: { hidden?: boolean; label: string; priority?: number; separator?: boolean }; execute?: ((context: { dismiss: boolean; inputValue: string; }) => void) | undefined; intent?: \"danger\" | \"neutral\"; addon?: ReactNode | ((context: { inputValue: string; }) => ReactNode); selected?: boolean | (() => boolean); description?: ReactNode | ((context: { inputValue: string; }) => ReactNode); external?: boolean; href?: string; detail?: ReactNode | ((context: { inputValue: string; }) => ReactNode); disabledReason?: string | (() => string); keywords?: string; multi?: boolean; skipFilterScoring?: boolean; subOptions?: CommandOption[] | ((context: { inputValue: string; }) => CommandOption[]) | undefined; subOptionsInputVisible?: boolean }[])"
+              },
+              "addon": {
+                "description": "Addons such as avatars or icons to show beside each item label.",
+                "tsType": "ReactNode"
+              },
+              "children": {
+                "description": "The nested items. Leave it out for a leaf. Pass a function to load them\nwhen the item first expands; it runs once, so pass an array for items\nthat change after they load.",
+                "tsType": "TreeOption[] | (() => Promise<TreeOption[]>)"
+              },
+              "description": {
+                "description": "Add secondary text after the label.",
+                "tsType": "ReactNode"
+              },
+              "detail": {
+                "description": "Secondary text displayed next to the label.",
+                "tsType": "ReactNode"
+              },
+              "disabledReason": {
+                "description": "Mark the item as disabled and show the reason in a tooltip. The item can\nstill be reached by keyboard, but not selected.",
+                "tsType": "string | (() => string)"
+              },
+              "editable": {
+                "description": "Whether the item's label can be edited when the tree has\n`onLabelChange`. Set `false` to keep this item's label fixed.",
+                "type": "boolean"
+              },
+              "label": {
+                "description": "The item's name, shown in its row. Screen readers announce it, and\ntyping jumps to the next item that starts with it.",
+                "type": "string"
+              },
+              "value": {
+                "description": "Identifies the item in `value`, `defaultValue`, `expanded` and the\nhandlers. Must be unique across the whole tree.",
+                "type": "string"
+              }
+            },
+            "required": ["label", "value"],
+            "title": "TreeOption",
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "overflow": {
+          "description": "Set the element's `overflow` CSS property\n\nInside nested flex columns, every flex item between the scroll container\nand the fixed-height ancestor also needs `minH=\"0\"`, or it grows to fit\nthe content and nothing scrolls.",
+          "enum": ["auto", "hidden", "visible"]
+        },
+        "overflowX": {
+          "description": "Set the element's `overflow-x` CSS property",
+          "enum": ["auto", "hidden", "visible"]
+        },
+        "overflowY": {
+          "description": "Set the element's `overflow-y` CSS property",
+          "enum": ["auto", "hidden", "visible"]
+        },
+        "p": {
+          "description": "Set the element's padding on all sides. Only accepts predefined spacing tokens.",
+          "enum": [
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "pb": {
+          "description": "Set the element's bottom padding. Only accepts predefined spacing tokens.",
+          "enum": [
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "pl": {
+          "description": "Set the element's left padding. Only accepts predefined spacing tokens.",
+          "enum": [
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "placeItems": {
+          "description": "Set the element's `place-items` CSS property",
+          "enum": ["center"],
+          "responsive": true
+        },
+        "pointerEvents": {
+          "description": "Set the element's `pointer-events` CSS property",
+          "enum": ["none", "auto"]
+        },
+        "pr": {
+          "description": "Set the element's right padding. Only accepts predefined spacing tokens.",
+          "enum": [
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "pt": {
+          "description": "Set the element's top padding. Only accepts predefined spacing tokens.",
+          "enum": [
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "px": {
+          "description": "Set the element's left and right padding. Only accepts predefined spacing tokens.",
+          "enum": [
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "py": {
+          "description": "Set the element's top and bottom padding. Only accepts predefined spacing tokens.",
+          "enum": [
+            "2",
+            "6",
+            "8",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "48",
+            "80",
+            "0",
+            "4",
+            "64"
+          ],
+          "responsive": true
+        },
+        "rounded": {
+          "description": "Set the element's border radius. Only accepts predefined borderRadius tokens.",
+          "enum": ["inherit", "none", "xs", "sm", "md", "lg", "xl", "full"],
+          "responsive": true
+        },
+        "shadow": {
+          "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
+          "enum": ["none", "sm", "md", "lg", "xl"]
+        },
+        "size": {
+          "description": "Set the element's width and height. Only accepts predefined size tokens.\n\nWhen width and height are the same, use `size` instead of setting both\n`w` and `h` separately (e.g., prefer `size=\"24\"` over `w=\"24\" h=\"24\"`).",
+          "enum": [
+            "auto",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "384",
+            "48",
+            "80",
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "full",
+            "3xl",
+            "2xs",
+            "0",
+            "64",
+            "56",
+            "224",
+            "1/2",
+            "1/3",
+            "2/3",
+            "1/4",
+            "3/4",
+            "fit",
+            "max",
+            "min"
+          ],
+          "responsive": true
+        },
+        "textAlign": {
+          "description": "Set the element's `text-align` CSS property",
+          "enum": ["center", "end", "start", "justify"],
+          "responsive": true
+        },
+        "textTransform": {
+          "description": "Set the element's `text-transform` CSS property",
+          "enum": ["none", "capitalize", "uppercase"]
+        },
+        "transition": {
+          "description": "Control which CSS properties should transition. Each value is a preset:\n`colors` transitions color-related properties (background, border,\ncolor, fill, stroke, text-decoration); `opacity` and `transform`\ntransition just that property; `all` transitions everything; `none`\ndisables transitions.",
+          "enum": ["opacity", "transform", "all", "none", "colors"]
+        },
+        "value": {
+          "description": "The values of the selected items, in controlled mode.",
+          "items": { "type": "string" },
+          "type": "array"
+        },
+        "w": {
+          "description": "Set the element's width. Only accepts predefined size tokens.",
+          "enum": [
+            "auto",
+            "12",
+            "16",
+            "10",
+            "20",
+            "24",
+            "32",
+            "40",
+            "384",
+            "48",
+            "80",
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "full",
+            "3xl",
+            "2xs",
+            "0",
+            "64",
+            "56",
+            "224",
+            "1/2",
+            "1/3",
+            "2/3",
+            "1/4",
+            "3/4",
+            "fit",
+            "max",
+            "min"
+          ],
+          "responsive": true
+        },
+        "whiteSpace": {
+          "description": "Set the element's `white-space` CSS property",
+          "enum": ["nowrap"]
+        },
+        "z": {
+          "description": "Set the element's stacking order. Only accepts predefined zIndex tokens (e.g., popover, toast, tooltip) or numeric values (0, 10, 20, 30, auto).",
+          "enum": ["auto", "tooltip", "10", "20", "popover", "toast", "0", "30"]
+        }
+      },
+      "required": ["options"],
+      "since": "3.7.0",
+      "category": ["navigation"],
+      "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/tree",
+      "examples": [
+        {
+          "code": [
+            {
+              "content": "\"use client\";\n\nimport {\n  IconCopy,\n  IconFileLines,\n  IconFolder,\n  IconTrashCan,\n} from \"@optiaxiom/icons\";\nimport { toaster } from \"@optiaxiom/react\";\nimport { Tree, type TreeOption } from \"@optiaxiom/react/unstable\";\n\nconst page = (\n  value: string,\n  label: string,\n  children?: TreeOption[],\n): TreeOption => ({\n  actions: [\n    {\n      addon: <IconCopy />,\n      execute: () => toaster.create(`Duplicated ${label}`),\n      label: \"Duplicate\",\n    },\n    {\n      addon: <IconTrashCan />,\n      disabledReason:\n        value === \"website\" ? \"The site root can't be deleted\" : undefined,\n      execute: () => toaster.create(`Deleted ${label}`),\n      group: { hidden: true, label: \"Danger\", separator: true },\n      intent: \"danger\",\n      label: \"Delete\",\n    },\n  ],\n  addon: children ? <IconFolder /> : <IconFileLines />,\n  children,\n  label,\n  value,\n});\n\nexport function App() {\n  return (\n    <Tree\n      aria-label=\"Pages\"\n      defaultExpanded={[\"website\"]}\n      options={[\n        page(\"website\", \"Website\", [\n          page(\"about\", \"About us\"),\n          page(\"pricing\", \"Pricing\"),\n          page(\"contact\", \"Contact\"),\n        ]),\n      ]}\n      w=\"224\"\n    />\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": ["Tree", "toaster", "type TreeOption"],
+          "title": "actions-usage",
+          "description": "Rows don't hold buttons of their own. Use the `actions` property to give an item a context menu instead. It takes the same options as Menu.\n\nKeyboard users open the menu on the focused item with Shift+F10 or the Menu key. Pointer users right-click a row, and on touch screens a long press of 500ms opens it. Focus returns to the item when the menu closes, unless an action moved focus elsewhere, such as into a dialog.",
+          "heading": "Actions"
+        },
+        {
+          "code": [
+            {
+              "content": "import { IconFileLines, IconFolder } from \"@optiaxiom/icons\";\nimport { Badge } from \"@optiaxiom/react\";\nimport { Tree } from \"@optiaxiom/react/unstable\";\n\nexport function App() {\n  return (\n    <Tree\n      aria-label=\"Pages\"\n      defaultExpanded={[\"blog\"]}\n      options={[\n        {\n          addon: <IconFolder />,\n          children: [\n            {\n              addon: <IconFileLines />,\n              description: \"Draft\",\n              label: \"Launch\",\n              value: \"launch\",\n            },\n            {\n              addon: <IconFileLines />,\n              description: \"Scheduled\",\n              label: \"Roadmap\",\n              value: \"roadmap\",\n            },\n          ],\n          detail: <Badge>2</Badge>,\n          label: \"Blog\",\n          value: \"blog\",\n        },\n        {\n          addon: <IconFolder />,\n          children: [\n            { addon: <IconFileLines />, label: \"Holiday sale\", value: \"sale\" },\n            {\n              addon: <IconFileLines />,\n              label: \"Year in review\",\n              value: \"review\",\n            },\n          ],\n          detail: <Badge>2</Badge>,\n          label: \"Archive\",\n          value: \"archive\",\n        },\n      ]}\n      w=\"224\"\n    />\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": ["Badge", "Tree"],
+          "title": "content-usage",
+          "description": "Use the `addon` property to show an icon before the label, `description` to show secondary text after it, and `detail` to show a badge or count after that.",
+          "heading": "Content"
+        },
+        {
+          "code": [
+            {
+              "content": "\"use client\";\n\nimport { IconFileLines, IconFolder } from \"@optiaxiom/icons\";\nimport { Group, Text } from \"@optiaxiom/react\";\nimport { Tree, type TreeOption } from \"@optiaxiom/react/unstable\";\nimport { useState } from \"react\";\n\nconst options: TreeOption[] = [\n  {\n    addon: <IconFolder />,\n    children: [\n      { addon: <IconFileLines />, label: \"Features\", value: \"features\" },\n      { addon: <IconFileLines />, label: \"Pricing\", value: \"pricing\" },\n    ],\n    label: \"Products\",\n    value: \"products\",\n  },\n  { addon: <IconFileLines />, label: \"About us\", value: \"about\" },\n];\n\nexport function App() {\n  const [expanded, setExpanded] = useState([\"products\"]);\n  const [value, setValue] = useState([\"features\"]);\n\n  return (\n    <Group alignItems=\"start\" flexDirection=\"column\" gap=\"16\">\n      <Tree\n        aria-label=\"Pages\"\n        expanded={expanded}\n        onExpandedChange={setExpanded}\n        onValueChange={setValue}\n        options={options}\n        value={value}\n        w=\"224\"\n      />\n\n      <Text color=\"fg.secondary\" fontSize=\"sm\">\n        Selected: {value.join(\", \") || \"none\"}\n      </Text>\n      <Text color=\"fg.secondary\" fontSize=\"sm\">\n        Expanded: {expanded.join(\", \") || \"none\"}\n      </Text>\n    </Group>\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": ["Group", "Text", "Tree", "type TreeOption"],
+          "title": "controlled-usage",
+          "description": "The selection is always an array of values, even without `multiple`. Use `value`, `defaultValue` and `onValueChange` to control which items are selected, and `expanded`, `defaultExpanded` and `onExpandedChange` to control which branches are open.",
+          "heading": "Controlled"
+        },
+        {
+          "code": [
+            {
+              "content": "import { IconFileLines, IconFolder } from \"@optiaxiom/icons\";\nimport { Tree } from \"@optiaxiom/react/unstable\";\n\nexport function App() {\n  return (\n    <Tree\n      aria-label=\"Pages\"\n      defaultExpanded={[\"website\"]}\n      options={[\n        {\n          addon: <IconFolder />,\n          children: [\n            { addon: <IconFileLines />, label: \"About us\", value: \"about\" },\n            {\n              addon: <IconFileLines />,\n              disabledReason: \"You don't have access to this page\",\n              label: \"Careers\",\n              value: \"careers\",\n            },\n            { addon: <IconFileLines />, label: \"Contact\", value: \"contact\" },\n          ],\n          label: \"Website\",\n          value: \"website\",\n        },\n      ]}\n      w=\"224\"\n    />\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": ["Tree"],
+          "title": "disabled-usage",
+          "description": "Use the `disabledReason` property to disable an item. Disabled items stay focusable so screen readers can find them, and show the reason in a tooltip. They can't be selected, renamed or open their `actions`.",
+          "heading": "Disabled items"
+        },
+        {
+          "code": [
+            {
+              "content": "\"use client\";\n\nimport { IconFileLines, IconFolder } from \"@optiaxiom/icons\";\nimport { Tree, type TreeOption } from \"@optiaxiom/react/unstable\";\n\nconst fetchPages = async (): Promise<TreeOption[]> => {\n  await new Promise((resolve) => setTimeout(resolve, 1000));\n  return [\n    { addon: <IconFileLines />, label: \"Product launch\", value: \"launch\" },\n    { addon: <IconFileLines />, label: \"Roadmap update\", value: \"roadmap\" },\n  ];\n};\n\nexport function App() {\n  return (\n    <Tree\n      aria-label=\"Pages\"\n      options={[\n        {\n          addon: <IconFolder />,\n          children: fetchPages,\n          label: \"Blog\",\n          value: \"blog\",\n        },\n        { addon: <IconFileLines />, label: \"Newsletter\", value: \"newsletter\" },\n      ]}\n      w=\"224\"\n    />\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": ["Tree", "type TreeOption"],
+          "title": "lazy-usage",
+          "description": "Pass a function returning a promise to `children` to load an item's children when it first expands. The chevron shows a spinner while they load. The function runs only once, so pass an array instead for children that change after they load.",
+          "heading": "Lazy children"
+        },
+        {
+          "code": [
+            {
+              "content": "import { IconFileLines, IconFolder } from \"@optiaxiom/icons\";\nimport { Tree } from \"@optiaxiom/react/unstable\";\n\nexport function App() {\n  return (\n    <Tree\n      aria-label=\"Pages\"\n      defaultExpanded={[\"blog\"]}\n      defaultValue={[\"launch\", \"roadmap\"]}\n      multiple\n      options={[\n        {\n          addon: <IconFolder />,\n          children: [\n            {\n              addon: <IconFileLines />,\n              label: \"Product launch\",\n              value: \"launch\",\n            },\n            {\n              addon: <IconFileLines />,\n              label: \"Roadmap update\",\n              value: \"roadmap\",\n            },\n            {\n              addon: <IconFileLines />,\n              label: \"Customer story\",\n              value: \"story\",\n            },\n          ],\n          label: \"Blog\",\n          value: \"blog\",\n        },\n        { addon: <IconFileLines />, label: \"Newsletter\", value: \"newsletter\" },\n      ]}\n      w=\"224\"\n    />\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": ["Tree"],
+          "title": "multiple-usage",
+          "description": "Enable the `multiple` prop to let users select several items. Each press toggles an item, Shift+click and Shift+Arrow extend the selection, and Ctrl/Cmd+A selects every visible item, or clears the selection when every item is selected.",
+          "heading": "Multiple selection"
+        },
+        {
+          "code": [
+            {
+              "content": "\"use client\";\n\nimport { IconFileLines, IconFolder, IconPen } from \"@optiaxiom/icons\";\nimport { Tree, type TreeOption } from \"@optiaxiom/react/unstable\";\nimport { useState } from \"react\";\n\ntype Page = { children?: Page[]; label: string; value: string };\n\nconst renamePage = (pages: Page[], value: string, label: string): Page[] =>\n  pages.map((page) =>\n    page.value === value\n      ? { ...page, label }\n      : {\n          ...page,\n          children: page.children && renamePage(page.children, value, label),\n        },\n  );\n\nexport function App() {\n  const [pages, setPages] = useState<Page[]>([\n    {\n      children: [\n        { label: \"About us\", value: \"about\" },\n        { label: \"Pricing\", value: \"pricing\" },\n        { label: \"Contact\", value: \"contact\" },\n      ],\n      label: \"Website\",\n      value: \"website\",\n    },\n  ]);\n\n  const toOption = (page: Page): TreeOption => {\n    // The site root keeps its name.\n    const editable = page.value !== \"website\";\n    return {\n      actions: editable\n        ? ({ rename }) => [\n            { addon: <IconPen />, execute: rename, label: \"Rename\" },\n          ]\n        : [],\n      addon: page.children ? <IconFolder /> : <IconFileLines />,\n      children: page.children?.map(toOption),\n      editable,\n      label: page.label,\n      value: page.value,\n    };\n  };\n\n  return (\n    <Tree\n      aria-label=\"Pages\"\n      defaultExpanded={[\"website\"]}\n      onLabelChange={(value, label) =>\n        setPages((pages) => renamePage(pages, value, label))\n      }\n      options={pages.map(toOption)}\n      w=\"224\"\n    />\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": ["Tree", "type TreeOption"],
+          "title": "rename-usage",
+          "description": "Use the `onLabelChange` prop to let users rename items in place. Pressing F2 or double-clicking a row turns its label into a text field: Enter or leaving the field saves, and Escape cancels. Enter and Escape return focus to the item. An empty or unchanged label isn't saved.\n\nTo start renaming from the context menu, pass `actions` a function: it receives `rename`, which an action can use as its `execute`. Set `editable` to `false` on items whose label can't change, and leave out their Rename action.",
+          "heading": "Renaming"
+        },
+        {
+          "code": [
+            {
+              "content": "import { IconFileLines, IconFolder } from \"@optiaxiom/icons\";\nimport { Tree } from \"@optiaxiom/react/unstable\";\n\nexport function App() {\n  return (\n    <Tree\n      aria-label=\"Pages\"\n      defaultExpanded={[\"website\", \"products\"]}\n      defaultValue={[\"pricing\"]}\n      options={[\n        {\n          addon: <IconFolder />,\n          children: [\n            {\n              addon: <IconFolder />,\n              children: [\n                {\n                  addon: <IconFileLines />,\n                  label: \"Features\",\n                  value: \"features\",\n                },\n                {\n                  addon: <IconFileLines />,\n                  label: \"Pricing\",\n                  value: \"pricing\",\n                },\n              ],\n              label: \"Products\",\n              value: \"products\",\n            },\n            { addon: <IconFileLines />, label: \"About us\", value: \"about\" },\n            { addon: <IconFileLines />, label: \"Contact\", value: \"contact\" },\n          ],\n          label: \"Website\",\n          value: \"website\",\n        },\n        { addon: <IconFileLines />, label: \"Landing page\", value: \"landing\" },\n      ]}\n      w=\"224\"\n    />\n  );\n}\n",
+              "filename": "App.tsx"
+            }
+          ],
+          "components": ["Tree"],
+          "title": "usage",
+          "description": "Pass the items to `options`, each with its nested items in `children`. Pressing a row selects it, and pressing its chevron expands or collapses it. Give the tree an `aria-label` that names what it lists.",
+          "heading": "Usage"
+        }
+      ],
+      "accessibility": "### Keyboard interactions\n\nThe tree is a single tab stop. Tab moves focus to the selected item, or to the first item, and then returns to the item focused last.\n\n| Key | Description |\n| --- | --- |\n| `ArrowDown`, `ArrowUp` | Moves focus to the next/previous visible item. |\n| `ArrowRight` | When focus is on a collapsed branch, expands it. When focus is on an expanded branch, moves focus to its first child. |\n| `ArrowLeft` | When focus is on an expanded branch, collapses it. Otherwise moves focus to the parent item. |\n| `Home`, `End` | Moves focus to the first/last visible item. |\n| `Enter` | Selects the focused item. When `multiple` is enabled, toggles its selection. |\n| `Space` | Toggles the focused item's selection. |\n| `Shift+ArrowDown`, `Shift+ArrowUp` | When `multiple` is enabled, extends the selection. |\n| `Cmd/Ctrl+A` | When `multiple` is enabled, selects every visible item, or clears the selection when every item is selected. |\n| `F2` | When `onLabelChange` is set, edits the focused item's label in place. |\n| `Shift+F10`, `ContextMenu` | Opens the focused item's `actions` in a context menu. |\n| `A - Z` | Moves focus to the next item whose label starts with the typed text. |"
+    },
     "VisuallyHidden": {
       "description": "Hide content visually while keeping it available to screen readers, such as\nextra context for an icon or a status message.\n\nRenders a `span`, or its child with `asChild`. Other props such as `role`\nand `aria-live` land on that element. For a status message, keep the live\nregion mounted and change only its text: most screen readers don't announce\na region that mounts with its text already in it.",
       "import": "import { VisuallyHidden } from '@optiaxiom/react/unstable';",
@@ -130676,6 +131623,11 @@
       "components": ["Tooltip"],
       "name": "Tooltip",
       "source": "import { describe, expect, it } from \"vitest\";\n\nimport { render, screen, waitFor } from \"../../vitest.rtl\";\nimport { Tooltip } from \"./Tooltip\";\n\ndescribe(\"Tooltip component\", () => {\n  function setup(overrides = {}) {\n    const props = {\n      children: <button>Tooltip Target</button>,\n      content: \"Tooltip Content\",\n      ...overrides,\n    };\n    const element = (\n      <div>\n        <Tooltip {...props} />\n        <div>Outside Content</div>\n      </div>\n    );\n\n    return render(element);\n  }\n\n  it(\"should render properly\", () => {\n    setup();\n\n    expect(screen.getByText(\"Outside Content\")).toBeInTheDocument();\n    expect(screen.getByText(\"Tooltip Target\")).toBeInTheDocument();\n    expect(screen.queryByText(\"Tooltip Content\")).not.toBeInTheDocument();\n  });\n\n  it(\"should render tooltip on hover\", async () => {\n    const { user } = setup();\n\n    await user.hover(screen.getByText(\"Tooltip Target\"));\n    expect(\n      await screen.findByRole(\"tooltip\", { name: \"Tooltip Content\" }),\n    ).toBeInTheDocument();\n\n    await user.click(screen.getByText(\"Outside Content\"));\n    await waitFor(() =>\n      expect(\n        screen.queryByRole(\"tooltip\", { name: \"Tooltip Content\" }),\n      ).not.toBeInTheDocument(),\n    );\n  });\n});\n"
+    },
+    "Tree": {
+      "components": ["Tree"],
+      "name": "Tree",
+      "source": "import { type ComponentPropsWithoutRef } from \"react\";\nimport { describe, expect, it, vi } from \"vitest\";\n\nimport { fireEvent, render, screen, waitFor } from \"../../vitest.rtl\";\nimport { Tree } from \"./Tree\";\n\ndescribe(\"Tree component\", () => {\n  function setup(\n    overrides: Partial<ComponentPropsWithoutRef<typeof Tree>> = {},\n  ) {\n    const props = {\n      onValueChange: vi.fn(),\n      options: [\n        {\n          children: [\n            { label: \"Blog\", value: \"blog\" },\n            { label: \"Contact\", value: \"contact\" },\n          ],\n          label: \"Home\",\n          value: \"home\",\n        },\n        { label: \"Archive\", value: \"archive\" },\n      ],\n      ...overrides,\n    };\n\n    return {\n      ...render(<Tree aria-label=\"Pages\" {...props} />),\n      onValueChange: props.onValueChange,\n    };\n  }\n\n  it(\"should expand, select and collapse items with the keyboard\", async () => {\n    const { onValueChange, user } = setup();\n\n    await user.tab();\n    expect(screen.getByRole(\"treeitem\", { name: \"Home\" })).toHaveFocus();\n\n    await user.keyboard(\"{ArrowRight}{ArrowDown}{Enter}\");\n    expect(screen.getByRole(\"treeitem\", { name: \"Blog\" })).toHaveFocus();\n    expect(onValueChange).toHaveBeenLastCalledWith([\"blog\"]);\n\n    await user.keyboard(\"{ArrowLeft}{ArrowLeft}\");\n    expect(screen.getByRole(\"treeitem\", { name: \"Home\" })).toHaveFocus();\n    await waitFor(() =>\n      expect(\n        screen.queryByRole(\"treeitem\", { name: \"Blog\" }),\n      ).not.toBeInTheDocument(),\n    );\n  });\n\n  it(\"should load children when an item first expands\", async () => {\n    const { user } = setup({\n      options: [\n        {\n          children: async () => [{ label: \"Blog\", value: \"blog\" }],\n          label: \"Home\",\n          value: \"home\",\n        },\n      ],\n    });\n\n    await user.tab();\n    await user.keyboard(\"{ArrowRight}\");\n\n    expect(\n      await screen.findByRole(\"treeitem\", { name: \"Blog\" }),\n    ).toBeInTheDocument();\n  });\n\n  it(\"should rename an item in place from its context menu\", async () => {\n    const onLabelChange = vi.fn();\n    const { user } = setup({\n      onLabelChange,\n      options: [\n        {\n          actions: ({ rename }) => [{ execute: rename, label: \"Rename\" }],\n          label: \"Blog\",\n          value: \"blog\",\n        },\n      ],\n    });\n\n    await user.click(screen.getByRole(\"treeitem\", { name: \"Blog\" }));\n    await user.keyboard(\"{Shift>}{F10}{/Shift}\");\n    await user.click(await screen.findByRole(\"option\", { name: \"Rename\" }));\n\n    // Not user.type: user-event only types into contenteditable=\"true\", and\n    // the label field is contenteditable=\"plaintext-only\".\n    const field = await screen.findByRole(\"textbox\", { name: \"Blog\" });\n    field.textContent = \"News\";\n    // oxlint-disable-next-line testing-library/prefer-user-event\n    fireEvent.input(field);\n    await user.keyboard(\"{Enter}\");\n\n    expect(onLabelChange).toHaveBeenCalledWith(\"blog\", \"News\");\n    expect(screen.getByRole(\"treeitem\", { name: \"Blog\" })).toHaveFocus();\n  });\n});\n"
     }
   },
   "tokens": {

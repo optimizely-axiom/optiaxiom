@@ -20,6 +20,9 @@ const messages: Messages = {
   close: "Fermer",
   Close: "Fermer",
   Collapse: "Réduire",
+  Collapsed: "Réduit",
+  "Couldn't load {label}.": (label) =>
+    `Impossible de charger l'élément ${label}.`,
   Done: "Terminé",
   "Drag and drop files here": "Glissez-déposez des fichiers ici",
   draggable: "Poignée de déplacement",
@@ -28,6 +31,7 @@ const messages: Messages = {
       `Déplacement annulé. Élément ${label} remis à la position ${position} sur ${count}.`,
   Error: "Erreur",
   Expand: "Développer",
+  Expanded: "Développé",
   "Filter...": "Filtrer...",
   "Go to the next month": "Aller au mois suivant",
   "Go to the next year": "Aller à l’année suivante",
