@@ -68,12 +68,12 @@ export const createDialogKit = (): DialogKit => {
     }
   };
 
-  const create = (element: ReactNode, options?: DialogOptions) => {
+  const add = (element: ReactNode, extra?: Pick<DialogItem, "onDismiss">) => {
     const id = genId();
 
     snapshot = [
       {
-        ...options,
+        ...extra,
         element,
         id,
         onClose: () => {
@@ -112,7 +112,7 @@ export const createDialogKit = (): DialogKit => {
     },
     confirm: async (element) => {
       return new Promise((resolve) => {
-        create(
+        add(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           isValidElement<any>(element) ? (
             element
@@ -134,7 +134,7 @@ export const createDialogKit = (): DialogKit => {
         );
       });
     },
-    create,
+    create: (element, options) => add(element, options),
     remove,
   };
 };
