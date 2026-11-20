@@ -169,10 +169,6 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 
     const warnedLabelsRef = useRef(new Set<string>());
     useEffect(() => {
-      if (process.env.NODE_ENV === "production") {
-        return;
-      }
-
       for (const option of options) {
         if (
           "disabled" in option &&
