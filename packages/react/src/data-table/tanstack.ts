@@ -228,6 +228,8 @@ export const adaptTable = (
         ? -1
         : table.getRowModel().rows.findIndex((row) => row.id === id);
     },
+    /** The highlighted row's id from `rowHighlightingFeature`, or `null`. */
+    getHighlightedRowId: () => state?.highlightedRowId ?? null,
     /** The row's intent from `rowIntentFeature`. */
     getIntent: (row: TanStackRow) => row.getIntent?.(),
     getIsAllPageRowsSelected,

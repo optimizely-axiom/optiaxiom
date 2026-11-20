@@ -4,4 +4,4 @@
 "@optiaxiom/mcp": patch
 ---
 
-added `rowHighlightingFeature` for a controllable highlighted `DataTable` row
+added `rowHighlightingFeature` to highlight and scroll to a `DataTable` row
