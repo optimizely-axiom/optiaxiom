@@ -13,7 +13,7 @@ export function useDialogKit() {
   const context = useContext(DialogKitContext);
   if (!context) {
     throw new Error(
-      `\`useDialogItemContext\` must be used within managed dialogs.`,
+      "`useDialogKit` must be used inside a dialog opened with `dialogkit.create()`.",
     );
   }
   return {
