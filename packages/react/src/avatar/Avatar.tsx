@@ -88,7 +88,13 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
               )}
             </Box>
           )}
-          <Box asChild {...styles.fallback({})}>
+          <Box
+            asChild
+            // Radix only reads `delayMs` on mount: remount when it changes, or
+            // removing `src` before the delay ends hides the initials for good.
+            key={src ? "delayed" : "immediate"}
+            {...styles.fallback({})}
+          >
             <RadixAvatar.Fallback delayMs={src ? 600 : undefined}>
               {(children ?? (name ? getInitialsFromName(name) : undefined)) || (
                 <Box asChild {...styles.icon({ size })}>
