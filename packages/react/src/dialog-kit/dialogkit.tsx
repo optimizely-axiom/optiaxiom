@@ -19,6 +19,10 @@ import {
 type DialogItem = ContextType<typeof DialogKitContext> & {
   element: ReactNode;
   open: boolean;
+  /**
+   * Settles the `confirm()` promise that opened this dialog.
+   */
+  resolve?: (confirmed: boolean) => void;
 };
 
 type DialogOptions = Pick<DialogItem, "onDismiss">;
@@ -68,7 +72,10 @@ export const createDialogKit = (): DialogKit => {
     }
   };
 
-  const add = (element: ReactNode, extra?: Pick<DialogItem, "onDismiss">) => {
+  const add = (
+    element: ReactNode,
+    extra?: Pick<DialogItem, "onDismiss" | "resolve">,
+  ) => {
     const id = genId();
 
     snapshot = [
@@ -89,6 +96,8 @@ export const createDialogKit = (): DialogKit => {
     return id;
   };
   const remove = (id: string) => {
+    // A no-op after the user chose: onDismiss resolves first.
+    snapshot.find((item) => item.id === id)?.resolve?.(false);
     snapshot = snapshot.map((item) =>
       item.id === id ? { ...item, open: false } : item,
     );
@@ -130,6 +139,7 @@ export const createDialogKit = (): DialogKit => {
             onDismiss: (_event, reason) => {
               resolve(reason === "action");
             },
+            resolve,
           },
         );
       });
