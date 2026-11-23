@@ -1,10 +1,11 @@
+import { type ComponentPropsWithoutRef } from "react";
 import { describe, expect, it, vi } from "vitest";
 
 import { render, screen } from "../../vitest.rtl";
 import { Button } from "./Button";
 
 describe("Button component", () => {
-  function setup(overrides = {}) {
+  function setup(overrides: ComponentPropsWithoutRef<typeof Button> = {}) {
     const props = {
       children: "Click Me",
       ...overrides,

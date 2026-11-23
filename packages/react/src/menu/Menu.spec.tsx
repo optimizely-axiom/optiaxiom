@@ -1,3 +1,4 @@
+import { type ComponentPropsWithoutRef } from "react";
 import { describe, expect, it, vi } from "vitest";
 
 import { render, screen, waitFor, within } from "../../vitest.rtl";
@@ -6,7 +7,9 @@ import { MenuContent } from "./MenuContent";
 import { MenuTrigger } from "./MenuTrigger";
 
 describe("Menu component", () => {
-  function setup(overrides = {}) {
+  function setup(
+    overrides: Partial<ComponentPropsWithoutRef<typeof Menu>> = {},
+  ) {
     const props = {
       options: [
         { execute: vi.fn(), label: "Edit" },
