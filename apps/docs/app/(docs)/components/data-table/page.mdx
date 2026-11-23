@@ -277,6 +277,7 @@ Columns will be virtualized when there are more than 20 columns in a table and r
 ### Labels
 
 - Put `DataTableLabel` in each row's primary cell. It names the row and its selection checkbox for screen readers.
+- Pass `aria-labelledby` (pointing at the table's visible heading) or `aria-label` to `DataTableBody`. It names the region around the table, which takes keyboard focus when the table scrolls.
 
 ### Keyboard navigation
 

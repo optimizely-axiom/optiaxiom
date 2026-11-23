@@ -85,6 +85,13 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(
     return (
       <Box
         ref={ref}
+        /**
+         * A plain `div` can't carry a name, so a labelled wrapper becomes a
+         * region and its Tab stop announces the label.
+         */
+        role={
+          props["aria-label"] || props["aria-labelledby"] ? "region" : undefined
+        }
         tabIndex={tabIndex}
         {...styles.wrapper({}, className)}
         {...props}
