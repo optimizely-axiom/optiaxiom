@@ -102,11 +102,20 @@ Form state is a plain object owned by the host and passed as `data`; writes go t
 
 ## Scripts
 
-`document.scripts` is a map of module name to JavaScript source, run in a sandboxed Web Worker
-(`src/proteus-script/`). Handlers registered with `register(name, fn)` are triggered by
-`{ script: "module:handler", params }` and receive a `ctx` (`emit`, `getValue`, `params`). `ctx.emit`
-re-dispatches through the same `onEvent`, so scripts gain no capability the document doesn't already
-have — but they are not a security boundary, so treat `scripts` with the same trust as the document.
+`document.scripts` is a map of module name to JavaScript source, run in a Blob URL Web Worker
+(`src/proteus-script/`). The worker has the host page's origin, so each module runs in an
+[SES](https://github.com/endojs/endo/tree/master/packages/ses) `Compartment` after `lockdown()`:
+its global holds only `register`, `watch`, `console`, `Date`, `Intl` and `Math`, and SES rejects any
+source containing `import(`. Scripts can't reach `fetch`, storage or the host's cookies. Built-ins
+are frozen, and direct `eval` is rejected.
+
+Handlers registered with `register(name, fn)` are triggered by `{ script: "module:handler", params }`
+and receive a `ctx` (`emit`, `getValue`, `params`). `ctx.emit` re-dispatches through the same
+`onEvent`, so scripts gain no capability the document doesn't already have. They can still emit any
+event the document could, so treat `scripts` with the same trust as the document.
+
+The worker source, SES included, is built by `plugins/rollup-plugin-ses-script.mjs` and loaded only
+when a document has scripts. Hosts with a CSP must allow `blob:` workers and `'unsafe-eval'`.
 
 ## Testing and previewing
 

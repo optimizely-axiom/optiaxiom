@@ -7,7 +7,6 @@ import type { ProteusEventHandler } from "../proteus-document/schemas";
 import type { WorkerToHostMessage } from "./protocol";
 
 import { useEvent } from "../hooks";
-import { WORKER_SCRIPT } from "./workerScript";
 
 type UseProteusScriptsOptions = {
   /** Current form data — snapshotted per invoke and edge-detected for watchers. */
@@ -32,7 +31,14 @@ type UseProteusScriptsOptions = {
 const INVOKE_TIMEOUT_MS = 5000;
 
 /**
- * Spins up a single sandbox Web Worker for the document's `scripts` and returns
+ * A running sandbox: the host end of the channel to the worker, and how to
+ * stop it.
+ */
+type Sandbox = { port: MessagePort; terminate: () => void };
+
+/**
+ * Spins up a single sandbox Web Worker (see `workerScript.ts`) for the
+ * document's `scripts` and returns
  * a `runScript(handler, params)` that invokes a named handler inside it. Events
  * a handler or watcher emits are routed back through `onEmit` (the shell
  * dispatcher) and their results returned to the worker, so `ctx.emit`
@@ -77,7 +83,7 @@ export function useProteusScripts({
     >(),
   ).current;
   const nextId = useRef(1);
-  const workerRef = useRef<null | Worker>(null);
+  const sandboxRef = useRef<null | Sandbox>(null);
 
   // Watcher state: the paths reported by the worker, and the last-evaluated
   // slice at each (serialized) for edge-detection.
@@ -101,8 +107,8 @@ export function useProteusScripts({
    * registers after the user already changed data still catches that edge).
    */
   const runEdgeDetect = useEvent((data: Record<string, unknown>) => {
-    const worker = workerRef.current;
-    if (!worker) {
+    const port = sandboxRef.current?.port;
+    if (!port) {
       return;
     }
     watchedPaths.current.forEach((path, watchId) => {
@@ -116,7 +122,7 @@ export function useProteusScripts({
         // first change after seeding).
         const previous =
           prevSerialized === undefined ? undefined : JSON.parse(prevSerialized);
-        worker.postMessage({
+        port.postMessage({
           current,
           data,
           previous,
@@ -138,15 +144,31 @@ export function useProteusScripts({
     entry.resolve(result);
   });
 
-  const spawnWorker = useEvent(() => {
-    const url = URL.createObjectURL(
-      new Blob([WORKER_SCRIPT], { type: "text/javascript" }),
-    );
-    const instance = new Worker(url);
-    URL.revokeObjectURL(url);
-    instance.postMessage({ scripts, type: "init" });
+  const spawnSandbox = useEvent((): Sandbox => {
+    // Messages posted to `port` queue on the channel until the worker starts
+    // listening, so `init` and early invokes are safe to send while the worker
+    // source (which bundles SES) is still loading.
+    const { port1: port, port2 } = new MessageChannel();
+    let terminated = false;
+    let worker: undefined | Worker;
+    import("./workerScript")
+      .then(({ WORKER_SCRIPT }) => {
+        if (terminated) {
+          return;
+        }
+        const url = URL.createObjectURL(
+          new Blob([WORKER_SCRIPT], { type: "text/javascript" }),
+        );
+        worker = new Worker(url);
+        URL.revokeObjectURL(url);
+        worker.postMessage(null, [port2]);
+      })
+      // A failed load leaves runs to time out to `undefined`, the fail-silent
+      // default.
+      .catch(() => {});
+    port.postMessage({ scripts, type: "init" });
 
-    instance.addEventListener(
+    port.addEventListener(
       "message",
       async (e: MessageEvent<WorkerToHostMessage>) => {
         const msg = e.data;
@@ -160,7 +182,7 @@ export function useProteusScripts({
           } finally {
             emitDepth.current -= 1;
           }
-          instance.postMessage({
+          port.postMessage({
             emitId: msg.emitId,
             result,
             type: "emitResult",
@@ -182,21 +204,29 @@ export function useProteusScripts({
         }
       },
     );
-    return instance;
+    port.start();
+    return {
+      port,
+      terminate: () => {
+        terminated = true;
+        worker?.terminate();
+        port.close();
+      },
+    };
   });
 
-  /** Ensure the worker exists, spawning it on first need. */
-  const ensureWorker = useEvent(() => {
-    if (!workerRef.current) {
-      workerRef.current = spawnWorker();
+  /** Ensure the sandbox exists, spawning it on first need. */
+  const ensureSandbox = useEvent(() => {
+    if (!sandboxRef.current) {
+      sandboxRef.current = spawnSandbox();
     }
-    return workerRef.current;
+    return sandboxRef.current;
   });
 
   /** Tear down the current worker and abandon every in-flight run. */
   const teardown = useEvent(() => {
-    workerRef.current?.terminate();
-    workerRef.current = null;
+    sandboxRef.current?.terminate();
+    sandboxRef.current = null;
     watchedPaths.current = [];
     lastEval.current = [];
     for (const [invokeId] of pending) {
@@ -209,15 +239,15 @@ export function useProteusScripts({
   useEffect(() => {
     teardown();
     if (hasScripts) {
-      ensureWorker();
+      ensureSandbox();
     }
     return teardown;
-  }, [scripts, hasScripts, ensureWorker, teardown]);
+  }, [scripts, hasScripts, ensureSandbox, teardown]);
 
   // Edge-detect watched paths on every data change and run the ones that
   // changed — unless the change was caused by a script's own emit.
   useEffect(() => {
-    if (!workerRef.current || watchedPaths.current.length === 0) {
+    if (!sandboxRef.current || watchedPaths.current.length === 0) {
       return;
     }
     if (emitDepth.current > 0) {
@@ -233,7 +263,7 @@ export function useProteusScripts({
       if (!hasScripts) {
         return Promise.resolve(undefined);
       }
-      const worker = ensureWorker();
+      const { port } = ensureSandbox();
       const invokeId = nextId.current++;
       return new Promise((resolve) => {
         const timer = setTimeout(() => {
@@ -243,7 +273,7 @@ export function useProteusScripts({
           teardown();
         }, INVOKE_TIMEOUT_MS);
         pending.set(invokeId, { resolve, timer });
-        worker.postMessage({
+        port.postMessage({
           data: dataRef.current,
           handler,
           invokeId,
