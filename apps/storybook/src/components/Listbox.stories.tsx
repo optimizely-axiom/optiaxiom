@@ -317,3 +317,18 @@ export const Group: Story = {
     ),
   },
 };
+
+export const Mask: Story = {
+  args: {
+    ...Basic.args,
+    mask: true,
+  },
+  play: async ({ canvas }) => {
+    canvas.getByRole("listbox").scrollTop = 120;
+  },
+  render: (args) => (
+    <Paper display="flex" maxH="xs" w="224">
+      <Listbox p="4" {...args} />
+    </Paper>
+  ),
+};

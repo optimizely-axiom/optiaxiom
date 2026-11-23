@@ -24,7 +24,7 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
 
     return (
       <>
-        <CommandListbox ref={ref} {...props}>
+        <CommandListbox mask ref={ref} {...props}>
           {children ??
             ((
               item: CommandOption,

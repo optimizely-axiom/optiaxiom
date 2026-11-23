@@ -264,6 +264,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       onSelectedItemChange({ selectedItem }) {
         forceValueChange(selectedItem?.value ?? "");
       },
+      // Not downshift's default: it sets scrollTop directly, which ignores the
+      // scroll padding that keeps the highlighted item clear of the fade.
+      scrollIntoView(node) {
+        node?.scrollIntoView?.({ block: "nearest" });
+      },
       selectedItem: selectedItem ?? null,
       stateReducer: (state, actionAndChanges) => {
         const { changes, type } = actionAndChanges;

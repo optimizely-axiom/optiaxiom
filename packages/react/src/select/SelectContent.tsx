@@ -119,6 +119,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                   items={items}
                   itemToKey={(item: SelectOption) => item.value}
                   loading={loading ? "skeleton" : undefined}
+                  mask
                   onPlacedChange={(placed) => {
                     setPlaced(placed);
                     if (placed && highlightedItemRef.current) {

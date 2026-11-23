@@ -11,7 +11,7 @@ import { ListboxVirtualized } from "./ListboxVirtualized";
 const VIRTUALIZE_THRESHOLD = 50;
 
 export type ListboxItemizedProps = BoxProps<
-  "div",
+  typeof Listbox,
   {
     children?: // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ((item: any, index: number, prevItem: any) => ReactNode) | ReactNode;
@@ -57,6 +57,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
       items,
       itemToKey,
       loading,
+      mask,
       onPlacedChange,
       ...props
     },
@@ -82,6 +83,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
         asChild={
           typeof children === "function" && items.length > VIRTUALIZE_THRESHOLD
         }
+        mask={mask}
         ref={ref}
         tabIndex={-1}
         {...props}
@@ -104,6 +106,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
               highlightedItem={highlightedItem}
               items={items}
               itemToKey={itemToKey}
+              mask={mask}
             >
               {children}
             </ListboxVirtualized>
