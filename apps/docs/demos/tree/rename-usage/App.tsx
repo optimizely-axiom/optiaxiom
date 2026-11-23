@@ -38,9 +38,9 @@ export function App() {
             { addon: <IconPen />, execute: rename, label: "Rename" },
           ]
         : [],
-      addon: page.children ? <IconFolder /> : <IconFileLines />,
       children: page.children?.map(toOption),
       editable,
+      icon: page.children ? <IconFolder /> : <IconFileLines />,
       label: page.label,
       value: page.value,
     };

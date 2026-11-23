@@ -10,28 +10,32 @@ export function App() {
       multiple
       options={[
         {
-          addon: <IconFolder />,
           children: [
             {
-              addon: <IconFileLines />,
+              icon: <IconFileLines />,
               label: "Product launch",
               value: "launch",
             },
             {
-              addon: <IconFileLines />,
+              icon: <IconFileLines />,
               label: "Roadmap update",
               value: "roadmap",
             },
             {
-              addon: <IconFileLines />,
+              icon: <IconFileLines />,
               label: "Customer story",
               value: "story",
             },
           ],
+          icon: <IconFolder />,
           label: "Blog",
           value: "blog",
         },
-        { addon: <IconFileLines />, label: "Newsletter", value: "newsletter" },
+        {
+          icon: <IconFileLines />,
+          label: "Newsletter",
+          value: "newsletter",
+        },
       ]}
       w="224"
     />

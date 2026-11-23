@@ -8,17 +8,25 @@ export function App() {
       defaultExpanded={["website"]}
       options={[
         {
-          addon: <IconFolder />,
           children: [
-            { addon: <IconFileLines />, label: "About us", value: "about" },
             {
-              addon: <IconFileLines />,
+              icon: <IconFileLines />,
+              label: "About us",
+              value: "about",
+            },
+            {
               disabledReason: "You don't have access to this page",
+              icon: <IconFileLines />,
               label: "Careers",
               value: "careers",
             },
-            { addon: <IconFileLines />, label: "Contact", value: "contact" },
+            {
+              icon: <IconFileLines />,
+              label: "Contact",
+              value: "contact",
+            },
           ],
+          icon: <IconFolder />,
           label: "Website",
           value: "website",
         },
