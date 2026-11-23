@@ -423,14 +423,26 @@ export const VerticalScroll: Story = {
 export const ScrollableFocusRing: Story = {
   play: async ({ canvas }) => {
     // #1852: the scroll container takes Tab focus and shows a ring.
-    const scrollContainer = canvas.getByRole("table").parentElement!;
-    await waitFor(() =>
-      expect(scrollContainer).toHaveAttribute("tabindex", "0"),
-    );
+    const region = canvas.getByRole("region", { name: "Payments" });
+    await waitFor(() => expect(region).toHaveAttribute("tabindex", "0"));
     await userEvent.tab();
-    await expect(scrollContainer).toHaveFocus();
+    await expect(region).toHaveFocus();
   },
-  render: VerticalScroll.render,
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useTable({
+          columns: columns.slice(0, 5),
+          data: largeData,
+          features,
+          state: { pagination: { pageIndex: 0, pageSize: 100 } },
+        })}
+      >
+        <DataTableBody aria-label="Payments" />
+      </DataTable>
+    );
+  },
 };
 
 export const Pinned: Story = {

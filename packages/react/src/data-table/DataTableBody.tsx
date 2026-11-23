@@ -58,7 +58,16 @@ const SKELETON_ROW_COUNT = 10;
  */
 export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
   (
-    { className, empty, estimatedRowHeight = 52, loading, style, ...props },
+    {
+      "aria-label": ariaLabel,
+      "aria-labelledby": ariaLabelledBy,
+      className,
+      empty,
+      estimatedRowHeight = 52,
+      loading,
+      style,
+      ...props
+    },
     outerRef,
   ) => {
     const innerRef = useRef<HTMLDivElement>(null);
@@ -279,6 +288,8 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
       >
         <Table
           aria-colcount={columnIndexes.size}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
           aria-rowcount={
             headerGroups.length +
             (loading === true

@@ -61,4 +61,19 @@ describe("DataTable", () => {
     expect(header).toHaveAttribute("aria-sort", "ascending");
     expect(firstColumn()).toEqual(["accessibility", "design system"]);
   });
+
+  it("names the table region from its heading", () => {
+    setup({
+      children: (
+        <>
+          <h2 id="keywords-heading">Keywords</h2>
+          <DataTableBody aria-labelledby="keywords-heading" />
+        </>
+      ),
+    });
+
+    expect(
+      screen.getByRole("region", { name: "Keywords" }),
+    ).toBeInTheDocument();
+  });
 });
