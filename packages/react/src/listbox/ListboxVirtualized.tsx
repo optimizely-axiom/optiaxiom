@@ -16,7 +16,7 @@ import { useTransitionGroupContext } from "../transition/internals";
 import { Listbox } from "./Listbox";
 
 export type ListboxVirtualizedProps<T = unknown> = BoxProps<
-  "div",
+  typeof Listbox,
   {
     children: (item: T, index: number, prevItem: T | undefined) => ReactNode;
     /**
@@ -41,103 +41,115 @@ export type ListboxVirtualizedProps<T = unknown> = BoxProps<
 export const ListboxVirtualized = forwardRef<
   HTMLDivElement,
   ListboxVirtualizedProps
->(({ children, highlightedItem, items, itemToKey, ...props }, outerRef) => {
-  const innerRef = useRef<HTMLDivElement>(null);
-  const ref = useComposedRefs(outerRef, innerRef);
+>(
+  (
+    { children, highlightedItem, items, itemToKey, mask, ...props },
+    outerRef,
+  ) => {
+    const innerRef = useRef<HTMLDivElement>(null);
+    const ref = useComposedRefs(outerRef, innerRef);
 
-  /**
-   * We wait for first paint to render the menu and then another paint for
-   * radix popper to place the menu and set the max-height. Otherwise virtualizer
-   * will try to render the full list of items instead of a smaller set of data
-   * that is actually visible in the overflow element.
-   */
-  const [enabled, setEnabled] = useState(false);
-  const requestFrame = useAnimationFrame();
-  useEffect(() => requestFrame(() => setEnabled(true), 2), [requestFrame]);
+    /**
+     * We wait for first paint to render the menu and then another paint for
+     * radix popper to place the menu and set the max-height. Otherwise virtualizer
+     * will try to render the full list of items instead of a smaller set of data
+     * that is actually visible in the overflow element.
+     */
+    const [enabled, setEnabled] = useState(false);
+    const requestFrame = useAnimationFrame();
+    useEffect(() => requestFrame(() => setEnabled(true), 2), [requestFrame]);
 
-  const { presence } =
-    useTransitionGroupContext("@optiaxiom/react/ListboxVirtualized") ?? {};
+    const { presence } =
+      useTransitionGroupContext("@optiaxiom/react/ListboxVirtualized") ?? {};
 
-  const rowVirtualizer = useVirtualizer({
-    count: items.length,
-    enabled,
-    estimateSize: () => 40,
-    gap: 2,
-    getScrollElement: () => innerRef.current,
-  });
-
-  const itemToIndexMap = useMemo(
-    () => new Map(items.map((item, index) => [item, index])),
-    [items],
-  );
-  useEffect(() => {
-    const index = itemToIndexMap.get(highlightedItem);
-    if (!presence || typeof index !== "number" || rowVirtualizer.isScrolling) {
-      return;
-    }
-    rowVirtualizer.scrollToIndex(index);
-  }, [presence, highlightedItem, itemToIndexMap, rowVirtualizer]);
-
-  const virtualItems = rowVirtualizer.getVirtualItems();
-  const [paddingTop, paddingBottom] =
-    virtualItems.length > 0
-      ? [
-          Math.max(0, virtualItems[0].start),
-          Math.max(
-            0,
-            rowVirtualizer.getTotalSize() -
-              virtualItems[virtualItems.length - 1].end,
-          ),
-        ]
-      : [0, 0];
-
-  const [minWidth, setMinWidth] = useState(0);
-  useEffect(() => {
-    if (!innerRef.current || typeof ResizeObserver === "undefined") {
-      return;
-    }
-
-    const observer = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        setMinWidth(entry.contentRect.width);
-      }
+    const rowVirtualizer = useVirtualizer({
+      count: items.length,
+      enabled,
+      estimateSize: () => 40,
+      gap: 2,
+      getScrollElement: () => innerRef.current,
+      // Matches the scroll padding the Listbox mask sets to clear its fade.
+      scrollPaddingEnd: mask ? 24 : 0,
+      scrollPaddingStart: mask ? 24 : 0,
     });
-    observer.observe(innerRef.current);
 
-    return () => observer.disconnect();
-  }, []);
+    const itemToIndexMap = useMemo(
+      () => new Map(items.map((item, index) => [item, index])),
+      [items],
+    );
+    useEffect(() => {
+      const index = itemToIndexMap.get(highlightedItem);
+      if (
+        !presence ||
+        typeof index !== "number" ||
+        rowVirtualizer.isScrolling
+      ) {
+        return;
+      }
+      rowVirtualizer.scrollToIndex(index);
+    }, [presence, highlightedItem, itemToIndexMap, rowVirtualizer]);
 
-  return (
-    <Listbox ref={ref} {...props}>
-      <Box
-        display="flex"
-        flex="none"
-        flexDirection="column"
-        gap="2"
-        style={{
-          minHeight: Math.min(items.length, 8) * 40,
-          minWidth,
-          paddingBottom,
-          paddingTop,
-        }}
-      >
-        {virtualItems.map((virtualItem) => (
-          <Box
-            data-index={virtualItem.index}
-            key={itemToKey(items[virtualItem.index])}
-            ref={rowVirtualizer.measureElement}
-          >
-            {children(
-              items[virtualItem.index],
-              virtualItem.index,
-              items[virtualItem.index - 1],
-            )}
-          </Box>
-        ))}
-      </Box>
-    </Listbox>
-  );
-}) as (<T>(props: ListboxVirtualizedProps<T>) => ReactElement) & {
+    const virtualItems = rowVirtualizer.getVirtualItems();
+    const [paddingTop, paddingBottom] =
+      virtualItems.length > 0
+        ? [
+            Math.max(0, virtualItems[0].start),
+            Math.max(
+              0,
+              rowVirtualizer.getTotalSize() -
+                virtualItems[virtualItems.length - 1].end,
+            ),
+          ]
+        : [0, 0];
+
+    const [minWidth, setMinWidth] = useState(0);
+    useEffect(() => {
+      if (!innerRef.current || typeof ResizeObserver === "undefined") {
+        return;
+      }
+
+      const observer = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          setMinWidth(entry.contentRect.width);
+        }
+      });
+      observer.observe(innerRef.current);
+
+      return () => observer.disconnect();
+    }, []);
+
+    return (
+      <Listbox mask={mask} ref={ref} {...props}>
+        <Box
+          display="flex"
+          flex="none"
+          flexDirection="column"
+          gap="2"
+          style={{
+            minHeight: Math.min(items.length, 8) * 40,
+            minWidth,
+            paddingBottom,
+            paddingTop,
+          }}
+        >
+          {virtualItems.map((virtualItem) => (
+            <Box
+              data-index={virtualItem.index}
+              key={itemToKey(items[virtualItem.index])}
+              ref={rowVirtualizer.measureElement}
+            >
+              {children(
+                items[virtualItem.index],
+                virtualItem.index,
+                items[virtualItem.index - 1],
+              )}
+            </Box>
+          ))}
+        </Box>
+      </Listbox>
+    );
+  },
+) as (<T>(props: ListboxVirtualizedProps<T>) => ReactElement) & {
   displayName: string;
 };
 

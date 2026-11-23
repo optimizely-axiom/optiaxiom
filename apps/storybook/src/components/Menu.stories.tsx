@@ -605,6 +605,29 @@ export const Placement: Story = {
   },
 };
 
+export const Virtualized: Story = {
+  args: {
+    children: (
+      <>
+        <MenuTrigger>Select item</MenuTrigger>
+        <MenuContent />
+      </>
+    ),
+    options: Array.from({ length: 200 }, (_, index) => ({
+      label: `Item ${index + 1}`,
+    })),
+  },
+  play: async () => {
+    await waitFor(() => expect(screen.getByRole("combobox")).toHaveFocus());
+    await userEvent.keyboard("{ArrowDown>30/}");
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: "Item 31" })).toHaveAttribute(
+        "data-highlighted",
+      ),
+    );
+  },
+};
+
 export const Nested: Story = {
   args: {
     children: (
