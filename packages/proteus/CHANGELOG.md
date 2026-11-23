@@ -1,5 +1,41 @@
 # @optiaxiom/proteus
 
+## 3.12.1
+
+### Patch Changes
+
+- 57db399: showed a spinner on `ImageCarousel` Edit while `onEditFile` runs
+- 3875a70: updated dependencies to their latest compatible versions
+- dd949be: updated dependencies to their latest compatible versions
+- 1aea18f: updated dependencies to their latest compatible versions
+- 23c5fc6: show non-date values as sent in `DateTime` formatted cells
+- 3b4f100: isolated document scripts from host cookies, storage and network
+- Updated dependencies [0b68233]
+- Updated dependencies [a2121e2]
+- Updated dependencies [26f39c5]
+- Updated dependencies [ddcdd12]
+- Updated dependencies [5dfe14b]
+- Updated dependencies [d2eca69]
+- Updated dependencies [882b1b2]
+- Updated dependencies [4a9d271]
+- Updated dependencies [60d2005]
+- Updated dependencies [3875a70]
+- Updated dependencies [dd949be]
+- Updated dependencies [1aea18f]
+- Updated dependencies [9019f6c]
+- Updated dependencies [9082d67]
+- Updated dependencies [302ba76]
+- Updated dependencies [272e98f]
+- Updated dependencies [db4dc05]
+- Updated dependencies [fdad899]
+- Updated dependencies [1a3d9b3]
+- Updated dependencies [c1bff78]
+- Updated dependencies [3483346]
+- Updated dependencies [c9a7629]
+- Updated dependencies [7041e07]
+  - @optiaxiom/react@3.7.0
+  - @optiaxiom/icons@1.13.0
+
 ## 3.12.0
 
 ### Minor Changes

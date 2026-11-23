@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 3.1.1
+
+### Patch Changes
+
+- 3875a70: updated dependencies to their latest compatible versions
+
 ## 3.1.0
 
 ### Minor Changes

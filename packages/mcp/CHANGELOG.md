@@ -1,5 +1,25 @@
 # @optiaxiom/mcp
 
+## 3.5.1
+
+### Patch Changes
+
+- 26f39c5: added `rowHighlightingFeature` to highlight and scroll to a `DataTable` row
+- ddcdd12: added `rowIntentFeature` to give `DataTable` rows the selected color
+- d2eca69: added `selectionBehavior` to `DataTable` for row clicks that run actions
+- 60d2005: updated the `DataTable` test example to pass `DataTableBody` as `children` through `setup()`
+- 882b1b2: added TanStack Table v9 support to `DataTable`
+- 4a9d271: fixed single click opening unselectable `DataTable` rows
+- 3875a70: updated dependencies to their latest compatible versions
+- 302ba76: release dialogkit to stable
+- 272e98f: added `IconDockToRight` for toggling a right-side panel
+- dee72d5: `get_component` returns every named prop and lists other matches
+- fdad899: added `IconPip` for picture-in-picture actions
+- 1a3d9b3: added `collisionBoundary` prop to `PopoverContent`
+- 0e29cf4: updated test examples to import from component modules
+- 274e30d: updated test examples to type `setup()` overrides with `ComponentPropsWithoutRef<typeof Component>`
+- 7041e07: added unstable `Tree` with context menu actions
+
 ## 3.5.0
 
 ### Minor Changes
