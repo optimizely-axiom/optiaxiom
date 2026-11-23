@@ -1,5 +1,12 @@
 # @optiaxiom/icons
 
+## 1.13.0
+
+### Minor Changes
+
+- 272e98f: added `IconDockToRight` for toggling a right-side panel
+- fdad899: added `IconPip` for picture-in-picture actions
+
 ## 1.12.0
 
 ### Minor Changes
