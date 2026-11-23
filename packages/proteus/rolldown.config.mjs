@@ -14,6 +14,7 @@ import { dts } from "rolldown-plugin-dts";
 
 import { generateSpecPlugin } from "./plugins/rollup-plugin-generate-schema.mjs";
 import { openaiShimPlugin } from "./plugins/rollup-plugin-openai-shim.mjs";
+import { sesScriptPlugin } from "./plugins/rollup-plugin-ses-script.mjs";
 
 const env = process.env.NODE_ENV ?? "development";
 const watch = process.env.ROLLDOWN_WATCH === "true";
@@ -53,6 +54,7 @@ export default defineConfig([
     plugins: [
       generateSpecPlugin(),
       openaiShimPlugin(),
+      sesScriptPlugin(),
       {
         name: "preserve-directives",
         renderChunk(code, chunk) {
