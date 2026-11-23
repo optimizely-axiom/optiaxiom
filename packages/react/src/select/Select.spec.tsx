@@ -1,3 +1,4 @@
+import { type ComponentPropsWithoutRef } from "react";
 import { describe, expect, it, vi } from "vitest";
 
 import { render, screen } from "../../vitest.rtl";
@@ -8,7 +9,9 @@ import { SelectTrigger } from "./SelectTrigger";
 
 describe("Select component", () => {
   describe("inside a Field", () => {
-    function setup(overrides = {}) {
+    function setup(
+      overrides: Partial<ComponentPropsWithoutRef<typeof Select>> = {},
+    ) {
       const onSubmit = vi.fn();
       const props = {
         onValueChange: vi.fn(),
@@ -72,7 +75,9 @@ describe("Select component", () => {
   });
 
   describe("outside a Field", () => {
-    function setup(overrides = {}) {
+    function setup(
+      overrides: Partial<ComponentPropsWithoutRef<typeof Select>> = {},
+    ) {
       const props = {
         defaultValue: "15",
         options: ["5", "15", "30"].map((value) => ({ label: value, value })),

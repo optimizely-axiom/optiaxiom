@@ -1,10 +1,13 @@
+import { type ComponentPropsWithoutRef } from "react";
 import { describe, expect, it } from "vitest";
 
 import { render, screen, waitFor } from "../../vitest.rtl";
 import { Tooltip } from "./Tooltip";
 
 describe("Tooltip component", () => {
-  function setup(overrides = {}) {
+  function setup(
+    overrides: Partial<ComponentPropsWithoutRef<typeof Tooltip>> = {},
+  ) {
     const props = {
       children: <button>Tooltip Target</button>,
       content: "Tooltip Content",
