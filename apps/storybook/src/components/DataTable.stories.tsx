@@ -350,6 +350,57 @@ export const FillsWithoutResizing: Story = {
   },
 };
 
+const sizingFeatures = tableFeatures({ columnSizingFeature });
+
+/**
+ * Columns grow to fill the table up to their `maxSize`, and a column with
+ * `maxSize` equal to its `size` keeps that width, without the column resizing
+ * feature.
+ */
+export const MaxSize: Story = {
+  args: {
+    w: "full",
+  },
+  play: async ({ canvas }) => {
+    const table = canvas.getByRole("table");
+    const headers = canvas.getAllByRole("columnheader");
+    const [id, status] = headers.map((header) =>
+      header.getBoundingClientRect(),
+    );
+    await expect(id.width).toBeCloseTo(80, 0);
+    await expect(status.width).toBeCloseTo(200, 0);
+    await expect(headers.at(-1)!.getBoundingClientRect().right).toBeCloseTo(
+      table.getBoundingClientRect().right,
+      0,
+    );
+
+    const [, firstRow] = canvas.getAllByRole("row");
+    const cells = within(firstRow).getAllByRole("cell");
+    await expect(cells[1].getBoundingClientRect().left).toBeCloseTo(
+      status.left,
+      0,
+    );
+  },
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useTable({
+          columns: [
+            { accessorKey: "id", header: "ID", maxSize: 80, size: 80 },
+            { accessorKey: "status", header: "Status", maxSize: 200 },
+            { accessorKey: "email", header: "Email" },
+          ],
+          data,
+          features: sizingFeatures,
+        })}
+      >
+        <DataTableBody />
+      </DataTable>
+    );
+  },
+};
+
 /**
  * `useTable` re-renders its owner only for the state its selector picks.
  * DataTable subscribes to the table itself, so sorting still updates it.

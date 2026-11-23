@@ -240,19 +240,10 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
      * technology relies on these counts and indexes for the real table size.
      */
     const headerGroups = table.getHeaderGroups();
-    const totalResizableSize =
-      headerGroups[0]?.headers.reduce(
-        (sum, header) =>
-          sum +
-          (table.getCanGrow(header.column) ? table.getHeaderSize(header) : 0),
-        0,
-      ) ?? 0;
-
     const leadingSpacerStyle = columnVirtualizer.options.enabled
       ? getSpacerStyle(
           table,
           centerColumns.slice(0, virtualColumns[0]?.index ?? 0),
-          totalResizableSize,
         )
       : undefined;
     const trailingSpacerStyle = columnVirtualizer.options.enabled
@@ -261,7 +252,6 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
           centerColumns.slice(
             (virtualColumns.at(-1)?.index ?? centerColumns.length) + 1,
           ),
-          totalResizableSize,
         )
       : undefined;
     const columnIndexes = new Map(
@@ -279,7 +269,6 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
           ...assignInlineVars({
             [styles.leftTotalSizeVar]: `${table.getPinnedTotalSize("left")}px`,
             [styles.rightTotalSizeVar]: `${table.getPinnedTotalSize("right")}px`,
-            [styles.totalSizeVar]: totalResizableSize.toString(),
           }),
           ...style,
         }}
@@ -320,6 +309,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                         [styles.cellOffsetVar]: `${table.getColumnStart(header.column, table.getPinned(header.column) || "left")}px`,
                         [styles.cellSizeVar]: `${table.getHeaderSize(header)}`,
                       }),
+                      maxWidth: toMaxWidth(table.getHeaderMaxSize(header)),
                     }}
                     {...styles.cell({
                       pinned: table.getPinned(header.column) || undefined,
@@ -406,6 +396,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                         [styles.cellOffsetVar]: `${table.getColumnStart(cell.column, "left")}px`,
                         [styles.cellSizeVar]: `${table.getColumnSize(cell.column)}`,
                       }),
+                      maxWidth: toMaxWidth(table.getColumnMaxSize(cell.column)),
                     }}
                     {...styles.cell({
                       pinned: "left",
@@ -435,6 +426,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                       ...assignInlineVars({
                         [styles.cellSizeVar]: `${table.getColumnSize(cell.column)}`,
                       }),
+                      maxWidth: toMaxWidth(table.getColumnMaxSize(cell.column)),
                     }}
                     {...styles.cell({
                       resizable: table.getCanGrow(cell.column),
@@ -458,6 +450,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                         [styles.cellOffsetVar]: `${table.getColumnStart(cell.column, "right")}px`,
                         [styles.cellSizeVar]: `${table.getColumnSize(cell.column)}`,
                       }),
+                      maxWidth: toMaxWidth(table.getColumnMaxSize(cell.column)),
                     }}
                     {...styles.cell({
                       pinned: "right",
@@ -499,23 +492,25 @@ DataTableBody.displayName = "@optiaxiom/react/DataTableBody";
  * Sizes a cell standing in for unrendered center columns so body rows match
  * the header's width and split its free space in the same ratio.
  */
-const getSpacerStyle = (
-  table: TableAdapter,
-  columns: TanStackColumn[],
-  totalResizableSize: number,
-) => {
+const getSpacerStyle = (table: TableAdapter, columns: TanStackColumn[]) => {
   if (columns.length === 0) {
     return;
   }
 
   let size = 0;
   let resizableSize = 0;
+  let maxSize = 0;
   for (const column of columns) {
     size += table.getColumnSize(column);
     resizableSize += table.getCanGrow(column) ? table.getColumnSize(column) : 0;
+    maxSize += table.getColumnMaxSize(column);
   }
   return {
-    flexGrow: totalResizableSize ? resizableSize / totalResizableSize : 0,
+    flexGrow: resizableSize,
+    maxWidth: toMaxWidth(maxSize),
     width: `${size}px`,
   };
 };
+
+const toMaxWidth = (maxSize: number) =>
+  Number.isFinite(maxSize) ? `${maxSize}px` : undefined;

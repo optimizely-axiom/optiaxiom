@@ -9,7 +9,12 @@ export type TanStackCell = {
 };
 
 export type TanStackColumn = {
-  columnDef: { cell?: unknown; header?: unknown; size?: number };
+  columnDef: {
+    cell?: unknown;
+    header?: unknown;
+    maxSize?: number;
+    size?: number;
+  };
   getCanResize?(): boolean;
   getCanSort?(): boolean;
   getIsPinned?(): Pinned;
@@ -158,6 +163,20 @@ export const adaptTable = (
     column.getSize?.() ?? column.columnDef.size ?? DEFAULT_SIZE;
   const sumSizes = (columns: TanStackColumn[]) =>
     columns.reduce((size, column) => size + getColumnSize(column), 0);
+  /**
+   * The widest a column grows to fill the table: its `maxSize`, or no limit.
+   * TanStack defaults `maxSize` to `Number.MAX_SAFE_INTEGER`.
+   */
+  const getColumnMaxSize = (column: TanStackColumn) => {
+    const maxSize = column.columnDef.maxSize;
+    return maxSize === undefined || maxSize >= Number.MAX_SAFE_INTEGER
+      ? Infinity
+      : maxSize;
+  };
+  const getHeaderMaxSize = (header: TanStackHeader): number =>
+    header.subHeaders.length
+      ? header.subHeaders.reduce((size, sub) => size + getHeaderMaxSize(sub), 0)
+      : getColumnMaxSize(header.column);
   const getHeaderSize = (header: TanStackHeader): number =>
     header.getSize?.() ??
     (header.subHeaders.length
@@ -175,9 +194,11 @@ export const adaptTable = (
     /**
      * Whether the column grows to fill the table's free width. Without the
      * resizing feature every column does, as v8's columns are resizable by
-     * default.
+     * default. A column already at its `maxSize` doesn't.
      */
-    getCanGrow: (column: TanStackColumn) => column.getCanResize?.() ?? true,
+    getCanGrow: (column: TanStackColumn) =>
+      (column.getCanResize?.() ?? true) &&
+      getColumnSize(column) < getColumnMaxSize(column),
     getCanMultiSelect: (row: TanStackRow) => !!row.getCanMultiSelect?.(),
     /** Whether the column shows a resize handle. */
     getCanResize: (column: TanStackColumn) => column.getCanResize?.() ?? false,
@@ -199,6 +220,7 @@ export const adaptTable = (
       table.getCenterVisibleLeafColumns?.() ??
       table.getVisibleLeafColumns?.() ??
       table.getAllLeafColumns(),
+    getColumnMaxSize,
     getColumnSize,
     /** A pinned column's offset from the edge of its pinned region. */
     getColumnStart: (column: TanStackColumn, side: Side) => {
@@ -222,6 +244,7 @@ export const adaptTable = (
      */
     getHasRowHighlighting: () => !!table.setHighlightedRowId,
     getHeaderGroups: () => table.getHeaderGroups(),
+    getHeaderMaxSize,
     getHeaderSize,
     /** The highlighted row's index on the page, or -1 when it isn't on it. */
     getHighlightedIndex: () => {

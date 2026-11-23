@@ -63,6 +63,8 @@ Follow the [column pinning guide](https://tanstack.com/table/latest/docs/guide/c
 
 Register `columnSizingFeature` and `columnResizingFeature` to let users drag the edge of a column header to resize it, and double click the edge to reset it. Set `enableResizing: false` on a column to keep its width fixed. On v8, every column is resizable by default.
 
+Columns grow to fill the table's free width, up to their `maxSize`. Set `maxSize` to the same value as `size` to keep a column at that width, which needs only `columnSizingFeature`.
+
 By default the new width applies when the drag ends. Set `columnResizeMode: "onChange"` to resize the column while dragging.
 
 <Alert intent="warning" mt="16">

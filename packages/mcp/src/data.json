@@ -24324,7 +24324,7 @@
           ],
           "components": ["DataTable", "DataTableBody"],
           "title": "column-resizing-usage",
-          "description": "Register `columnSizingFeature` and `columnResizingFeature` to let users drag the edge of a column header to resize it, and double click the edge to reset it. Set `enableResizing: false` on a column to keep its width fixed. On v8, every column is resizable by default.\n\nBy default the new width applies when the drag ends. Set `columnResizeMode: \"onChange\"` to resize the column while dragging.\n\nHover over the column headers and drag their edges to resize:",
+          "description": "Register `columnSizingFeature` and `columnResizingFeature` to let users drag the edge of a column header to resize it, and double click the edge to reset it. Set `enableResizing: false` on a column to keep its width fixed. On v8, every column is resizable by default.\n\nColumns grow to fill the table's free width, up to their `maxSize`. To keep a column at a fixed width without resize handles, register only `columnSizingFeature` and set `maxSize` to the same value as `size`.\n\nBy default the new width applies when the drag ends. Set `columnResizeMode: \"onChange\"` to resize the column while dragging.\n\nHover over the column headers and drag their edges to resize:",
           "heading": "Column resizing"
         },
         {

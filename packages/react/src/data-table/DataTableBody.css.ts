@@ -18,7 +18,6 @@ export const cellSizeVar = createVar();
 export const cellOffsetVar = createVar();
 export const leftTotalSizeVar = createVar();
 export const rightTotalSizeVar = createVar();
-export const totalSizeVar = createVar();
 export const visibleWidthVar = createVar();
 
 const bgHoverColor = createVar({
@@ -135,8 +134,13 @@ export const cell = recipe({
     },
     resizable: {
       false: {},
+      /**
+       * Grow weights, not shares of 1: once a column reaches its `max-width`,
+       * flexbox only hands its leftover to the other columns while their
+       * weights still sum to at least 1.
+       */
       true: style({
-        flexGrow: `calc(${cellSizeVar} / ${totalSizeVar})`,
+        flexGrow: cellSizeVar,
       }),
     },
   },
