@@ -64,11 +64,18 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
       getTableState,
       getTableState,
     );
+    /**
+     * A v8 table has no store, and `useReactTable` returns the same table on
+     * every render. Its `getState()` returns a new object after each update,
+     * so it stands in for the snapshot. Without it, `children` created outside
+     * the owner never get a new adapter and keep showing stale rows.
+     */
+    const snapshot = store ? tableState : table.getState?.();
     // A new state snapshot hands the components a new adapter, which
     // re-renders them even when the owner's `useTable` selector skipped it.
     const adapter = useMemo(
-      () => adaptTable(table, tableState),
-      [table, tableState],
+      () => adaptTable(table, snapshot),
+      [table, snapshot],
     );
     /**
      * The highlighted row lives in table state when the table registers

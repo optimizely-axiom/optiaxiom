@@ -1,3 +1,5 @@
+import type { ComponentPropsWithoutRef } from "react";
+
 import {
   type ColumnDef,
   createSortedRowModel,
@@ -21,7 +23,9 @@ const features = tableFeatures({
 });
 
 describe("DataTable", () => {
-  function setup() {
+  function setup(
+    props: Omit<ComponentPropsWithoutRef<typeof DataTable>, "table">,
+  ) {
     const columns: Array<ColumnDef<typeof features, Keyword>> = [
       { accessorKey: "keyword", header: "Keyword" },
       { accessorKey: "volume", header: "Volume" },
@@ -33,9 +37,7 @@ describe("DataTable", () => {
 
     function Keywords() {
       return (
-        <DataTable table={useTable({ columns, data, features })}>
-          <DataTableBody />
-        </DataTable>
+        <DataTable table={useTable({ columns, data, features })} {...props} />
       );
     }
 
@@ -50,7 +52,7 @@ describe("DataTable", () => {
   }
 
   it("sorts from a column header", async () => {
-    const { user } = setup();
+    const { user } = setup({ children: <DataTableBody /> });
 
     const header = screen.getByRole("columnheader", { name: /^Keyword/ });
     expect(header).toHaveAttribute("aria-sort", "none");

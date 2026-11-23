@@ -138,13 +138,15 @@ type Side = "left" | "right";
 export const adaptTable = (
   table: TanStackTable,
   /**
-   * The v9 store's current snapshot, which DataTable subscribes to. Read from
-   * it, a state change hands the components a new adapter.
+   * The table's current state: the v9 store's snapshot, which DataTable
+   * subscribes to, or v8's `getState()`. Read from it, a state change hands
+   * the components a new adapter.
    */
   snapshot = table.store?.get(),
 ) => {
-  // v9's state, as `getState()` is v8's. Unknown in the type: a table without
-  // these features has neither slice, and wouldn't fit a type that lists them.
+  // Only v9 has `columnResizing` and `highlightedRowId`; `pagination` is in
+  // both. Unknown in the type: a table without these features has none of
+  // these slices, and wouldn't fit a type that lists them.
   const state = snapshot as
     | undefined
     | {
