@@ -30,8 +30,8 @@ const page = (
       label: "Delete",
     },
   ],
-  addon: children ? <IconFolder /> : <IconFileLines />,
   children,
+  icon: children ? <IconFolder /> : <IconFileLines />,
   label,
   value,
 });

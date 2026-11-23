@@ -18,7 +18,7 @@ const fetchPosts = async ({
     nextPageLabel: "Load more posts",
     nextPageParam: (page + 1) * pageSize < posts.length ? page + 1 : undefined,
     options: items.map((label): TreeOption => ({
-      addon: <IconFileLines />,
+      icon: <IconFileLines />,
       label,
       value: label,
     })),
@@ -31,8 +31,8 @@ export function App() {
       aria-label="Pages"
       options={[
         {
-          addon: <IconFolder />,
           children: fetchPosts,
+          icon: <IconFolder />,
           label: "Blog",
           value: "blog",
         },

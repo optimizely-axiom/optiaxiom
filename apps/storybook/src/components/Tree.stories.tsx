@@ -36,8 +36,8 @@ const page = (
   label: string,
   children?: TreeOption["children"],
 ): TreeOption => ({
-  addon: children ? <IconFolder /> : <IconFileLines />,
   children,
+  icon: children ? <IconFolder /> : <IconFileLines />,
   label,
   value,
 });
@@ -253,9 +253,9 @@ export const Actions: Story = {
             label: "Delete",
           },
         ],
-        addon: page.children ? <IconFolder /> : <IconFileLines />,
         children: page.children?.map(toOption),
         editable: !root,
+        icon: page.children ? <IconFolder /> : <IconFileLines />,
         label: page.label,
         value: page.value,
       };

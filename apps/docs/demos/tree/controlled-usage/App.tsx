@@ -7,15 +7,15 @@ import { useState } from "react";
 
 const options: TreeOption[] = [
   {
-    addon: <IconFolder />,
     children: [
-      { addon: <IconFileLines />, label: "Features", value: "features" },
-      { addon: <IconFileLines />, label: "Pricing", value: "pricing" },
+      { icon: <IconFileLines />, label: "Features", value: "features" },
+      { icon: <IconFileLines />, label: "Pricing", value: "pricing" },
     ],
+    icon: <IconFolder />,
     label: "Products",
     value: "products",
   },
-  { addon: <IconFileLines />, label: "About us", value: "about" },
+  { icon: <IconFileLines />, label: "About us", value: "about" },
 ];
 
 export function App() {

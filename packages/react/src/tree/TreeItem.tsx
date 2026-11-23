@@ -228,7 +228,7 @@ export function TreeItem({ option }: TreeItemProps) {
             )}
           </Box>
 
-          {option.addon && <Box {...styles.addon()}>{option.addon}</Box>}
+          {option.icon && <Box {...styles.icon()}>{option.icon}</Box>}
 
           {isEditing ? (
             <TreeItemEditor

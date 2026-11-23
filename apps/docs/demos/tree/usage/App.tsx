@@ -9,32 +9,44 @@ export function App() {
       defaultValue={["pricing"]}
       options={[
         {
-          addon: <IconFolder />,
           children: [
             {
-              addon: <IconFolder />,
               children: [
                 {
-                  addon: <IconFileLines />,
+                  icon: <IconFileLines />,
                   label: "Features",
                   value: "features",
                 },
                 {
-                  addon: <IconFileLines />,
+                  icon: <IconFileLines />,
                   label: "Pricing",
                   value: "pricing",
                 },
               ],
+              icon: <IconFolder />,
               label: "Products",
               value: "products",
             },
-            { addon: <IconFileLines />, label: "About us", value: "about" },
-            { addon: <IconFileLines />, label: "Contact", value: "contact" },
+            {
+              icon: <IconFileLines />,
+              label: "About us",
+              value: "about",
+            },
+            {
+              icon: <IconFileLines />,
+              label: "Contact",
+              value: "contact",
+            },
           ],
+          icon: <IconFolder />,
           label: "Website",
           value: "website",
         },
-        { addon: <IconFileLines />, label: "Landing page", value: "landing" },
+        {
+          icon: <IconFileLines />,
+          label: "Landing page",
+          value: "landing",
+        },
       ]}
       w="224"
     />

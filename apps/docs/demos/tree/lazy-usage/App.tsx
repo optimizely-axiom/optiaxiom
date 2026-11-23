@@ -6,8 +6,16 @@ import { Tree, type TreeOption } from "@optiaxiom/react/unstable";
 const fetchPages = async (): Promise<TreeOption[]> => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   return [
-    { addon: <IconFileLines />, label: "Product launch", value: "launch" },
-    { addon: <IconFileLines />, label: "Roadmap update", value: "roadmap" },
+    {
+      icon: <IconFileLines />,
+      label: "Product launch",
+      value: "launch",
+    },
+    {
+      icon: <IconFileLines />,
+      label: "Roadmap update",
+      value: "roadmap",
+    },
   ];
 };
 
@@ -17,12 +25,16 @@ export function App() {
       aria-label="Pages"
       options={[
         {
-          addon: <IconFolder />,
           children: fetchPages,
+          icon: <IconFolder />,
           label: "Blog",
           value: "blog",
         },
-        { addon: <IconFileLines />, label: "Newsletter", value: "newsletter" },
+        {
+          icon: <IconFileLines />,
+          label: "Newsletter",
+          value: "newsletter",
+        },
       ]}
       w="224"
     />

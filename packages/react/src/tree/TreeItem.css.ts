@@ -161,7 +161,7 @@ export const indicator = recipe({
   ],
 });
 
-export const addon = recipe({
+export const icon = recipe({
   base: [
     {
       color: "fg.secondary",
@@ -170,7 +170,7 @@ export const addon = recipe({
     },
     style({
       /**
-       * The chevron's slot is wider than its glyph, so the addon looks
+       * The chevron's slot is wider than its glyph, so the icon looks
        * further from the chevron than from the label. Pulling it in evens
        * the two gaps.
        */

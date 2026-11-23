@@ -1,7 +1,7 @@
 "use client";
 
 import type { TreeController } from "@ui-sdk/react/tree";
-import type { RefObject } from "react";
+import type { ReactNode, RefObject } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
@@ -55,6 +55,10 @@ export type TreeOption = {
    */
   editable?: boolean;
   /**
+   * An icon to show before the item label.
+   */
+  icon?: ReactNode;
+  /**
    * The item's name, shown in its row. Screen readers announce it, and
    * typing jumps to the next item that starts with it.
    */
@@ -64,7 +68,7 @@ export type TreeOption = {
    * handlers. Must be unique across the whole tree.
    */
   value: string;
-} & Pick<SelectOption, "addon" | "description" | "detail" | "disabledReason">;
+} & Pick<SelectOption, "description" | "detail" | "disabledReason">;
 
 /**
  * One page of a level's items, and how to ask for the next one.
