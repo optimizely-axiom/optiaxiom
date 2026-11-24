@@ -33,7 +33,7 @@ import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DateInput.css";
 
 export type DateInputProps = ExtendProps<
-  ExcludeProps<ComponentPropsWithoutRef<typeof Input>, "inputMode">,
+  ExcludeProps<ComponentPropsWithoutRef<typeof Input>, "inputMode" | "pattern">,
   Pick<
     ComponentPropsWithoutRef<typeof Calendar>,
     "holiday" | "placeholder" | "weekend"

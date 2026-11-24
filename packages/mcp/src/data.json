@@ -64409,6 +64409,10 @@
           ],
           "responsive": true
         },
+        "pattern": {
+          "description": "A regular expression the whole value must match to be valid. Browsers\ncompile it with the `v` flag and ignore it if it fails to compile, so\nescape `-` and `/` inside a character class (`[a-z0-9\\-\\/]`).",
+          "type": "string"
+        },
         "pb": {
           "description": "Set the element's bottom padding. Only accepts predefined spacing tokens.",
           "enum": [
@@ -92504,6 +92508,10 @@
             "64"
           ],
           "responsive": true
+        },
+        "pattern": {
+          "description": "A regular expression the whole value must match to be valid. Browsers\ncompile it with the `v` flag and ignore it if it fails to compile, so\nescape `-` and `/` inside a character class (`[a-z0-9\\-\\/]`).",
+          "type": "string"
         },
         "pb": {
           "description": "Set the element's bottom padding. Only accepts predefined spacing tokens.",

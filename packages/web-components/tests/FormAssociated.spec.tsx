@@ -74,6 +74,18 @@ describe("form-associated elements", () => {
     expect(input).toHaveAttribute("inputmode", "numeric");
   });
 
+  it("should pass the pattern property to the input", async () => {
+    render(<Input aria-label="Code" />);
+    const element = screen.getByLabelText<HTMLInputElement>("Code");
+    const input = await waitFor(() =>
+      withinShadowRoot(element).getByRole("textbox"),
+    );
+
+    element.pattern = "[0-9]+";
+
+    await waitFor(() => expect(input).toHaveAttribute("pattern", "[0-9]+"));
+  });
+
   it("should mask the text of a password input", async () => {
     render(<Input aria-label="Password" type="password" />);
     const element = screen.getByLabelText<HTMLInputElement>("Password");

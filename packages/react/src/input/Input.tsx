@@ -36,6 +36,12 @@ export type InputProps = InputControlProps<
        */
       htmlSize?: number;
       /**
+       * A regular expression the whole value must match to be valid. Browsers
+       * compile it with the `v` flag and ignore it if it fails to compile, so
+       * escape `-` and `/` inside a character class (`[a-z0-9\-\/]`).
+       */
+      pattern?: ComponentPropsWithoutRef<"input">["pattern"];
+      /**
        * The input type.
        */
       type?: ComponentPropsWithoutRef<"input">["type"];
