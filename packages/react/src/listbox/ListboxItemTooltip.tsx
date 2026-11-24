@@ -49,15 +49,6 @@ export function ListboxItemTooltip({
           onEscapeKeyDown={() => {
             setDismissed(true);
           }}
-          /**
-           * The tooltip covers the neighbouring item, so it gets out of the way
-           * once the pointer moves over it. Not `onPointerEnter`: that also
-           * fires when the tooltip opens under a resting pointer.
-           */
-          onPointerMove={() => {
-            setDismissed(true);
-            setHovered(false);
-          }}
           // Beside the item, so it doesn't cover the items above and below.
           side="right"
         >
