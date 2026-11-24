@@ -53,6 +53,27 @@ describe("form-associated elements", () => {
     expect(element.name).toBe("email");
   });
 
+  it("should show the keyboard set by input-mode", async () => {
+    render(<Input aria-label="Website" input-mode="url" />);
+    const element = screen.getByLabelText("Website");
+    const input = await waitFor(() =>
+      withinShadowRoot(element).getByRole("textbox"),
+    );
+
+    expect(input).toHaveAttribute("inputmode", "url");
+  });
+
+  it("should show the keyboard set on inputMode before it loads", async () => {
+    render(<Input aria-label="Code" />);
+    const element = screen.getByLabelText<HTMLInputElement>("Code");
+    element.inputMode = "numeric";
+    const input = await waitFor(() =>
+      withinShadowRoot(element).getByRole("textbox"),
+    );
+
+    expect(input).toHaveAttribute("inputmode", "numeric");
+  });
+
   it("should mask the text of a password input", async () => {
     render(<Input aria-label="Password" type="password" />);
     const element = screen.getByLabelText<HTMLInputElement>("Password");

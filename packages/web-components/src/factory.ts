@@ -109,6 +109,15 @@ export const factory = (
         get form() {
           return this.#internals.form;
         }
+        // Not the built-in `inputMode`: it reads `inputmode`, so `register()`
+        // would copy its `""` over an `input-mode` attribute on first render.
+        // `undefined`, not `""`, so an absent attribute leaves the prop unset.
+        get inputMode() {
+          return this.getAttribute("input-mode") ?? (undefined as never);
+        }
+        set inputMode(inputMode: string) {
+          this.setAttribute("input-mode", inputMode);
+        }
         get name() {
           return this.getAttribute("name");
         }

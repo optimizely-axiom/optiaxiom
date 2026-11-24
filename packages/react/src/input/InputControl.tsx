@@ -53,6 +53,10 @@ export type InputControlProps<
        */
       error?: boolean;
       /**
+       * The kind of virtual keyboard to show on touch devices.
+       */
+      inputMode?: ComponentPropsWithoutRef<"input" | "textarea">["inputMode"];
+      /**
        * The maximum number of characters allowed in a text input or textarea.
        * Wrap it in a `Field` with `showCount` to show the character count.
        */

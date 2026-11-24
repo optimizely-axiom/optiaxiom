@@ -23,6 +23,7 @@ import {
   PopoverTrigger,
 } from "../popover";
 import {
+  type ExcludeProps,
   type ExtendProps,
   toInstant,
   toPlainDate,
@@ -32,7 +33,7 @@ import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DateInput.css";
 
 export type DateInputProps = ExtendProps<
-  ComponentPropsWithoutRef<typeof Input>,
+  ExcludeProps<ComponentPropsWithoutRef<typeof Input>, "inputMode">,
   Pick<
     ComponentPropsWithoutRef<typeof Calendar>,
     "holiday" | "placeholder" | "weekend"
