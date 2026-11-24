@@ -32,6 +32,36 @@ describe("form-associated elements", () => {
 
     expect(element.checked).toBe(true);
   });
+
+  it("should keep a checkbox's value set before it loads", async () => {
+    render(<Checkbox>Accept</Checkbox>);
+    const element = screen.getByText<HTMLInputElement>("Accept");
+    element.value = "yes";
+    const checkbox = await waitFor(() =>
+      withinShadowRoot(element).getByRole("checkbox"),
+    );
+
+    expect(checkbox).toHaveAttribute("value", "yes");
+    expect(element.value).toBe("yes");
+  });
+
+  it("should read an input's name", async () => {
+    render(<Input aria-label="Email" name="email" />);
+    const element = screen.getByLabelText<HTMLInputElement>("Email");
+    await waitFor(() => withinShadowRoot(element).getByRole("textbox"));
+
+    expect(element.name).toBe("email");
+  });
+
+  it("should mask the text of a password input", async () => {
+    render(<Input aria-label="Password" type="password" />);
+    const element = screen.getByLabelText<HTMLInputElement>("Password");
+    const input = await waitFor(() =>
+      withinShadowRoot(element).getByLabelText("Password"),
+    );
+
+    expect(input).toHaveAttribute("type", "password");
+  });
 });
 
 declare global {
