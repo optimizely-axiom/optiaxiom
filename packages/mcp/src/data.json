@@ -64152,6 +64152,19 @@
           "description": "Control the native input `size` attribute.",
           "type": "number"
         },
+        "inputMode": {
+          "description": "The kind of virtual keyboard to show on touch devices.",
+          "enum": [
+            "none",
+            "text",
+            "search",
+            "tel",
+            "url",
+            "email",
+            "numeric",
+            "decimal"
+          ]
+        },
         "justifyContent": {
           "description": "Set the element's `justify-content` CSS property",
           "enum": [
@@ -92231,6 +92244,19 @@
           "description": "Control the native input `size` attribute.",
           "type": "number"
         },
+        "inputMode": {
+          "description": "The kind of virtual keyboard to show on touch devices.",
+          "enum": [
+            "none",
+            "text",
+            "search",
+            "tel",
+            "url",
+            "email",
+            "numeric",
+            "decimal"
+          ]
+        },
         "justifyContent": {
           "description": "Set the element's `justify-content` CSS property",
           "enum": [
@@ -118227,6 +118253,19 @@
             "min"
           ],
           "responsive": true
+        },
+        "inputMode": {
+          "description": "The kind of virtual keyboard to show on touch devices.",
+          "enum": [
+            "none",
+            "text",
+            "search",
+            "tel",
+            "url",
+            "email",
+            "numeric",
+            "decimal"
+          ]
         },
         "justifyContent": {
           "description": "Set the element's `justify-content` CSS property",
