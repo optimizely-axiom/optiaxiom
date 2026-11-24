@@ -1,5 +1,22 @@
 # @optiaxiom/proteus
 
+## 3.12.2
+
+### Patch Changes
+
+- dffddcd: added `inputMode` and `pattern` to `Input`
+- Updated dependencies [d3cbd17]
+- Updated dependencies [e92f0f0]
+- Updated dependencies [f30b690]
+- Updated dependencies [6764fe4]
+- Updated dependencies [e92f0f0]
+- Updated dependencies [b073f93]
+- Updated dependencies [43aa16a]
+- Updated dependencies [325bf0c]
+- Updated dependencies [fac7fc6]
+- Updated dependencies [76de88a]
+  - @optiaxiom/react@3.7.1
+
 ## 3.12.1
 
 ### Patch Changes
