@@ -58,6 +58,8 @@ export function ListboxItemTooltip({
             setDismissed(true);
             setHovered(false);
           }}
+          // Beside the item, so it doesn't cover the items above and below.
+          side="right"
         >
           {content}
         </TooltipContent>
