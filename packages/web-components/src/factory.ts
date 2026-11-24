@@ -112,8 +112,10 @@ export const factory = (
         get name() {
           return this.getAttribute("name");
         }
+        // `register()` copies this into the `type` prop on first render, so it
+        // reports the attribute. `undefined` leaves the component's default.
         get type() {
-          return this.localName;
+          return this.getAttribute("type") ?? undefined;
         }
         get validationMessage() {
           return this.#internals.validationMessage;
