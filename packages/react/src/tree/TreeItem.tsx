@@ -11,6 +11,7 @@ import { useRef, useState } from "react";
 import { Box } from "../box";
 import { EllipsisMenuButton } from "../ellipsis-menu-button";
 import { useTimeout } from "../hooks";
+import { HoverCardAnchorProvider } from "../hover-card/HoverCardContext";
 import { useMessages } from "../locale";
 import { resolveItemProperty } from "../select/SelectContext";
 import { Spinner } from "../spinner";
@@ -60,7 +61,9 @@ export function TreeItem({ option }: TreeItemProps) {
   const canEdit = isEditable(option, onLabelChange);
   const rowRef = useRef<HTMLDivElement>(null);
   const detailId = useId();
+  const addonAfterId = useId();
   const [focused, setFocused] = useState(false);
+  const [addonHovered, setAddonHovered] = useState(false);
 
   /**
    * iOS Safari fires no `contextmenu` on a long press, so touch and pen
@@ -90,7 +93,14 @@ export function TreeItem({ option }: TreeItemProps) {
       label={option.label}
       render={
         <Box
-          aria-describedby={option.detail ? detailId : undefined}
+          aria-describedby={
+            [
+              option.detail ? detailId : undefined,
+              option.addonAfter ? addonAfterId : undefined,
+            ]
+              .filter(Boolean)
+              .join(" ") || undefined
+          }
           aria-haspopup={hasActions ? "dialog" : undefined}
           aria-keyshortcuts={hasActions ? "Shift+F10" : undefined}
           {...styles.item()}
@@ -201,8 +211,12 @@ export function TreeItem({ option }: TreeItemProps) {
       value={option.value}
     >
       <TreeItemTooltip
+        /**
+         * The pointer on the end addon isn't on the label, and the addon's
+         * own tooltips and hover cards would open over the label's.
+         */
+        disabled={isEditing || addonHovered}
         disabledReason={disabledReason}
-        editing={isEditing}
         highlighted={focused}
         label={option.label}
       >
@@ -258,6 +272,20 @@ export function TreeItem({ option }: TreeItemProps) {
           {option.detail && (
             <Box color="fg.secondary" display="flex" flex="none" id={detailId}>
               {option.detail}
+            </Box>
+          )}
+
+          {option.addonAfter && (
+            <Box
+              id={addonAfterId}
+              onPointerEnter={() => setAddonHovered(true)}
+              onPointerLeave={() => setAddonHovered(false)}
+              {...styles.addonAfter()}
+            >
+              {/* A hover card here opens beside the whole row. */}
+              <HoverCardAnchorProvider anchorRef={rowRef}>
+                {option.addonAfter}
+              </HoverCardAnchorProvider>
             </Box>
           )}
 

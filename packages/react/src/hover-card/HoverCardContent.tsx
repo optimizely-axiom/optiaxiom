@@ -8,7 +8,11 @@ import { type BoxProps } from "../box";
 import { Paper } from "../paper";
 import { Portal } from "../portal";
 import { Transition, TransitionGroup } from "../transition";
-import { useHoverCardContext } from "./HoverCardContext";
+import {
+  useHoverCardAnchorContext,
+  useHoverCardContext,
+} from "./HoverCardContext";
+import { useHoverCardScope } from "./useHoverCardScope";
 
 export type HoverCardContentProps = ExcludeProps<
   BoxProps<typeof RadixHoverCard.Content>,
@@ -30,13 +34,16 @@ export const HoverCardContent = forwardRef<
   HoverCardContentProps
 >(
   (
-    { align = "start", asChild, children, sideOffset = 4, ...props },
+    { align = "start", asChild, children, side, sideOffset = 4, ...props },
     outerRef,
   ) => {
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
     const { open, presence, setPresence } = useHoverCardContext(
+      "@optiaxiom/react/HoverCardContent",
+    );
+    const { anchorRef } = useHoverCardAnchorContext(
       "@optiaxiom/react/HoverCardContent",
     );
 
@@ -64,7 +71,9 @@ export const HoverCardContent = forwardRef<
                 asChild={asChild}
                 forceMount
                 ref={ref}
+                side={side ?? (anchorRef ? "right" : undefined)}
                 sideOffset={sideOffset}
+                {...useHoverCardScope(undefined)}
               >
                 {children}
               </RadixHoverCard.Content>

@@ -36,6 +36,12 @@ export type TreeOption = {
    */
   actions?: ((context: { rename: () => void }) => MenuOption[]) | MenuOption[];
   /**
+   * Status items such as counts or indicators to show at the end of the row,
+   * before the actions button. A `HoverCard` placed here opens beside the
+   * whole row.
+   */
+  addonAfter?: ReactNode;
+  /**
    * The nested items. Leave it out for a leaf. Pass a function to load them
    * when the item first expands; it runs once, so pass an array for items
    * that change after they load. To load them a page at a time, return

@@ -1,5 +1,5 @@
-import { IconFileLines, IconFolder } from "@optiaxiom/icons";
-import { Badge } from "@optiaxiom/react";
+import { IconCalendarClock, IconFileLines, IconFolder } from "@optiaxiom/icons";
+import { Badge, Group } from "@optiaxiom/react";
 import { Tree } from "@optiaxiom/react/unstable";
 
 export function App() {
@@ -11,6 +11,11 @@ export function App() {
         {
           children: [
             {
+              addonAfter: (
+                <Group aria-label="Scheduled" color="fg.secondary" role="img">
+                  <IconCalendarClock />
+                </Group>
+              ),
               icon: <IconFileLines />,
               label: "Launch",
               value: "launch",
@@ -45,7 +50,7 @@ export function App() {
           value: "archive",
         },
       ]}
-      w="224"
+      w="384"
     />
   );
 }

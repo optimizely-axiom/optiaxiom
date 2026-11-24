@@ -1,15 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
+  IconCalendarClock,
   IconCopy,
   IconFileLines,
   IconFolder,
+  IconLayerGroup,
+  IconLock,
   IconPen,
   IconTrashCan,
+  IconUserPen,
 } from "@optiaxiom/icons";
-import { Badge, dialogkit, toaster } from "@optiaxiom/react";
-import { Tree, type TreeOption } from "@optiaxiom/react/unstable";
-import { useState } from "react";
+import { Badge, dialogkit, Group, Text, toaster } from "@optiaxiom/react";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+  Tree,
+  type TreeOption,
+} from "@optiaxiom/react/unstable";
+import { type ReactNode, useState } from "react";
 import { action } from "storybook/actions";
 import { expect, screen, userEvent, waitFor, within } from "storybook/test";
 
@@ -114,6 +124,103 @@ export const LongLabels: Story = {
     await expect(await screen.findByRole("tooltip")).toHaveTextContent(
       "Spring product launch announcement for enterprise customers",
     );
+  },
+};
+
+/**
+ * The statuses a CMS page tree shows at the end of a row; several can show at
+ * once.
+ */
+const status = (label: string, icon: ReactNode, count?: number) => (
+  <Group aria-label={label} color="fg.secondary" gap="2" role="img">
+    {icon}
+    {count !== undefined && <Text fontSize="sm">{count}</Text>}
+  </Group>
+);
+
+const pageActions = [{ label: "Duplicate" }, { label: "Delete" }];
+
+export const AddonAfter: Story = {
+  args: {
+    defaultExpanded: ["home"],
+    options: [
+      page("home", "Home", [
+        {
+          ...page(
+            "launch",
+            "Spring product launch announcement for enterprise customers",
+          ),
+          actions: pageActions,
+          addonAfter: (
+            <>
+              {status("Scheduled", <IconCalendarClock />)}
+              {status("3 variations", <IconLayerGroup />, 3)}
+            </>
+          ),
+        },
+        {
+          ...page("pricing", "Pricing"),
+          actions: pageActions,
+          addonAfter: status("Locked", <IconLock />),
+        },
+        {
+          ...page("careers", "Careers"),
+          actions: pageActions,
+          addonAfter: status("Being edited by Emily Chen", <IconUserPen />),
+        },
+        { ...page("contact", "Contact"), actions: pageActions },
+      ]),
+    ],
+    w: "384",
+  },
+  play: async ({ canvas }) => {
+    await userEvent.hover(canvas.getByText(/^Spring product launch/));
+    await screen.findByRole("tooltip");
+
+    // The full-label tooltip closes once the pointer is on the end addon.
+    await userEvent.hover(canvas.getByRole("img", { name: "3 variations" }));
+    await waitFor(() =>
+      expect(screen.queryByRole("tooltip")).not.toBeInTheDocument(),
+    );
+  },
+};
+
+export const AddonAfterHoverCard: Story = {
+  args: {
+    options: [
+      {
+        ...page("launch", "Spring launch"),
+        addonAfter: (
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              {status("3 variations", <IconLayerGroup />, 3)}
+            </HoverCardTrigger>
+            <HoverCardContent aria-label="Variations">
+              <Text>English (United States)</Text>
+              <Text>German</Text>
+              <Text>French</Text>
+            </HoverCardContent>
+          </HoverCard>
+        ),
+      },
+      page("pricing", "Pricing"),
+    ],
+    w: "384",
+  },
+  play: async ({ canvas }) => {
+    const row = canvas
+      .getByRole("treeitem", { name: "Spring launch" })
+      .querySelector<HTMLElement>(":scope > *");
+    await userEvent.hover(canvas.getByRole("img", { name: "3 variations" }));
+    const card = await screen.findByRole("dialog", { name: "Variations" });
+
+    // The card opens on the row's right, aligned with its top.
+    await waitFor(async () => {
+      const rowRect = row!.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      await expect(cardRect.left).toBeGreaterThanOrEqual(rowRect.right);
+      await expect(cardRect.top).toBeCloseTo(rowRect.top, 0);
+    });
   },
 };
 
