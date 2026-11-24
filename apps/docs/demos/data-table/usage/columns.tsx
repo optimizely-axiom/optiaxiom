@@ -1,17 +1,12 @@
 import { Badge } from "@optiaxiom/react";
-import { createColumnHelper, tableFeatures } from "@tanstack/react-table";
+import { createColumnHelper } from "@tanstack/react-table";
 
-export const features = tableFeatures({});
-
-const columnHelper = createColumnHelper<
-  typeof features,
-  {
-    amount: number;
-    firstName: string;
-    lastName: string;
-    status: "failed" | "processing" | "success";
-  }
->();
+const columnHelper = createColumnHelper<{
+  amount: number;
+  firstName: string;
+  lastName: string;
+  status: "failed" | "processing" | "success";
+}>();
 
 const mapStatusToIntent = {
   failed: "danger",
@@ -19,7 +14,7 @@ const mapStatusToIntent = {
   success: "success",
 } as const;
 
-export const columns = columnHelper.columns([
+export const columns = [
   columnHelper.accessor("firstName", {
     header: "First Name",
   }),
@@ -33,7 +28,7 @@ export const columns = columnHelper.columns([
     header: "Status",
   }),
   columnHelper.accessor("amount", {
-    cell: ({ renderValue }) => `$${renderValue()}`,
+    cell: ({ getValue }) => `$${getValue()}`,
     header: "Amount",
   }),
-]);
+];

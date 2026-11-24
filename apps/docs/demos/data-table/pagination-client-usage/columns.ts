@@ -1,28 +1,13 @@
-import {
-  columnSizingFeature,
-  createColumnHelper,
-  createPaginatedRowModel,
-  rowPaginationFeature,
-  tableFeatures,
-} from "@tanstack/react-table";
+import { createColumnHelper } from "@tanstack/react-table";
 
-export const features = tableFeatures({
-  columnSizingFeature,
-  paginatedRowModel: createPaginatedRowModel(),
-  rowPaginationFeature,
-});
+const columnHelper = createColumnHelper<{
+  amount: string;
+  firstName: string;
+  id: number;
+  lastName: string;
+}>();
 
-const columnHelper = createColumnHelper<
-  typeof features,
-  {
-    amount: string;
-    firstName: string;
-    id: number;
-    lastName: string;
-  }
->();
-
-export const columns = columnHelper.columns([
+export const columns = [
   columnHelper.accessor("id", {
     header: "ID",
     size: 60,
@@ -34,7 +19,7 @@ export const columns = columnHelper.columns([
     header: "Last Name",
   }),
   columnHelper.accessor("amount", {
-    cell: ({ renderValue }) => `$${renderValue()}`,
+    cell: ({ getValue }) => `$${getValue()}`,
     header: "Amount",
   }),
-]);
+];

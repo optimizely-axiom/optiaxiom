@@ -2,29 +2,17 @@ import {
   DataTableExpandableCell,
   DataTableExpandableHeader,
 } from "@optiaxiom/react/unstable";
-import {
-  columnSizingFeature,
-  createColumnHelper,
-  createExpandedRowModel,
-  rowExpandingFeature,
-  tableFeatures,
-} from "@tanstack/react-table";
-
-export const features = tableFeatures({
-  columnSizingFeature,
-  expandedRowModel: createExpandedRowModel(),
-  rowExpandingFeature,
-});
+import { createColumnHelper } from "@tanstack/react-table";
 
 type Data = {
-  amount: null | string;
+  amount: string;
   id: string;
   items: Array<Data>;
   name: string;
 };
-const columnHelper = createColumnHelper<typeof features, Data>();
+const columnHelper = createColumnHelper<Data>();
 
-export const columns = columnHelper.columns([
+export const columns = [
   columnHelper.accessor("id", {
     header: "ID",
     size: 60,
@@ -35,8 +23,7 @@ export const columns = columnHelper.columns([
     size: 200,
   }),
   columnHelper.accessor("amount", {
-    cell: ({ renderValue, row }) =>
-      row.getValue("amount") ? `$${renderValue()}` : null,
+    cell: ({ getValue }) => `$${getValue()}`,
     header: "Amount",
   }),
-]);
+];

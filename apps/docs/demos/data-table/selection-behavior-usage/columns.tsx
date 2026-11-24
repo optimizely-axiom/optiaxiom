@@ -6,28 +6,15 @@ import {
   DataTableLabel,
   toaster,
 } from "@optiaxiom/react";
-import {
-  columnSizingFeature,
-  createColumnHelper,
-  rowSelectionFeature,
-  tableFeatures,
-} from "@tanstack/react-table";
+import { createColumnHelper } from "@tanstack/react-table";
 
-export const features = tableFeatures({
-  columnSizingFeature,
-  rowSelectionFeature,
-});
+const columnHelper = createColumnHelper<{
+  amount: string;
+  id: number;
+  name: string;
+}>();
 
-const columnHelper = createColumnHelper<
-  typeof features,
-  {
-    amount: string;
-    id: number;
-    name: string;
-  }
->();
-
-export const columns = columnHelper.columns([
+export const columns = [
   columnHelper.display({
     cell: () => (
       <Cover asChild>
@@ -43,7 +30,7 @@ export const columns = columnHelper.columns([
     size: 48,
   }),
   columnHelper.accessor("name", {
-    cell: ({ renderValue }) => <DataTableLabel>{renderValue()}</DataTableLabel>,
+    cell: ({ getValue }) => <DataTableLabel>{getValue()}</DataTableLabel>,
     header: "Name",
     size: 200,
   }),
@@ -62,4 +49,4 @@ export const columns = columnHelper.columns([
     header: "Actions",
     id: "actions",
   }),
-]);
+];

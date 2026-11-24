@@ -15,10 +15,16 @@ import {
   SearchInput,
   toaster,
 } from "@optiaxiom/react";
-import { type ColumnFiltersState, useTable } from "@tanstack/react-table";
+import {
+  type ColumnFiltersState,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 import { useRef, useState } from "react";
 
-import { columns, features } from "./columns";
+import { columns } from "./columns";
 import { data } from "./data";
 
 const filters = [
@@ -34,10 +40,13 @@ export function App() {
   const searchRef = useRef<HTMLInputElement>(null);
   const [globalFilter, setGlobalFilter] = useState("");
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const table = useTable({
+  const table = useReactTable({
     columns,
     data,
-    features,
+    enableSorting: false,
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     globalFilterFn: "includesString",
     initialState: { pagination: { pageIndex: 0, pageSize: 10 } },
     onColumnFiltersChange: setColumnFilters,

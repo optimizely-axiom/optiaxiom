@@ -2,13 +2,11 @@
 
 import { faker } from "@faker-js/faker";
 import { DataTable, DataTableBody, Group, Text } from "@optiaxiom/react";
-import { tableFeatures, useTable } from "@tanstack/react-table";
+import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 
 import { useInViewTimer } from "./useInViewTimer";
 
 faker.seed(123);
-
-const features = tableFeatures({});
 
 const cols = 50;
 const rows = 500;
@@ -27,10 +25,11 @@ const columns = Array.from({ length: cols }, (_, index) => ({
 }));
 
 export function App() {
-  const table = useTable({
+  const table = useReactTable({
     columns,
     data,
-    features,
+    enableSorting: false,
+    getCoreRowModel: getCoreRowModel(),
   });
 
   /**
