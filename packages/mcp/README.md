@@ -199,7 +199,7 @@ Get design token mappings for the Axiom Design System.
 
 - `categories` (string[], optional): Filter to specific token categories (e.g., `["colors", "boxShadow"]`). Returns all categories if omitted. Valid values: `borderRadius`, `boxShadow`, `breakpoints`, `colors`, `duration`, `fontFamily`, `fontSize`, `maxSize`, `size`, `zIndex`.
 
-**Returns:** Token-to-value mappings for the requested categories. `breakpoints` holds the min-widths that responsive props' `sm` and `md` keys switch at. Useful for converting Figma design values to semantic tokens (e.g., `#4F576E` → `fg.secondary`, `32px` height → `h='md'`). For how to _consume_ tokens in code (style props, CSS variables, or the `theme` object), the description points callers at `get_guides({ names: "design-tokens" })`.
+**Returns:** Token-to-value mappings for the requested categories. `breakpoints` holds the min-widths that responsive props' `sm` and `md` keys switch at. Useful for converting Figma design values to semantic tokens (e.g., `#4F576E` → `fg.secondary`, `32px` height → `h='md'`). The description also says that size props don't take pixel counts the way spacing props do, and that a fixed container width goes through `maxW` with the `maxSize` tokens. For how to _consume_ tokens in code (style props, CSS variables, or the `theme` object), the description points callers at `get_guides({ names: "design-tokens" })`.
 
 ### `search_icons`
 
