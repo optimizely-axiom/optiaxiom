@@ -20,7 +20,7 @@ const columnHelper = createColumnHelper<
 
 export const columns = columnHelper.columns([
   columnHelper.accessor("name", {
-    cell: ({ renderValue }) => <DataTableLabel>{renderValue()}</DataTableLabel>,
+    cell: ({ getValue }) => <DataTableLabel>{getValue()}</DataTableLabel>,
     header: "Name",
   }),
   columnHelper.display({

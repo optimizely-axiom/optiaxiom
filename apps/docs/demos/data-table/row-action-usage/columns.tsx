@@ -13,25 +13,16 @@ import {
   Text,
   toaster,
 } from "@optiaxiom/react";
-import {
-  columnSizingFeature,
-  createColumnHelper,
-  tableFeatures,
-} from "@tanstack/react-table";
+import { createColumnHelper } from "@tanstack/react-table";
 
-export const features = tableFeatures({ columnSizingFeature });
+const columnHelper = createColumnHelper<{
+  id: number;
+  modified_at: Date;
+  modified_by: string;
+  name: string;
+}>();
 
-const columnHelper = createColumnHelper<
-  typeof features,
-  {
-    id: number;
-    modified_at: Date;
-    modified_by: string;
-    name: string;
-  }
->();
-
-export const columns = columnHelper.columns([
+export const columns = [
   columnHelper.display({
     cell: ({ row }) => (
       <Group gap="16" justifyContent="space-between" w="full">
@@ -90,21 +81,21 @@ export const columns = columnHelper.columns([
     size: 350,
   }),
   columnHelper.accessor("modified_at", {
-    cell: ({ renderValue }) => (
+    cell: ({ getValue }) => (
       <Box alignItems="center" alignSelf="stretch" display="flex">
-        {renderValue()?.toLocaleDateString(undefined, { dateStyle: "medium" })}
+        {getValue().toLocaleDateString(undefined, { dateStyle: "medium" })}
       </Box>
     ),
     header: "Modified",
     size: 150,
   }),
   columnHelper.accessor("modified_by", {
-    cell: ({ renderValue }) => (
+    cell: ({ getValue }) => (
       <Box alignItems="center" alignSelf="stretch" display="flex">
-        {renderValue()}
+        {getValue()}
       </Box>
     ),
     header: "Modified By",
     size: 150,
   }),
-]);
+];

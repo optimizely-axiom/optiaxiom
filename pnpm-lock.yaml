@@ -311,8 +311,8 @@ importers:
         specifier: ^3.52.0
         version: 3.52.0(react@18.3.1)
       '@tanstack/react-table':
-        specifier: ^9.3.1
-        version: 9.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^8.21.3
+        version: 8.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/cssesc':
         specifier: ^3.0.2
         version: 3.0.2
@@ -376,6 +376,18 @@ importers:
       unist-util-visit:
         specifier: ^5.2.0
         version: 5.2.0
+
+  apps/docs/demos/data-table/highlighted-row-usage:
+    dependencies:
+      '@tanstack/react-table':
+        specifier: ^9.3.1
+        version: 9.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+
+  apps/docs/demos/data-table/row-intent-usage:
+    dependencies:
+      '@tanstack/react-table':
+        specifier: ^9.3.1
+        version: 9.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
   apps/figma:
     devDependencies:

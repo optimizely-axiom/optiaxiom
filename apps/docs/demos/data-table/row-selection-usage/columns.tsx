@@ -1,26 +1,13 @@
 import { Cover, DataTableCheckbox, DataTableLabel } from "@optiaxiom/react";
-import {
-  columnSizingFeature,
-  createColumnHelper,
-  rowSelectionFeature,
-  tableFeatures,
-} from "@tanstack/react-table";
+import { createColumnHelper } from "@tanstack/react-table";
 
-export const features = tableFeatures({
-  columnSizingFeature,
-  rowSelectionFeature,
-});
+const columnHelper = createColumnHelper<{
+  amount: string;
+  id: number;
+  name: string;
+}>();
 
-const columnHelper = createColumnHelper<
-  typeof features,
-  {
-    amount: string;
-    id: number;
-    name: string;
-  }
->();
-
-export const columns = columnHelper.columns([
+export const columns = [
   columnHelper.display({
     cell: () => (
       <Cover asChild>
@@ -40,12 +27,12 @@ export const columns = columnHelper.columns([
     size: 60,
   }),
   columnHelper.accessor("name", {
-    cell: ({ renderValue }) => <DataTableLabel>{renderValue()}</DataTableLabel>,
+    cell: ({ getValue }) => <DataTableLabel>{getValue()}</DataTableLabel>,
     header: "Name",
     size: 200,
   }),
   columnHelper.accessor("amount", {
-    cell: ({ renderValue }) => `$${renderValue()}`,
+    cell: ({ getValue }) => `$${getValue()}`,
     header: "Amount",
   }),
-]);
+];

@@ -1,16 +1,22 @@
 "use client";
 
 import { DataTable, DataTableBody, DataTableFooter } from "@optiaxiom/react";
-import { useTable } from "@tanstack/react-table";
+import {
+  getCoreRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 
-import { columns, features } from "./columns";
+import { columns } from "./columns";
 import { data } from "./data";
 
 export function App() {
-  const table = useTable({
+  const table = useReactTable({
     columns,
     data,
-    features,
+    enableSorting: false,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     initialState: { pagination: { pageIndex: 0, pageSize: 10 } },
   });
   return (

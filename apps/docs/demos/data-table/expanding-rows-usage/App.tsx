@@ -1,16 +1,22 @@
 "use client";
 
 import { DataTable, DataTableBody } from "@optiaxiom/react";
-import { useTable } from "@tanstack/react-table";
+import {
+  getCoreRowModel,
+  getExpandedRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 
-import { columns, features } from "./columns";
+import { columns } from "./columns";
 import { data } from "./data";
 
 export function App() {
-  const table = useTable({
+  const table = useReactTable({
     columns,
     data,
-    features,
+    enableSorting: false,
+    getCoreRowModel: getCoreRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
     getSubRows: (row) => row.items,
   });
   return (

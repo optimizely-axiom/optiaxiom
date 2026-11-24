@@ -1,6 +1,9 @@
 packages:
   - apps/*
   - packages/*
+  # DataTable demos for TanStack Table v9-only features; the docs app is on v8.
+  - apps/docs/demos/data-table/highlighted-row-usage
+  - apps/docs/demos/data-table/row-intent-usage
 
 allowBuilds:
   edgedriver: true

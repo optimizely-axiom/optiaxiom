@@ -18,14 +18,16 @@ npm install @tanstack/react-table
 ```
 
 <Alert intent="information" mt="16">
-  `DataTable` works with both TanStack Table v8 and v9.
+  `DataTable` works with both TanStack Table v8 and v9. The demos use v8, except
+  [highlighted row](#highlighted-row) and [row intent](#row-intent), which need
+  v9.
 </Alert>
 
 ### Usage
 
-Use the `table` prop to pass the table instance returned from the `useTable()` hook, with `columns`, `data`, and the `features` the table uses. Register each feature in `tableFeatures()`, such as `rowSelectionFeature` for `DataTableCheckbox` or `rowPaginationFeature` for `DataTableFooter`: their controls do nothing without it.
+Use the `table` prop to pass the table instance returned from the `useReactTable()` hook, with `columns`, `data`, and `getCoreRowModel`. A v8 table has every feature, so every accessor column renders a sort button: pass `enableSorting: false` unless the table [sorts](#sorting) its rows, otherwise clicking a header flips the arrow without reordering anything.
 
-On v8, pass the table returned from `useReactTable()` with `columns`, `data`, and `getCoreRowModel`. A v8 table has every feature, so every accessor column renders a sort button: pass `enableSorting: false` unless the table [sorts](#sorting) its rows, otherwise clicking a header flips the arrow without reordering anything.
+On v9, pass the table returned from `useTable()` with `columns`, `data`, and the `features` the table uses. Register each feature in `tableFeatures()`, such as `rowSelectionFeature` for `DataTableCheckbox` or `rowPaginationFeature` for `DataTableFooter`: their controls do nothing without it.
 
 <Demo component="data-table/usage" />
 
@@ -61,13 +63,13 @@ To keep a column at exactly `size`, such as a status or action column, set `enab
 
 ### Column pinning
 
-Follow the [column pinning guide](https://tanstack.com/table/latest/docs/guide/column-pinning) and use the `columnPinning` option to pin columns to the `start` or `end` of the table (`left` or `right` in v8). On v9, register `columnPinningFeature` and `columnSizingFeature`.
+Follow the [column pinning guide](https://tanstack.com/table/latest/docs/guide/column-pinning) and use the `columnPinning` option to pin columns to the `left` or `right` of the table (`start` or `end` on v9). On v9, register `columnPinningFeature` and `columnSizingFeature`.
 
 <Demo component="data-table/sticky-column-usage" />
 
 ### Column resizing
 
-Register `columnSizingFeature` and `columnResizingFeature` to let users drag the edge of a column header to resize it, and double click the edge to reset it. Set `enableResizing: false` on a column to keep its width fixed. On v8, every column is resizable by default.
+Every v8 column is resizable by default: users drag the edge of a column header to resize it, and double click the edge to reset it. Set `enableResizing: false` on a column to keep its width fixed. On v9, register `columnSizingFeature` and `columnResizingFeature` to resize columns.
 
 By default the new width applies when the drag ends. Set `columnResizeMode: "onChange"` to resize the column while dragging.
 
@@ -174,7 +176,7 @@ const table = useTable({
 
 #### Client side
 
-Register `rowPaginationFeature` with `paginatedRowModel: createPaginatedRowModel()` and set the `pagination` state to use client-side pagination. On v8, provide `getPaginationRowModel` instead.
+Provide `getPaginationRowModel: getPaginationRowModel()` and set the `pagination` state to use client-side pagination. On v9, register `rowPaginationFeature` with `paginatedRowModel: createPaginatedRowModel()` instead.
 
 <Demo component="data-table/pagination-client-usage" />
 
@@ -206,7 +208,7 @@ Use the `empty` prop on `DataTableBody` to show content in a full-width row when
 
 #### Client side
 
-Register `rowSortingFeature` with `sortedRowModel: createSortedRowModel()` and `sortFns` to sort rows on the client. On v8, provide `getSortedRowModel` instead. Every accessor column is then sortable; set `enableSorting: false` on a column to opt it out.
+Provide `getSortedRowModel: getSortedRowModel()` to sort rows on the client. On v9, register `rowSortingFeature` with `sortedRowModel: createSortedRowModel()` and `sortFns` instead. Every accessor column is then sortable; set `enableSorting: false` on a column to opt it out.
 
 <Alert intent="warning" mt="16">
   Hover over and click the table headers to sort by columns:
@@ -216,7 +218,7 @@ Register `rowSortingFeature` with `sortedRowModel: createSortedRowModel()` and `
 
 #### Server side
 
-To sort on the server, register `rowSortingFeature` on v9, control sorting with `onSortingChange` and `state.sorting`, and pass rows in the order the server returns them. Leave out `sortedRowModel` (`getSortedRowModel` on v8), or set `manualSorting`, so the table keeps that order.
+To sort on the server, register `rowSortingFeature` on v9, control sorting with `onSortingChange` and `state.sorting`, and pass rows in the order the server returns them. Leave out `getSortedRowModel` (`sortedRowModel` on v9), or set `manualSorting`, so the table keeps that order.
 
 <Alert intent="warning" mt="16">
   Hover over and click the table headers to sort by columns:
@@ -226,13 +228,13 @@ To sort on the server, register `rowSortingFeature` on v9, control sorting with 
 
 ### List view
 
-A collection page combines a search input and filter menus above the table with a primary create action. Wire search to `globalFilter` and each menu to its column's filter value, add the filtered and paginated row models (`getFilteredRowModel` and `getPaginationRowModel` on v8), and TanStack resets to the first page whenever the criteria change. Put row commands in a trailing column behind one `EllipsisMenuButton`, and use `empty` to offer a way out when nothing matches.
+A collection page combines a search input and filter menus above the table with a primary create action. Wire search to `globalFilter` and each menu to its column's filter value, add the filtered and paginated row models (`getFilteredRowModel` and `getPaginationRowModel`, or `filteredRowModel` and `paginatedRowModel` with their features on v9), and TanStack resets to the first page whenever the criteria change. Put row commands in a trailing column behind one `EllipsisMenuButton`, and use `empty` to offer a way out when nothing matches.
 
 <Demo component="data-table/list-view-usage" />
 
 ### Expanding rows <Badge intent="primary">ALPHA</Badge>
 
-Follow the [expanding guide](https://tanstack.com/table/latest/docs/guide/expanding) to allow expanding and collapsing rows. On v9, register `rowExpandingFeature` with `expandedRowModel: createExpandedRowModel()`.
+Follow the [expanding guide](https://tanstack.com/table/latest/docs/guide/expanding) to allow expanding and collapsing rows with `getExpandedRowModel` and `getSubRows`. On v9, register `rowExpandingFeature` with `expandedRowModel: createExpandedRowModel()`.
 
 Use the `DataTableExpandableHeader` and `DataTableExpandableCell` components to render columns with built-in buttons for toggling rows.
 

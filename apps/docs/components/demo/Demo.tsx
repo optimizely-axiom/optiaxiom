@@ -61,6 +61,19 @@ export async function Demo({
       ]),
     ),
   );
+  // A demo that needs other versions than the template's (such as TanStack
+  // Table v9) is its own workspace package and lists them in package.json.
+  const demoPackage = await fs
+    .readFile(path.join(filesDir, "package.json"), "utf8")
+    .catch(() => undefined);
+  if (demoPackage) {
+    const templatePackage = JSON.parse(template["package.json"]);
+    templatePackage.dependencies = {
+      ...templatePackage.dependencies,
+      ...JSON.parse(demoPackage).dependencies,
+    };
+    template["package.json"] = JSON.stringify(templatePackage, null, 2);
+  }
 
   const docs = JSON.parse(
     await fs.readFile(process.cwd() + "/data/demos.json", "utf8"),

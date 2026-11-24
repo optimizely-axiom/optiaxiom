@@ -31,9 +31,7 @@ export const columns = (onOpen: (id: string) => void) =>
       id: "select",
     }),
     columnHelper.accessor("name", {
-      cell: ({ renderValue }) => (
-        <DataTableLabel>{renderValue()}</DataTableLabel>
-      ),
+      cell: ({ getValue }) => <DataTableLabel>{getValue()}</DataTableLabel>,
       header: "Name",
     }),
     columnHelper.display({

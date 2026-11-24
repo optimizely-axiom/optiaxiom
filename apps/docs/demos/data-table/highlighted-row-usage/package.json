@@ -1,0 +1,8 @@
+{
+  "name": "@optiaxiom/docs-data-table-highlighted-row-usage",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "@tanstack/react-table": "^9.3.1"
+  }
+}

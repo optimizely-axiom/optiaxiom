@@ -8,41 +8,15 @@ import {
   toaster,
 } from "@optiaxiom/react";
 import { VisuallyHidden } from "@optiaxiom/react/unstable";
-import {
-  columnFilteringFeature,
-  columnResizingFeature,
-  columnSizingFeature,
-  createColumnHelper,
-  createFilteredRowModel,
-  createPaginatedRowModel,
-  filterFn_equals,
-  filterFn_includesString,
-  globalFilteringFeature,
-  rowPaginationFeature,
-  tableFeatures,
-} from "@tanstack/react-table";
+import { createColumnHelper } from "@tanstack/react-table";
 
 import type { Item } from "./data";
 
-export const features = tableFeatures({
-  columnFilteringFeature,
-  columnResizingFeature,
-  columnSizingFeature,
-  filteredRowModel: createFilteredRowModel(),
-  filterFns: {
-    equals: filterFn_equals,
-    includesString: filterFn_includesString,
-  },
-  globalFilteringFeature,
-  paginatedRowModel: createPaginatedRowModel(),
-  rowPaginationFeature,
-});
+const columnHelper = createColumnHelper<Item>();
 
-const columnHelper = createColumnHelper<typeof features, Item>();
-
-export const columns = columnHelper.columns([
+export const columns = [
   columnHelper.accessor("name", {
-    cell: ({ renderValue }) => <DataTableLabel>{renderValue()}</DataTableLabel>,
+    cell: ({ getValue }) => <DataTableLabel>{getValue()}</DataTableLabel>,
     header: "Name",
   }),
   columnHelper.accessor("status", {
@@ -87,4 +61,4 @@ export const columns = columnHelper.columns([
     id: "actions",
     size: 64,
   }),
-]);
+];
