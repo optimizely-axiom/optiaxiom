@@ -179,6 +179,26 @@ export const icon = recipe({
   ],
 });
 
+/**
+ * Marks the end addon, so the actions button sits right after it.
+ */
+const addonAfterMarker = style({});
+
+export const addonAfter = recipe({
+  base: [
+    addonAfterMarker,
+    {
+      alignItems: "center",
+      display: "flex",
+      flex: "none",
+      gap: "4",
+    },
+    style({
+      marginInlineStart: "auto",
+    }),
+  ],
+});
+
 export const actions = recipe({
   base: [
     {
@@ -190,6 +210,10 @@ export const actions = recipe({
       visibility: "hidden",
 
       selectors: {
+        // Not a second `auto` margin: the free space would split between the two.
+        [`${addonAfterMarker} + &`]: {
+          marginInlineStart: 0,
+        },
         [`${itemMarker}[data-selected] > ${rowMarker} &`]: {
           visibility: "visible",
         },

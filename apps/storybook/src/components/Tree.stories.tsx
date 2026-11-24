@@ -1,15 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
+  IconCalendarClock,
   IconCopy,
   IconFileLines,
   IconFolder,
+  IconLayerGroup,
+  IconLock,
   IconPen,
   IconTrashCan,
+  IconUserPen,
 } from "@optiaxiom/icons";
-import { Badge, dialogkit, toaster } from "@optiaxiom/react";
+import { Badge, dialogkit, Group, Text, toaster } from "@optiaxiom/react";
 import { Tree, type TreeOption } from "@optiaxiom/react/unstable";
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 import { action } from "storybook/actions";
 import { expect, screen, userEvent, waitFor, within } from "storybook/test";
 
@@ -113,6 +117,64 @@ export const LongLabels: Story = {
     await userEvent.hover(canvas.getByText(/^Spring product launch/));
     await expect(await screen.findByRole("tooltip")).toHaveTextContent(
       "Spring product launch announcement for enterprise customers",
+    );
+  },
+};
+
+/**
+ * The statuses a CMS page tree shows at the end of a row; several can show at
+ * once.
+ */
+const status = (label: string, icon: ReactNode, count?: number) => (
+  <Group aria-label={label} color="fg.secondary" gap="2" role="img">
+    {icon}
+    {count !== undefined && <Text fontSize="sm">{count}</Text>}
+  </Group>
+);
+
+const pageActions = [{ label: "Duplicate" }, { label: "Delete" }];
+
+export const AddonAfter: Story = {
+  args: {
+    defaultExpanded: ["home"],
+    options: [
+      page("home", "Home", [
+        {
+          ...page(
+            "launch",
+            "Spring product launch announcement for enterprise customers",
+          ),
+          actions: pageActions,
+          addonAfter: (
+            <>
+              {status("Scheduled", <IconCalendarClock />)}
+              {status("3 variations", <IconLayerGroup />, 3)}
+            </>
+          ),
+        },
+        {
+          ...page("pricing", "Pricing"),
+          actions: pageActions,
+          addonAfter: status("Locked", <IconLock />),
+        },
+        {
+          ...page("careers", "Careers"),
+          actions: pageActions,
+          addonAfter: status("Being edited by Emily Chen", <IconUserPen />),
+        },
+        { ...page("contact", "Contact"), actions: pageActions },
+      ]),
+    ],
+    w: "384",
+  },
+  play: async ({ canvas }) => {
+    await userEvent.hover(canvas.getByText(/^Spring product launch/));
+    await screen.findByRole("tooltip");
+
+    // The full-label tooltip closes once the pointer is on the end addon.
+    await userEvent.hover(canvas.getByRole("img", { name: "3 variations" }));
+    await waitFor(() =>
+      expect(screen.queryByRole("tooltip")).not.toBeInTheDocument(),
     );
   },
 };

@@ -6,13 +6,14 @@ import { Tooltip } from "../tooltip";
 export type TreeItemTooltipProps = {
   children: ReactNode;
   /**
+   * Whether the full-label tooltip stays closed, e.g. while the label is
+   * being renamed.
+   */
+  disabled: boolean;
+  /**
    * The item's disabled reason, already resolved.
    */
   disabledReason: string | undefined;
-  /**
-   * Whether the item's label is being renamed.
-   */
-  editing: boolean;
   /**
    * Whether the item has keyboard focus.
    */
@@ -29,8 +30,8 @@ export type TreeItemTooltipProps = {
  */
 export function TreeItemTooltip({
   children,
+  disabled,
   disabledReason,
-  editing,
   highlighted,
   label,
 }: TreeItemTooltipProps) {
@@ -39,7 +40,7 @@ export function TreeItemTooltip({
       {children}
     </ListboxItemTooltip>
   ) : (
-    <Tooltip auto content={label} disabled={editing} side="right">
+    <Tooltip auto content={label} disabled={disabled} side="right">
       {children}
     </Tooltip>
   );
