@@ -168,7 +168,7 @@ overrides:
 patchedDependencies:
   '@dnd-kit/react': 4c6dc3bd22f53df0d628407d74e5233c6442a01425cfaa7f068e04685200ba36
   '@ui-sdk/core': 80f1a13a1347fe6f82c5022d942ec901590df0a2d786fb2b8c9c920d1d59298d
-  '@ui-sdk/react': 23cf65b080439b8f8b8efc601c3e765a711dda1116f71639ed8d0643d71e91b5
+  '@ui-sdk/react': 7a67f2de2bf1db5f0164ffbfca80aee9f5375649afe6567bfe475ab6230eb858
   '@vanilla-extract/sprinkles': 530004842e1937cf2ffe2728e2a18629c5dd638aa441e1158192285fcee2fe7e
   nextra-theme-docs: d5664af97a8f8f00e0864d5cdf10b8a6b414fd106069709460f027dfabcf1522
   react-docgen-typescript: 9f29f13ed1200787937c00d09629181fa03ff282ed42effecdf82ed5472f5d68
@@ -811,7 +811,7 @@ importers:
         version: 0.1.0-beta.13(patch_hash=80f1a13a1347fe6f82c5022d942ec901590df0a2d786fb2b8c9c920d1d59298d)
       '@ui-sdk/react':
         specifier: 0.1.0-beta.13
-        version: 0.1.0-beta.13(patch_hash=23cf65b080439b8f8b8efc601c3e765a711dda1116f71639ed8d0643d71e91b5)(@types/react@18.3.31)(@ui-sdk/core@0.1.0-beta.13(patch_hash=80f1a13a1347fe6f82c5022d942ec901590df0a2d786fb2b8c9c920d1d59298d))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.1.0-beta.13(patch_hash=7a67f2de2bf1db5f0164ffbfca80aee9f5375649afe6567bfe475ab6230eb858)(@types/react@18.3.31)(@ui-sdk/core@0.1.0-beta.13(patch_hash=80f1a13a1347fe6f82c5022d942ec901590df0a2d786fb2b8c9c920d1d59298d))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@vanilla-extract/css':
         specifier: ^1.21.3
         version: 1.21.3(babel-plugin-macros@3.1.0)
@@ -13283,7 +13283,7 @@ snapshots:
 
   '@ui-sdk/core@0.1.0-beta.13(patch_hash=80f1a13a1347fe6f82c5022d942ec901590df0a2d786fb2b8c9c920d1d59298d)': {}
 
-  '@ui-sdk/react@0.1.0-beta.13(patch_hash=23cf65b080439b8f8b8efc601c3e765a711dda1116f71639ed8d0643d71e91b5)(@types/react@18.3.31)(@ui-sdk/core@0.1.0-beta.13(patch_hash=80f1a13a1347fe6f82c5022d942ec901590df0a2d786fb2b8c9c920d1d59298d))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@ui-sdk/react@0.1.0-beta.13(patch_hash=7a67f2de2bf1db5f0164ffbfca80aee9f5375649afe6567bfe475ab6230eb858)(@types/react@18.3.31)(@ui-sdk/core@0.1.0-beta.13(patch_hash=80f1a13a1347fe6f82c5022d942ec901590df0a2d786fb2b8c9c920d1d59298d))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@ui-sdk/core': 0.1.0-beta.13(patch_hash=80f1a13a1347fe6f82c5022d942ec901590df0a2d786fb2b8c9c920d1d59298d)
       react: 18.3.1
