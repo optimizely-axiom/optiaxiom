@@ -53,8 +53,8 @@ alignment, or color fix needs a story that shows it, not a unit test pinning cla
 
 `*.spec.tsx` files ship in `@optiaxiom/mcp` as the canonical examples of how consumers test a
 component, so a spec must read as one: realistic usage through the public API, queried by role and
-name. Don't add a spec only to pin a bug fix; prove the fix with a temporary spec or a story and cite
-the before/after runs in the PR.
+name. Don't add a spec only to pin a bug fix; check the fix with a temporary spec or a story and list
+the before/after runs under the PR's `## Testing` section.
 
 ## Decide the commit structure BEFORE writing code
 
