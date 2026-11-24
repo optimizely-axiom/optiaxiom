@@ -122885,10 +122885,6 @@
                 "description": "The nested items. Leave it out for a leaf. Pass a function to load them\nwhen the item first expands; it runs once, so pass an array for items\nthat change after they load. To load them a page at a time, return\n`{ nextPageLabel, nextPageParam, options }`: an item labelled\n`nextPageLabel` ends the level and calls the function again with that\n`pageParam`, until `nextPageParam` is undefined. If the promise rejects, nothing changes, so the next expand or\npress tries again; report the error from the function if you want to.",
                 "tsType": "TreeOption[] | ((context: { pageParam: TreePageParam | undefined; }) => Promise<TreeOption[] | TreePage>)"
               },
-              "description": {
-                "description": "Add secondary text after the label.",
-                "tsType": "ReactNode"
-              },
               "detail": {
                 "description": "Secondary text displayed next to the label.",
                 "tsType": "ReactNode"
@@ -123218,13 +123214,13 @@
         {
           "code": [
             {
-              "content": "import { IconFileLines, IconFolder } from \"@optiaxiom/icons\";\nimport { Badge } from \"@optiaxiom/react\";\nimport { Tree } from \"@optiaxiom/react/unstable\";\n\nexport function App() {\n  return (\n    <Tree\n      aria-label=\"Pages\"\n      defaultExpanded={[\"blog\"]}\n      options={[\n        {\n          children: [\n            {\n              description: \"Draft\",\n              icon: <IconFileLines />,\n              label: \"Launch\",\n              value: \"launch\",\n            },\n            {\n              description: \"Scheduled\",\n              icon: <IconFileLines />,\n              label: \"Roadmap\",\n              value: \"roadmap\",\n            },\n          ],\n          detail: <Badge>2</Badge>,\n          icon: <IconFolder />,\n          label: \"Blog\",\n          value: \"blog\",\n        },\n        {\n          children: [\n            {\n              icon: <IconFileLines />,\n              label: \"Holiday sale\",\n              value: \"sale\",\n            },\n            {\n              icon: <IconFileLines />,\n              label: \"Year in review\",\n              value: \"review\",\n            },\n          ],\n          detail: <Badge>2</Badge>,\n          icon: <IconFolder />,\n          label: \"Archive\",\n          value: \"archive\",\n        },\n      ]}\n      w=\"224\"\n    />\n  );\n}\n",
+              "content": "import { IconFileLines, IconFolder } from \"@optiaxiom/icons\";\nimport { Badge } from \"@optiaxiom/react\";\nimport { Tree } from \"@optiaxiom/react/unstable\";\n\nexport function App() {\n  return (\n    <Tree\n      aria-label=\"Pages\"\n      defaultExpanded={[\"blog\"]}\n      options={[\n        {\n          children: [\n            {\n              icon: <IconFileLines />,\n              label: \"Launch\",\n              value: \"launch\",\n            },\n            {\n              icon: <IconFileLines />,\n              label: \"Roadmap\",\n              value: \"roadmap\",\n            },\n          ],\n          detail: <Badge>2</Badge>,\n          icon: <IconFolder />,\n          label: \"Blog\",\n          value: \"blog\",\n        },\n        {\n          children: [\n            {\n              icon: <IconFileLines />,\n              label: \"Holiday sale\",\n              value: \"sale\",\n            },\n            {\n              icon: <IconFileLines />,\n              label: \"Year in review\",\n              value: \"review\",\n            },\n          ],\n          detail: <Badge>2</Badge>,\n          icon: <IconFolder />,\n          label: \"Archive\",\n          value: \"archive\",\n        },\n      ]}\n      w=\"224\"\n    />\n  );\n}\n",
               "filename": "App.tsx"
             }
           ],
           "components": ["Badge", "Tree"],
           "title": "content-usage",
-          "description": "Use the `icon` property to show an icon before the label, `description` to show secondary text after it, and `detail` to show a badge or count after that.",
+          "description": "Use the `icon` property to show an icon before the label, and `detail` to show a badge or count after it.",
           "heading": "Content"
         },
         {

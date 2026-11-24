@@ -77,8 +77,8 @@ export const Details: Story = {
     options: [
       {
         ...page("home", "Home", [
-          { ...page("blog", "Blog"), description: "Draft" },
-          { ...page("contact", "Contact"), description: "Scheduled" },
+          page("blog", "Blog"),
+          page("contact", "Contact"),
         ]),
         detail: <Badge>3</Badge>,
       },

@@ -59,7 +59,6 @@ export function TreeItem({ option }: TreeItemProps) {
   const isEditing = editing === option.value;
   const canEdit = isEditable(option, onLabelChange);
   const rowRef = useRef<HTMLDivElement>(null);
-  const descriptionId = useId();
   const detailId = useId();
   const [focused, setFocused] = useState(false);
 
@@ -91,14 +90,7 @@ export function TreeItem({ option }: TreeItemProps) {
       label={option.label}
       render={
         <Box
-          aria-describedby={
-            [
-              option.description ? descriptionId : undefined,
-              option.detail ? detailId : undefined,
-            ]
-              .filter(Boolean)
-              .join(" ") || undefined
-          }
+          aria-describedby={option.detail ? detailId : undefined}
           aria-haspopup={hasActions ? "dialog" : undefined}
           aria-keyshortcuts={hasActions ? "Shift+F10" : undefined}
           {...styles.item()}
@@ -261,18 +253,6 @@ export function TreeItem({ option }: TreeItemProps) {
                 </Text>
               }
             />
-          )}
-
-          {option.description && (
-            <Text
-              asChild
-              color="fg.tertiary"
-              fontSize="sm"
-              id={descriptionId}
-              truncate
-            >
-              <span>{option.description}</span>
-            </Text>
           )}
 
           {option.detail && (
