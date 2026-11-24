@@ -149,6 +149,8 @@ exactly one thing without dragging unrelated changes with it.
 
 - No `eslint-disable` unless unavoidable. Components/types `PascalCase`, everything else `camelCase`
   (ideally one word), directories `kebab-case`.
+- One component per file, internal ones included: a helper component gets its own `.tsx` beside
+  the component that uses it, not a second function in that component's file.
 - One thing per PR — drop unrelated commits/changes; keep the diff minimal.
 - Dependencies go in the owning workspace's `package.json`, not the root.
 - New components must be wired into `index.ts`/`unstable.ts` **and** `packages/web-components/package.json`.
