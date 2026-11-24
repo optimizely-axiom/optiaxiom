@@ -11,13 +11,11 @@ export function App() {
         {
           children: [
             {
-              description: "Draft",
               icon: <IconFileLines />,
               label: "Launch",
               value: "launch",
             },
             {
-              description: "Scheduled",
               icon: <IconFileLines />,
               label: "Roadmap",
               value: "roadmap",

@@ -68,7 +68,7 @@ export type TreeOption = {
    * handlers. Must be unique across the whole tree.
    */
   value: string;
-} & Pick<SelectOption, "description" | "detail" | "disabledReason">;
+} & Pick<SelectOption, "detail" | "disabledReason">;
 
 /**
  * One page of a level's items, and how to ask for the next one.
