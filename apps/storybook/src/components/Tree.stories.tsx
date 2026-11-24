@@ -87,6 +87,36 @@ export const Details: Story = {
   },
 };
 
+export const LongLabels: Story = {
+  args: {
+    defaultExpanded: ["home"],
+    options: [
+      page("home", "Home", [
+        page("blog", "Blog"),
+        page(
+          "launch",
+          "Spring product launch announcement for enterprise customers",
+        ),
+        page(
+          "review",
+          "Quarterly business review materials for the leadership team",
+          [page("agenda", "Agenda")],
+        ),
+        page(
+          "onboarding",
+          "Customer onboarding checklist and welcome email templates",
+        ),
+      ]),
+    ],
+  },
+  play: async ({ canvas }) => {
+    await userEvent.hover(canvas.getByText(/^Spring product launch/));
+    await expect(await screen.findByRole("tooltip")).toHaveTextContent(
+      "Spring product launch announcement for enterprise customers",
+    );
+  },
+};
+
 export const Disabled: Story = {
   args: {
     defaultExpanded: ["home"],
