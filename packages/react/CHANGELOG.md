@@ -1,5 +1,20 @@
 # @optiaxiom/react
 
+## 3.7.1
+
+### Patch Changes
+
+- d3cbd17: documented `DataTable` v8 default sorting and column sizing
+- e92f0f0: removed `pattern` from `DateInput`, where browsers ignore it
+- f30b690: updated dependencies to their latest compatible versions
+- 6764fe4: documented `inputMode` on `Input`, `SearchInput` and `Textarea`
+- e92f0f0: documented `pattern` on `Input` and `SearchInput`
+- b073f93: moved disabled item tooltips to the right of `Select`, `Menu` and `Tree` items
+- 43aa16a: fixed Breadcrumb hiding items without `href` or `execute`
+- 325bf0c: renamed `Tree` option `addon` to `icon`
+- fac7fc6: removed `description` from `Tree` options
+- 76de88a: show truncated `Tree` labels in full in a tooltip
+
 ## 3.7.0
 
 ### Minor Changes

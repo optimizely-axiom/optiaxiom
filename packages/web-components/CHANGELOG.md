@@ -1,5 +1,15 @@
 # @optiaxiom/web-components
 
+## 3.6.1
+
+### Patch Changes
+
+- f30b690: updated dependencies to their latest compatible versions
+- 6764fe4: documented `inputMode` on `Input`, `SearchInput` and `Textarea`
+- 43aa16a: fixed Breadcrumb hiding items without `href` or `execute`
+- e92f0f0: added `pattern` property to `Input` and `SearchInput`
+- c7770e1: fixed `Input` and `SearchInput` ignoring their input `type`
+
 ## 3.6.0
 
 ### Minor Changes

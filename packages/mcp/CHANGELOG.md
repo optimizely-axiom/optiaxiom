@@ -1,5 +1,17 @@
 # @optiaxiom/mcp
 
+## 3.5.2
+
+### Patch Changes
+
+- d3cbd17: documented `DataTable` v8 default sorting and column sizing
+- 6764fe4: documented `inputMode` on `Input`, `SearchInput` and `Textarea`
+- e92f0f0: documented `pattern` on `Input` and `SearchInput`
+- 7133edc: clarified that size props take tokens in `get_tokens`
+- 43aa16a: fixed Breadcrumb hiding items without `href` or `execute`
+- 325bf0c: renamed `Tree` option `addon` to `icon`
+- fac7fc6: removed `description` from `Tree` options
+
 ## 3.5.1
 
 ### Patch Changes
