@@ -11574,7 +11574,7 @@
                 "tsType": "(() => void)"
               },
               "href": {
-                "description": "Render a link with the given value as the `href` attribute.",
+                "description": "Render a link with the given value as the `href` attribute. Items\nwithout `href` or `execute` render as plain text.",
                 "type": "string"
               },
               "label": {

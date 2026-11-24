@@ -133,3 +133,21 @@ export const Truncated: Story = {
     ],
   },
 };
+
+export const WithoutLinks: Story = {
+  args: {
+    items: [
+      {
+        href: "/",
+        label: "Home",
+      },
+      {
+        label: "Settings",
+      },
+      {
+        label: "Billing",
+      },
+    ],
+  },
+  render: (args) => <Breadcrumb {...args} />,
+};
