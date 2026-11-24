@@ -11,7 +11,6 @@ import { useRef, useState } from "react";
 import { Box } from "../box";
 import { EllipsisMenuButton } from "../ellipsis-menu-button";
 import { useTimeout } from "../hooks";
-import { ListboxItemTooltip } from "../listbox/ListboxItemTooltip";
 import { useMessages } from "../locale";
 import { resolveItemProperty } from "../select/SelectContext";
 import { Spinner } from "../spinner";
@@ -20,6 +19,7 @@ import { TransitionGlobalConfig } from "../transition";
 import { isEditable, type TreeOption, useTreeContext } from "./TreeContext";
 import * as styles from "./TreeItem.css";
 import { TreeItemEditor } from "./TreeItemEditor";
+import { TreeItemTooltip } from "./TreeItemTooltip";
 import { TreeLoadMore } from "./TreeLoadMore";
 
 export type TreeItemProps = {
@@ -208,7 +208,12 @@ export function TreeItem({ option }: TreeItemProps) {
       }
       value={option.value}
     >
-      <ListboxItemTooltip content={disabledReason} highlighted={focused}>
+      <TreeItemTooltip
+        disabledReason={disabledReason}
+        editing={isEditing}
+        highlighted={focused}
+        label={option.label}
+      >
         <Box
           onDoubleClick={() => {
             if (canEdit) {
@@ -313,7 +318,7 @@ export function TreeItem({ option }: TreeItemProps) {
             </Box>
           )}
         </Box>
-      </ListboxItemTooltip>
+      </TreeItemTooltip>
 
       {children && (
         <UiTreeGroup
