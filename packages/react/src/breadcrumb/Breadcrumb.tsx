@@ -26,7 +26,8 @@ export type BreadcrumbProps = BoxProps<
        */
       execute?: () => void;
       /**
-       * Render a link with the given value as the `href` attribute.
+       * Render a link with the given value as the `href` attribute. Items
+       * without `href` or `execute` render as plain text.
        */
       href?: string;
       /**
@@ -65,7 +66,8 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
                   <BreadcrumbNode addonAfter={item.addonAfter}>
                     <Tooltip auto content={item.label}>
                       <Text asChild truncate>
-                        {index === items.length - 1 ? (
+                        {index === items.length - 1 ||
+                        (!item.href && !item.execute) ? (
                           <Box
                             aria-current={
                               index === items.length - 1 ? "page" : undefined
@@ -81,13 +83,13 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
                           >
                             {item.label}
                           </Link>
-                        ) : item.execute ? (
+                        ) : (
                           <Link appearance="subtle" asChild {...styles.link()}>
                             <button onClick={() => item.execute?.()}>
                               {item.label}
                             </button>
                           </Link>
-                        ) : null}
+                        )}
                       </Text>
                     </Tooltip>
                   </BreadcrumbNode>
