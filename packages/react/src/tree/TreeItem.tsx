@@ -11,6 +11,7 @@ import { useRef, useState } from "react";
 import { Box } from "../box";
 import { EllipsisMenuButton } from "../ellipsis-menu-button";
 import { useTimeout } from "../hooks";
+import { HoverCardAnchorProvider } from "../hover-card/HoverCardContext";
 import { useMessages } from "../locale";
 import { resolveItemProperty } from "../select/SelectContext";
 import { Spinner } from "../spinner";
@@ -281,7 +282,10 @@ export function TreeItem({ option }: TreeItemProps) {
               onPointerLeave={() => setAddonHovered(false)}
               {...styles.addonAfter()}
             >
-              {option.addonAfter}
+              {/* A hover card here opens beside the whole row. */}
+              <HoverCardAnchorProvider anchorRef={rowRef}>
+                {option.addonAfter}
+              </HoverCardAnchorProvider>
             </Box>
           )}
 

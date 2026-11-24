@@ -3,6 +3,7 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithoutRef, useState } from "react";
 
 import { HoverCardContextProvider } from "./HoverCardContext";
+import { useHoverCardScope } from "./useHoverCardScope";
 
 export type HoverCardProps = ComponentPropsWithoutRef<
   typeof RadixHoverCard.Root
@@ -38,6 +39,7 @@ export function HoverCard({
       open={open || presence}
       openDelay={openDelay}
       {...props}
+      {...useHoverCardScope(undefined)}
     >
       <HoverCardContextProvider
         open={open}

@@ -37,7 +37,8 @@ export type TreeOption = {
   actions?: ((context: { rename: () => void }) => MenuOption[]) | MenuOption[];
   /**
    * Status items such as counts or indicators to show at the end of the row,
-   * before the actions button.
+   * before the actions button. A `HoverCard` placed here opens beside the
+   * whole row.
    */
   addonAfter?: ReactNode;
   /**
