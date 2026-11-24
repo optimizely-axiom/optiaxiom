@@ -28,10 +28,18 @@ jobs:
           pnpm install
           pnpm exec playwright install
           pnpm build
+          pnpm -F @optiaxiom/storybook build:chromatic
 
       - uses: chromaui/action@latest
         with:
-          buildScriptName: build
           exitZeroOnChanges: true
+          # Build inputs outside src that scripts/trace-sources.mjs cannot map
+          # to a dist module. A change to any of them snapshots every story.
+          externals: |
+            packages/*/rolldown.config.mjs
+            packages/*/plugins/**
+            packages/icons/icons.json
+          onlyChanged: true
           projectToken: chpt_1768d7812fc589a
+          storybookBuildDir: storybook-static
           workingDir: apps/storybook
