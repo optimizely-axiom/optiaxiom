@@ -4059,6 +4059,20 @@
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
         },
         "h": { "$ref": "#/definitions/SprinkleProp_h" },
+        "inputMode": {
+          "anyOf": [
+            { "const": "none" },
+            { "const": "text" },
+            { "const": "search" },
+            { "const": "tel" },
+            { "const": "url" },
+            { "const": "email" },
+            { "const": "numeric" },
+            { "const": "decimal" },
+            { "$ref": "#/definitions/ProteusExpression" }
+          ],
+          "description": "The kind of virtual keyboard to show on touch devices."
+        },
         "justifyContent": {
           "$ref": "#/definitions/SprinkleProp_justifyContent"
         },
@@ -4086,6 +4100,13 @@
         "overflowX": { "$ref": "#/definitions/SprinkleProp_overflowX" },
         "overflowY": { "$ref": "#/definitions/SprinkleProp_overflowY" },
         "p": { "$ref": "#/definitions/SprinkleProp_p" },
+        "pattern": {
+          "anyOf": [
+            { "type": "string" },
+            { "$ref": "#/definitions/ProteusExpression" }
+          ],
+          "description": "A regular expression the whole value must match to be valid. Browsers\ncompile it with the `v` flag and ignore it if it fails to compile, so\nescape `-` and `/` inside a character class (`[a-z0-9\\-\\/]`)."
+        },
         "pb": { "$ref": "#/definitions/SprinkleProp_pb" },
         "pl": { "$ref": "#/definitions/SprinkleProp_pl" },
         "placeholder": {

@@ -998,6 +998,62 @@ export const FieldValidationMessage: Story = {
   render: FieldValidation.render,
 };
 
+export const FieldValidationPattern: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      actions: [
+        {
+          $type: "Action",
+          appearance: "primary",
+          children: "Create brand pack",
+          onClick: { interaction: "create_brand_pack" },
+          type: "submit",
+        },
+      ],
+      appName: "Opal",
+      body: {
+        $type: "Field",
+        children: {
+          $type: "Input",
+          inputMode: "url",
+          name: "website",
+          pattern: String.raw`(https?:\/\/)?[^\s\/?#]+\.[^\s\/?#]+([\/?#]\S*)?`,
+          placeholder: "www.example.com",
+          validationMessage: {
+            patternMismatch: "Enter a web address, like www.example.com",
+          },
+        },
+        label: "Website",
+      },
+      title: "Create brand pack",
+    },
+  },
+  play: async ({ canvas }) => {
+    const submit = canvas.getByRole("button", { name: "Create brand pack" });
+    const website = canvas.getByRole("textbox", { name: /Website/ });
+    await expect(website).toHaveAttribute("inputmode", "url");
+
+    await userEvent.type(website, "hello world");
+    await userEvent.tab();
+    await expect(website).toHaveAttribute("aria-invalid", "true");
+    await expect(website).toHaveAccessibleDescription(
+      "Enter a web address, like www.example.com",
+    );
+    await expect(submit).toBeDisabled();
+
+    await userEvent.clear(website);
+    await userEvent.type(website, "www.example.com");
+    await expect(website).not.toHaveAttribute("aria-invalid");
+    await waitFor(() => expect(submit).toBeEnabled());
+
+    // leave the custom message showing for the snapshot
+    await userEvent.clear(website);
+    await userEvent.type(website, "hello world");
+  },
+  render: FieldValidation.render,
+};
+
 export const AskUserQuestion: Story = {
   args: {
     collapsible: true,
