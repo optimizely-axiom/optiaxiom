@@ -55,19 +55,8 @@ jobs:
           name: docs-${{ github.ref_name }}
           path: ./apps/docs/out
 
-  deploy:
-    if: ${{ github.repository_owner == 'optimizely-axiom' }}
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Download current branch artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: docs-${{ github.ref_name }}
-          path: combined
+      - name: Copy current branch docs
+        run: cp -R ./apps/docs/out combined
 
       - name: Determine other branch
         id: other
@@ -142,5 +131,16 @@ jobs:
         with:
           path: ./combined
 
+  # deploy-pages gets a job of its own: in the job that uploads github-pages,
+  # the artifact list may not show it yet, and re-running that job would add a
+  # second github-pages artifact next to the first.
+  deploy:
+    if: ${{ github.repository_owner == 'optimizely-axiom' }}
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v5
