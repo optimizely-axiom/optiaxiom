@@ -40,6 +40,7 @@ export default mergeConfig(
           inline: ["@optiaxiom", "@radix", "@dnd-kit", "@ui-sdk"],
         },
       },
+      setupFiles: ["./vitest.react17.setup.ts"],
     },
   }),
 );

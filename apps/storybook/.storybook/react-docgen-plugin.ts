@@ -5,7 +5,9 @@ import { builtinHandlers, ERROR_CODES, parse } from "react-docgen";
 export function reactDocgenPlugin() {
   const filter = createFilter(
     /..\/..\/packages\/react\/dist\/.*\.js/,
-    /-css\.js/,
+    // react-docgen throws on bundled third-party modules that export several
+    // components (Radix tooltip), and the story then fails to load.
+    [/-css\.js/, /\/node_modules\//],
   );
 
   let docs: Awaited<
