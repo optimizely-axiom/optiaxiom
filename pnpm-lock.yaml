@@ -167,6 +167,7 @@ overrides:
 
 patchedDependencies:
   '@dnd-kit/react': 4c6dc3bd22f53df0d628407d74e5233c6442a01425cfaa7f068e04685200ba36
+  '@radix-ui/react-tooltip': a9491db94263c21c9088f5ea4f2e61ac841bebf1c98bfab319e696cb1b75d1fe
   '@ui-sdk/core': 80f1a13a1347fe6f82c5022d942ec901590df0a2d786fb2b8c9c920d1d59298d
   '@ui-sdk/react': 23cf65b080439b8f8b8efc601c3e765a711dda1116f71639ed8d0643d71e91b5
   '@vanilla-extract/sprinkles': 530004842e1937cf2ffe2728e2a18629c5dd638aa441e1158192285fcee2fe7e
@@ -802,7 +803,7 @@ importers:
         version: 1.14.5
       '@radix-ui/react-tooltip':
         specifier: 1.3.0
-        version: 1.3.0(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.3.0(patch_hash=a9491db94263c21c9088f5ea4f2e61ac841bebf1c98bfab319e696cb1b75d1fe)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/react-table':
         specifier: ^9.3.1
         version: 9.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -12014,7 +12015,7 @@ snapshots:
       '@types/react': 18.3.31
       '@types/react-dom': 18.3.7(@types/react@18.3.31)
 
-  '@radix-ui/react-tooltip@1.3.0(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@radix-ui/react-tooltip@1.3.0(patch_hash=a9491db94263c21c9088f5ea4f2e61ac841bebf1c98bfab319e696cb1b75d1fe)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/primitive': 1.1.7
       '@radix-ui/react-compose-refs': 1.1.5(@types/react@18.3.31)(react@18.3.1)

@@ -14,6 +14,7 @@ overrides:
 
 patchedDependencies:
   "@dnd-kit/react": patches/@dnd-kit__react.patch
+  "@radix-ui/react-tooltip": patches/@radix-ui__react-tooltip.patch
   "@ui-sdk/core": patches/@ui-sdk__core.patch
   "@ui-sdk/react": patches/@ui-sdk__react.patch
   "@vanilla-extract/sprinkles": patches/@vanilla-extract__sprinkles.patch
