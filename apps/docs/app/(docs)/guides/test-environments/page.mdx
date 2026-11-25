@@ -126,7 +126,7 @@ await expect(page.getByRole("tooltip")).toHaveText("Add to library");
 
 jsdom (Jest's default environment) leaves out some DOM APIs. Axiom components work without them, but a few dependencies call them unguarded:
 
-- `ResizeObserver`: `Tooltip` positions its arrow with a Radix hook that requires it.
+- `ResizeObserver`: `Sortable` imports a drag-and-drop library that requires it.
 - `Element.prototype.hasPointerCapture`: `Toast` calls it on pointer up.
 - `document.elementFromPoint`: `RichTextEditor` calls it when clicked.
 

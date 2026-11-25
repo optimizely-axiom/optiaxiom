@@ -26,3 +26,19 @@ index e0e85c2ce4ab28b98d7823a40bbd95c6d30c1473..bb4634a536b23ed5df276e0b6134e001
    const finish = () => {
      if (finished) {
        return;
+diff --git a/dist/foundation/popups/popup-features.js b/dist/foundation/popups/popup-features.js
+index 1325bc0f135ab1acad5a8d98f78e96dcbf41c101..31ac64402df2b2f2efbb6637c57cb00e33dc340c 100644
+--- a/dist/foundation/popups/popup-features.js
++++ b/dist/foundation/popups/popup-features.js
+@@ -279,7 +279,10 @@ function triggerName(core) {
+   };
+ }
+ var warmFor = 400;
+-var warm = {
++// Shared like the layer stack, so tooltips from every copy on the page, like
++// two micro-frontends each bundling ui-sdk, open at once after one another and
++// close the open one.
++var warm = globalThis[/* @__PURE__ */ Symbol.for("ui-sdk.tooltip-warm@1")] ??= {
+   close: void 0,
+   closedAt: -Infinity
+ };

@@ -14,6 +14,7 @@ import {
   SelectContent,
   SelectTrigger,
   Text,
+  Tooltip,
 } from "@optiaxiom/react";
 import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { useEffect, useMemo, useState } from "react";
@@ -463,6 +464,36 @@ export const AlternateTrigger: Story = {
           Reset
         </Button>
       </Group>
+    );
+  },
+};
+
+export const WithTooltip: Story = {
+  args: {
+    children: (
+      <>
+        <Tooltip content="Language of the page">
+          <SelectTrigger placeholder="Select a language" />
+        </Tooltip>
+        <SelectContent />
+      </>
+    ),
+    defaultOpen: false,
+  },
+  play: async () => {
+    await userEvent.tab();
+    await waitFor(async () =>
+      expect(
+        await screen.findByRole("tooltip", { name: "Language of the page" }),
+      ).toBeVisible(),
+    );
+
+    await userEvent.keyboard("{ArrowDown}");
+    await waitFor(async () =>
+      expect(await screen.findByRole("listbox")).toBeVisible(),
+    );
+    await waitFor(() =>
+      expect(screen.queryByRole("tooltip")).not.toBeInTheDocument(),
     );
   },
 };

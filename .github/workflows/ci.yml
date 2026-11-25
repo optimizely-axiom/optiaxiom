@@ -192,7 +192,7 @@ jobs:
       # Installed into the react package the way a consumer installs them, so
       # pnpm resolves Radix and the other dependencies against React 17.
       # Testing Library 12 pairs with dom 8, which user-event then shares.
-      - run: pnpm add -D react@^17.0.2 react-dom@^17.0.2 @testing-library/react@^12.1.5 @testing-library/dom@^8 @tanstack/react-table@^8.21.3 --filter @optiaxiom/react
+      - run: pnpm add -D react@^17.0.2 react-dom@^17.0.2 @testing-library/react@^12.1.5 @testing-library/dom@^8 @testing-library/user-event@^14.6.13 @tanstack/react-table@^8.21.3 --filter @optiaxiom/react
 
       - run: pnpm -F icons -F globals build
 

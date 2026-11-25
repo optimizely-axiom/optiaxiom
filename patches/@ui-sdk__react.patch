@@ -1,8 +1,104 @@
+diff --git a/dist/controller-target.js b/dist/controller-target.js
+index 0c60e8eb14f5d42d56d4ee6512abcfb40305b692..17543565748cd5bab1daf0d910c2b4c416870d02 100644
+--- a/dist/controller-target.js
++++ b/dist/controller-target.js
+@@ -1,6 +1,23 @@
+ "use client";
+ // src/controller-target.ts
+ import * as React from "react";
++// React 16 and 17 lack useSyncExternalStore. The fallback reads the store on
++// every render and re-renders on change, rechecking once it subscribes. A
++// computed key keeps bundlers from linking a named import React 16/17 don't
++// export.
++function useStoreFallback(subscribe, read) {
++  const value = read();
++  const [, rerender] = React.useReducer((count) => count + 1, 0);
++  React.useEffect(() => {
++    const unsubscribe = subscribe(rerender);
++    if (!Object.is(read(), value)) {
++      rerender();
++    }
++    return unsubscribe;
++  }, [subscribe]);
++  return value;
++}
++var useSyncExternalStore = React["useSyncExternalStore".toString()] || useStoreFallback;
+ var controlled = /* @__PURE__ */ new WeakMap();
+ function controlledEntry(controller) {
+   let entry = controlled.get(controller);
+@@ -30,7 +47,7 @@ function useControllerTarget(controller, nearest) {
+     [controller]
+   );
+   const read = () => controller ? controlled.get(controller)?.value : void 0;
+-  return React.useSyncExternalStore(
++  return useSyncExternalStore(
+     controller ? subscribe : noController,
+     read,
+     () => void 0
+diff --git a/dist/popup.js b/dist/popup.js
+index 6a6fe5e6d474d43f7ac44ce56d69277059b5a294..d6685b0bda676c51a224cd265ecdd18c4d18899b 100644
+--- a/dist/popup.js
++++ b/dist/popup.js
+@@ -2,6 +2,10 @@
+ // src/popup.tsx
+ import { portalTarget } from "@ui-sdk/core/renderer";
+ import * as React from "react";
++// React 16 and 17 lack useInsertionEffect; a layout effect still runs before
++// paint. A computed key keeps bundlers from linking a named import React
++// 16/17 don't export.
++var useInsertionEffect = React["useInsertionEffect".toString()] || React.useLayoutEffect;
+ import { createPortal } from "react-dom";
+ import { useControllerTarget } from "./controller-target.js";
+ import { mergeRefs } from "./render-element.js";
+@@ -32,14 +36,20 @@ function Popup({
+ }) {
+   const target = portalTarget(container);
+   const [tree] = React.useState(followTree);
+-  React.useInsertionEffect(() => {
++  useInsertionEffect(() => {
+     if (target) {
+       tree.placed(target);
+     }
+   }, [tree, target]);
+   const part = element;
++  // React 18 and earlier keep the element's ref off its props, and
++  // cloneElement would replace it with the tracking ref. React 19 warns on
++  // reading element.ref, so only older versions read it.
+   const tracked = React.cloneElement(part, {
+-    ref: mergeRefs(part.props.ref ?? null, tree.track)
++    ref: mergeRefs(
++      (parseInt(React.version) < 19 ? part.ref : part.props.ref) ?? null,
++      tree.track
++    )
+   });
+   const content = container ? /* @__PURE__ */ jsx(InheritedContainer.Provider, { value: container, children: tracked }) : tracked;
+   return /* @__PURE__ */ jsxs(Fragment, { children: [
+@@ -104,7 +114,7 @@ function TreeEffect({
+   tree,
+   target
+ }) {
+-  React.useInsertionEffect(() => {
++  useInsertionEffect(() => {
+     if (target) {
+       tree.placing(target);
+     }
 diff --git a/dist/render-element.js b/dist/render-element.js
-index 37161909267af55bdd2729ff9973817a789a9020..ad7036472f2bce6675b6042bf533cd352672022b 100644
+index 37161909267af55bdd2729ff9973817a789a9020..216c4aeda19e2f9527f5d669fd8d155450207a4b 100644
 --- a/dist/render-element.js
 +++ b/dist/render-element.js
-@@ -101,7 +101,14 @@ function renderElement(tag, props, render, state = {}) {
+@@ -67,6 +67,11 @@ function mergeRefs(a, b) {
+   if (!merged) {
+     merged = (el) => {
+       const cleanups = [setRef(a, el), setRef(b, el)];
++      // React 18 and earlier warn on a ref that returns a function, and
++      // detach refs by calling them with null instead.
++      if (parseInt(React.version) < 19) {
++        return;
++      }
+       return () => cleanups.forEach(
+         (cleanup, index) => typeof cleanup === "function" ? cleanup() : setRef(index ? b : a, null)
+       );
+@@ -101,7 +106,14 @@ function renderElement(tag, props, render, state = {}) {
    if (element) {
      return React.cloneElement(
        element,

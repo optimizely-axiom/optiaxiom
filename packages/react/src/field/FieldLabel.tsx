@@ -1,7 +1,7 @@
 import { IconCircleQuestion } from "@optiaxiom/icons/IconCircleQuestion";
 import { useId } from "@radix-ui/react-id";
 import * as RadixLabel from "@radix-ui/react-label";
-import { forwardRef, type ReactNode } from "react";
+import { forwardRef, type ReactNode, useState } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
@@ -54,6 +54,7 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
     const inputId = useId(inputIdProp);
     const labelId = useId(labelIdProp);
     const messages = useMessages();
+    const [infoOpen, setInfoOpen] = useState(false);
 
     return (
       <Group gap="4" ref={ref} {...props}>
@@ -85,7 +86,12 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
           </RadixLabel.Root>
         </Text>
         {info && (
-          <Tooltip content={info} delayDuration={0}>
+          <Tooltip
+            content={info}
+            delayDuration={0}
+            onOpenChange={setInfoOpen}
+            open={infoOpen}
+          >
             <Button
               aria-label={messages["More information"]}
               bg="transparent"
@@ -100,6 +106,11 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
               onClick={(event) => {
                 event.currentTarget.focus();
                 event.preventDefault();
+                /**
+                 * Tooltips open on focus only from the keyboard, so a press,
+                 * like a tap on a touch screen, opens it here.
+                 */
+                setInfoOpen(true);
               }}
               onPointerDownCapture={(event) => {
                 event.preventDefault();
