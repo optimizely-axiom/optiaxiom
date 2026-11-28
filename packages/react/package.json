@@ -433,7 +433,7 @@
     "react-day-picker": "^10.0.2",
     "react-remove-scroll": "^2.7.2",
     "react-resizable-panels": "^3.0.6",
-    "recharts": "^3.11.0",
+    "recharts": "^3.11.1",
     "use-sync-external-store": "^1.7.0"
   },
   "devDependencies": {
@@ -447,7 +447,7 @@
     "@mantine/hooks": "^8.3.18",
     "@preact/signals-core": "^1.14.5",
     "@tanstack/react-table": "^9.3.1",
-    "@types/node": "^22.20.5",
+    "@types/node": "^22.20.7",
     "@types/use-sync-external-store": "^1.7.0",
     "@ui-sdk/core": "0.1.0-beta.13",
     "@ui-sdk/react": "0.1.0-beta.13",
